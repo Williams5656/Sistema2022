@@ -148,12 +148,12 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         this.txt_N_actividad = txt_N_actividad;
     }
 
-    public JTextField getTxt_carrera() {
-        return txt_carrera;
+    public JComboBox<String> getComobo_carrera() {
+        return comobo_carrera;
     }
 
-    public void setTxt_carrera(JTextField txt_carrera) {
-        this.txt_carrera = txt_carrera;
+    public void setComobo_carrera(JComboBox<String> comobo_carrera) {
+        this.comobo_carrera = comobo_carrera;
     }
 
     public JTextArea getTxt_descripcion() {
@@ -248,7 +248,6 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         jLabel15 = new javax.swing.JLabel();
         txt_responsables = new javax.swing.JTextField();
         txt_N_actividad = new javax.swing.JTextField();
-        txt_carrera = new javax.swing.JTextField();
         btn_eliminar = new javax.swing.JButton();
         btn_añadir = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -257,6 +256,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         combo_periodo = new javax.swing.JComboBox();
         Fecha_limite = new com.toedter.calendar.JDateChooser();
         Fecha_inicio = new com.toedter.calendar.JDateChooser();
+        comobo_carrera = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         Tabla_calendario = new javax.swing.JTable();
@@ -385,6 +385,8 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
 
         combo_periodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        comobo_carrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -410,13 +412,15 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
                             .addComponent(jLabel11))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_id_A, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(combo_actividad, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_N_actividad, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(combo_periodo, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txt_carrera, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(combo_periodo, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(comobo_carrera, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_id_A, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15)
@@ -437,7 +441,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txt_carrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comobo_carrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -609,6 +613,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox combo_actividad;
     private javax.swing.JComboBox combo_periodo;
     private javax.swing.JComboBox combo_tipo_actividad_repor;
+    private javax.swing.JComboBox<String> comobo_carrera;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
@@ -628,7 +633,6 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField txt_N_actividad;
-    private javax.swing.JTextField txt_carrera;
     private javax.swing.JTextArea txt_descripcion;
     private javax.swing.JTextField txt_id_A;
     private javax.swing.JTextField txt_responsables;

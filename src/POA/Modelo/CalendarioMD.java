@@ -10,26 +10,35 @@ package POA.Modelo;
  * @author Renato Llivisaca
  */
 public class CalendarioMD {
-    private int id_Carrera;
+    private String id_Carrera;
     private int id_Periodo;
     private int id_TipoActividad;
 
     public CalendarioMD() {
     }
 
-    public CalendarioMD(int id_Carrera, int id_Periodo, int id_Actividad) {
+    public CalendarioMD(String id_Carrera, int id_Periodo, int id_TipoActividad) {
         this.id_Carrera = id_Carrera;
         this.id_Periodo = id_Periodo;
-        this.id_TipoActividad = id_Actividad;
+        this.id_TipoActividad = id_TipoActividad;
     }
 
-    public int getId_Carrera() {
+    public String getId_Carrera() {
         return id_Carrera;
     }
 
-    public void setId_Carrera(int id_Carrera) {
+    public void setId_Carrera(String id_Carrera) {
         this.id_Carrera = id_Carrera;
     }
+
+    public int getId_TipoActividad() {
+        return id_TipoActividad;
+    }
+
+    public void setId_TipoActividad(int id_TipoActividad) {
+        this.id_TipoActividad = id_TipoActividad;
+    }
+
 
     public int getId_Periodo() {
         return id_Periodo;

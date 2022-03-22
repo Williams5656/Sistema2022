@@ -10,7 +10,7 @@ package POA.Modelo;
  * @author Renato Llivisaca
  */
 public class ActividadMD extends CalendarioMD{
-    private int id_TipoActividad;
+
     private int id_Actividad;
     private String Nombre_Actividad;
     private String Responsables;
@@ -18,16 +18,13 @@ public class ActividadMD extends CalendarioMD{
     private String Fecha_Inicio;
     private String Fecha_Limite;
 
-    public ActividadMD(int id_Carrera, int id_Periodo, int id_Actividad) {
-        super(id_Carrera, id_Periodo, id_Actividad);
-    }
-
+    
     public ActividadMD() {
     }
 
-    public ActividadMD(int id_TipoActividad, int id_Actividad, String Nombre_Actividad, String Responsables, String Descripcion, String Fecha_Inicio, String Fecha_Limite, int id_Carrera, int id_Periodo ) {
-        super(id_Carrera, id_Periodo, id_Actividad);
-        this.id_TipoActividad = id_TipoActividad;
+    public ActividadMD( String id_Carrera, int id_Periodo, int id_TipoActividad,int id_Actividad, String Nombre_Actividad, String Responsables, String Descripcion, String Fecha_Inicio, String Fecha_Limite) {
+        super(id_Carrera, id_Periodo, id_TipoActividad);
+        this.id_Actividad = id_Actividad;
         this.Nombre_Actividad = Nombre_Actividad;
         this.Responsables = Responsables;
         this.Descripcion = Descripcion;
@@ -35,13 +32,6 @@ public class ActividadMD extends CalendarioMD{
         this.Fecha_Limite = Fecha_Limite;
     }
 
-    public int getId_TipoActividad() {
-        return id_TipoActividad;
-    }
-
-    public void setId_TipoActividad(int id_TipoActividad) {
-        this.id_TipoActividad = id_TipoActividad;
-    }
 
     public int getId_Actividad() {
         return id_Actividad;

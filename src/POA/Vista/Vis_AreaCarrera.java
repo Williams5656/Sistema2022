@@ -118,7 +118,7 @@ public class Vis_AreaCarrera extends javax.swing.JInternalFrame {
         btn_imprimir = new javax.swing.JButton();
         btn_eliminar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        comboPerfil1 = new javax.swing.JComboBox<>();
+        comboPerfil = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -179,7 +179,7 @@ public class Vis_AreaCarrera extends javax.swing.JInternalFrame {
         jLabel3.setText("Carrera:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
-        jPanel1.add(comboPerfil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 139, -1));
+        jPanel1.add(comboPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 139, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -211,7 +211,7 @@ public class Vis_AreaCarrera extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_modificar;
     private javax.swing.JButton btn_nuevo;
     private javax.swing.JComboBox<String> comboCarrera;
-    private javax.swing.JComboBox<String> comboPerfil1;
+    private javax.swing.JComboBox<String> comboPerfil;
     private javax.swing.JComboBox<String> comboResponsable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

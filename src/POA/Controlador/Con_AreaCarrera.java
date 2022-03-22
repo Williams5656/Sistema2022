@@ -193,8 +193,9 @@ private void modificar() {
         modelo.setColumnCount(0);
         
         modelo.addColumn("Id");
-        modelo.addColumn("Cédula Persona");
+        modelo.addColumn("Carrera");
         modelo.addColumn("Perfil");
+        modelo.addColumn("Responsable");
         
         lista = bdarea.mostrardatos();
         for (AreaCarreraMD user : lista) {

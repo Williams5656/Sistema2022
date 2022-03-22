@@ -134,7 +134,7 @@ public class Con_perfil {
         modelo.setColumnCount(0);
         
         modelo.addColumn("Id");
-        modelo.addColumn("Cédula Persona");
+        modelo.addColumn("Descripcion");
         modelo.addColumn("Perfil");
         
         lista = bdperfil.mostrardatos();

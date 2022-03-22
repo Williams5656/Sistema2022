@@ -129,5 +129,9 @@ public class CarreraBD extends CarreraMD {
             return false;
         }
     }
+//
+    public boolean hasNext() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

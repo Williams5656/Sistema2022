@@ -57,18 +57,6 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtNombre_carrera">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Roboto Black" size="14" style="0"/>
-            </Property>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="280" y="70" width="390" height="20"/>
-            </Constraint>
-          </Constraints>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -271,22 +259,6 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="btnBuscarnc">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Roboto Black" size="14" style="0"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/POA/Vista/img/buscar (2).png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Buscar"/>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="690" y="60" width="120" height="40"/>
-            </Constraint>
-          </Constraints>
-        </Component>
         <Component class="javax.swing.JButton" name="btnGuardar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -363,6 +335,58 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="870" y="310" width="120" height="40"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblNombre">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder>
+                  <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+                </LineBorder>
+              </Border>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="270" y="290" width="400" height="20"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="comboCarrera">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="17">
+                <StringItem index="0" value="Seleccione"/>
+                <StringItem index="1" value="Entrenamiento Deportivo"/>
+                <StringItem index="2" value="Tecnolog&#xed;a en An&#xe1;lisis de Sistemas"/>
+                <StringItem index="3" value="Tecnolog&#xed;a en Desarrollo Infantil Integral "/>
+                <StringItem index="4" value="Tecnolog&#xed;a en Seguridad Penitenciaria "/>
+                <StringItem index="5" value="Tecnolog&#xed;a Superior en Asesor&#xed;a Financiera "/>
+                <StringItem index="6" value="Tecnolog&#xed;a Superior en Desarrollo de Software "/>
+                <StringItem index="7" value="Tecnolog&#xed;a Superior en Electricidad"/>
+                <StringItem index="8" value="Tecnolog&#xed;a Superior en Mec&#xe1;nica Industrial"/>
+                <StringItem index="9" value="Tecnolog&#xed;a Superior en Procesamiento Industrial de la Madera"/>
+                <StringItem index="10" value="T&#xe9;cnico Superior en Seguridad Ciudadana y Orden P&#xfa;blico "/>
+                <StringItem index="11" value="Tecnolog&#xed;a Superior en Control de Incendios y Operaciones de Rescate"/>
+                <StringItem index="12" value="Tecnolog&#xed;a en Gesti&#xf3;n del Patrimonio Hist&#xf3;rico Cultural"/>
+                <StringItem index="13" value="Tecnolog&#xed;a Superior en Ciberseguridad"/>
+                <StringItem index="14" value="Producci&#xf3;n y Realizaci&#xf3;n Audiovisual"/>
+                <StringItem index="15" value="Tecnolog&#xed;a Superior en Big Data"/>
+                <StringItem index="16" value=" "/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="280" y="70" width="440" height="20"/>
             </Constraint>
           </Constraints>
         </Component>

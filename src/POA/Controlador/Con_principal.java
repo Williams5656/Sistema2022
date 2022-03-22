@@ -15,6 +15,7 @@ import POA.Vista.Vis_Usuario;
 import POA.Vista.vis_Docentes;
 import POA.Vista.vis_PeriodoAcademico;
 import POA.Vista.vis_Persona;
+import POA.Vista.Vis_Materias;
 import POA.Vista.vis_inicioSesion;
 import POA.Vista.vis_poa;
 import POA.Vista.vis_poa_actividad;
@@ -47,6 +48,7 @@ public class Con_principal {
          vista.getBtn_evidencias().addActionListener(e -> evidencia());
          vista.getBtn_periodos().addActionListener(e -> periodo());
          vista.getBtn_docentes().addActionListener(e -> docentes());
+         vista.getBtn_materia().addActionListener(e -> materias());
     }
 
     private void periodo(){
@@ -160,5 +162,15 @@ public class Con_principal {
        con_docentes rol=new con_docentes(user);
 
     }
+
+    private void materias() {
+        Vis_Materias subject = new Vis_Materias();
+        vista.getESCRITORIO().add(subject);
+        Dimension desktopSize = vista.getESCRITORIO().getSize();
+        Dimension FrameSize = subject.getSize();
+        subject.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        Con_Materia mate = new Con_Materia(subject);
+    }
+    
 }
 

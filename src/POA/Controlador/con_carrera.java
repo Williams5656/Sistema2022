@@ -1,13 +1,17 @@
 package POA.Controlador;
-
 import POA.Vista.Vis_Carrera;
 import POA.Modelo.CarreraMD;
 import POA.Modelo.CarreraBD;
-
+import POA.Vista.*;
+import POA.Modelo.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.util.logging.Level;
@@ -17,6 +21,13 @@ public class con_carrera {
 
     private final Vis_Carrera vista;
     private CarreraBD carrera = new CarreraBD();
+    //
+    private PersonaBD baseDatosPersona = new PersonaBD();
+    private ArrayList<CarreraMD> listaCarrera = new ArrayList<>();
+    private List<PersonaMD> listaPersonas = new ArrayList<>();
+    private List<PerfilMD> listaPerfiles = new ArrayList<>();
+//    private PerfilBD baseDatosPerfil = new PerfilBD();
+//    private String codigoPerfil;
 
     public con_carrera(Vis_Carrera vista) {
         this.vista = vista;
@@ -27,7 +38,7 @@ public class con_carrera {
         vista.getBtnGuardar().addActionListener(e -> guardar());
         vista.getBtnModificar().addActionListener(e -> modificar());
         vista.getBtnEliminar().addActionListener(e -> eliminar());
-     
+//        vista.getBtnBuscarc().addActionListener(e->buscarced());
 
         vista.getTablaCarrera().addMouseListener(new MouseAdapter() {
             @Override
@@ -37,22 +48,54 @@ public class con_carrera {
 
         });
         listam();
-
+        //
     }
-
+//
+//    public void buscarced() {
+//        PersonaBD bdp = new PersonaBD();
+//        List<PersonaMD> lista = bdp.mostrardatos();
+//        CarreraBD bdc = new CarreraBD();
+//        List<CarreraMD> lista2 = bdc.mostrardatos();
+//        int n = 0;
+//        for (int i = 0; i < lista.size(); i++) {
+//            if (vista.getTxtCoordinador().getText().equals(lista.get(i).getCedula())) {
+//                vista.getLblNombre().setText(lista.get(i).getNombres() + " " + lista.get(i).getApellidos());
+//                vista.getTxtCoordinador().setEditable(false);
+//                n = 2;
+//            } 
+//        }
+//        for (int j = 0; j < lista2.size(); j++) {
+//            if (vista.getTxtCoordinador().getText().equals(lista2.get(j).getCoordinador())) {
+//                n = 1;
+//            } 
+//        }
+//    }
+//    
     public void guardar() {
-
-        carrera.setNombre_carrera(vista.getTxtNombre_carrera().getText());
-        carrera.setCodigo_carrera(vista.getTxtCodigo_carrera().getText());
+        boolean existente = false;
+        boolean perfilRepetido = false;
+        int codigoPerfil = 0;
+//        carrera.setNombre_carrera(vista.getTxtNombre_carrera().getText());
+        String n_carrera = (String) vista.getComboCarrera().getSelectedItem();
+        carrera.setNombre_carrera(n_carrera);
+//        carrera.setCodigo_carrera(vista.getTxtCodigo_carrera().getText());
+        String cuenta=Integer.toString(generacodi());
+        carrera.setCodigo_carrera(cuenta);
         carrera.setFecha_inicio(vista.getTxtFecha_inicio().getText());
         String modalidad = (String) vista.getCmbModalidad().getSelectedItem();
         carrera.setModalidad(modalidad);
         carrera.setCoordinador(vista.getTxtCoordinador().getText());
+        
 
 //        String horario = (String) vista.getCmbHorario().getSelectedItem();
 //        carrera.setHorario(horario);
 
         if (carrera.insertar()) {
+          for (PersonaMD person : listaPersonas){
+             if (person.getCedula().equals(vista.getTxtCoordinador().getText())){
+                 existente = true;     
+            }
+        }
             JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
             listam();
             nuevo();
@@ -77,7 +120,7 @@ public class con_carrera {
 //        carrera.setHorario(lista.get(0).getHorario());
 
         vista.getTxtCodigo_carrera().setText(carrera.getCodigo_carrera());
-        vista.getTxtNombre_carrera().setText(carrera.getNombre_carrera());
+        vista.getComboCarrera().setSelectedItem(carrera.getNombre_carrera());
         vista.getTxtFecha_inicio().setText(carrera.getFecha_inicio());
         vista.getCmbModalidad().setSelectedItem(carrera.getModalidad());
         vista.getTxtCoordinador().setText(carrera.getCoordinador());
@@ -108,8 +151,12 @@ public class con_carrera {
     }
 
     public void modificar() {
-        carrera.setNombre_carrera(vista.getTxtNombre_carrera().getText());
-        carrera.setCodigo_carrera(vista.getTxtCodigo_carrera().getText());
+//        carrera.setNombre_carrera(vista.getTxtNombre_carrera().getText());
+        String n_carrera = (String) vista.getComboCarrera().getSelectedItem();
+        carrera.setNombre_carrera(n_carrera);
+//        carrera.setCodigo_carrera(vista.getTxtCodigo_carrera().getText());
+        String cuenta=Integer.toString(generacodi());
+        carrera.setCodigo_carrera(cuenta);
         carrera.setFecha_inicio(vista.getTxtFecha_inicio().getText());
         String modalidad = (String) vista.getCmbModalidad().getSelectedItem();
         carrera.setModalidad(modalidad);
@@ -128,7 +175,7 @@ public class con_carrera {
             }
 
         }
-
+        label();
     }
 
     public void eliminar() {
@@ -150,38 +197,13 @@ public class con_carrera {
     public void nuevo() {
 
         vista.getTxtCodigo_carrera().setText("");
-        vista.getTxtNombre_carrera().setText("");
+        vista.getComboCarrera().setSelectedItem("");
         vista.getTxtFecha_inicio().setText("");
         vista.getCmbModalidad().setSelectedItem("");
         vista.getTxtCoordinador().setText("");
 //        vista.getCmbHorario().setSelectedItem("");
     }
 
-    public void buscar_nc() {
-        if (vista.getTxtNombre_carrera().getText().equals("")) {
-            listam();
-        } else {
-            DefaultTableModel modelo;
-            modelo = (DefaultTableModel) vista.getTablaCarrera().getModel();
-            List<CarreraMD> listac = carrera.mostrardatos();
-            int columnas = modelo.getColumnCount();
-            for (int j = vista.getTablaCarrera().getRowCount() - 1; j >= 0; j--) {
-                modelo.removeRow(j);
-                for (int i = 0; i < listac.size(); i++) {
-                    if (listac.get(i).getCodigo_carrera().equals(vista.getTxtNombre_carrera().getText())) {
-                        modelo.addRow(new Object[columnas]);
-                        vista.getTablaCarrera().setValueAt(listac.get(i).getCodigo_carrera(), i, 0);
-                        vista.getTablaCarrera().setValueAt(listac.get(i).getNombre_carrera(), i, 1);
-                        vista.getTablaCarrera().setValueAt(listac.get(i).getFecha_inicio(), i, 2);
-                        vista.getTablaCarrera().setValueAt(listac.get(i).getModalidad(), i, 3);
-                        vista.getTablaCarrera().setValueAt(listac.get(i).getCoordinador(), i, 4);
-                    }
-                }
-            }
-        }
-        nuevo();
-    }
-       
     public void buscar_c() {
         if (vista.getTxtCoordinador().getText().equals("")) {
             listam();
@@ -206,4 +228,37 @@ public class con_carrera {
         }
         nuevo();
     }
+       public static int generacodi() {
+        String co = "";
+        int b=0;
+        int ca = 0;
+        do {
+            Random r = new Random();
+            b = r.nextInt(000000001 + 999999999) + 999999999;
+            co = Integer.toString(b);
+            CarreraBD car = new CarreraBD(null, co, null, null, null);
+            if (car.hasNext()) {
+                ca += 1;
+            } else {
+                ca += 0;
+            }
+        } while (ca != 0);
+        return b;
+    }
+       
+    public void label(){
+       listaPersonas = baseDatosPersona.mostrardatos();
+        vista.getTxtCoordinador().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                for (PersonaMD person : listaPersonas) {
+                    if (person.getCedula().equals(vista.getTxtCoordinador().getText())) {
+                        vista.getLblNombre().setText(person.getNombres() + " " + person.getApellidos());
+                    } 
+                } 
+                if (vista.getTxtCoordinador().getText().equals(""))
+                    vista.getLblNombre().setText("");
+            }        
+        });
+    }   
 }

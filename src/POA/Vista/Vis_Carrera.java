@@ -7,6 +7,7 @@ package POA.Vista;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -100,13 +101,13 @@ public class Vis_Carrera extends javax.swing.JInternalFrame {
         this.txtFecha_inicio = txtFecha_inicio;
     }
 
-    public JTextField getTxtNombre_carrera() {
-        return txtNombre_carrera;
-    }
-
-    public void setTxtNombre_carrera(JTextField txtNombre_carrera) {
-        this.txtNombre_carrera = txtNombre_carrera;
-    }
+//    public JTextField getTxtNombre_carrera() {
+//        return txtNombre_carrera;
+//    }
+//
+//    public void setTxtNombre_carrera(JTextField txtNombre_carrera) {
+//        this.txtNombre_carrera = txtNombre_carrera;
+//    }
 
     public JTextField getTxtCoordinador() {
         return txtCoordinador;
@@ -124,12 +125,20 @@ public class Vis_Carrera extends javax.swing.JInternalFrame {
         this.btnBuscarc = btnBuscarc;
     }
 
-    public JButton getBtnBuscarnc() {
-        return btnBuscarnc;
+    public JComboBox<String> getComboCarrera() {
+        return comboCarrera;
     }
 
-    public void setBtnBuscarnc(JButton btnBuscarnc) {
-        this.btnBuscarnc = btnBuscarnc;
+    public void setComboCarrera(JComboBox<String> comboCarrera) {
+        this.comboCarrera = comboCarrera;
+    }
+
+    public JLabel getLblNombre() {
+        return lblNombre;
+    }
+
+    public void setLblNombre(JLabel lblNombre) {
+        this.lblNombre = lblNombre;
     }
   
 
@@ -144,7 +153,6 @@ public class Vis_Carrera extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtNombre_carrera = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtFecha_inicio = new javax.swing.JTextField();
         jlabel6 = new javax.swing.JLabel();
@@ -156,13 +164,14 @@ public class Vis_Carrera extends javax.swing.JInternalFrame {
         tablaCarrera = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         txtCodigo_carrera = new javax.swing.JTextField();
-        btnBuscarnc = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         btnNuevo = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnImprimir = new javax.swing.JButton();
+        lblNombre = new javax.swing.JLabel();
+        comboCarrera = new javax.swing.JComboBox<>();
         fondo = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -177,9 +186,6 @@ public class Vis_Carrera extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nombre Carrera:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, -1, -1));
-
-        txtNombre_carrera.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        jPanel1.add(txtNombre_carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, 390, 20));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -237,11 +243,6 @@ public class Vis_Carrera extends javax.swing.JInternalFrame {
         txtCodigo_carrera.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
         jPanel1.add(txtCodigo_carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 130, 20));
 
-        btnBuscarnc.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        btnBuscarnc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/buscar (2).png"))); // NOI18N
-        btnBuscarnc.setText("Buscar");
-        jPanel1.add(btnBuscarnc, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, 120, 40));
-
         btnGuardar.setFont(new java.awt.Font("Roboto Black", 0, 11)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/guardar.png"))); // NOI18N
         btnGuardar.setText("Guardar");
@@ -265,6 +266,13 @@ public class Vis_Carrera extends javax.swing.JInternalFrame {
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/impresion.png"))); // NOI18N
         btnImprimir.setText("Imprimir");
         jPanel1.add(btnImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 310, 120, 40));
+
+        lblNombre.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 400, 20));
+
+        comboCarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Entrenamiento Deportivo", "Tecnología en Análisis de Sistemas", "Tecnología en Desarrollo Infantil Integral ", "Tecnología en Seguridad Penitenciaria ", "Tecnología Superior en Asesoría Financiera ", "Tecnología Superior en Desarrollo de Software ", "Tecnología Superior en Electricidad", "Tecnología Superior en Mecánica Industrial", "Tecnología Superior en Procesamiento Industrial de la Madera", "Técnico Superior en Seguridad Ciudadana y Orden Público ", "Tecnología Superior en Control de Incendios y Operaciones de Rescate", "Tecnología en Gestión del Patrimonio Histórico Cultural", "Tecnología Superior en Ciberseguridad", "Producción y Realización Audiovisual", "Tecnología Superior en Big Data", " " }));
+        jPanel1.add(comboCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, 440, 20));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/fondo azul (1).jpg"))); // NOI18N
         fondo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(6, 56, 107)));
@@ -304,13 +312,13 @@ public class Vis_Carrera extends javax.swing.JInternalFrame {
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarc;
-    private javax.swing.JButton btnBuscarnc;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JComboBox<String> cmbModalidad;
+    private javax.swing.JComboBox<String> comboCarrera;
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel fondogrande;
     private javax.swing.JLabel jLabel1;
@@ -323,11 +331,11 @@ public class Vis_Carrera extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlabel6;
+    private javax.swing.JLabel lblNombre;
     private javax.swing.JTable tablaCarrera;
     private javax.swing.JTextField txtCodigo_carrera;
     private javax.swing.JTextField txtCoordinador;
     private javax.swing.JTextField txtFecha_inicio;
-    private javax.swing.JTextField txtNombre_carrera;
     // End of variables declaration//GEN-END:variables
 
 }

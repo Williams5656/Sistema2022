@@ -5,6 +5,7 @@
  */
 package POA.Controlador;
 
+import POA.Vista.Vis_AreaCarrera;
 import POA.Vista.Vis_Asignacion;
 import POA.Vista.Vis_Calendar;
 import POA.Vista.Vis_Perfil;
@@ -51,6 +52,7 @@ public class Con_principal {
          vista.getBtn_docentes().addActionListener(e -> docentes());
          vista.getBtn_materia().addActionListener(e -> materias());
          vista.getBtn_calendario().addActionListener(e-> calendario());
+         vista.getBtn_AreaCarrera().addActionListener(e-> areaCarrera());
     }
 
     private void periodo(){
@@ -180,6 +182,15 @@ public class Con_principal {
         Dimension FrameSize = cale.getSize();
         cale.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
 
+    }
+    
+    private void areaCarrera() {
+        Vis_AreaCarrera area = new Vis_AreaCarrera();
+        Con_AreaCarrera acarrera = new Con_AreaCarrera(area);
+        vista.getESCRITORIO().add(area);
+        Dimension desktopSize = vista.getESCRITORIO().getSize();
+        Dimension FrameSize = area.getSize();
+        area.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
     }
     
 }

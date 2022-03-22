@@ -22,6 +22,16 @@ public class Vis_AreaCarrera extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    public JComboBox<String> getComboCarrera() {
+        return comboCarrera;
+    }
+
+    public void setComboCarrera(JComboBox<String> comboCarrera) {
+        this.comboCarrera = comboCarrera;
+    }
+
+    
+
     public JButton getBtn_eliminar() {
         return btn_eliminar;
     }
@@ -63,11 +73,11 @@ public class Vis_AreaCarrera extends javax.swing.JInternalFrame {
     }
 
     public JComboBox<String> getComboPerfil() {
-        return comboPerfil;
+        return comboCarrera;
     }
 
     public void setComboPerfil(JComboBox<String> comboPerfil) {
-        this.comboPerfil = comboPerfil;
+        this.comboCarrera = comboPerfil;
     }
 
     public JComboBox<String> getComboResponsable() {
@@ -98,7 +108,7 @@ public class Vis_AreaCarrera extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        comboPerfil = new javax.swing.JComboBox<>();
+        comboCarrera = new javax.swing.JComboBox<>();
         comboResponsable = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaAreaCarrera = new javax.swing.JTable();
@@ -107,6 +117,8 @@ public class Vis_AreaCarrera extends javax.swing.JInternalFrame {
         btn_modificar = new javax.swing.JButton();
         btn_imprimir = new javax.swing.JButton();
         btn_eliminar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        comboPerfil1 = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -115,14 +127,14 @@ public class Vis_AreaCarrera extends javax.swing.JInternalFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Perfil:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
         jLabel2.setText("Responsable:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
-        jPanel1.add(comboPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 139, -1));
+        jPanel1.add(comboCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 139, -1));
 
-        jPanel1.add(comboResponsable, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 139, -1));
+        jPanel1.add(comboResponsable, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 139, -1));
 
         tablaAreaCarrera.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -164,6 +176,11 @@ public class Vis_AreaCarrera extends javax.swing.JInternalFrame {
         btn_eliminar.setText("Eliminar");
         jPanel1.add(btn_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
 
+        jLabel3.setText("Carrera:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+
+        jPanel1.add(comboPerfil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 139, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -193,10 +210,12 @@ public class Vis_AreaCarrera extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_imprimir;
     private javax.swing.JButton btn_modificar;
     private javax.swing.JButton btn_nuevo;
-    private javax.swing.JComboBox<String> comboPerfil;
+    private javax.swing.JComboBox<String> comboCarrera;
+    private javax.swing.JComboBox<String> comboPerfil1;
     private javax.swing.JComboBox<String> comboResponsable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaAreaCarrera;

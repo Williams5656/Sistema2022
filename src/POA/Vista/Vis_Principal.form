@@ -141,6 +141,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Materias"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_materiaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="Btn_AreaCarrera">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Areas de Carrera"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_AreaCarreraActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

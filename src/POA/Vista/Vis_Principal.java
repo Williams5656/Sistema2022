@@ -151,6 +151,14 @@ public class Vis_Principal extends javax.swing.JFrame {
         this.btn_calendario = btn_calendario;
     }
 
+    public JMenuItem getBtn_AreaCarrera() {
+        return Btn_AreaCarrera;
+    }
+
+    public void setBtn_AreaCarrera(JMenuItem Btn_AreaCarrera) {
+        this.Btn_AreaCarrera = Btn_AreaCarrera;
+    }
+
    
 
     
@@ -180,6 +188,7 @@ public class Vis_Principal extends javax.swing.JFrame {
         btn_periodos = new javax.swing.JMenuItem();
         btn_docentes = new javax.swing.JMenuItem();
         btn_materia = new javax.swing.JMenuItem();
+        Btn_AreaCarrera = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         btn_poa = new javax.swing.JMenuItem();
         btn_actividades = new javax.swing.JMenuItem();
@@ -292,7 +301,20 @@ public class Vis_Principal extends javax.swing.JFrame {
         MENU_ACADEMICO.add(btn_docentes);
 
         btn_materia.setText("Materias");
+        btn_materia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_materiaActionPerformed(evt);
+            }
+        });
         MENU_ACADEMICO.add(btn_materia);
+
+        Btn_AreaCarrera.setText("Areas de Carrera");
+        Btn_AreaCarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_AreaCarreraActionPerformed(evt);
+            }
+        });
+        MENU_ACADEMICO.add(Btn_AreaCarrera);
 
         jMenuBar1.add(MENU_ACADEMICO);
 
@@ -361,11 +383,20 @@ public class Vis_Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_periodosActionPerformed
 
+    private void btn_materiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_materiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_materiaActionPerformed
+
+    private void Btn_AreaCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_AreaCarreraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Btn_AreaCarreraActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Btn_AreaCarrera;
     private javax.swing.JDesktopPane ESCRITORIO;
     private javax.swing.JMenu MENU_ACADEMICO;
     private javax.swing.JMenu MENU_USUARIO;

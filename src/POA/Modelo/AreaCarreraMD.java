@@ -11,14 +11,14 @@ package POA.Modelo;
  */
 public class AreaCarreraMD {
     private int idArea;
-    private int idCarrera;
+    private String idCarrera;
     private int idPerfil;
     private String idResponsable;
 
     public AreaCarreraMD() {
     }
 
-    public AreaCarreraMD(int idArea, int idCarrera, int idPerfil, String idResponsable) {
+    public AreaCarreraMD(int idArea, String idCarrera, int idPerfil, String idResponsable) {
         this.idArea = idArea;
         this.idCarrera = idCarrera;
         this.idPerfil = idPerfil;
@@ -33,11 +33,11 @@ public class AreaCarreraMD {
         this.idArea = idArea;
     }
 
-    public int getIdCarrera() {
+    public String getIdCarrera() {
         return idCarrera;
     }
 
-    public void setIdCarrera(int idCarrera) {
+    public void setIdCarrera(String idCarrera) {
         this.idCarrera = idCarrera;
     }
 
@@ -56,7 +56,5 @@ public class AreaCarreraMD {
     public void setIdResponsable(String idResponsable) {
         this.idResponsable = idResponsable;
     }
-    
-    
     
 }

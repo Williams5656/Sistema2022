@@ -12,6 +12,7 @@ import POA.Vista.Vis_Principal;
 import POA.Vista.Vis_Roles;
 import POA.Vista.Vis_Carrera;
 import POA.Vista.Vis_Usuario;
+import POA.Vista.vis_Docentes;
 import POA.Vista.vis_PeriodoAcademico;
 import POA.Vista.vis_Persona;
 import POA.Vista.vis_inicioSesion;
@@ -146,6 +147,16 @@ public class Con_principal {
         Dimension FrameSize = user.getSize();
         user.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         Con_poa_evidencia rol=new Con_poa_evidencia(user);
+
+    }
+     
+     private void docentes() {
+          vis_Docentes user = new vis_Docentes();
+        vista.getESCRITORIO().add(user);
+        Dimension desktopSize = vista.getESCRITORIO().getSize();
+        Dimension FrameSize = user.getSize();
+        user.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+       // Con_docentes rol=new Con_docentes(user);
 
     }
 }

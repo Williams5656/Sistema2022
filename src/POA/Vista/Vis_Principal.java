@@ -127,6 +127,14 @@ public class Vis_Principal extends javax.swing.JFrame {
         this.btn_usuario = btn_usuario;
     }
 
+    public JMenuItem getBtn_docentes() {
+        return btn_docentes;
+    }
+
+    public void setBtn_docentes(JMenuItem btn_docentes) {
+        this.btn_docentes = btn_docentes;
+    }
+
    
 
     
@@ -154,6 +162,7 @@ public class Vis_Principal extends javax.swing.JFrame {
         btn_carrera = new javax.swing.JMenuItem();
         btn_permisos = new javax.swing.JMenuItem();
         btn_periodos = new javax.swing.JMenuItem();
+        btn_docentes = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         btn_poa = new javax.swing.JMenuItem();
         btn_actividades = new javax.swing.JMenuItem();
@@ -260,6 +269,9 @@ public class Vis_Principal extends javax.swing.JFrame {
         });
         MENU_ACADEMICO.add(btn_periodos);
 
+        btn_docentes.setText("Docentes");
+        MENU_ACADEMICO.add(btn_docentes);
+
         jMenuBar1.add(MENU_ACADEMICO);
 
         jMenu1.setText("POA");
@@ -331,6 +343,7 @@ public class Vis_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem btn_actividades;
     private javax.swing.JMenuItem btn_asignacion;
     private javax.swing.JMenuItem btn_carrera;
+    private javax.swing.JMenuItem btn_docentes;
     private javax.swing.JMenuItem btn_evidencias;
     private javax.swing.JMenuItem btn_perfil;
     private javax.swing.JMenuItem btn_periodos;

@@ -156,7 +156,7 @@ public class Con_principal {
         Dimension desktopSize = vista.getESCRITORIO().getSize();
         Dimension FrameSize = user.getSize();
         user.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-       // Con_docentes rol=new Con_docentes(user);
+       con_docentes rol=new con_docentes(user);
 
     }
 }

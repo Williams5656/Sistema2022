@@ -143,6 +143,14 @@ public class Vis_Principal extends javax.swing.JFrame {
         this.btn_materia = btn_materia;
     }
 
+    public JMenuItem getBtn_calendario() {
+        return btn_calendario;
+    }
+
+    public void setBtn_calendario(JMenuItem btn_calendario) {
+        this.btn_calendario = btn_calendario;
+    }
+
    
 
     
@@ -176,6 +184,8 @@ public class Vis_Principal extends javax.swing.JFrame {
         btn_poa = new javax.swing.JMenuItem();
         btn_actividades = new javax.swing.JMenuItem();
         btn_evidencias = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        btn_calendario = new javax.swing.JMenuItem();
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/ISTA.jpg"))); // NOI18N
 
@@ -299,6 +309,13 @@ public class Vis_Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setText("Calendario");
+
+        btn_calendario.setText("Nuevo");
+        jMenu2.add(btn_calendario);
+
+        jMenuBar1.add(jMenu2);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -354,6 +371,7 @@ public class Vis_Principal extends javax.swing.JFrame {
     private javax.swing.JMenu MENU_USUARIO;
     private javax.swing.JMenuItem btn_actividades;
     private javax.swing.JMenuItem btn_asignacion;
+    private javax.swing.JMenuItem btn_calendario;
     private javax.swing.JMenuItem btn_carrera;
     private javax.swing.JMenuItem btn_docentes;
     private javax.swing.JMenuItem btn_evidencias;
@@ -369,6 +387,7 @@ public class Vis_Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }

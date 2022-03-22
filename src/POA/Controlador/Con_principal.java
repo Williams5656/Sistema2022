@@ -6,6 +6,7 @@
 package POA.Controlador;
 
 import POA.Vista.Vis_Asignacion;
+import POA.Vista.Vis_Calendar;
 import POA.Vista.Vis_Perfil;
 import POA.Vista.Vis_Permisos;
 import POA.Vista.Vis_Principal;
@@ -49,6 +50,7 @@ public class Con_principal {
          vista.getBtn_periodos().addActionListener(e -> periodo());
          vista.getBtn_docentes().addActionListener(e -> docentes());
          vista.getBtn_materia().addActionListener(e -> materias());
+         vista.getBtn_calendario().addActionListener(e-> calendario());
     }
 
     private void periodo(){
@@ -170,6 +172,14 @@ public class Con_principal {
         Dimension FrameSize = subject.getSize();
         subject.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         Con_Materia mate = new Con_Materia(subject);
+    }
+    private void calendario() {
+          Vis_Calendar cale = new Vis_Calendar();
+        vista.getESCRITORIO().add(cale);
+        Dimension desktopSize = vista.getESCRITORIO().getSize();
+        Dimension FrameSize = cale.getSize();
+        cale.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+
     }
     
 }

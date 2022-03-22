@@ -46,6 +46,7 @@ public class Con_principal {
         vista.getBtn_actividades().addActionListener(e -> actividad());
          vista.getBtn_evidencias().addActionListener(e -> evidencia());
          vista.getBtn_periodos().addActionListener(e -> periodo());
+         vista.getBtn_docentes().addActionListener(e -> docentes());
     }
 
     private void periodo(){

@@ -23,7 +23,45 @@ public class Vis_Principal extends javax.swing.JFrame {
 
     }
 
-   
+    public JDesktopPane getESCRITORIO() {
+        return ESCRITORIO;
+    }
+
+    public void setESCRITORIO(JDesktopPane ESCRITORIO) {
+        this.ESCRITORIO = ESCRITORIO;
+    }
+
+    public JMenuItem getBtn_actividades() {
+        return btn_actividades;
+    }
+
+    public void setBtn_actividades(JMenuItem btn_actividades) {
+        this.btn_actividades = btn_actividades;
+    }
+
+    public JMenuItem getBtn_asignacion() {
+        return btn_asignacion;
+    }
+
+    public void setBtn_asignacion(JMenuItem btn_asignacion) {
+        this.btn_asignacion = btn_asignacion;
+    }
+
+    public JMenuItem getBtn_carrera() {
+        return btn_carrera;
+    }
+
+    public void setBtn_carrera(JMenuItem btn_carrera) {
+        this.btn_carrera = btn_carrera;
+    }
+
+    public JMenuItem getBtn_evidencias() {
+        return btn_evidencias;
+    }
+
+    public void setBtn_evidencias(JMenuItem btn_evidencias) {
+        this.btn_evidencias = btn_evidencias;
+    }
 
     public JMenuItem getBtn_perfil() {
         return btn_perfil;
@@ -33,12 +71,36 @@ public class Vis_Principal extends javax.swing.JFrame {
         this.btn_perfil = btn_perfil;
     }
 
+    public JMenuItem getBtn_periodos() {
+        return btn_periodos;
+    }
+
+    public void setBtn_periodos(JMenuItem btn_periodos) {
+        this.btn_periodos = btn_periodos;
+    }
+
+    public JMenuItem getBtn_permisos() {
+        return btn_permisos;
+    }
+
+    public void setBtn_permisos(JMenuItem btn_permisos) {
+        this.btn_permisos = btn_permisos;
+    }
+
     public JMenuItem getBtn_persona() {
         return btn_persona;
     }
 
     public void setBtn_persona(JMenuItem btn_persona) {
         this.btn_persona = btn_persona;
+    }
+
+    public JMenuItem getBtn_poa() {
+        return btn_poa;
+    }
+
+    public void setBtn_poa(JMenuItem btn_poa) {
+        this.btn_poa = btn_poa;
     }
 
     public JMenuItem getBtn_roles() {
@@ -53,14 +115,6 @@ public class Vis_Principal extends javax.swing.JFrame {
         return btn_salir;
     }
 
-    public JMenuItem getBtn_carrera() {
-        return btn_carrera;
-    }
-
-    public void setBtn_carrera(JMenuItem btn_carrera) {
-        this.btn_carrera = btn_carrera;
-    }
-
     public void setBtn_salir(JMenuItem btn_salir) {
         this.btn_salir = btn_salir;
     }
@@ -69,70 +123,12 @@ public class Vis_Principal extends javax.swing.JFrame {
         return btn_usuario;
     }
 
-    public JMenuItem getBtn_asignacion() {
-        return btn_asignacion;
-    }
-
-    public void setBtn_asignacion(JMenuItem btn_asignacion) {
-        this.btn_asignacion = btn_asignacion;
-    }
-
-    public JMenuItem getBtn_permisos() {
-        return btn_permisos;
-    }
-
-    public void setBtn_permisos(JMenuItem btn_permisos) {
-        this.btn_permisos = btn_permisos;
-    }
-
-    
     public void setBtn_usuario(JMenuItem btn_usuario) {
         this.btn_usuario = btn_usuario;
     }
 
-     public JDesktopPane getESCRITORIO() {
-        return ESCRITORIO;
-    }
+   
 
-    public JMenuItem getBtn_actividades() {
-        return btn_actividades;
-    }
-
-    public void setBtn_actividades(JMenuItem btn_actividades) {
-        this.btn_actividades = btn_actividades;
-    }
-
-    public JMenuItem getBtn_evidencias() {
-        return btn_evidencias;
-    }
-
-    public void setBtn_evidencias(JMenuItem btn_evidencias) {
-        this.btn_evidencias = btn_evidencias;
-    }
-
-    public JMenuItem getBtn_poa() {
-        return btn_poa;
-    }
-
-    public void setBtn_poa(JMenuItem btn_poa) {
-        this.btn_poa = btn_poa;
-    }
-
-     
-     
-    public void setESCRITORIO(JDesktopPane ESCRITORIO) {
-        this.ESCRITORIO = ESCRITORIO;
-    }
-
-    public JMenuItem getBtn_periodos() {
-        return btn_periodos;
-    }
-
-    public void setBtn_periodos(JMenuItem btn_periodos) {
-        this.btn_periodos = btn_periodos;
-    }
-
-    
     
     /**
      * This method is called from within the constructor to initialize the form.

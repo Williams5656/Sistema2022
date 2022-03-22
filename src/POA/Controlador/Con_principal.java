@@ -128,7 +128,7 @@ public class Con_principal {
         Dimension desktopSize = vista.getESCRITORIO().getSize();
         Dimension FrameSize = user.getSize();
         user.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-        //cont_usuario us = new cont_usuario(user);
+        Con_poa us = new Con_poa(user);
     }
 
     private void actividad() {
@@ -137,7 +137,7 @@ public class Con_principal {
         Dimension desktopSize = vista.getESCRITORIO().getSize();
         Dimension FrameSize = user.getSize();
         user.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-       // ControladorAsignacion rol=new ControladorAsignacion(user);
+       Con_poa_actividad rol=new Con_poa_actividad(user);
     }   
      private void evidencia() {
           vis_poa_evidencia user = new vis_poa_evidencia();
@@ -145,7 +145,7 @@ public class Con_principal {
         Dimension desktopSize = vista.getESCRITORIO().getSize();
         Dimension FrameSize = user.getSize();
         user.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-        //ControladorAsignacion rol=new ControladorAsignacion(user);
+        Con_poa_evidencia rol=new Con_poa_evidencia(user);
 
     }
 }

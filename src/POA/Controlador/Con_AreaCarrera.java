@@ -38,9 +38,7 @@ public class Con_AreaCarrera {
 
     public Con_AreaCarrera(Vis_AreaCarrera vista) {
         this.vista = vista;
-        cargarComboPerfil();
-        cargarComboResponsable();
-        cargarComboCarrera();
+        
         vista.setVisible(true);
 //        vista.getBtn_guardar().addActionListener(e -> guardar());
 //        vista.getBtn_modificar().addActionListener(e -> modificar());
@@ -102,6 +100,9 @@ public class Con_AreaCarrera {
         vista.getComboPerfil().setSelectedIndex(0);
         vista.getComboResponsable().setSelectedIndex(0);
         vista.getComboCarrera().setSelectedIndex(0);
+        cargarComboPerfil();
+        cargarComboResponsable();
+        cargarComboCarrera();
     }
 
     private void guardar() {

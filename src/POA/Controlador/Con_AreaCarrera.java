@@ -90,7 +90,7 @@ public class Con_AreaCarrera {
         for (PersonaMD persona : listaPersona) {
             for (docenteMD docente : listaDocente) {
                 if (persona.getCedula().equals(docente.getCedula())) {
-                    vista.getComboPerfil().addItem(persona.getNombres() + " " + persona.getApellidos());
+                    vista.getComboResponsable().addItem(persona.getNombres() + " " + persona.getApellidos());
                 }
             }
         }

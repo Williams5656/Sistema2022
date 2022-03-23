@@ -37,12 +37,14 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
         comboEstado = new javax.swing.JComboBox<>();
         lblIdPeriodo = new javax.swing.JLabel();
         btnCrear = new javax.swing.JButton();
-        mesPeriodoInicio = new com.toedter.calendar.JMonthChooser();
-        anioPeriodoInicio = new com.toedter.calendar.JYearChooser();
-        mesPeriodoFin = new com.toedter.calendar.JMonthChooser();
-        anioPeriodoFin = new com.toedter.calendar.JYearChooser();
         lblNombrePeriodo = new javax.swing.JLabel();
+        dateFechaInicio = new com.toedter.calendar.JDateChooser();
+        dateFechaFin = new com.toedter.calendar.JDateChooser();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("INGRESO DATOS"));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("ID PERIODO:");
@@ -71,25 +73,45 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
 
         btnCrear.setText("CREAR");
         jPanel1.add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
-        jPanel1.add(mesPeriodoInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, -1, -1));
-        jPanel1.add(anioPeriodoInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, -1, -1));
-        jPanel1.add(mesPeriodoFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, -1, -1));
-        jPanel1.add(anioPeriodoFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, -1, -1));
 
         lblNombrePeriodo.setForeground(new java.awt.Color(0, 0, 204));
         jPanel1.add(lblNombrePeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 260, 20));
+        jPanel1.add(dateFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 110, -1));
+        jPanel1.add(dateFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 110, -1));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("MOSTRAR DATOS"));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 550, 180));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -97,20 +119,21 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JYearChooser anioPeriodoFin;
-    private com.toedter.calendar.JYearChooser anioPeriodoInicio;
     private javax.swing.JButton btnCrear;
     private javax.swing.JComboBox<String> comboEstado;
+    private com.toedter.calendar.JDateChooser dateFechaFin;
+    private com.toedter.calendar.JDateChooser dateFechaInicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblCarrera;
     private javax.swing.JLabel lblIdPeriodo;
     private javax.swing.JLabel lblNombrePeriodo;
-    private com.toedter.calendar.JMonthChooser mesPeriodoFin;
-    private com.toedter.calendar.JMonthChooser mesPeriodoInicio;
     // End of variables declaration//GEN-END:variables
 }

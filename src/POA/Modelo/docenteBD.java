@@ -73,7 +73,7 @@ public class docenteBD extends docenteMD {
     
     public boolean Modificar(String cedula) {
        
-        String nsql = "UPDATE docente set \"titulo\"='" + getTitulo() + "',\"abreviatura\"='" + getAbreviatura() + "',\"tiempo\"='" + getOcupacion() + "'"
+        String nsql = "UPDATE docente set \"titulo\"='" + getTitulo() + "',\"abreviatura\"='" + getAbreviatura() + "',\"tiempo\"='" + getTiempo()+ "',\"ocupacion\"='" + getOcupacion()+ "'"
                 + " where \"cedula\"='" + cedula + "'";
 
         if (conectar.noQuery(nsql) == null) {

@@ -11,8 +11,12 @@ import POA.Modelo.CarreraBD;
 import POA.Modelo.CarreraMD;
 import POA.Modelo.PerfilBD;
 import POA.Modelo.PerfilMD;
+import POA.Modelo.PersonaBD;
+import POA.Modelo.PersonaMD;
 import POA.Vista.Vis_AreaCarrera;
 import POA.Modelo.Validadores.Letras;
+import POA.Modelo.docenteBD;
+import POA.Modelo.docenteMD;
 import POA.Vista.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -28,13 +32,17 @@ import javax.swing.table.DefaultTableModel;
 public class Con_AreaCarrera {
 
     private final Vis_AreaCarrera vista;
-    private AreaCarreraBD bdarea= new AreaCarreraBD();
+    private AreaCarreraBD bdarea = new AreaCarreraBD();
     private DefaultTableModel modelo = new DefaultTableModel();
     private List<AreaCarreraMD> lista = new ArrayList<>();
     private List<PerfilMD> listaPerfiles = new ArrayList<>();
     private List<CarreraMD> listaCarrera = new ArrayList<>();
+    private List<docenteMD> listaDocente = new ArrayList<>();
+    private List<PersonaMD> listaPersona = new ArrayList<>();
     private PerfilBD baseDatosPerfil = new PerfilBD();
     private CarreraBD baseDatosCarrera = new CarreraBD();
+    private docenteBD baseDatosDocente = new docenteBD();
+    private PersonaBD baseDatosPersona = new PersonaBD();
 
     public Con_AreaCarrera(Vis_AreaCarrera vista) {
         this.vista = vista;
@@ -77,10 +85,16 @@ public class Con_AreaCarrera {
     public void cargarComboResponsable() {
         vista.getComboResponsable().removeAllItems();
         vista.getComboResponsable().addItem("");
-//        listaPerfiles = baseDatosPerfil.mostrardatos();
-//        for (PerfilMD perfil : listaPerfiles){
-//            vista.getComboPerfil().addItem(perfil.getNombre());
-//        }
+        listaPersona = baseDatosPersona.mostrardatos();
+        listaDocente = baseDatosDocente.mostrardatos();
+        for (PersonaMD persona : listaPersona) {
+            for (docenteMD docente : listaDocente) {
+                if (persona.getCedula().equals(docente.getCedula())) {
+                    vista.getComboResponsable().addItem(persona.getNombres() + " " + persona.getApellidos());
+                }
+            }
+        }
+
     }
 
     public void cargarComboCarrera() {
@@ -98,11 +112,11 @@ public class Con_AreaCarrera {
         vista.getBtn_eliminar().setEnabled(false);
         vista.getComboPerfil().setEnabled(true);
         vista.getComboResponsable().setEnabled(true);
-        vista.getComboCarrera().setEditable(true);
+        vista.getComboCarrera().setEnabled(true);
         vista.getComboPerfil().setSelectedIndex(0);
         vista.getComboResponsable().setSelectedIndex(0);
         vista.getComboCarrera().setSelectedIndex(0);
-        
+
     }
 
     private void guardar() {
@@ -117,7 +131,7 @@ public class Con_AreaCarrera {
             String perfilCombo = (String) vista.getComboPerfil().getSelectedItem();
             int codigoPerfil = 0;
             String carreraCombo = (String) vista.getComboCarrera().getSelectedItem();
-            String codigoCarrera="";
+            String codigoCarrera = "";
             String responsableCombo = (String) vista.getComboResponsable().getSelectedItem();
             for (PerfilMD perfil : listaPerfiles) {
                 if (perfilCombo.equals(perfil.getNombre())) {
@@ -129,18 +143,18 @@ public class Con_AreaCarrera {
                     codigoCarrera = carrera.getCodigo_carrera();
                 }
             }
-           if (bdarea.insertar()) {
+            if (bdarea.insertar()) {
                 JOptionPane.showMessageDialog(null, "DATOS GUARDADOS CORRECTAMENTE");
                 lista();
                 nuevo();
             } else {
                 JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR");
             }
-            
-        }
-}
 
-private void modificar() {
+        }
+    }
+
+    private void modificar() {
         int seleccionado = vista.getTablaAreaCarrera().getSelectedRow();
         int codigoPerfil = 0;
         int resp2 = JOptionPane.showConfirmDialog(null, "CONFIRME SI ESTA SEGURO DE MODIFICAR");
@@ -176,27 +190,27 @@ private void modificar() {
         vista.getBtn_eliminar().setEnabled(true);
         vista.getBtn_guardar().setEnabled(false);
         lista = bdarea.mostrardatos();
-        for (PerfilMD perfil : listaPerfiles){
-            if (perfil.getCodigo() == lista.get(select).getIdPerfil()){
+        for (PerfilMD perfil : listaPerfiles) {
+            if (perfil.getCodigo() == lista.get(select).getIdPerfil()) {
                 vista.getComboPerfil().setSelectedItem(perfil.getNombre());
             }
         }
-        for (CarreraMD carrera : listaCarrera){
-            if (carrera.getCodigo_carrera()== lista.get(select).getIdCarrera()){
+        for (CarreraMD carrera : listaCarrera) {
+            if (carrera.getCodigo_carrera() == lista.get(select).getIdCarrera()) {
                 vista.getComboCarrera().setSelectedItem(carrera.getNombre_carrera());
             }
         }
     }
 
-    public void lista(){
+    public void lista() {
         modelo.setRowCount(0);
         modelo.setColumnCount(0);
-        
+
         modelo.addColumn("Id");
         modelo.addColumn("Carrera");
         modelo.addColumn("Perfil");
         modelo.addColumn("Responsable");
-        
+
         lista = bdarea.mostrardatos();
         for (AreaCarreraMD user : lista) {
             Object[] fila = new Object[3];
@@ -206,7 +220,7 @@ private void modificar() {
             fila[3] = user.getIdResponsable();
             modelo.addRow(fila);
         }
-        
+
         vista.getTablaAreaCarrera().setModel(modelo);
 
     }

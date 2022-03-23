@@ -25,9 +25,6 @@ public class con_carrera {
     private PersonaBD baseDatosPersona = new PersonaBD();
     private ArrayList<CarreraMD> listaCarrera = new ArrayList<>();
     private List<PersonaMD> listaPersonas = new ArrayList<>();
-    //private List<PerfilMD> listaPerfiles = new ArrayList<>();
-//    private PerfilBD baseDatosPerfil = new PerfilBD();
-//    private String codigoPerfil;
 
     public con_carrera(Vis_Carrera vista) {
         this.vista = vista;
@@ -48,7 +45,7 @@ public class con_carrera {
 
         });
         listam();
-        //
+        label();
     }
 //
 //    public void buscarced() {
@@ -85,9 +82,6 @@ public class con_carrera {
         carrera.setCoordinador(vista.getTxtCoordinador().getText());
         
 
-//        String horario = (String) vista.getCmbHorario().getSelectedItem();
-//        carrera.setHorario(horario);
-
         if (carrera.insertar()) {
           for (PersonaMD person : listaPersonas){
              if (person.getCedula().equals(vista.getTxtCoordinador().getText())){
@@ -115,14 +109,12 @@ public class con_carrera {
         carrera.setFecha_inicio(lista.get(0).getFecha_inicio());
         carrera.setModalidad(lista.get(0).getModalidad());
         carrera.setCoordinador(lista.get(0).getCoordinador());
-//        carrera.setHorario(lista.get(0).getHorario());
 
         vista.getTxtCodigo_carrera().setText(carrera.getCodigo_carrera());
         vista.getComboCarrera().setSelectedItem(carrera.getNombre_carrera());
         vista.getTxtFecha_inicio().setText(carrera.getFecha_inicio());
         vista.getCmbModalidad().setSelectedItem(carrera.getModalidad());
         vista.getTxtCoordinador().setText(carrera.getCoordinador());
-//        vista.getCmbHorario().setSelectedItem(carrera.getHorario());
 
     }
 
@@ -142,7 +134,6 @@ public class con_carrera {
             vista.getTablaCarrera().setValueAt(lista.get(i).getFecha_inicio(), i, 2);
             vista.getTablaCarrera().setValueAt(lista.get(i).getModalidad(), i, 3);
             vista.getTablaCarrera().setValueAt(lista.get(i).getCoordinador(), i, 4);
-//            vista.getTblCarrera().setValueAt(lista.get(i).getHorario(), i, 4);
 
         }
 
@@ -159,8 +150,6 @@ public class con_carrera {
         String modalidad = (String) vista.getCmbModalidad().getSelectedItem();
         carrera.setModalidad(modalidad);
         carrera.setCoordinador(vista.getTxtCoordinador().getText());
-//        String horario = (String) vista.getCmbHorario().getSelectedItem();
-//        carrera.setHorario(horario);
         int resp2 = JOptionPane.showConfirmDialog(null, "CONFIRME SI DESEA MODIFICAR");
         if (resp2 == 0) {
             if (carrera.modificar(vista.getTxtCodigo_carrera().getText())) {
@@ -173,7 +162,7 @@ public class con_carrera {
             }
 
         }
-        label();
+        //label();
     }
 
     public void eliminar() {
@@ -199,7 +188,6 @@ public class con_carrera {
         vista.getTxtFecha_inicio().setText("");
         vista.getCmbModalidad().setSelectedItem("");
         vista.getTxtCoordinador().setText("");
-//        vista.getCmbHorario().setSelectedItem("");
     }
 
     public void buscar_c() {

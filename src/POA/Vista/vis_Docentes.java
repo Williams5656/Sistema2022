@@ -5,12 +5,123 @@
  */
 package POA.Vista;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JRadioButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author HP
  */
 public class vis_Docentes extends javax.swing.JInternalFrame {
 
+    public JButton getBtncancelar() {
+        return btncancelar;
+    }
+
+    public void setBtncancelar(JButton btncancelar) {
+        this.btncancelar = btncancelar;
+    }
+
+    public JButton getBtnguardar() {
+        return btnguardar;
+    }
+
+    public void setBtnguardar(JButton btnguardar) {
+        this.btnguardar = btnguardar;
+    }
+
+    public JComboBox<String> getCombo_tiempo() {
+        return combo_tiempo;
+    }
+
+    public void setCombo_tiempo(JComboBox<String> combo_tiempo) {
+        this.combo_tiempo = combo_tiempo;
+    }
+
+    public JComboBox<String> getCombo_tipoidentificacion() {
+        return combo_tipoidentificacion;
+    }
+
+    public void setCombo_tipoidentificacion(JComboBox<String> combo_tipoidentificacion) {
+        this.combo_tipoidentificacion = combo_tipoidentificacion;
+    }
+
+    public JLabel getLbbtnregistarpersona() {
+        return lbbtnregistarpersona;
+    }
+
+    public void setLbbtnregistarpersona(JLabel lbbtnregistarpersona) {
+        this.lbbtnregistarpersona = lbbtnregistarpersona;
+    }
+
+    public JLabel getLbfoto() {
+        return lbfoto;
+    }
+
+    public void setLbfoto(JLabel lbfoto) {
+        this.lbfoto = lbfoto;
+    }
+
+    public JLabel getLbnombreycedula() {
+        return lbnombreycedula;
+    }
+
+    public void setLbnombreycedula(JLabel lbnombreycedula) {
+        this.lbnombreycedula = lbnombreycedula;
+    }
+
+    public JRadioButton getRbdocentecapacitador() {
+        return rbdocentecapacitador;
+    }
+
+    public void setRbdocentecapacitador(JRadioButton rbdocentecapacitador) {
+        this.rbdocentecapacitador = rbdocentecapacitador;
+    }
+
+    public JRadioButton getRbotrotrabajo() {
+        return rbotrotrabajo;
+    }
+
+    public void setRbotrotrabajo(JRadioButton rbotrotrabajo) {
+        this.rbotrotrabajo = rbotrotrabajo;
+    }
+
+    public JTable getTabla_docentes() {
+        return tabla_docentes;
+    }
+
+    public void setTabla_docentes(JTable tabla_docentes) {
+        this.tabla_docentes = tabla_docentes;
+    }
+
+    public JTextField getTxtabreviatura() {
+        return txtabreviatura;
+    }
+
+    public void setTxtabreviatura(JTextField txtabreviatura) {
+        this.txtabreviatura = txtabreviatura;
+    }
+
+    public JTextField getTxtidentificacion() {
+        return txtidentificacion;
+    }
+
+    public void setTxtidentificacion(JTextField txtidentificacion) {
+        this.txtidentificacion = txtidentificacion;
+    }
+
+    public JTextField getTxttitulo() {
+        return txttitulo;
+    }
+
+    public void setTxttitulo(JTextField txttitulo) {
+        this.txttitulo = txttitulo;
+    }
+    
     /**
      * Creates new form vis_Docentes
      */
@@ -46,137 +157,77 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
         btnguardar = new javax.swing.JButton();
         btncancelar = new javax.swing.JButton();
         lbfoto = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla_docentes = new javax.swing.JTable();
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("TIPO DE IDENTIFICACION:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 14, -1, -1));
 
         combo_tipoidentificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE:", "CEDULA", "PASAPORTE" }));
+        jPanel1.add(combo_tipoidentificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 11, 125, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("IDENTIFICACION:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 14, -1, -1));
+        jPanel1.add(txtidentificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(452, 11, 182, -1));
 
         lbnombreycedula.setText("jLabel3");
+        jPanel1.add(lbnombreycedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 42, -1, -1));
 
         lbbtnregistarpersona.setForeground(new java.awt.Color(255, 0, 0));
         lbbtnregistarpersona.setText("REGISTRAR PERSONA");
+        jPanel1.add(lbbtnregistarpersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(527, 42, -1, -1));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 74, 666, 3));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Título del docente:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 80, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("Abreviatura del docente:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 111, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Tiempo:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 142, -1, -1));
+        jPanel1.add(txttitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 77, 120, -1));
+        jPanel1.add(txtabreviatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 108, 62, -1));
 
         combo_tiempo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE:", "TIEMPO COMPLETO", "MEDIO TIEMPO" }));
+        jPanel1.add(combo_tiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 139, -1, -1));
 
         rbdocentecapacitador.setText("Docente Capacitador");
+        jPanel1.add(rbdocentecapacitador, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 177, -1, -1));
 
         rbotrotrabajo.setText("Otro trabajo");
+        jPanel1.add(rbotrotrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 177, -1, -1));
 
         btnguardar.setText("GUARDAR");
+        jPanel1.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 249, -1, -1));
 
         btncancelar.setText("CANCELAR");
+        jPanel1.add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 249, -1, -1));
 
         lbfoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(lbfoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 145, 120));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(rbdocentecapacitador)
-                        .addGap(33, 33, 33)
-                        .addComponent(rbotrotrabajo))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtabreviatura, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txttitulo)
-                            .addComponent(combo_tiempo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(111, 111, 111)
-                .addComponent(lbfoto, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnguardar)
-                .addGap(46, 46, 46)
-                .addComponent(btncancelar)
-                .addGap(230, 230, 230))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(combo_tipoidentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(lbnombreycedula)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbbtnregistarpersona)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtidentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(32, 32, 32))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(combo_tipoidentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtidentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbnombreycedula)
-                    .addComponent(lbbtnregistarpersona))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(txttitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(txtabreviatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(combo_tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(rbdocentecapacitador)
-                                    .addComponent(rbotrotrabajo)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(lbfoto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnguardar)
-                            .addComponent(btncancelar))))
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
+        tabla_docentes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tabla_docentes);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 610, 170));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -186,7 +237,7 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -204,12 +255,14 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbbtnregistarpersona;
     private javax.swing.JLabel lbfoto;
     private javax.swing.JLabel lbnombreycedula;
     private javax.swing.JRadioButton rbdocentecapacitador;
     private javax.swing.JRadioButton rbotrotrabajo;
+    private javax.swing.JTable tabla_docentes;
     private javax.swing.JTextField txtabreviatura;
     private javax.swing.JTextField txtidentificacion;
     private javax.swing.JTextField txttitulo;

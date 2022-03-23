@@ -23,7 +23,6 @@ public class vis_poa_evidencia extends Fondos.fondo_internalframe {
      */
     public vis_poa_evidencia() {
         initComponents();
-        setImage("/POA/Vista/img/instituto.jpg");
     }
 
     public JToggleButton getBtnAñadir() {

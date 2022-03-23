@@ -25,7 +25,7 @@ public class con_carrera {
     private PersonaBD baseDatosPersona = new PersonaBD();
     private ArrayList<CarreraMD> listaCarrera = new ArrayList<>();
     private List<PersonaMD> listaPersonas = new ArrayList<>();
-    private List<PerfilMD> listaPerfiles = new ArrayList<>();
+    //private List<PerfilMD> listaPerfiles = new ArrayList<>();
 //    private PerfilBD baseDatosPerfil = new PerfilBD();
 //    private String codigoPerfil;
 
@@ -73,8 +73,6 @@ public class con_carrera {
 //    
     public void guardar() {
         boolean existente = false;
-        boolean perfilRepetido = false;
-        int codigoPerfil = 0;
 //        carrera.setNombre_carrera(vista.getTxtNombre_carrera().getText());
         String n_carrera = (String) vista.getComboCarrera().getSelectedItem();
         carrera.setNombre_carrera(n_carrera);

@@ -177,7 +177,7 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         comboCarrera_mat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Entrenamiento Deportivo", "Tecnología en Análisis de Sistemas", "Tecnología en Desarrollo Infantil Integral ", "Tecnología en Seguridad Penitenciaria ", "Tecnología Superior en Asesoría Financiera ", "Tecnología Superior en Desarrollo de Software ", "Tecnología Superior en Electricidad", "Tecnología Superior en Mecánica Industrial", "Tecnología Superior en Procesamiento Industrial de la Madera", "Técnico Superior en Seguridad Ciudadana y Orden Público ", "Tecnología Superior en Control de Incendios y Operaciones de Rescate", "Tecnología en Gestión del Patrimonio Histórico Cultural", "Tecnología Superior en Ciberseguridad", "Producción y Realización Audiovisual", "Tecnología Superior en Big Data", " " }));
         getContentPane().add(comboCarrera_mat, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 200, -1));
 
-        comboejeformacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
+        comboejeformacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "1", "2", "3" }));
         getContentPane().add(comboejeformacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 150, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N

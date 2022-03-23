@@ -1,5 +1,10 @@
 package POA.Vista;
 
+import com.toedter.calendar.JDateChooser;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
@@ -18,6 +23,63 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    public JButton getBtnCrear() {
+        return btnCrear;
+    }
+
+    public void setBtnCrear(JButton btnCrear) {
+        this.btnCrear = btnCrear;
+    }
+
+    public JComboBox<String> getComboEstado() {
+        return comboEstado;
+    }
+
+    public void setComboEstado(JComboBox<String> comboEstado) {
+        this.comboEstado = comboEstado;
+    }
+
+    public JDateChooser getDateFechaFin() {
+        return dateFechaFin;
+    }
+
+    public void setDateFechaFin(JDateChooser dateFechaFin) {
+        this.dateFechaFin = dateFechaFin;
+    }
+
+    public JDateChooser getDateFechaInicio() {
+        return dateFechaInicio;
+    }
+
+    public void setDateFechaInicio(JDateChooser dateFechaInicio) {
+        this.dateFechaInicio = dateFechaInicio;
+    }
+
+    public JLabel getLblCarrera() {
+        return lblCarrera;
+    }
+
+    public void setLblCarrera(JLabel lblCarrera) {
+        this.lblCarrera = lblCarrera;
+    }
+
+    public JLabel getLblIdPeriodo() {
+        return lblIdPeriodo;
+    }
+
+    public void setLblIdPeriodo(JLabel lblIdPeriodo) {
+        this.lblIdPeriodo = lblIdPeriodo;
+    }
+
+    public JLabel getLblNombrePeriodo() {
+        return lblNombrePeriodo;
+    }
+
+    public void setLblNombrePeriodo(JLabel lblNombrePeriodo) {
+        this.lblNombrePeriodo = lblNombrePeriodo;
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

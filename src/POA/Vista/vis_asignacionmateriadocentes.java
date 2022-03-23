@@ -41,13 +41,17 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
         combociclo = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         comboparalelo = new javax.swing.JComboBox<>();
-        combofiltro = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtbuscar = new javax.swing.JTextField();
-        lbdocente = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        btnguardar = new javax.swing.JButton();
+        combofiltro1 = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
+        jSeparator10 = new javax.swing.JSeparator();
+        lbdocente = new javax.swing.JLabel();
+
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -62,139 +66,82 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        btnagregar.setText("AGREGAR");
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 278, 420, 140));
 
-        btnmodificar.setText("MODIFICAR");
+        btnagregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/nuevo.png"))); // NOI18N
+        getContentPane().add(btnagregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
 
-        btneliminar.setText("ELIMINAR");
+        btnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/modificar.png"))); // NOI18N
+        getContentPane().add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, -1, 40));
+
+        btneliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/WhatsApp Image 2022-02-15 at 00.32.29.jpeg"))); // NOI18N
+        getContentPane().add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, -1, -1));
 
         btncrearplan.setText("CREAR PLAN");
+        getContentPane().add(btncrearplan, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, -1, -1));
 
         comboasignatura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(comboasignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 120, -1));
 
+        jLabel6.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("ASIGNATURA:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
         combojornada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MATUTINA", "VESPERTINA", "NOCTURNA" }));
+        getContentPane().add(combojornada, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 100, -1));
 
+        jLabel4.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("JORNADA:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 188, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("CICLO:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, -1, -1));
 
         combociclo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(combociclo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 100, -1));
 
+        jLabel5.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("PARALELO:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, -1, -1));
 
         comboparalelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(comboparalelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, 120, -1));
 
-        combofiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IDENTIFICACION", "NOMBRES", "APELLIDOS" }));
-
+        jLabel1.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("BUSCAR POR:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(278, 58, -1, -1));
 
+        jLabel7.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("DOCENTE:");
-
-        lbdocente.setText("jLabel2");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 58, -1, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 147, -1));
 
+        jLabel2.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("PERIODO ACADEMICO:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 23, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(lbdocente))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel3)
-                        .addGap(15, 15, 15)
-                        .addComponent(combociclo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(jLabel5)
-                        .addGap(15, 15, 15)
-                        .addComponent(comboparalelo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel4)
-                        .addGap(8, 8, 8)
-                        .addComponent(combojornada, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel6)
-                        .addGap(11, 11, 11)
-                        .addComponent(comboasignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(btnagregar)
-                        .addGap(19, 19, 19)
-                        .addComponent(btnmodificar)
-                        .addGap(19, 19, 19)
-                        .addComponent(btneliminar)
-                        .addGap(19, 19, 19)
-                        .addComponent(btncrearplan))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel7)
-                        .addGap(169, 169, 169)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(combofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel1))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(combofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(8, 8, 8)
-                .addComponent(lbdocente)
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(combociclo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(comboparalelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(combojornada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(comboasignatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnagregar)
-                    .addComponent(btnmodificar)
-                    .addComponent(btneliminar)
-                    .addComponent(btncrearplan))
-                .addGap(17, 17, 17)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
-        );
+        btnguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/guardar.png"))); // NOI18N
+        getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, -1, -1));
+
+        combofiltro1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IDENTIFICACION", "NOMBRES", "APELLIDOS" }));
+        getContentPane().add(combofiltro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 160, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 170, 20));
+
+        jSeparator10.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 190, 10));
+
+        lbdocente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/fondo azul (1).jpg"))); // NOI18N
+        getContentPane().add(lbdocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -204,10 +151,11 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnagregar;
     private javax.swing.JButton btncrearplan;
     private javax.swing.JButton btneliminar;
+    private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnmodificar;
     private javax.swing.JComboBox<String> comboasignatura;
     private javax.swing.JComboBox<String> combociclo;
-    private javax.swing.JComboBox<String> combofiltro;
+    private javax.swing.JComboBox<String> combofiltro1;
     private javax.swing.JComboBox<String> combojornada;
     private javax.swing.JComboBox<String> comboparalelo;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -219,8 +167,9 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator10;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbdocente;
-    private javax.swing.JTextField txtbuscar;
     // End of variables declaration//GEN-END:variables
 }

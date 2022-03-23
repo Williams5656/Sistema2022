@@ -96,22 +96,23 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         this.txtcreditos = txtcreditos;
     }
 
+    public JComboBox<String> getComboareacarrera() {
+        return comboareacarrera;
+    }
+
+    public void setComboareacarrera(JComboBox<String> comboareacarrera) {
+        this.comboareacarrera = comboareacarrera;
+    }
+
     public JTextField getTxtnombremateria() {
-        return txtareacarrera;
+        return txtnombremateria;
     }
 
     public void setTxtnombremateria(JTextField txtnombremateria) {
-        this.txtareacarrera = txtnombremateria;
+        this.txtnombremateria = txtnombremateria;
     }
 
-    public JTextField getTxtareacarrera() {
-        return txtareacarrera;
-    }
-
-    public void setTxtareacarrera(JTextField txtareacarrera) {
-        this.txtareacarrera = txtareacarrera;
-    }
-
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -126,10 +127,10 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtcodmateria = new javax.swing.JTextField();
-        txtnombremateria1 = new javax.swing.JTextField();
-        txtareacarrera = new javax.swing.JTextField();
+        txtnombremateria = new javax.swing.JTextField();
         comboCarrera_mat = new javax.swing.JComboBox<>();
         comboejeformacion = new javax.swing.JComboBox<>();
+        comboareacarrera = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         combociclo = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
@@ -162,29 +163,25 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, 20));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel4.setText("Nombre de la Materia*");
+        jLabel4.setText(" Materia*");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, 20));
         getContentPane().add(txtcodmateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 150, -1));
-        getContentPane().add(txtnombremateria1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 130, -1));
-
-        txtareacarrera.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtareacarreraActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtareacarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 110, -1));
+        getContentPane().add(txtnombremateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 200, -1));
 
         comboCarrera_mat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Entrenamiento Deportivo", "Tecnología en Análisis de Sistemas", "Tecnología en Desarrollo Infantil Integral ", "Tecnología en Seguridad Penitenciaria ", "Tecnología Superior en Asesoría Financiera ", "Tecnología Superior en Desarrollo de Software ", "Tecnología Superior en Electricidad", "Tecnología Superior en Mecánica Industrial", "Tecnología Superior en Procesamiento Industrial de la Madera", "Técnico Superior en Seguridad Ciudadana y Orden Público ", "Tecnología Superior en Control de Incendios y Operaciones de Rescate", "Tecnología en Gestión del Patrimonio Histórico Cultural", "Tecnología Superior en Ciberseguridad", "Producción y Realización Audiovisual", "Tecnología Superior en Big Data", " " }));
         getContentPane().add(comboCarrera_mat, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 200, -1));
 
-        comboejeformacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "1", "2", "3" }));
+        comboejeformacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Unidad Bàsica", "Unidad Profesional", "Unidad de Integraciòn Curricular" }));
         getContentPane().add(comboejeformacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 150, -1));
+
+        comboareacarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", " " }));
+        getContentPane().add(comboareacarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 110, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Ciclo*");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, -1, 20));
 
-        combociclo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Primero", "Segundo", "Tercero", "Cuarto", "Quinto", "Sexto", "Sèptimo", "Octavo" }));
+        combociclo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
         combociclo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().add(combociclo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 160, -1));
 
@@ -201,7 +198,7 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         jLabel7.setText("Àrea de carrera*");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, -1, 20));
 
-        comboplan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Uno", "Dos", "Tres", "Cuatro", "Cinco", "Seis", " ", " " }));
+        comboplan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", " " }));
         getContentPane().add(comboplan, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 130, 120, -1));
 
         tablamateria.setModel(new javax.swing.table.DefaultTableModel(
@@ -212,7 +209,7 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Carrera", "Eje de Formaciòn", "Còd Materia", "Nombre Materia", "Ciclo", "Crèditos", "Plan de clase", "Àrea de carrera"
+                "Carrera", "Eje de Formaciòn", "Còd Materia", "Materia", "Ciclo", "Crèditos", "Plan de clase", "Àrea de carrera"
             }
         ));
         jScrollPane1.setViewportView(tablamateria);
@@ -232,15 +229,12 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtareacarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtareacarreraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtareacarreraActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btncancelar;
     private javax.swing.JButton btnguardar;
     private javax.swing.JComboBox<String> comboCarrera_mat;
+    private javax.swing.JComboBox<String> comboareacarrera;
     private javax.swing.JComboBox<String> combociclo;
     private javax.swing.JComboBox<String> comboejeformacion;
     private javax.swing.JComboBox<String> comboplan;
@@ -255,9 +249,8 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JTable tablamateria;
-    private javax.swing.JTextField txtareacarrera;
     private javax.swing.JTextField txtcodmateria;
     private javax.swing.JTextField txtcreditos;
-    private javax.swing.JTextField txtnombremateria1;
+    private javax.swing.JTextField txtnombremateria;
     // End of variables declaration//GEN-END:variables
 }

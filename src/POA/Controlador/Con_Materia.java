@@ -55,7 +55,8 @@ public class Con_Materia {
         materia.setCreditos(vista.getTxtcreditos().getText());
         String plan = (String) vista.getComboplan().getSelectedItem();
         materia.setPlan(plan);
-        materia.setArea(vista.getTxtareacarrera().getText());
+        String areacarrera = (String) vista.getComboareacarrera().getSelectedItem();
+        materia.setPlan(areacarrera);
 
         if (materia.insertar()) {
             JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
@@ -89,7 +90,7 @@ public class Con_Materia {
         vista.getCombociclo().setSelectedItem(materia.getCiclo());
         vista.getTxtcreditos().setText(materia.getCreditos());
         vista.getComboplan().setSelectedItem(materia.getPlan());
-        vista.getTxtareacarrera().setText(materia.getArea());
+        vista.getComboareacarrera().setSelectedItem(materia.getArea());
     }
 
     public void listam() {
@@ -122,7 +123,7 @@ public class Con_Materia {
         vista.getCombociclo().setSelectedItem("");
         vista.getTxtcreditos().setText("");
         vista.getComboplan().setSelectedItem("");
-        vista.getTxtareacarrera().setText("");
+        vista.getComboareacarrera().setSelectedItem("");
     }
     
    public void cancelar() {

@@ -4,6 +4,13 @@
  */
 package POA.Vista;
 
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JRadioButton;
+import javax.swing.JToggleButton;
+
 /**
  *
  * @author Isaac Mejia
@@ -17,6 +24,134 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    public JButton getBtnGuardar() {
+        return btnGuardar;
+    }
+
+    public void setBtnGuardar(JButton btnGuardar) {
+        this.btnGuardar = btnGuardar;
+    }
+
+    public JToggleButton getBtnGuiasPracticas() {
+        return btnGuiasPracticas;
+    }
+
+    public void setBtnGuiasPracticas(JToggleButton btnGuiasPracticas) {
+        this.btnGuiasPracticas = btnGuiasPracticas;
+    }
+
+    public JToggleButton getBtnInformesSilabo() {
+        return btnInformesSilabo;
+    }
+
+    public void setBtnInformesSilabo(JToggleButton btnInformesSilabo) {
+        this.btnInformesSilabo = btnInformesSilabo;
+    }
+
+    public JToggleButton getBtnInstrumentosEv() {
+        return btnInstrumentosEv;
+    }
+
+    public void setBtnInstrumentosEv(JToggleButton btnInstrumentosEv) {
+        this.btnInstrumentosEv = btnInstrumentosEv;
+    }
+
+    public JToggleButton getBtnModulos() {
+        return btnModulos;
+    }
+
+    public void setBtnModulos(JToggleButton btnModulos) {
+        this.btnModulos = btnModulos;
+    }
+
+    public JToggleButton getBtnNotas() {
+        return btnNotas;
+    }
+
+    public void setBtnNotas(JToggleButton btnNotas) {
+        this.btnNotas = btnNotas;
+    }
+
+    public JToggleButton getBtnPlanesClase() {
+        return btnPlanesClase;
+    }
+
+    public void setBtnPlanesClase(JToggleButton btnPlanesClase) {
+        this.btnPlanesClase = btnPlanesClase;
+    }
+
+    public JToggleButton getBtnSilabo() {
+        return btnSilabo;
+    }
+
+    public void setBtnSilabo(JToggleButton btnSilabo) {
+        this.btnSilabo = btnSilabo;
+    }
+
+    public JButton getBtnSubirArchivo() {
+        return btnSubirArchivo;
+    }
+
+    public void setBtnSubirArchivo(JButton btnSubirArchivo) {
+        this.btnSubirArchivo = btnSubirArchivo;
+    }
+
+    public JComboBox<String> getComboCiclo() {
+        return comboCiclo;
+    }
+
+    public void setComboCiclo(JComboBox<String> comboCiclo) {
+        this.comboCiclo = comboCiclo;
+    }
+
+    public JComboBox<String> getComboMateria() {
+        return comboMateria;
+    }
+
+    public void setComboMateria(JComboBox<String> comboMateria) {
+        this.comboMateria = comboMateria;
+    }
+
+    public JComboBox<String> getComboSeccion() {
+        return comboSeccion;
+    }
+
+    public void setComboSeccion(JComboBox<String> comboSeccion) {
+        this.comboSeccion = comboSeccion;
+    }
+
+    public JLabel getLblCarrera() {
+        return lblCarrera;
+    }
+
+    public void setLblCarrera(JLabel lblCarrera) {
+        this.lblCarrera = lblCarrera;
+    }
+
+    public JRadioButton getRadbutA() {
+        return radbutA;
+    }
+
+    public void setRadbutA(JRadioButton radbutA) {
+        this.radbutA = radbutA;
+    }
+
+    public JRadioButton getRadbutB() {
+        return radbutB;
+    }
+
+    public void setRadbutB(JRadioButton radbutB) {
+        this.radbutB = radbutB;
+    }
+
+    public ButtonGroup getRadiogroupParalelo() {
+        return radiogroupParalelo;
+    }
+
+    public void setRadiogroupParalelo(ButtonGroup radiogroupParalelo) {
+        this.radiogroupParalelo = radiogroupParalelo;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,6 +161,7 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        radiogroupParalelo = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         btnGuiasPracticas = new javax.swing.JToggleButton();
         btnModulos = new javax.swing.JToggleButton();
@@ -46,8 +182,8 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
         comboMateria = new javax.swing.JComboBox<>();
         btnGuardar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        radbutA = new javax.swing.JRadioButton();
+        radbutB = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
         comboSeccion = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
@@ -116,11 +252,11 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
         jLabel6.setText("PARALELO:");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
 
-        jRadioButton1.setText("A");
-        jPanel2.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, -1, -1));
+        radbutA.setText("A");
+        jPanel2.add(radbutA, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, -1, -1));
 
-        jRadioButton2.setText("B");
-        jPanel2.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, -1, -1));
+        radbutB.setText("B");
+        jPanel2.add(radbutB, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, -1, -1));
 
         jLabel7.setText("SECCION:");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
@@ -203,10 +339,11 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCarrera;
+    private javax.swing.JRadioButton radbutA;
+    private javax.swing.JRadioButton radbutB;
+    private javax.swing.ButtonGroup radiogroupParalelo;
     private javax.swing.JTable tbl_Datos;
     // End of variables declaration//GEN-END:variables
 }

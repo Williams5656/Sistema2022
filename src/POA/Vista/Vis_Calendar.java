@@ -328,6 +328,11 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+
         btn_n_actividad.setText("CREAR ACTIVIDAD");
 
         btn_modificar.setText("MODIFICAR");

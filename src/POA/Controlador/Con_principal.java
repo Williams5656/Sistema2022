@@ -176,7 +176,8 @@ public class Con_principal {
         Con_Materia mate = new Con_Materia(subject);
     }
     private void calendario() {
-          Vis_Calendar cale = new Vis_Calendar();
+        Vis_Calendar cale = new Vis_Calendar();
+        Con_calendario calendario= new Con_calendario(cale);
         vista.getESCRITORIO().add(cale);
         Dimension desktopSize = vista.getESCRITORIO().getSize();
         Dimension FrameSize = cale.getSize();

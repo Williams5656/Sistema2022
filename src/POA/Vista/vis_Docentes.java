@@ -5,6 +5,7 @@
  */
 package POA.Vista;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -18,6 +19,15 @@ import javax.swing.JTextField;
  */
 public class vis_Docentes extends javax.swing.JInternalFrame {
 
+    public JButton getBtnmodificar() {
+        return btnmodificar;
+    }
+
+    public void setBtnmodificar(JButton btnmodificar) {
+        this.btnmodificar = btnmodificar;
+    }
+
+    
     public JButton getBtncancelar() {
         return btncancelar;
     }
@@ -121,6 +131,23 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
     public void setTxttitulo(JTextField txttitulo) {
         this.txttitulo = txttitulo;
     }
+
+    public ButtonGroup getButtonGroup1() {
+        return buttonGroup1;
+    }
+
+    public void setButtonGroup1(ButtonGroup buttonGroup1) {
+        this.buttonGroup1 = buttonGroup1;
+    }
+
+    public JButton getBtn_registrarpersona() {
+        return btn_registrarpersona;
+    }
+
+    public void setBtn_registrarpersona(JButton btn_registrarpersona) {
+        this.btn_registrarpersona = btn_registrarpersona;
+    }
+
     
     /**
      * Creates new form vis_Docentes
@@ -138,6 +165,7 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         combo_tipoidentificacion = new javax.swing.JComboBox<>();
@@ -159,6 +187,12 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
         lbfoto = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_docentes = new javax.swing.JTable();
+        btnmodificar = new javax.swing.JButton();
+        btn_registrarpersona = new javax.swing.JButton();
+
+        setClosable(true);
+        setIconifiable(true);
+        setTitle("DOCENTES");
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -173,8 +207,6 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
         jLabel2.setText("IDENTIFICACION:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 14, -1, -1));
         jPanel1.add(txtidentificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(452, 11, 182, -1));
-
-        lbnombreycedula.setText("jLabel3");
         jPanel1.add(lbnombreycedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 42, -1, -1));
 
         lbbtnregistarpersona.setForeground(new java.awt.Color(255, 0, 0));
@@ -199,35 +231,43 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
         combo_tiempo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE:", "TIEMPO COMPLETO", "MEDIO TIEMPO" }));
         jPanel1.add(combo_tiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 139, -1, -1));
 
+        buttonGroup1.add(rbdocentecapacitador);
         rbdocentecapacitador.setText("Docente Capacitador");
         jPanel1.add(rbdocentecapacitador, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 177, -1, -1));
 
+        buttonGroup1.add(rbotrotrabajo);
         rbotrotrabajo.setText("Otro trabajo");
         jPanel1.add(rbotrotrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 177, -1, -1));
 
         btnguardar.setText("GUARDAR");
-        jPanel1.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 249, -1, -1));
+        jPanel1.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, -1, -1));
 
         btncancelar.setText("CANCELAR");
-        jPanel1.add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 249, -1, -1));
+        jPanel1.add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, -1, -1));
 
         lbfoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(lbfoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 145, 120));
 
         tabla_docentes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "CEDULA", "TITULO", "ABREVIATURA", "TIEMPO", "OCUPACION"
             }
         ));
         jScrollPane1.setViewportView(tabla_docentes);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 610, 170));
+
+        btnmodificar.setText("MODIFICAR");
+        jPanel1.add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, -1, -1));
+
+        btn_registrarpersona.setText("jButton1");
+        jPanel1.add(btn_registrarpersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -245,8 +285,11 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_registrarpersona;
     private javax.swing.JButton btncancelar;
     private javax.swing.JButton btnguardar;
+    private javax.swing.JButton btnmodificar;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> combo_tiempo;
     private javax.swing.JComboBox<String> combo_tipoidentificacion;
     private javax.swing.JLabel jLabel1;

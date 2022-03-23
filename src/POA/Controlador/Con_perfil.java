@@ -123,6 +123,8 @@ public class Con_perfil {
         vista.getBtn_modificar().setEnabled(true);
         vista.getBtn_eliminar().setEnabled(true);
         vista.getBtn_guardar().setEnabled(false);
+        vista.getTxtNombre().setEnabled(true);;
+        vista.getTxtDescripcion().setEnabled(true);
   
         lista = bdperfil.mostrardatos();
         vista.getTxtNombre().setText(lista.get(select).getNombre());

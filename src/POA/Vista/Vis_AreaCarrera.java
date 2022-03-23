@@ -73,12 +73,14 @@ public class Vis_AreaCarrera extends javax.swing.JInternalFrame {
     }
 
     public JComboBox<String> getComboPerfil() {
-        return comboCarrera;
+        return comboPerfil;
     }
 
     public void setComboPerfil(JComboBox<String> comboPerfil) {
-        this.comboCarrera = comboPerfil;
+        this.comboPerfil = comboPerfil;
     }
+
+  
 
     public JComboBox<String> getComboResponsable() {
         return comboResponsable;
@@ -123,6 +125,7 @@ public class Vis_AreaCarrera extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
+        setTitle("Area de Carrera");
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

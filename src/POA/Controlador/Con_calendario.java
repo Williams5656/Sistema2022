@@ -18,6 +18,4 @@ public class Con_calendario {
         this.vista = vista;
          vista.setVisible(true);
     }
-     
-    
 }

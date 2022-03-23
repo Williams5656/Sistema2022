@@ -140,13 +140,7 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
         this.buttonGroup1 = buttonGroup1;
     }
 
-    public JButton getBtn_registrarpersona() {
-        return btn_registrarpersona;
-    }
-
-    public void setBtn_registrarpersona(JButton btn_registrarpersona) {
-        this.btn_registrarpersona = btn_registrarpersona;
-    }
+    
 
     
     /**
@@ -188,7 +182,6 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_docentes = new javax.swing.JTable();
         btnmodificar = new javax.swing.JButton();
-        btn_registrarpersona = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -266,9 +259,6 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
         btnmodificar.setText("MODIFICAR");
         jPanel1.add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, -1, -1));
 
-        btn_registrarpersona.setText("jButton1");
-        jPanel1.add(btn_registrarpersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, -1, -1));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -285,7 +275,6 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_registrarpersona;
     private javax.swing.JButton btncancelar;
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnmodificar;

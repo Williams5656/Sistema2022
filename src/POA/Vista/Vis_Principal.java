@@ -397,7 +397,7 @@ public class Vis_Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Btn_AreaCarrera;
-    private javax.swing.JDesktopPane ESCRITORIO;
+    public static javax.swing.JDesktopPane ESCRITORIO;
     private javax.swing.JMenu MENU_ACADEMICO;
     private javax.swing.JMenu MENU_USUARIO;
     private javax.swing.JMenuItem btn_actividades;

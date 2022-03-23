@@ -21,6 +21,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static POA.Vista.Vis_Principal.*;
 
 /**
  *
@@ -37,11 +38,10 @@ public class con_docentes {
         vista.setVisible(true);
         vista.getBtnguardar().addActionListener(e -> guardar());
         vista.getBtnmodificar().addActionListener(e -> modificar());
-        vista.getBtn_registrarpersona().addActionListener(e->persona());
         buscarpersona();
         eventotabla();
         lista();
-        //persona();
+        persona();
 
     }
 
@@ -220,23 +220,25 @@ public class con_docentes {
 
     private void persona() {
 
-//        //vista.getLbbtnregistarpersona().addMouseListener(new MouseAdapter() {
-//            //@Override
-//            //public void mouseClicked(MouseEvent e) {
-//                vis_Persona persona = new vis_Persona();
-//                Con_persona per = new Con_persona(persona);
-//                
-//
-//                ESCRITORIO.add(persona);
-//                persona.show();
-//                Dimension desktopSize = ESCRITORIO.getSize();
-//                Dimension FrameSize = persona.getSize();
-//                persona.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-//                vista.setVisible(false);
-//                
-//            //}
-//
-//        //});
+        vista.getLbbtnregistarpersona().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                vista.setVisible(false);
+                
+                vis_Persona persona = new vis_Persona();
+                Con_persona per = new Con_persona(persona);
+                
+                
+                ESCRITORIO.add(persona);
+                persona.show();
+                Dimension desktopSize = ESCRITORIO.getSize();
+                Dimension FrameSize = persona.getSize();
+                persona.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+                
+                
+            }
+
+        });
 
     }
 }

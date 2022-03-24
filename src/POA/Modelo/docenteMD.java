@@ -15,17 +15,29 @@ public class docenteMD {
     private String abreviatura;
     private String tiempo;
     private String ocupacion;
+    private String estado;
 
     public docenteMD() {
     }
 
-    public docenteMD(String cedula, String titulo, String abreviatura, String tiempo, String ocupacion) {
+    public docenteMD(String cedula, String titulo, String abreviatura, String tiempo, String ocupacion, String estado) {
         this.cedula = cedula;
         this.titulo = titulo;
         this.abreviatura = abreviatura;
         this.tiempo = tiempo;
         this.ocupacion = ocupacion;
+        this.estado = estado;
     }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    
 
     public String getCedula() {
         return cedula;

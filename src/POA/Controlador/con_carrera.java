@@ -21,10 +21,7 @@ public class con_carrera {
 
     private final Vis_Carrera vista;
     private CarreraBD carrera = new CarreraBD();
-    //
-    private PersonaBD baseDatosPersona = new PersonaBD();
-    private ArrayList<CarreraMD> listaCarrera = new ArrayList<>();
-    private List<PersonaMD> listaPersonas = new ArrayList<>();
+    private PerfilBD bdperfil = new PerfilBD();
 
     public con_carrera(Vis_Carrera vista) {
         this.vista = vista;
@@ -35,6 +32,7 @@ public class con_carrera {
         vista.getBtnGuardar().addActionListener(e -> guardar());
         vista.getBtnModificar().addActionListener(e -> modificar());
         vista.getBtnEliminar().addActionListener(e -> eliminar());
+        
 //        vista.getBtnBuscarc().addActionListener(e->buscarced());
 
         vista.getTablaCarrera().addMouseListener(new MouseAdapter() {
@@ -45,37 +43,41 @@ public class con_carrera {
 
         });
         listam();
-        label();
+        buscar();
+        buscarperfil();
     }
-//
-//    public void buscarced() {
-//        PersonaBD bdp = new PersonaBD();
-//        List<PersonaMD> lista = bdp.mostrardatos();
-//        CarreraBD bdc = new CarreraBD();
-//        List<CarreraMD> lista2 = bdc.mostrardatos();
-//        int n = 0;
-//        for (int i = 0; i < lista.size(); i++) {
-//            if (vista.getTxtCoordinador().getText().equals(lista.get(i).getCedula())) {
-//                vista.getLblNombre().setText(lista.get(i).getNombres() + " " + lista.get(i).getApellidos());
-//                vista.getTxtCoordinador().setEditable(false);
-//                n = 2;
-//            } 
-//        }
-//        for (int j = 0; j < lista2.size(); j++) {
-//            if (vista.getTxtCoordinador().getText().equals(lista2.get(j).getCoordinador())) {
-//                n = 1;
-//            } 
-//        }
-//    }
-//    
+    public void buscar() {
+        List<PerfilMD> lista = bdperfil.obtenerdatos(vista.getTxtCoordinador().getText());
+        int con = 0;
+        for (int i = 0; i < lista.size(); i++) {
+            if (vista.getTxtCoordinador().getText().equalsIgnoreCase(lista.get(i).getNombre())) {
+                String nombre = lista.get(i).getNombre();
+                vista.getLblNombre().setText(nombre);
+                con = 1;
+            }
+        }
+        if (con != 1) {
+            vista.getLblNombre().setText("");
+        }
+    }
+ 
+    public void buscarperfil() {
+        vista.getTxtCoordinador().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                buscar();
+            }
+        });
+    }
+    
     public void guardar() {
-        boolean existente = false;
+//        boolean existente = false;
 //        carrera.setNombre_carrera(vista.getTxtNombre_carrera().getText());
         String n_carrera = (String) vista.getComboCarrera().getSelectedItem();
         carrera.setNombre_carrera(n_carrera);
-//        carrera.setCodigo_carrera(vista.getTxtCodigo_carrera().getText());
-        String cuenta=Integer.toString(generacodi());
-        carrera.setCodigo_carrera(cuenta);
+        carrera.setCodigo_carrera(vista.getTxtCodigo_carrera().getText());
+//        String cuenta=Integer.toString(generacodi());
+//        carrera.setCodigo_carrera(cuenta);
         carrera.setFecha_inicio(vista.getTxtFecha_inicio().getText());
         String modalidad = (String) vista.getCmbModalidad().getSelectedItem();
         carrera.setModalidad(modalidad);
@@ -83,11 +85,11 @@ public class con_carrera {
         
 
         if (carrera.insertar()) {
-          for (PersonaMD person : listaPersonas){
-             if (person.getCedula().equals(vista.getTxtCoordinador().getText())){
-                 existente = true;     
-            }
-        }
+//          for (PersonaMD person : listaPersonas){
+//             if (person.getCedula().equals(vista.getTxtCoordinador().getText())){
+//                 existente = true;     
+//            }
+//        }
             JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
             listam();
             nuevo();
@@ -101,20 +103,28 @@ public class con_carrera {
 
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTablaCarrera().getModel();
-        String codigo = (String) modelo.getValueAt(vista.getTablaCarrera().getSelectedRow(), 0);
-        System.out.println(codigo);
-        List<CarreraMD> lista = carrera.obtenerdatos(codigo);
+//        String codigo = (String) modelo.getValueAt(vista.getTablaCarrera().getSelectedRow(), 0);
+//        System.out.println(codigo);
+//        List<CarreraMD> lista = carrera.obtenerdatos(codigo);
+        String cedula = (String) modelo.getValueAt(vista.getTablaCarrera().getSelectedRow(), 0);
+        List<PerfilMD> listaper = bdperfil.obtenerdatos(cedula);
+        List<CarreraMD> lista = carrera.obtenerdatos(cedula);
         carrera.setCodigo_carrera(lista.get(0).getCodigo_carrera());
         carrera.setNombre_carrera(lista.get(0).getNombre_carrera());
         carrera.setFecha_inicio(lista.get(0).getFecha_inicio());
         carrera.setModalidad(lista.get(0).getModalidad());
         carrera.setCoordinador(lista.get(0).getCoordinador());
+        
+        bdperfil.setNombre(listaper.get(0).getNombre());
 
         vista.getTxtCodigo_carrera().setText(carrera.getCodigo_carrera());
         vista.getComboCarrera().setSelectedItem(carrera.getNombre_carrera());
         vista.getTxtFecha_inicio().setText(carrera.getFecha_inicio());
         vista.getCmbModalidad().setSelectedItem(carrera.getModalidad());
         vista.getTxtCoordinador().setText(carrera.getCoordinador());
+        
+        String nombre = bdperfil.getNombre();
+        vista.getLblNombre().setText(nombre);
 
     }
 
@@ -143,9 +153,9 @@ public class con_carrera {
 //        carrera.setNombre_carrera(vista.getTxtNombre_carrera().getText());
         String n_carrera = (String) vista.getComboCarrera().getSelectedItem();
         carrera.setNombre_carrera(n_carrera);
-//        carrera.setCodigo_carrera(vista.getTxtCodigo_carrera().getText());
-        String cuenta=Integer.toString(generacodi());
-        carrera.setCodigo_carrera(cuenta);
+        carrera.setCodigo_carrera(vista.getTxtCodigo_carrera().getText());
+//        String cuenta=Integer.toString(generacodi());
+//        carrera.setCodigo_carrera(cuenta);
         carrera.setFecha_inicio(vista.getTxtFecha_inicio().getText());
         String modalidad = (String) vista.getCmbModalidad().getSelectedItem();
         carrera.setModalidad(modalidad);
@@ -160,9 +170,7 @@ public class con_carrera {
             } else {
                 JOptionPane.showMessageDialog(null, "Error al modificar");
             }
-
         }
-        //label();
     }
 
     public void eliminar() {
@@ -232,19 +240,19 @@ public class con_carrera {
         return b;
     }
        
-    public void label(){
-       listaPersonas = baseDatosPersona.mostrardatos();
-        vista.getTxtCoordinador().addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent e) {
-                for (PersonaMD person : listaPersonas) {
-                    if (person.getCedula().equals(vista.getTxtCoordinador().getText())) {
-                        vista.getLblNombre().setText(person.getNombres() + " " + person.getApellidos());
-                    } 
-                } 
-                if (vista.getTxtCoordinador().getText().equals(""))
-                    vista.getLblNombre().setText("");
-            }        
-        });
-    }   
+//    public void label(){
+//       listaPersonas = baseDatosPersona.mostrardatos();
+//        vista.getTxtCoordinador().addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyReleased(KeyEvent e) {
+//                for (PersonaMD person : listaPersonas) {
+//                    if (person.getCedula().equals(vista.getTxtCoordinador().getText())) {
+//                        vista.getLblNombre().setText(person.getNombres() + " " + person.getApellidos());
+//                    } 
+//                } 
+//                if (vista.getTxtCoordinador().getText().equals(""))
+//                    vista.getLblNombre().setText("");
+//            }        
+//        });
+//    }   
 }

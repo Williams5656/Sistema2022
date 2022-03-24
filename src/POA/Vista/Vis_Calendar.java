@@ -381,16 +381,16 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         txt_descripcion.setRows(5);
         jScrollPane2.setViewportView(txt_descripcion);
 
-        combo_actividad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combo_actividad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "POA", "Titulacion", "Calendario ", "Examen Complexión", "Graduacion", "Todos " }));
         combo_actividad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combo_actividadActionPerformed(evt);
             }
         });
 
-        combo_periodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combo_periodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "Jun21-Oct21", "Dic21-Abr22" }));
 
-        comobo_carrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comobo_carrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

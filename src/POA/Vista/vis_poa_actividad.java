@@ -237,7 +237,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel16.setText("ACTIVIDADES");
         getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, -1, 35));
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, 360, 630));
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, 450, 630));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

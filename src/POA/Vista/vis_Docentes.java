@@ -52,13 +52,6 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
         this.combo_tiempo = combo_tiempo;
     }
 
-    public JComboBox<String> getCombo_tipoidentificacion() {
-        return combo_tipoidentificacion;
-    }
-
-    public void setCombo_tipoidentificacion(JComboBox<String> combo_tipoidentificacion) {
-        this.combo_tipoidentificacion = combo_tipoidentificacion;
-    }
 
     public JLabel getLbbtnregistarpersona() {
         return lbbtnregistarpersona;
@@ -140,6 +133,22 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
         this.buttonGroup1 = buttonGroup1;
     }
 
+    public JButton getBtn_estado() {
+        return btn_estado;
+    }
+
+    public void setBtn_estado(JButton btn_estado) {
+        this.btn_estado = btn_estado;
+    }
+
+    public JLabel getVal_persona() {
+        return val_persona;
+    }
+
+    public void setVal_persona(JLabel val_persona) {
+        this.val_persona = val_persona;
+    }
+
     
 
     
@@ -161,8 +170,6 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        combo_tipoidentificacion = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         txtidentificacion = new javax.swing.JTextField();
         lbnombreycedula = new javax.swing.JLabel();
@@ -182,82 +189,123 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_docentes = new javax.swing.JTable();
         btnmodificar = new javax.swing.JButton();
+        btn_estado = new javax.swing.JButton();
+        val_persona = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
         setTitle("DOCENTES");
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel1.setText("TIPO DE IDENTIFICACION:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 14, -1, -1));
-
-        combo_tipoidentificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE:", "CEDULA", "PASAPORTE" }));
-        jPanel1.add(combo_tipoidentificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 11, 125, -1));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Yu Gothic UI", 1, 11)); // NOI18N
         jLabel2.setText("IDENTIFICACION:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 14, -1, -1));
-        jPanel1.add(txtidentificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(452, 11, 182, -1));
-        jPanel1.add(lbnombreycedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 42, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        lbbtnregistarpersona.setForeground(new java.awt.Color(255, 0, 0));
+        txtidentificacion.setFont(new java.awt.Font("Yu Gothic UI", 1, 11)); // NOI18N
+        jPanel1.add(txtidentificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 182, -1));
+
+        lbnombreycedula.setFont(new java.awt.Font("Yu Gothic UI", 1, 11)); // NOI18N
+        jPanel1.add(lbnombreycedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 360, 20));
+
+        lbbtnregistarpersona.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 11)); // NOI18N
+        lbbtnregistarpersona.setForeground(new java.awt.Color(0, 0, 204));
         lbbtnregistarpersona.setText("REGISTRAR PERSONA");
-        jPanel1.add(lbbtnregistarpersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(527, 42, -1, -1));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 74, 666, 3));
+        jPanel1.add(lbbtnregistarpersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, -1, -1));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 666, 3));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Yu Gothic UI", 1, 11)); // NOI18N
         jLabel3.setText("Título del docente:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 80, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Yu Gothic UI", 1, 11)); // NOI18N
         jLabel4.setText("Abreviatura del docente:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 111, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Yu Gothic UI", 1, 11)); // NOI18N
         jLabel5.setText("Tiempo:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 142, -1, -1));
-        jPanel1.add(txttitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 77, 120, -1));
-        jPanel1.add(txtabreviatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 108, 62, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
 
+        txttitulo.setFont(new java.awt.Font("Yu Gothic UI", 1, 11)); // NOI18N
+        jPanel1.add(txttitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 360, -1));
+
+        txtabreviatura.setFont(new java.awt.Font("Yu Gothic UI", 1, 11)); // NOI18N
+        jPanel1.add(txtabreviatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 62, -1));
+
+        combo_tiempo.setFont(new java.awt.Font("Yu Gothic UI", 1, 11)); // NOI18N
         combo_tiempo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE:", "TIEMPO COMPLETO", "MEDIO TIEMPO" }));
-        jPanel1.add(combo_tiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 139, -1, -1));
+        jPanel1.add(combo_tiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, -1, -1));
 
         buttonGroup1.add(rbdocentecapacitador);
+        rbdocentecapacitador.setFont(new java.awt.Font("Yu Gothic UI", 1, 11)); // NOI18N
         rbdocentecapacitador.setText("Docente Capacitador");
-        jPanel1.add(rbdocentecapacitador, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 177, -1, -1));
+        jPanel1.add(rbdocentecapacitador, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, -1, -1));
 
         buttonGroup1.add(rbotrotrabajo);
+        rbotrotrabajo.setFont(new java.awt.Font("Yu Gothic UI", 1, 11)); // NOI18N
         rbotrotrabajo.setText("Otro trabajo");
-        jPanel1.add(rbotrotrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 177, -1, -1));
+        jPanel1.add(rbotrotrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, -1, -1));
 
+        btnguardar.setBackground(new java.awt.Color(255, 255, 255));
+        btnguardar.setFont(new java.awt.Font("Yu Gothic UI", 1, 11)); // NOI18N
+        btnguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/Save-icon (4).png"))); // NOI18N
         btnguardar.setText("GUARDAR");
-        jPanel1.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, -1, -1));
+        btnguardar.setContentAreaFilled(false);
+        btnguardar.setOpaque(false);
+        jPanel1.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 140, 40));
 
-        btncancelar.setText("CANCELAR");
-        jPanel1.add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, -1, -1));
+        btncancelar.setFont(new java.awt.Font("Yu Gothic UI", 1, 11)); // NOI18N
+        btncancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/nuevo.png"))); // NOI18N
+        btncancelar.setText("NUEVO");
+        btncancelar.setContentAreaFilled(false);
+        jPanel1.add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, -1, -1));
 
         lbfoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(lbfoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 145, 120));
+        jPanel1.add(lbfoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 145, 120));
 
+        tabla_docentes.setFont(new java.awt.Font("Yu Gothic UI", 1, 11)); // NOI18N
         tabla_docentes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "CEDULA", "TITULO", "ABREVIATURA", "TIEMPO", "OCUPACION"
+                "CEDULA", "TITULO", "ABREVIATURA", "TIEMPO", "OCUPACION", "ESTADO"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tabla_docentes);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 610, 170));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 610, 170));
 
+        btnmodificar.setFont(new java.awt.Font("Yu Gothic UI", 1, 11)); // NOI18N
+        btnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/modificar.png"))); // NOI18N
         btnmodificar.setText("MODIFICAR");
-        jPanel1.add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, -1, -1));
+        btnmodificar.setContentAreaFilled(false);
+        jPanel1.add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, -1, -1));
+
+        btn_estado.setFont(new java.awt.Font("Yu Gothic UI", 1, 11)); // NOI18N
+        btn_estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/CAMBIAR ESTADO (1).png"))); // NOI18N
+        btn_estado.setText("CAMBIAR ESTADO");
+        btn_estado.setContentAreaFilled(false);
+        jPanel1.add(btn_estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, -1, -1));
+
+        val_persona.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(val_persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/ISTA.jpg"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 300, 70));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -267,7 +315,7 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
         );
 
         pack();
@@ -275,12 +323,12 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_estado;
     private javax.swing.JButton btncancelar;
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnmodificar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> combo_tiempo;
-    private javax.swing.JComboBox<String> combo_tipoidentificacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -298,5 +346,6 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtabreviatura;
     private javax.swing.JTextField txtidentificacion;
     private javax.swing.JTextField txttitulo;
+    private javax.swing.JLabel val_persona;
     // End of variables declaration//GEN-END:variables
 }

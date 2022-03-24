@@ -26,9 +26,11 @@ public class docenteBD extends docenteMD {
     public docenteBD() {
     }
 
-    public docenteBD(String cedula, String titulo, String abreviatura, String tiempo, String ocupacion) {
-        super(cedula, titulo, abreviatura, tiempo, ocupacion);
+    public docenteBD(String cedula, String titulo, String abreviatura, String tiempo, String ocupacion, String estado) {
+        super(cedula, titulo, abreviatura, tiempo, ocupacion, estado);
     }
+
+    
     
     public List<docenteMD> mostrardatos() {
 
@@ -44,6 +46,7 @@ public class docenteBD extends docenteMD {
                 docente.setAbreviatura(rs.getString("abreviatura"));
                 docente.setTiempo(rs.getString("tiempo"));
                 docente.setOcupacion(rs.getString("ocupacion"));
+                docente.setEstado(rs.getString("estado"));
                 lista.add(docente);
             }
 
@@ -56,7 +59,7 @@ public class docenteBD extends docenteMD {
     }
     
     public boolean insertar() {
-        String nsql = "INSERT INTO docente(cedula,titulo,abreviatura,tiempo,ocupacion)" + "VALUES ('" + getCedula() + "','" + getTitulo() + "','" + getAbreviatura() + "','" + getTiempo() + "','" + getOcupacion()+ "')";
+        String nsql = "INSERT INTO docente(cedula,titulo,abreviatura,tiempo,ocupacion,estado)" + "VALUES ('" + getCedula() + "','" + getTitulo() + "','" + getAbreviatura() + "','" + getTiempo() + "','" + getOcupacion()+  "','" + getEstado()+"')";
         
                                                                                                                                                                                                                                                                                        
 
@@ -110,6 +113,20 @@ public class docenteBD extends docenteMD {
         } catch (Exception e) {
             Logger.getLogger(docenteBD.class.getName()).log(Level.SEVERE, null, e);
             return null;
+        }
+
+    }
+    
+    public boolean cambiarestado(String cedula) {
+        String nsql = "UPDATE docente set \"estado\"='" + getEstado() + "'"
+                + " where \"cedula\"='" + cedula+ "'";
+
+        if (conectar.noQuery(nsql) == null) {
+            return true;
+        } else {
+            System.out.println("error al editar");
+
+            return false;
         }
 
     }

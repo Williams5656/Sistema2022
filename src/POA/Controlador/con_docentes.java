@@ -22,6 +22,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static POA.Vista.Vis_Principal.*;
+import java.awt.Color;
 
 /**
  *
@@ -38,10 +39,37 @@ public class con_docentes {
         vista.setVisible(true);
         vista.getBtnguardar().addActionListener(e -> guardar());
         vista.getBtnmodificar().addActionListener(e -> modificar());
+        vista.getBtn_estado().addActionListener(e -> cambiarestado());
+        vista.getBtncancelar().addActionListener(e->nuevo());
         buscarpersona();
         eventotabla();
         lista();
         persona();
+        inhabilitar_botones();
+
+    }
+
+    public void inhabilitar_botones() {
+        vista.getTxttitulo().setEnabled(false);
+        vista.getTxtabreviatura().setEnabled(false);
+        vista.getCombo_tiempo().setEnabled(false);
+        vista.getRbdocentecapacitador().setEnabled(false);
+        vista.getRbotrotrabajo().setEnabled(false);
+
+        vista.getBtn_estado().setEnabled(false);
+        vista.getBtnguardar().setEnabled(false);
+        vista.getBtnmodificar().setEnabled(false);
+
+    }
+
+    public void habilitar_botones() {
+        vista.getTxttitulo().setEnabled(true);
+        vista.getTxtabreviatura().setEnabled(true);
+        vista.getCombo_tiempo().setEnabled(true);
+        vista.getRbdocentecapacitador().setEnabled(true);
+        vista.getRbotrotrabajo().setEnabled(true);
+
+        vista.getBtnguardar().setEnabled(true);
 
     }
 
@@ -70,6 +98,7 @@ public class con_docentes {
             vista.getTabla_docentes().setValueAt(lista.get(i).getAbreviatura(), i, 2);
             vista.getTabla_docentes().setValueAt(lista.get(i).getTiempo(), i, 3);
             vista.getTabla_docentes().setValueAt(lista.get(i).getOcupacion(), i, 4);
+            vista.getTabla_docentes().setValueAt(lista.get(i).getEstado(), i, 5);
 
         }
     }
@@ -77,9 +106,13 @@ public class con_docentes {
     public void buscar() {
 
         List<PersonaMD> lista = bdpersona.obtenerdatos(vista.getTxtidentificacion().getText());
+        List<docenteMD> listadoc = bddocente.obtenerdatos(vista.getTxtidentificacion().getText());
         int con = 0;
+        
+
         for (int i = 0; i < lista.size(); i++) {
             if (vista.getTxtidentificacion().getText().equalsIgnoreCase(lista.get(i).getCedula())) {
+
                 String nombre = "[" + lista.get(i).getCedula() + "]" + lista.get(i).getNombres() + " " + lista.get(i).getApellidos();
                 vista.getLbnombreycedula().setText(nombre);
                 con = 1;
@@ -92,11 +125,26 @@ public class con_docentes {
                 } else {
                     vista.getLbfoto().setIcon(null);
                 }
+                if (lista.get(i).getEstado().equalsIgnoreCase("ACTIVO")) {
+                    
+                    habilitar_botones();
+                    for (int j = 0; j < listadoc.size(); j++) {
+                        if (listadoc.get(j).getCedula().equalsIgnoreCase(vista.getTxtidentificacion().getText())) {
+                            inhabilitar_botones();
+                        }
+                    }
+
+                }
             }
         }
+        
+        
+        
+        
         if (con != 1) {
             vista.getLbnombreycedula().setText("");
             vista.getLbfoto().setIcon(null);
+            inhabilitar_botones();
         }
 
     }
@@ -115,6 +163,7 @@ public class con_docentes {
         bddocente.setAbreviatura(vista.getTxtabreviatura().getText());
         bddocente.setTiempo(tiempo);
         bddocente.setOcupacion(ocupacion);
+        bddocente.setEstado("ACTIVO");
 
         if (bddocente.insertar()) {
             JOptionPane.showMessageDialog(null, "DATOS GUARDADOS");
@@ -162,9 +211,18 @@ public class con_docentes {
         vista.getCombo_tiempo().setSelectedIndex(0);
         vista.getButtonGroup1().clearSelection();
         vista.getLbfoto().setIcon(null);
+        inhabilitar_botones();
+        vista.getBtnguardar().setEnabled(false);
     }
 
     public void seleccionar() {
+        vista.getBtn_estado().setEnabled(true);
+        vista.getBtnmodificar().setEnabled(true);
+        habilitar_botones();
+        
+        vista.getBtnguardar().setEnabled(false);
+        
+        
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTabla_docentes().getModel();
         String cedula = (String) modelo.getValueAt(vista.getTabla_docentes().getSelectedRow(), 0);
@@ -224,21 +282,54 @@ public class con_docentes {
             @Override
             public void mouseClicked(MouseEvent e) {
                 vista.setVisible(false);
-                
+
                 vis_Persona persona = new vis_Persona();
                 Con_persona per = new Con_persona(persona);
-                
-                
+
                 ESCRITORIO.add(persona);
-                persona.show();
+                //persona.show();
                 Dimension desktopSize = ESCRITORIO.getSize();
                 Dimension FrameSize = persona.getSize();
                 persona.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                
-                
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                vista.getLbbtnregistarpersona().setForeground(Color.BLUE);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                vista.getLbbtnregistarpersona().setForeground(new Color(255,153,0));
             }
 
         });
 
     }
+
+    public void cambiarestado() {
+        List<docenteMD> lista = bddocente.mostrardatos();
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).getCedula().equalsIgnoreCase(vista.getTxtidentificacion().getText())) {
+                if (lista.get(i).getEstado().equalsIgnoreCase("ACTIVO")) {
+                    bddocente.setEstado("INACTIVO");
+
+                } else {
+                    bddocente.setEstado("ACTIVO");
+                }
+            }
+        }
+        if (bddocente.cambiarestado(vista.getTxtidentificacion().getText())) {
+            JOptionPane.showMessageDialog(null, "ESTADO MODIFICADO");
+            lista();
+            nuevo();
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al modificar");
+        }
+
+    }
+    
+    
+
 }

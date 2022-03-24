@@ -71,24 +71,25 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         jButton7 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel16 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
 
         setClosable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Proyecto", "Objetivo Operativo", "Actividad", "Responsable", "Plazo", "Recursos financieros"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 330, 430));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 390, 430));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,24 +103,24 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 50, 40));
 
         jLabel3.setText("Proyecto:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 70, 20));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 70, 20));
 
         jLabel4.setText("Objetivo Operativo:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 100, 20));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 210, 100, 20));
 
         jLabel5.setText("Actividad:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, 100, 20));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, 100, 20));
 
         jLabel6.setText("Responsable:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, 100, 20));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 340, 100, 20));
 
         jLabel7.setText("Plazo:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, 100, 20));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, 100, 20));
 
         jLabel8.setText("Recursos Financieros:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 420, 120, 20));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 420, 127, -1));
-        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 380, 224, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 420, 120, 20));
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 420, 130, -1));
+        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 380, 230, -1));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -156,46 +157,46 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         jButton5.setContentAreaFilled(false);
         jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 10, 90, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 460, 360, 80));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 460, 360, 80));
 
-        getContentPane().add(jComboBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, 224, -1));
+        getContentPane().add(jComboBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 170, 230, -1));
 
-        getContentPane().add(jComboBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, 224, -1));
+        getContentPane().add(jComboBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 210, 230, -1));
 
-        getContentPane().add(jComboBox9, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 340, 224, -1));
+        getContentPane().add(jComboBox9, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 340, 230, -1));
 
         jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Ista", "Autogestion" }));
-        getContentPane().add(jComboBox10, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 420, 90, -1));
+        getContentPane().add(jComboBox10, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 420, 90, -1));
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jScrollPane3.setViewportView(jTextArea2);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 250, 220, 80));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, 230, 80));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setText("ID:");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 20, 20));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 20, 20));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 220, 50));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 210, 90));
 
         jLabel2.setText("Meta:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 110, 20));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 110, 20));
 
         jLabel10.setText("Linea Base%:");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 110, 20));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 110, 20));
 
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 3));
-        jPanel2.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 70, -1));
+        jPanel2.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 70, -1));
 
-        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 1));
-        jPanel2.add(jSpinner2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 70, -1));
+        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 10));
+        jPanel2.add(jSpinner2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 70, -1));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -210,32 +211,33 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         ));
         jScrollPane4.setViewportView(jTable2);
 
-        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 330, 240));
+        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 330, 150));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("INDICADOR");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, 35));
 
         jLabel17.setText("Indicador:");
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 110, 20));
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 110, 20));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 90, -1));
+        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 90, -1));
 
         jButton6.setText("GUARDAR");
         jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 540, -1, -1));
 
         jButton7.setText("AÑADIR");
-        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 540, -1, -1));
+        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 20, 370, 590));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 20, 370, 590));
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 0, 10, 630));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, 10, 630));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel16.setText("ACTIVIDADES");
         getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, -1, 35));
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, 360, 630));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -265,6 +267,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;

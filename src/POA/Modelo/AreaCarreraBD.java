@@ -16,7 +16,8 @@ import java.util.logging.Logger;
  *
  * @author Usuario
  */
-public class AreaCarreraBD extends AreaCarreraMD{
+public class AreaCarreraBD extends AreaCarreraMD {
+
     Conect conectar = new Conect();
 
     public AreaCarreraBD() {
@@ -25,7 +26,8 @@ public class AreaCarreraBD extends AreaCarreraMD{
     public AreaCarreraBD(int idArea, String idCarrera, int idPerfil, String idResponsable) {
         super(idArea, idCarrera, idPerfil, idResponsable);
     }
-     public List<AreaCarreraMD> mostrardatos() {
+
+    public List<AreaCarreraMD> mostrardatos() {
         try {
             List<AreaCarreraMD> lista = new ArrayList<AreaCarreraMD>();
             String sql = "select * from area_carrera";
@@ -33,9 +35,9 @@ public class AreaCarreraBD extends AreaCarreraMD{
             while (rs.next()) {
                 AreaCarreraMD area = new AreaCarreraMD();
                 area.setIdArea(rs.getInt("id_area"));
-                area.setIdCarrera(rs.getString("id_carrera"));
-                area.setIdPerfil(rs.getInt("id_perfil"));
-                area.setIdResponsable(rs.getString("id_responsable"));
+                area.setIdCarrera(rs.getString("carrera"));
+                area.setIdPerfil(rs.getInt("perfil"));
+                area.setIdResponsable(rs.getString("responsable"));
                 lista.add(area);
             }
             rs.close();
@@ -45,7 +47,8 @@ public class AreaCarreraBD extends AreaCarreraMD{
             return null;
         }
     }
-     public List<AreaCarreraMD> obtenerdatos(String identificador) {
+
+    public List<AreaCarreraMD> obtenerdatos(String identificador) {
         try {
             List<AreaCarreraMD> lista = new ArrayList<AreaCarreraMD>();
             String sql = "select * from area_carrera" + " where \"id_area\"='" + identificador + "'";
@@ -53,9 +56,9 @@ public class AreaCarreraBD extends AreaCarreraMD{
             while (rs.next()) {
                 AreaCarreraMD area = new AreaCarreraMD();
                 area.setIdArea(rs.getInt("id_area"));
-                area.setIdCarrera(rs.getString("id_carrera"));
-                area.setIdPerfil(rs.getInt("id_perfil"));
-                area.setIdResponsable(rs.getString("id_responsable"));
+                area.setIdCarrera(rs.getString("carrera"));
+                area.setIdPerfil(rs.getInt("perfil"));
+                area.setIdResponsable(rs.getString("responsable"));
                 lista.add(area);
             }
             rs.close();
@@ -65,10 +68,11 @@ public class AreaCarreraBD extends AreaCarreraMD{
             return null;
         }
     }
+
     public boolean insertar() {
-        String sql = "INSERT INTO area_carrera(id_carrera, id_perfil,id_responsable)" + "VALUES ('" + getIdCarrera() + "','" + getIdPerfil() + "','" + getIdResponsable() + "')";
+        String sql = "INSERT INTO area_carrera(carrera, perfil,responsable)" + "VALUES ('" + getIdCarrera() + "','" + getIdPerfil() + "','" + getIdResponsable() + "')";
         System.out.println(sql);
-        
+
         if (conectar.noQuery(sql) == null) {
             return true;
         } else {
@@ -77,9 +81,10 @@ public class AreaCarreraBD extends AreaCarreraMD{
             return false;
         }
     }
+
     public boolean modificar(int identificador) {
-        String sql = "update area_carrera set \"id_carrera\"='"+getIdCarrera()+ "',\"id_perfil\"='" + getIdPerfil()+"',\"id_responsable\"='" + getIdResponsable()+"'"
-                + " where \"codigo\"= " + identificador + ";";
+        String sql = "update area_carrera set \"carrera\"='" + getIdCarrera() + "',\"perfil\"='" + getIdPerfil() + "',\"responsable\"='" + getIdResponsable() + "'"
+                + " where \"id_area\"= " + identificador + ";";
 
         if (conectar.noQuery(sql) == null) {
             return true;
@@ -89,7 +94,8 @@ public class AreaCarreraBD extends AreaCarreraMD{
             return false;
         }
     }
-    public boolean eliminar(int identificador){
+
+    public boolean eliminar(int identificador) {
         String sql = "delete from area_carrera where \"id_area\"=" + identificador + ";";
         if (conectar.noQuery(sql) == null) {
             return true;

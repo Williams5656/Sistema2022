@@ -135,9 +135,9 @@ public class Vis_AreaCarrera extends javax.swing.JInternalFrame {
         jLabel2.setText("Responsable:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
-        jPanel1.add(comboCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 139, -1));
+        jPanel1.add(comboCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 330, -1));
 
-        jPanel1.add(comboResponsable, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 139, -1));
+        jPanel1.add(comboResponsable, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 330, -1));
 
         tablaAreaCarrera.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -182,7 +182,7 @@ public class Vis_AreaCarrera extends javax.swing.JInternalFrame {
         jLabel3.setText("Carrera:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
-        jPanel1.add(comboPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 139, -1));
+        jPanel1.add(comboPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 330, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

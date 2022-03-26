@@ -43,6 +43,7 @@ public class Con_AreaCarrera {
     private CarreraBD baseDatosCarrera = new CarreraBD();
     private docenteBD baseDatosDocente = new docenteBD();
     private PersonaBD baseDatosPersona = new PersonaBD();
+    String vector[];
 
     public Con_AreaCarrera(Vis_AreaCarrera vista) {
         this.vista = vista;
@@ -62,6 +63,10 @@ public class Con_AreaCarrera {
         });
         desactivarBotones();
         lista();
+        listaCarrera = baseDatosCarrera.mostrardatos();
+        listaPerfiles = baseDatosPerfil.mostrardatos();
+        listaDocente = baseDatosDocente.mostrardatos();
+        listaPersona = baseDatosPersona.mostrardatos();
     }
 
     public void desactivarBotones() {
@@ -87,10 +92,15 @@ public class Con_AreaCarrera {
         vista.getComboResponsable().addItem("");
         listaPersona = baseDatosPersona.mostrardatos();
         listaDocente = baseDatosDocente.mostrardatos();
+        vector = new String[listaDocente.size()];
+        int contador = 0;
         for (PersonaMD persona : listaPersona) {
             for (docenteMD docente : listaDocente) {
                 if (persona.getCedula().equals(docente.getCedula())) {
                     vista.getComboResponsable().addItem(persona.getNombres() + " " + persona.getApellidos());
+                    vector[contador] = persona.getCedula();
+                    contador++;
+                    System.out.println(persona.getNombres() + " " + contador);
                 }
             }
         }
@@ -119,44 +129,42 @@ public class Con_AreaCarrera {
 
     }
 
-    private void guardar() {
-
-        if (vista.getComboCarrera().getSelectedItem().toString().equals("")) {
-            JOptionPane.showMessageDialog(null, "Seleccione la Carrera");
-        } else if (vista.getComboPerfil().getSelectedItem().toString().equals("")) {
-            JOptionPane.showMessageDialog(null, "Seleccione el Perfil");
-        } else if (vista.getComboResponsable().getSelectedItem().toString().equals("")) {
-            JOptionPane.showMessageDialog(null, "Seleccione el Responsable");
+    private void insertarBase() {
+        int posicion = vista.getComboResponsable().getSelectedIndex() - 1;
+        String cedula = vector[posicion];
+        bdarea.setIdResponsable(cedula);
+        String perfilCombo = (String) vista.getComboPerfil().getSelectedItem();
+        int codigoPerfil = 0;
+        PerfilBD basePerfil = new PerfilBD();
+        codigoPerfil = basePerfil.mostrarIdPerfil(perfilCombo);
+        bdarea.setIdPerfil(codigoPerfil);
+        String carreraCombo = (String) vista.getComboCarrera().getSelectedItem();
+        String codigoCarrera = "";
+        codigoCarrera = basePerfil.mostrarIdCarrera(carreraCombo);
+        bdarea.setIdCarrera(codigoCarrera);
+        if (bdarea.insertar()) {
+            JOptionPane.showMessageDialog(null, "DATOS GUARDADOS CORRECTAMENTE");
+            lista();
+            nuevo();
         } else {
-            String perfilCombo = (String) vista.getComboPerfil().getSelectedItem();
-            int codigoPerfil = 0;
-            String carreraCombo = (String) vista.getComboCarrera().getSelectedItem();
-            String codigoCarrera = "";
-            String responsableCombo = (String) vista.getComboResponsable().getSelectedItem();
-            for (PerfilMD perfil : listaPerfiles) {
-                if (perfilCombo.equals(perfil.getNombre())) {
-                    codigoPerfil = perfil.getCodigo();
-                }
-            }
-            for (CarreraMD carrera : listaCarrera) {
-                if (carreraCombo.equals(carrera.getNombre_carrera())) {
-                    codigoCarrera = carrera.getCodigo_carrera();
-                }
-            }
-            if (bdarea.insertar()) {
-                JOptionPane.showMessageDialog(null, "DATOS GUARDADOS CORRECTAMENTE");
-                lista();
-                nuevo();
-            } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR");
-            }
-
+            JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR");
         }
     }
 
-    private void modificar() {
-        int seleccionado = vista.getTablaAreaCarrera().getSelectedRow();
+    private void modificarBase() {
+        int posicion = vista.getComboResponsable().getSelectedIndex() - 1;
+        String cedula = vector[posicion];
+        bdarea.setIdResponsable(cedula);
+        String perfilCombo = (String) vista.getComboPerfil().getSelectedItem();
         int codigoPerfil = 0;
+        PerfilBD basePerfil = new PerfilBD();
+        codigoPerfil = basePerfil.mostrarIdPerfil(perfilCombo);
+        bdarea.setIdPerfil(codigoPerfil);
+        String carreraCombo = (String) vista.getComboCarrera().getSelectedItem();
+        String codigoCarrera = "";
+        codigoCarrera = basePerfil.mostrarIdCarrera(carreraCombo);
+        bdarea.setIdCarrera(codigoCarrera);
+        int seleccionado = vista.getTablaAreaCarrera().getSelectedRow();
         int resp2 = JOptionPane.showConfirmDialog(null, "CONFIRME SI ESTA SEGURO DE MODIFICAR");
         if (resp2 == 0) {
             if (bdarea.modificar(lista.get(seleccionado).getIdArea())) {
@@ -167,6 +175,50 @@ public class Con_AreaCarrera {
                 JOptionPane.showMessageDialog(null, "ERROR AL MODIFICAR");
             }
         }
+    }
+
+    private void guardar() {
+
+        if (vista.getComboCarrera().getSelectedItem().toString().equals("")) {
+            JOptionPane.showMessageDialog(null, "Seleccione la Carrera");
+        } else if (vista.getComboPerfil().getSelectedItem().toString().equals("")) {
+            JOptionPane.showMessageDialog(null, "Seleccione el Perfil");
+        } else if (vista.getComboResponsable().getSelectedItem().toString().equals("")) {
+            JOptionPane.showMessageDialog(null, "Seleccione el Responsable");
+        } else {
+            insertarBase();
+
+//            String docenteCombo = (String) vista.getComboCarrera().getSelectedItem();
+//            String codigoDocente = "";
+//            String responsableCombo = (String) vista.getComboResponsable().getSelectedItem();
+//            for (CarreraMD carrera : listaCarrera) {
+//                if (carreraCombo.equals(carrera.getNombre_carrera())) {
+//                    codigoCarrera = carrera.getCodigo_carrera();
+//                }
+//            }
+//            for (PersonaMD persona : listaPersona) {
+//                for (docenteMD docente : listaDocente) {
+//                    if (docenteCombo.equals(persona.getNombres() + " " + persona.getApellidos())) {
+//                        codigoDocente = persona.getCedula();
+//                    }
+//                }
+//            }
+        }
+    }
+
+    private void modificar() {
+//        int seleccionado = vista.getTablaAreaCarrera().getSelectedRow();
+//        int resp2 = JOptionPane.showConfirmDialog(null, "CONFIRME SI ESTA SEGURO DE MODIFICAR");
+//        if (resp2 == 0) {
+//            if (bdarea.modificar(lista.get(seleccionado).getIdArea())) {
+//                JOptionPane.showMessageDialog(null, "DATOS ACTUALIZADOS");
+//                lista();
+//                nuevo();
+//            } else {
+//                JOptionPane.showMessageDialog(null, "ERROR AL MODIFICAR");
+//            }
+//        }
+modificarBase();
     }
 
     private void eliminar() {
@@ -189,6 +241,9 @@ public class Con_AreaCarrera {
         vista.getBtn_modificar().setEnabled(true);
         vista.getBtn_eliminar().setEnabled(true);
         vista.getBtn_guardar().setEnabled(false);
+        vista.getComboCarrera().setEnabled(true);
+        vista.getComboPerfil().setEnabled(true);
+        vista.getComboResponsable().setEnabled(true);
         lista = bdarea.mostrardatos();
         for (PerfilMD perfil : listaPerfiles) {
             if (perfil.getCodigo() == lista.get(select).getIdPerfil()) {
@@ -196,8 +251,13 @@ public class Con_AreaCarrera {
             }
         }
         for (CarreraMD carrera : listaCarrera) {
-            if (carrera.getCodigo_carrera() == lista.get(select).getIdCarrera()) {
+            if (carrera.getCodigo_carrera().equals(lista.get(select).getIdCarrera())) {
                 vista.getComboCarrera().setSelectedItem(carrera.getNombre_carrera());
+            }
+        }
+        for (PersonaMD persona : listaPersona) {
+            if (persona.getCedula().equals(lista.get(select).getIdResponsable())) {
+                vista.getComboResponsable().setSelectedItem(persona.getNombres() + " " + persona.getApellidos());
             }
         }
     }
@@ -210,18 +270,42 @@ public class Con_AreaCarrera {
         modelo.addColumn("Carrera");
         modelo.addColumn("Perfil");
         modelo.addColumn("Responsable");
+        Object[] fila = new Object[4];
 
         lista = bdarea.mostrardatos();
+        listaCarrera = baseDatosCarrera.mostrardatos();
+        listaPerfiles = baseDatosPerfil.mostrardatos();
+        listaDocente = baseDatosDocente.mostrardatos();
+        listaPersona = baseDatosPersona.mostrardatos();
         for (AreaCarreraMD user : lista) {
-            Object[] fila = new Object[3];
-            fila[0] = user.getIdPerfil();
-            fila[1] = user.getIdCarrera();
-            fila[2] = user.getIdPerfil();
-            fila[3] = user.getIdResponsable();
+
+            fila[0] = user.getIdArea();
+            //fila[1] = user.getIdCarrera();
+            for (CarreraMD carrera : listaCarrera) {
+                if (carrera.getCodigo_carrera().equals(user.getIdCarrera())) {
+                    fila[1] = carrera.getNombre_carrera();
+                }
+            }
+            //fila[2] = user.getIdPerfil();
+            for (PerfilMD perfil : listaPerfiles) {
+                if (perfil.getCodigo() == user.getIdPerfil()) {
+                    fila[2] = perfil.getNombre();
+                }
+            }
+            //fila[3] = user.getIdResponsable();
+            for (PersonaMD perfil : listaPersona) {
+                for (docenteMD docente : listaDocente) {
+                    if (docente.getCedula().equals(user.getIdResponsable())) {
+                        fila[3] = docente.getCedula();
+                    }
+                }
+            }
+
             modelo.addRow(fila);
         }
 
         vista.getTablaAreaCarrera().setModel(modelo);
 
     }
+
 }

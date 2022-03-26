@@ -24,6 +24,7 @@ public class ActividadesBD {
         try {
             while(rs.next()){
                 ActividadesMD m = new ActividadesMD();
+                m.setId_actividades(rs.getInt("id_actividades"));
                 m.setId_objetivo_operativo(rs.getInt("id_objetivo_operativo"));
                 m.setActividad(rs.getString("actividad"));
                 m.setResponsable(rs.getString("responsable"));

@@ -19,7 +19,7 @@ public class PoaBD {
         
         ArrayList<PoaMD> lista = new ArrayList<>();
         
-        String sql = "select * from cliente";
+        String sql = "select * from poa";
         ResultSet rs= conectar.query(sql);
         try {
             while(rs.next()){

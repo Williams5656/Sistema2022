@@ -4,6 +4,12 @@
  */
 package POA.Vista;
 
+import com.toedter.calendar.JYearChooser;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author sebastian
@@ -17,6 +23,81 @@ public class Vis_Poa1 extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    public JButton getBtnAniadirProyectos() {
+        return btnAniadirProyectos;
+    }
+
+    public void setBtnAniadirProyectos(JButton btnAniadirProyectos) {
+        this.btnAniadirProyectos = btnAniadirProyectos;
+    }
+
+    public JButton getBtnEliminar() {
+        return btnEliminar;
+    }
+
+    public void setBtnEliminar(JButton btnEliminar) {
+        this.btnEliminar = btnEliminar;
+    }
+
+    public JButton getBtnGuardar() {
+        return btnGuardar;
+    }
+
+    public void setBtnGuardar(JButton btnGuardar) {
+        this.btnGuardar = btnGuardar;
+    }
+
+    public JButton getBtnModificar() {
+        return btnModificar;
+    }
+
+    public void setBtnModificar(JButton btnModificar) {
+        this.btnModificar = btnModificar;
+    }
+
+    public JButton getBtnNuevo() {
+        return btnNuevo;
+    }
+
+    public void setBtnNuevo(JButton btnNuevo) {
+        this.btnNuevo = btnNuevo;
+    }
+
+    public JButton getBtnTerminado() {
+        return btnTerminado;
+    }
+
+    public void setBtnTerminado(JButton btnTerminado) {
+        this.btnTerminado = btnTerminado;
+    }
+
+    public JTable getTablaPoa() {
+        return tablaPoa;
+    }
+
+    public void setTablaPoa(JTable tablaPoa) {
+        this.tablaPoa = tablaPoa;
+    }
+
+    public JComboBox<String> getCbxCarrera() {
+        return cbxCarrera;
+    }
+
+    public void setCbxCarrera(JComboBox<String> cbxCarrera) {
+        this.cbxCarrera = cbxCarrera;
+    }
+
+
+    public JYearChooser getyChooser() {
+        return yChooser;
+    }
+
+    public void setyChooser(JYearChooser yChooser) {
+        this.yChooser = yChooser;
+    }
+    
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,11 +108,11 @@ public class Vis_Poa1 extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        txtCarrera = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         yChooser = new com.toedter.calendar.JYearChooser();
+        cbxCarrera = new javax.swing.JComboBox<>();
         btnTerminado = new javax.swing.JButton();
         btnAniadirProyectos = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -42,6 +123,8 @@ public class Vis_Poa1 extends javax.swing.JInternalFrame {
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
 
+        setClosable(true);
+
         jLabel2.setText("AÑO:");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -50,6 +133,8 @@ public class Vis_Poa1 extends javax.swing.JInternalFrame {
         jLabel1.setText("CARRERA:");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
         jPanel2.add(yChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 90, -1));
+
+        jPanel2.add(cbxCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 440, -1));
 
         btnTerminado.setText("Terminado");
 
@@ -98,17 +183,14 @@ public class Vis_Poa1 extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(160, 160, 160)
-                                .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
                                 .addComponent(jLabel2))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnTerminado, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnTerminado, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -124,9 +206,6 @@ public class Vis_Poa1 extends javax.swing.JInternalFrame {
                     .addComponent(btnEliminar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(80, 80, 80)
@@ -162,6 +241,7 @@ public class Vis_Poa1 extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnTerminado;
+    private javax.swing.JComboBox<String> cbxCarrera;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -169,7 +249,6 @@ public class Vis_Poa1 extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaPoa;
-    private javax.swing.JTextField txtCarrera;
     private com.toedter.calendar.JYearChooser yChooser;
     // End of variables declaration//GEN-END:variables
 }

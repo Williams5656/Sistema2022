@@ -14,11 +14,13 @@ import POA.Modelo.PoaMD;
 import POA.Modelo.ProyectoBD;
 import POA.Modelo.ProyectoMD;
 import POA.Vista.vis_poa_proyectos;
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -34,6 +36,7 @@ public class Con_poa_proyectos {
     private List<ProyectoMD> lista = new ArrayList<>();
     private List<ObjetivoOperativoMD> listaoperativo = new ArrayList<>();
     private DefaultTableModel modelo = new DefaultTableModel();
+    private DefaultTableModel modelo1 = new DefaultTableModel();
     private List<PoaMD> listapoa = new ArrayList<>();
     private PoaBD baseDatosPoa = new PoaBD();
     private List<POA.Modelo.CarreraMD> listaCarreras = new ArrayList<>();
@@ -54,7 +57,9 @@ public class Con_poa_proyectos {
             }
 
         });
+        vista.getBtnSiguiente().addActionListener(e->abrirVentanaactividades());
         lista_poa();
+        
     }
 
     public void lista_poa() {
@@ -92,27 +97,27 @@ public class Con_poa_proyectos {
     }
 
     public void lista_objetivo() {
-        modelo.setRowCount(0);
-        modelo.setColumnCount(0);
+        modelo1.setRowCount(0);
+        modelo1.setColumnCount(0);
 
-        modelo.addColumn("Numero_objetivo_proyecto");
-        modelo.addColumn("Objetivo");
-        Object[] fila = new Object[1];
+        modelo1.addColumn("Numero_objetivo_proyecto");
+        modelo1.addColumn("Objetivo");
+        Object[] fila = new Object[2];
 
         listaoperativo = obbd.mostrarDatos();
         //  for (ProyectoMD user : lista) {
         for (int i = 0; i < listaoperativo.size(); i++) {
-            if (listaoperativo.get(i).getId_proyecto() == lista.get(i).getId_proyecto()) {
+            //if (listaoperativo.get(i).getId_proyecto() == lista.get(i).getId_proyecto()) {
                 
                 fila[0] = listaoperativo.get(i).getNum_objetivo_proyecto();
                 fila[1] = listaoperativo.get(i).getObjetivo();
-                modelo.addRow(fila);
-            }
+                modelo1.addRow(fila);
+            //}
 
         }
 
         //  }
-        vista.getTabla_proyecto().setModel(modelo);
+        vista.getTabla_proyecto().setModel(modelo1);
     }
 
     public void nuevo() {
@@ -169,9 +174,21 @@ public class Con_poa_proyectos {
         vista.getTxt_obestra().setText(lista.get(select).getObjetivo_estrategico() + "");
         vista.getTxt_obtac().setText(lista.get(select).getObjetivo_tactico() + "");
         vista.getTxt_estrategia().setText(lista.get(select).getEstrategia() + "");
-        
+        lista_objetivo();
     }
 
+    public void abrirVentanaactividades(){
+       
+       
+        POA.Vista.vis_poa_actividad zap = new POA.Vista.vis_poa_actividad();
+        Con_principal.vista.getESCRITORIO().add(zap);
+        Dimension desktopSize = Con_principal.vista.getESCRITORIO().getSize();
+        Dimension FrameSize = zap.getSize();
+        zap.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        Con_poa_actividad proyectos = new Con_poa_actividad(zap);
+       
+       
+    }
 //    public void seleccionarobjetivo() {
 //        DefaultTableModel modelo;
 //        modelo = (DefaultTableModel) vista.getTabla_proyecto().getModel();

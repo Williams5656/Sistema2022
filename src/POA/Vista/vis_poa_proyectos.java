@@ -153,16 +153,10 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
         txt_obtac = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         Tabla_lista_proyectos = new javax.swing.JTable();
-        btnSiguiente = new javax.swing.JToggleButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         txt_estrategia = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        txtarea_obopera = new javax.swing.JTextArea();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        Tabla_proyecto = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -172,6 +166,12 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
         btn_modificar = new javax.swing.JButton();
         btn_nuevo = new javax.swing.JButton();
         n_proyectos = new javax.swing.JTextField();
+        btnSiguiente = new javax.swing.JToggleButton();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtarea_obopera = new javax.swing.JTextArea();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Tabla_proyecto = new javax.swing.JTable();
 
         jToolBar1.setRollover(true);
 
@@ -220,11 +220,6 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 430, 230));
 
-        btnSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/siguiente.png"))); // NOI18N
-        btnSiguiente.setBorderPainted(false);
-        btnSiguiente.setContentAreaFilled(false);
-        getContentPane().add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 0, 60, -1));
-
         jLabel12.setText("Guardar");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 100, -1, -1));
 
@@ -235,30 +230,6 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
         jLabel14.setText("ESTRATEGIA");
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 240, -1, -1));
         getContentPane().add(txt_estrategia, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 230, 270, -1));
-
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 300, 270, 50));
-
-        txtarea_obopera.setColumns(20);
-        txtarea_obopera.setRows(5);
-        jPanel3.add(txtarea_obopera, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 220, 70));
-
-        Tabla_proyecto.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "NUMERO", "OBJETIVO "
-            }
-        ));
-        jScrollPane1.setViewportView(Tabla_proyecto);
-
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 490, 90));
-
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 290, 510, 250));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -285,6 +256,35 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
         btn_nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/nuevo.png"))); // NOI18N
         jPanel2.add(btn_nuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 40, 40));
         jPanel2.add(n_proyectos, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 30, -1));
+
+        btnSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/siguiente.png"))); // NOI18N
+        btnSiguiente.setBorderPainted(false);
+        btnSiguiente.setContentAreaFilled(false);
+        jPanel2.add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 60, -1));
+
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 300, 270, 50));
+
+        txtarea_obopera.setColumns(20);
+        txtarea_obopera.setRows(5);
+        jPanel3.add(txtarea_obopera, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 220, 70));
+
+        Tabla_proyecto.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "NUMERO", "OBJETIVO "
+            }
+        ));
+        jScrollPane1.setViewportView(Tabla_proyecto);
+
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 490, 90));
+
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 510, 250));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 40, 560, 520));
 

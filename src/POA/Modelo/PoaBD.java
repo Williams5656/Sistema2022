@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  */
 public class PoaBD {
     Conect conectar = new Conect();
-    
+
     public ArrayList<PoaMD> mostrarDatos(){
         
         ArrayList<PoaMD> lista = new ArrayList<>();

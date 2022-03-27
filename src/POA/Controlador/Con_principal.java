@@ -18,8 +18,9 @@ import POA.Vista.vis_Docentes;
 import POA.Vista.vis_PeriodoAcademico;
 import POA.Vista.vis_Persona;
 import POA.Vista.Vis_Materias;
+import POA.Vista.Vis_Poa1;
 import POA.Vista.vis_inicioSesion;
-import POA.Vista.vis_poa;
+import POA.Vista.vis_poa_proyectos;
 import POA.Vista.vis_poa_actividad;
 import POA.Vista.vis_poa_evidencia;
 import java.awt.Dimension;
@@ -131,12 +132,12 @@ public class Con_principal {
     }
      
      private void poa() {
-         vis_poa user = new vis_poa();
+         Vis_Poa1 user = new Vis_Poa1();
         vista.getESCRITORIO().add(user);
         Dimension desktopSize = vista.getESCRITORIO().getSize();
         Dimension FrameSize = user.getSize();
         user.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-        Con_poa us = new Con_poa(user);
+        Con_Poa1 us = new Con_Poa1(user);
     }
 
     private void actividad() {

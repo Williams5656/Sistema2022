@@ -13,8 +13,16 @@ import java.util.logging.Logger;
  *
  * @author sebastian
  */
-public class ProyectoBD {
+public class ProyectoBD extends ProyectoMD{
     Conect conectar = new Conect();
+
+    public ProyectoBD() {
+    }
+
+    public ProyectoBD(int id_proyecto, int id_Poa, int num_proyecto_carrera, String objetivo_estrategico, String objetivo_tactico, String estrategia) {
+        super(id_proyecto, id_Poa, num_proyecto_carrera, objetivo_estrategico, objetivo_tactico, estrategia);
+    }
+    
     
     public ArrayList<ProyectoMD> mostrarDatos(){
         

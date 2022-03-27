@@ -5,10 +5,20 @@
  */
 package POA.Controlador;
 
+import POA.Modelo.CarreraBD;
+
+import POA.Modelo.PoaBD;
+import POA.Modelo.PoaMD;
 import POA.Modelo.ProyectoBD;
+import POA.Modelo.ProyectoMD;
 import POA.Vista.vis_poa_proyectos;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,42 +28,108 @@ public class Con_poa_proyectos {
 
     private final vis_poa_proyectos vista;
     ProyectoBD poabd = new ProyectoBD();
+    private List<ProyectoMD> lista = new ArrayList<>();
+    private DefaultTableModel modelo = new DefaultTableModel();
+    private List<PoaMD> listapoa = new ArrayList<>();
+    private PoaBD baseDatosPoa = new PoaBD();
+    private List<POA.Modelo.CarreraMD> listaCarreras = new ArrayList<>();
+    private POA.Modelo.CarreraBD baseDatosCarrera = new CarreraBD();
+    int poa = 0;
 
-    public Con_poa_proyectos(vis_poa_proyectos vista) {
+    public Con_poa_proyectos(vis_poa_proyectos vista, int id_poa) {
         this.vista = vista;
+        poa = id_poa;
         vista.setVisible(true);
         vista.getBtn_nuevo().addActionListener(e -> nuevo());
         vista.getBtn_guardar().addActionListener(e -> guardar());
+        vista.getTabla_lista_proyectos().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                seleccionar();//To change body of generated methods, choose Tools | Templates.
+            }
 
+        });
+        lista_poa();
+    }
+
+    public void lista_poa() {
+        modelo.setRowCount(0);
+        modelo.setColumnCount(0);
+
+        modelo.addColumn("Id_poa");
+        modelo.addColumn("Id_proyecto");
+        modelo.addColumn("Numero_carrera");
+        modelo.addColumn("Objetivo estrategico");
+        modelo.addColumn("Objetivo tactico");
+        modelo.addColumn("estrategia");
+        Object[] fila = new Object[6];
+
+        lista = poabd.mostrarDatos();
+        listapoa = baseDatosPoa.mostrarDatos();
+        listaCarreras = baseDatosCarrera.mostrardatos();
+
+      //  for (ProyectoMD user : lista) {
+            for (int i = 0; i < lista.size(); i++) {
+                if (lista.get(i).getId_Poa() == poa) {
+                    fila[0] = poa;
+                    fila[1] = lista.get(i).getId_proyecto();
+                    fila[2] = lista.get(i).getNum_proyecto_carrera();
+                    fila[3] = lista.get(i).getObjetivo_estrategico();
+                    fila[4] = lista.get(i).getObjetivo_tactico();
+                    fila[5] = lista.get(i).getEstrategia();
+                    modelo.addRow(fila);
+                }
+
+            }
+
+     //  }
+
+        vista.getTabla_lista_proyectos().setModel(modelo);
     }
 
     public void nuevo() {
+        int idpoa = vista.getTabla_lista_proyectos().getSelectedRow();
         vista.getTxt_estrategia().setText("");
         vista.getTxt_obestra().setText("");
         vista.getTxt_obtac().setText("");
+        int a = 0;
+        vista.getN_proyectos().setText(vista.getTabla_lista_proyectos().getRowCount() + 1 + "");
+    }
+
+    public void guardar() {
+        int num = 0;
+        int poas = 0;
+        String ob = "", tac = "", est = "";
+        num = Integer.parseInt(vista.getN_proyectos().getText());
+        ob = (vista.getTxt_obestra().getText());
+        tac = vista.getTxt_obtac().getText();
+        est = vista.getTxt_estrategia().getText();
+
+        poabd.guardar(poa, num, ob, tac, est);
+        lista_poa();
     }
     
-    public void guardar() {
-     //   String anios = (String) vista.getCb_anio().getSelectedItem();
+    public void seleccionar() {
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) vista.getTabla_lista_proyectos().getModel();
+        int select = vista.getTabla_lista_proyectos().getSelectedRow();
+   
+        lista= poabd.mostrarDatos();
+        poabd.setId_Poa(lista.get(0).getId_Poa());
+        poabd.setId_proyecto(lista.get(0).getId_proyecto());
+        poabd.setNum_proyecto_carrera((lista.get(0).getNum_proyecto_carrera()));
+        poabd.setObjetivo_estrategico(lista.get(0).getObjetivo_estrategico());
+        poabd.setObjetivo_tactico(lista.get(0).getObjetivo_tactico());
+        poabd.setEstrategia(lista.get(0).getEstrategia());
         
-//
-//        poabd.set(vista.getTxt_placa().getText());
-//        poabd.setMarca(marca);
-//        poabd.setModelo(vista.getTxt_modelo().getText());
-//        poabd.setAnios(Integer.parseInt(vista.getTxt_anios().getText()));
-//        autobd.setColor(color);
-//        poabd.setMotor(Integer.parseInt(vista.getTxt_motor().getText()));
-//        poabd.setChasis(vista.getTxt_chasis().getText());
-//
-//
-//        ImageIcon ic = (ImageIcon) vista.getFoto().getIcon();
-//        autobd.setFoto(ic.getImage());
-//
-//        if (autobd.insertar()) {
-//            JOptionPane.showMessageDialog(null, "GUARDADO CORRECTEMENTE MI ESTIMADO CABEZA GATO");
-//            lista();
-//        } else {
-//            JOptionPane.showMessageDialog(null, "NI PARA ESO MI ESTIMADO");
-//        }
+
+        vista.getN_proyectos().setText(lista.get(select).getNum_proyecto_carrera()+"");
+        vista.getTxt_obestra().setText(lista.get(select).getObjetivo_estrategico()+"");
+        vista.getTxt_obtac().setText(lista.get(select).getObjetivo_tactico()+"");
+        vista.getTxt_estrategia().setText(lista.get(select).getEstrategia()+"");
+        
+        
+        
+        
     }
 }

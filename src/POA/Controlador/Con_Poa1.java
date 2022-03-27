@@ -137,7 +137,7 @@ public class Con_Poa1 {
         Dimension desktopSize = Con_principal.vista.getESCRITORIO().getSize();
         Dimension FrameSize = zap.getSize();
         zap.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-        Con_poa_proyectos proyectos = new Con_poa_proyectos(zap);
+        Con_poa_proyectos proyectos = new Con_poa_proyectos(zap,id_poa);
        }
        else{
            JOptionPane.showMessageDialog(null, "Debe seleccionar un POA de la tabla");

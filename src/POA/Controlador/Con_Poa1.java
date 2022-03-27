@@ -5,8 +5,10 @@
 package POA.Controlador;
 import POA.Vista.*;
 import POA.Controlador.*;
+import static POA.Controlador.Con_principal.vista;
 import POA.Modelo.CarreraBD;
 import POA.Modelo.PoaBD;
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ public class Con_Poa1 {
     private POA.Modelo.PoaBD baseDatosPoa = new PoaBD();
     private POA.Modelo.CarreraBD baseDatosCarrera = new CarreraBD();
     private static int id_poa;
+    private boolean tablaSeleccionada = false;
 
     public Con_Poa1(Vis_Poa1 vista) {
         this.vista = vista;
@@ -39,7 +42,9 @@ public class Con_Poa1 {
         vista.getBtnModificar().setEnabled(false);
         vista.getBtnEliminar().setEnabled(false);
         vista.setTitle("POA");
-        vista.getBtnGuardar().addActionListener(e -> guardar());  
+        vista.getBtnGuardar().addActionListener(e -> guardar());
+        vista.getBtnAniadirProyectos().addActionListener(e -> abrirVentanaProyectos());
+        vista.getBtnNuevo().addActionListener(e -> limpiarCampos());
         
         vista.getTablaPoa().addMouseListener(new MouseAdapter() {
             @Override
@@ -102,11 +107,16 @@ public class Con_Poa1 {
         
     }
     
+    public void nuevo(){
+        limpiarCampos();
+    }
+    
      public void limpiarCampos(){
         vista.getBtnGuardar().setEnabled(true);
         vista.getBtnModificar().setEnabled(false);
         vista.getBtnEliminar().setEnabled(false);
         vista.getyChooser().setValue(2022);
+        tablaSeleccionada = false;
            
         vista.getTablaPoa().setCellSelectionEnabled(false);
  
@@ -114,9 +124,26 @@ public class Con_Poa1 {
      
      public void seleccionar(){
         int seleccionado = vista.getTablaPoa().getSelectedRow();
+        tablaSeleccionada = true;
         
         id_poa = listaPOA.get(seleccionado).getId_POA();
     }
+     
+    public void abrirVentanaProyectos(){
+       
+       if (tablaSeleccionada){
+        POA.Vista.vis_poa_proyectos zap = new vis_poa_proyectos();
+        Con_principal.vista.getESCRITORIO().add(zap);
+        Dimension desktopSize = Con_principal.vista.getESCRITORIO().getSize();
+        Dimension FrameSize = zap.getSize();
+        zap.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        Con_poa_proyectos proyectos = new Con_poa_proyectos(zap);
+       }
+       else{
+           JOptionPane.showMessageDialog(null, "Debe seleccionar un POA de la tabla");
+       }
+    }
+    
 
     public static int getId_poa() {
         return id_poa;

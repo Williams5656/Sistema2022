@@ -41,7 +41,7 @@ public class ObjetivoOperativoBD {
     
     public void guardar(int id_proyecto, int num_objetivo_proyecto, String objetivo){
         
-        String sql = "insert into poa (id_proyecto, num_objetivo_proyecto, objetivo) VALUES (" + 
+        String sql = "insert into objetivo_operativo (id_proyecto, num_objetivo_proyecto, objetivo) VALUES (" + 
                 id_proyecto + ", " + num_objetivo_proyecto + ", '" + objetivo + "');";
         
         conectar.noQuery(sql);

@@ -26,13 +26,7 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
         initComponents();
     }
 
-    public JComboBox<String> getCb_anio() {
-        return Cb_anio;
-    }
-
-    public void setCb_anio(JComboBox<String> Cb_anio) {
-        this.Cb_anio = Cb_anio;
-    }
+    
 
     public JTable getTabla_lista_proyecto() {
         return Tabla_lista_proyecto;
@@ -50,13 +44,7 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
         this.Tabla_proyecto = Tabla_proyecto;
     }
 
-    public JTextField getTxt_carrera() {
-        return Txt_carrera;
-    }
-
-    public void setTxt_carrera(JTextField Txt_carrera) {
-        this.Txt_carrera = Txt_carrera;
-    }
+    
 
     public JToggleButton getBtnAñadir() {
         return btnAñadir;

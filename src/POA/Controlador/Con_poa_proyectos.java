@@ -34,7 +34,7 @@ public class Con_poa_proyectos {
     }
     
     public void guardar() {
-        String anios = (String) vista.getCb_anio().getSelectedItem();
+     //   String anios = (String) vista.getCb_anio().getSelectedItem();
         
 //
 //        poabd.set(vista.getTxt_placa().getText());

@@ -19,7 +19,7 @@ public class ObjetivoOperativoBD {
         
         ArrayList<ObjetivoOperativoMD> lista = new ArrayList<>();
         
-        String sql = "select * from ";
+        String sql = "select * from objetivo_operativo";
         ResultSet rs= conectar.query(sql);
         try {
             while(rs.next()){

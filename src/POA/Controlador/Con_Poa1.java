@@ -7,6 +7,8 @@ import POA.Vista.*;
 import POA.Controlador.*;
 import POA.Modelo.CarreraBD;
 import POA.Modelo.PoaBD;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -22,6 +24,7 @@ public class Con_Poa1 {
     private List<POA.Modelo.CarreraMD> listaCarreras = new ArrayList<>();
     private POA.Modelo.PoaBD baseDatosPoa = new PoaBD();
     private POA.Modelo.CarreraBD baseDatosCarrera = new CarreraBD();
+    private static int id_poa;
 
     public Con_Poa1(Vis_Poa1 vista) {
         this.vista = vista;
@@ -37,6 +40,15 @@ public class Con_Poa1 {
         vista.getBtnEliminar().setEnabled(false);
         vista.setTitle("POA");
         vista.getBtnGuardar().addActionListener(e -> guardar());  
+        
+        vista.getTablaPoa().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                seleccionar();
+            };
+        
+        });
+        
         lista();
         
     }
@@ -99,4 +111,15 @@ public class Con_Poa1 {
         vista.getTablaPoa().setCellSelectionEnabled(false);
  
     }
+     
+     public void seleccionar(){
+        int seleccionado = vista.getTablaPoa().getSelectedRow();
+        
+        id_poa = listaPOA.get(seleccionado).getId_POA();
+    }
+
+    public static int getId_poa() {
+        return id_poa;
+    }
+
 }

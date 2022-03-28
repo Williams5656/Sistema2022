@@ -317,8 +317,6 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         txt_responsables = new javax.swing.JTextField();
         txt_N_actividad = new javax.swing.JTextField();
         btn_eliminar = new javax.swing.JButton();
@@ -327,12 +325,14 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         txt_descripcion = new javax.swing.JTextArea();
         combo_actividad = new javax.swing.JComboBox();
         combo_periodo = new javax.swing.JComboBox();
-        Fecha_limite = new com.toedter.calendar.JDateChooser();
-        Fecha_inicio = new com.toedter.calendar.JDateChooser();
         comobo_carrera = new javax.swing.JComboBox<>();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         Btn_añadir_Tactividad = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        Fecha_inicio = new com.toedter.calendar.JDateChooser();
+        Fecha_limite = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -436,67 +436,67 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         setResizable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btn_n_actividad.setText("CREAR ACTIVIDAD");
+        btn_n_actividad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icono_agregar.png"))); // NOI18N
+        btn_n_actividad.setText("Crear Actividad");
         getContentPane().add(btn_n_actividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 56, -1, -1));
 
-        btn_modificar.setText("MODIFICAR");
-        getContentPane().add(btn_modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 56, -1, -1));
+        btn_modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/modificar.png"))); // NOI18N
+        btn_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_modificarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 50, -1, -1));
 
-        btn_guardar.setText("GUARDAR");
-        getContentPane().add(btn_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(777, 56, -1, -1));
+        btn_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/guardar.png"))); // NOI18N
+        getContentPane().add(btn_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 50, -1, -1));
 
-        btn_imprimir.setText("IMPRIMIR");
+        btn_imprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/impresion.png"))); // NOI18N
         btn_imprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_imprimirActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1108, 56, -1, -1));
+        getContentPane().add(btn_imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 50, -1, -1));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("ID ACTIVIDAD");
+        jLabel1.setText("Id actividad:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 15, -1, -1));
         jPanel1.add(txt_id_A, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 12, 150, -1));
 
-        jLabel2.setText("NOMBRE CARRERA:");
+        jLabel2.setText("Nombre Carrera:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 58, -1, -1));
 
-        jLabel3.setText("TIPO DE ACTIVIDAD:");
+        jLabel3.setText("Tipo actividad:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 173, -1, -1));
 
-        jLabel4.setText("PERIODIO ACADÉMICO:");
+        jLabel4.setText("Periodo Académico:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 108, -1, -1));
 
-        jLabel8.setText("NOMBRE DE  LA ACTIVIDAD:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 243, -1, -1));
+        jLabel8.setText("Nombre de la actividad:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
 
-        jLabel11.setText("DESCRIPCION:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 281, -1, -1));
+        jLabel11.setText("Descripción:");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, -1, -1));
 
-        jLabel13.setText("RESPONSABLES DE LA ACRTIVIDAD:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 383, -1, -1));
+        jLabel13.setText("Responsables de la actividad:");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 500, -1, -1));
+        jPanel1.add(txt_responsables, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 530, 210, -1));
+        jPanel1.add(txt_N_actividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 150, -1));
 
-        jLabel14.setText("FECHA INICO:");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 640, -1, 20));
+        btn_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/delete.jpg"))); // NOI18N
+        jPanel1.add(btn_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 530, -1, -1));
 
-        jLabel15.setText("FECHA LIMITE:");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 730, -1, 20));
-        jPanel1.add(txt_responsables, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 404, 150, -1));
-        jPanel1.add(txt_N_actividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 240, 150, -1));
-
-        btn_eliminar.setText("ELIMINAR");
-        jPanel1.add(btn_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(346, 403, -1, -1));
-
-        btn_añadir.setText("AÑADIR");
-        jPanel1.add(btn_añadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 403, -1, -1));
+        btn_añadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icono_agregar.png"))); // NOI18N
+        jPanel1.add(btn_añadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 530, -1, -1));
 
         txt_descripcion.setColumns(20);
         txt_descripcion.setRows(5);
         jScrollPane2.setViewportView(txt_descripcion);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 281, -1, -1));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 230, 110));
 
         combo_actividad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "POA", "Titulacion", "Calendario ", "Examen Complexión", "Graduacion", "Todos " }));
         combo_actividad.addActionListener(new java.awt.event.ActionListener() {
@@ -508,8 +508,6 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
 
         combo_periodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "Jun21-Oct21", "Dic21-Abr22" }));
         jPanel1.add(combo_periodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 105, 148, 20));
-        jPanel1.add(Fecha_limite, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 720, 160, 20));
-        jPanel1.add(Fecha_inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 640, 160, 20));
 
         comobo_carrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
         jPanel1.add(comobo_carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 55, 150, -1));
@@ -524,12 +522,20 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         ));
         jScrollPane4.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 432, 153, 170));
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 560, 210, 140));
 
-        Btn_añadir_Tactividad.setText("Añadir");
+        Btn_añadir_Tactividad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icono_agregar.png"))); // NOI18N
         jPanel1.add(Btn_añadir_Tactividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 97, 440, 770));
+        jLabel14.setText("Fecha inicio:");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, 20));
+
+        jLabel15.setText("Fecha limite:");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, -1, 20));
+        jPanel1.add(Fecha_inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 160, 20));
+        jPanel1.add(Fecha_limite, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, 160, 20));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 97, 440, 720));
 
         jLabel6.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 36)); // NOI18N
         jLabel6.setText("CALENDARIO ACADÉMICO");
@@ -540,18 +546,23 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
 
         Tabla_calendario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Actividad", "Carrera", "Periodo Academico", "Tipo Actividad", "Nombre Actividad", "Descripcion", "Fecha Inicio", "Fecha Limite"
             }
         ));
         jScrollPane3.setViewportView(Tabla_calendario);
 
-        btn_evidencia.setText("SUBIR EVIDENCIA");
+        btn_evidencia.setText("Subir evidencia");
+        btn_evidencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_evidenciaActionPerformed(evt);
+            }
+        });
 
         Jl_evidencia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -572,16 +583,16 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(Jl_evidencia, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_evidencia)
-                        .addGap(37, 37, 37)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                        .addGap(42, 42, 42)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -590,15 +601,15 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(158, 158, 158)
                         .addComponent(btn_evidencia))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(97, 97, 97)
-                        .addComponent(Jl_evidencia, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                        .addComponent(Jl_evidencia, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, 920, 710));
@@ -613,6 +624,14 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
     private void btn_imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_imprimirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_imprimirActionPerformed
+
+    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_modificarActionPerformed
+
+    private void btn_evidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_evidenciaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_evidenciaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -28,6 +28,15 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    public JTable getTabla_responsable() {
+        return tabla_responsable;
+    }
+
+    public void setTabla_responsable(JTable tabla_responsable) {
+        this.tabla_responsable = tabla_responsable;
+    }
+    
+
     public JDateChooser getFecha_inicio() {
         return Fecha_inicio;
     }
@@ -257,12 +266,14 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         comobo_carrera = new javax.swing.JComboBox<>();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         Tabla_calendario = new javax.swing.JTable();
         btn_evidencia = new javax.swing.JButton();
         Jl_evidencia = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla_responsable = new javax.swing.JTable();
 
         jLabel5.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
         jLabel5.setText("SELECCIONE EL TIPO DE ACTIVIDAD PARA EL REPORTE");
@@ -414,10 +425,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+
             },
             new String [] {
                 "responsables"
@@ -427,9 +435,14 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
 
         jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 432, 153, 170));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 97, -1, 810));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 97, -1, 770));
+
+        jLabel6.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 36)); // NOI18N
+        jLabel6.setText("CALENDARIO ACADÉMICO");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(475, 0, -1, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel2.setPreferredSize(new java.awt.Dimension(1500, 760));
 
         Tabla_calendario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -448,6 +461,16 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
 
         Jl_evidencia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        tabla_responsable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "id_responsable", "id_actividad", "Responsable"
+            }
+        ));
+        jScrollPane1.setViewportView(tabla_responsable);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -461,8 +484,10 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
                         .addGap(54, 54, 54)
                         .addComponent(Jl_evidencia, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btn_evidencia)))
-                .addContainerGap(142, Short.MAX_VALUE))
+                        .addComponent(btn_evidencia)
+                        .addGap(37, 37, 37)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -475,15 +500,14 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
                         .addComponent(btn_evidencia))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(97, 97, 97)
-                        .addComponent(Jl_evidencia, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(149, Short.MAX_VALUE))
+                        .addComponent(Jl_evidencia, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(504, 97, -1, 800));
-
-        jLabel6.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 36)); // NOI18N
-        jLabel6.setText("CALENDARIO ACADÉMICO");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(475, 0, -1, -1));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, 920, 710));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -531,10 +555,12 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabla_responsable;
     private javax.swing.JTextField txt_N_actividad;
     private javax.swing.JTextArea txt_descripcion;
     private javax.swing.JTextField txt_id_A;

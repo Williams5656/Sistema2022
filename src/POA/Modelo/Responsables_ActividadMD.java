@@ -9,25 +9,24 @@ package POA.Modelo;
  *
  * @author Myrian
  */
-public class Responsables_ActividadMD extends CalendarioMD {
+public class Responsables_ActividadMD {
      int id_responsable;
      int id_actividad;
      String cedula;
 
+    public Responsables_ActividadMD(String cedula) {
+        this.cedula = cedula;
+    }
+    
     public Responsables_ActividadMD(int id_responsable, int id_actividad, String cedula) {
         this.id_responsable = id_responsable;
         this.id_actividad = id_actividad;
         this.cedula = cedula;
     }
 
-    public Responsables_ActividadMD(int id_responsable, int id_actividad, String cedula, int id_Actividad, String id_Carrera, int id_Periodo, int id_TipoActividad, String Nombre_Actividad, String Descripcion, String Fecha_Inicio, String Fecha_Limite) {
-        super(id_Actividad, id_Carrera, id_Periodo, id_TipoActividad, Nombre_Actividad, Descripcion, Fecha_Inicio, Fecha_Limite);
-        this.id_responsable = id_responsable;
-        this.id_actividad = id_actividad;
-        this.cedula = cedula;
+    public Responsables_ActividadMD() {
+       
     }
-     
-
     public int getId_responsable() {
         return id_responsable;
     }

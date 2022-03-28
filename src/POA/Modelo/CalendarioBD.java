@@ -70,6 +70,20 @@ public class CalendarioBD extends CalendarioMD {
             return 0;
         }
     }
+          public int codigo_act() {
+        try {
+            int c = 0;
+            String sql = "select max(id_actividad) as id_actividad from calendario";
+            ResultSet rs = conectar.query(sql);
+            while (rs.next()) {
+                c = rs.getInt("id_actividad");
+            }
+            return c + 1;
+        } catch (SQLException ex) {
+            Logger.getLogger(PerfilBD.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
+        }
+    }
 
     public boolean insertar() {
         String nsql = "INSERT INTO calendario(id_carrera,id_periodo,id_tipoactividad,id_actividad,nombre_actividad,responsables,descripcion,fecha_inicio,fecha_limite)" + "VALUES ('"

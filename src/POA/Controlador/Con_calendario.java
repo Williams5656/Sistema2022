@@ -13,6 +13,7 @@ import POA.Modelo.*;
 import POA.Modelo.Responsables_ActividadMD;
 import POA.Modelo.Responsables_ActividadBD;
 import POA.Modelo.docenteMD;
+import com.mxrck.autocompleter.TextAutoCompleter;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,6 +34,8 @@ public class Con_calendario {
     private final Vis_Calendar vista;
     CarreraBD carrerabd = new CarreraBD();
     CalendarioBD calen = new CalendarioBD();
+    private PersonaBD bdpersona = new PersonaBD();
+    private TextAutoCompleter at;
     T_ActividadBD T_actividadbd = new T_ActividadBD();
     PeriodoacademicoBD periodobd = new PeriodoacademicoBD();
     private DefaultTableModel modelo;
@@ -47,6 +50,9 @@ public class Con_calendario {
         vista.setVisible(true);
         vista.getBtn_añadir().addActionListener(e -> responsable());
         vista.getBtn_guardar().addActionListener(e -> guardar());
+        vista.getTxt_id_A().setEnabled(false);
+        vista.getBtn_n_actividad().addActionListener(e->C_actividad());
+        at= new TextAutoCompleter(vista.getTxt_responsables());
         vista.getBtn_añadir_Tactividad().addActionListener(l -> {
             try {
                 cargarDialogo(1);
@@ -57,14 +63,17 @@ public class Con_calendario {
 
         vista.getD_Btn_Guardar().addActionListener(e -> guardarActividad());
         vista.getD_Btn_Cancelar().addActionListener(e -> vista.getT_Actividad_D().dispose());
-
+        Cargardatos_c();
         carrera();
         tipo_actividad();
         cargarLista("");
         cargarListaAct("");
 
     }
-
+        public void C_actividad(){
+            vista.getTxt_id_A().setText(String.valueOf(calen.codigo_act()));
+        
+    }
     public void carrera() {
 
         List<CarreraMD> listar = carrerabd.mostrardatos();
@@ -78,6 +87,13 @@ public class Con_calendario {
         for (int i = 0; i < listar.size(); i++) {
             vista.getCombo_actividad().addItem(listar.get(i).getNombre());
         }
+    }
+          public void Cargardatos_c(){
+            List<PersonaMD> listar = bdpersona.mostrardatos();
+            for (int i = 0; i < listar.size(); i++) {
+                at.addItem(listar.get(i).getNombres());
+            } 
+            
     }
 //    public void periodo() {
 //
@@ -104,6 +120,7 @@ public class Con_calendario {
             calendar.setId_TipoActividad(Integer.parseInt(vista.getCombo_actividad().getSelectedItem().toString()));
             calendar.setNombre_Actividad(vista.getTxt_N_actividad().getText());
             calendar.setDescripcion(vista.getTxt_descripcion().getText());
+            
             calendar.setFecha_Inicio(fechaini);
             calendar.setFecha_Inicio(fechalim);
             if (calendar.insertar()) {

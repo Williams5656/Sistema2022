@@ -39,7 +39,7 @@ public class CarreraBD extends CarreraMD {
     public CarreraBD() {
     }
 
-    public List<CarreraMD> mostrardatos() {
+      public List<CarreraMD> mostrardatos() {
         try {
             List<CarreraMD> lista = new ArrayList<CarreraMD>();
             String sql = "select * from carrera";

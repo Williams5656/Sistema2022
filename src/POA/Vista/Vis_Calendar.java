@@ -325,7 +325,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         txt_descripcion = new javax.swing.JTextArea();
         combo_actividad = new javax.swing.JComboBox();
         combo_periodo = new javax.swing.JComboBox();
-        comobo_carrera = new javax.swing.JComboBox<>();
+        comobo_carrera = new javax.swing.JComboBox<String>();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         Btn_añadir_Tactividad = new javax.swing.JButton();
@@ -418,6 +418,12 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
 
         jLabel12.setText("Descripción:");
         jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
+
+        D_txt_idTipoA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                D_txt_idTipoAActionPerformed(evt);
+            }
+        });
         jPanel4.add(D_txt_idTipoA, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 175, -1));
         jPanel4.add(D_txt_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 175, -1));
         jPanel4.add(D_txt_Descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 175, -1));
@@ -509,7 +515,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         combo_periodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "Jun21-Oct21", "Dic21-Abr22" }));
         jPanel1.add(combo_periodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 105, 148, 20));
 
-        comobo_carrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
+        comobo_carrera.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
         jPanel1.add(comobo_carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 55, 150, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -525,6 +531,11 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 560, 210, 140));
 
         Btn_añadir_Tactividad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icono_agregar.png"))); // NOI18N
+        Btn_añadir_Tactividad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_añadir_TactividadActionPerformed(evt);
+            }
+        });
         jPanel1.add(Btn_añadir_Tactividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, -1, -1));
 
         jLabel14.setText("Fecha inicio:");
@@ -632,6 +643,14 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
     private void btn_evidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_evidenciaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_evidenciaActionPerformed
+
+    private void Btn_añadir_TactividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_añadir_TactividadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Btn_añadir_TactividadActionPerformed
+
+    private void D_txt_idTipoAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_D_txt_idTipoAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_D_txt_idTipoAActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

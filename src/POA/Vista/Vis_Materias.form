@@ -149,9 +149,14 @@
     <Component class="javax.swing.JComboBox" name="comboareacarrera">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
+          <StringArray count="7">
             <StringItem index="0" value="Seleccione"/>
-            <StringItem index="1" value=" "/>
+            <StringItem index="1" value="&#xc0;rea  de Administraci&#xf2;n"/>
+            <StringItem index="2" value="&#xc0;rea de Sociales"/>
+            <StringItem index="3" value="&#xc0;rea de Humanidades"/>
+            <StringItem index="4" value=" "/>
+            <StringItem index="5" value=" "/>
+            <StringItem index="6" value=" "/>
           </StringArray>
         </Property>
       </Properties>

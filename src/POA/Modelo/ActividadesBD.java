@@ -12,8 +12,19 @@ import java.util.logging.Logger;
  *
  * @author sebastian
  */
-public class ActividadesBD {
+public class ActividadesBD extends ActividadesMD{
     Conect conectar = new Conect();
+
+    public ActividadesBD() {
+    }
+
+    public ActividadesBD(int id_actividades, int id_objetivo_operativo, String actividad, String responsable, String plazo, String recurso_financiero) {
+        super(id_actividades, id_objetivo_operativo, actividad, responsable, plazo, recurso_financiero);
+    }
+    
+    
+    
+    
     
     public ArrayList<ActividadesMD> mostrarDatos(){
         
@@ -28,8 +39,9 @@ public class ActividadesBD {
                 m.setId_objetivo_operativo(rs.getInt("id_objetivo_operativo"));
                 m.setActividad(rs.getString("actividad"));
                 m.setResponsable(rs.getString("responsable"));
-                m.setPlazo(rs.getString("plazo"));
                 m.setRecurso_financiero(rs.getString("recurso_financiero"));
+                m.setPlazo(rs.getString("plazo"));
+
                 
                 lista.add(m);
             }
@@ -43,7 +55,7 @@ public class ActividadesBD {
     
     public void guardar(int id_objetivo_operativo, String actividad, String responsable, String plazo, String recurso_financiero){
         
-        String sql = "insert into activiades (id_objetivo_operativo, actividad, responsable, plazo, recurso_financiero) VALUES (" + 
+        String sql = "insert into actividades (id_objetivo_operativo, actividad, responsable, plazo, recurso_financiero) VALUES (" + 
                 id_objetivo_operativo + ", '" + actividad + "', '" + responsable + "', '" + plazo + "', '" + recurso_financiero + ");";
         
         conectar.noQuery(sql);

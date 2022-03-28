@@ -159,11 +159,11 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         txtactividad = new javax.swing.JTextArea();
         jLabel16 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         comboproyectos = new javax.swing.JComboBox<>();
         jSeparator2 = new javax.swing.JSeparator();
+        jLabel2 = new javax.swing.JLabel();
 
         setClosable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -176,7 +176,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "ID_Actividad", "Objetivo Operativo", "Actividad", "Responsable", "Plazo", "Recursos financieros"
+                "ID Actividad", "Objetivo Operativo", "Actividad", "Responsable", "Plazo", "Recursos financieros"
             }
         ));
         jScrollPane1.setViewportView(tablaactividades);
@@ -255,6 +255,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
 
         getContentPane().add(combo_objetivo_operarivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 220, 230, -1));
 
+        combo_responsable.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Wiliams Trelles", "Jesica Herrera" }));
         getContentPane().add(combo_responsable, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 350, 230, -1));
 
         comborecursos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Ista", "Autogestion" }));
@@ -268,13 +269,10 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel16.setText("ACTIVIDADES");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 260, 40));
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, 260, 40));
 
         jLabel18.setText("$");
         getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 430, 10, 20));
-
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 20, 520));
 
         jButton2.setText("AÑADIR INDICADOR");
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 560, 140, 30));
@@ -284,6 +282,9 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
 
         getContentPane().add(comboproyectos, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 170, 230, -1));
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1000, 20));
+
+        jLabel2.setText("JOHANN");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 120, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -316,6 +317,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -324,7 +326,6 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable tablaactividades;
     private javax.swing.JTextArea txtactividad;

@@ -31,6 +31,14 @@ public class Vis_Principal extends javax.swing.JFrame {
         this.ESCRITORIO = ESCRITORIO;
     }
 
+    public JMenuItem getBtn_asignaciondocentes() {
+        return btn_asignaciondocentes;
+    }
+
+    public void setBtn_asignaciondocentes(JMenuItem btn_asignaciondocentes) {
+        this.btn_asignaciondocentes = btn_asignaciondocentes;
+    }
+
     public JMenuItem getBtn_actividades() {
         return btn_actividades;
     }
@@ -189,6 +197,7 @@ public class Vis_Principal extends javax.swing.JFrame {
         btn_docentes = new javax.swing.JMenuItem();
         btn_materia = new javax.swing.JMenuItem();
         Btn_AreaCarrera = new javax.swing.JMenuItem();
+        btn_asignaciondocentes = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         btn_poa = new javax.swing.JMenuItem();
         btn_actividades = new javax.swing.JMenuItem();
@@ -316,6 +325,9 @@ public class Vis_Principal extends javax.swing.JFrame {
         });
         MENU_ACADEMICO.add(Btn_AreaCarrera);
 
+        btn_asignaciondocentes.setText("Asignacion Docentes");
+        MENU_ACADEMICO.add(btn_asignaciondocentes);
+
         jMenuBar1.add(MENU_ACADEMICO);
 
         jMenu1.setText("POA");
@@ -402,6 +414,7 @@ public class Vis_Principal extends javax.swing.JFrame {
     private javax.swing.JMenu MENU_USUARIO;
     private javax.swing.JMenuItem btn_actividades;
     private javax.swing.JMenuItem btn_asignacion;
+    private javax.swing.JMenuItem btn_asignaciondocentes;
     private javax.swing.JMenuItem btn_calendario;
     private javax.swing.JMenuItem btn_carrera;
     private javax.swing.JMenuItem btn_docentes;

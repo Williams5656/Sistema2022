@@ -23,6 +23,7 @@ import POA.Vista.vis_inicioSesion;
 import POA.Vista.vis_poa_proyectos;
 import POA.Vista.vis_poa_actividad;
 import POA.Vista.vis_poa_evidencia;
+import POA.Vista.vis_asignacionmateriadocentes;
 import java.awt.Dimension;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 
@@ -54,6 +55,7 @@ public class Con_principal {
          vista.getBtn_materia().addActionListener(e -> materias());
          vista.getBtn_calendario().addActionListener(e-> calendario());
          vista.getBtn_AreaCarrera().addActionListener(e-> areaCarrera());
+         vista.getBtn_asignaciondocentes().addActionListener(e -> asignaciondocentes());
     }
 
     private void periodo(){
@@ -165,6 +167,15 @@ public class Con_principal {
         Dimension FrameSize = user.getSize();
         user.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
        con_docentes rol=new con_docentes(user);
+
+    }
+     private void asignaciondocentes() {
+          vis_asignacionmateriadocentes user = new vis_asignacionmateriadocentes();
+        vista.getESCRITORIO().add(user);
+        Dimension desktopSize = vista.getESCRITORIO().getSize();
+        Dimension FrameSize = user.getSize();
+        user.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+       Con_Asignacion rol=new Con_Asignacion(user);
 
     }
 

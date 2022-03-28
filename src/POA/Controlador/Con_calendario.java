@@ -9,11 +9,16 @@ import POA.Modelo.CalendarioBD;
 import POA.Vista.Vis_Calendar;
 import POA.Modelo.CarreraBD;
 import POA.Modelo.CarreraMD;
+import POA.Modelo.*;
 import POA.Modelo.Responsables_ActividadMD;
 import POA.Modelo.Responsables_ActividadBD;
 import POA.Modelo.docenteMD;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,10 +32,12 @@ public class Con_calendario {
     private final Vis_Calendar vista;
     CarreraBD carrerabd = new CarreraBD();
     CalendarioBD calen = new CalendarioBD();
+    T_ActividadBD T_actividadbd = new T_ActividadBD();
+     PeriodoacademicoBD periodobd = new PeriodoacademicoBD();
     private DefaultTableModel modelo;
     Responsables_ActividadMD resp = new Responsables_ActividadMD();
     private docenteMD docentemd = new docenteMD();
-
+       CalendarioMD calendar = new CalendarioMD();
     public static ArrayList<Responsables_ActividadMD> ListaResp = new ArrayList<>();
 
     public Con_calendario(Vis_Calendar vista) {
@@ -39,7 +46,20 @@ public class Con_calendario {
         vista.setVisible(true);
         vista.getBtn_añadir().addActionListener(e -> responsable());
         vista.getBtn_guardar().addActionListener(e -> guardarResp());
+         vista.getBtn_añadir().addActionListener(e->responsable());
+         vista.getBtn_añadir_Tactividad().addActionListener(l -> {
+            try {
+                cargarDialogo(1);
+            } catch (SQLException ex) {
+                Logger.getLogger(Con_rol.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+         
+        vista.getD_Btn_Guardar().addActionListener(e-> guardarActividad());
+        vista.getD_Btn_Cancelar().addActionListener(e-> vista.getT_Actividad_D().dispose());
+        
         carrera();
+        tipo_actividad();
         cargarLista("");
 
     }
@@ -51,6 +71,33 @@ public class Con_calendario {
             vista.getComobo_carrera().addItem(listar.get(i).getNombre_carrera());
         }
     }
+    public void tipo_actividad(){
+        List<T_actividadMD> listar = T_actividadbd.mostrardatos();
+         for (int i = 0; i < listar.size(); i++) {
+            vista.getCombo_actividad().addItem(listar.get(i).getNombre());
+        }  
+    }
+//    public void periodo() {
+//
+//        List<PeriodoacademicoMD> listar = periodobd.mostrardatos();
+//        for (int i = 0; i < listar.size(); i++) {
+//            vista.getComobo_carrera().addItem(listar.get(i).get());
+//        }
+//    }
+    public void guardar() {
+        SimpleDateFormat formato6 = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaini = formato6.format(vista.getFecha_inicio().getDate());
+        String fechalim = formato6.format(vista.getFecha_inicio().getDate());
+        calendar.setId_Actividad(Integer.parseInt(vista.getTxt_responsables().getText()));
+        calendar.setId_Carrera(vista.getComobo_carrera().getSelectedItem().toString());
+        calendar.setId_Periodo(Integer.parseInt(vista.getCombo_periodo().getSelectedItem().toString()));
+        calendar.setId_TipoActividad(Integer.parseInt(vista.getCombo_actividad().getSelectedItem().toString()));
+        calendar.setNombre_Actividad(vista.getTxt_N_actividad().getText());
+        calendar.setDescripcion(vista.getTxt_descripcion().getText());
+        calendar.setFecha_Inicio(fechaini);
+        calendar.setFecha_Inicio(fechalim);
+    }
+
 
     public void guardarResp() {
         
@@ -93,25 +140,43 @@ public class Con_calendario {
         vista.getTxt_responsables().setText("");
         vector1=new int[1];
     }
+           
+  private void cargarDialogo(int origen) throws SQLException {
+        vista.getT_Actividad_D().setSize(460, 320);//dimensiones
+        vista.getT_Actividad_D().setLocationRelativeTo(vista);//posicion
+        nuevoTAct();
+            vista.getT_Actividad_D().setTitle("Ingresar Actividad");
 
-    public int TipoActividad() {
-        int id = 0;
-        String tipo_actividad = (String) vista.getCombo_tipo_actividad_repor().getSelectedItem();
-        if (tipo_actividad.equalsIgnoreCase("POA")) {
-            id = 01;
-        } else if (tipo_actividad.equalsIgnoreCase("Titulacion")) {
-            id = 02;
-        } else if (tipo_actividad.equalsIgnoreCase("Calendario")) {
-            id = 03;
-        } else if (tipo_actividad.equalsIgnoreCase("Examen Complexión")) {
-            id = 04;
-        } else if (tipo_actividad.equalsIgnoreCase("Graduación")) {
-            id = 05;
-        } else if (tipo_actividad.equalsIgnoreCase("Todos")) {
-            id = 06;
-        } else if (tipo_actividad.equalsIgnoreCase("Seleccionar")) {
-
-        }
-        return id;
+            vista.getD_txt_idTipoA().setText(String.valueOf(T_actividadbd.codigo()));
+            vista.getT_Actividad_D().setVisible(true);
+            vista.getD_txt_idTipoA().setEditable(false);
     }
+    public void guardarActividad(){
+        if (!vista.getD_txt_idTipoA().getText().equals("") && !vista.getD_txt_Nombre().getText().equals("") && !vista.getD_txt_Descripcion().getText().equals("")) {
+            T_actividadbd.setId_T_actividad(Integer.parseInt(vista.getD_txt_idTipoA().getText()));
+            T_actividadbd.setNombre(vista.getD_txt_Nombre().getText());
+            T_actividadbd.setDescripcion(vista.getD_txt_Descripcion().getText());
+                if (T_actividadbd.guardarTActividad()) {
+                    JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
+                    nuevoTAct();
+                    vista.getCombo_actividad().removeAllItems();
+                    tipo_actividad();
+                    vista.getD_txt_idTipoA().setText(String.valueOf(T_actividadbd.codigo()));
+                } else {
+                    JOptionPane.showMessageDialog(null, "ERRROR AL GUARDAR");
+                }
+        } else {
+            JOptionPane.showMessageDialog(null, "LLENAR TODOS L0S CAMPOS");
+        }
+
+
+    }
+    
+    public void nuevoTAct(){
+        vista.getD_txt_Nombre().setText("");
+        vista.getD_txt_Descripcion().setText("");
+    }
+        
+    
+
 }

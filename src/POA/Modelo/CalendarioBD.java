@@ -39,10 +39,10 @@ public class CalendarioBD extends CalendarioMD {
             byte[] is;
             while (rs.next()) {
                 CalendarioMD m = new CalendarioMD();
+                m.setId_Actividad(rs.getInt("id_actividad"));
                 m.setId_Carrera(rs.getString("id_carrera"));
                 m.setId_Periodo(rs.getInt("id_periodo"));
                 m.setid_TipoActividad(rs.getInt("id_tipoactividad"));
-                m.setId_Actividad(rs.getInt("id_actividad"));
                 m.setNombre_Actividad(rs.getString("nombre_actividad"));
                 m.setDescripcion(rs.getString("descripcion"));
                 m.setFecha_Inicio(rs.getString("fecha_inicio"));

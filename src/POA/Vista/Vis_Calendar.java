@@ -220,6 +220,62 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
     public void setCombo_tipo_actividad_repor(JComboBox combo_tipo_actividad_repor) {
         this.combo_tipo_actividad_repor = combo_tipo_actividad_repor;
     }
+
+    public JButton getBtn_añadir_Tactividad() {
+        return Btn_añadir_Tactividad;
+    }
+
+    public void setBtn_añadir_Tactividad(JButton Btn_añadir_Tactividad) {
+        this.Btn_añadir_Tactividad = Btn_añadir_Tactividad;
+    }
+
+    public JButton getD_Btn_Cancelar() {
+        return D_Btn_Cancelar;
+    }
+
+    public void setD_Btn_Cancelar(JButton D_Btn_Cancelar) {
+        this.D_Btn_Cancelar = D_Btn_Cancelar;
+    }
+
+    public JButton getD_Btn_Guardar() {
+        return D_Btn_Guardar;
+    }
+
+    public void setD_Btn_Guardar(JButton D_Btn_Guardar) {
+        this.D_Btn_Guardar = D_Btn_Guardar;
+    }
+
+    public JTextField getD_txt_Descripcion() {
+        return D_txt_Descripcion;
+    }
+
+    public void setD_txt_Descripcion(JTextField D_txt_Descripcion) {
+        this.D_txt_Descripcion = D_txt_Descripcion;
+    }
+
+    public JTextField getD_txt_Nombre() {
+        return D_txt_Nombre;
+    }
+
+    public void setD_txt_Nombre(JTextField D_txt_Nombre) {
+        this.D_txt_Nombre = D_txt_Nombre;
+    }
+
+    public JTextField getD_txt_idTipoA() {
+        return D_txt_idTipoA;
+    }
+
+    public void setD_txt_idTipoA(JTextField D_txt_idTipoA) {
+        this.D_txt_idTipoA = D_txt_idTipoA;
+    }
+
+    public JDialog getT_Actividad_D() {
+        return T_Actividad_D;
+    }
+
+    public void setT_Actividad_D(JDialog T_Actividad_D) {
+        this.T_Actividad_D = T_Actividad_D;
+    }
     
     
     /**
@@ -238,6 +294,16 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         combo_tipo_actividad_repor = new javax.swing.JComboBox();
         btn_cancelar = new javax.swing.JButton();
         btn_aceptar = new javax.swing.JButton();
+        T_Actividad_D = new javax.swing.JDialog();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        D_txt_idTipoA = new javax.swing.JTextField();
+        D_txt_Nombre = new javax.swing.JTextField();
+        D_txt_Descripcion = new javax.swing.JTextField();
+        D_Btn_Guardar = new javax.swing.JButton();
+        D_Btn_Cancelar = new javax.swing.JButton();
         btn_n_actividad = new javax.swing.JButton();
         btn_modificar = new javax.swing.JButton();
         btn_guardar = new javax.swing.JButton();
@@ -266,6 +332,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         comobo_carrera = new javax.swing.JComboBox<>();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        Btn_añadir_Tactividad = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -338,6 +405,30 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
             Imprimir_DLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        T_Actividad_D.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel9.setText("Id Tipo Actividad:");
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
+
+        jLabel10.setText("Nombre:");
+        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
+
+        jLabel12.setText("Descripción:");
+        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
+        jPanel4.add(D_txt_idTipoA, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 175, -1));
+        jPanel4.add(D_txt_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 175, -1));
+        jPanel4.add(D_txt_Descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 175, -1));
+
+        D_Btn_Guardar.setText("Añadir");
+        jPanel4.add(D_Btn_Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, -1, -1));
+
+        D_Btn_Cancelar.setText("Cancelar");
+        jPanel4.add(D_Btn_Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, -1, -1));
+
+        T_Actividad_D.getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 270));
 
         setClosable(true);
         setIconifiable(true);
@@ -416,7 +507,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         jPanel1.add(combo_actividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 170, 148, -1));
 
         combo_periodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "Jun21-Oct21", "Dic21-Abr22" }));
-        jPanel1.add(combo_periodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 105, 148, -1));
+        jPanel1.add(combo_periodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 105, 148, 20));
         jPanel1.add(Fecha_limite, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 720, 160, 20));
         jPanel1.add(Fecha_inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 640, 160, 20));
 
@@ -435,7 +526,10 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
 
         jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 432, 153, 170));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 97, -1, 770));
+        Btn_añadir_Tactividad.setText("Añadir");
+        jPanel1.add(Btn_añadir_Tactividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 97, 440, 770));
 
         jLabel6.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 36)); // NOI18N
         jLabel6.setText("CALENDARIO ACADÉMICO");
@@ -522,10 +616,17 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Btn_añadir_Tactividad;
+    private javax.swing.JButton D_Btn_Cancelar;
+    private javax.swing.JButton D_Btn_Guardar;
+    private javax.swing.JTextField D_txt_Descripcion;
+    private javax.swing.JTextField D_txt_Nombre;
+    private javax.swing.JTextField D_txt_idTipoA;
     private com.toedter.calendar.JDateChooser Fecha_inicio;
     private com.toedter.calendar.JDateChooser Fecha_limite;
     private javax.swing.JDialog Imprimir_D;
     private javax.swing.JLabel Jl_evidencia;
+    private javax.swing.JDialog T_Actividad_D;
     private javax.swing.JTable Tabla_calendario;
     private javax.swing.JButton btn_aceptar;
     private javax.swing.JButton btn_añadir;
@@ -541,7 +642,9 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox combo_tipo_actividad_repor;
     private javax.swing.JComboBox<String> comobo_carrera;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -552,9 +655,11 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

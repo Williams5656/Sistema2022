@@ -10,28 +10,27 @@ package POA.Modelo;
  * @author KEVIN LANDIVAR
  */
 public class T_actividadMD {
-    private String id_T_actividad;
+    private int id_T_actividad;
     private String Nombre;
     private String Descripcion;
 
     public T_actividadMD() {
     }
 
-    
-    public T_actividadMD(String id_T_actividad, String Nombre, String Descripcion) {
+    public T_actividadMD(int id_T_actividad, String Nombre, String Descripcion) {
         this.id_T_actividad = id_T_actividad;
         this.Nombre = Nombre;
         this.Descripcion = Descripcion;
     }
 
-    public String getId_T_actividad() {
+    public int getId_T_actividad() {
         return id_T_actividad;
     }
 
-    public void setId_T_actividad(String id_T_actividad) {
+    public void setId_T_actividad(int id_T_actividad) {
         this.id_T_actividad = id_T_actividad;
     }
-
+    
     public String getNombre() {
         return Nombre;
     }

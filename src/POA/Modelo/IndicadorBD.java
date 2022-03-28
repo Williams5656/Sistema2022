@@ -14,8 +14,17 @@ import java.util.logging.Logger;
  *
  * @author sebastian
  */
-public class IndicadorBD {
+public class IndicadorBD extends IndicadorMD{
     Conect conectar = new Conect();
+
+    public IndicadorBD() {
+    }
+
+    public IndicadorBD(int id_indicador, int id_actividades, int linea_base, int meta, String indicador) {
+        super(id_indicador, id_actividades, linea_base, meta, indicador);
+    }
+    
+    
     
     public ArrayList<IndicadorMD> mostrarDatos(){
         
@@ -44,10 +53,27 @@ public class IndicadorBD {
     
     public void guardar(int id_actividades, int linea_base, int meta, String indicador){
         
-        String sql = "insert into poa (id_actividades, linea_base, meta, indicador) VALUES (" + 
+        String sql = "insert into indicador (id_actividades, linea_base, meta, indicador) VALUES (" + 
                 id_actividades + ", " + linea_base + ", " + meta + ", '" + indicador + "');";
         
         conectar.noQuery(sql);
         
+    }
+    
+    public int valid(){
+        
+        String sql = "select MAX(id_indicador) as id from indicador";
+        ResultSet rs= conectar.query(sql);
+        try {
+            while(rs.next()){
+                return rs.getInt("id")+1;
+            }
+            
+//            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ActividadesMD.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
+        }
+        return 0;
     }
 }

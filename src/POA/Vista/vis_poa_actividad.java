@@ -120,6 +120,14 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
     public void setTxtrecursos_financieros(JTextField txtrecursos_financieros) {
         this.txtrecursos_financieros = txtrecursos_financieros;
     }
+
+    public JButton getBtnindicador() {
+        return btnindicador;
+    }
+
+    public void setBtnindicador(JButton btnindicador) {
+        this.btnindicador = btnindicador;
+    }
     
     
 
@@ -159,7 +167,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         txtactividad = new javax.swing.JTextArea();
         jLabel16 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnindicador = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         comboproyectos = new javax.swing.JComboBox<>();
         jSeparator2 = new javax.swing.JSeparator();
@@ -274,8 +282,8 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         jLabel18.setText("$");
         getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 430, 10, 20));
 
-        jButton2.setText("AÑADIR INDICADOR");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 560, 140, 30));
+        btnindicador.setText("AÑADIR INDICADOR");
+        getContentPane().add(btnindicador, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 560, 140, 30));
 
         jLabel1.setText("Proyecto:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, 100, 20));
@@ -301,6 +309,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btneliminar;
     private javax.swing.JButton btnguardar;
+    private javax.swing.JButton btnindicador;
     private javax.swing.JButton btnmodificar;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JComboBox<String> combo_objetivo_operarivo;
@@ -309,7 +318,6 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> comborecursos;
     private com.toedter.calendar.JDateChooser fecha_plazo;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

@@ -56,9 +56,28 @@ public class ActividadesBD extends ActividadesMD{
     public void guardar(int id_objetivo_operativo, String actividad, String responsable, String plazo, String recurso_financiero){
         
         String sql = "insert into actividades (id_objetivo_operativo, actividad, responsable, plazo, recurso_financiero) VALUES (" + 
-                id_objetivo_operativo + ", '" + actividad + "', '" + responsable + "', '" + plazo + "', '" + recurso_financiero + ");";
+                id_objetivo_operativo + ", '" + actividad + "', '" + responsable + "', '" + plazo + "', '" + recurso_financiero + "');";
         
         conectar.noQuery(sql);
         
     }
+    
+    public int valid(){
+        
+        String sql = "select MAX(id_actividades) as id from actividades";
+        ResultSet rs= conectar.query(sql);
+        try {
+            while(rs.next()){
+                return rs.getInt("id")+1;
+            }
+            
+//            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ActividadesMD.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
+        }
+        return 0;
+    }
+    
+   
 }

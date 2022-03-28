@@ -390,7 +390,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="btnindicador">
       <Properties>
         <Property name="text" type="java.lang.String" value="A&#xd1;ADIR INDICADOR"/>
       </Properties>

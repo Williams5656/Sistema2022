@@ -7,6 +7,7 @@ package POA.Controlador;
 
 import POA.Vista.*;
 import POA.Modelo.*;
+import java.awt.Dimension;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
@@ -30,13 +31,16 @@ public class Con_poa_actividad {
       private ArrayList <ProyectoMD> listaProyectos = new ArrayList<>();
       private ProyectoBD baseDatosProyecto = new ProyectoBD();
       private ActividadesBD baseDatosactividades = new ActividadesBD();
+      private ArrayList<Integer> listas = new ArrayList();
+      private int idobjetivo=0;
+      
 
     public Con_poa_actividad(vis_poa_actividad vista) {
        this.vista = vista;
         vista.setVisible(true);
         cargarComboProyecto();
         cargarObjetivos();
-        
+        vista.getBtnindicador().addActionListener(e->ventindicador());
         vista.getBtnguardar().addActionListener(e->guardar());        
         vista.getComboproyectos().addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent itemEvent) {
@@ -46,6 +50,18 @@ public class Con_poa_actividad {
         
         lista();
   
+    }
+    
+    public void ventindicador(){
+        vis_poa_actividad_indicador zap = new vis_poa_actividad_indicador();
+        Con_principal.vista.getESCRITORIO().add(zap);
+        Dimension desktopSize = Con_principal.vista.getESCRITORIO().getSize();
+        Dimension FrameSize = zap.getSize();
+        zap.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        Con_poa_actividad_indicador proyectos = new Con_poa_actividad_indicador(zap);
+        
+        
+        
     }
     
     public void cargarComboProyecto(){
@@ -71,12 +87,17 @@ public class Con_poa_actividad {
         vista.getCombo_objetivo_operarivo().removeAllItems();
         listaProyectos = baseDatosProyecto.mostrarDatos();
         listaObjetivosOperativos = baseDatosObjetivoOperativo.mostrarDatos();
+        listas.clear();
+        
         
         for (ProyectoMD proyectos : listaProyectos){
             if (num_proyecto == proyectos.getNum_proyecto_carrera()){
                 for (ObjetivoOperativoMD objetivos : listaObjetivosOperativos){
                     if (objetivos.getId_proyecto() == proyectos.getId_proyecto()){
                         vista.getCombo_objetivo_operarivo().addItem(objetivos.getObjetivo() + "");
+                        listas.add(objetivos.getId_objetivo_operativo());
+                        
+                        
                     }
                 }
             }
@@ -87,32 +108,21 @@ public class Con_poa_actividad {
     
     public void guardar(){
         
-        int cod = (int)(Math.random()*1000+1);
         
-        int idobjetico=0;
+        
         
         String actividad;
         
         
         
         String recursost;
-        baseDatosactividades.setId_actividades(cod);
+        baseDatosactividades.setId_actividades(baseDatosactividades.valid());
 
-        String objetivo = (String) vista.getCombo_objetivo_operarivo().getSelectedItem();
+        int objetivo = (int) vista.getCombo_objetivo_operarivo().getSelectedIndex();
+        idobjetivo= listas.get(objetivo);
         
-        for (ObjetivoOperativoMD objetivos : listaObjetivosOperativos){
-                    if (objetivo == objetivos.getObjetivo()){
-                        
-                        
-                        baseDatosactividades.setId_objetivo_operativo(objetivos.getId_objetivo_operativo());
-                        
-                        idobjetico=objetivos.getId_objetivo_operativo();
-                    }
-                }
-        
-        
-       
-        
+        baseDatosactividades.setId_objetivo_operativo(listas.get(objetivo));
+   
         baseDatosactividades.setActividad(String.valueOf( vista.getTxtactividad().getText()));
         actividad=String.valueOf( vista.getTxtactividad().getText());
         
@@ -130,26 +140,25 @@ public class Con_poa_actividad {
         
         recursost=recursof+" $ "+vista.getTxtrecursos_financieros().getText();
         
-        System.out.println(cod);
-        System.out.println(idobjetico);
+        System.out.println(baseDatosactividades.valid());
+        System.out.println(idobjetivo);
         System.out.println(actividad);
         System.out.println(fecha);
         System.out.println(recursost);
         System.out.println(responsable);
-        
-        
-      
-//        if (vista.getTxtactividad().getText().equals("")||responsable.equals("Seleccionar")||vista.getTxtrecursos_financieros().getText().equals("")) {
-//            JOptionPane.showMessageDialog(null, "No puede haber campos vacios");
-//            //nuevo();
-//        }else{
-//            baseDatosactividades.guardar(idobjetico, actividad, responsable,fechaplazo, recursost);
-//            lista();
-//
-//                //lista();
-//                //nuevo();
-//            
-//        }
+        System.out.println("LISTA "+listas.get(objetivo));
+ 
+        if (vista.getTxtactividad().getText().equals("")||responsable.equals("Seleccionar")||vista.getTxtrecursos_financieros().getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "No puede haber campos vacios");
+            //nuevo();
+        }else{
+            baseDatosactividades.guardar(idobjetivo, actividad, responsable,fecha, recursost);
+            lista();
+
+
+                //nuevo();
+            
+        }
     }
     
     

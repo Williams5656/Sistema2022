@@ -41,6 +41,7 @@ public class Con_poa_proyectos {
     private PoaBD baseDatosPoa = new PoaBD();
     private List<POA.Modelo.CarreraMD> listaCarreras = new ArrayList<>();
     private POA.Modelo.CarreraBD baseDatosCarrera = new CarreraBD();
+    private static int id_proyecto;
     int poa = 0;
 
     public Con_poa_proyectos(vis_poa_proyectos vista, int id_poa) {
@@ -57,9 +58,9 @@ public class Con_poa_proyectos {
             }
 
         });
-        vista.getBtnSiguiente().addActionListener(e->abrirVentanaactividades());
+        vista.getBtnSiguiente().addActionListener(e -> abrirVentanaactividades());
         lista_poa();
-        
+
     }
 
     public void lista_poa() {
@@ -105,19 +106,29 @@ public class Con_poa_proyectos {
         Object[] fila = new Object[2];
 
         listaoperativo = obbd.mostrarDatos();
-        //  for (ProyectoMD user : lista) {
+//        for (ObjetivoOperativoMD user : listaoperativo) {
+////        for (int i = 0; i < listaoperativo.size(); i++) {
+//            for (ProyectoMD usuario : lista) {
+//                if (id_proyecto == user.getId_proyecto()) {
+//                    fila[0] = user.getNum_objetivo_proyecto();
+//                    fila[1] = user.getObjetivo();
+//                    modelo1.addRow(fila);
+//                }
+//            }
+//        }
         for (int i = 0; i < listaoperativo.size(); i++) {
-            //if (listaoperativo.get(i).getId_proyecto() == lista.get(i).getId_proyecto()) {
-                
+            if (listaoperativo.get(i).getId_proyecto() == id_proyecto) {
                 fila[0] = listaoperativo.get(i).getNum_objetivo_proyecto();
                 fila[1] = listaoperativo.get(i).getObjetivo();
+                System.out.println(id_proyecto);
                 modelo1.addRow(fila);
-            //}
+            }
 
         }
-
         //  }
         vista.getTabla_proyecto().setModel(modelo1);
+
+
     }
 
     public void nuevo() {
@@ -157,37 +168,38 @@ public class Con_poa_proyectos {
     }
 
     public void seleccionar() {
-        
+
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTabla_lista_proyectos().getModel();
-        int select = vista.getTabla_lista_proyectos().getSelectedRow();
+        int cedula = (int) modelo.getValueAt(vista.getTabla_lista_proyectos().getSelectedRow(), 0);
+        List<ProyectoMD> listas = poabd.obtenerdatos(cedula);
+        if (listas.size() > 0) {
+            poabd.setId_Poa(listas.get(0).getId_Poa());
+            poabd.setId_proyecto(listas.get(0).getId_proyecto());
+            poabd.setNum_proyecto_carrera((listas.get(0).getNum_proyecto_carrera()));
+            poabd.setObjetivo_estrategico(listas.get(0).getObjetivo_estrategico());
+            poabd.setObjetivo_tactico(listas.get(0).getObjetivo_tactico());
+            poabd.setEstrategia(listas.get(0).getEstrategia());
 
-        lista = poabd.mostrarDatos();
-        poabd.setId_Poa(lista.get(0).getId_Poa());
-        poabd.setId_proyecto(lista.get(0).getId_proyecto());
-        poabd.setNum_proyecto_carrera((lista.get(0).getNum_proyecto_carrera()));
-        poabd.setObjetivo_estrategico(lista.get(0).getObjetivo_estrategico());
-        poabd.setObjetivo_tactico(lista.get(0).getObjetivo_tactico());
-        poabd.setEstrategia(lista.get(0).getEstrategia());
+            vista.getN_proyectos().setText(poabd.getNum_proyecto_carrera() + "");
+            vista.getTxt_obestra().setText(poabd.getObjetivo_estrategico() + "");
+            vista.getTxt_obtac().setText(poabd.getObjetivo_tactico() + "");
+            vista.getTxt_estrategia().setText(poabd.getEstrategia() + "");
+            id_proyecto = poabd.getId_proyecto();
+            lista_objetivo();
+        }
 
-        vista.getN_proyectos().setText(lista.get(select).getNum_proyecto_carrera() + "");
-        vista.getTxt_obestra().setText(lista.get(select).getObjetivo_estrategico() + "");
-        vista.getTxt_obtac().setText(lista.get(select).getObjetivo_tactico() + "");
-        vista.getTxt_estrategia().setText(lista.get(select).getEstrategia() + "");
-        lista_objetivo();
     }
 
-    public void abrirVentanaactividades(){
-       
-       
+    public void abrirVentanaactividades() {
+
         POA.Vista.vis_poa_actividad zap = new POA.Vista.vis_poa_actividad();
         Con_principal.vista.getESCRITORIO().add(zap);
         Dimension desktopSize = Con_principal.vista.getESCRITORIO().getSize();
         Dimension FrameSize = zap.getSize();
         zap.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         Con_poa_actividad proyectos = new Con_poa_actividad(zap);
-       
-       
+
     }
 //    public void seleccionarobjetivo() {
 //        DefaultTableModel modelo;

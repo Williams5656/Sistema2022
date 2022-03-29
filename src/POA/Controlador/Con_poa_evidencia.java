@@ -46,11 +46,11 @@ public class Con_poa_evidencia {
         this.vista = vista;
         vista.setVisible(true);
         //lista();
-//        vista.getCbx_carrera().removeAllItems();
-//        vista.getCbx_anio().removeAllItems();
-//        vista.getCbx_actividad().removeAllItems();
-//        vista.getCbx_obje_opera().removeAllItems();
-//        vista.getCbx_proyecto().removeAllItems();
+        vista.getCbx_carrera().removeAllItems();
+        vista.getCbx_anio().removeAllItems();
+        vista.getCbx_actividad().removeAllItems();
+        vista.getCbx_obje_opera().removeAllItems();
+        vista.getCbx_proyecto().removeAllItems();
 //        vista.getBtnGuardar().addActionListener(e -> guardar());
         //cargarComboCarrera();
         //cargarComboAnio();

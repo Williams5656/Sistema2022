@@ -52,6 +52,7 @@ public class Con_poa_evidencia {
         vista.getCbx_actividad().removeAllItems();
         vista.getCbx_obje_opera().removeAllItems();
         vista.getCbx_proyecto().removeAllItems();
+        System.out.println("llego");
         vista.getBtnGuardar().addActionListener(e -> guardar());
         vista.getCbx_carrera().addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent itemEvent) {

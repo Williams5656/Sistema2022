@@ -56,7 +56,7 @@ public class Con_Materia {
         String plan = (String) vista.getComboplan().getSelectedItem();
         materia.setPlan(plan);
         String areacarrera = (String) vista.getComboareacarrera().getSelectedItem();
-        materia.setPlan(areacarrera);
+        materia.setArea(areacarrera);
 
         if (materia.insertar()) {
             JOptionPane.showMessageDialog(null, "Datos guardados correctamente");

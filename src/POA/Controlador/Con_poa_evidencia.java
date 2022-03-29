@@ -54,8 +54,8 @@ public class Con_poa_evidencia {
         vista.getCbx_proyecto().removeAllItems();
         vista.getBtnGuardar().addActionListener(e -> guardar());
         //cargarComboCarrera();
-        cargarComboAnio();
-        cargarComboProyecto();
+        //cargarComboAnio();
+        //cargarComboProyecto();
     }
 
     public void cargarComboCarrera() {
@@ -139,19 +139,21 @@ public class Con_poa_evidencia {
     }
 
     public void lista() {
-        DefaultTableModel modelo;
-        modelo = (DefaultTableModel) vista.getTabla_Evidencias().getModel();
-        List<EvidenciaMD> lista3 = baseDatosEvidencias.mostrarDatos();
-        int columnas = modelo.getColumnCount();
-        for (int j = vista.getTabla_Evidencias().getRowCount() - 1; j >= 0; j--) {
-            modelo.removeRow(j);
-            for (int i = 0; i < lista3.size(); i++) {
-                modelo.addRow(new Object[columnas]);
-                vista.getTabla_Evidencias().setValueAt(lista3.get(i).getId_evidencia(), i, 0);
-                vista.getTabla_Evidencias().setValueAt(lista3.get(i).getId_actividades(), i, 1);
-                vista.getTabla_Evidencias().setValueAt(lista3.get(i).getArchivo(), i, 2);
-            }
+        if (listaEvidencias.size() != 0) {
+            DefaultTableModel modelo;
+            modelo = (DefaultTableModel) vista.getTabla_Evidencias().getModel();
+            List<EvidenciaMD> lista3 = baseDatosEvidencias.mostrarDatos();
+            int columnas = modelo.getColumnCount();
+            for (int j = vista.getTabla_Evidencias().getRowCount() - 1; j >= 0; j--) {
+                modelo.removeRow(j);
+                for (int i = 0; i < lista3.size(); i++) {
+                    modelo.addRow(new Object[columnas]);
+                    vista.getTabla_Evidencias().setValueAt(lista3.get(i).getId_evidencia(), i, 0);
+                    vista.getTabla_Evidencias().setValueAt(lista3.get(i).getId_actividades(), i, 1);
+                    vista.getTabla_Evidencias().setValueAt(lista3.get(i).getArchivo(), i, 2);
+                }
 
+            }
         }
     }
 }

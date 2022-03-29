@@ -53,22 +53,17 @@ public class Con_poa_evidencia {
         vista.getCbx_obje_opera().removeAllItems();
         vista.getCbx_proyecto().removeAllItems();
         vista.getBtnGuardar().addActionListener(e -> guardar());
-        listaCarreras = baseDatosCarrera.mostrardatos();
-        listaPoa = baseDatosPoa.mostrarDatos();
-        for (int i = 0; i < listaPoa.size(); i++) {
-            if (String.valueOf(listaPoa.get(i).getId_carrera()).equals(String.valueOf(listaCarreras.get(i).getCodigo_carrera()))) {
-                vista.getCbx_proyecto().addItem(listaCarreras.get(i).getNombre_carrera());
-            }
-        }
+        cargarComboCarrera();
     }
 
     public void cargarComboCarrera() {
         listaCarreras = baseDatosCarrera.mostrardatos();
         listaPoa = baseDatosPoa.mostrarDatos();
-        vista.getCbx_carrera().removeAllItems();
-        for (int i = 0; i < listaPoa.size(); i++) {
-            if (String.valueOf(listaPoa.get(i).getId_carrera()).equals(String.valueOf(listaCarreras.get(i).getCodigo_carrera()))) {
-                vista.getCbx_proyecto().addItem(listaCarreras.get(i).getNombre_carrera());
+        for (int i = 0; i < listaCarreras.size(); i++) {
+            for (int j = 0; j < listaPoa.size(); i++) {
+                if (Integer.parseInt(listaCarreras.get(i).getCodigo_carrera()) == listaPoa.get(j).getId_carrera()) {
+                    vista.getCbx_proyecto().addItem(listaCarreras.get(i).getNombre_carrera());
+                }
             }
         }
     }

@@ -13,18 +13,20 @@ import java.util.Date;
  */
 public class PeriodoacademicoMD {
    private int idperiodo;
+   private String nombre;
    private Date fechainicio;
    private Date fechafin;
    private String carrera;
-   private String estado;
+   private boolean estado;
 
-    public PeriodoacademicoMD(int idperiodo, Date fechainicio, Date fechafin, String carrera, String estado) {
-        this.idperiodo = idperiodo;
+    public PeriodoacademicoMD(String nombre, Date fechainicio, Date fechafin, String carrera, boolean estado) {
+        this.nombre = nombre;
         this.fechainicio = fechainicio;
         this.fechafin = fechafin;
         this.carrera = carrera;
         this.estado = estado;
     }
+    
     public PeriodoacademicoMD(){
         
     }
@@ -61,13 +63,23 @@ public class PeriodoacademicoMD {
         this.carrera = carrera;
     }
 
-    public String getEstado() {
+    public boolean isEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(boolean estado) {
         this.estado = estado;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    
 
    
 }

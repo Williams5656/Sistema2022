@@ -15,7 +15,7 @@ public class con_periodoAcademico {
 
     private final vis_PeriodoAcademico vista;
     PeriodoacademicoBD periodo;
-    private String carrera;
+    private String carrera="1";
 
     public con_periodoAcademico(vis_PeriodoAcademico vista) {
         this.vista = vista;

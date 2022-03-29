@@ -21,9 +21,6 @@ public class PeriodoacademicoBD extends PeriodoacademicoMD {
 
     Conect conectar = new Conect();
 
-    public PeriodoacademicoBD(int idperiodo, Date fechainicio, Date fechafin, String carrera, String estado) {
-        super(idperiodo, fechainicio, fechafin, carrera, estado);
-    }
 
     public PeriodoacademicoBD() {
     }
@@ -40,7 +37,7 @@ public class PeriodoacademicoBD extends PeriodoacademicoMD {
                 m.setFechainicio(rs.getDate("fechainicio"));
                 m.setFechafin(rs.getDate("fechafin"));
                 m.setCarrera(rs.getString("carrera"));
-                m.setEstado(rs.getString("estado"));
+                m.setEstado(rs.getBoolean("estado"));
 
                 lista.add(m);
 
@@ -66,7 +63,7 @@ public class PeriodoacademicoBD extends PeriodoacademicoMD {
                 m.setFechainicio(rs.getDate("fechainicio"));
                 m.setFechafin(rs.getDate("fechafin"));
                 m.setCarrera(rs.getString("carrera"));
-                m.setEstado(rs.getString("estado"));
+                m.setEstado(rs.getBoolean("estado"));
 
                 lista.add(m);
 
@@ -82,7 +79,7 @@ public class PeriodoacademicoBD extends PeriodoacademicoMD {
 
     public boolean insertar() {
 
-        String nsql = "INSERT INTO periodoacademico(idperiodo,fechainicio,fechafin,carrera,estado)" + "VALUES ('" + getIdperiodo()+ "','" + getFechainicio()+ "','" + getFechafin()+ "','" + getCarrera()+ "','" + getEstado()+ "')";
+        String nsql = "INSERT INTO periodoacademico(nombre,fechainicio,fechafin,carrera,estado)" + "VALUES ('" + getNombre()+ "','" + getFechainicio()+ "','" + getFechafin()+ "','" + getCarrera()+ "','" + isEstado()+ "')";
 
         if (conectar.noQuery(nsql) == null) {
             return true;

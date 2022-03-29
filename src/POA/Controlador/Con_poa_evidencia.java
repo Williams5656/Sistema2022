@@ -16,6 +16,8 @@ import POA.Modelo.ObjetivoOperativoBD;
 import POA.Modelo.ObjetivoOperativoMD;
 import POA.Modelo.PoaBD;
 import POA.Vista.vis_poa_evidencia;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -46,6 +48,16 @@ public class Con_poa_evidencia {
         vista.setVisible(true);
         lista();
         vista.getBtnGuardar().addActionListener(e -> guardar());
+        vista.getCbx_carrera().addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent itemEvent) {
+                cargarComboCarrera();
+            }
+        });
+        vista.getCbx_anio().addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent itemEvent) {
+                cargarComboAnio();
+            }
+        });
     }
 
     public void cargarComboProyecto() {

@@ -47,6 +47,11 @@ public class Con_poa_evidencia {
         this.vista = vista;
         vista.setVisible(true);
         lista();
+        vista.getCbx_carrera().removeAllItems();
+        vista.getCbx_anio().removeAllItems();
+        vista.getCbx_actividad().removeAllItems();
+        vista.getCbx_obje_opera().removeAllItems();
+        vista.getCbx_proyecto().removeAllItems();
         vista.getBtnGuardar().addActionListener(e -> guardar());
         vista.getCbx_carrera().addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent itemEvent) {
@@ -58,16 +63,6 @@ public class Con_poa_evidencia {
                 cargarComboAnio();
             }
         });
-    }
-
-    public void cargarComboProyecto() {
-        vista.getCbx_proyecto().removeAllItems();
-        listaProyectos = baseDatosProyecto.mostrarDatos();
-        for (ProyectoMD proyectos : listaProyectos) {
-            if (Con_Poa1.getId_poa() == proyectos.getId_Poa()) {
-                vista.getCbx_proyecto().addItem("Proyecto: " + proyectos.getNum_proyecto_carrera());
-            }
-        }
     }
 
     public void cargarComboCarrera() {
@@ -86,6 +81,21 @@ public class Con_poa_evidencia {
         vista.getCbx_carrera().removeAllItems();
         for (int i = 0; i < listaPoa.size(); i++) {
             vista.getCbx_proyecto().addItem(listaPoa.get(i).getAnio());
+        }
+    }
+
+    public void cargarComboProyecto() {
+        String carrera = (String) vista.getCbx_carrera().getSelectedItem();
+        String anio = (String) vista.getCbx_anio().getSelectedItem();
+        for (int i = 0; i < listaPoa.size(); i++) {
+            if (listaCarreras.get(i).getNombre_carrera().equals(carrera)) {
+                String id_carrera = listaCarreras.get(i).getCodigo_carrera();
+                if (listaPoa.get(i).getId_carrera() == Integer.parseInt(id_carrera));
+                if (listaPoa.get(i).getAnio() == anio) {
+                    vista.getCbx_proyecto().addItem("Proyecto: " + listaProyectos.get(i).getNum_proyecto_carrera());
+                }
+            }
+
         }
     }
 
@@ -117,16 +127,16 @@ public class Con_poa_evidencia {
             }
         }
     }
-    
-    public void guardar(){
-       listaEvidencias = baseDatosEvidencias.mostrarDatos(); 
-       int cod_evid= listaEvidencias.size()+1;
-       baseDatosEvidencias.guardar(cod_evid, vista.getTxtArchivo().getText());
-       nuevo();
-       lista();
+
+    public void guardar() {
+        listaEvidencias = baseDatosEvidencias.mostrarDatos();
+        int cod_evid = listaEvidencias.size() + 1;
+        baseDatosEvidencias.guardar(cod_evid, vista.getTxtArchivo().getText());
+        nuevo();
+        lista();
     }
-    
-    public void nuevo(){
+
+    public void nuevo() {
         vista.getCbx_actividad().setSelectedItem("");
         vista.getCbx_anio().setSelectedItem("");
         vista.getCbx_carrera().setSelectedItem("");
@@ -134,8 +144,8 @@ public class Con_poa_evidencia {
         vista.getCbx_proyecto().setSelectedItem("");
         vista.getTxtArchivo().setText("");
     }
-    
-    public void lista(){
+
+    public void lista() {
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTabla_Evidencias().getModel();
         List<EvidenciaMD> lista3 = baseDatosEvidencias.mostrarDatos();

@@ -52,18 +52,14 @@ public class Con_poa_evidencia {
         vista.getCbx_actividad().removeAllItems();
         vista.getCbx_obje_opera().removeAllItems();
         vista.getCbx_proyecto().removeAllItems();
-        System.out.println("llego");
         vista.getBtnGuardar().addActionListener(e -> guardar());
-        vista.getCbx_carrera().addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent itemEvent) {
-                cargarComboCarrera();
+        listaCarreras = baseDatosCarrera.mostrardatos();
+        listaPoa = baseDatosPoa.mostrarDatos();
+        for (int i = 0; i < listaPoa.size(); i++) {
+            if (String.valueOf(listaPoa.get(i).getId_carrera()).equals(String.valueOf(listaCarreras.get(i).getCodigo_carrera()))) {
+                vista.getCbx_proyecto().addItem(listaCarreras.get(i).getNombre_carrera());
             }
-        });
-        vista.getCbx_anio().addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent itemEvent) {
-                cargarComboAnio();
-            }
-        });
+        }
     }
 
     public void cargarComboCarrera() {

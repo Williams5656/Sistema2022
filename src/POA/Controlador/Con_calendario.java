@@ -118,7 +118,10 @@ public class Con_calendario {
             calendar.setId_Actividad(Integer.parseInt(vista.getTxt_id_A().getText()));
             calendar.setId_Carrera(vista.getComobo_carrera().getSelectedItem().toString());
             calendar.setId_Periodo(nrol);
-            calendar.setId_TipoActividad(Integer.parseInt(vista.getCombo_actividad().getSelectedItem().toString()));
+            List<T_actividadMD> listaTA = T_actividadbd.mostrardatos();
+            int idTA = vista.getCombo_actividad().getSelectedIndex();
+            int nTA = listaTA.get(idTA).getId_T_actividad();
+            calendar.setid_TipoActividad(nTA);
             calendar.setNombre_Actividad(vista.getTxt_N_actividad().getText());
             calendar.setDescripcion(vista.getTxt_descripcion().getText());
             

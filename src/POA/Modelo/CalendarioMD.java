@@ -44,16 +44,7 @@ public class CalendarioMD {
     public void setId_Carrera(String id_Carrera) {
         this.id_Carrera = id_Carrera;
     }
-
-    public int getId_TipoActividad() {
-        return id_TipoActividad;
-    }
-
-    public void setId_TipoActividad(int id_TipoActividad) {
-        this.id_TipoActividad = id_TipoActividad;
-    }
-
-
+    
     public int getId_Periodo() {
         return id_Periodo;
     }

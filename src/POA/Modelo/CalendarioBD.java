@@ -120,7 +120,7 @@ public class CalendarioBD extends CalendarioMD {
     public boolean modificar(String id_actividad) {
         //Transformo image a base64 encode para postgresl
 
-        String nsql = "update calendario set id_carrera='" + getId_Carrera()+ "',id_periodo='" + getId_Periodo() + "',id_tipoactividad='" + getId_TipoActividad()+ "',nombre_actividad='" + getNombre_Actividad() + 
+        String nsql = "update calendario set id_carrera='" + getId_Carrera()+ "',id_periodo='" + getId_Periodo() + "',id_tipoactividad='" + getid_TipoActividad()+ "',nombre_actividad='" + getNombre_Actividad() + 
                  "',descripcion='" + getDescripcion() + "',fecha_inicio='" + getFecha_Inicio() + "',fecha_limite='" + getFecha_Limite()+ "'"
                 + " where id_actividad='" + id_actividad + "'";
 

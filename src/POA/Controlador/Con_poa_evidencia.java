@@ -54,6 +54,8 @@ public class Con_poa_evidencia {
         vista.getCbx_proyecto().removeAllItems();
         vista.getBtnGuardar().addActionListener(e -> guardar());
         cargarComboCarrera();
+        cargarComboAnio();
+        cargarComboProyecto();
     }
 
     public void cargarComboCarrera() {
@@ -62,7 +64,7 @@ public class Con_poa_evidencia {
         for (int i = 0; i < listaCarreras.size(); i++) {
             for (int j = 0; j < listaPoa.size(); i++) {
                 if (Integer.parseInt(listaCarreras.get(i).getCodigo_carrera()) == listaPoa.get(j).getId_carrera()) {
-                    vista.getCbx_proyecto().addItem(listaCarreras.get(i).getNombre_carrera());
+                    vista.getCbx_carrera().addItem(listaCarreras.get(i).getNombre_carrera());
                 }
             }
         }
@@ -70,9 +72,8 @@ public class Con_poa_evidencia {
 
     public void cargarComboAnio() {
         listaPoa = baseDatosPoa.mostrarDatos();
-        vista.getCbx_carrera().removeAllItems();
         for (int i = 0; i < listaPoa.size(); i++) {
-            vista.getCbx_proyecto().addItem(listaPoa.get(i).getAnio());
+            vista.getCbx_anio().addItem(listaPoa.get(i).getAnio());
         }
     }
 
@@ -98,7 +99,7 @@ public class Con_poa_evidencia {
         int proyecto = (int) vista.getCbx_proyecto().getSelectedItem();
         for (int i = 0; i < listaObjetivosOperativos.size(); i++) {
             if (listaObjetivosOperativos.get(i).getId_proyecto() == proyecto) {
-                vista.getCbx_proyecto().addItem(String.valueOf(listaObjetivosOperativos.get(i).getNum_objetivo_proyecto()));
+                vista.getCbx_obje_opera().addItem(String.valueOf(listaObjetivosOperativos.get(i).getNum_objetivo_proyecto()));
             }
         }
     }
@@ -113,7 +114,7 @@ public class Con_poa_evidencia {
         for (int i = 0; i < listaActividaes.size(); i++) {
             if (listaObjetivosOperativos.get(i).getId_proyecto() == proyecto) {
                 if (listaActividaes.get(i).getId_objetivo_operativo() == objetivo) {
-                    vista.getCbx_proyecto().addItem(String.valueOf(listaActividaes.get(i).getId_actividades()));
+                    vista.getCbx_actividad().addItem(String.valueOf(listaActividaes.get(i).getId_actividades()));
 
                 }
             }

@@ -22,7 +22,10 @@ public class con_carrera {
     private final Vis_Carrera vista;
     private CarreraBD carrera = new CarreraBD();
     private PerfilBD bdperfil = new PerfilBD();
-
+//
+    private PersonaBD bdpersona = new PersonaBD();
+    private List<PersonaMD> listaPersonas = new ArrayList<>();
+    
     public con_carrera(Vis_Carrera vista) {
         this.vista = vista;
         vista.setVisible(true);
@@ -43,32 +46,54 @@ public class con_carrera {
 
         });
         listam();
-        buscar();
-        buscarperfil();
+        buscar1();
+//        buscarperfil();
     }
-    public void buscar() {
-        List<PerfilMD> lista = bdperfil.obtenerdatos(vista.getTxtCoordinador().getText());
-        int con = 0;
-        for (int i = 0; i < lista.size(); i++) {
-            if (vista.getTxtCoordinador().getText().equalsIgnoreCase(lista.get(i).getNombre())) {
-                String nombre = lista.get(i).getNombre();
-                vista.getLblNombre().setText(nombre);
-                con = 1;
-            }
-        }
-        if (con != 1) {
-            vista.getLblNombre().setText("");
-        }
-    }
- 
-    public void buscarperfil() {
+    
+    public void buscar1() {
+        listaPersonas = bdpersona.mostrardatos();
         vista.getTxtCoordinador().addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                buscar();
+
+                for (PersonaMD person : listaPersonas) {
+                    if (person.getCedula().equals(vista.getTxtCoordinador().getText())) {
+                        vista.getLblNombre().setText(person.getNombres() + " " + person.getApellidos());
+                    }
+                }
+                if (vista.getTxtCoordinador().getText().equals("")) {
+                    vista.getLblNombre().setText("");
+                }
+
             }
+
         });
     }
+
+//        
+//    public void buscar() {
+//        List<PerfilMD> lista = bdperfil.obtenerdatos(vista.getTxtCoordinador().getText());
+//        int con = 0;
+//        for (int i = 0; i < lista.size(); i++) {
+//            if (vista.getTxtCoordinador().getText().equalsIgnoreCase(lista.get(i).getNombre())) {
+//                String nombre = lista.get(i).getNombre();
+//                vista.getLblNombre().setText(nombre);
+//                con = 1;
+//            }
+//        }
+//        if (con != 1) {
+//            vista.getLblNombre().setText("");
+//        }
+//    }
+ 
+//    public void buscarperfil() {
+//        vista.getTxtCoordinador().addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyReleased(KeyEvent e) {
+//                buscar1();
+//            }
+//        });
+//    }
     
     public void guardar() {
 //        boolean existente = false;
@@ -82,6 +107,7 @@ public class con_carrera {
         String modalidad = (String) vista.getCmbModalidad().getSelectedItem();
         carrera.setModalidad(modalidad);
         carrera.setCoordinador(vista.getTxtCoordinador().getText());
+        
         
 
         if (carrera.insertar()) {
@@ -107,15 +133,24 @@ public class con_carrera {
 //        System.out.println(codigo);
 //        List<CarreraMD> lista = carrera.obtenerdatos(codigo);
         String cedula = (String) modelo.getValueAt(vista.getTablaCarrera().getSelectedRow(), 0);
-        List<PerfilMD> listaper = bdperfil.obtenerdatos(cedula);
+//        List<PerfilMD> listaper = bdperfil.obtenerdatos(cedula);
+        List<PersonaMD> listaper = bdpersona.obtenerdatos(cedula);
         List<CarreraMD> lista = carrera.obtenerdatos(cedula);
         carrera.setCodigo_carrera(lista.get(0).getCodigo_carrera());
         carrera.setNombre_carrera(lista.get(0).getNombre_carrera());
         carrera.setFecha_inicio(lista.get(0).getFecha_inicio());
         carrera.setModalidad(lista.get(0).getModalidad());
         carrera.setCoordinador(lista.get(0).getCoordinador());
+//        listaPersonas = bdpersona.mostrardatos();
+//        for (PersonaMD person : listaPersonas) {
+//            if (person.getCedula().equals(vista.getTxtCoordinador().getText())) {
+//                vista.getLblNombre().setText(person.getNombres() + " " + person.getApellidos());
+//            }
+//        }
         
-        bdperfil.setNombre(listaper.get(0).getNombre());
+        bdpersona.setNombres(listaper.get(0).getNombres());
+        bdpersona.setApellidos(listaper.get(0).getApellidos());
+        
 
         vista.getTxtCodigo_carrera().setText(carrera.getCodigo_carrera());
         vista.getComboCarrera().setSelectedItem(carrera.getNombre_carrera());
@@ -123,8 +158,11 @@ public class con_carrera {
         vista.getCmbModalidad().setSelectedItem(carrera.getModalidad());
         vista.getTxtCoordinador().setText(carrera.getCoordinador());
         
-        String nombre = bdperfil.getNombre();
+        String nombre = "[" + carrera.getCoordinador()+ "]" + bdpersona.getNombres() + " " + bdpersona.getApellidos();
         vista.getLblNombre().setText(nombre);
+        
+//        String nombre = bdpersona.getCedula();
+//        vista.getLblNombre().setText(nombre);
 
     }
 

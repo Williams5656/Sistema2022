@@ -68,6 +68,7 @@ public class Con_calendario {
         tipo_actividad();
         cargarLista("");
         cargarListaAct("");
+        cargarperiodo();
 
     }
         public void C_actividad(){
@@ -107,10 +108,10 @@ public class Con_calendario {
         if (!vista.getTxt_id_A().getText().equals("") && !vista.getComobo_carrera().getSelectedItem().equals("Seleccione") && !vista.getCombo_periodo().getSelectedItem().equals("Seleccione") && !vista.getCombo_actividad().getSelectedItem().equals("Seleccione")
                 && !vista.getTxt_N_actividad().getText().equals("") && !vista.getTxt_N_actividad().getText().equals("") && !vista.getTxt_descripcion().getText().equals("")) {
             
-            List<CalendarioMD> listar = calen.obtenerDatos("");
+            List<PeriodoacademicoMD> lista =periodobd.mostrardatos();
             int idrol = vista.getCombo_periodo().getSelectedIndex();
             System.out.println("Combo" + idrol);
-            int nrol = listar.get(idrol).getId_Periodo();
+            int nrol = lista.get(idrol).getIdperiodo();
             SimpleDateFormat formato6 = new SimpleDateFormat("yyyy-MM-dd");
             String fechaini = formato6.format(vista.getFecha_inicio().getDate());
             String fechalim = formato6.format(vista.getFecha_inicio().getDate());
@@ -176,7 +177,15 @@ public class Con_calendario {
             tblModel.addRow(calendario);
         });
     }
-
+    
+    public void cargarperiodo(){
+        List<String> listap=new ArrayList();
+        listap=calen.obtenerPeriodo();
+        for (int i = 0; i < listap.size(); i++) {
+            vista.getCombo_periodo().addItem(listap.get(i));
+        }
+    }
+    
     public void responsable() {
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTabla_responsables().getModel();

@@ -325,7 +325,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         txt_descripcion = new javax.swing.JTextArea();
         combo_actividad = new javax.swing.JComboBox();
         combo_periodo = new javax.swing.JComboBox();
-        comobo_carrera = new javax.swing.JComboBox<String>();
+        comobo_carrera = new javax.swing.JComboBox<>();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         Btn_añadir_Tactividad = new javax.swing.JButton();
@@ -512,10 +512,10 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         });
         jPanel1.add(combo_actividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 170, 148, -1));
 
-        combo_periodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "Jun21-Oct21", "Dic21-Abr22" }));
+        combo_periodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
         jPanel1.add(combo_periodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 105, 148, 20));
 
-        comobo_carrera.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
+        comobo_carrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
         jPanel1.add(comobo_carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 55, 150, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(

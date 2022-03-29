@@ -56,6 +56,24 @@ public class CalendarioBD extends CalendarioMD {
             return null;
         }
     }
+    
+    public List<String> obtenerPeriodo() {
+        List<String> listaA = new ArrayList<String>();
+        try {
+            String sql = "select nombre from periodo_academico";
+            ResultSet rs = conectar.query(sql);
+            while (rs.next()) {
+                listaA.add(rs.getString("nombre"));
+            }
+            rs.close();
+            return listaA;
+        } catch (Exception e) {
+            Logger.getLogger(UsuarioBD.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+
+    }
+    
      public int codigo() {
         try {
             int c = 0;

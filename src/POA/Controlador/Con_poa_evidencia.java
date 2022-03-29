@@ -54,7 +54,7 @@ public class Con_poa_evidencia {
         vista.getCbx_proyecto().removeAllItems();
         vista.getBtnGuardar().addActionListener(e -> guardar());
         cargarComboCarrera();
-        //cargarComboAnio();
+        cargarComboAnio();
         //cargarComboProyecto();
     }
 

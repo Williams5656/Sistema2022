@@ -45,7 +45,7 @@ public class Con_poa_evidencia {
     public Con_poa_evidencia(vis_poa_evidencia vista) {
         this.vista = vista;
         vista.setVisible(true);
-        //lista();
+        lista();
         vista.getCbx_carrera().removeAllItems();
         vista.getCbx_anio().removeAllItems();
         vista.getCbx_actividad().removeAllItems();

@@ -14,12 +14,13 @@ import POA.Vista.*;
 public class con_periodoAcademico {
 
     private final vis_PeriodoAcademico vista;
-    PeriodoacademicoBD periodo;
+    PeriodoacademicoBD periodo=new PeriodoacademicoBD();
     private String carrera="1";
 
     public con_periodoAcademico(vis_PeriodoAcademico vista) {
         this.vista = vista;
         vista.setVisible(true);
+        vista.getBtnCrear().addActionListener(e-> ingresar());
     }
 
     public void ingresar() {
@@ -27,7 +28,7 @@ public class con_periodoAcademico {
                                 vista.getDateFechaInicio().getDate().getYear())
                             + "-"
                             + mes_anio(vista.getDateFechaFin().getDate().getMonth(),
-                                vista.getDateFechaFin().getDate().getYear()));
+                                vista.getDateFechaFin().getDate().getYear()));        
         periodo.setCarrera(carrera);
         periodo.setFechainicio(vista.getDateFechaInicio().getDate());
         periodo.setFechafin(vista.getDateFechaFin().getDate());
@@ -49,44 +50,46 @@ public class con_periodoAcademico {
         String res = "";
         switch (m) {
             case 0:
-                res = "ENE";
+                res = "Ene";
                 break;
             case 1:
-                res = "FEB";
+                res = "Feb";
                 break;
             case 2:
-                res = "MAR";
+                res = "Mar";
                 break;
             case 3:
-                res = "ABR";
+                res = "Abr";
                 break;
             case 4:
-                res = "MAY";
+                res = "May";
                 break;
             case 5:
-                res = "JUN";
+                res = "Jun";
                 break;
             case 6:
-                res = "JUL";
+                res = "Jul";
                 break;
             case 7:
-                res = "AGO";
+                res = "Ago";
                 break;
             case 8:
-                res = "SEP";
+                res = "Sep";
                 break;
             case 9:
-                res = "OCT";
+                res = "Oct";
                 break;
             case 10:
-                res = "NOV";
+                res = "Nov";
                 break;
             case 11:
-                res = "DIC";
+                res = "Dic";
                 break;
         }
+        a=a+1900;//el año es devuelto la resta del actual - 1900
         String[] dec = String.valueOf(a).split("");
         res = res + dec[2] + dec[3];
+        System.out.println(res);
         return res;
     }
 

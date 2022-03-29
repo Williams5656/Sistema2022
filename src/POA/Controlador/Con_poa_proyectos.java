@@ -98,9 +98,9 @@ public class Con_poa_proyectos {
     }
 
     public void lista_objetivo() {
+        
         modelo1.setRowCount(0);
         modelo1.setColumnCount(0);
-
         modelo1.addColumn("Numero_objetivo_proyecto");
         modelo1.addColumn("Objetivo");
         Object[] fila = new Object[2];
@@ -171,7 +171,7 @@ public class Con_poa_proyectos {
 
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTabla_lista_proyectos().getModel();
-        int cedula = (int) modelo.getValueAt(vista.getTabla_lista_proyectos().getSelectedRow(), 0);
+        int cedula = (int) modelo.getValueAt(vista.getTabla_lista_proyectos().getSelectedRow(), 1);
         List<ProyectoMD> listas = poabd.obtenerdatos(cedula);
         if (listas.size() > 0) {
             poabd.setId_Poa(listas.get(0).getId_Poa());
@@ -181,7 +181,8 @@ public class Con_poa_proyectos {
             poabd.setObjetivo_tactico(listas.get(0).getObjetivo_tactico());
             poabd.setEstrategia(listas.get(0).getEstrategia());
 
-            vista.getN_proyectos().setText(poabd.getNum_proyecto_carrera() + "");
+            vista.getN_proyectos().setText(poabd.getId_proyecto()+ "");
+            System.out.println(vista.getN_proyectos());
             vista.getTxt_obestra().setText(poabd.getObjetivo_estrategico() + "");
             vista.getTxt_obtac().setText(poabd.getObjetivo_tactico() + "");
             vista.getTxt_estrategia().setText(poabd.getEstrategia() + "");

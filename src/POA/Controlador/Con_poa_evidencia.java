@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
  * @author USUARIO
  */
 public class Con_poa_evidencia {
+
     private final vis_poa_evidencia vista;
     private ArrayList<ProyectoMD> listaProyectos = new ArrayList<>();
     private List<POA.Modelo.CarreraMD> listaCarreras = new ArrayList<>();
@@ -60,8 +61,8 @@ public class Con_poa_evidencia {
     public void cargarComboCarrera() {
         listaCarreras = baseDatosCarrera.mostrardatos();
         listaPoa = baseDatosPoa.mostrarDatos();
-        for (int i = 0; i < listaCarreras.size(); i++) {
-            for (int j = 0; j < listaPoa.size(); i++) {
+        for (int j = 0; j < listaPoa.size(); j++) {
+            for (int i = 0; i < listaCarreras.size(); i++) {
                 if (Integer.parseInt(listaCarreras.get(i).getCodigo_carrera()) == listaPoa.get(j).getId_carrera()) {
                     vista.getCbx_carrera().addItem(listaCarreras.get(i).getNombre_carrera());
                 }

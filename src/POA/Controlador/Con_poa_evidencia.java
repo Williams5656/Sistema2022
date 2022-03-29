@@ -28,7 +28,6 @@ import javax.swing.table.DefaultTableModel;
  * @author USUARIO
  */
 public class Con_poa_evidencia {
-
     private final vis_poa_evidencia vista;
     private ArrayList<ProyectoMD> listaProyectos = new ArrayList<>();
     private List<POA.Modelo.CarreraMD> listaCarreras = new ArrayList<>();
@@ -46,13 +45,13 @@ public class Con_poa_evidencia {
     public Con_poa_evidencia(vis_poa_evidencia vista) {
         this.vista = vista;
         vista.setVisible(true);
-        lista();
-        vista.getCbx_carrera().removeAllItems();
-        vista.getCbx_anio().removeAllItems();
-        vista.getCbx_actividad().removeAllItems();
-        vista.getCbx_obje_opera().removeAllItems();
-        vista.getCbx_proyecto().removeAllItems();
-        vista.getBtnGuardar().addActionListener(e -> guardar());
+        //lista();
+//        vista.getCbx_carrera().removeAllItems();
+//        vista.getCbx_anio().removeAllItems();
+//        vista.getCbx_actividad().removeAllItems();
+//        vista.getCbx_obje_opera().removeAllItems();
+//        vista.getCbx_proyecto().removeAllItems();
+//        vista.getBtnGuardar().addActionListener(e -> guardar());
         //cargarComboCarrera();
         //cargarComboAnio();
         //cargarComboProyecto();

@@ -170,12 +170,12 @@ public class Con_principal {
 
     }
      private void asignaciondocentes() {
-          vis_asignacionmateriadocentes user = new vis_asignacionmateriadocentes();
+         vis_asignacionmateriadocentes user = new vis_asignacionmateriadocentes();
         vista.getESCRITORIO().add(user);
         Dimension desktopSize = vista.getESCRITORIO().getSize();
         Dimension FrameSize = user.getSize();
         user.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-       Con_Asignacion rol=new Con_Asignacion(user);
+        Con_Asignacion rol=new Con_Asignacion(user);
 
     }
 

@@ -24,7 +24,7 @@ public class AsignacionMateriaDocenteBD extends AsignacionMateriaDocentesMD{
 
         try {
             List<AsignacionMateriaDocentesMD> lista = new ArrayList<AsignacionMateriaDocentesMD>();
-            String sql = "select * from asignacion_docente";
+            String sql = "select * from asignacion_docentes";
             ResultSet rs = conectar.query(sql);
             byte[] is;
             while (rs.next()) {
@@ -47,7 +47,7 @@ public class AsignacionMateriaDocenteBD extends AsignacionMateriaDocentesMD{
         try {
             List<AsignacionMateriaDocentesMD> lista = new ArrayList<AsignacionMateriaDocentesMD>();
 
-            String sql = "select * from asignacion_docente" + " where\"identificacion\"='" + identificacion + "'";
+            String sql = "select * from asignacion_docentes" + " where\"identificacion\"='" + identificacion + "'";
             ResultSet rs = conectar.query(sql);
             byte[] is;
             while (rs.next()) {

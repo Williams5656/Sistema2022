@@ -32,10 +32,12 @@ public class Con_Asignacion {
     
     public Con_Asignacion(vis_asignacionmateriadocentes vista) {
         this.vista = vista;
+        vista.setVisible(true);
         vista.getBtnguardar().addActionListener(e -> guardar());
         vista.getBtnmodificar().addActionListener(e -> modificar());
         vista.getBtnagregar().addActionListener(e->nuevo());
         buscardocente();
+        lista();
     }
     
     public void nuevo() {

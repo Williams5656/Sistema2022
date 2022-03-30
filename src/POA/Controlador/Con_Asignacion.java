@@ -34,9 +34,11 @@ public class Con_Asignacion {
     AsignacionMateriaDocenteBD bdasignacion = new AsignacionMateriaDocenteBD();
     docenteBD bddocente = new docenteBD();
     PersonaBD bdpersona = new PersonaBD();
+    private DefaultTableModel modelo = new DefaultTableModel();
     private List<MateriaMD> listaMateria = new ArrayList<>();
     private MateriaBD baseDatosMateria = new MateriaBD();
     private List<PeriodoacademicoMD> listaPeriodo = new ArrayList<>();
+    private List<AsignacionMateriaDocentesMD> lista = new ArrayList<>();
     private PeriodoacademicoBD baseDatosPeriodo = new PeriodoacademicoBD();
 
     public Con_Asignacion(vis_asignacionmateriadocentes vista) {
@@ -126,31 +128,49 @@ public class Con_Asignacion {
     }
 
     public void lista() {
-        DefaultTableModel modelo;
-        modelo = (DefaultTableModel) vista.getTablaasignaciondocentemateria().getModel();
-        List<AsignacionMateriaDocentesMD> lista = bdasignacion.mostrardatos();
-        int columnas = modelo.getColumnCount();
-        for (int j = vista.getTablaasignaciondocentemateria().getRowCount() - 1; j >= 0; j--) {
-            modelo.removeRow(j);
+        modelo.setRowCount(0);
+        modelo.setColumnCount(0);
+
+        modelo.addColumn("Docente");
+        modelo.addColumn("Asignatura");
+        modelo.addColumn("Ciclo");
+        modelo.addColumn("Paralelo");
+        Object[] fila = new Object[4];
+        lista = bdasignacion.mostrardatos();
+        listaPeriodo = baseDatosPeriodo.lista_periodos();
+        listaMateria = baseDatosMateria.mostrardatos();
+        for (AsignacionMateriaDocentesMD user : lista) {
+
+            fila[0] = user.getIdentificacio();
+            for (MateriaMD carrera : listaMateria) {
+                if (carrera.getCod_materia().equals(user.getAsignatura())) {
+                    fila[1] = carrera.getNombre_materia();
+                }
+            }
+            fila[2] = user.getCiclo();
+            fila[3]=user.getParalelo();
+            modelo.addRow(fila);
         }
-        for (int i = 0; i < lista.size(); i++) {
-            modelo.addRow(new Object[columnas]);
-            vista.getTablaasignaciondocentemateria().setValueAt(lista.get(i).getIdentificacio(), i, 0);
-            vista.getTablaasignaciondocentemateria().setValueAt(lista.get(i).getAsignatura(), i, 1);
-            vista.getTablaasignaciondocentemateria().setValueAt(lista.get(i).getCiclo(), i, 2);
-        }
+
+        vista.getTablaasignaciondocentemateria().setModel(modelo);
+
     }
 
     public void guardar() {
+        AsignacionMateriaDocenteBD baseAsignacion = new AsignacionMateriaDocenteBD();
         String periodo = (String) vista.getCboxperiodo().getSelectedItem();
+        int codigoPeriodo = 0;
+        codigoPeriodo = baseAsignacion.mostrarIdPeriodo(periodo);
         String identificacio = (String) vista.getCboxidentificacion().getSelectedItem();
         String asignatura = (String) vista.getCboxasignatura().getSelectedItem();
+        String codigoMateria = "";
+        codigoMateria = baseAsignacion.mostrarIdMateria(asignatura);
         String ciclo = (String) vista.getCboxciclo().getSelectedItem();
         String jornada = (String) vista.getCboxjornada().getSelectedItem();
         String paralelo = (String) vista.getCboxparalelo().getSelectedItem();
         bdasignacion.setIdentificacio(vista.getTxtdocente().getText());
-        bdasignacion.setPeriodo(periodo);
-        bdasignacion.setAsignatura(asignatura);
+        bdasignacion.setPeriodo(codigoPeriodo + "");
+        bdasignacion.setAsignatura(codigoMateria);
         bdasignacion.setCiclo(ciclo);
         bdasignacion.setJornada(jornada);
         bdasignacion.setParalelo(paralelo);

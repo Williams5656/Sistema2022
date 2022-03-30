@@ -2,6 +2,7 @@
 package POA.Modelo;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -29,9 +30,11 @@ public class AsignacionMateriaDocenteBD extends AsignacionMateriaDocentesMD{
             byte[] is;
             while (rs.next()) {
                 AsignacionMateriaDocentesMD asignacion = new AsignacionMateriaDocentesMD();
-                asignacion.setIdentificacio(rs.getString("cedula"));
-                asignacion.setCiclo(rs.getString("Ciclo"));
-                asignacion.setAsignatura(rs.getString("Asignatura"));
+                asignacion.setIdentificacio(rs.getString("identificacion"));
+                asignacion.setAsignatura(rs.getString("asignatura"));
+                asignacion.setCiclo(rs.getString("ciclo"));
+                asignacion.setJornada(rs.getString("jornada"));
+                asignacion.setParalelo(rs.getString("paralelo"));
                 lista.add(asignacion);
             }
 
@@ -92,5 +95,35 @@ public class AsignacionMateriaDocenteBD extends AsignacionMateriaDocentesMD{
             return false;
         }
 
+    }
+    
+        public int mostrarIdPeriodo(String nombre) {
+        int idPeriodo=0;
+        String sql="select id_periodo from periodo_academico where nombre= '" + nombre+ "'";
+        ResultSet rs = conectar.query(sql);
+        try {
+            while (rs.next()) {
+                
+                idPeriodo=rs.getInt("id_periodo");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PerfilBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return idPeriodo;
+    }
+    
+        public String mostrarIdMateria(String nombre) {
+        String idMateria="";
+        String sql="select codigo from materia where materia= '" + nombre+ "'";
+        ResultSet rs = conectar.query(sql);
+        try {
+            while (rs.next()) {
+                
+                idMateria=rs.getString("codigo");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PerfilBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return idMateria;
     }
 }

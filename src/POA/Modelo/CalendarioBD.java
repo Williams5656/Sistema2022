@@ -28,10 +28,7 @@ public class CalendarioBD extends CalendarioMD {
     }
 
    
-
-   
-
-    public List<CalendarioMD> mostrardatos() {
+    public List<CalendarioMD> obtenerDatos(String id_actividad) {
         List<CalendarioMD> listaA = new ArrayList<CalendarioMD>();
         try {
             String sql = "select * from calendario";
@@ -55,24 +52,10 @@ public class CalendarioBD extends CalendarioMD {
             Logger.getLogger(UsuarioBD.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
-    }
-    
-    public List<String> obtenerPeriodo() {
-        List<String> listaA = new ArrayList<String>();
-        try {
-            String sql = "select nombre from periodo_academico";
-            ResultSet rs = conectar.query(sql);
-            while (rs.next()) {
-                listaA.add(rs.getString("nombre"));
-            }
-            rs.close();
-            return listaA;
-        } catch (Exception e) {
-            Logger.getLogger(UsuarioBD.class.getName()).log(Level.SEVERE, null, e);
-            return null;
-        }
 
     }
+   
+
     
      public int codigo() {
         try {
@@ -104,8 +87,8 @@ public class CalendarioBD extends CalendarioMD {
     }
 
     public boolean insertar() {
-        String nsql = "INSERT INTO calendario(id_carrera,id_periodo,id_tipoactividad,id_actividad,nombre_actividad,responsables,descripcion,fecha_inicio,fecha_limite)" + "VALUES ('"
-                + getId_Carrera() + "','" + getId_Periodo() + "','" + getid_TipoActividad() + "','" + getId_Actividad() + "','" + getNombre_Actividad() + "','" + getDescripcion() + "','" + getFecha_Inicio() + "','" + getFecha_Limite() + "')";
+        String nsql = "INSERT INTO calendario(id_actividad,id_carrera,id_periodo,id_tipoactividad,nombre_actividad,descripcion,fecha_inicio,fecha_limite)" + "VALUES ('"
+                + getId_Actividad() + "','" + getId_Carrera() + "','" + getId_Periodo() + "','" + getid_TipoActividad()  + "','" + getNombre_Actividad() + "','" + getDescripcion() + "','" + getFecha_Inicio() + "','" + getFecha_Limite() + "')";
 
         if (conectar.noQuery(nsql) == null) {
             return true;
@@ -123,6 +106,7 @@ public class CalendarioBD extends CalendarioMD {
         String nsql = "update calendario set id_carrera='" + getId_Carrera()+ "',id_periodo='" + getId_Periodo() + "',id_tipoactividad='" + getid_TipoActividad()+ "',nombre_actividad='" + getNombre_Actividad() + 
                  "',descripcion='" + getDescripcion() + "',fecha_inicio='" + getFecha_Inicio() + "',fecha_limite='" + getFecha_Limite()+ "'"
                 + " where id_actividad='" + id_actividad + "'";
+        
 
         if (conectar.noQuery(nsql) == null) {
             return true;
@@ -132,31 +116,6 @@ public class CalendarioBD extends CalendarioMD {
         }
 
     }
-    public List<CalendarioMD> obtenerDatos(String id_actividad) {
-        List<CalendarioMD> listaA = new ArrayList<CalendarioMD>();
-        try {
-            String sql = "select * from calendario";
-            ResultSet rs = conectar.query(sql);
-            byte[] is;
-            while (rs.next()) {
-                CalendarioMD m = new CalendarioMD();
-                m.setId_Actividad(rs.getInt("id_actividad"));
-                m.setId_Carrera(rs.getString("id_carrera"));
-                m.setId_Periodo(rs.getInt("id_periodo"));
-                m.setid_TipoActividad(rs.getInt("id_tipoactividad"));
-                m.setNombre_Actividad(rs.getString("nombre_actividad"));
-                m.setDescripcion(rs.getString("descripcion"));
-                m.setFecha_Inicio(rs.getString("fecha_inicio"));
-                m.setFecha_Limite(rs.getString("fecha_limite"));
-                listaA.add(m);
-            }
-            rs.close();
-            return listaA;
-        } catch (Exception e) {
-            Logger.getLogger(UsuarioBD.class.getName()).log(Level.SEVERE, null, e);
-            return null;
-        }
-
-    }
+    
     
 }

@@ -14,10 +14,14 @@ import POA.Modelo.Responsables_ActividadMD;
 import POA.Modelo.Responsables_ActividadBD;
 import POA.Modelo.docenteMD;
 import com.mxrck.autocompleter.TextAutoCompleter;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -45,14 +49,13 @@ public class Con_calendario {
     public static ArrayList<Responsables_ActividadMD> ListaResp = new ArrayList<>();
 
     public Con_calendario(Vis_Calendar vista) {
-
         this.vista = vista;
         vista.setVisible(true);
         vista.getBtn_añadir().addActionListener(e -> responsable());
         vista.getBtn_guardar().addActionListener(e -> guardar());
         vista.getTxt_id_A().setEnabled(false);
-        vista.getBtn_n_actividad().addActionListener(e->C_actividad());
-        at= new TextAutoCompleter(vista.getTxt_responsables());
+        vista.getBtn_n_actividad().addActionListener(e -> Crear_actividad());
+        at = new TextAutoCompleter(vista.getTxt_responsables());
         vista.getBtn_añadir_Tactividad().addActionListener(l -> {
             try {
                 cargarDialogo(1);
@@ -60,21 +63,55 @@ public class Con_calendario {
                 Logger.getLogger(Con_rol.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-
         vista.getD_Btn_Guardar().addActionListener(e -> guardarActividad());
         vista.getD_Btn_Cancelar().addActionListener(e -> vista.getT_Actividad_D().dispose());
+        vista.getTabla_calendario().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                seleccionarCalendario();
+            }
+
+        });
         Cargardatos_c();
         carrera();
+        cargarperiodo();
         tipo_actividad();
         cargarLista("");
         cargarListaAct("");
-        cargarperiodo();
+        lista();
+        Ihnabilitar();
 
     }
-        public void C_actividad(){
-            vista.getTxt_id_A().setText(String.valueOf(calen.codigo_act()));
-        
+
+    public void Crear_actividad() {
+        vista.getTxt_id_A().setText(String.valueOf(calen.codigo_act()));
+        vista.getTxt_N_actividad().setEnabled(true);
+        vista.getTxt_descripcion().setEnabled(true);
+        vista.getComobo_carrera().setEnabled(true);
+        vista.getCombo_periodo().setEnabled(true);
+        vista.getCombo_actividad().setEnabled(true);
+        vista.getBtn_añadir_Tactividad().setEnabled(true);
+        vista.getFecha_inicio().setEnabled(true);
+        vista.getFecha_limite().setEnabled(true);
+        vista.getBtn_añadir().setEnabled(true);
+
     }
+    public void Ihnabilitar(){
+            vista.getTxt_N_actividad().setEnabled(false);
+        vista.getTxt_descripcion().setEnabled(false);
+        vista.getComobo_carrera().setEnabled(false);
+        vista.getCombo_periodo().setEnabled(false);
+        vista.getCombo_actividad().setEnabled(false);
+        vista.getBtn_añadir_Tactividad().setEnabled(false);
+        vista.getFecha_inicio().setEnabled(false);
+        vista.getFecha_limite().setEnabled(false);
+        vista.getBtn_añadir().setEnabled(false);
+        vista.getBtn_evidencia().setEnabled(false);
+        vista.getBtn_guardar().setEnabled(true);
+        vista.getBtn_modificar().setEnabled(false);
+        vista.getBtn_imprimir().setEnabled(false);
+        }
+
     public void carrera() {
 
         List<CarreraMD> listar = carrerabd.mostrardatos();
@@ -89,60 +126,92 @@ public class Con_calendario {
             vista.getCombo_actividad().addItem(listar.get(i).getNombre());
         }
     }
-          public void Cargardatos_c(){
-            List<PersonaMD> listar = bdpersona.mostrardatos();
-            for (int i = 0; i < listar.size(); i++) {
-                at.addItem(listar.get(i).getNombres());
-            } 
-            
+
+    public void Cargardatos_c() {
+        List<PersonaMD> listar = bdpersona.mostrardatos();
+        for (int i = 0; i < listar.size(); i++) {
+            at.addItem(listar.get(i).getNombres());
+        }
     }
-//    public void periodo() {
-//
-//        List<PeriodoacademicoMD> listar = periodobd.mostrardatos();
-//        for (int i = 0; i < listar.size(); i++) {
-//            vista.getComobo_carrera().addItem(listar.get(i).get());
-//        }
-//    }
+    public void cargarperiodo() {
+        List<PeriodoacademicoMD> listap = periodobd.lista_periodos();
+        for (int i = 0; i < listap.size(); i++) {
+            vista.getCombo_periodo().addItem(listap.get(i).getNombre());
+        }
+    }
 
     public void guardar() {
         if (!vista.getTxt_id_A().getText().equals("") && !vista.getComobo_carrera().getSelectedItem().equals("Seleccione") && !vista.getCombo_periodo().getSelectedItem().equals("Seleccione") && !vista.getCombo_actividad().getSelectedItem().equals("Seleccione")
                 && !vista.getTxt_N_actividad().getText().equals("") && !vista.getTxt_N_actividad().getText().equals("") && !vista.getTxt_descripcion().getText().equals("")) {
-            
-            List<PeriodoacademicoMD> lista =periodobd.mostrardatos();
-            int idrol = vista.getCombo_periodo().getSelectedIndex();
-            System.out.println("Combo" + idrol);
-            int nrol = lista.get(idrol).getIdperiodo();
-            SimpleDateFormat formato6 = new SimpleDateFormat("yyyy-MM-dd");
-            String fechaini = formato6.format(vista.getFecha_inicio().getDate());
-            String fechalim = formato6.format(vista.getFecha_inicio().getDate());
-            calendar.setId_Actividad(Integer.parseInt(vista.getTxt_id_A().getText()));
-            calendar.setId_Carrera(vista.getComobo_carrera().getSelectedItem().toString());
-            calendar.setId_Periodo(nrol);
-            List<T_actividadMD> listaTA = T_actividadbd.mostrardatos();
-            int idTA = vista.getCombo_actividad().getSelectedIndex();
-            int nTA = listaTA.get(idTA).getId_T_actividad();
-            calendar.setid_TipoActividad(nTA);
-            calendar.setNombre_Actividad(vista.getTxt_N_actividad().getText());
-            calendar.setDescripcion(vista.getTxt_descripcion().getText());
-            
-            calendar.setFecha_Inicio(fechaini);
-            calendar.setFecha_Inicio(fechalim);
+            Cargardatos();
             if (calendar.insertar()) {
                 JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
                 cargarListaAct("");
                 guardarResp();
+                lista();
                 limpiar();
             } else {
                 JOptionPane.showMessageDialog(null, "ERRROR AL GUARDAR");
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Llene todos los campos");
         }
 
     }
 
+    public void Cargardatos() {
+        List<PeriodoacademicoMD> lista = periodobd.lista_periodos();
+        int idrol = vista.getCombo_periodo().getSelectedIndex();
+        int nrol = lista.get(idrol).getIdperiodo();
+        List<T_actividadMD> listaTA = T_actividadbd.mostrardatos();
+        int idTA = vista.getCombo_actividad().getSelectedIndex();
+        int nTA = listaTA.get(idTA).getId_T_actividad();
+        List<CarreraMD> listaCA = carrerabd.mostrardatos();
+        int idCA = vista.getComobo_carrera().getSelectedIndex();
+        String nCA = listaCA.get(idCA).getCodigo_carrera();
+        SimpleDateFormat formato6 = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaini = formato6.format(vista.getFecha_inicio().getDate());
+        String fechalim = formato6.format(vista.getFecha_inicio().getDate());
+        calendar.setId_Actividad(Integer.parseInt(vista.getTxt_id_A().getText()));
+        calendar.setId_Carrera(nCA);
+        calendar.setId_Periodo(nrol);
+        calendar.setid_TipoActividad(nTA);
+        calendar.setNombre_Actividad(vista.getTxt_N_actividad().getText());
+        calendar.setDescripcion(vista.getTxt_descripcion().getText());
+        calendar.setFecha_Inicio(fechaini);
+        calendar.setFecha_Limite(fechalim);
+    }
+
+    public void lista() {
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) vista.getTabla_calendario().getModel();
+        List<CalendarioMD> listacale = calen.obtenerDatos("");
+        int columnas = modelo.getColumnCount();
+        for (int j = vista.getTabla_calendario().getRowCount() - 1; j >= 0; j--) {
+            modelo.removeRow(j);
+        }
+        for (int i = 0; i < listacale.size(); i++) {
+            modelo.addRow(new Object[columnas]);
+            String idcarr = listacale.get(i).getId_Carrera();
+            List<CarreraMD> listaCA = carrerabd.obtenerdatos(idcarr);
+            int idtipo = listacale.get(i).getid_TipoActividad();
+            List<T_actividadMD> listaTA = T_actividadbd.obtenerDatos(idtipo);
+            int idp = listacale.get(i).getId_Periodo();
+            periodobd.periodo_individual(idp);
+            vista.getTabla_calendario().setValueAt(listacale.get(i).getId_Actividad(), i, 0);
+            vista.getTabla_calendario().setValueAt(listaCA.get(0).getNombre_carrera(), i, 1);
+            vista.getTabla_calendario().setValueAt(periodobd.getNombre(), i, 2);
+            vista.getTabla_calendario().setValueAt(listaTA.get(0).getNombre(), i, 3);
+            vista.getTabla_calendario().setValueAt(listacale.get(i).getNombre_Actividad(), i, 4);
+            vista.getTabla_calendario().setValueAt(listacale.get(i).getDescripcion(), i, 5);
+            vista.getTabla_calendario().setValueAt(listacale.get(i).getFecha_Inicio(), i, 6);
+            vista.getTabla_calendario().setValueAt(listacale.get(i).getFecha_Limite(), i, 7);
+        }
+    }
+
     public void guardarResp() {
         for (int i = 0; i < ListaResp.size(); i++) {
+
             String cedula = ListaResp.get(i).getCedula();
             resbd.setId_responsable(calen.codigo());
             resbd.setId_actividad(Integer.parseInt(vista.getTxt_id_A().getText()));
@@ -180,15 +249,9 @@ public class Con_calendario {
             tblModel.addRow(calendario);
         });
     }
+
     
-    public void cargarperiodo(){
-        List<String> listap=new ArrayList();
-        listap=calen.obtenerPeriodo();
-        for (int i = 0; i < listap.size(); i++) {
-            vista.getCombo_periodo().addItem(listap.get(i));
-        }
-    }
-    
+
     public void responsable() {
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTabla_responsables().getModel();
@@ -245,6 +308,46 @@ public class Con_calendario {
     public void nuevoTAct() {
         vista.getD_txt_Nombre().setText("");
         vista.getD_txt_Descripcion().setText("");
+    }
+    public void seleccionarCalendario(){
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) vista.getTabla_calendario().getModel();
+         String idactividad = (String) modelo.getValueAt(vista.getTabla_calendario().getSelectedRow(), 0);
+         List<CalendarioMD> listac = calendar.obtenerDatos(idactividad);
+         calendar.setId_Actividad(listac.get(0).getId_Actividad());
+         calendar.setId_Carrera(listac.get(0).getId_Carrera());
+         calendar.setid_TipoActividad(listac.get(0).getid_TipoActividad());
+         calendar.setNombre_Actividad(listac.get(0).getNombre_Actividad());
+         calendar.setDescripcion(listac.get(0).getDescripcion());
+         calendar.setFecha_Inicio(listac.get(0).getFecha_Inicio());
+         calendar.setFecha_Limite(listac.get(0).getFecha_Limite());
+         
+         
+         vista.getTxt_id_A().setText(calendar.getId_Actividad()+"");
+         List<CarreraMD>listacarr = carrerabd.obtenerdatos(calendar.getId_Carrera());
+         vista.getComobo_carrera().setSelectedItem(listacarr.get(0).getNombre_carrera());
+         int idperiodo = listac.get(0).getId_Periodo();
+         PeriodoacademicoMD listaperiodo = periodobd.periodo_individual(idperiodo);
+         vista.getCombo_periodo().setSelectedItem(listaperiodo);
+         int idTA = listac.get(0).getid_TipoActividad();
+         List<T_actividadMD> listaTA = T_actividadbd.obtenerDatos(idTA);
+         vista.getCombo_actividad().setSelectedItem(listaTA.get(0).getNombre());
+         vista.getTxt_N_actividad().setText(calendar.getNombre_Actividad());
+         vista.getTxt_descripcion().setText(calendar.getDescripcion());
+          try {
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+            Date d1 = formato.parse(calendar.getFecha_Inicio());
+            vista.getFecha_inicio().setDate(d1);
+        } catch (ParseException ex) {
+            Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           try {
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+            Date d2 = formato.parse(calendar.getFecha_Limite());
+            vista.getFecha_limite().setDate(d2);
+        } catch (ParseException ex) {
+            Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

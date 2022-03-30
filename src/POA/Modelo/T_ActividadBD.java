@@ -75,4 +75,23 @@ public class T_ActividadBD extends T_actividadMD{
             return null;
         }
     }
+        public List<T_actividadMD> obtenerDatos(int id) {
+        List<T_actividadMD> listaA = new ArrayList<T_actividadMD>();
+        try {
+            String sql = "select * from tipo_actividad" + " where id_tipoactividad ='"+ id +"'";
+            ResultSet rs = conectar.query(sql);
+            while (rs.next()) {
+                T_actividadMD m = new T_actividadMD();
+                m.setId_T_actividad(rs.getInt("id_tipoactividad"));
+                m.setNombre(rs.getString("nombre_tipo_actividad"));
+                m.setDescripcion(rs.getString("descripcion"));
+                listaA.add(m);
+            }
+            rs.close();
+            return listaA;
+        } catch (Exception e) {
+            Logger.getLogger(UsuarioBD.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+        }
 }

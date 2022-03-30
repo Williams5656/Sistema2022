@@ -504,7 +504,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 230, 110));
 
-        combo_actividad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "POA", "Titulacion", "Calendario ", "Examen Complexión", "Graduacion", "Todos " }));
+        combo_actividad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
         combo_actividad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combo_actividadActionPerformed(evt);

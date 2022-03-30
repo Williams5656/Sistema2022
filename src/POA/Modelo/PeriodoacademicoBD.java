@@ -31,7 +31,7 @@ public class PeriodoacademicoBD extends PeriodoacademicoMD {
         super(nombre, fechainicio, fechafin, carrera, estado);
     }
 
-    public List<PeriodoacademicoMD> lista_peridos() {
+    public List<PeriodoacademicoMD> lista_periodos() {
         try {
             List<PeriodoacademicoMD> lista = new ArrayList<PeriodoacademicoMD>();
             String sql = "select * from periodo_academico";
@@ -46,6 +46,29 @@ public class PeriodoacademicoBD extends PeriodoacademicoMD {
                 m.setCarrera(rs.getString("id_carrera"));
                 m.setEstado(rs.getBoolean("estado"));
                 lista.add(m);
+            }
+            rs.close();
+            return lista;
+        } catch (SQLException e) {
+            Logger.getLogger(PeriodoacademicoMD.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    
+    public PeriodoacademicoMD periodo_individual(int cod) {
+        try {
+            PeriodoacademicoMD lista = new PeriodoacademicoMD();
+            String sql = "select * from periodo_academico where + id_periodo = "+cod;
+            ResultSet rs = conectar.query(sql);
+
+            while (rs.next()) {
+                PeriodoacademicoMD m = new PeriodoacademicoMD();
+                m.setIdperiodo(rs.getInt("id_periodo"));
+                m.setNombre(rs.getString("nombre"));
+                m.setFechainicio(rs.getDate("fecha_inicio"));
+                m.setFechafin(rs.getDate("fecha_fin"));
+                m.setCarrera(rs.getString("id_carrera"));
+                m.setEstado(rs.getBoolean("estado"));
             }
             rs.close();
             return lista;

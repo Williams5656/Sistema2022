@@ -31,31 +31,56 @@ public class actividad_evidencia implements ItemListener {
         this.Cbx_obje_opera = Cbx_obje_opera;
         this.Cbx_actividad = Cbx_actividad;
     }
-    
 
     @Override
     public void itemStateChanged(ItemEvent e) {
+        String objetivoo = (String) Cbx_obje_opera.getSelectedItem();
         listaActividaes = baseDatosactividades.mostrarDatos();
-        listaObjetivosOperativos = baseDatosObjOperativo.mostrarDatos();
-        String objetivo = (String) Cbx_obje_opera.getSelectedItem();
-        if (objetivo != "Seleccionar") {
+        int id_objetivo = 0;
+        if (Con_poa_evidencia.proyecto.equals("")) {
             Cbx_actividad.removeAllItems();
             Cbx_actividad.addItem("Seleccionar");
-            for (int i = 0; i < listaObjetivosOperativos.size(); i++) {
-                if (listaObjetivosOperativos.get(i).getNum_objetivo_proyecto() == Integer.parseInt(objetivo) && listaObjetivosOperativos.get(i).getId_proyecto() == Con_poa_evidencia.id_proyecto) {
-                    Con_poa_evidencia.id_objetivo = listaObjetivosOperativos.get(i).getId_objetivo_operativo();
+        } else if (Con_poa_evidencia.proyecto.equalsIgnoreCase("yes")) {
+            if (objetivoo != null) {
+                if (objetivoo != "Seleccionar") {
+                    id_objetivo = id_objetivo(Cbx_obje_opera);
+                    for (int i = 0; i < listaActividaes.size(); i++) {
+                        if (listaActividaes.get(i).getId_objetivo_operativo() == id_objetivo) {
+                            Cbx_actividad.addItem(String.valueOf(listaActividaes.get(i).getActividad()));
+                            Con_poa_evidencia.actividad = "Yes";
+                        }
+                    }
+                    Con_poa_evidencia.objetivo_id = id_objetivo;
+                    System.out.println("Objetivo: " + Con_poa_evidencia.objetivo_id);
+                } else {
+                    Cbx_actividad.removeAllItems();
+                    Cbx_actividad.addItem("Seleccionar");
                 }
+            } else {
+                Cbx_actividad.removeAllItems();
+                Cbx_actividad.addItem("Seleccionar");
             }
-            for (int i = 0; i < listaActividaes.size(); i++) {
-                if (listaActividaes.get(i).getId_objetivo_operativo() == Con_poa_evidencia.id_objetivo) {
-                    Cbx_actividad.addItem(String.valueOf(listaActividaes.get(i).getActividad()));
-                    Con_poa_evidencia.id_actividad = listaActividaes.get(i).getId_actividades();
-
-                }
-            }
-        }else{
-            Cbx_actividad.removeAllItems();
-            Cbx_actividad.addItem("Seleccionar");
         }
+    }
+
+    public int id_objetivo(JComboBox Cbx_obje_opera) {
+        listaObjetivosOperativos = baseDatosObjOperativo.mostrarDatos();
+        String objetivoo = (String) Cbx_obje_opera.getSelectedItem();
+        int id_objetivo = 0;
+        if (Con_poa_evidencia.proyecto.equals("")) {
+        } else if (Con_poa_evidencia.proyecto.equalsIgnoreCase("yes")) {
+            if (objetivoo != null) {
+                if (objetivoo != "Seleccionar") {
+                    for (int i = 0; i < listaObjetivosOperativos.size(); i++) {
+                        if (listaObjetivosOperativos.get(i).getObjetivo().equalsIgnoreCase(objetivoo)) {
+                            if (String.valueOf(listaObjetivosOperativos.get(i).getId_proyecto()).equalsIgnoreCase(String.valueOf(Con_poa_evidencia.proyecto_id))) {
+                                id_objetivo = listaObjetivosOperativos.get(i).getId_objetivo_operativo();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return id_objetivo;
     }
 }

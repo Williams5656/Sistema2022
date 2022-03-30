@@ -24,39 +24,62 @@ import javax.swing.JComboBox;
  */
 public class objetivo_evidencia implements ItemListener {
 
-    private ArrayList<ObjetivoOperativoMD> listaObjetivosOperativos = new ArrayList();
+     private ArrayList<ObjetivoOperativoMD> listaObjetivosOperativos = new ArrayList();
     private ArrayList<ProyectoMD> listaProyectos = new ArrayList<>();
     private ProyectoBD baseDatosProyecto = new ProyectoBD();
     private ObjetivoOperativoBD baseDatosObjOperativo = new ObjetivoOperativoBD();
+    JComboBox comboProyecto, comboObjetivo;
 
-    private JComboBox Cbx_proyecto, Cbx_obje_opera;
-
-    public objetivo_evidencia(JComboBox Cbx_proyecto, JComboBox Cbx_obje_opera) {
-        this.Cbx_proyecto = Cbx_proyecto;
-        this.Cbx_obje_opera = Cbx_obje_opera;
+    public objetivo_evidencia(JComboBox comboProyecto, JComboBox comboObjetivo) {
+        this.comboProyecto = comboProyecto;
+        this.comboObjetivo = comboObjetivo;
     }
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        listaProyectos = baseDatosProyecto.mostrarDatos();
-        listaObjetivosOperativos = baseDatosObjOperativo.mostrarDatos();
-        String proyecto = (String) Cbx_proyecto.getSelectedItem();
-        if (proyecto != "Seleccionar") {
-            Cbx_obje_opera.removeAllItems();
-            Cbx_obje_opera.addItem("Seleccionar");
-            for (int i = 0; i < listaProyectos.size(); i++) {
-                if ((listaProyectos.get(i).getNum_proyecto_carrera() == Integer.parseInt(proyecto)) && (listaProyectos.get(i).getId_Poa() == Con_poa_evidencia.id_poa)) {
-                    Con_poa_evidencia.id_proyecto = listaProyectos.get(i).getId_proyecto();
+        String proyecto = (String) comboProyecto.getSelectedItem();
+        if (Con_poa_evidencia.proyecto.equals("")) {
+            comboObjetivo.removeAllItems();
+            comboObjetivo.addItem("Seleccionar");
+        } else if (Con_poa_evidencia.proyecto.equalsIgnoreCase("yes")) {
+            if (proyecto != null) {
+                listaObjetivosOperativos = baseDatosObjOperativo.mostrarDatos();
+                int id_proyecto = id_proyecto(comboProyecto);
+                comboObjetivo.removeAllItems();
+                comboObjetivo.addItem("Seleccionar");
+                for (int i = 0; i < listaObjetivosOperativos.size(); i++) {
+                    if (listaObjetivosOperativos.get(i).getId_proyecto() == id_proyecto) {
+                        comboObjetivo.addItem(String.valueOf(listaObjetivosOperativos.get(i).getObjetivo()));
+                        Con_poa_evidencia.actividad="Yes";
+                    }
                 }
+                Con_poa_evidencia.proyecto_id=id_proyecto;
+                System.out.println("Proyecto: "+Con_poa_evidencia.proyecto_id);
+            } else {
+                comboObjetivo.removeAllItems();
+                comboObjetivo.addItem("Seleccionar");
             }
-            for (int i = 0; i < listaObjetivosOperativos.size(); i++) {
-                if (listaObjetivosOperativos.get(i).getId_proyecto() == Con_poa_evidencia.id_proyecto) {
-                    Cbx_obje_opera.addItem(String.valueOf(listaObjetivosOperativos.get(i).getNum_objetivo_proyecto()));
-                }
-            }
-        } else {
-            Cbx_obje_opera.removeAllItems();
-            Cbx_obje_opera.addItem("Seleccionar");
         }
+    }
+
+    public int id_proyecto(JComboBox comboproyecto) {
+        listaProyectos = baseDatosProyecto.mostrarDatos();
+        String proyecto = (String) comboproyecto.getSelectedItem();
+        int id_proyecto = 0;
+        if (Con_poa_evidencia.proyecto.equalsIgnoreCase("yes")) {
+            if (proyecto != null) {
+                if (proyecto != "Seleccionar") {
+                    id_proyecto = Integer.parseInt(proyecto.trim());
+                    for (int i = 0; i < listaProyectos.size(); i++) {
+                        if (listaProyectos.get(i).getId_Poa() == Con_poa_evidencia.id_poa) {
+                            if ((String.valueOf(listaProyectos.get(i).getId_proyecto()).equalsIgnoreCase(proyecto))) {
+                                id_proyecto = listaProyectos.get(i).getId_proyecto();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return id_proyecto;
     }
 }

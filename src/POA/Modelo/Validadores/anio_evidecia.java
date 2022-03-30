@@ -12,7 +12,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.scene.control.ComboBox;
+//import javafx.scene.control.ComboBox;
 import javax.swing.JComboBox;
 
 /**
@@ -20,7 +20,7 @@ import javax.swing.JComboBox;
  * @author ASUS
  */
 public class anio_evidecia implements ItemListener {
-     private JComboBox Cbx_carrera, Cbx_anio;
+    private JComboBox Cbx_carrera, Cbx_anio;
     private List<POA.Modelo.PoaMD> listaPoa = new ArrayList<>();
     private List<POA.Modelo.CarreraMD> listaCarrera = new ArrayList<>();
     private PoaBD baseDatosPoa = new PoaBD();

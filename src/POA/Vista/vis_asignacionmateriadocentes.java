@@ -25,6 +25,14 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    public JTextField getId_asignacion() {
+        return id_asignacion;
+    }
+
+    public void setId_asignacion(JTextField id_asignacion) {
+        this.id_asignacion = id_asignacion;
+    }
+
     public JButton getBtncrearplan() {
         return btncrearplan;
     }
@@ -160,6 +168,7 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
         tablaasignaciondocentemateria = new javax.swing.JTable();
         btnagregar = new javax.swing.JButton();
         btnmodificar = new javax.swing.JButton();
+        id_asignacion = new javax.swing.JTextField();
         btneliminar = new javax.swing.JButton();
         btncrearplan = new javax.swing.JButton();
         cboxciclo = new javax.swing.JComboBox<>();
@@ -205,6 +214,7 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
 
         btnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/modificar.png"))); // NOI18N
         getContentPane().add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, -1, 40));
+        getContentPane().add(id_asignacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 70, -1));
 
         btneliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/WhatsApp Image 2022-02-15 at 00.32.29.jpeg"))); // NOI18N
         getContentPane().add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, -1, -1));
@@ -302,6 +312,7 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cboxjornada;
     private javax.swing.JComboBox<String> cboxparalelo;
     private javax.swing.JComboBox<String> cboxperiodo;
+    private javax.swing.JTextField id_asignacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

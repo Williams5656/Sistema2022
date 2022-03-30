@@ -101,7 +101,6 @@ public class Con_Asignacion {
     }
 
     public void buscar() {
-
         List<PersonaMD> lista = bdpersona.obtenerdatos(vista.getTxtdocente().getText());
         List<docenteMD> listadoc = bddocente.obtenerdatos(vista.getTxtdocente().getText());
         int con = 0;
@@ -147,28 +146,27 @@ public class Con_Asignacion {
     public void lista() {
         modelo.setRowCount(0);
         modelo.setColumnCount(0);
-
+        modelo.addColumn("Id_asignacion");
         modelo.addColumn("Docente");
         modelo.addColumn("Asignatura");
         modelo.addColumn("Ciclo");
         modelo.addColumn("Paralelo");
-        Object[] fila = new Object[4];
+        Object[] fila = new Object[5];
         lista = bdasignacion.mostrardatos();
         listaPeriodo = baseDatosPeriodo.lista_periodos();
         listaMateria = baseDatosMateria.mostrardatos();
         for (AsignacionMateriaDocentesMD user : lista) {
-
-            fila[0] = user.getIdentificacion();
+            fila[0] = user.getId_asignacio();
+            fila[1] = user.getIdentificacion();
             for (MateriaMD carrera : listaMateria) {
                 if (carrera.getCod_materia().equals(user.getAsignatura())) {
-                    fila[1] = carrera.getNombre_materia();
+                    fila[2] = carrera.getNombre_materia();
                 }
             }
-            fila[2] = user.getCiclo();
-            fila[3]=user.getParalelo();
+            fila[3] = user.getCiclo();
+            fila[4]=user.getParalelo();
             modelo.addRow(fila);
         }
-
         vista.getTablaasignaciondocentemateria().setModel(modelo);
 
     }
@@ -178,13 +176,14 @@ public class Con_Asignacion {
         String periodo = (String) vista.getCboxperiodo().getSelectedItem();
         int codigoPeriodo = 0;
         codigoPeriodo = baseAsignacion.mostrarIdPeriodo(periodo);
-        String identificacio = (String) vista.getCboxidentificacion().getSelectedItem();
+        String identificacion = (String) vista.getCboxidentificacion().getSelectedItem();
         String asignatura = (String) vista.getCboxasignatura().getSelectedItem();
         String codigoMateria = "";
         codigoMateria = baseAsignacion.mostrarIdMateria(asignatura);
         String ciclo = (String) vista.getCboxciclo().getSelectedItem();
         String jornada = (String) vista.getCboxjornada().getSelectedItem();
         String paralelo = (String) vista.getCboxparalelo().getSelectedItem();
+        bdasignacion.setId_asignacio(vista.getId_asignacion().getText());
         bdasignacion.setIdentificacion(vista.getTxtdocente().getText());
         bdasignacion.setPeriodo(codigoPeriodo + "");
         bdasignacion.setAsignatura(codigoMateria);
@@ -208,6 +207,7 @@ public class Con_Asignacion {
         String ciclo = (String) vista.getCboxciclo().getSelectedItem();
         String jornada = (String) vista.getCboxjornada().getSelectedItem();
         String paralelo = (String) vista.getCboxparalelo().getSelectedItem();
+        bdasignacion.setId_asignacio(vista.getId_asignacion().getText());
         bdasignacion.setIdentificacion(vista.getTxtdocente().getText());
         bdasignacion.setPeriodo(periodo);
         bdasignacion.setAsignatura(asignatura);
@@ -246,6 +246,7 @@ public class Con_Asignacion {
         List<PersonaMD> listaper = bdpersona.mostrardatos();
         List<docenteMD> lista = bddocente.mostrardatos();
         List<AsignacionMateriaDocentesMD> listaasig = bdasignacion.mostrardatos();
+        bdasignacion.setId_asignacio(vista.getId_asignacion().getText());
         bdasignacion.setIdentificacion(listaasig.get(0).getIdentificacion());
         bdasignacion.setPeriodo(listaasig.get(0).getPeriodo());
         bdasignacion.setAsignatura(listaasig.get(0).getAsignatura());
@@ -255,7 +256,8 @@ public class Con_Asignacion {
 
         bdpersona.setNombres(listaper.get(0).getNombres());
         bdpersona.setApellidos(listaper.get(0).getApellidos());
-
+        
+        vista.getId_asignacion().setText(bdasignacion.getId_asignacio());
         vista.getTxtdocente().setText(bdasignacion.getIdentificacion());
         vista.getCboxperiodo().setSelectedItem(bdasignacion.getPeriodo());
         vista.getCboxasignatura().setSelectedItem(bdasignacion.getAsignatura());

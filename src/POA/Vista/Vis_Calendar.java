@@ -504,7 +504,6 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 230, 110));
 
-        combo_actividad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
         combo_actividad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combo_actividadActionPerformed(evt);
@@ -512,10 +511,8 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         });
         jPanel1.add(combo_actividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 170, 148, -1));
 
-        combo_periodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
         jPanel1.add(combo_periodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 105, 148, 20));
 
-        comobo_carrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
         jPanel1.add(comobo_carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 55, 150, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(

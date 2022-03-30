@@ -44,7 +44,7 @@ public class proyecto_evidencia implements ItemListener {
         Con_poa_evidencia.anio = (String) Cbx_anio.getSelectedItem();
         System.out.println(Con_poa_evidencia.anio);
         System.out.println(carrera);
-        if (carrera != "Seleccionar" || Con_poa_evidencia.anio != "Seleccionar" || Con_poa_evidencia.anio=="null") {
+        if (carrera != "Seleccionar" || Con_poa_evidencia.anio != "Seleccionar" || Con_poa_evidencia.anio!="null") {
             Cbx_proyecto.removeAllItems();
             Cbx_proyecto.addItem("Seleccionar");
             for (int i = 0; i < listaPoa.size(); i++) {

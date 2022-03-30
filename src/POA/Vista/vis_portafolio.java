@@ -217,12 +217,15 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("DOCUMENTO"));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        botones_grupo.add(btnGuiasPracticas);
         btnGuiasPracticas.setText("GUIAS PRACTICAS");
         jPanel1.add(btnGuiasPracticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, -1, -1));
 
+        botones_grupo.add(btnModulos);
         btnModulos.setText("MODULOS");
         jPanel1.add(btnModulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, -1, -1));
 
+        botones_grupo.add(btnInstrumentosEv);
         btnInstrumentosEv.setText("INSTRUMENTOS DE EVALUACION");
         btnInstrumentosEv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,15 +234,19 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
         });
         jPanel1.add(btnInstrumentosEv, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
 
+        botones_grupo.add(btnNotas);
         btnNotas.setText("NOTAS");
         jPanel1.add(btnNotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, -1, -1));
 
+        botones_grupo.add(btnInformesSilabo);
         btnInformesSilabo.setText("INFORMES DE SILABO");
         jPanel1.add(btnInformesSilabo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, -1, -1));
 
+        botones_grupo.add(btnPlanesClase);
         btnPlanesClase.setText("PLANES DE CLASE");
         jPanel1.add(btnPlanesClase, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, -1, -1));
 
+        botones_grupo.add(btnSilabo);
         btnSilabo.setText("SILABO");
         jPanel1.add(btnSilabo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, -1, -1));
 
@@ -277,9 +284,11 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
         jLabel6.setText("PARALELO:");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
 
+        radiogroupParalelo.add(radbutA);
         radbutA.setText("A");
         jPanel2.add(radbutA, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, -1, -1));
 
+        radiogroupParalelo.add(radbutB);
         radbutB.setText("B");
         jPanel2.add(radbutB, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, -1, -1));
 

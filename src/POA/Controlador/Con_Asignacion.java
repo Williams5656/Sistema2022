@@ -48,7 +48,7 @@ public class Con_Asignacion {
         vista.getBtnmodificar().addActionListener(e -> modificar());
         vista.getBtnagregar().addActionListener(e -> nuevo());
         listaMateria = baseDatosMateria.mostrardatos();
-        listaPeriodo = baseDatosPeriodo.mostrardatos();
+        listaPeriodo = baseDatosPeriodo.lista_periodos();
         buscardocente();
         lista();
 
@@ -74,7 +74,7 @@ public class Con_Asignacion {
     public void cargarComboPeriodo() {
         vista.getCboxperiodo().removeAllItems();
         vista.getCboxperiodo().addItem("");
-        listaPeriodo = baseDatosPeriodo.mostrardatos();
+        listaPeriodo = baseDatosPeriodo.lista_periodos();
         for (PeriodoacademicoMD periodo : listaPeriodo) {
             vista.getCboxperiodo().addItem(periodo.getNombre());
         }

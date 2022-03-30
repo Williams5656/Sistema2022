@@ -5,6 +5,9 @@
     <Component class="javax.swing.ButtonGroup" name="radiogroupParalelo">
     </Component>
   </NonVisualComponents>
+  <Properties>
+    <Property name="closable" type="boolean" value="true"/>
+  </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
@@ -215,7 +218,16 @@
         <Component class="javax.swing.JComboBox" name="comboCiclo">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
+              <StringArray count="8">
+                <StringItem index="0" value="1"/>
+                <StringItem index="1" value="2"/>
+                <StringItem index="2" value="3"/>
+                <StringItem index="3" value="4"/>
+                <StringItem index="4" value="5"/>
+                <StringItem index="5" value="6"/>
+                <StringItem index="6" value="7"/>
+                <StringItem index="7" value="8"/>
+              </StringArray>
             </Property>
           </Properties>
           <AuxValues>
@@ -315,7 +327,10 @@
         <Component class="javax.swing.JComboBox" name="comboSeccion">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
+              <StringArray count="2">
+                <StringItem index="0" value="Matutino"/>
+                <StringItem index="1" value="Nocturno"/>
+              </StringArray>
             </Property>
           </Properties>
           <AuxValues>

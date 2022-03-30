@@ -17,6 +17,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -149,7 +150,7 @@ public class doc_modulo_BD extends doc_modulo_MD {
         }
         
         
-        String nsql = "INSERT INTO doc_modulo(id_doc_modulo,id_periodo,id_materia,documento)" + "VALUES ('" + getId_doc_modulo()+ "','" + getId_periodo()+ "','" + getId_materia()+ "','" + ef+ "')";
+        String nsql = "INSERT INTO doc_modulo(id_periodo,id_materia,documento)" + "VALUES ('" + getId_periodo()+ "','" + getId_materia()+ "','" + null + "')";
 
         if (conectar.noQuery(nsql) == null) {
             return true;
@@ -161,6 +162,8 @@ public class doc_modulo_BD extends doc_modulo_MD {
     }
 
     
+
 }
+
 
   

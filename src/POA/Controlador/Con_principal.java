@@ -24,6 +24,7 @@ import POA.Vista.vis_poa_proyectos;
 import POA.Vista.vis_poa_actividad;
 import POA.Vista.vis_poa_evidencia;
 import POA.Vista.vis_asignacionmateriadocentes;
+import POA.Vista.vis_portafolio;
 import java.awt.Dimension;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 
@@ -56,8 +57,17 @@ public class Con_principal {
          vista.getBtn_calendario().addActionListener(e-> calendario());
          vista.getBtn_AreaCarrera().addActionListener(e-> areaCarrera());
          vista.getBtn_asignaciondocentes().addActionListener(e -> asignaciondocentes());
+         vista.getBtnPortafolio().addActionListener(e-> portafolio());
     }
 
+    private void portafolio(){
+        vis_portafolio port = new vis_portafolio();
+        vista.getESCRITORIO().add(port);
+        Dimension desktopSize = vista.getESCRITORIO().getSize();
+        Dimension FrameSize = port.getSize();
+        port.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        con_portafolio p = new con_portafolio(port);
+    }
     private void periodo(){
         vis_PeriodoAcademico periodo = new vis_PeriodoAcademico();
         vista.getESCRITORIO().add(periodo);

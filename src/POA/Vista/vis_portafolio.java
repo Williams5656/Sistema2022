@@ -152,6 +152,16 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
         this.radiogroupParalelo = radiogroupParalelo;
     }
 
+    public JComboBox<String> getComboPeriodAcademico() {
+        return comboPeriodAcademico;
+    }
+
+    public void setComboPeriodAcademico(JComboBox<String> comboPeriodAcademico) {
+        this.comboPeriodAcademico = comboPeriodAcademico;
+    }
+    
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -189,6 +199,8 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_Datos = new javax.swing.JTable();
+
+        setClosable(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("DOCUMENTO"));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -236,6 +248,7 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
         jLabel4.setText("CICLO:");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, -1, -1));
 
+        comboCiclo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" }));
         jPanel2.add(comboCiclo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 40, -1));
 
         btnSubirArchivo.setText("SUBIR ARCHIVO");
@@ -261,6 +274,7 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
         jLabel7.setText("SECCION:");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
 
+        comboSeccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matutino", "Nocturno" }));
         jPanel2.add(comboSeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 90, -1));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("DATOS INGRESADOS"));

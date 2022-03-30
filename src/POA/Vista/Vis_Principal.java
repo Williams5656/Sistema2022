@@ -6,6 +6,7 @@
 package POA.Vista;
 
 import javax.swing.JDesktopPane;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
@@ -167,6 +168,22 @@ public class Vis_Principal extends javax.swing.JFrame {
         this.Btn_AreaCarrera = Btn_AreaCarrera;
     }
 
+    public JMenu getMenuPortafolio() {
+        return menuPortafolio;
+    }
+
+    public void setMenuPortafolio(JMenu menuPortafolio) {
+        this.menuPortafolio = menuPortafolio;
+    }
+
+    public JMenuItem getBtnPortafolio() {
+        return btnPortafolio;
+    }
+
+    public void setBtnPortafolio(JMenuItem btnPortafolio) {
+        this.btnPortafolio = btnPortafolio;
+    }
+
    
 
     
@@ -204,6 +221,8 @@ public class Vis_Principal extends javax.swing.JFrame {
         btn_evidencias = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         btn_calendario = new javax.swing.JMenuItem();
+        menuPortafolio = new javax.swing.JMenu();
+        btnPortafolio = new javax.swing.JMenuItem();
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/ISTA.jpg"))); // NOI18N
 
@@ -350,6 +369,13 @@ public class Vis_Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        menuPortafolio.setText("Portafolio");
+
+        btnPortafolio.setText("Portafolios");
+        menuPortafolio.add(btnPortafolio);
+
+        jMenuBar1.add(menuPortafolio);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -412,6 +438,7 @@ public class Vis_Principal extends javax.swing.JFrame {
     public static javax.swing.JDesktopPane ESCRITORIO;
     private javax.swing.JMenu MENU_ACADEMICO;
     private javax.swing.JMenu MENU_USUARIO;
+    private javax.swing.JMenuItem btnPortafolio;
     private javax.swing.JMenuItem btn_actividades;
     private javax.swing.JMenuItem btn_asignacion;
     private javax.swing.JMenuItem btn_asignaciondocentes;
@@ -433,5 +460,6 @@ public class Vis_Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu menuPortafolio;
     // End of variables declaration//GEN-END:variables
 }

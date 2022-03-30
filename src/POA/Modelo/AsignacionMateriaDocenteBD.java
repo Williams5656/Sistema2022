@@ -15,9 +15,10 @@ import java.util.logging.Logger;
 public class AsignacionMateriaDocenteBD extends AsignacionMateriaDocentesMD{
     Conect conectar = new Conect();
 
-    public AsignacionMateriaDocenteBD(String identificacio, String asignatura, String ciclo, String paralelo, String jornada, String periodo) {
-        super(identificacio, asignatura, ciclo, paralelo, jornada, periodo);
+    public AsignacionMateriaDocenteBD(String id_asignacio, String identificacion, String asignatura, String ciclo, String paralelo, String jornada, String periodo) {
+        super(id_asignacio, identificacion, asignatura, ciclo, paralelo, jornada, periodo);
     }
+
     
     public AsignacionMateriaDocenteBD() {
     }
@@ -27,10 +28,11 @@ public class AsignacionMateriaDocenteBD extends AsignacionMateriaDocentesMD{
             List<AsignacionMateriaDocentesMD> lista = new ArrayList<AsignacionMateriaDocentesMD>();
             String sql = "select * from asignacion_docentes";
             ResultSet rs = conectar.query(sql);
-            byte[] is;
             while (rs.next()) {
                 AsignacionMateriaDocentesMD asignacion = new AsignacionMateriaDocentesMD();
-                asignacion.setIdentificacio(rs.getString("identificacion"));
+                asignacion.setId_asignacio(rs.getString("id_asignacion"));
+                asignacion.setIdentificacion(rs.getString("identificacion"));
+                asignacion.setPeriodo(rs.getString("periodo"));
                 asignacion.setAsignatura(rs.getString("asignatura"));
                 asignacion.setCiclo(rs.getString("ciclo"));
                 asignacion.setJornada(rs.getString("jornada"));
@@ -45,17 +47,17 @@ public class AsignacionMateriaDocenteBD extends AsignacionMateriaDocentesMD{
             return null;
         }
     }
-    public List<AsignacionMateriaDocentesMD> obtenerdatos(String identificacion) {
+    public List<AsignacionMateriaDocentesMD> obtenerdatos(String id_asignacion) {
 
         try {
             List<AsignacionMateriaDocentesMD> lista = new ArrayList<AsignacionMateriaDocentesMD>();
 
-            String sql = "select * from asignacion_docentes" + " where\"identificacion\"='" + identificacion + "'";
+            String sql = "select * from asignacion_docentes" + " where\"id_asignacion\"='" + id_asignacion + "'";
             ResultSet rs = conectar.query(sql);
-            byte[] is;
             while (rs.next()) {
                 AsignacionMateriaDocentesMD asignacion = new AsignacionMateriaDocentesMD();
-                asignacion.setIdentificacio(rs.getString("identificacion"));
+                asignacion.setId_asignacio(rs.getString("id_asignacion"));
+                asignacion.setIdentificacion(rs.getString("identificacion"));
                 asignacion.setAsignatura(rs.getString("asignatura"));
                 asignacion.setCiclo(rs.getString("ciclo"));
                 asignacion.setJornada(rs.getString("jornada"));
@@ -72,7 +74,7 @@ public class AsignacionMateriaDocenteBD extends AsignacionMateriaDocentesMD{
 
     }
     public boolean insertar() {
-        String nsql = "INSERT INTO asignacion_docentes(identificacion, periodo, asignatura, ciclo, jornada, paralelo)" + "VALUES ('" + getIdentificacio()+ "','" + getPeriodo()+ "','" + getAsignatura()+ "','" + getCiclo()+ "','" + getJornada()+ "','" + getParalelo()+ "')";
+        String nsql = "INSERT INTO asignacion_docentes(id_asignacion, identificacion, periodo, asignatura, ciclo, jornada, paralelo)" + "VALUES ('" + getId_asignacio()+ "','" + getIdentificacion()+ "','" + getPeriodo()+ "','" + getAsignatura()+ "','" + getCiclo()+ "','" + getJornada()+ "','" + getParalelo()+ "')";
                                                                                                                                                                                                                                                           
         if (conectar.noQuery(nsql) == null) {
             return true;
@@ -82,10 +84,10 @@ public class AsignacionMateriaDocenteBD extends AsignacionMateriaDocentesMD{
             return false;
         }
     }
-    public boolean Modificar(String identificacion) {
+    public boolean Modificar(String id_asignacion) {
        
         String nsql = "UPDATE asignacion_docentes set \"ciclo\"='" + getCiclo()+ "',\"paralelo\"='" + getParalelo()+ "',\"jornada\"='" + getJornada()+ "',\"asignatura\"='" + getAsignatura()+ "'"
-                + " where \"identificacion\"='" + identificacion + "'";
+                + " where \"id_asignacion\"='" + id_asignacion + "'";
 
         if (conectar.noQuery(nsql) == null) {
             return true;
@@ -96,7 +98,15 @@ public class AsignacionMateriaDocenteBD extends AsignacionMateriaDocentesMD{
         }
 
     }
-    
+    public boolean eliminar(String id_asignacion) {
+        String sql = "delete from asignacion_docentes where \"id_asignacion\"=" + id_asignacion + ";";
+        if (conectar.noQuery(sql) == null) {
+            return true;
+        } else {
+            System.out.println("Error eliminar");
+            return false;
+        }
+    }
         public int mostrarIdPeriodo(String nombre) {
         int idPeriodo=0;
         String sql="select id_periodo from periodo_academico where nombre= '" + nombre+ "'";

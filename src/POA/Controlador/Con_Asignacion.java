@@ -10,18 +10,14 @@ import POA.Modelo.PeriodoacademicoMD;
 import POA.Modelo.MateriaMD;
 import POA.Modelo.MateriaBD;
 import POA.Vista.vis_asignacionmateriadocentes;
-import java.awt.Dimension;
-import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static POA.Vista.Vis_Principal.*;
-import java.awt.Color;
 import java.util.ArrayList;
 
 /**
@@ -49,8 +45,17 @@ public class Con_Asignacion {
         vista.getBtnguardar().addActionListener(e -> guardar());
         vista.getBtnmodificar().addActionListener(e -> modificar());
         vista.getBtnagregar().addActionListener(e -> nuevo());
+        vista.getBtneliminar().addActionListener(e -> eliminar());
+        vista.getTablaasignaciondocentemateria().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                seleccionar();
+            }
+        });
         listaMateria = baseDatosMateria.mostrardatos();
         listaPeriodo = baseDatosPeriodo.lista_periodos();
+        inhabilitar_botones();
+        vista.getBtnagregar().setEnabled(true);
         buscardocente();
         lista();
 
@@ -66,10 +71,23 @@ public class Con_Asignacion {
     }
 
     public void habilitar_botones() {
-
+        vista.getBtnguardar().setEnabled(true);
+        vista.getCboxperiodo().setEnabled(true);
+        vista.getCboxasignatura().setEnabled(true);
+        vista.getCboxjornada().setEnabled(true);
+        vista.getCboxparalelo().setEnabled(true);
+        vista.getCboxciclo().setEnabled(true);
     }
 
     public void inhabilitar_botones() {
+        vista.getBtnguardar().setEnabled(false);
+        vista.getBtnmodificar().setEnabled(false);
+        vista.getBtneliminar().setEnabled(false);
+        vista.getCboxasignatura().setEnabled(false);
+        vista.getCboxciclo().setEnabled(false);
+        vista.getCboxjornada().setEnabled(false);
+        vista.getCboxparalelo().setEnabled(false);
+        vista.getCboxperiodo().setEnabled(false);
 
     }
 
@@ -123,8 +141,7 @@ public class Con_Asignacion {
         vista.getCboxjornada().setSelectedIndex(0);
         vista.getCboxparalelo().setSelectedIndex(0);
         vista.getCboxperiodo().setSelectedIndex(0);
-
-        vista.getBtnguardar().setEnabled(false);
+        vista.getBtnguardar().setEnabled(true);
     }
 
     public void lista() {
@@ -141,7 +158,7 @@ public class Con_Asignacion {
         listaMateria = baseDatosMateria.mostrardatos();
         for (AsignacionMateriaDocentesMD user : lista) {
 
-            fila[0] = user.getIdentificacio();
+            fila[0] = user.getIdentificacion();
             for (MateriaMD carrera : listaMateria) {
                 if (carrera.getCod_materia().equals(user.getAsignatura())) {
                     fila[1] = carrera.getNombre_materia();
@@ -168,7 +185,7 @@ public class Con_Asignacion {
         String ciclo = (String) vista.getCboxciclo().getSelectedItem();
         String jornada = (String) vista.getCboxjornada().getSelectedItem();
         String paralelo = (String) vista.getCboxparalelo().getSelectedItem();
-        bdasignacion.setIdentificacio(vista.getTxtdocente().getText());
+        bdasignacion.setIdentificacion(vista.getTxtdocente().getText());
         bdasignacion.setPeriodo(codigoPeriodo + "");
         bdasignacion.setAsignatura(codigoMateria);
         bdasignacion.setCiclo(ciclo);
@@ -191,7 +208,7 @@ public class Con_Asignacion {
         String ciclo = (String) vista.getCboxciclo().getSelectedItem();
         String jornada = (String) vista.getCboxjornada().getSelectedItem();
         String paralelo = (String) vista.getCboxparalelo().getSelectedItem();
-        bdasignacion.setIdentificacio(vista.getTxtdocente().getText());
+        bdasignacion.setIdentificacion(vista.getTxtdocente().getText());
         bdasignacion.setPeriodo(periodo);
         bdasignacion.setAsignatura(asignatura);
         bdasignacion.setCiclo(ciclo);
@@ -209,7 +226,7 @@ public class Con_Asignacion {
             }
         }
     }
-
+   
     public void buscardocente() {
         vista.getTxtdocente().addKeyListener(new KeyAdapter() {
             @Override
@@ -221,16 +238,15 @@ public class Con_Asignacion {
     }
 
     public void seleccionar() {
-        vista.getBtnmodificar().setEnabled(true);
-        vista.getBtnguardar().setEnabled(false);
+        habilitar_botones();
 
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTablaasignaciondocentemateria().getModel();
         String identificacion = (String) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 0);
-        List<PersonaMD> listaper = bdpersona.obtenerdatos(identificacion);
-        List<docenteMD> lista = bddocente.obtenerdatos(identificacion);
-        List<AsignacionMateriaDocentesMD> listaasig = bdasignacion.obtenerdatos(identificacion);
-        bdasignacion.setIdentificacio(listaasig.get(0).getIdentificacio());
+        List<PersonaMD> listaper = bdpersona.mostrardatos();
+        List<docenteMD> lista = bddocente.mostrardatos();
+        List<AsignacionMateriaDocentesMD> listaasig = bdasignacion.mostrardatos();
+        bdasignacion.setIdentificacion(listaasig.get(0).getIdentificacion());
         bdasignacion.setPeriodo(listaasig.get(0).getPeriodo());
         bdasignacion.setAsignatura(listaasig.get(0).getAsignatura());
         bdasignacion.setParalelo(listaasig.get(0).getParalelo());
@@ -240,16 +256,29 @@ public class Con_Asignacion {
         bdpersona.setNombres(listaper.get(0).getNombres());
         bdpersona.setApellidos(listaper.get(0).getApellidos());
 
-        vista.getTxtdocente().setText(bdasignacion.getIdentificacio());
+        vista.getTxtdocente().setText(bdasignacion.getIdentificacion());
         vista.getCboxperiodo().setSelectedItem(bdasignacion.getPeriodo());
         vista.getCboxasignatura().setSelectedItem(bdasignacion.getAsignatura());
         vista.getCboxciclo().setSelectedItem(bdasignacion.getCiclo());
         vista.getCboxjornada().setSelectedItem(bdasignacion.getJornada());
         vista.getCboxparalelo().setSelectedItem(bdasignacion.getParalelo());
-        String nombre = "[" + bdasignacion.getIdentificacio() + "]" + bdpersona.getNombres() + " " + bdpersona.getApellidos();
+        String nombre = "[" + bdasignacion.getIdentificacion() + "]" + bdpersona.getNombres() + " " + bdpersona.getApellidos();
         vista.getTxtnombredocente().setText(nombre);
     }
+     private void eliminar() {
+        int seleccionado = vista.getTablaasignaciondocentemateria().getSelectedRow();
+        int resp2 = JOptionPane.showConfirmDialog(null, "CONFIRME SI ESTA SEGURO DE ELIMINAR");
+        if (resp2 == 0) {
+            if (bdasignacion.eliminar(vista.getTxtdocente().getText())) {
+                JOptionPane.showMessageDialog(null, "ELIMINADO CORRECTAMENTE");
+                lista();
+                nuevo();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL ELIMINAR");
+            }
+        }
 
+    }
     public void eventotabla() {
         vista.getTablaasignaciondocentemateria().addMouseListener(new MouseAdapter() {
             @Override

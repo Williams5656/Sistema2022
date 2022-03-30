@@ -154,6 +154,8 @@ public class Con_poa_evidencia implements ItemListener {
     public void itemStateChanged(ItemEvent e) {
         String nomcarrera = (String) vista.getCbx_carrera().getSelectedItem();
         if (nomcarrera != "Seleccionar") {
+            vista.getCbx_anio().removeAllItems();
+            vista.getCbx_anio().addItem("Seleccionar");
             listaPoa = baseDatosPoa.mostrarDatos();
             int id_carrera = 0;
             for (int i = 0; i < listaCarreras.size(); i++) {
@@ -161,26 +163,11 @@ public class Con_poa_evidencia implements ItemListener {
                     id_carrera = Integer.parseInt(listaCarreras.get(i).getCodigo_carrera());
                 }
             }
-
-            vista.getCbx_anio().removeAllItems();
-            vista.getCbx_anio().addItem("Seleccionar");
             for (int i = 0; i < listaPoa.size(); i++) {
                 if (listaPoa.get(i).getId_carrera() == id_carrera) {
                     vista.getCbx_anio().addItem(listaPoa.get(i).getAnio());
                 }
             }
-//            String anio = (String) vista.getCbx_anio().getSelectedItem();
-//            if(anio!= "Seleccionar")
-//            for (int i = 0; i < listaPoa.size(); i++) {
-//                if (listaCarreras.get(i).getNombre_carrera().equals(carrera)) {
-//                    String id_carrera = listaCarreras.get(i).getCodigo_carrera();
-//                    if (listaPoa.get(i).getId_carrera() == Integer.parseInt(id_carrera));
-//                    if (listaPoa.get(i).getAnio() == anio) {
-//                        vista.getCbx_proyecto().addItem("Proyecto: " + listaProyectos.get(i).getNum_proyecto_carrera());
-//                    }
-//                }
-//
-//            }
         } else {
             vista.getCbx_anio().removeAllItems();
             vista.getCbx_anio().addItem("Seleccionar");

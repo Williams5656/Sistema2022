@@ -52,9 +52,9 @@ public class proyecto_evidencia implements ItemListener {
                 }
             }
             for (int i = 0; i < listaPoa.size(); i++) {
+                System.err.println("llego al for");
                 if (listaPoa.get(i).getId_carrera() == Integer.parseInt(id_carrera)) {
                     if (listaPoa.get(i).getAnio() == anio) {
-                        System.err.println("llego al if");
                         for (int j = 0; j < listaProyectos.size(); j++) {
                             if (listaProyectos.get(j).getId_Poa() == listaPoa.get(i).getId_POA()) {
                                 Cbx_proyecto.addItem("Proyecto: " + listaProyectos.get(j).getNum_proyecto_carrera());

@@ -76,8 +76,8 @@ public class Con_calendario {
         carrera();
         cargarperiodo();
         tipo_actividad();
-        cargarLista("");
-        cargarListaAct("");
+        //cargarLista("");
+        cargarListaAct(0);
         lista();
         Ihnabilitar();
 
@@ -146,7 +146,7 @@ public class Con_calendario {
             Cargardatos();
             if (calendar.insertar()) {
                 JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
-                cargarListaAct("");
+                cargarListaAct(0);
                 guardarResp();
                 lista();
                 limpiar();
@@ -185,7 +185,7 @@ public class Con_calendario {
     public void lista() {
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTabla_calendario().getModel();
-        List<CalendarioMD> listacale = calen.obtenerDatos("");
+        List<CalendarioMD> listacale = calen.mostrardatos();
         int columnas = modelo.getColumnCount();
         for (int j = vista.getTabla_calendario().getRowCount() - 1; j >= 0; j--) {
             modelo.removeRow(j);
@@ -197,10 +197,11 @@ public class Con_calendario {
             int idtipo = listacale.get(i).getid_TipoActividad();
             List<T_actividadMD> listaTA = T_actividadbd.obtenerDatos(idtipo);
             int idp = listacale.get(i).getId_Periodo();
+            List<PeriodoacademicoMD> listap = periodobd.periodo_individual(idp);
             periodobd.periodo_individual(idp);
             vista.getTabla_calendario().setValueAt(listacale.get(i).getId_Actividad(), i, 0);
             vista.getTabla_calendario().setValueAt(listaCA.get(0).getNombre_carrera(), i, 1);
-            vista.getTabla_calendario().setValueAt(periodobd.getNombre(), i, 2);
+            vista.getTabla_calendario().setValueAt(listap.get(0).getNombre(), i, 2);
             vista.getTabla_calendario().setValueAt(listaTA.get(0).getNombre(), i, 3);
             vista.getTabla_calendario().setValueAt(listacale.get(i).getNombre_Actividad(), i, 4);
             vista.getTabla_calendario().setValueAt(listacale.get(i).getDescripcion(), i, 5);
@@ -237,7 +238,7 @@ public class Con_calendario {
         });
     }
 
-    public void cargarListaAct(String aguja) {
+    public void cargarListaAct(int aguja) {
         DefaultTableModel tblModel;
         tblModel = (DefaultTableModel) vista.getTabla_calendario().getModel();
         tblModel.setNumRows(0);
@@ -312,7 +313,7 @@ public class Con_calendario {
     public void seleccionarCalendario(){
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTabla_calendario().getModel();
-         String idactividad = (String) modelo.getValueAt(vista.getTabla_calendario().getSelectedRow(), 0);
+         int idactividad = (int) modelo.getValueAt(vista.getTabla_calendario().getSelectedRow(), 0);
          List<CalendarioMD> listac = calendar.obtenerDatos(idactividad);
          calendar.setId_Actividad(listac.get(0).getId_Actividad());
          calendar.setId_Carrera(listac.get(0).getId_Carrera());
@@ -327,8 +328,8 @@ public class Con_calendario {
          List<CarreraMD>listacarr = carrerabd.obtenerdatos(calendar.getId_Carrera());
          vista.getComobo_carrera().setSelectedItem(listacarr.get(0).getNombre_carrera());
          int idperiodo = listac.get(0).getId_Periodo();
-         PeriodoacademicoMD listaperiodo = periodobd.periodo_individual(idperiodo);
-         vista.getCombo_periodo().setSelectedItem(listaperiodo);
+         List<PeriodoacademicoMD>listaperiodo = periodobd.periodo_individual(idperiodo);
+         vista.getCombo_periodo().setSelectedItem(listaperiodo.get(0).getNombre());
          int idTA = listac.get(0).getid_TipoActividad();
          List<T_actividadMD> listaTA = T_actividadbd.obtenerDatos(idTA);
          vista.getCombo_actividad().setSelectedItem(listaTA.get(0).getNombre());

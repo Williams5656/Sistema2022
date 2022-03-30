@@ -27,11 +27,37 @@ public class CalendarioBD extends CalendarioMD {
         super(id_Actividad, id_Carrera, id_Periodo, id_TipoActividad, Nombre_Actividad, Descripcion, Fecha_Inicio, Fecha_Limite);
     }
 
-   
-    public List<CalendarioMD> obtenerDatos(String id_actividad) {
+     public List<CalendarioMD> mostrardatos() {
         List<CalendarioMD> listaA = new ArrayList<CalendarioMD>();
         try {
             String sql = "select * from calendario";
+            ResultSet rs = conectar.query(sql);
+            byte[] is;
+            while (rs.next()) {
+                CalendarioMD m = new CalendarioMD();
+                m.setId_Actividad(rs.getInt("id_actividad"));
+                m.setId_Carrera(rs.getString("id_carrera"));
+                m.setId_Periodo(rs.getInt("id_periodo"));
+                m.setid_TipoActividad(rs.getInt("id_tipoactividad"));
+                m.setNombre_Actividad(rs.getString("nombre_actividad"));
+                m.setDescripcion(rs.getString("descripcion"));
+                m.setFecha_Inicio(rs.getString("fecha_inicio"));
+                m.setFecha_Limite(rs.getString("fecha_limite"));
+                listaA.add(m);
+            }
+            rs.close();
+            return listaA;
+        } catch (Exception e) {
+            Logger.getLogger(UsuarioBD.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+
+    }
+   
+    public List<CalendarioMD> obtenerDatos(int id_actividad) {
+        List<CalendarioMD> listaA = new ArrayList<CalendarioMD>();
+        try {
+            String sql = "select * from calendario" + " where \"id_actividad\"='" + id_actividad + "'";
             ResultSet rs = conectar.query(sql);
             byte[] is;
             while (rs.next()) {
@@ -100,7 +126,7 @@ public class CalendarioBD extends CalendarioMD {
 
     }
 
-    public boolean modificar(String id_actividad) {
+    public boolean modificar(int id_actividad) {
         //Transformo image a base64 encode para postgresl
 
         String nsql = "update calendario set id_carrera='" + getId_Carrera()+ "',id_periodo='" + getId_Periodo() + "',id_tipoactividad='" + getid_TipoActividad()+ "',nombre_actividad='" + getNombre_Actividad() + 

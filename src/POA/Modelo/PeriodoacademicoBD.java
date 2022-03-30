@@ -55,10 +55,13 @@ public class PeriodoacademicoBD extends PeriodoacademicoMD {
         }
     }
     
-    public PeriodoacademicoMD periodo_individual(int cod) {
+    public List<PeriodoacademicoMD> periodo_individual(int cod) {
+       // PeriodoacademicoMD lista = new PeriodoacademicoMD();
+        List<PeriodoacademicoMD> lista = new ArrayList<PeriodoacademicoMD>();
         try {
-            PeriodoacademicoMD lista = new PeriodoacademicoMD();
-            String sql = "select * from periodo_academico where + id_periodo = "+cod;
+         
+            //String sql = "select * from periodo_academico"+ "where \ "id_periodo\" ='"+cod+"'";
+             String sql = "select * from periodo_academico" + " where \"id_periodo\"='" + cod + "'";
             ResultSet rs = conectar.query(sql);
 
             while (rs.next()) {
@@ -69,6 +72,7 @@ public class PeriodoacademicoBD extends PeriodoacademicoMD {
                 m.setFechafin(rs.getDate("fecha_fin"));
                 m.setCarrera(rs.getString("id_carrera"));
                 m.setEstado(rs.getBoolean("estado"));
+                lista.add(m);
             }
             rs.close();
             return lista;

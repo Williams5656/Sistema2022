@@ -24,6 +24,7 @@ public class anio_evidecia implements ItemListener {
     private List<POA.Modelo.PoaMD> listaPoa = new ArrayList<>();
     private List<POA.Modelo.CarreraMD> listaCarrera = new ArrayList<>();
     private PoaBD baseDatosPoa = new PoaBD();
+    private CarreraBD baseDatosCarrera = new CarreraBD();
 
     public anio_evidecia(JComboBox Cbx_carrera, JComboBox Cbx_anio) {
         this.Cbx_carrera = Cbx_carrera;
@@ -36,6 +37,7 @@ public class anio_evidecia implements ItemListener {
             Cbx_anio.removeAllItems();
             Cbx_anio.addItem("Seleccionar");
             listaPoa = baseDatosPoa.mostrarDatos();  
+            listaCarrera= baseDatosCarrera.mostrardatos();
             for (int i = 0; i < listaCarrera.size(); i++) {
                 if(listaCarrera.get(i).getNombre_carrera().equalsIgnoreCase(nomcarrera)){
                     Con_poa_evidencia.id_carrera=listaCarrera.get(i).getCodigo_carrera();

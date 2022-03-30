@@ -107,6 +107,9 @@ public class con_periodoAcademico {
         if (vista.getDateFechaFin().getDate() == null) {
             return false;
         }
+        if (vista.getDateFechaFin().getDate().before(vista.getDateFechaInicio().getDate())) {
+            return false;
+        }
         if (periodo.validar_fechas(carrera, vista.getDateFechaInicio().getDate(), vista.getDateFechaFin().getDate()) == false) {
             return false;
         }

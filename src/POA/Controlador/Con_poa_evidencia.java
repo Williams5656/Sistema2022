@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author USUARIO
  */
-public class Con_poa_evidencia implements ItemListener{
+public class Con_poa_evidencia implements ItemListener {
 
     private final vis_poa_evidencia vista;
     private ArrayList<ProyectoMD> listaProyectos = new ArrayList<>();
@@ -62,12 +62,12 @@ public class Con_poa_evidencia implements ItemListener{
                 }
             }
         }
-        
-       
+
     }
+
     public void cargarComboAnio() {
         String nomcarrera = (String) vista.getCbx_carrera().getSelectedItem();
-        
+
     }
 
     public void cargarComboProyecto() {
@@ -152,8 +152,8 @@ public class Con_poa_evidencia implements ItemListener{
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-       String nomcarrera = (String) vista.getCbx_carrera().getSelectedItem();
-       if (nomcarrera != "Seleccionar") {
+        String nomcarrera = (String) vista.getCbx_carrera().getSelectedItem();
+        if (nomcarrera != "Seleccionar") {
             listaPoa = baseDatosPoa.mostrarDatos();
             int id_carrera = 0;
             for (int i = 0; i < listaCarreras.size(); i++) {
@@ -166,6 +166,21 @@ public class Con_poa_evidencia implements ItemListener{
                     vista.getCbx_anio().addItem(listaPoa.get(i).getAnio());
                 }
             }
+//            String anio = (String) vista.getCbx_anio().getSelectedItem();
+//            if(anio!= "Seleccionar")
+//            for (int i = 0; i < listaPoa.size(); i++) {
+//                if (listaCarreras.get(i).getNombre_carrera().equals(carrera)) {
+//                    String id_carrera = listaCarreras.get(i).getCodigo_carrera();
+//                    if (listaPoa.get(i).getId_carrera() == Integer.parseInt(id_carrera));
+//                    if (listaPoa.get(i).getAnio() == anio) {
+//                        vista.getCbx_proyecto().addItem("Proyecto: " + listaProyectos.get(i).getNum_proyecto_carrera());
+//                    }
+//                }
+//
+//            }
+        }else{
+            vista.getCbx_carrera().removeAllItems();
+            vista.getCbx_anio().addItem("Seleccionar");
         }
     }
 }

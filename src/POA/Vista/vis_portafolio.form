@@ -4,6 +4,8 @@
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="radiogroupParalelo">
     </Component>
+    <Component class="javax.swing.ButtonGroup" name="botones_grupo">
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="closable" type="boolean" value="true"/>

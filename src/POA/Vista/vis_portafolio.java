@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
+import javax.swing.JTable;
 import javax.swing.JToggleButton;
 
 /**
@@ -22,6 +23,8 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
      */
     public vis_portafolio() {
         initComponents();
+        botones_grupo.add(btnNotas);
+        botones_grupo.add(btnModulos);
     }
 
     public JButton getBtnGuardar() {
@@ -159,6 +162,14 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
     public void setComboPeriodAcademico(JComboBox<String> comboPeriodAcademico) {
         this.comboPeriodAcademico = comboPeriodAcademico;
     }
+
+    public JTable getTbl_Datos() {
+        return tbl_Datos;
+    }
+
+    public void setTbl_Datos(JTable tbl_Datos) {
+        this.tbl_Datos = tbl_Datos;
+    }
     
     
 
@@ -172,6 +183,7 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         radiogroupParalelo = new javax.swing.ButtonGroup();
+        botones_grupo = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         btnGuiasPracticas = new javax.swing.JToggleButton();
         btnModulos = new javax.swing.JToggleButton();
@@ -331,6 +343,7 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup botones_grupo;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JToggleButton btnGuiasPracticas;
     private javax.swing.JToggleButton btnInformesSilabo;

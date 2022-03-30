@@ -53,12 +53,11 @@ public class Con_Asignacion {
             }
         });
         listaMateria = baseDatosMateria.mostrardatos();
-        listaPeriodo = baseDatosPeriodo.lista_periodos();
-        inhabilitar_botones();
+        listaPeriodo = baseDatosPeriodo.lista_periodos();       
         vista.getBtnagregar().setEnabled(true);
+        inhabilitar_botones();
         buscardocente();
         lista();
-
     }
 
     public void cargarComboMateria() {
@@ -71,8 +70,6 @@ public class Con_Asignacion {
     }
 
     public void habilitar_botones() {
-        vista.getBtnguardar().setEnabled(true);
-        vista.getCboxperiodo().setEnabled(true);
         vista.getCboxasignatura().setEnabled(true);
         vista.getCboxjornada().setEnabled(true);
         vista.getCboxparalelo().setEnabled(true);
@@ -240,16 +237,20 @@ public class Con_Asignacion {
 
     public void seleccionar() {
         habilitar_botones();
-
+        vista.getBtneliminar().setEnabled(true);
+        vista.getBtnmodificar().setEnabled(true);
+        vista.getBtnguardar().setEnabled(false);
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTablaasignaciondocentemateria().getModel();
-        String identificacion = (String) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 0);
-        List<PersonaMD> listaper = bdpersona.mostrardatos();
-        List<docenteMD> lista = bddocente.mostrardatos();
-        List<AsignacionMateriaDocentesMD> listaasig = bdasignacion.mostrardatos();
-        bdasignacion.setId_asignacio(vista.getId_asignacion().getText());
+        String identificacion = (String) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 1);
+        String id_asig = (String) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 2);
+        List<PersonaMD> listaper = bdpersona.obtenerdatos(identificacion);
+        List<docenteMD> lista = bddocente.obtenerdatos(identificacion);
+        List<AsignacionMateriaDocentesMD> listaasig = bdasignacion.obtenerdatos(identificacion);
+        String periodo = bdasignacion.mostrarPeriodo(Integer.parseInt(listaasig.get(0).getPeriodo()));
+        bdasignacion.setId_asignacio(listaasig.get(0).getId_asignacio());
         bdasignacion.setIdentificacion(listaasig.get(0).getIdentificacion());
-        bdasignacion.setPeriodo(listaasig.get(0).getPeriodo());
+        bdasignacion.setPeriodo(periodo);
         bdasignacion.setAsignatura(listaasig.get(0).getAsignatura());
         bdasignacion.setParalelo(listaasig.get(0).getParalelo());
         bdasignacion.setJornada(listaasig.get(0).getJornada());
@@ -261,13 +262,15 @@ public class Con_Asignacion {
         vista.getId_asignacion().setText(bdasignacion.getId_asignacio());
         vista.getTxtdocente().setText(bdasignacion.getIdentificacion());
         vista.getCboxperiodo().setSelectedItem(bdasignacion.getPeriodo());
-        vista.getCboxasignatura().setSelectedItem(bdasignacion.getAsignatura());
+        vista.getCboxasignatura().setSelectedItem(id_asig);
         vista.getCboxciclo().setSelectedItem(bdasignacion.getCiclo());
         vista.getCboxjornada().setSelectedItem(bdasignacion.getJornada());
         vista.getCboxparalelo().setSelectedItem(bdasignacion.getParalelo());
         String nombre = "[" + bdasignacion.getIdentificacion() + "]" + bdpersona.getNombres() + " " + bdpersona.getApellidos();
         vista.getTxtnombredocente().setText(nombre);
+        
     }
+    
      private void eliminar() {
         int seleccionado = vista.getTablaasignaciondocentemateria().getSelectedRow();
         int resp2 = JOptionPane.showConfirmDialog(null, "CONFIRME SI ESTA SEGURO DE ELIMINAR");

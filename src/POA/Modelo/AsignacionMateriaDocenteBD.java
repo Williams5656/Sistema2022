@@ -26,7 +26,7 @@ public class AsignacionMateriaDocenteBD extends AsignacionMateriaDocentesMD{
 
         try {
             List<AsignacionMateriaDocentesMD> lista = new ArrayList<AsignacionMateriaDocentesMD>();
-            String sql = "select * from asignacion_docentes";
+            String sql = "select * from asignacion_docentes ";
             ResultSet rs = conectar.query(sql);
             while (rs.next()) {
                 AsignacionMateriaDocentesMD asignacion = new AsignacionMateriaDocentesMD();
@@ -47,12 +47,12 @@ public class AsignacionMateriaDocenteBD extends AsignacionMateriaDocentesMD{
             return null;
         }
     }
-    public List<AsignacionMateriaDocentesMD> obtenerdatos(String id_asignacion) {
+    public List<AsignacionMateriaDocentesMD> obtenerdatos(String identificacion) {
 
         try {
             List<AsignacionMateriaDocentesMD> lista = new ArrayList<AsignacionMateriaDocentesMD>();
 
-            String sql = "select * from asignacion_docentes" + " where\"id_asignacion\"='" + id_asignacion + "'";
+            String sql = "select * from asignacion_docentes" + " where\"identificacion\"='" + identificacion + "'";
             ResultSet rs = conectar.query(sql);
             while (rs.next()) {
                 AsignacionMateriaDocentesMD asignacion = new AsignacionMateriaDocentesMD();
@@ -62,6 +62,7 @@ public class AsignacionMateriaDocenteBD extends AsignacionMateriaDocentesMD{
                 asignacion.setCiclo(rs.getString("ciclo"));
                 asignacion.setJornada(rs.getString("jornada"));
                 asignacion.setParalelo(rs.getString("paralelo"));
+                asignacion.setPeriodo(rs.getString("periodo"));
                 lista.add(asignacion);
             }
 
@@ -120,6 +121,21 @@ public class AsignacionMateriaDocenteBD extends AsignacionMateriaDocentesMD{
             Logger.getLogger(PerfilBD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return idPeriodo;
+    }
+        
+        public String mostrarPeriodo(int idPeriodo) {
+        String periodo= "";
+        String sql="select nombre from periodo_academico where id_periodo= '" + idPeriodo+ "'";
+        ResultSet rs = conectar.query(sql);
+        try {
+            while (rs.next()) {
+                
+                periodo=rs.getString("nombre");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PerfilBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return periodo;
     }
     
         public String mostrarIdMateria(String nombre) {

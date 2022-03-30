@@ -22,6 +22,7 @@ import javax.swing.JComboBox;
 public class anio_evidecia implements ItemListener {
     private JComboBox Cbx_carrera,Cbx_anio;
     private List<POA.Modelo.PoaMD> listaPoa = new ArrayList<>();
+    private List<POA.Modelo.CarreraMD> listaCarrera = new ArrayList<>();
     private PoaBD baseDatosPoa = new PoaBD();
 
     public anio_evidecia(JComboBox Cbx_carrera, JComboBox Cbx_anio) {
@@ -35,6 +36,12 @@ public class anio_evidecia implements ItemListener {
             Cbx_anio.removeAllItems();
             Cbx_anio.addItem("Seleccionar");
             listaPoa = baseDatosPoa.mostrarDatos();  
+            for (int i = 0; i < listaCarrera.size(); i++) {
+                if(listaCarrera.get(i).getNombre_carrera().equalsIgnoreCase(nomcarrera)){
+                    Con_poa_evidencia.id_carrera=listaCarrera.get(i).getCodigo_carrera();
+                }
+            }
+            
             for (int i = 0; i < listaPoa.size(); i++) {
                 if (listaPoa.get(i).getId_carrera() == Integer.parseInt(Con_poa_evidencia.id_carrera)) {
                     Cbx_anio.addItem(listaPoa.get(i).getAnio());

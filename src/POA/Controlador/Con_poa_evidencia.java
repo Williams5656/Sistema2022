@@ -59,7 +59,6 @@ public class Con_poa_evidencia  {
             for (int i = 0; i < listaCarreras.size(); i++) {
                 if (Integer.parseInt(listaCarreras.get(i).getCodigo_carrera()) == listaPoa.get(j).getId_carrera()) {
                     vista.getCbx_carrera().addItem(listaCarreras.get(i).getNombre_carrera());
-                    id_carrera=listaCarreras.get(i).getCodigo_carrera();
                 }
             }
         }
@@ -70,7 +69,7 @@ public class Con_poa_evidencia  {
         vista.getCbx_carrera().addItemListener(new anio_evidecia(vista.getCbx_carrera(), vista.getCbx_anio()));
         vista.getCbx_anio().addItemListener(new proyecto_evidencia(vista.getCbx_carrera(), vista.getCbx_anio(), vista.getCbx_proyecto()));
         vista.getCbx_proyecto().addItemListener(new objetivo_evidencia(vista.getCbx_proyecto(), vista.getCbx_obje_opera()));
-        vista.getCbx_obje_opera().addItemListener(new actividad_evidencia(vista.getCbx_obje_opera(), vista.getCbx_actividad()));
+        //vista.getCbx_obje_opera().addItemListener(new actividad_evidencia(vista.getCbx_obje_opera(), vista.getCbx_actividad()));
     }
 
     public void guardar() {

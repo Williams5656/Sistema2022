@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author USUARIO
  */
-public class Con_poa_evidencia {
+public class Con_poa_evidencia implements ItemListener{
 
     private final vis_poa_evidencia vista;
     private ArrayList<ProyectoMD> listaProyectos = new ArrayList<>();
@@ -47,15 +47,9 @@ public class Con_poa_evidencia {
         this.vista = vista;
         vista.setVisible(true);
         lista();
-        vista.getCbx_carrera().removeAllItems();
-        vista.getCbx_anio().removeAllItems();
-        vista.getCbx_actividad().removeAllItems();
-        vista.getCbx_obje_opera().removeAllItems();
-        vista.getCbx_proyecto().removeAllItems();
         vista.getBtnGuardar().addActionListener(e -> guardar());
         cargarComboCarrera();
-        cargarComboAnio();
-        //cargarComboProyecto();
+        vista.getCbx_carrera().addItemListener(this);
     }
 
     public void cargarComboCarrera() {
@@ -68,13 +62,12 @@ public class Con_poa_evidencia {
                 }
             }
         }
+        
+       
     }
-
     public void cargarComboAnio() {
-        listaPoa = baseDatosPoa.mostrarDatos();
-        for (int i = 0; i < listaPoa.size(); i++) {
-            vista.getCbx_anio().addItem(listaPoa.get(i).getAnio());
-        }
+        String nomcarrera = (String) vista.getCbx_carrera().getSelectedItem();
+        
     }
 
     public void cargarComboProyecto() {
@@ -153,6 +146,25 @@ public class Con_poa_evidencia {
                     vista.getTabla_Evidencias().setValueAt(lista3.get(i).getArchivo(), i, 2);
                 }
 
+            }
+        }
+    }
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+       String nomcarrera = (String) vista.getCbx_carrera().getSelectedItem();
+       if (nomcarrera != "Seleccionar") {
+            listaPoa = baseDatosPoa.mostrarDatos();
+            int id_carrera = 0;
+            for (int i = 0; i < listaCarreras.size(); i++) {
+                if (listaCarreras.get(i).getNombre_carrera().equalsIgnoreCase(nomcarrera)) {
+                    id_carrera = Integer.parseInt(listaCarreras.get(i).getCodigo_carrera());
+                }
+            }
+            for (int i = 0; i < listaPoa.size(); i++) {
+                if (listaPoa.get(i).getId_carrera() == id_carrera) {
+                    vista.getCbx_anio().addItem(listaPoa.get(i).getAnio());
+                }
             }
         }
     }

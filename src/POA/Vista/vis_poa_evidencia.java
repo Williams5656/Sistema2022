@@ -196,25 +196,25 @@ public class vis_poa_evidencia extends Fondos.fondo_internalframe {
         jLabel1.setText("CARRERA:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
 
-        cbx_anio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbx_anio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
         getContentPane().add(cbx_anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 220, -1));
 
         jLabel2.setText("AÑO:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, -1, -1));
 
-        cbx_carrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbx_carrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
         getContentPane().add(cbx_carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 220, -1));
 
-        cbx_proyecto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbx_proyecto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
         getContentPane().add(cbx_proyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 220, -1));
 
         jLabel3.setText("PROYECTO:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
 
-        cbx_obje_opera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbx_obje_opera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
         getContentPane().add(cbx_obje_opera, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 220, -1));
 
-        cbx_actividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbx_actividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
         getContentPane().add(cbx_actividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 220, -1));
 
         jLabel6.setText("ACTIVIDAD");

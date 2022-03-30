@@ -180,6 +180,9 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
         txtdocente = new javax.swing.JTextField();
         lbdocente = new javax.swing.JLabel();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tablaasignaciondocentemateria.setModel(new javax.swing.table.DefaultTableModel(
@@ -236,14 +239,19 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
         txtnombredocente.setBorder(null);
         txtnombredocente.setCaretColor(new java.awt.Color(255, 255, 255));
         txtnombredocente.setOpaque(false);
-        getContentPane().add(txtnombredocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 170, 20));
+        getContentPane().add(txtnombredocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 470, 20));
 
         jLabel5.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("PARALELO:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, -1, -1));
 
-        cboxparalelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboxparalelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D", "E", "F" }));
+        cboxparalelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboxparaleloActionPerformed(evt);
+            }
+        });
         getContentPane().add(cboxparalelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, 120, -1));
 
         jLabel1.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
@@ -276,6 +284,10 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cboxparaleloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxparaleloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboxparaleloActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

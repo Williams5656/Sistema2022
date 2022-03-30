@@ -68,7 +68,7 @@ public class Con_AreaCarrera {
         listaDocente = baseDatosDocente.mostrardatos();
         listaPersona = baseDatosPersona.mostrardatos();
     }
-
+    
     public void desactivarBotones() {
         vista.getBtn_guardar().setEnabled(false);
         vista.getBtn_modificar().setEnabled(false);
@@ -96,7 +96,7 @@ public class Con_AreaCarrera {
         int contador = 0;
         for (PersonaMD persona : listaPersona) {
             for (docenteMD docente : listaDocente) {
-                if (persona.getCedula().equals(docente.getCedula())) {
+                if (persona.getCedula().equals(docente.getCedula())&&docente.getEstado().equals("ACTIVO")) {
                     vista.getComboResponsable().addItem(persona.getNombres() + " " + persona.getApellidos());
                     vector[contador] = persona.getCedula();
                     contador++;

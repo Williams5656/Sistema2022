@@ -39,6 +39,10 @@ public class Con_calendario {
     CarreraBD carrerabd = new CarreraBD();
     CalendarioBD calen = new CalendarioBD();
     private PersonaBD bdpersona = new PersonaBD();
+    private docenteBD baseDatosDocente = new docenteBD();
+    private List<docenteMD> listaDocente = new ArrayList<>();
+    private List<PersonaMD> listaPersona = new ArrayList<>();
+    String vector[];
     private TextAutoCompleter at;
     T_ActividadBD T_actividadbd = new T_ActividadBD();
     PeriodoacademicoBD periodobd = new PeriodoacademicoBD();
@@ -129,9 +133,19 @@ public class Con_calendario {
     }
 
     public void Cargardatos_c() {
-        List<PersonaMD> listar = bdpersona.mostrardatos();
-        for (int i = 0; i < listar.size(); i++) {
-            at.addItem(listar.get(i).getNombres());
+        listaPersona = bdpersona.mostrardatos();
+        listaDocente = baseDatosDocente.mostrardatos();
+        vector = new String[listaDocente.size()];
+        int contador = 0;
+        for (PersonaMD persona : listaPersona) {
+            for (docenteMD docente : listaDocente) {
+                if (persona.getCedula().equals(docente.getCedula())&&docente.getEstado().equals("ACTIVO")) {
+                    at.addItem(persona.getNombres() + " " + persona.getApellidos());
+                    vector[contador] = persona.getCedula();
+                    contador++;
+                    System.out.println(persona.getNombres() + " " + contador);
+                }
+            }
         }
     }
 

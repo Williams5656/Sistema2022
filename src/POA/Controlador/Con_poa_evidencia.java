@@ -163,7 +163,7 @@ public class Con_poa_evidencia implements ItemListener {
             }
             for (int i = 0; i < listaPoa.size(); i++) {
                 if (listaPoa.get(i).getId_carrera() == id_carrera) {
-                     vista.getCbx_carrera().removeAllItems();
+                     vista.getCbx_anio().removeAllItems();
                      vista.getCbx_anio().addItem("Seleccionar");
                     vista.getCbx_anio().addItem(listaPoa.get(i).getAnio());
                 }

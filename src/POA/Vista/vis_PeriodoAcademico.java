@@ -115,6 +115,9 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
 
+        setClosable(true);
+        setIconifiable(true);
+
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("INGRESO DATOS"));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

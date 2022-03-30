@@ -181,7 +181,7 @@ public class Con_poa_evidencia implements ItemListener {
 //
 //            }
         }else{
-            vista.getCbx_carrera().removeAllItems();
+            vista.getCbx_anio().removeAllItems();
             vista.getCbx_anio().addItem("Seleccionar");
         }
     }

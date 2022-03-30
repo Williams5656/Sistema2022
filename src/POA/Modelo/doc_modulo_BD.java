@@ -138,19 +138,19 @@ public class doc_modulo_BD extends doc_modulo_MD {
           
               public boolean insertar() {
         //Transformo image a base64 encode para postgresl
-          String ef = null;
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        try {
-            BufferedImage img = toBufferedImage(getDocumento());
-            ImageIO.write(img, "PNG", bos);
-            byte[] imgb = bos.toByteArray();
-            ef = Base64.encodeBytes(imgb);
-        } catch (IOException ex) {
-            Logger.getLogger(doc_modulo_BD.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//          String ef = null;
+//        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//        try {
+//            BufferedImage img = toBufferedImage(getDocumento());
+//            ImageIO.write(img, "PNG", bos);
+//            byte[] imgb = bos.toByteArray();
+//            ef = Base64.encodeBytes(imgb);
+//        } catch (IOException ex) {
+//            Logger.getLogger(doc_modulo_BD.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         
-        
-        String nsql = "INSERT INTO doc_modulo(id_periodo,id_materia,documento)" + "VALUES ('" + getId_periodo()+ "','" + getId_materia()+ "','" + null + "')";
+        //borrado el documento del iserte
+        String nsql = "INSERT INTO doc_modulo(id_periodo,id_materia)" + "VALUES ('" + getId_periodo()+ "','" + getId_materia()+"');";
 
         if (conectar.noQuery(nsql) == null) {
             return true;

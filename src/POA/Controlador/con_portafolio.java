@@ -21,6 +21,7 @@ public class con_portafolio {
     List<MateriaMD> listMat = materiabd.mostrardatos();
     PeriodoacademicoBD periodobd = new PeriodoacademicoBD();
     List<PeriodoacademicoMD> listPer = periodobd.lista_periodos();
+    
 
     public con_portafolio(vis_portafolio vista) {
         this.vista = vista;

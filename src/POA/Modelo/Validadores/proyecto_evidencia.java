@@ -44,13 +44,14 @@ public class proyecto_evidencia implements ItemListener {
         String anio = (String) Cbx_anio.getSelectedItem();
         String id_carrera = "";
         if (carrera != "Seleccionar" && anio != "Seleccionar") {
-            Cbx_anio.removeAllItems();
-            Cbx_anio.addItem("Seleccionar");
+            Cbx_proyecto.removeAllItems();
+            Cbx_proyecto.addItem("Seleccionar");
             for (int i = 0; i < listaCarreras.size(); i++) {
                 if (listaCarreras.get(i).getNombre_carrera().equals(carrera)) {
                     id_carrera = listaCarreras.get(i).getCodigo_carrera();
                 }
             }
+            System.out.println("llego");
             for (int i = 0; i < listaPoa.size(); i++) {
                 if (listaPoa.get(i).getId_carrera() == Integer.parseInt(id_carrera)) {
                     if (listaPoa.get(i).getAnio() == anio) {

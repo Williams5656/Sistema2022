@@ -7,6 +7,7 @@ package POA.Controlador;
 
 import POA.Modelo.ActividadesBD;
 import POA.Modelo.Validadores.anio_evidecia;
+import POA.Modelo.Validadores.proyecto_evidencia;
 import POA.Modelo.CarreraMD;
 import POA.Modelo.ProyectoMD;
 import POA.Modelo.ProyectoBD;
@@ -68,6 +69,7 @@ public class Con_poa_evidencia  {
 
     public void cargarComboAnio() {
         vista.getCbx_carrera().addItemListener(new anio_evidecia(vista.getCbx_carrera(), vista.getCbx_anio()));
+        vista.getCbx_anio().addItemListener(new proyecto_evidencia(vista.getCbx_carrera(), vista.getCbx_anio(), vista.getCbx_proyecto()));
 
     }
 

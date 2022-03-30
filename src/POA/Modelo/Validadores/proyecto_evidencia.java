@@ -64,6 +64,9 @@ public class proyecto_evidencia implements ItemListener {
                 }
 
             }
+        }else{
+            Cbx_proyecto.removeAllItems();
+            Cbx_proyecto.addItem("Seleccionar");
         }
     }
 

@@ -51,10 +51,10 @@ public class proyecto_evidencia implements ItemListener {
                     id_carrera = listaCarreras.get(i).getCodigo_carrera();
                 }
             }
-            System.out.println("llego");
             for (int i = 0; i < listaPoa.size(); i++) {
                 if (listaPoa.get(i).getId_carrera() == Integer.parseInt(id_carrera)) {
                     if (listaPoa.get(i).getAnio() == anio) {
+                        System.err.println("llego");
                         for (int j = 0; j < listaProyectos.size(); j++) {
                             if (listaProyectos.get(i).getId_Poa() == listaPoa.get(i).getId_POA()) {
                                 Cbx_proyecto.addItem("Proyecto: " + listaProyectos.get(i).getNum_proyecto_carrera());

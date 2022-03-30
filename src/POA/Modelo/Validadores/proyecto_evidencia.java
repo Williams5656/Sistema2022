@@ -56,8 +56,8 @@ public class proyecto_evidencia implements ItemListener {
                     if (listaPoa.get(i).getAnio() == anio) {
                         System.err.println("llego al if");
                         for (int j = 0; j < listaProyectos.size(); j++) {
-                            if (listaProyectos.get(i).getId_Poa() == listaPoa.get(i).getId_POA()) {
-                                Cbx_proyecto.addItem("Proyecto: " + listaProyectos.get(i).getNum_proyecto_carrera());
+                            if (listaProyectos.get(j).getId_Poa() == listaPoa.get(i).getId_POA()) {
+                                Cbx_proyecto.addItem("Proyecto: " + listaProyectos.get(j).getNum_proyecto_carrera());
                             }
                         }
                     }

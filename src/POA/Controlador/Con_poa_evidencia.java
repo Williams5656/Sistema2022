@@ -6,6 +6,7 @@
 package POA.Controlador;
 
 import POA.Modelo.ActividadesBD;
+import POA.Modelo.Validadores.anio_evidecia;
 import POA.Modelo.CarreraMD;
 import POA.Modelo.ProyectoMD;
 import POA.Modelo.ProyectoBD;
@@ -27,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author USUARIO
  */
-public class Con_poa_evidencia implements ItemListener {
+public class Con_poa_evidencia  {
 
     private final vis_poa_evidencia vista;
     private ArrayList<ProyectoMD> listaProyectos = new ArrayList<>();
@@ -49,7 +50,7 @@ public class Con_poa_evidencia implements ItemListener {
         lista();
         vista.getBtnGuardar().addActionListener(e -> guardar());
         cargarComboCarrera();
-        vista.getCbx_carrera().addItemListener(this);
+        cargarComboAnio();
     }
 
     public void cargarComboCarrera() {
@@ -66,7 +67,7 @@ public class Con_poa_evidencia implements ItemListener {
     }
 
     public void cargarComboAnio() {
-        String nomcarrera = (String) vista.getCbx_carrera().getSelectedItem();
+        vista.getCbx_carrera().addItemListener(new anio_evidecia(vista.getCbx_carrera(), vista.getCbx_anio()));
 
     }
 
@@ -150,27 +151,5 @@ public class Con_poa_evidencia implements ItemListener {
         }
     }
 
-    @Override
-    public void itemStateChanged(ItemEvent e) {
-        String nomcarrera = (String) vista.getCbx_carrera().getSelectedItem();
-        if (nomcarrera != "Seleccionar") {
-            vista.getCbx_anio().removeAllItems();
-            vista.getCbx_anio().addItem("Seleccionar");
-            listaPoa = baseDatosPoa.mostrarDatos();
-            int id_carrera = 0;
-            for (int i = 0; i < listaCarreras.size(); i++) {
-                if (listaCarreras.get(i).getNombre_carrera().equalsIgnoreCase(nomcarrera)) {
-                    id_carrera = Integer.parseInt(listaCarreras.get(i).getCodigo_carrera());
-                }
-            }
-            for (int i = 0; i < listaPoa.size(); i++) {
-                if (listaPoa.get(i).getId_carrera() == id_carrera) {
-                    vista.getCbx_anio().addItem(listaPoa.get(i).getAnio());
-                }
-            }
-        } else {
-            vista.getCbx_anio().removeAllItems();
-            vista.getCbx_anio().addItem("Seleccionar");
-        }
-    }
+    
 }

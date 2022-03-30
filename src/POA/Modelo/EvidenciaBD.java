@@ -38,9 +38,9 @@ public class EvidenciaBD {
         return lista;
     }
     
-    public void guardar(int id_actividades, String archivo){
+    public void guardar(int id_evidencia, int id_actividades, String archivo){
         
-        String sql = "insert into evidencia (id_actividades, archivo) VALUES (" + 
+        String sql = "insert into evidencia (id_evidencia, id_actividades, archivo) VALUES (" + id_evidencia+", "+
                 id_actividades + ", '" + archivo + "');";
         
         conectar.noQuery(sql);

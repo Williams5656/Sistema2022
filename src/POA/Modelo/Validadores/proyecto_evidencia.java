@@ -14,6 +14,7 @@ import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComboBox;
+import POA.Controlador.Con_poa_evidencia;
 
 /**
  *
@@ -37,34 +38,27 @@ public class proyecto_evidencia implements ItemListener {
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        listaCarreras = baseDatosCarrera.mostrardatos();
         listaPoa = baseDatosPoa.mostrarDatos();
         listaProyectos = baseDatosProyecto.mostrarDatos();
         String carrera = (String) Cbx_carrera.getSelectedItem();
-        String anio = (String) Cbx_anio.getSelectedItem();
-        String id_carrera = "";
-        if (carrera != "Seleccionar" && anio != "Seleccionar") {
+        Con_poa_evidencia.anio = (String) Cbx_anio.getSelectedItem();
+        if (carrera != "Seleccionar" && Con_poa_evidencia.anio != "Seleccionar") {
             Cbx_proyecto.removeAllItems();
             Cbx_proyecto.addItem("Seleccionar");
-            for (int i = 0; i < listaCarreras.size(); i++) {
-                if (listaCarreras.get(i).getNombre_carrera().equals(carrera)) {
-                    id_carrera = listaCarreras.get(i).getCodigo_carrera();
-                }
-            }
             for (int i = 0; i < listaPoa.size(); i++) {
-                System.err.println("llego al for");
-                if (listaPoa.get(i).getId_carrera() == Integer.parseInt(id_carrera)) {
-                    if (listaPoa.get(i).getAnio() == anio) {
-                        for (int j = 0; j < listaProyectos.size(); j++) {
-                            if (listaProyectos.get(j).getId_Poa() == listaPoa.get(i).getId_POA()) {
-                                Cbx_proyecto.addItem("Proyecto: " + listaProyectos.get(j).getNum_proyecto_carrera());
-                            }
-                        }
+                if (listaPoa.get(i).getId_carrera() == Integer.parseInt(Con_poa_evidencia.id_carrera)) {
+                    if (listaPoa.get(i).getAnio() == Con_poa_evidencia.anio) {
+                        Con_poa_evidencia.id_poa=listaPoa.get(i).getId_POA();
                     }
                 }
 
             }
-        }else{
+            for (int j = 0; j < listaProyectos.size(); j++) {
+                if (listaProyectos.get(j).getId_Poa() == Con_poa_evidencia.id_poa) {
+                    Cbx_proyecto.addItem(listaProyectos.get(j).getNum_proyecto_carrera());
+                }
+            }
+        } else {
             Cbx_proyecto.removeAllItems();
             Cbx_proyecto.addItem("Seleccionar");
         }

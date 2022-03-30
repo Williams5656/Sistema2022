@@ -5,6 +5,7 @@
  */
 package POA.Modelo.Validadores;
 
+import POA.Controlador.Con_poa_evidencia;
 import POA.Modelo.CarreraBD;
 import POA.Modelo.PoaBD;
 import java.awt.event.ItemEvent;
@@ -22,8 +23,6 @@ public class anio_evidecia implements ItemListener {
     private JComboBox Cbx_carrera,Cbx_anio;
     private List<POA.Modelo.PoaMD> listaPoa = new ArrayList<>();
     private PoaBD baseDatosPoa = new PoaBD();
-    private List<POA.Modelo.CarreraMD> listaCarreras = new ArrayList<>();
-    private CarreraBD baseDatosCarrera = new CarreraBD();
 
     public anio_evidecia(JComboBox Cbx_carrera, JComboBox Cbx_anio) {
         this.Cbx_carrera = Cbx_carrera;
@@ -35,16 +34,9 @@ public class anio_evidecia implements ItemListener {
         if (nomcarrera != "Seleccionar") {
             Cbx_anio.removeAllItems();
             Cbx_anio.addItem("Seleccionar");
-            listaCarreras = baseDatosCarrera.mostrardatos();
-            listaPoa = baseDatosPoa.mostrarDatos();
-            int id_carrera = 0;
-            for (int i = 0; i < listaCarreras.size(); i++) {
-                if (listaCarreras.get(i).getNombre_carrera().equalsIgnoreCase(nomcarrera)) {
-                    id_carrera = Integer.parseInt(listaCarreras.get(i).getCodigo_carrera());
-                }
-            }
+            listaPoa = baseDatosPoa.mostrarDatos();  
             for (int i = 0; i < listaPoa.size(); i++) {
-                if (listaPoa.get(i).getId_carrera() == id_carrera) {
+                if (listaPoa.get(i).getId_carrera() == Integer.parseInt(Con_poa_evidencia.id_carrera)) {
                     Cbx_anio.addItem(listaPoa.get(i).getAnio());
                 }
             }

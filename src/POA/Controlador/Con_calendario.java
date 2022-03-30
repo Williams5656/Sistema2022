@@ -76,7 +76,7 @@ public class Con_calendario {
         carrera();
         cargarperiodo();
         tipo_actividad();
-        //cargarLista("");
+        cargarLista("");
         cargarListaAct(0);
         lista();
         Ihnabilitar();
@@ -161,8 +161,8 @@ public class Con_calendario {
 
     public void Cargardatos() {
         List<PeriodoacademicoMD> lista = periodobd.lista_periodos();
-        int idrol = vista.getCombo_periodo().getSelectedIndex();
-        int nrol = lista.get(idrol).getIdperiodo();
+        int idperiodo = vista.getCombo_periodo().getSelectedIndex();
+        int nperiodo = lista.get(idperiodo).getIdperiodo();
         List<T_actividadMD> listaTA = T_actividadbd.mostrardatos();
         int idTA = vista.getCombo_actividad().getSelectedIndex();
         int nTA = listaTA.get(idTA).getId_T_actividad();
@@ -174,7 +174,7 @@ public class Con_calendario {
         String fechalim = formato6.format(vista.getFecha_inicio().getDate());
         calendar.setId_Actividad(Integer.parseInt(vista.getTxt_id_A().getText()));
         calendar.setId_Carrera(nCA);
-        calendar.setId_Periodo(nrol);
+        calendar.setId_Periodo(nperiodo);
         calendar.setid_TipoActividad(nTA);
         calendar.setNombre_Actividad(vista.getTxt_N_actividad().getText());
         calendar.setDescripcion(vista.getTxt_descripcion().getText());

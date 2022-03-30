@@ -14,6 +14,7 @@ import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComboBox;
+import POA.Modelo.Validadores.anio_evidecia;
 import POA.Controlador.Con_poa_evidencia;
 
 /**
@@ -47,6 +48,8 @@ public class proyecto_evidencia implements ItemListener {
         if (carrera != "Seleccionar" || Con_poa_evidencia.anio != "Seleccionar" || Con_poa_evidencia.anio!="null") {
             Cbx_proyecto.removeAllItems();
             Cbx_proyecto.addItem("Seleccionar");
+            Con_poa_evidencia.id_carrera=anio_evidecia.id_carrera;
+            System.out.println(Con_poa_evidencia.id_carrera);
             for (int i = 0; i < listaPoa.size(); i++) {
                 if (listaPoa.get(i).getId_carrera() == Integer.parseInt(Con_poa_evidencia.id_carrera)) {
                     if (listaPoa.get(i).getAnio() == Con_poa_evidencia.anio) {

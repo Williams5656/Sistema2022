@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import POA.Modelo.Validadores.anio_evidecia;
 
 /**
  *
@@ -38,7 +39,7 @@ public class Con_poa_evidencia  {
     private PoaBD baseDatosPoa = new PoaBD();
     private EvidenciaBD baseDatosEvidencias = new EvidenciaBD();
     public static  String anio="";
-    public static String id_carrera="";
+    public static String id_carrera=anio_evidecia.id_carrera;
     public static int id_poa=0;
     public static  int id_objetivo=0;
     public static int id_proyecto=0;
@@ -67,7 +68,6 @@ public class Con_poa_evidencia  {
 
     public void cargarComboAnio() {
         vista.getCbx_carrera().addItemListener(new anio_evidecia(vista.getCbx_carrera(), vista.getCbx_anio()));
-        System.out.println(anio);
         vista.getCbx_anio().addItemListener(new proyecto_evidencia(vista.getCbx_carrera(), vista.getCbx_anio(), vista.getCbx_proyecto()));
         //vista.getCbx_proyecto().addItemListener(new objetivo_evidencia(vista.getCbx_proyecto(), vista.getCbx_obje_opera()));
         //vista.getCbx_obje_opera().addItemListener(new actividad_evidencia(vista.getCbx_obje_opera(), vista.getCbx_actividad()));

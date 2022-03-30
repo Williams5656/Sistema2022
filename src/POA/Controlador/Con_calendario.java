@@ -171,7 +171,7 @@ public class Con_calendario {
         String nCA = listaCA.get(idCA).getCodigo_carrera();
         SimpleDateFormat formato6 = new SimpleDateFormat("yyyy-MM-dd");
         String fechaini = formato6.format(vista.getFecha_inicio().getDate());
-        String fechalim = formato6.format(vista.getFecha_inicio().getDate());
+        String fechalim = formato6.format(vista.getFecha_limite().getDate());
         calendar.setId_Actividad(Integer.parseInt(vista.getTxt_id_A().getText()));
         calendar.setId_Carrera(nCA);
         calendar.setId_Periodo(nperiodo);

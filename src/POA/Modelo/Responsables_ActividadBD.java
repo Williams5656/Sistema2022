@@ -49,4 +49,23 @@ public class Responsables_ActividadBD extends Responsables_ActividadMD  {
             return null;
         }
     }
+    
+    public List<Responsables_ActividadMD> mostrarDatos() {
+  
+        try {
+            String sql1 ="select nombres from docente d join persona p on d.cedula=p."+getCedula();
+            List<Responsables_ActividadMD> lista = new ArrayList<Responsables_ActividadMD>();
+            ResultSet rs = conectar.query(sql1);
+            while (rs.next()) {
+                Responsables_ActividadMD m = new Responsables_ActividadMD();
+                m.setCedula(rs.getString("nombres"));
+                lista.add(m);
+            }
+            rs.close();
+            return lista;
+        } catch (Exception e) {
+            Logger.getLogger(Responsables_ActividadBD.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
 }

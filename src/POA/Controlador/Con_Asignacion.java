@@ -141,6 +141,7 @@ public class Con_Asignacion {
         vista.getCboxparalelo().setSelectedIndex(0);
         vista.getCboxperiodo().setSelectedIndex(0);
         vista.getBtnguardar().setEnabled(true);
+        habilitar_botones();
     }
 
     public void lista() {

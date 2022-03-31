@@ -64,7 +64,6 @@ private JComboBox Cbx_carrera, Cbx_anio, Cbx_proyecto;
                     }
                 }
                 for (int j = 0; j < listaProyectos.size(); j++) {
-                    
                     if (listaProyectos.get(j).getId_Poa() == poa) {
                         Cbx_proyecto.addItem(String.valueOf(listaProyectos.get(j).getId_proyecto()));
                         Con_poa_evidencia.proyecto="YES";

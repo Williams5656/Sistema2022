@@ -11,15 +11,45 @@ package POA.Modelo;
 public class EvidenciaMD {
     private int id_evidencia;
     private int id_actividades;
+    private int id_poa;
+    private int id_proyecto;
+    private int id_objetivo;
     private String archivo; // momentaneo
 
     public EvidenciaMD() {
     }
 
-    public EvidenciaMD(int id_evidencia, int id_actividades, String archivo) {
+    public EvidenciaMD(int id_evidencia, int id_actividades, int id_poa, int id_proyecto, int id_objetivo, String archivo) {
         this.id_evidencia = id_evidencia;
         this.id_actividades = id_actividades;
+        this.id_poa = id_poa;
+        this.id_proyecto = id_proyecto;
+        this.id_objetivo = id_objetivo;
         this.archivo = archivo;
+    }
+
+    public int getId_poa() {
+        return id_poa;
+    }
+
+    public void setId_poa(int id_poa) {
+        this.id_poa = id_poa;
+    }
+
+    public int getId_proyecto() {
+        return id_proyecto;
+    }
+
+    public void setId_proyecto(int id_proyecto) {
+        this.id_proyecto = id_proyecto;
+    }
+
+    public int getId_objetivo() {
+        return id_objetivo;
+    }
+
+    public void setId_objetivo(int id_objetivo) {
+        this.id_objetivo = id_objetivo;
     }
 
     public int getId_evidencia() {

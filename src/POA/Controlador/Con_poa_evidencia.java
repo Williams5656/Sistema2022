@@ -50,12 +50,19 @@ public class Con_poa_evidencia  {
     public static int proyecto_id = 0;
     public static String actividad = "";
     public static int id_actividad = 0;
+    
 
     public Con_poa_evidencia(vis_poa_evidencia vista) {
         this.vista = vista;
         vista.setVisible(true);
         lista();
         vista.getBtnGuardar().addActionListener(e -> guardar());
+        vista.getBtnNuevo().addActionListener(e -> nuevo());
+        vista.getCbx_proyecto().setEnabled(false);
+        vista.getCbx_carrera().setEnabled(false);
+        vista.getCbx_anio().setEnabled(false);
+        vista.getCbx_obje_opera().setEnabled(false);
+        vista.getCbx_actividad().setEnabled(false);
         cargarComboCarrera();
         cargarComboAnio();
     }
@@ -81,6 +88,7 @@ public class Con_poa_evidencia  {
     }
 
     public int id_actvidad(JComboBox comboactividad) {
+        listaActividaes=baseDatosactividades.mostrarDatos();
         String actividad = (String) vista.getCbx_actividad().getSelectedItem();
         int id_actividad = 0;
         if (Con_poa_evidencia.actividad.equals("")) {
@@ -104,7 +112,7 @@ public class Con_poa_evidencia  {
         int actividad_id = id_actvidad(vista.getCbx_actividad());
         listaEvidencias = baseDatosEvidencias.mostrarDatos();
         int cod_evid = listaEvidencias.size() + 1;
-        baseDatosEvidencias.guardar(cod_evid, actividad_id, vista.getTxtArchivo().getText());
+        baseDatosEvidencias.guardar(cod_evid, actividad_id,id_poa,proyecto_id,objetivo_id, vista.getTxtArchivo().getText());
         nuevo();
         lista();
     }
@@ -116,20 +124,29 @@ public class Con_poa_evidencia  {
         vista.getCbx_obje_opera().setSelectedItem("");
         vista.getCbx_proyecto().setSelectedItem("");
         vista.getTxtArchivo().setText("");
+        vista.getCbx_proyecto().setEnabled(true);
+        vista.getCbx_carrera().setEnabled(true);
+        vista.getCbx_anio().setEnabled(true);
+        vista.getCbx_obje_opera().setEnabled(true);
+        vista.getCbx_actividad().setEnabled(true);
+        lista();
     }
 
     public void lista() {
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTabla_Evidencias().getModel();
-        List<EvidenciaMD> lista3 = baseDatosEvidencias.mostrarDatos();
+       listaEvidencias = baseDatosEvidencias.mostrarDatos();
         int columnas = modelo.getColumnCount();
         for (int j = vista.getTabla_Evidencias().getRowCount() - 1; j >= 0; j--) {
             modelo.removeRow(j);
-            for (int i = 0; i < lista3.size(); i++) {
+            for (int i = 0; i < listaEvidencias.size(); i++) {
                 modelo.addRow(new Object[columnas]);
-                vista.getTabla_Evidencias().setValueAt(lista3.get(i).getId_evidencia(), i, 0);
-                vista.getTabla_Evidencias().setValueAt(lista3.get(i).getId_actividades(), i, 1);
-                vista.getTabla_Evidencias().setValueAt(lista3.get(i).getArchivo(), i, 2);
+                vista.getTabla_Evidencias().setValueAt(listaEvidencias.get(i).getId_evidencia(), i, 0);
+                vista.getTabla_Evidencias().setValueAt(listaEvidencias.get(i).getId_actividades(), i, 1);
+                vista.getTabla_Evidencias().setValueAt(listaEvidencias.get(i).getId_poa(), i, 2);
+                vista.getTabla_Evidencias().setValueAt(listaEvidencias.get(i).getId_proyecto(), i, 3);
+                vista.getTabla_Evidencias().setValueAt(listaEvidencias.get(i).getId_objetivo(), i, 4);
+                vista.getTabla_Evidencias().setValueAt(listaEvidencias.get(i).getArchivo(), i, 5);
             }
 
         }

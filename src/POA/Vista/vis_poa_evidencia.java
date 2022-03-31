@@ -245,26 +245,18 @@ public class vis_poa_evidencia extends Fondos.fondo_internalframe {
 
         tabla_Evidencias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID EVIDENCIA", "ID_ACTIVIDAES", "ARCHIVO"
+                "ID EVIDENCIA", "ID_ACTIVIDAES", "ID_POA", "ID_PROYECTO", "ID_OBJETIVO", "ARCHIVO"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                true, true, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(tabla_Evidencias);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 480, 310));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, 520, 310));
         getContentPane().add(txtArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 430, 220, -1));
 
         jLabel9.setText("OBJETIVO");
@@ -276,7 +268,7 @@ public class vis_poa_evidencia extends Fondos.fondo_internalframe {
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/buscar (2).png"))); // NOI18N
         btnBuscar.setBorderPainted(false);
         btnBuscar.setContentAreaFilled(false);
-        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 90, -1, -1));
+        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, -1, -1));
 
         btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/nuevo.png"))); // NOI18N
         btnNuevo.setBorderPainted(false);
@@ -312,7 +304,7 @@ public class vis_poa_evidencia extends Fondos.fondo_internalframe {
 
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 400, 90));
-        getContentPane().add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 340, 20));
+        getContentPane().add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 100, 340, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

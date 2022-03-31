@@ -203,7 +203,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 50, 40));
 
         jLabel4.setText("Objetivo Operativo:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 220, 100, 20));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 220, 130, 20));
 
         jLabel5.setText("Actividad:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 270, 100, 20));
@@ -263,7 +263,6 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
 
         getContentPane().add(combo_objetivo_operarivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 220, 230, -1));
 
-        combo_responsable.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Wiliams Trelles", "Jesica Herrera" }));
         getContentPane().add(combo_responsable, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 350, 230, -1));
 
         comborecursos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Ista", "Autogestion" }));

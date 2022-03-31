@@ -7,6 +7,7 @@ package POA.Controlador;
 
 import POA.Vista.*;
 import POA.Modelo.*;
+import POA.Modelo.Validadores.*;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -45,10 +46,10 @@ public class Con_poa_actividad {
         cargarComboProyecto();
         cargarObjetivos();
         cargarcombo();
+        //cargarOB();
         
         vista.getBtnindicador().addActionListener(e->ventindicador());
         vista.getBtnguardar().addActionListener(e->guardar());   
-        //vista.getCombo_objetivo_operarivo().addActionListener(e-> buscar());
         vista.getComboproyectos().addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent itemEvent) {
                 cargarObjetivos();
@@ -64,7 +65,7 @@ public class Con_poa_actividad {
             }
         });
         
-  
+        buscar();
     }
     
     public void ventindicador(){
@@ -88,7 +89,8 @@ public class Con_poa_actividad {
         
         for (ProyectoMD proyectos : listaProyectos){
             if (Con_Poa1.getId_poa() == proyectos.getId_Poa()){
-                vista.getComboproyectos().addItem("Proyecto: " + proyectos.getNum_proyecto_carrera());
+                vista.getComboproyectos().addItem(String.valueOf(proyectos.getId_proyecto()));
+                
                 
             }
         }
@@ -103,16 +105,14 @@ public class Con_poa_actividad {
         listaProyectos = baseDatosProyecto.mostrarDatos();
         listaObjetivosOperativos = baseDatosObjetivoOperativo.mostrarDatos();
         listas.clear();
-        
-        
+
         for (ProyectoMD proyectos : listaProyectos){
-            if (num_proyecto == proyectos.getNum_proyecto_carrera()){
+            if (num_proyecto == proyectos.getId_proyecto()){
                 for (ObjetivoOperativoMD objetivos : listaObjetivosOperativos){
                     if (objetivos.getId_proyecto() == proyectos.getId_proyecto()){
                         vista.getCombo_objetivo_operarivo().addItem(objetivos.getObjetivo() + "");
                         listas.add(objetivos.getId_objetivo_operativo());
-                        
-                        
+
                     }
                 }
             }
@@ -171,7 +171,7 @@ public class Con_poa_actividad {
             lista();
 
 
-                //nuevo();
+            //nuevo();
             
         }
     }
@@ -179,25 +179,48 @@ public class Con_poa_actividad {
     
     public void buscar() {
         
-        int objetivo = (int) vista.getCombo_objetivo_operarivo().getSelectedIndex();
-  
+        String objetivo = (String) vista.getCombo_objetivo_operarivo().getSelectedItem();
+        String proyect = (String) vista.getComboproyectos().getSelectedItem();
+        int idobj = 0;
+        System.out.println(proyect);
+        for (int i = 0; i < listaObjetivosOperativos.size(); i++) {
+            if (listaObjetivosOperativos.get(i).getObjetivo().equals(objetivo)&&listaObjetivosOperativos.get(i).getId_proyecto()== Integer.valueOf(proyect)) {
+                idobj=listaObjetivosOperativos.get(i).getId_objetivo_operativo();
+                
+                
+                
+                
+            }
+        }
+        
+        System.out.println(idobj);
             DefaultTableModel modelo;
             modelo = (DefaultTableModel) vista.getTablaactividades().getModel();
-            List<ActividadesMD> lista1 = baseDatosactividades.obtenerdatos(objetivo);
-            int columnas = modelo.getColumnCount();
-            for (int j = vista.getTablaactividades().getRowCount() - 1; j >= 0; j--) {
-                modelo.removeRow(j);
-                for (int i = 0; i < lista1.size(); i++) {
-                    if (lista1.get(i).getId_objetivo_operativo()== objetivo) {
-                        modelo.addRow(new Object[columnas]);
-                        vista.getTablaactividades().setValueAt(lista1.get(i).getId_actividades(), i, 0);
-                        vista.getTablaactividades().setValueAt(lista1.get(i).getId_objetivo_operativo(), i, 1);
-                        vista.getTablaactividades().setValueAt(lista1.get(i).getActividad(), i, 2);
-                        vista.getTablaactividades().setValueAt(lista1.get(i).getResponsable(), i, 3);
-                        vista.getTablaactividades().setValueAt(lista1.get(i).getRecurso_financiero(), i, 4);
-                        vista.getTablaactividades().setValueAt(lista1.get(i).getPlazo(), i, 5);
+            List<ActividadesMD> lista1 = baseDatosactividades.obtenerdatos(idobj);
+            System.out.println(lista1.size());
+            if (lista1.size()!=0) {
+                    
+              
+                int columnas = modelo.getColumnCount();
+                for (int j = vista.getTablaactividades().getRowCount() - 1; j >= 0; j--) {
+                    modelo.removeRow(j);
+
+
+
+                    for (int i = 0; i < lista1.size(); i++) {
+
+                            modelo.addRow(new Object[columnas]);
+                            vista.getTablaactividades().setValueAt(lista1.get(i).getId_actividades(), i, 0);
+                            vista.getTablaactividades().setValueAt(lista1.get(i).getId_objetivo_operativo(), i, 1);
+                            vista.getTablaactividades().setValueAt(lista1.get(i).getActividad(), i, 2);
+                            vista.getTablaactividades().setValueAt(lista1.get(i).getResponsable(), i, 3);
+                            vista.getTablaactividades().setValueAt(lista1.get(i).getRecurso_financiero(), i, 4);
+                            vista.getTablaactividades().setValueAt(lista1.get(i).getPlazo(), i, 5);
+
                     }
+
                 }
+                
             }
         
     }
@@ -227,6 +250,13 @@ public class Con_poa_actividad {
         
         
         
+    }
+    
+    public void cargarOB(){
+        vista.getCombo_objetivo_operarivo().addItemListener(new objetivo_evidencia(vista.getComboproyectos(), vista.getCombo_objetivo_operarivo()));
+        
+        
+
     }
     
     

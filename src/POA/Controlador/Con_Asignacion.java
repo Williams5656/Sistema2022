@@ -67,13 +67,13 @@ public class Con_Asignacion {
 
     public void plan() {
 
-//        Vis_Documentacion doc= new Vis_Documentacion();
-//        Con_documentacion per = new Con_documentacion(doc);
-//
-//        ESCRITORIO.add(doc);
-//        Dimension desktopSize = ESCRITORIO.getSize();
-//        Dimension FrameSize = doc.getSize();
-//        doc.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        Vis_Documentacion doc= new Vis_Documentacion();
+        Con_documentacion per = new Con_documentacion(doc);
+
+        ESCRITORIO.add(doc);
+        Dimension desktopSize = ESCRITORIO.getSize();
+        Dimension FrameSize = doc.getSize();
+        doc.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
     }
 
     public void cargarComboMateria() {

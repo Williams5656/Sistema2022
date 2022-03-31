@@ -5,10 +5,102 @@
  */
 package POA.Modelo;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author PC FACTORY
  */
-public class DocumentacionBD {
-    
+public class DocumentacionBD extends DocumentacionMD{
+    Conect conectar = new Conect();
+
+    public DocumentacionBD() {
+    }
+
+    public DocumentacionBD(int id_plan, String id_asignacion, String fecha, String guias, int horasGuia, String estado) {
+        super(id_plan, id_asignacion, fecha, guias, horasGuia, estado);
+    }
+    public List<DocumentacionMD> mostrardatos() {
+        try {
+            List<DocumentacionMD> lista = new ArrayList<DocumentacionMD>();
+            String sql = "select * from documentacion";
+            ResultSet rs = conectar.query(sql);
+            while (rs.next()) {
+                DocumentacionMD doc = new DocumentacionMD();
+                doc.setId_plan(rs.getInt("id_plan"));
+                doc.setId_asignacion(rs.getString("id_asignacion"));
+                doc.setFecha(rs.getString("fecha"));
+                doc.setGuias(rs.getString("guia"));
+                doc.setHorasGuia(rs.getInt("hora_guias"));
+                doc.setEstado(rs.getString("estado"));
+                lista.add(doc);
+            }
+            rs.close();
+            return lista;
+        } catch (SQLException e) {
+            Logger.getLogger(PerfilBD.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    public List<DocumentacionMD> obtenerdatos(int id_plan) {
+        try {
+            List<DocumentacionMD> lista = new ArrayList<DocumentacionMD>();
+            String sql = "select * from documentacion" + " where \"id_plan\"='" + id_plan + "'";
+            ResultSet rs = conectar.query(sql);
+            while (rs.next()) {
+                DocumentacionMD doc = new DocumentacionMD();
+                doc.setId_plan(rs.getInt("id_plan"));
+                doc.setId_asignacion(rs.getString("id_asignacion"));
+                doc.setFecha(rs.getString("fecha"));
+                doc.setGuias(rs.getString("guia"));
+                doc.setHorasGuia(rs.getInt("hora_guias"));
+                doc.setEstado(rs.getString("estado"));
+                lista.add(doc);
+            }
+            rs.close();
+            return lista;
+        } catch (SQLException e) {
+            Logger.getLogger(PerfilBD.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    public boolean insertar() {
+        String sql = "INSERT INTO documentacion(id_plan, id_asignacion, fecha, guia, hora_guias, estado)" + "VALUES ('" + getId_plan() + "','" + getId_asignacion() + "','" + getFecha()+ "','" + getGuias()+ "','" + getHorasGuia()+ "','" + getEstado() + "')";
+        System.out.println(sql);
+
+        if (conectar.noQuery(sql) == null) {
+            return true;
+        } else {
+
+            System.out.println("Error");
+            return false;
+        }
+    }
+    public boolean modificar(int id_plan) {
+        String sql = "update documentacion set \"fecha\"='" + getFecha()+ "',\"guia\"='" + getGuias()+ "',\"hora_guias\"='" + getHorasGuia()+"',\"estado\"='" + getEstado()+ "'"
+                + " where \"id_plan\"= " + id_plan + ";";
+
+        if (conectar.noQuery(sql) == null) {
+            return true;
+        } else {
+            System.out.println("Error al editar");
+
+            return false;
+        }
+    }
+
+    public boolean eliminar(int id_plan) {
+        String sql = "delete from documentacion where \"id_plan\"=" + id_plan + ";";
+        if (conectar.noQuery(sql) == null) {
+            return true;
+        } else {
+            System.out.println("Error eliminar");
+            return false;
+        }
+    }
 }

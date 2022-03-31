@@ -56,6 +56,7 @@ public class Con_poa_actividad {
         });
         
         lista();
+        //HOLAAAA
         
         vista.getCombo_objetivo_operarivo().addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent itemEvent) {

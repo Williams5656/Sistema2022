@@ -152,6 +152,87 @@ public class PersonaBD extends PersonaMD {
             return null;
         }
     }
+    
+    
+    public List<PersonaMD> obtenerdatosnombre(String identificador) {
+        identificador=identificador.toUpperCase();
+        try {
+            List<PersonaMD> lista = new ArrayList<PersonaMD>();
+            String sql = "select * from persona where upper( \"nombres\")='" + identificador + "'";
+            ResultSet rs = conectar.query(sql);
+            byte[] is;
+            while (rs.next()) {
+                PersonaMD p = new PersonaMD();
+                p.setCedula(rs.getString("cedula"));
+                p.setNombres(rs.getString("nombres"));
+                p.setApellidos(rs.getString("apellidos"));
+                p.setDireccion(rs.getString("direccion"));
+                p.setCorreo(rs.getString("correo"));
+                p.setTelefono(rs.getString("telefono"));
+                p.setFecha_nacimiento(rs.getString("fecha_nacimiento"));
+                p.setEstado(rs.getString("estado"));
+                is = rs.getBytes("foto");
+                if (is != null) {
+                    try {
+                        is = org.postgresql.util.Base64.decode(is, 0, rs.getBytes("foto").length);
+//                    BufferedImage bi=Base64.decode( ImageIO.read(is));
+                        p.setFoto(getImage(is, false));
+                    } catch (Exception ex) {
+                        p.setFoto(null);
+                        Logger.getLogger(PersonaBD.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    p.setFoto(null);
+                }
+                lista.add(p);
+            }
+            rs.close();//cerramos conexion base.
+            return lista;
+        } catch (SQLException ex) {
+            Logger.getLogger(PersonaBD.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    public List<PersonaMD> obtenerdatosapellido(String identificador) {
+        identificador=identificador.toUpperCase();
+        try {
+            List<PersonaMD> lista = new ArrayList<PersonaMD>();
+            String sql = "select * from persona where upper( \"apellidos\")='"  + identificador + "'";
+            ResultSet rs = conectar.query(sql);
+            byte[] is;
+            while (rs.next()) {
+                PersonaMD p = new PersonaMD();
+                p.setCedula(rs.getString("cedula"));
+                p.setNombres(rs.getString("nombres"));
+                p.setApellidos(rs.getString("apellidos"));
+                p.setDireccion(rs.getString("direccion"));
+                p.setCorreo(rs.getString("correo"));
+                p.setTelefono(rs.getString("telefono"));
+                p.setFecha_nacimiento(rs.getString("fecha_nacimiento"));
+                p.setEstado(rs.getString("estado"));
+                is = rs.getBytes("foto");
+                if (is != null) {
+                    try {
+                        is = org.postgresql.util.Base64.decode(is, 0, rs.getBytes("foto").length);
+//                    BufferedImage bi=Base64.decode( ImageIO.read(is));
+                        p.setFoto(getImage(is, false));
+                    } catch (Exception ex) {
+                        p.setFoto(null);
+                        Logger.getLogger(PersonaBD.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    p.setFoto(null);
+                }
+                lista.add(p);
+            }
+            rs.close();//cerramos conexion base.
+            return lista;
+        } catch (SQLException ex) {
+            Logger.getLogger(PersonaBD.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 
     public boolean insertar() {
         String ef = null;

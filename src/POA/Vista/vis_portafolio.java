@@ -4,12 +4,12 @@
  */
 package POA.Vista;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 
 /**
@@ -25,14 +25,6 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
         initComponents();
         botones_grupo.add(btnNotas);
         botones_grupo.add(btnModulos);
-    }
-
-    public JButton getBtnGuardar() {
-        return btnGuardar;
-    }
-
-    public void setBtnGuardar(JButton btnGuardar) {
-        this.btnGuardar = btnGuardar;
     }
 
     public JToggleButton getBtnGuiasPracticas() {
@@ -91,68 +83,68 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
         this.btnSilabo = btnSilabo;
     }
 
-    public JButton getBtnSubirArchivo() {
-        return btnSubirArchivo;
+    public JButton getBtn_actua() {
+        return btn_actua;
     }
 
-    public void setBtnSubirArchivo(JButton btnSubirArchivo) {
-        this.btnSubirArchivo = btnSubirArchivo;
+    public void setBtn_actua(JButton btn_actua) {
+        this.btn_actua = btn_actua;
     }
 
-    public JComboBox<String> getComboCiclo() {
-        return comboCiclo;
+    public JButton getBtn_buscar() {
+        return btn_buscar;
     }
 
-    public void setComboCiclo(JComboBox<String> comboCiclo) {
-        this.comboCiclo = comboCiclo;
+    public void setBtn_buscar(JButton btn_buscar) {
+        this.btn_buscar = btn_buscar;
     }
 
-    public JComboBox<String> getComboMateria() {
-        return comboMateria;
+    public JButton getBtn_subir() {
+        return btn_subir;
     }
 
-    public void setComboMateria(JComboBox<String> comboMateria) {
-        this.comboMateria = comboMateria;
+    public void setBtn_subir(JButton btn_subir) {
+        this.btn_subir = btn_subir;
     }
 
-    public JComboBox<String> getComboSeccion() {
-        return comboSeccion;
+    public JCheckBox getChk_ciclo() {
+        return chk_ciclo;
     }
 
-    public void setComboSeccion(JComboBox<String> comboSeccion) {
-        this.comboSeccion = comboSeccion;
+    public void setChk_ciclo(JCheckBox chk_ciclo) {
+        this.chk_ciclo = chk_ciclo;
     }
 
-    public JLabel getLblCarrera() {
-        return lblCarrera;
+    public JCheckBox getChk_materia() {
+        return chk_materia;
     }
 
-    public void setLblCarrera(JLabel lblCarrera) {
-        this.lblCarrera = lblCarrera;
+    public void setChk_materia(JCheckBox chk_materia) {
+        this.chk_materia = chk_materia;
     }
 
-    public JRadioButton getRadbutA() {
-        return radbutA;
+    public JCheckBox getChk_paralelo() {
+        return chk_paralelo;
     }
 
-    public void setRadbutA(JRadioButton radbutA) {
-        this.radbutA = radbutA;
+    public void setChk_paralelo(JCheckBox chk_paralelo) {
+        this.chk_paralelo = chk_paralelo;
     }
 
-    public JRadioButton getRadbutB() {
-        return radbutB;
+    public JCheckBox getChk_periodo() {
+        return chk_periodo;
     }
 
-    public void setRadbutB(JRadioButton radbutB) {
-        this.radbutB = radbutB;
+    public void setChk_periodo(JCheckBox chk_periodo) {
+        this.chk_periodo = chk_periodo;
     }
 
-    public ButtonGroup getRadiogroupParalelo() {
-        return radiogroupParalelo;
+    public JCheckBox getChk_seccion() {
+        return chk_seccion;
     }
 
-    public void setRadiogroupParalelo(ButtonGroup radiogroupParalelo) {
-        this.radiogroupParalelo = radiogroupParalelo;
+    public void setChk_seccion(JCheckBox chk_seccion) {
+        this.chk_seccion = chk_seccion;
     }
 
     public JComboBox<String> getComboPeriodAcademico() {
@@ -163,6 +155,30 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
         this.comboPeriodAcademico = comboPeriodAcademico;
     }
 
+    public JComboBox<String> getComboSeccion() {
+        return comboSeccion;
+    }
+
+    public void setComboSeccion(JComboBox<String> comboSeccion) {
+        this.comboSeccion = comboSeccion;
+    }
+
+    public JRadioButton getPar_a() {
+        return par_a;
+    }
+
+    public void setPar_a(JRadioButton par_a) {
+        this.par_a = par_a;
+    }
+
+    public JRadioButton getPar_b() {
+        return par_b;
+    }
+
+    public void setPar_b(JRadioButton par_b) {
+        this.par_b = par_b;
+    }
+
     public JTable getTbl_Datos() {
         return tbl_Datos;
     }
@@ -170,7 +186,16 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
     public void setTbl_Datos(JTable tbl_Datos) {
         this.tbl_Datos = tbl_Datos;
     }
-    
+
+    public JTextField getTxt_materia() {
+        return txt_materia;
+    }
+
+    public void setTxt_materia(JTextField txt_materia) {
+        this.txt_materia = txt_materia;
+    }
+
+
     
 
     /**
@@ -193,113 +218,175 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
         btnPlanesClase = new javax.swing.JToggleButton();
         btnSilabo = new javax.swing.JToggleButton();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         comboPeriodAcademico = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        lblCarrera = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         comboCiclo = new javax.swing.JComboBox<>();
-        btnSubirArchivo = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        comboMateria = new javax.swing.JComboBox<>();
-        btnGuardar = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        radbutA = new javax.swing.JRadioButton();
-        radbutB = new javax.swing.JRadioButton();
-        jLabel7 = new javax.swing.JLabel();
+        par_a = new javax.swing.JRadioButton();
+        par_b = new javax.swing.JRadioButton();
         comboSeccion = new javax.swing.JComboBox<>();
+        chk_periodo = new javax.swing.JCheckBox();
+        chk_ciclo = new javax.swing.JCheckBox();
+        chk_materia = new javax.swing.JCheckBox();
+        txt_materia = new javax.swing.JTextField();
+        chk_paralelo = new javax.swing.JCheckBox();
+        chk_seccion = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_Datos = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        btn_buscar = new javax.swing.JButton();
+        btn_subir = new javax.swing.JButton();
+        btn_actua = new javax.swing.JButton();
 
         setClosable(true);
+        setIconifiable(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("DOCUMENTO"));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         botones_grupo.add(btnGuiasPracticas);
+        btnGuiasPracticas.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
         btnGuiasPracticas.setText("GUIAS PRACTICAS");
-        jPanel1.add(btnGuiasPracticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, -1, -1));
 
         botones_grupo.add(btnModulos);
         btnModulos.setText("MODULOS");
-        jPanel1.add(btnModulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, -1, -1));
 
         botones_grupo.add(btnInstrumentosEv);
+        btnInstrumentosEv.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
         btnInstrumentosEv.setText("INSTRUMENTOS DE EVALUACION");
-        btnInstrumentosEv.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInstrumentosEvActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnInstrumentosEv, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
 
         botones_grupo.add(btnNotas);
         btnNotas.setText("NOTAS");
-        jPanel1.add(btnNotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, -1, -1));
 
         botones_grupo.add(btnInformesSilabo);
         btnInformesSilabo.setText("INFORMES DE SILABO");
-        jPanel1.add(btnInformesSilabo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, -1, -1));
 
         botones_grupo.add(btnPlanesClase);
+        btnPlanesClase.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
         btnPlanesClase.setText("PLANES DE CLASE");
-        jPanel1.add(btnPlanesClase, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, -1, -1));
 
         botones_grupo.add(btnSilabo);
         btnSilabo.setText("SILABO");
-        jPanel1.add(btnSilabo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, -1, -1));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnModulos, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                    .addComponent(btnSilabo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnInstrumentosEv)
+                    .addComponent(btnInformesSilabo, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnPlanesClase, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                    .addComponent(btnGuiasPracticas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
+                .addComponent(btnNotas)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnInstrumentosEv, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGuiasPracticas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnModulos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSilabo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnInformesSilabo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnPlanesClase, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(btnNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("FILTROS"));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("PERIODO ACADEMICO:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
-
-        jPanel2.add(comboPeriodAcademico, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 180, -1));
-
-        jLabel2.setText("CARRERA:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, -1));
-
-        lblCarrera.setForeground(new java.awt.Color(0, 0, 255));
-        jPanel2.add(lblCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 180, 20));
-
-        jLabel4.setText("CICLO:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, -1, -1));
+        comboPeriodAcademico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dic22-Ene23" }));
 
         comboCiclo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" }));
-        jPanel2.add(comboCiclo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 40, -1));
 
-        btnSubirArchivo.setText("SUBIR ARCHIVO");
-        jPanel2.add(btnSubirArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, -1, -1));
+        radiogroupParalelo.add(par_a);
+        par_a.setText("A");
 
-        jLabel5.setText("MATERIA:");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, -1, -1));
-
-        jPanel2.add(comboMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 200, -1));
-
-        btnGuardar.setText("GUARDAR");
-        jPanel2.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, -1, -1));
-
-        jLabel6.setText("PARALELO:");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
-
-        radiogroupParalelo.add(radbutA);
-        radbutA.setText("A");
-        jPanel2.add(radbutA, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, -1, -1));
-
-        radiogroupParalelo.add(radbutB);
-        radbutB.setText("B");
-        jPanel2.add(radbutB, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, -1, -1));
-
-        jLabel7.setText("SECCION:");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
+        radiogroupParalelo.add(par_b);
+        par_b.setText("B");
 
         comboSeccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matutino", "Nocturno" }));
-        jPanel2.add(comboSeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 90, -1));
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("DATOS INGRESADOS"));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        chk_periodo.setText("PERIODO ACADEMICO");
+
+        chk_ciclo.setText("CICLO");
+
+        chk_materia.setText("MATERIA");
+
+        chk_paralelo.setText("PARALELO");
+
+        chk_seccion.setText("SECCION");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(chk_paralelo)
+                        .addGap(8, 8, 8)
+                        .addComponent(par_a)
+                        .addGap(4, 4, 4)
+                        .addComponent(par_b)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(chk_seccion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(comboSeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(chk_periodo)
+                        .addGap(8, 8, 8)
+                        .addComponent(comboPeriodAcademico, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
+                        .addComponent(chk_ciclo)
+                        .addGap(8, 8, 8)
+                        .addComponent(comboCiclo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(chk_materia)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txt_materia, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(195, 195, 195))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chk_periodo)
+                    .addComponent(comboPeriodAcademico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chk_ciclo)
+                    .addComponent(comboCiclo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chk_materia)
+                    .addComponent(txt_materia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chk_paralelo)
+                    .addComponent(par_a, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chk_seccion)
+                    .addComponent(comboSeccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(par_b, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15))
+        );
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("DOCUMENTACION"));
 
         tbl_Datos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -314,46 +401,96 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tbl_Datos);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 780, 150));
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(9, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("ACCION"));
+
+        btn_buscar.setText("BUSCAR");
+
+        btn_subir.setText("SUBIR");
+
+        btn_actua.setText("ACTUALIZAR");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_actua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_subir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn_buscar)
+                .addGap(8, 8, 8)
+                .addComponent(btn_subir)
+                .addGap(8, 8, 8)
+                .addComponent(btn_actua)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addContainerGap()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
         );
+
+        jPanel4.getAccessibleContext().setAccessibleName("ACCIONES");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnInstrumentosEvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstrumentosEvActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnInstrumentosEvActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup botones_grupo;
-    private javax.swing.JButton btnGuardar;
     private javax.swing.JToggleButton btnGuiasPracticas;
     private javax.swing.JToggleButton btnInformesSilabo;
     private javax.swing.JToggleButton btnInstrumentosEv;
@@ -361,25 +498,26 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
     private javax.swing.JToggleButton btnNotas;
     private javax.swing.JToggleButton btnPlanesClase;
     private javax.swing.JToggleButton btnSilabo;
-    private javax.swing.JButton btnSubirArchivo;
+    private javax.swing.JButton btn_actua;
+    private javax.swing.JButton btn_buscar;
+    private javax.swing.JButton btn_subir;
+    private javax.swing.JCheckBox chk_ciclo;
+    private javax.swing.JCheckBox chk_materia;
+    private javax.swing.JCheckBox chk_paralelo;
+    private javax.swing.JCheckBox chk_periodo;
+    private javax.swing.JCheckBox chk_seccion;
     private javax.swing.JComboBox<String> comboCiclo;
-    private javax.swing.JComboBox<String> comboMateria;
     private javax.swing.JComboBox<String> comboPeriodAcademico;
     private javax.swing.JComboBox<String> comboSeccion;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblCarrera;
-    private javax.swing.JRadioButton radbutA;
-    private javax.swing.JRadioButton radbutB;
+    private javax.swing.JRadioButton par_a;
+    private javax.swing.JRadioButton par_b;
     private javax.swing.ButtonGroup radiogroupParalelo;
     private javax.swing.JTable tbl_Datos;
+    private javax.swing.JTextField txt_materia;
     // End of variables declaration//GEN-END:variables
 }

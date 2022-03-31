@@ -27,8 +27,7 @@ public class con_portafolio {
     public con_portafolio(vis_portafolio vista) {
         this.vista = vista;
         vista.setVisible(true);
-        llenarCombo();
-        vista.getBtnGuardar().addActionListener(e-> guardar());        
+        llenarCombo();       
         tabla_modulo();
     }
     
@@ -36,12 +35,6 @@ public class con_portafolio {
         int idPeriodo = 0;
         String idMateria = "";
         String nomPeriodo = (String) vista.getComboPeriodAcademico().getSelectedItem();
-        String nomMateria = (String) vista.getComboMateria().getSelectedItem();
-        for (int i = 0; i < listMat.size(); i++) {
-            if(nomMateria.equals(listMat.get(i).getNombre_materia())){
-                idMateria = listMat.get(i).getCod_materia();
-            }
-        }
         for (int i = 0; i < listPer.size(); i++) {
             if(nomPeriodo.equals(listPer.get(i).getNombre())){
                 idPeriodo = listPer.get(i).getIdperiodo();
@@ -57,18 +50,10 @@ public class con_portafolio {
         
     }
     
-    public void llenarCombo(){
-        
-        for (int i = 0; i < listMat.size(); i++) {
-            //if(listMat.get(i).getNombre_carrera().equals(vista.getLblCarrera().getText()))
-            vista.getComboMateria().addItem(listMat.get(i).getNombre_materia());
-        }        
-        
+    public void llenarCombo(){    
         for (int i = 0; i < listPer.size(); i++) {
             vista.getComboPeriodAcademico().addItem(listPer.get(i).getNombre());
-        }
-        
-        
+        }       
     }
     
     public class noeditablemodelo extends DefaultTableModel

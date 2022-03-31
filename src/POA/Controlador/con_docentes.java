@@ -281,7 +281,7 @@ public class con_docentes {
         vista.getLbbtnregistarpersona().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                vista.setVisible(false);
+                
 
                 vis_Persona persona = new vis_Persona();
                 Con_persona per = new Con_persona(persona);

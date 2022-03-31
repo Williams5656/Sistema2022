@@ -20,7 +20,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static POA.Vista.Vis_Principal.*;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import javax.swing.Action;
 
 /**
  *
@@ -60,6 +62,7 @@ public class Con_Asignacion {
         listaMateria = baseDatosMateria.mostrardatos();
         listaPeriodo = baseDatosPeriodo.lista_periodos();
         vista.getBtnagregar().setEnabled(true);
+        vista.getCombodocentes().addActionListener(e->accion_combobox());
         inhabilitar_botones();
         buscardocente();
         lista();
@@ -123,7 +126,7 @@ public class Con_Asignacion {
             for (int i = 0; i < lista.size(); i++) {
                 if (vista.getTxtdocente().getText().equalsIgnoreCase(listadoc.get(i).getCedula())) {
                     if (listadoc.get(i).getCedula().equals(lista.get(i).getCedula())) {
-                        String nombre = "[" + lista.get(i).getCedula() + "]" + lista.get(i).getNombres() + " " + lista.get(i).getApellidos();
+                        String nombre =lista.get(i).getNombres() + " " + lista.get(i).getApellidos();
                         //vista.getTxtnombredocente().setText(nombre);
                         con = 1;
                         vista.getCombodocentes().addItem(nombre);
@@ -283,7 +286,7 @@ public class Con_Asignacion {
         vista.getCboxciclo().setSelectedItem(bdasignacion.getCiclo());
         vista.getCboxjornada().setSelectedItem(bdasignacion.getJornada());
         vista.getCboxparalelo().setSelectedItem(bdasignacion.getParalelo());
-        String nombre = "[" + bdasignacion.getIdentificacion() + "]" + bdpersona.getNombres() + " " + bdpersona.getApellidos();
+        String nombre =bdpersona.getNombres() + " " + bdpersona.getApellidos();
         vista.getCombodocentes().addItem(nombre);
 
         id_asignacion = bdasignacion.getId_asignacio();
@@ -317,6 +320,7 @@ public class Con_Asignacion {
 
     public void cargarpersona() {
         vista.getCombodocentes().removeAllItems();
+        vista.getCombodocentes().addItem("BUSCAR DOCENTE");
         List<docenteMD> listadoc = bddocente.mostrardatos();
         List<PersonaMD> lista = bdpersona.mostrardatos();
         for (int i = 0; i < lista.size(); i++) {
@@ -329,6 +333,16 @@ public class Con_Asignacion {
         }
     }
     
+    public void accion_combobox(){
+        List<PersonaMD> lista = bdpersona.mostrardatos();
+        for (int i = 0; i < lista.size(); i++) {
+            if((lista.get(i).getNombres()+" "+lista.get(i).getApellidos()).equalsIgnoreCase((String) vista.getCombodocentes().getSelectedItem())){
+                vista.getTxtdocente().setText(lista.get(i).getCedula());
+            }
+        }
+        
+       
+    }
     
     
 }

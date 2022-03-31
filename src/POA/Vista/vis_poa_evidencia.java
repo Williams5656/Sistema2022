@@ -121,13 +121,14 @@ public class vis_poa_evidencia extends Fondos.fondo_internalframe {
         this.cbx_proyecto = cbx_proyecto;
     }
 
-    public JTable getTabla_Evidencias() {
-        return tabla_Evidencias;
+    public JTable getTabla_Evidencia() {
+        return tabla_Evidencia;
     }
 
-    public void setTabla_Evidencias(JTable tabla_Evidencias) {
-        this.tabla_Evidencias = tabla_Evidencias;
+    public void setTabla_Evidencia(JTable tabla_Evidencia) {
+        this.tabla_Evidencia = tabla_Evidencia;
     }
+
 
     public JTextField getTxtArchivo() {
         return txtArchivo;
@@ -169,7 +170,7 @@ public class vis_poa_evidencia extends Fondos.fondo_internalframe {
         btnGuardar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabla_Evidencias = new javax.swing.JTable();
+        tabla_Evidencia = new javax.swing.JTable();
         txtArchivo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -243,7 +244,7 @@ public class vis_poa_evidencia extends Fondos.fondo_internalframe {
         jLabel8.setText("IMPRIMIR");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, -1, -1));
 
-        tabla_Evidencias.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_Evidencia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -254,7 +255,7 @@ public class vis_poa_evidencia extends Fondos.fondo_internalframe {
                 "ID EVIDENCIA", "ID_ACTIVIDAES", "ID_POA", "ID_PROYECTO", "ID_OBJETIVO", "ARCHIVO"
             }
         ));
-        jScrollPane1.setViewportView(tabla_Evidencias);
+        jScrollPane1.setViewportView(tabla_Evidencia);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, 520, 310));
         getContentPane().add(txtArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 430, 220, -1));
@@ -342,7 +343,7 @@ public class vis_poa_evidencia extends Fondos.fondo_internalframe {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tabla_Evidencias;
+    private javax.swing.JTable tabla_Evidencia;
     private javax.swing.JTextField txtArchivo;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables

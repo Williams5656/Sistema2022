@@ -99,7 +99,7 @@ public class Con_poa_actividad {
     public void cargarObjetivos(){
         String itemCombo = (String) vista.getComboproyectos().getSelectedItem();
         int num_proyecto = Integer.parseInt(String.valueOf(itemCombo.charAt(itemCombo.length() - 1)));
-        System.out.println(num_proyecto);
+        
         
         vista.getCombo_objetivo_operarivo().removeAllItems();
         listaProyectos = baseDatosProyecto.mostrarDatos();

@@ -28,6 +28,22 @@ public class EvidenciaMD {
         this.archivo = archivo;
     }
 
+    public int getId_evidencia() {
+        return id_evidencia;
+    }
+
+    public void setId_evidencia(int id_evidencia) {
+        this.id_evidencia = id_evidencia;
+    }
+
+    public int getId_actividades() {
+        return id_actividades;
+    }
+
+    public void setId_actividades(int id_actividades) {
+        this.id_actividades = id_actividades;
+    }
+
     public int getId_poa() {
         return id_poa;
     }
@@ -52,22 +68,6 @@ public class EvidenciaMD {
         this.id_objetivo = id_objetivo;
     }
 
-    public int getId_evidencia() {
-        return id_evidencia;
-    }
-
-    public void setId_evidencia(int id_evidencia) {
-        this.id_evidencia = id_evidencia;
-    }
-
-    public int getId_actividades() {
-        return id_actividades;
-    }
-
-    public void setId_actividades(int id_actividades) {
-        this.id_actividades = id_actividades;
-    }
-
     public String getArchivo() {
         return archivo;
     }
@@ -75,6 +75,8 @@ public class EvidenciaMD {
     public void setArchivo(String archivo) {
         this.archivo = archivo;
     }
+
+   
     
     
 }

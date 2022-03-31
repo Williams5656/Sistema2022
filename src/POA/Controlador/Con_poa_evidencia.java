@@ -55,7 +55,7 @@ public class Con_poa_evidencia  {
     public Con_poa_evidencia(vis_poa_evidencia vista) {
         this.vista = vista;
         vista.setVisible(true);
-        lista();
+        
         vista.getBtnGuardar().addActionListener(e -> guardar());
         vista.getBtnNuevo().addActionListener(e -> nuevo());
         vista.getCbx_proyecto().setEnabled(false);
@@ -65,6 +65,7 @@ public class Con_poa_evidencia  {
         vista.getCbx_actividad().setEnabled(false);
         cargarComboCarrera();
         cargarComboAnio();
+        lista();
     }
 
     public void cargarComboCarrera() {
@@ -113,8 +114,9 @@ public class Con_poa_evidencia  {
         listaEvidencias = baseDatosEvidencias.mostrarDatos();
         int cod_evid = listaEvidencias.size() + 1;
         baseDatosEvidencias.guardar(cod_evid, actividad_id,id_poa,proyecto_id,objetivo_id, vista.getTxtArchivo().getText());
-        nuevo();
         lista();
+        nuevo();
+        
     }
 
     public void nuevo() {
@@ -132,24 +134,22 @@ public class Con_poa_evidencia  {
         lista();
     }
 
-    public void lista() {
+    public void lista(){
         DefaultTableModel modelo;
-        modelo = (DefaultTableModel) vista.getTabla_Evidencias().getModel();
-       listaEvidencias = baseDatosEvidencias.mostrarDatos();
+        modelo = (DefaultTableModel) vista.getTabla_Evidencia().getModel();
+        List<EvidenciaMD> lista = baseDatosEvidencias.mostrarDatos();
         int columnas = modelo.getColumnCount();
-        for (int j = vista.getTabla_Evidencias().getRowCount() - 1; j >= 0; j--) {
-            modelo.removeRow(j);
-            for (int i = 0; i < listaEvidencias.size(); i++) {
-                modelo.addRow(new Object[columnas]);
-                vista.getTabla_Evidencias().setValueAt(listaEvidencias.get(i).getId_evidencia(), i, 0);
-                vista.getTabla_Evidencias().setValueAt(listaEvidencias.get(i).getId_actividades(), i, 1);
-                vista.getTabla_Evidencias().setValueAt(listaEvidencias.get(i).getId_poa(), i, 2);
-                vista.getTabla_Evidencias().setValueAt(listaEvidencias.get(i).getId_proyecto(), i, 3);
-                vista.getTabla_Evidencias().setValueAt(listaEvidencias.get(i).getId_objetivo(), i, 4);
-                vista.getTabla_Evidencias().setValueAt(listaEvidencias.get(i).getArchivo(), i, 5);
-            }
-
+        for (int j = vista.getTabla_Evidencia().getRowCount()-1;j >= 0; j--) {
+            modelo.removeRow(j);        }
+        
+        for (int i = 0; i < lista.size(); i++) {
+            modelo.addRow(new Object[columnas]);
+            vista.getTabla_Evidencia().setValueAt(lista.get(i).getId_evidencia(), i, 0);
+            vista.getTabla_Evidencia().setValueAt(lista.get(i).getId_actividades(), i, 1);
+            vista.getTabla_Evidencia().setValueAt(lista.get(i).getId_poa(), i, 2);
+            vista.getTabla_Evidencia().setValueAt(lista.get(i).getId_proyecto(), i, 3);
+            vista.getTabla_Evidencia().setValueAt(lista.get(i).getId_objetivo(), i, 4);
+            vista.getTabla_Evidencia().setValueAt(lista.get(i).getArchivo(), i, 5); 
         }
-
     }
 }

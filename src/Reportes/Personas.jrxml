@@ -1,29 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-
-<jasperReport name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-    <background>
-        <band/>
-    </background>
-    <title>
-        <band height="79"/>
-    </title>
-    <pageHeader>
-        <band height="35"/>
-    </pageHeader>
-    <columnHeader>
-        <band height="61"/>
-    </columnHeader>
-    <detail>
-        <band height="125"/>
-    </detail>
-    <columnFooter>
-        <band height="45"/>
-    </columnFooter>
-    <pageFooter>
-        <band height="54"/>
-    </pageFooter>
-    <summary>
-        <band height="42"/>
-    </summary>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="69fca956-72b7-4a0e-9e76-cbba8b5ba355">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     *,
+     persona."estado" AS persona_estado,
+     persona."telefono" AS persona_telefono,
+     persona."correo" AS persona_correo,
+     persona."direccion" AS persona_direccion,
+     persona."fecha_nacimiento" AS persona_fecha_nacimiento,
+     persona."apellidos" AS persona_apellidos,
+     persona."cedula" AS persona_cedula,
+     persona."nombres" AS persona_nombres
+FROM
+     "persona" persona]]>
+	</queryString>
+	<field name="cedula" class="java.lang.String"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="apellidos" class="java.lang.String"/>
+	<field name="fecha_nacimiento" class="java.sql.Date"/>
+	<field name="direccion" class="java.lang.String"/>
+	<field name="correo" class="java.lang.String"/>
+	<field name="telefono" class="java.lang.String"/>
+	<field name="foto" class="java.lang.Object"/>
+	<field name="estado" class="java.lang.String"/>
+	<field name="persona_estado" class="java.lang.String"/>
+	<field name="persona_telefono" class="java.lang.String"/>
+	<field name="persona_correo" class="java.lang.String"/>
+	<field name="persona_direccion" class="java.lang.String"/>
+	<field name="persona_fecha_nacimiento" class="java.sql.Date"/>
+	<field name="persona_apellidos" class="java.lang.String"/>
+	<field name="persona_cedula" class="java.lang.String"/>
+	<field name="persona_nombres" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="39" width="555" height="20" uuid="58ed50c9-c1f2-4aa5-9b57-a912bbdc9491"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Instituto Superior Tecnológico del Azuay]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="59" width="555" height="20" uuid="d8999dd4-3d0c-45ee-8802-dba780134ffe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lista de Personas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="41" width="51" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="7fb9b540-1d67-418b-9862-f5112140da01"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cedula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="51" y="41" width="100" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="9e6a20af-a192-4cdc-9a00-a9be9f799afe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="151" y="41" width="100" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="e61be949-70c4-4cd9-9b33-5c7c4d558c29"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="251" y="41" width="100" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="28d7ec2e-52fe-4e5c-9c8c-c8ebd36eb748"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[F. Nacimiento]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="51" height="20" uuid="0bd2c5cc-fd2a-42af-8b04-61c2debe7ef7"/>
+				<textFieldExpression><![CDATA[$F{cedula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="51" y="0" width="100" height="20" uuid="58c206b0-7c41-4e2b-9165-fcc634b0bf26"/>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="151" y="0" width="100" height="20" uuid="f3e664ad-dcfc-4612-81e5-57436235ad04"/>
+				<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="251" y="0" width="100" height="20" uuid="e0b268f3-d97d-47d3-88e6-0af5052084ff"/>
+				<textFieldExpression><![CDATA[$F{fecha_nacimiento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
 </jasperReport>

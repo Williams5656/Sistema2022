@@ -5,6 +5,7 @@
  */
 package POA.Controlador;
 
+import POA.Modelo.Conect;
 import POA.Modelo.PersonaBD;
 import POA.Modelo.PersonaMD;
 import POA.Modelo.Validadores.Cedula;
@@ -31,7 +32,14 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -54,6 +62,7 @@ public class Con_persona {
         vista.getBtnModificar().addActionListener(e -> modificar());
         vista.getBtnCargarFoto().addActionListener(e -> obtieneImagen());
         vista.getBtnCamEstado().addActionListener(e -> cambiarestado());
+        vista.getBtnImprimir().addActionListener(e -> imprimir());
         vista.getBtnGuardar().setEnabled(false);
         vista.getBtnModificar().setEnabled(false);
         vista.getBtnCamEstado().setEnabled(false);
@@ -68,7 +77,21 @@ public class Con_persona {
         lista();
 
     }
-
+    public void imprimir(){
+          Conect con = new Conect();
+            try {
+               
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Personas.jasper"));
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
+                JOptionPane.showMessageDialog(null, "Imprimiendo Personas");
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException e) {
+                System.out.println("no se pudo encontrar registros" + e.getMessage());
+                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+            }
+    }
     public void seleccionar() throws ParseException {
         vista.getBtnGuardar().setEnabled(false);
         vista.getBtnModificar().setEnabled(true);

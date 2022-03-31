@@ -33,6 +33,10 @@ public class Con_poa_actividad {
       private ActividadesBD baseDatosactividades = new ActividadesBD();
       private ArrayList<Integer> listas = new ArrayList();
       private int idobjetivo=0;
+
+      private docenteBD bdocente = new docenteBD();
+      private PersonaBD bpersona = new PersonaBD();
+      
       
 
     public Con_poa_actividad(vis_poa_actividad vista) {
@@ -40,15 +44,25 @@ public class Con_poa_actividad {
         vista.setVisible(true);
         cargarComboProyecto();
         cargarObjetivos();
+        cargarcombo();
+        
         vista.getBtnindicador().addActionListener(e->ventindicador());
-        vista.getBtnguardar().addActionListener(e->guardar());        
+        vista.getBtnguardar().addActionListener(e->guardar());   
+        //vista.getCombo_objetivo_operarivo().addActionListener(e-> buscar());
         vista.getComboproyectos().addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent itemEvent) {
                 cargarObjetivos();
             }
         });
         
-        lista();
+        
+        
+        vista.getCombo_objetivo_operarivo().addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent itemEvent) {
+                buscar();
+            }
+        });
+        
   
     }
     
@@ -162,6 +176,59 @@ public class Con_poa_actividad {
     }
     
     
+    public void buscar() {
+        
+        int objetivo = (int) vista.getCombo_objetivo_operarivo().getSelectedIndex();
+  
+            DefaultTableModel modelo;
+            modelo = (DefaultTableModel) vista.getTablaactividades().getModel();
+            List<ActividadesMD> lista1 = baseDatosactividades.obtenerdatos(objetivo);
+            int columnas = modelo.getColumnCount();
+            for (int j = vista.getTablaactividades().getRowCount() - 1; j >= 0; j--) {
+                modelo.removeRow(j);
+                for (int i = 0; i < lista1.size(); i++) {
+                    if (lista1.get(i).getId_objetivo_operativo()== objetivo) {
+                        modelo.addRow(new Object[columnas]);
+                        vista.getTablaactividades().setValueAt(lista1.get(i).getId_actividades(), i, 0);
+                        vista.getTablaactividades().setValueAt(lista1.get(i).getId_objetivo_operativo(), i, 1);
+                        vista.getTablaactividades().setValueAt(lista1.get(i).getActividad(), i, 2);
+                        vista.getTablaactividades().setValueAt(lista1.get(i).getResponsable(), i, 3);
+                        vista.getTablaactividades().setValueAt(lista1.get(i).getRecurso_financiero(), i, 4);
+                        vista.getTablaactividades().setValueAt(lista1.get(i).getPlazo(), i, 5);
+                    }
+                }
+            }
+        
+    }
+    
+    public void cargarcombo(){
+        
+        
+        List<docenteMD> listar = bdocente.mostrardatos();
+        List<PersonaMD> listap = bpersona.mostrardatos();
+        
+        
+        for (int i = 0; i < listap.size(); i++) {
+            for (int j = 0; j < listar.size(); j++) {
+                
+            
+                if (listar.get(j).getCedula().equals(listap.get(i).getCedula())) {
+                    vista.getCombo_responsable().addItem(listap.get(i).getNombres()+" "+listap.get(i).getApellidos());
+
+                    System.out.println(listap.get(i).getNombres()+" "+listap.get(i).getApellidos());
+                }
+            
+            }
+        }
+        
+        
+         
+        
+        
+        
+    }
+    
+    
 //    public void seleccionar(){
 //        
 //        
@@ -218,6 +285,8 @@ public class Con_poa_actividad {
             vista.getTablaactividades().setValueAt(lista.get(i).getRecurso_financiero(), i, 5); 
         }
     }
+    
+    
     
     
     

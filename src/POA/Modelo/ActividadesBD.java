@@ -6,6 +6,7 @@ package POA.Modelo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -79,5 +80,30 @@ public class ActividadesBD extends ActividadesMD{
         return 0;
     }
     
-   
+    
+    
+    public List<ActividadesMD> obtenerdatos(int identificador) {
+        try {
+            List<ActividadesMD> lista = new ArrayList<ActividadesMD>();
+            String sql = "select * from actividades where \"id_objetivo_operativo\"='" + identificador + "'";
+            ResultSet rs = conectar.query(sql);
+            byte[] is;
+            while (rs.next()) {
+                ActividadesMD p = new ActividadesMD();
+                p.setId_actividades(rs.getInt("id_actividades"));
+                p.setId_objetivo_operativo(rs.getInt("id_objetivo_operativo"));
+                p.setActividad(rs.getString("actividad"));
+                p.setResponsable(rs.getString("responsable"));
+                p.setRecurso_financiero(rs.getString("recurso_financiero"));
+                p.setPlazo(rs.getString("plazo"));
+               
+                lista.add(p);
+            }
+            rs.close();//cerramos conexion base.
+            return lista;
+        } catch (SQLException ex) {
+            Logger.getLogger(PersonaBD.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 }

@@ -69,7 +69,7 @@ public class Con_Asignacion {
     }
 
     public void plan() {
-
+        vista.setVisible(false);
         Vis_Documentacion doc= new Vis_Documentacion();
         Con_documentacion per = new Con_documentacion(doc,id_asignacion);
 

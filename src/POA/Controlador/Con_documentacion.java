@@ -53,7 +53,6 @@ public class Con_documentacion {
     public Con_documentacion(Vis_Documentacion vista, String id_asignacion) {
         this.vista = vista;
         vista.setVisible(true);
-        
         vista.getGuias().add(vista.getRadioSi());
         vista.getGuias().add(vista.getRadioNo());
         asignacion = id_asignacion;

@@ -287,7 +287,7 @@ public class Con_Asignacion {
         vista.getCboxjornada().setSelectedItem(bdasignacion.getJornada());
         vista.getCboxparalelo().setSelectedItem(bdasignacion.getParalelo());
         String nombre =bdpersona.getNombres() + " " + bdpersona.getApellidos();
-        vista.getCombodocentes().addItem(nombre);
+        vista.getCombodocentes().setSelectedItem(nombre);
 
         id_asignacion = bdasignacion.getId_asignacio();
 

@@ -52,7 +52,7 @@ public class Con_Asignacion {
         vista.getBtnmodificar().addActionListener(e -> modificar());
         vista.getBtnagregar().addActionListener(e -> nuevo());
         vista.getBtneliminar().addActionListener(e -> eliminar());
-//        vista.getBtncrearplan().addActionListener(e ->);
+        vista.getBtncrearplan().addActionListener(e -> plan());
         vista.getTablaasignaciondocentemateria().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

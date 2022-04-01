@@ -246,7 +246,7 @@ public class Vis_Documentacion extends javax.swing.JInternalFrame  {
         txt_horaguia = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnnuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icono_agregar.png"))); // NOI18N
@@ -341,7 +341,7 @@ public class Vis_Documentacion extends javax.swing.JInternalFrame  {
         getContentPane().add(txt_jornada, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 210, 140, -1));
 
         txt_nombre.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        getContentPane().add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, 350, -1));
+        getContentPane().add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, 340, -1));
 
         txt_cedula.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         getContentPane().add(txt_cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 150, -1));

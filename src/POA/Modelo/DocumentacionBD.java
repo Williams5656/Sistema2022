@@ -22,9 +22,11 @@ public class DocumentacionBD extends DocumentacionMD{
     public DocumentacionBD() {
     }
 
-    public DocumentacionBD(int id_plan, String id_asignacion, String fecha, String guias, int horasGuia, String estado) {
-        super(id_plan, id_asignacion, fecha, guias, horasGuia, estado);
+    public DocumentacionBD(int id_plan, int numero, String id_asignacion, String fecha, String guias, int horasGuia, String estado) {
+        super(id_plan, numero, id_asignacion, fecha, guias, horasGuia, estado);
     }
+
+   
     public List<DocumentacionMD> mostrardatos() {
         try {
             List<DocumentacionMD> lista = new ArrayList<DocumentacionMD>();
@@ -33,6 +35,7 @@ public class DocumentacionBD extends DocumentacionMD{
             while (rs.next()) {
                 DocumentacionMD doc = new DocumentacionMD();
                 doc.setId_plan(rs.getInt("id_plan"));
+                doc.setNumero(rs.getInt("numero"));
                 doc.setId_asignacion(rs.getString("id_asignacion"));
                 doc.setFecha(rs.getString("fecha"));
                 doc.setGuias(rs.getString("guia"));
@@ -55,6 +58,7 @@ public class DocumentacionBD extends DocumentacionMD{
             while (rs.next()) {
                 DocumentacionMD doc = new DocumentacionMD();
                 doc.setId_plan(rs.getInt("id_plan"));
+                doc.setNumero(rs.getInt("numero"));
                 doc.setId_asignacion(rs.getString("id_asignacion"));
                 doc.setFecha(rs.getString("fecha"));
                 doc.setGuias(rs.getString("guia"));
@@ -70,7 +74,7 @@ public class DocumentacionBD extends DocumentacionMD{
         }
     }
     public boolean insertar() {
-        String sql = "INSERT INTO documentacion(id_plan, id_asignacion, fecha, guia, hora_guias, estado)" + "VALUES ('" + getId_plan() + "','" + getId_asignacion() + "','" + getFecha()+ "','" + getGuias()+ "','" + getHorasGuia()+ "','" + getEstado() + "')";
+        String sql = "INSERT INTO documentacion(numero, id_asignacion, fecha, guia, hora_guias, estado)" + "VALUES ('" + getNumero() + "','" + getId_asignacion() + "','" + getFecha()+ "','" + getGuias()+ "','" + getHorasGuia()+ "','" + getEstado() + "')";
         System.out.println(sql);
 
         if (conectar.noQuery(sql) == null) {

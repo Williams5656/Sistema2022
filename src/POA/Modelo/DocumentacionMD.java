@@ -11,6 +11,7 @@ package POA.Modelo;
  */
 public class DocumentacionMD {
     private int id_plan;
+    private int numero;
     private String id_asignacion;
     private String fecha;
     private String guias;
@@ -19,10 +20,10 @@ public class DocumentacionMD {
 
     public DocumentacionMD() {
     }
-    
 
-    public DocumentacionMD(int id_plan, String id_asignacion, String fecha, String guias, int horasGuia, String estado) {
+    public DocumentacionMD(int id_plan, int numero, String id_asignacion, String fecha, String guias, int horasGuia, String estado) {
         this.id_plan = id_plan;
+        this.numero = numero;
         this.id_asignacion = id_asignacion;
         this.fecha = fecha;
         this.guias = guias;
@@ -30,30 +31,20 @@ public class DocumentacionMD {
         this.estado = estado;
     }
 
-    public String getGuias() {
-        return guias;
-    }
-
-    public void setGuias(String guias) {
-        this.guias = guias;
-    }
-
-    public int getHorasGuia() {
-        return horasGuia;
-    }
-
-    public void setHorasGuia(int horasGuia) {
-        this.horasGuia = horasGuia;
-    }
-
-    
-
     public int getId_plan() {
         return id_plan;
     }
 
     public void setId_plan(int id_plan) {
         this.id_plan = id_plan;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 
     public String getId_asignacion() {
@@ -70,6 +61,22 @@ public class DocumentacionMD {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public String getGuias() {
+        return guias;
+    }
+
+    public void setGuias(String guias) {
+        this.guias = guias;
+    }
+
+    public int getHorasGuia() {
+        return horasGuia;
+    }
+
+    public void setHorasGuia(int horasGuia) {
+        this.horasGuia = horasGuia;
     }
 
     public String getEstado() {

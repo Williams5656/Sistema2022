@@ -71,7 +71,7 @@ public class Con_Asignacion {
     public void plan() {
 
         Vis_Documentacion doc= new Vis_Documentacion();
-        Con_documentacion per = new Con_documentacion(doc);
+        Con_documentacion per = new Con_documentacion(doc,id_asignacion);
 
         ESCRITORIO.add(doc);
         Dimension desktopSize = ESCRITORIO.getSize();

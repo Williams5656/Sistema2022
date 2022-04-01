@@ -23,6 +23,14 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static POA.Vista.Vis_Principal.*;
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -41,12 +49,30 @@ public class con_docentes {
         vista.getBtnmodificar().addActionListener(e -> modificar());
         vista.getBtn_estado().addActionListener(e -> cambiarestado());
         vista.getBtncancelar().addActionListener(e->nuevo());
+        vista.getBtnimprimir().addActionListener(e -> imprimir());
         buscarpersona();
         eventotabla();
         lista();
         persona();
         inhabilitar_botones();
 
+    }
+    
+    public void imprimir(){
+          Conect con = new Conect();
+            try {
+               
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/ReporteDocentes.jasper"));
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
+                JOptionPane.showMessageDialog(null, "Imprimiendo Docentes");
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException e) {
+                System.out.println("no se pudo encontrar registros" + e.getMessage());
+                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+            }
+        
     }
 
     public void inhabilitar_botones() {

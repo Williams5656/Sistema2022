@@ -19,6 +19,16 @@ import javax.swing.JTextField;
  */
 public class vis_Docentes extends javax.swing.JInternalFrame {
 
+    public JButton getBtnimprimir() {
+        return btnimprimir;
+    }
+
+    public void setBtnimprimir(JButton btnimprimir) {
+        this.btnimprimir = btnimprimir;
+    }
+
+    
+    
     public JButton getBtnmodificar() {
         return btnmodificar;
     }
@@ -192,6 +202,7 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
         btn_estado = new javax.swing.JButton();
         val_persona = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        btnimprimir = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -214,7 +225,7 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
         lbbtnregistarpersona.setForeground(new java.awt.Color(0, 0, 204));
         lbbtnregistarpersona.setText("REGISTRAR PERSONA");
         jPanel1.add(lbbtnregistarpersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, -1, -1));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 666, 3));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 720, 3));
 
         jLabel3.setFont(new java.awt.Font("Yu Gothic UI", 1, 11)); // NOI18N
         jLabel3.setText("Título del docente:");
@@ -253,14 +264,13 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
         btnguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/Save-icon (4).png"))); // NOI18N
         btnguardar.setText("GUARDAR");
         btnguardar.setContentAreaFilled(false);
-        btnguardar.setOpaque(false);
-        jPanel1.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 140, 40));
+        jPanel1.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 130, 40));
 
         btncancelar.setFont(new java.awt.Font("Yu Gothic UI", 1, 11)); // NOI18N
         btncancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/nuevo.png"))); // NOI18N
         btncancelar.setText("NUEVO");
         btncancelar.setContentAreaFilled(false);
-        jPanel1.add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, -1, -1));
+        jPanel1.add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, -1, -1));
 
         lbfoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(lbfoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 145, 120));
@@ -287,19 +297,19 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tabla_docentes);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 610, 170));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 670, 170));
 
         btnmodificar.setFont(new java.awt.Font("Yu Gothic UI", 1, 11)); // NOI18N
         btnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/modificar.png"))); // NOI18N
         btnmodificar.setText("MODIFICAR");
         btnmodificar.setContentAreaFilled(false);
-        jPanel1.add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, -1, -1));
+        jPanel1.add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 130, -1));
 
         btn_estado.setFont(new java.awt.Font("Yu Gothic UI", 1, 11)); // NOI18N
         btn_estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/CAMBIAR ESTADO (1).png"))); // NOI18N
         btn_estado.setText("CAMBIAR ESTADO");
         btn_estado.setContentAreaFilled(false);
-        jPanel1.add(btn_estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, -1, -1));
+        jPanel1.add(btn_estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, 160, -1));
 
         val_persona.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(val_persona, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, -1, -1));
@@ -307,11 +317,17 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/ISTA.jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 300, 70));
 
+        btnimprimir.setFont(new java.awt.Font("Yu Gothic UI", 1, 11)); // NOI18N
+        btnimprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/nuevo.png"))); // NOI18N
+        btnimprimir.setText("IMPRIMIR");
+        btnimprimir.setContentAreaFilled(false);
+        jPanel1.add(btnimprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 260, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -326,6 +342,7 @@ public class vis_Docentes extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_estado;
     private javax.swing.JButton btncancelar;
     private javax.swing.JButton btnguardar;
+    private javax.swing.JButton btnimprimir;
     private javax.swing.JButton btnmodificar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> combo_tiempo;

@@ -161,6 +161,40 @@ public class doc_silabo_BD extends doc_silabo_MD {
         }
     }
 
+        public boolean crear_silabos() {
+        int cod_max=0;
+        ResultSet rs;
+        try {
+            rs = conectar.query("select max (id_periodo) from periodo_academico");
+            while (rs.next()) {
+                cod_max = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al seleccionar el cod maximo de periodo");
+            return false;
+        }
+        
+        List<String> lista_mat=new ArrayList<>();
+        
+        try {
+            rs = conectar.query("select codigo from materia");//auemntar un where en la consulta cuado materia se relacione con carrera
+            while (rs.next()) {
+                lista_mat.add(rs.getString(1));
+            }
+        } catch (Exception e) {
+            System.out.println("Error al seleccionar el cod de materia");
+            return false;
+        }
+        
+        for (int i = 0; i < lista_mat.size(); i++) {
+            if (conectar.noQuery("INSERT INTO doc_silabo(id_periodo,id_materia)" + "VALUES ('" + cod_max + "','" + lista_mat.get(i) + "');") == null);
+            else {
+                System.out.println("Error al crear el silado "+lista_mat.get(i));
+                return false;
+            }
+        }
+        return true;
+    }                
     
 
 }

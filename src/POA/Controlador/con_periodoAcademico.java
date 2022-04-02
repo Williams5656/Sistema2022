@@ -5,6 +5,8 @@
 package POA.Controlador;
 
 import POA.Modelo.PeriodoacademicoBD;
+import POA.Modelo.doc_modulo_BD;
+import POA.Modelo.doc_silabo_BD;
 import POA.Vista.*;
 
 /**
@@ -41,7 +43,21 @@ public class con_periodoAcademico {
             } else {
                 System.out.println("error val crear periodo");
             }
+            
+            doc_modulo_BD mod=new doc_modulo_BD();
+            if (mod.crear_modulos() == true) {
+                System.out.println("Modulos creados");
+            } else {
+                System.out.println("error al crear modulos del periodo");}
+            
+            doc_silabo_BD sil=new doc_silabo_BD();
+            if (sil.crear_silabos()== true) {
+                System.out.println("Silabos creados");
+            } else {
+                System.out.println("error al crear modulos del periodo");}
+            
             periodo.llenar_tabla(vista.getTabla());
+            
         } else; //colocar un joption despues desde una clase general;        
     }
 

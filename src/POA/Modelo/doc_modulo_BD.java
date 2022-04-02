@@ -29,6 +29,7 @@ import javax.imageio.ImageReadParam;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 import org.postgresql.util.Base64;
+
 /**
  *
  * @author DANNY
@@ -82,7 +83,8 @@ public class doc_modulo_BD extends doc_modulo_MD {
             return null;
         }
     }
-        private Image getImage(byte[] bytes, boolean isThumbnail) throws IOException {
+
+    private Image getImage(byte[] bytes, boolean isThumbnail) throws IOException {
         ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
         Iterator readers = ImageIO.getImageReadersByFormatName("png");
         ImageReader reader = (ImageReader) readers.next();
@@ -95,15 +97,15 @@ public class doc_modulo_BD extends doc_modulo_MD {
         }
         return reader.read(0, param);
     }
-        
-          public List<doc_modulo_MD> obtenerdatos(String id_doc_modulo) {
+
+    public List<doc_modulo_MD> obtenerdatos(String id_doc_modulo) {
         try {
             List<doc_modulo_MD> lista = new ArrayList<doc_modulo_MD>();
-            String sql = "select * from doc_modulo" + " where \"id_doc_modulo\"='"+id_doc_modulo+"'";
+            String sql = "select * from doc_modulo" + " where \"id_doc_modulo\"='" + id_doc_modulo + "'";
             ResultSet rs = conectar.query(sql);
             byte[] is;
             while (rs.next()) {
-                    doc_modulo_MD m = new doc_modulo_MD();
+                doc_modulo_MD m = new doc_modulo_MD();
                 m.setId_doc_modulo(rs.getInt("id_doc_modulo"));
                 m.setId_periodo(rs.getInt("id_periodo"));
                 m.setId_materia(rs.getString("id_materia"));
@@ -124,7 +126,6 @@ public class doc_modulo_BD extends doc_modulo_MD {
                 }
 
                 lista.add(m);
-   
 
             }
             rs.close();
@@ -135,8 +136,8 @@ public class doc_modulo_BD extends doc_modulo_MD {
             return null;
         }
     }
-          
-              public boolean insertar() {
+
+    public boolean insertar() {
         //Transformo image a base64 encode para postgresl
 //          String ef = null;
 //        ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -148,9 +149,9 @@ public class doc_modulo_BD extends doc_modulo_MD {
 //        } catch (IOException ex) {
 //            Logger.getLogger(doc_modulo_BD.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-        
+
         //borrado el documento del iserte
-        String nsql = "INSERT INTO doc_modulo(id_periodo,id_materia)" + "VALUES ('" + getId_periodo()+ "','" + getId_materia()+"');";
+        String nsql = "INSERT INTO doc_modulo(id_periodo,id_materia)" + "VALUES ('" + getId_periodo() + "','" + getId_materia() + "');";
 
         if (conectar.noQuery(nsql) == null) {
             return true;
@@ -161,9 +162,39 @@ public class doc_modulo_BD extends doc_modulo_MD {
         }
     }
 
-    
+    public boolean crear_modulos() {
+        int cod_max=0;
+        ResultSet rs;
+        try {
+            rs = conectar.query("select max (id_periodo) from periodo_academico");
+            while (rs.next()) {
+                cod_max = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al seleccionar el cod maximo de periodo");
+            return false;
+        }
+        
+        List<String> lista_mat=new ArrayList<>();
+        
+        try {
+            rs = conectar.query("select codigo from materia");//auemntar un where en la consulta cuado materia se relacione con carrera
+            while (rs.next()) {
+                lista_mat.add(rs.getString(1));
+            }
+        } catch (Exception e) {
+            System.out.println("Error al seleccionar el cod de materia");
+            return false;
+        }
+        
+        for (int i = 0; i < lista_mat.size(); i++) {
+            if (conectar.noQuery("INSERT INTO doc_modulo(id_periodo,id_materia)" + "VALUES ('" + cod_max + "','" + lista_mat.get(i) + "');") == null);
+            else {
+                System.out.println("Error al crear el modulo "+lista_mat.get(i));
+                return false;
+            }
+        }
+        return true;
+    }
 
 }
-
-
-  

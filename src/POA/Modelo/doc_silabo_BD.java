@@ -47,14 +47,14 @@ public class doc_silabo_BD extends doc_silabo_MD {
     public List<doc_silabo_MD> mostrardatos() {
         try {
             List<doc_silabo_MD> lista = new ArrayList<doc_silabo_MD>();
-            String sql = "select * from doc_";
+            String sql = "select * from doc_silabo";
             ResultSet rs = conectar.query(sql);
             byte[] is;
             while (rs.next()) {
                 doc_silabo_MD m = new doc_silabo_MD();
-                m.setId_doc_silabo(rs.getInt("id_doc_modulo"));
-                m.setId_periodo(rs.getInt("id_materia"));
-                m.setId_materia(rs.getString("id_periodo"));
+                m.setId_doc_silabo(rs.getInt("id_doc_silabo"));
+                m.setId_periodo(rs.getInt("id_periodo"));
+                m.setId_materia(rs.getString("id_materia"));
                 is = rs.getBytes("documento");
 
                 is = rs.getBytes("documento");

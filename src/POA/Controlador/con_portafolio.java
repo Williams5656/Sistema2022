@@ -27,8 +27,8 @@ public class con_portafolio {
     public con_portafolio(vis_portafolio vista) {
         this.vista = vista;
         vista.setVisible(true);
-        llenarCombo();       
-        tabla_modulo();
+        llenarCombo();
+        vista.getBtnModulos().addActionListener(e-> tabla_modulo());
     }
     
     public void guardar(){
@@ -65,19 +65,38 @@ public class con_portafolio {
     }
     
     public void tabla_modulo(){
-        noeditablemodelo modelo= new noeditablemodelo();
+        noeditablemodelo modelo= new noeditablemodelo(){
+      public Class<?> getColumnClass(int column)
+      {
+        switch(column)
+        {
+        case 0:
+          return String.class;
+        case 1:
+          return String.class;
+        case 2:
+          return String.class;
+        case 3:          
+          return Boolean.class;
+        default:
+            return String.class;
+        }
+      }
+    };
         modelo.addColumn("Codigo");
         modelo.addColumn("Periodo");
         modelo.addColumn("Materia");
+        modelo.addColumn("Documento");
         
         doc_modulo_BD mod=new doc_modulo_BD();
         List<doc_modulo_MD> modulos=mod.mostrardatos();
         
         for (int i = 0; i < modulos.size(); i++) {
-            modelo.addRow(new Object[3]);
+            modelo.addRow(new Object[0]);
             modelo.setValueAt(modulos.get(i).getId_doc_modulo(), i, 0);
             modelo.setValueAt(nom_periodo(modulos.get(i).getId_periodo()), i, 1);
-            modelo.setValueAt(nom_materia(modulos.get(i).getId_materia()), i, 2);            
+            modelo.setValueAt(nom_materia(modulos.get(i).getId_materia()), i, 2);
+            modelo.setValueAt((modulos.get(i).getDocumento()!=null),i,3);            
         }
         
         vista.getTbl_Datos().setModel(modelo);             

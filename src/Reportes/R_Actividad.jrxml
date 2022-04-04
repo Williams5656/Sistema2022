@@ -1,29 +1,185 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-
-<jasperReport name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-    <background>
-        <band/>
-    </background>
-    <title>
-        <band height="79"/>
-    </title>
-    <pageHeader>
-        <band height="35"/>
-    </pageHeader>
-    <columnHeader>
-        <band height="61"/>
-    </columnHeader>
-    <detail>
-        <band height="125"/>
-    </detail>
-    <columnFooter>
-        <band height="45"/>
-    </columnFooter>
-    <pageFooter>
-        <band height="54"/>
-    </pageFooter>
-    <summary>
-        <band height="42"/>
-    </summary>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6ebaa9e4-19fe-408d-93eb-b17ed9cb4c2c">
+	<property name="ireport.zoom" value="1.9487171000000025"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     calendario."id_actividad" AS calendario_id_actividad,
+     calendario."id_carrera" AS calendario_id_carrera,
+     calendario."id_periodo" AS calendario_id_periodo,
+     calendario."id_tipoactividad" AS calendario_id_tipoactividad,
+     calendario."nombre_actividad" AS calendario_nombre_actividad,
+     calendario."descripcion" AS calendario_descripcion,
+     calendario."fecha_inicio" AS calendario_fecha_inicio,
+     calendario."fecha_limite" AS calendario_fecha_limite
+FROM
+     "public"."calendario" calendario]]>
+	</queryString>
+	<field name="calendario_id_actividad" class="java.lang.Integer"/>
+	<field name="calendario_id_carrera" class="java.lang.String"/>
+	<field name="calendario_id_periodo" class="java.lang.Integer"/>
+	<field name="calendario_id_tipoactividad" class="java.lang.Integer"/>
+	<field name="calendario_nombre_actividad" class="java.lang.String"/>
+	<field name="calendario_descripcion" class="java.lang.String"/>
+	<field name="calendario_fecha_inicio" class="java.sql.Date"/>
+	<field name="calendario_fecha_limite" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="58" width="555" height="20" uuid="665907ad-d844-4d65-936c-0b3235230084"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lista de Responsables]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="38" width="555" height="20" uuid="bc5c3f2e-a37f-4778-bf25-7289d7a78368"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Instituto Superior Tecnológico del Azuay]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="1" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="73" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="1c0cd04d-4327-43ab-8c02-845460b34f34"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Actividad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="147" y="0" width="67" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="0c5c7574-653e-4313-ae35-b5c6415c4427"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Periodo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="73" y="0" width="74" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="40b21833-2322-491d-aa86-916b28b08512"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Carrera]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="214" y="0" width="71" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="ccdf37ea-136c-4af0-a633-c143ad908fa5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Tipo Act]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="285" y="0" width="67" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="9eebb9e6-90fa-4a33-88b1-3c283b484232"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="352" y="0" width="67" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="6b54a690-d841-49c5-bfb3-6d3157e657c4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="419" y="0" width="67" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="18faa12c-d435-47dc-8854-e5a94a6112cd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[F Inicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="486" y="0" width="69" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="5b07c67b-a628-4726-9200-b73f5f55fc69"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[F Limite]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement x="73" y="0" width="1" height="16" uuid="ab60ea36-66a9-4291-b6a5-d62d17f7126f"/>
+			</line>
+			<line>
+				<reportElement x="146" y="0" width="1" height="16" uuid="7c6df526-9ca8-4540-8abe-6935e35e65c9"/>
+			</line>
+			<line>
+				<reportElement x="213" y="0" width="1" height="16" uuid="36446080-674a-4d6f-b245-f3c067870c30"/>
+			</line>
+			<line>
+				<reportElement x="285" y="0" width="1" height="16" uuid="b628cbca-59fd-4e6a-b407-caadafd49983"/>
+			</line>
+			<line>
+				<reportElement x="352" y="0" width="1" height="16" uuid="69668f9d-4d01-4324-8a80-3cae6ed30e0f"/>
+			</line>
+			<line>
+				<reportElement x="419" y="0" width="1" height="16" uuid="a0ed86bf-21ca-4ac3-ab78-1fc5b8e1880a"/>
+			</line>
+			<line>
+				<reportElement x="485" y="0" width="1" height="16" uuid="01cffcdb-cc30-43b9-86d7-87d114fcbc82"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="0" width="73" height="16" uuid="162fc95a-71c3-4e8e-a112-2cb199ed8b8e"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{calendario_id_actividad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="74" y="0" width="72" height="16" uuid="d75d4389-01a8-4c8e-8838-b2fd342b92f1"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{calendario_id_carrera}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="147" y="0" width="66" height="16" uuid="eae98e0d-580b-4b64-9019-7a2e942216dd"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{calendario_id_periodo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="214" y="0" width="71" height="16" uuid="2bfcc293-9102-47bb-a2bd-2b5901cb4a30"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{calendario_id_tipoactividad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="286" y="0" width="66" height="16" uuid="88a8fd7d-2425-4893-8d8a-edd625281fa3"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{calendario_nombre_actividad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="353" y="0" width="66" height="16" uuid="0499d9e5-333b-4143-9d66-6d58c4bad06e"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{calendario_descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="0" width="65" height="16" uuid="bdeb2420-9b75-423e-9bfa-30d6bd9713dd"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{calendario_fecha_inicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="486" y="0" width="69" height="16" uuid="9f3a51a6-5378-49c1-9ac0-69a4dfdede97"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{calendario_fecha_limite}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
 </jasperReport>

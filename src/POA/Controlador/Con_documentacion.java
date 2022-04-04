@@ -52,6 +52,10 @@ public class Con_documentacion {
     
     public Con_documentacion(Vis_Documentacion vista, String id_asignacion) {
         this.vista = vista;
+        ESCRITORIO.add(vista);
+            Dimension desktopSize = ESCRITORIO.getSize();
+            Dimension FrameSize = vista.getSize();
+            vista.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         vista.setVisible(true);
         vista.getGuias().add(vista.getRadioSi());
         vista.getGuias().add(vista.getRadioNo());
@@ -181,7 +185,7 @@ public class Con_documentacion {
     public void regresar() {
         vista.setVisible(false);
         vis_asignacionmateriadocentes doc = new vis_asignacionmateriadocentes();
-        Con_Asignacion per = new Con_Asignacion(doc);
+        Con_Asignacion_Docente per = new Con_Asignacion_Docente(doc);
         
         ESCRITORIO.add(doc);
         Dimension desktopSize = ESCRITORIO.getSize();
@@ -202,8 +206,7 @@ public class Con_documentacion {
         vista.getTxt_periodo().setEditable(false);
     }
     
-    public void cargarDatos() {
-        
+    public void cargarDatos() {       
         listaasignacion = baseAsignacion.mostrardatos();
         listaPersona = baseDatosPersona.mostrardatos();
         listaPeriodo = basePeriodo.lista_periodos();

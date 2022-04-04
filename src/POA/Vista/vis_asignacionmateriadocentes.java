@@ -216,7 +216,7 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
         btncrearplan.setText("CREAR PLAN");
         getContentPane().add(btncrearplan, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, -1, -1));
 
-        cboxciclo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" }));
+        cboxciclo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "1", "2", "3", "4", "5", "6", "7", "8" }));
         getContentPane().add(cboxciclo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 120, -1));
 
         jLabel6.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
@@ -224,7 +224,7 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
         jLabel6.setText("ASIGNATURA:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
-        cboxjornada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MATUTINA", "VESPERTINA", "NOCTURNA" }));
+        cboxjornada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "MATUTINA", "VESPERTINA", "NOCTURNA" }));
         getContentPane().add(cboxjornada, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 100, -1));
 
         jLabel4.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
@@ -244,7 +244,7 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
         jLabel5.setText("PARALELO:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, -1, -1));
 
-        cboxparalelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D", "E", "F" }));
+        cboxparalelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "A", "B", "C", "D", "E", "F" }));
         cboxparalelo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboxparaleloActionPerformed(evt);

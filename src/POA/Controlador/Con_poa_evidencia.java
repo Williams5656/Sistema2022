@@ -11,6 +11,7 @@ import POA.Modelo.CarreraMD;
 import POA.Modelo.ProyectoMD;
 import POA.Modelo.ProyectoBD;
 import POA.Modelo.CarreraBD;
+import POA.Modelo.Conect;
 import POA.Modelo.EvidenciaBD;
 import POA.Modelo.EvidenciaMD;
 import POA.Modelo.ObjetivoOperativoBD;
@@ -24,7 +25,16 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import POA.Modelo.Validadores.anio_evidecia;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -58,6 +68,7 @@ public class Con_poa_evidencia  {
         
         vista.getBtnGuardar().addActionListener(e -> guardar());
         vista.getBtnNuevo().addActionListener(e -> nuevo());
+        vista.getBtnImprimir().addActionListener(e -> imprimir());
         vista.getCbx_proyecto().setEnabled(false);
         vista.getCbx_carrera().setEnabled(false);
         vista.getCbx_anio().setEnabled(false);
@@ -67,7 +78,21 @@ public class Con_poa_evidencia  {
         cargarComboAnio();
         lista();
     }
-
+    public void imprimir(){
+        Conect con = new Conect();
+            try {
+               
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Evidencias.jasper"));
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
+                JOptionPane.showMessageDialog(null, "Imprimiendo Evidencias");
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException e) {
+                System.out.println("no se pudo encontrar registros" + e.getMessage());
+                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+            }
+    }
     public void cargarComboCarrera() {
         listaCarreras = baseDatosCarrera.mostrardatos();
         listaPoa = baseDatosPoa.mostrarDatos();

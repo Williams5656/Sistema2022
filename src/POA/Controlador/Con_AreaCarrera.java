@@ -9,6 +9,7 @@ import POA.Modelo.AreaCarreraBD;
 import POA.Modelo.AreaCarreraMD;
 import POA.Modelo.CarreraBD;
 import POA.Modelo.CarreraMD;
+import POA.Modelo.Conect;
 import POA.Modelo.PerfilBD;
 import POA.Modelo.PerfilMD;
 import POA.Modelo.PersonaBD;
@@ -22,8 +23,17 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -44,6 +54,7 @@ public class Con_AreaCarrera {
     private docenteBD baseDatosDocente = new docenteBD();
     private PersonaBD baseDatosPersona = new PersonaBD();
     String vector[];
+    PerfilBD basePerfil = new PerfilBD();
 
     public Con_AreaCarrera(Vis_AreaCarrera vista) {
         this.vista = vista;
@@ -55,6 +66,7 @@ public class Con_AreaCarrera {
         vista.getBtn_modificar().addActionListener(e -> modificar());
         vista.getBtn_eliminar().addActionListener(e -> eliminar());
         vista.getBtn_nuevo().addActionListener(e -> nuevo());
+        vista.getBtn_imprimir().addActionListener(e -> imprimir());
         vista.getTablaAreaCarrera().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -62,13 +74,31 @@ public class Con_AreaCarrera {
             }
         });
         desactivarBotones();
-        lista();
+        eventoCarrera();
+//        lista();
         listaCarrera = baseDatosCarrera.mostrardatos();
         listaPerfiles = baseDatosPerfil.mostrardatos();
         listaDocente = baseDatosDocente.mostrardatos();
         listaPersona = baseDatosPersona.mostrardatos();
     }
-    
+
+    public void imprimir() {
+        Conect con = new Conect();
+        try {
+
+            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/ReporteAreaCarrera.jasper"));
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+            JasperViewer jv = new JasperViewer(jp, false);
+            JOptionPane.showMessageDialog(null, "Imprimiendo");
+            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            jv.setVisible(true);
+        } catch (JRException e) {
+            System.out.println("no se pudo encontrar registros" + e.getMessage());
+            Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+    }
+
     public void desactivarBotones() {
         vista.getBtn_guardar().setEnabled(false);
         vista.getBtn_modificar().setEnabled(false);
@@ -96,11 +126,10 @@ public class Con_AreaCarrera {
         int contador = 0;
         for (PersonaMD persona : listaPersona) {
             for (docenteMD docente : listaDocente) {
-                if (persona.getCedula().equals(docente.getCedula())&&docente.getEstado().equals("ACTIVO")) {
+                if (persona.getCedula().equals(docente.getCedula()) && docente.getEstado().equals("ACTIVO")) {
                     vista.getComboResponsable().addItem(persona.getNombres() + " " + persona.getApellidos());
                     vector[contador] = persona.getCedula();
                     contador++;
-                    System.out.println(persona.getNombres() + " " + contador);
                 }
             }
         }
@@ -114,6 +143,16 @@ public class Con_AreaCarrera {
         for (CarreraMD carrera : listaCarrera) {
             vista.getComboCarrera().addItem(carrera.getNombre_carrera());
         }
+    }
+
+    public void eventoCarrera() {
+        vista.getComboCarrera().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                lista();
+            }
+
+        });
     }
 
     private void nuevo() {
@@ -135,7 +174,6 @@ public class Con_AreaCarrera {
         bdarea.setIdResponsable(cedula);
         String perfilCombo = (String) vista.getComboPerfil().getSelectedItem();
         int codigoPerfil = 0;
-        PerfilBD basePerfil = new PerfilBD();
         codigoPerfil = basePerfil.mostrarIdPerfil(perfilCombo);
         bdarea.setIdPerfil(codigoPerfil);
         String carreraCombo = (String) vista.getComboCarrera().getSelectedItem();
@@ -157,7 +195,6 @@ public class Con_AreaCarrera {
         bdarea.setIdResponsable(cedula);
         String perfilCombo = (String) vista.getComboPerfil().getSelectedItem();
         int codigoPerfil = 0;
-        PerfilBD basePerfil = new PerfilBD();
         codigoPerfil = basePerfil.mostrarIdPerfil(perfilCombo);
         bdarea.setIdPerfil(codigoPerfil);
         String carreraCombo = (String) vista.getComboCarrera().getSelectedItem();
@@ -187,38 +224,11 @@ public class Con_AreaCarrera {
             JOptionPane.showMessageDialog(null, "Seleccione el Responsable");
         } else {
             insertarBase();
-
-//            String docenteCombo = (String) vista.getComboCarrera().getSelectedItem();
-//            String codigoDocente = "";
-//            String responsableCombo = (String) vista.getComboResponsable().getSelectedItem();
-//            for (CarreraMD carrera : listaCarrera) {
-//                if (carreraCombo.equals(carrera.getNombre_carrera())) {
-//                    codigoCarrera = carrera.getCodigo_carrera();
-//                }
-//            }
-//            for (PersonaMD persona : listaPersona) {
-//                for (docenteMD docente : listaDocente) {
-//                    if (docenteCombo.equals(persona.getNombres() + " " + persona.getApellidos())) {
-//                        codigoDocente = persona.getCedula();
-//                    }
-//                }
-//            }
         }
     }
 
     private void modificar() {
-//        int seleccionado = vista.getTablaAreaCarrera().getSelectedRow();
-//        int resp2 = JOptionPane.showConfirmDialog(null, "CONFIRME SI ESTA SEGURO DE MODIFICAR");
-//        if (resp2 == 0) {
-//            if (bdarea.modificar(lista.get(seleccionado).getIdArea())) {
-//                JOptionPane.showMessageDialog(null, "DATOS ACTUALIZADOS");
-//                lista();
-//                nuevo();
-//            } else {
-//                JOptionPane.showMessageDialog(null, "ERROR AL MODIFICAR");
-//            }
-//        }
-modificarBase();
+        modificarBase();
     }
 
     private void eliminar() {
@@ -263,48 +273,54 @@ modificarBase();
     }
 
     public void lista() {
-        modelo.setRowCount(0);
-        modelo.setColumnCount(0);
+        try {
+            String carreraCombo = (String) vista.getComboCarrera().getSelectedItem();
+            String codigoCarrera = "";
+            codigoCarrera = basePerfil.mostrarIdCarrera(carreraCombo);
+            modelo.setRowCount(0);
+            modelo.setColumnCount(0);
 
-        modelo.addColumn("Id");
-        modelo.addColumn("Carrera");
-        modelo.addColumn("Perfil");
-        modelo.addColumn("Responsable");
-        Object[] fila = new Object[4];
+            modelo.addColumn("Id");
+            modelo.addColumn("Carrera");
+            modelo.addColumn("Perfil");
+            modelo.addColumn("Responsable");
+            Object[] fila = new Object[4];
 
-        lista = bdarea.mostrardatos();
-        listaCarrera = baseDatosCarrera.mostrardatos();
-        listaPerfiles = baseDatosPerfil.mostrardatos();
-        listaDocente = baseDatosDocente.mostrardatos();
-        listaPersona = baseDatosPersona.mostrardatos();
-        for (AreaCarreraMD user : lista) {
-
-            fila[0] = user.getIdArea();
-            //fila[1] = user.getIdCarrera();
-            for (CarreraMD carrera : listaCarrera) {
-                if (carrera.getCodigo_carrera().equals(user.getIdCarrera())) {
-                    fila[1] = carrera.getNombre_carrera();
-                }
-            }
-            //fila[2] = user.getIdPerfil();
-            for (PerfilMD perfil : listaPerfiles) {
-                if (perfil.getCodigo() == user.getIdPerfil()) {
-                    fila[2] = perfil.getNombre();
-                }
-            }
-            //fila[3] = user.getIdResponsable();
-            for (PersonaMD perfil : listaPersona) {
-                for (docenteMD docente : listaDocente) {
-                    if (docente.getCedula().equals(user.getIdResponsable())) {
-                        fila[3] = docente.getCedula();
+            lista = bdarea.mostrardatos();
+            listaCarrera = baseDatosCarrera.mostrardatos();
+            listaPerfiles = baseDatosPerfil.mostrardatos();
+            listaDocente = baseDatosDocente.mostrardatos();
+            listaPersona = baseDatosPersona.mostrardatos();
+            for (AreaCarreraMD user : lista) {
+                if (user.getIdCarrera().equals(codigoCarrera)) {
+                    fila[0] = user.getIdArea();
+                    for (CarreraMD carrera : listaCarrera) {
+                        if (carrera.getCodigo_carrera().equals(user.getIdCarrera())) {
+                            fila[1] = carrera.getNombre_carrera();
+                        }
                     }
+                    for (PerfilMD perfil : listaPerfiles) {
+                        if (perfil.getCodigo() == user.getIdPerfil()) {
+                            fila[2] = perfil.getNombre();
+                        }
+                    }
+                    for (PersonaMD perfil : listaPersona) {
+                        for (docenteMD docente : listaDocente) {
+                            if (docente.getCedula().equals(user.getIdResponsable())) {
+                                fila[3] = docente.getCedula();
+                            }
+                        }
+                    }
+
+                    modelo.addRow(fila);
                 }
+
             }
 
-            modelo.addRow(fila);
+            vista.getTablaAreaCarrera().setModel(modelo);
+        } catch (Exception e) {
+            System.out.println("error" + e.getMessage());
         }
-
-        vista.getTablaAreaCarrera().setModel(modelo);
 
     }
 

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="17e24359-6b00-40a6-82f0-edddd5bf5d9f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="109"/>
+	<queryString>
+		<![CDATA[SELECT
+     *
+FROM
+     "v_area" v_area]]>
+	</queryString>
+	<field name="carrera" class="java.lang.String"/>
+	<field name="perfil" class="java.lang.String"/>
+	<field name="responsable" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="1" width="555" height="78" uuid="c415612f-4b58-4f6a-929a-350afc0bb7b2"/>
+				<imageExpression><![CDATA["C:\\Users\\Usuario\\Documents\\NetBeansProjects\\Sistema2022\\src\\POA\\Vista\\img\\ISTA.jpg"]]></imageExpression>
+			</image>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="454" y="1" width="100" height="20" uuid="85ee028d-6a98-4337-a488-59751a216942"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="20" forecolor="#006699" uuid="8322adb7-db04-401a-a4f0-21ebadbb6c2d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lista de Area de Carreras]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="2" width="184" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="2194aff0-f48d-4426-bc64-e6194e8f856b"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Carrera]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="187" y="2" width="133" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="4602ce83-c032-4c9b-98da-10280a29208f"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Perfil]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="322" y="2" width="232" height="21" forecolor="#FFFFFF" backcolor="#006699" uuid="a5b30db1-cb93-48d3-9254-40c326e0e567"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Responsable]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="1" width="555" height="1" uuid="b44c9a81-d1b8-4671-b761-3e1cae411be2"/>
+			</line>
+			<line>
+				<reportElement x="0" y="22" width="555" height="1" uuid="ac61a910-bcca-46e6-8990-7978fbe61a2a"/>
+			</line>
+			<line>
+				<reportElement x="0" y="2" width="1" height="20" uuid="ddb77054-031a-4963-b7fc-53000ca398f9"/>
+			</line>
+			<line>
+				<reportElement x="186" y="2" width="1" height="20" uuid="9f6ea290-4bf2-4147-9656-8615d56d0db6"/>
+			</line>
+			<line>
+				<reportElement x="320" y="2" width="1" height="20" uuid="44ae963b-ed4d-4245-9d3b-da7bba1167b9"/>
+			</line>
+			<line>
+				<reportElement x="554" y="2" width="1" height="20" uuid="17c7d3f2-f40b-4fe1-8b26-0476447be605"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="197" y="5" width="100" height="20" uuid="75bf7a9e-9f67-4dd0-894c-fbf9cfe2903f"/>
+				<textFieldExpression><![CDATA[$F{perfil}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="333" y="5" width="222" height="20" uuid="3b337baa-b700-4f9c-94a8-addd163eebf1"/>
+				<textFieldExpression><![CDATA[$F{responsable}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="0" width="197" height="25" uuid="d7111718-8580-4a78-bd3b-14d5bb6d8071"/>
+				<textFieldExpression><![CDATA[$F{carrera}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="25" width="555" height="1" uuid="639d6e61-45b1-45cd-8655-76c79584cfe4"/>
+			</line>
+			<line>
+				<reportElement x="554" y="0" width="1" height="25" uuid="8e561c4e-a449-431e-8904-33302a719f37"/>
+			</line>
+			<line>
+				<reportElement x="320" y="0" width="1" height="25" uuid="f61c8a47-4ae5-4d6d-b4d7-89493699ba1f"/>
+			</line>
+			<line>
+				<reportElement x="185" y="0" width="1" height="25" uuid="c3a1e743-8c1f-4b0a-811e-5d24af9b3c78"/>
+			</line>
+			<line>
+				<reportElement x="-1" y="1" width="1" height="25" uuid="601d0bf5-681d-4a53-91f1-7f6ec663f759"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="454" y="34" width="100" height="20" uuid="fe9830b6-1e01-499c-b4a8-23d625eeaf51"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

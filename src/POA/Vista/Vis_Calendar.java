@@ -28,6 +28,22 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    public JButton getBtn_actividades() {
+        return btn_actividades;
+    }
+
+    public void setBtn_actividades(JButton btn_actividades) {
+        this.btn_actividades = btn_actividades;
+    }
+
+    public JButton getBtn_responsables() {
+        return btn_responsables;
+    }
+
+    public void setBtn_responsables(JButton btn_responsables) {
+        this.btn_responsables = btn_responsables;
+    }
+
     public JTable getTabla_responsable() {
         return tabla_responsable;
     }
@@ -325,7 +341,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         txt_descripcion = new javax.swing.JTextArea();
         combo_actividad = new javax.swing.JComboBox();
         combo_periodo = new javax.swing.JComboBox();
-        comobo_carrera = new javax.swing.JComboBox<>();
+        comobo_carrera = new javax.swing.JComboBox<String>();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         Btn_añadir_Tactividad = new javax.swing.JButton();
@@ -341,6 +357,8 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         Jl_evidencia = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_responsable = new javax.swing.JTable();
+        btn_responsables = new javax.swing.JButton();
+        btn_actividades = new javax.swing.JButton();
 
         jLabel5.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
         jLabel5.setText("SELECCIONE EL TIPO DE ACTIVIDAD PARA EL REPORTE");
@@ -622,6 +640,12 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, 920, 710));
 
+        btn_responsables.setText("RESPONSABLES");
+        getContentPane().add(btn_responsables, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 60, -1, -1));
+
+        btn_actividades.setText("ACTIVIDADES");
+        getContentPane().add(btn_actividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 20, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -664,6 +688,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
     private javax.swing.JDialog T_Actividad_D;
     private javax.swing.JTable Tabla_calendario;
     private javax.swing.JButton btn_aceptar;
+    private javax.swing.JButton btn_actividades;
     private javax.swing.JButton btn_añadir;
     private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_eliminar;
@@ -672,6 +697,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_imprimir;
     private javax.swing.JButton btn_modificar;
     private javax.swing.JButton btn_n_actividad;
+    private javax.swing.JButton btn_responsables;
     private javax.swing.JComboBox combo_actividad;
     private javax.swing.JComboBox combo_periodo;
     private javax.swing.JComboBox combo_tipo_actividad_repor;

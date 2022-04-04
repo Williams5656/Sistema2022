@@ -19,9 +19,13 @@ import POA.Vista.vis_asignacionmateriadocentes;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -198,13 +202,13 @@ public class Con_documentacion {
         int id_plan = (int) modelo.getValueAt(vista.getTablaDocumentacion().getSelectedRow(), 0);
         String estado = (String) vista.getComboEstado().getSelectedItem();
         List<DocumentacionMD> listadoc = bddocumentacion.obtenerdatos(id_plan);
-        bddocumentacion.setId_plan(id_plan);
+        bddocumentacion.setId_plan(listadoc.get(0).getId_plan());
         bddocumentacion.setGuias(listadoc.get(0).getGuias());
         bddocumentacion.setHorasGuia(listadoc.get(0).getHorasGuia());
         bddocumentacion.setFecha(listadoc.get(0).getFecha());
         bddocumentacion.setEstado(listadoc.get(0).getEstado());
         
-        vista.getTxt_numPlan().setText(bddocumentacion.getId_plan()+"");
+        vista.getTxt_plan().setText(bddocumentacion.getId_plan()+"");
         String guia = bddocumentacion.getGuias();
         if (guia.equalsIgnoreCase("SI")) {
             vista.getRadioSi().setSelected(true);
@@ -213,7 +217,13 @@ public class Con_documentacion {
         }
         System.out.println(bddocumentacion.getFecha());
         vista.getTxt_horaguia().setText(bddocumentacion.getHorasGuia()+"");
-        vista.getFecha().setDateFormatString(bddocumentacion.getFecha());
+        try {
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+            Date d1 = formato.parse(bddocumentacion.getFecha());
+            vista.getFecha().setDate(d1);
+        } catch (ParseException ex) {
+            Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, ex);
+        }
         vista.getComboEstado().setSelectedItem(bddocumentacion.getEstado());
     }
     public void modificar (){

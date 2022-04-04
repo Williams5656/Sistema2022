@@ -191,13 +191,14 @@ public class Con_documentacion {
         }
     }
     public void seleccionar() {
+        activarBotones();
         System.out.println("Seleccionar");
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTablaDocumentacion().getModel();
-        int id_plan = (int) modelo.getValueAt(vista.getTablaDocumentacion().getSelectedRow(), 1);
+        int id_plan = (int) modelo.getValueAt(vista.getTablaDocumentacion().getSelectedRow(), 0);
         String estado = (String) vista.getComboEstado().getSelectedItem();
         List<DocumentacionMD> listadoc = bddocumentacion.obtenerdatos(id_plan);
-        bddocumentacion.setId_plan(listadoc.get(0).getId_plan());
+        bddocumentacion.setId_plan(id_plan);
         bddocumentacion.setGuias(listadoc.get(0).getGuias());
         bddocumentacion.setHorasGuia(listadoc.get(0).getHorasGuia());
         bddocumentacion.setFecha(listadoc.get(0).getFecha());
@@ -210,6 +211,7 @@ public class Con_documentacion {
         }else{
             vista.getRadioNo().setSelected(true);
         }
+        System.out.println(bddocumentacion.getFecha());
         vista.getTxt_horaguia().setText(bddocumentacion.getHorasGuia()+"");
         vista.getFecha().setDateFormatString(bddocumentacion.getFecha());
         vista.getComboEstado().setSelectedItem(bddocumentacion.getEstado());

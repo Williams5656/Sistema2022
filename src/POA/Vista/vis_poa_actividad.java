@@ -25,6 +25,16 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    public JButton getBtnimprimir() {
+        return btnimprimir;
+    }
+
+    public void setBtnimprimir(JButton btnimprimir) {
+        this.btnimprimir = btnimprimir;
+    }
+    
+    
+
     public JButton getBtneliminar() {
         return btneliminar;
     }
@@ -172,6 +182,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         comboproyectos = new javax.swing.JComboBox<>();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
+        btnimprimir = new javax.swing.JButton();
 
         setClosable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -282,7 +293,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 430, 10, 20));
 
         btnindicador.setText("AÑADIR INDICADOR");
-        getContentPane().add(btnindicador, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 560, 140, 30));
+        getContentPane().add(btnindicador, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 560, 140, 40));
 
         jLabel1.setText("Proyecto:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, 100, 20));
@@ -292,6 +303,10 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
 
         jLabel2.setText("JOHANN");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 120, 30));
+
+        btnimprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/impresion.png"))); // NOI18N
+        btnimprimir.setText("Imprimir");
+        getContentPane().add(btnimprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 560, 120, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -308,6 +323,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btneliminar;
     private javax.swing.JButton btnguardar;
+    private javax.swing.JButton btnimprimir;
     private javax.swing.JButton btnindicador;
     private javax.swing.JButton btnmodificar;
     private javax.swing.JButton btnnuevo;

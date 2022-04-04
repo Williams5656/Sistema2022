@@ -19,8 +19,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author USUARIO
@@ -47,7 +56,7 @@ public class Con_poa_actividad {
         cargarObjetivos();
         cargarcombo();
         //cargarOB();
-        
+        vista.getBtnimprimir().addActionListener(e->imprimir());  
         vista.getBtnindicador().addActionListener(e->ventindicador());
         vista.getBtnguardar().addActionListener(e->guardar());   
         vista.getComboproyectos().addItemListener(new ItemListener() {
@@ -317,7 +326,24 @@ public class Con_poa_actividad {
         }
     }
     
-    
+    private void imprimir(){
+          Conect con = new Conect();
+            try {
+
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/ReporteActividades.jasper"));
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
+//                Map parametro = new HashMap();
+//                parametro.clear();
+//                parametro.put("logos",this.getClass().getResourceAsStream(imagen));
+                JOptionPane.showMessageDialog(null, "Imprimiendo Actividades");
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException e) {
+                System.out.println("no se pudo encontrar registros" + e.getMessage());
+                Logger.getLogger(Con_poa_actividad.class.getName()).log(Level.SEVERE, null, e);
+            }
+    }
     
     
     

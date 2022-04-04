@@ -51,20 +51,29 @@ public class Con_documentacion {
     private static int plan;
     
     public Con_documentacion(Vis_Documentacion vista, String id_asignacion) {
+        
         this.vista = vista;
         ESCRITORIO.add(vista);
-            Dimension desktopSize = ESCRITORIO.getSize();
-            Dimension FrameSize = vista.getSize();
-            vista.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        Dimension desktopSize = ESCRITORIO.getSize();
+        Dimension FrameSize = vista.getSize();
+        this.vista.getTablaDocumentacion().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                seleccionar();
+            }
+        });
+        vista.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         vista.setVisible(true);
         vista.getGuias().add(vista.getRadioSi());
         vista.getGuias().add(vista.getRadioNo());
         asignacion = id_asignacion;
-        cargarDatos();
+        cargarDatos();      
         System.out.println(asignacion + "=  ID");
         vista.getBtnnuevo().addActionListener(e -> nuevo());
         vista.getBtn_regresar().addActionListener(e -> regresar());
         vista.getBtnguardar().addActionListener(e -> guardar());
+        vista.getBtneditar().addActionListener(e -> modificar());
+        
         datos();
         desactivarBotones();
         eventoHoraguiaSi();
@@ -181,7 +190,47 @@ public class Con_documentacion {
             }
         }
     }
-    
+    public void seleccionar() {
+        System.out.println("Seleccionar");
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) vista.getTablaDocumentacion().getModel();
+        int id_plan = (int) modelo.getValueAt(vista.getTablaDocumentacion().getSelectedRow(), 1);
+        String estado = (String) vista.getComboEstado().getSelectedItem();
+        List<DocumentacionMD> listadoc = bddocumentacion.obtenerdatos(id_plan);
+        bddocumentacion.setId_plan(listadoc.get(0).getId_plan());
+        bddocumentacion.setGuias(listadoc.get(0).getGuias());
+        bddocumentacion.setHorasGuia(listadoc.get(0).getHorasGuia());
+        bddocumentacion.setFecha(listadoc.get(0).getFecha());
+        bddocumentacion.setEstado(listadoc.get(0).getEstado());
+        
+        vista.getTxt_numPlan().setText(bddocumentacion.getId_plan()+"");
+        String guia = bddocumentacion.getGuias();
+        if (guia.equalsIgnoreCase("SI")) {
+            vista.getRadioSi().setSelected(true);
+        }else{
+            vista.getRadioNo().setSelected(true);
+        }
+        vista.getTxt_horaguia().setText(bddocumentacion.getHorasGuia()+"");
+        vista.getFecha().setDateFormatString(bddocumentacion.getFecha());
+        vista.getComboEstado().setSelectedItem(bddocumentacion.getEstado());
+    }
+    public void modificar (){
+        int plan = Integer.parseInt(vista.getTxt_numPlan().getText());
+        String estado = (String) vista.getComboEstado().getSelectedItem();
+        bddocumentacion.setId_plan (Integer.parseInt(vista.getTxt_numPlan().getText()));
+        bddocumentacion.setHorasGuia(Integer.parseInt(vista.getTxt_horaguia().getText()));
+        bddocumentacion.setEstado(estado);
+        int resp = JOptionPane.showConfirmDialog(null, "¿Desea Modificar?","",JOptionPane.YES_NO_OPTION);
+        if (resp == JOptionPane.YES_OPTION) {
+            if (bddocumentacion.modificar(plan)){
+                JOptionPane.showMessageDialog(null, "DATOS MODIFICADOS");
+                lista();
+                nuevo();
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al modificar");
+            }
+        }
+    }
     public void regresar() {
         vista.setVisible(false);
         vis_asignacionmateriadocentes doc = new vis_asignacionmateriadocentes();

@@ -65,6 +65,7 @@ public class vis_poa_evidencia extends Fondos.fondo_internalframe {
         this.btnImprimir = btnImprimir;
     }
 
+
     public JButton getBtnModificar() {
         return btnModificar;
     }

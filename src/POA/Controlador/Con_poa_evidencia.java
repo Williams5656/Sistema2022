@@ -80,6 +80,7 @@ public class Con_poa_evidencia  {
     }
     public void imprimir(){
         Conect con = new Conect();
+        System.out.println("Imprimir");
             try {
                
                 JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Evidencia.jasper"));

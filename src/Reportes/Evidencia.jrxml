@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7044e84e-1d7d-4854-9671-b68f41158621">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="35"/>
+	<property name="ireport.y" value="71"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT
      evidencia."id_evidencia" AS evidencia_id_evidencia,
@@ -75,23 +75,50 @@ FROM
 				<text><![CDATA[ID Objetivo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="425" y="41" width="73" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="b0d26609-7939-4c24-8377-582379348d10"/>
+				<reportElement mode="Opaque" x="426" y="41" width="73" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="b0d26609-7939-4c24-8377-582379348d10"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Archivo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="60" y="41" width="73" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="585cc6c8-f4c6-4d0c-a5c7-1aafefa73b3c"/>
+				<reportElement mode="Opaque" x="61" y="41" width="72" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="585cc6c8-f4c6-4d0c-a5c7-1aafefa73b3c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[ID Evidencia]]></text>
 			</staticText>
+			<line>
+				<reportElement x="425" y="41" width="1" height="20" uuid="9c84a0ca-9545-40cc-b9c1-99b3b05c2451"/>
+			</line>
+			<line>
+				<reportElement x="352" y="41" width="1" height="20" uuid="eb177172-1af6-444d-8910-fc483efdf667"/>
+			</line>
+			<line>
+				<reportElement x="278" y="41" width="1" height="20" uuid="eda611b8-5ffd-4a5e-8ae6-7100fddcac34"/>
+			</line>
+			<line>
+				<reportElement x="205" y="41" width="1" height="20" uuid="3909a278-511e-4940-a104-9790bfa09a76"/>
+			</line>
+			<line>
+				<reportElement x="133" y="41" width="1" height="20" uuid="bc8fb1f0-670b-4c46-ba0f-46211edbe960"/>
+			</line>
+			<line>
+				<reportElement x="60" y="41" width="1" height="20" uuid="dd3323bd-0b72-41b2-89ae-19fe28b9d9c7"/>
+			</line>
+			<line>
+				<reportElement x="60" y="41" width="439" height="1" uuid="6ef166cf-aed6-4cc3-85a0-d577f8242331"/>
+			</line>
+			<line>
+				<reportElement x="61" y="60" width="438" height="1" uuid="c8c194bd-2421-46f5-b57b-dea26d115a92"/>
+			</line>
+			<line>
+				<reportElement x="499" y="41" width="1" height="20" uuid="7475cd06-02b9-4f79-9591-f7eee3c079ee"/>
+			</line>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="21" splitType="Stretch">
+		<band height="22" splitType="Stretch">
 			<elementGroup/>
 			<elementGroup>
 				<textField>
@@ -104,10 +131,13 @@ FROM
 			</elementGroup>
 			<elementGroup>
 				<textField>
-					<reportElement x="133" y="0" width="73" height="20" uuid="cb53c9c6-c746-467d-aafa-3713041baeb7"/>
+					<reportElement x="132" y="0" width="73" height="20" uuid="cb53c9c6-c746-467d-aafa-3713041baeb7"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle"/>
 					<textFieldExpression><![CDATA[$F{evidencia_id_actividades}]]></textFieldExpression>
 				</textField>
+				<line>
+					<reportElement x="60" y="20" width="440" height="1" uuid="320623c1-fac0-4667-8412-c15f93e1d1ea"/>
+				</line>
 			</elementGroup>
 			<textField>
 				<reportElement x="206" y="0" width="73" height="20" uuid="b714c584-d2af-477b-b307-eadab99f1a42"/>
@@ -129,6 +159,27 @@ FROM
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{evidencia_archivo}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="133" y="0" width="1" height="20" uuid="ac765881-3b3e-4509-84cc-a7c281ba2d2f"/>
+			</line>
+			<line>
+				<reportElement x="205" y="0" width="1" height="20" uuid="7b283731-fe4c-4f7e-b6ca-f2ca6fe0cedd"/>
+			</line>
+			<line>
+				<reportElement x="278" y="0" width="1" height="20" uuid="54dff0a7-b221-418d-a0bd-56fdde3a1ece"/>
+			</line>
+			<line>
+				<reportElement x="352" y="0" width="1" height="20" uuid="3b388b06-10c3-4ab6-88a4-892c39766af2"/>
+			</line>
+			<line>
+				<reportElement x="425" y="0" width="1" height="20" uuid="53c3d731-9acf-42ac-abd1-2265d86973f3"/>
+			</line>
+			<line>
+				<reportElement x="60" y="0" width="1" height="20" uuid="6a4bcd32-5c7b-4e2a-bac5-b859f7c1a0a0"/>
+			</line>
+			<line>
+				<reportElement x="499" y="0" width="1" height="20" uuid="41bd51ca-e7a1-40cd-bd08-40ee57648f21"/>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>

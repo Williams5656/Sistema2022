@@ -108,6 +108,13 @@ FROM
 				<reportElement x="251" y="0" width="100" height="20" uuid="e0b268f3-d97d-47d3-88e6-0af5052084ff"/>
 				<textFieldExpression><![CDATA[$F{fecha_nacimiento}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="351" y="0" width="67" height="20" uuid="eb3b2d6c-c354-4a72-89a3-26eaa97bb435"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cedula}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>

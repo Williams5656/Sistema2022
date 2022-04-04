@@ -82,7 +82,7 @@ public class Con_poa_evidencia  {
         Conect con = new Conect();
             try {
                
-                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Evidencias.jasper"));
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Evidencia.jasper"));
                 JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
                 JasperViewer jv = new JasperViewer(jp, false);
                 JOptionPane.showMessageDialog(null, "Imprimiendo Evidencias");

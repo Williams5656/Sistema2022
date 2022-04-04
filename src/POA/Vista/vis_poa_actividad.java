@@ -183,6 +183,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         btnimprimir = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setClosable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -307,6 +308,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         btnimprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/impresion.png"))); // NOI18N
         btnimprimir.setText("Imprimir");
         getContentPane().add(btnimprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 560, 120, 40));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 640));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -341,6 +343,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

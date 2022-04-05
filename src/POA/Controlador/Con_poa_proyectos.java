@@ -6,6 +6,7 @@
 package POA.Controlador;
 
 import POA.Modelo.CarreraBD;
+import POA.Modelo.Conect;
 import POA.Modelo.ObjetivoOperativoBD;
 import POA.Modelo.ObjetivoOperativoMD;
 
@@ -21,8 +22,15 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -48,9 +56,16 @@ public class Con_poa_proyectos {
         this.vista = vista;
         poa = id_poa;
         vista.setVisible(true);
+        vista.getBtn_eliminar().setEnabled(false);
+        vista.getBtn_modificar().setEnabled(false);
+        vista.getBtn_guardar().setEnabled(false);
+        vista.getTxtarea_obopera().setEnabled(false);
+        vista.getBtnAñadir().setEnabled(false);
+        vista.getTabla_proyecto().setEnabled(false);
         vista.getBtn_nuevo().addActionListener(e -> nuevo());
         vista.getBtn_guardar().addActionListener(e -> guardar());
         vista.getBtnAñadir().addActionListener(e -> guardarobjetivo());
+        vista.getBtn_imprimir().addActionListener(e -> imprimir());
         vista.getTabla_lista_proyectos().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -98,7 +113,7 @@ public class Con_poa_proyectos {
     }
 
     public void lista_objetivo() {
-        
+
         modelo1.setRowCount(0);
         modelo1.setColumnCount(0);
         modelo1.addColumn("Numero_objetivo_proyecto");
@@ -128,31 +143,49 @@ public class Con_poa_proyectos {
         //  }
         vista.getTabla_proyecto().setModel(modelo1);
 
-
     }
 
     public void nuevo() {
+        vista.getBtn_guardar().setEnabled(true);
+        vista.getBtn_eliminar().setEnabled(false);
+        vista.getBtn_modificar().setEnabled(false);
+        vista.getTxtarea_obopera().setEnabled(false);
+        vista.getBtnAñadir().setEnabled(false);
+        vista.getTabla_proyecto().setEnabled(false);
         int idpoa = vista.getTabla_lista_proyectos().getSelectedRow();
+        int idpoas = vista.getTabla_proyecto().getSelectedRow();
         vista.getTxt_estrategia().setText("");
         vista.getTxt_obestra().setText("");
         vista.getTxt_obtac().setText("");
         vista.getTxtarea_obopera().setText("");
+        
+        
         int a = 0;
         vista.getN_proyectos().setText(vista.getTabla_lista_proyectos().getRowCount() + 1 + "");
 
     }
 
     public void guardar() {
-        int num = 0;
-        int poas = 0;
-        String ob = "", tac = "", est = "";
-        num = Integer.parseInt(vista.getN_proyectos().getText());
-        ob = (vista.getTxt_obestra().getText());
-        tac = vista.getTxt_obtac().getText();
-        est = vista.getTxt_estrategia().getText();
 
-        poabd.guardar(poa, num, ob, tac, est);
-        lista_poa();
+        if (vista.getTxt_obestra().getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "INGRESE UN OBJETIVO ESTRATEGICO");
+        } else if (vista.getTxt_obtac().getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "INGRESE UN OBJETIVO TACTICO");
+        } else if (vista.getTxt_estrategia().getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "INGRESE UNA ESTRATEGIA");
+        } else {
+            int num = 0;
+            int poas = 0;
+            String ob = "", tac = "", est = "";
+            num = Integer.parseInt(vista.getN_proyectos().getText());
+            ob = (vista.getTxt_obestra().getText());
+            tac = vista.getTxt_obtac().getText();
+            est = vista.getTxt_estrategia().getText();
+            poabd.guardar(poa, num, ob, tac, est);
+            lista_poa();
+
+        }
+
     }
 
     public void guardarobjetivo() {
@@ -162,9 +195,13 @@ public class Con_poa_proyectos {
         num = Integer.parseInt(vista.getN_proyectos().getText());
         ob = (vista.getTabla_proyecto().getRowCount() + 1);
         objetivo = (vista.getTxtarea_obopera().getText());
+        if (vista.getTxtarea_obopera().getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "INGRESE UN OBJETIVO OPERATIVO");
+        } else {
+            obbd.guardar(num, ob, objetivo);
+            lista_objetivo();
+        }
 
-        obbd.guardar(num, ob, objetivo);
-        lista_objetivo();
     }
 
     public void seleccionar() {
@@ -181,13 +218,19 @@ public class Con_poa_proyectos {
             poabd.setObjetivo_tactico(listas.get(0).getObjetivo_tactico());
             poabd.setEstrategia(listas.get(0).getEstrategia());
 
-            vista.getN_proyectos().setText(poabd.getId_proyecto()+ "");
+            vista.getN_proyectos().setText(poabd.getId_proyecto() + "");
             System.out.println(vista.getN_proyectos());
             vista.getTxt_obestra().setText(poabd.getObjetivo_estrategico() + "");
             vista.getTxt_obtac().setText(poabd.getObjetivo_tactico() + "");
             vista.getTxt_estrategia().setText(poabd.getEstrategia() + "");
             id_proyecto = poabd.getId_proyecto();
             lista_objetivo();
+            vista.getBtn_modificar().setEnabled(true);
+            vista.getBtn_eliminar().setEnabled(true);
+            vista.getBtn_guardar().setEnabled(false);
+            vista.getTxtarea_obopera().setEnabled(true);
+            vista.getBtnAñadir().setEnabled(true);
+            vista.getTabla_proyecto().setEnabled(true);
         }
 
     }
@@ -201,6 +244,20 @@ public class Con_poa_proyectos {
         zap.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         Con_poa_actividad proyectos = new Con_poa_actividad(zap);
 
+    }
+    public void imprimir(){
+        Conect con = new Conect();
+        try {
+
+            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Poa_proyectos.jasper"));
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+            JasperViewer jv = new JasperViewer(jp, false);
+            JOptionPane.showMessageDialog(null, "IMPRESO");
+            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            jv.setVisible(true);
+        } catch (JRException e) {
+            System.out.println("no se pudo encontrar registros" + e.getMessage());
+    }
     }
 //    public void seleccionarobjetivo() {
 //        DefaultTableModel modelo;

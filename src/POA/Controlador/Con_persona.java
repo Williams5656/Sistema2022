@@ -21,7 +21,9 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -62,7 +64,7 @@ public class Con_persona {
         vista.getBtnModificar().addActionListener(e -> modificar());
         vista.getBtnCargarFoto().addActionListener(e -> obtieneImagen());
         vista.getBtnCamEstado().addActionListener(e -> cambiarestado());
-        vista.getBtnImprimir().addActionListener(e -> imprimir());
+        vista.getBtnImprimir().addActionListener(e -> imprimirpersona());
         vista.getBtnGuardar().setEnabled(false);
         vista.getBtnModificar().setEnabled(false);
         vista.getBtnCamEstado().setEnabled(false);
@@ -92,6 +94,54 @@ public class Con_persona {
                 Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
             }
     }
+    public void imprimirpersona(){
+       Conect con = new Conect();
+        String[] reportes = {
+            "Seleccione Una Opcion",
+            "Reporte Con Cedula",
+            "Reporte Completo"
+        };
+        //Ctrl_MYICON icon = new Ctrl_MYICON(40, 50);
+        String resp = (String) JOptionPane.showInputDialog(null, "Seleccione un reporte", "Reporte De Personas",
+                JOptionPane.DEFAULT_OPTION, null, reportes, reportes[0]);
+        if (resp.equals("Seleccione Una Opcion")) {
+            JOptionPane.showMessageDialog(null, " seleccione uno de los campos");
+
+        }
+        if (resp.equals("Reporte Con Cedula")) {
+ 
+            try {
+               // JOptionPane.showMessageDialog(null, "Imprimiendo Persona");
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Personas.jasper"));
+                Map<String, Object> params = new HashMap<String, Object>();
+                String aguja = JOptionPane.showInputDialog("Ingrese una Cedula de persona");
+                params.put("cedula",aguja);
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException e) {
+                System.out.println("no se pudo encontrar registros" + e.getMessage());
+                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+            }
+
+        }
+        if (resp.equals("Reporte Completo")) {
+
+            try {
+                JOptionPane.showMessageDialog(null, "imprimiendo Docentes");
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/ReporteDocente.jasper"));
+
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException e) {
+                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+    }
+    
     public void seleccionar() throws ParseException {
         vista.getBtnGuardar().setEnabled(false);
         vista.getBtnModificar().setEnabled(true);

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4f2defc5-eb13-42dc-897e-8db7406e063b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select p.id_periodo,p.nombre,c.nombre as carrera,p.estado
+from periodo_academico p,carrera c                 
+where p.id_carrera=c.codigo;]]>
+	</queryString>
+	<field name="id_periodo" class="java.lang.Integer"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="carrera" class="java.lang.String"/>
+	<field name="estado" class="java.lang.Boolean"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="455" y="0" width="100" height="20" uuid="12341c6f-7dcd-402b-a945-7bb1542dd595"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="2" y="0" width="127" height="69" uuid="89e01d61-cd2b-4781-8ea3-7064093a3394"/>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="0" width="555" height="20" uuid="51120e2e-1d57-4367-a15d-1cd8563ab61a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Instituto Superior Tecnológico del Azuay]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="555" height="20" uuid="744359d5-31a6-4ce8-99b5-6b3acb4f72ac"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lista de Periodos]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="60" splitType="Stretch">
+			<rectangle>
+				<reportElement x="2" y="40" width="100" height="20" backcolor="#0000FF" uuid="39c21656-8ed6-49b0-a037-99cfdd4a1779"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="102" y="40" width="100" height="20" backcolor="#0000FF" uuid="2e6bbc7a-a97a-4800-ba11-9793cbe6dc42"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="302" y="40" width="100" height="20" backcolor="#0000FF" uuid="a6f25cc3-b6b8-494c-8bfe-aaa7d79ea445"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="202" y="40" width="100" height="20" backcolor="#0000FF" uuid="cfdacec8-f78d-4318-9468-1acdd5a8d628"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="102" y="40" width="100" height="20" uuid="69500089-f44c-447d-bcf3-60f80b58bed9"/>
+				<text><![CDATA[nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="202" y="40" width="100" height="20" uuid="ea7bbf85-5422-4d71-945c-7db60a03b409"/>
+				<text><![CDATA[carrera]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="302" y="40" width="100" height="20" uuid="c9cdc1bb-9b3a-4d44-8968-3983c89e1dd9"/>
+				<text><![CDATA[estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="40" width="100" height="20" backcolor="#0000FF" uuid="aafd19a3-4b24-4c66-9d5b-0d30bb5c4d77"/>
+				<text><![CDATA[id_periodo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="2" y="0" width="100" height="20" uuid="82a4e7b3-a22e-4566-9863-d5dd0c918c44"/>
+				<textFieldExpression><![CDATA[$F{id_periodo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="102" y="0" width="100" height="20" uuid="af95a90a-1d41-4640-ac83-c0e3e1b9e7f5"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="202" y="0" width="100" height="20" uuid="3aa26e29-fd9c-4495-b6b1-1573230df412"/>
+				<textFieldExpression><![CDATA[$F{carrera}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="302" y="0" width="100" height="20" uuid="3c5d5d4b-ba91-46fc-a660-73ef4fa84985"/>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="19" width="400" height="1" uuid="901007a7-09ca-4570-b536-2b144f449f04"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="46" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="535" y="0" width="20" height="20" uuid="c24830ad-1072-4a1a-9fb5-562e97339fa0"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -88,6 +88,14 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
         this.tabla = tabla;
     }
 
+    public JButton getBtn_repor() {
+        return btn_repor;
+    }
+
+    public void setBtn_repor(JButton btn_repor) {
+        this.btn_repor = btn_repor;
+    }
+
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -111,6 +119,7 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
         lblNombrePeriodo = new javax.swing.JLabel();
         dateFechaInicio = new com.toedter.calendar.JDateChooser();
         dateFechaFin = new com.toedter.calendar.JDateChooser();
+        btn_repor = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
@@ -152,6 +161,9 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
         jPanel1.add(lblNombrePeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 260, 20));
         jPanel1.add(dateFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 110, -1));
         jPanel1.add(dateFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 110, -1));
+
+        btn_repor.setText("reporte");
+        jPanel1.add(btn_repor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("MOSTRAR DATOS"));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -202,6 +214,7 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrear;
+    private javax.swing.JButton btn_repor;
     private javax.swing.JComboBox<String> comboEstado;
     private com.toedter.calendar.JDateChooser dateFechaFin;
     private com.toedter.calendar.JDateChooser dateFechaInicio;

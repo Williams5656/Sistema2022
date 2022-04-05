@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e479fdbd-39af-4331-9f0f-fa03d1153342">
-	<property name="ireport.zoom" value="3.4522712143931042"/>
-	<property name="ireport.x" value="616"/>
-	<property name="ireport.y" value="181"/>
-	<queryString language="SQL">
-		<![CDATA[SELECT
-     responsables_act."id_responsable" AS responsables_act_id_responsable,
-     responsables_act."id_actividad" AS responsables_act_id_actividad,
-     responsables_act."cedula" AS responsables_act_cedula
-FROM
-     "public"."responsables_act" responsables_act]]>
+	<property name="ireport.zoom" value="2.143588810000002"/>
+	<property name="ireport.x" value="22"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[Select res.id_responsable , cal.nombre_actividad, per.nombres ||per.apellidos
+from responsables_act res, persona per, calendario cal
+where res.cedula=per.cedula and res.id_actividad=cal.id_actividad;]]>
 	</queryString>
-	<field name="responsables_act_id_responsable" class="java.lang.Integer"/>
-	<field name="responsables_act_id_actividad" class="java.lang.Integer"/>
-	<field name="responsables_act_cedula" class="java.lang.String"/>
+	<field name="id_responsable" class="java.lang.Integer"/>
+	<field name="nombre_actividad" class="java.lang.String"/>
+	<field name="?column?" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -45,14 +42,14 @@ FROM
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Cedula]]></text>
+				<text><![CDATA[Responsables]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="198" y="1" width="86" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="21ec4fd7-19e3-4ff9-b76e-fd36034ffcd4"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[ID_Actividades]]></text>
+				<text><![CDATA[Actividades]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="137" y="1" width="61" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="5577b805-b94b-44e1-96f4-d8ec90d3ebe4"/>
@@ -68,24 +65,24 @@ FROM
 			<line>
 				<reportElement x="198" y="0" width="1" height="18" uuid="07d60599-313a-4c53-8b69-9c049e6828bb"/>
 			</line>
-			<textField>
-				<reportElement x="137" y="0" width="61" height="18" uuid="0e0f5b8b-54dc-456f-9612-3ea92cc6a0cf"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{responsables_act_id_responsable}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="199" y="0" width="84" height="18" uuid="18b5fe83-c0c8-4d25-91d5-afe42dcc420c"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{responsables_act_id_actividad}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="284" y="0" width="102" height="18" uuid="bad1276d-08d4-4181-bd0c-2c64a3c59bb5"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{responsables_act_cedula}]]></textFieldExpression>
-			</textField>
 			<line>
 				<reportElement x="283" y="0" width="1" height="18" uuid="b09ab958-c2b7-4665-bf71-83d796b61c63"/>
 			</line>
+			<textField>
+				<reportElement x="137" y="0" width="61" height="18" uuid="ae2e4681-2a88-4088-98ac-e3a3d8e8f8ab"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{id_responsable}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="284" y="0" width="102" height="18" uuid="ddfa4a96-3388-4f5f-b393-a5616e71cb0b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{?column?}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="199" y="0" width="84" height="18" uuid="9799e854-f2fa-4ea8-9439-566e287c92c6"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nombre_actividad}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>

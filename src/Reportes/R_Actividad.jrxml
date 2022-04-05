@@ -4,26 +4,19 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
-		<![CDATA[SELECT
-     calendario."id_actividad" AS calendario_id_actividad,
-     calendario."id_carrera" AS calendario_id_carrera,
-     calendario."id_periodo" AS calendario_id_periodo,
-     calendario."id_tipoactividad" AS calendario_id_tipoactividad,
-     calendario."nombre_actividad" AS calendario_nombre_actividad,
-     calendario."descripcion" AS calendario_descripcion,
-     calendario."fecha_inicio" AS calendario_fecha_inicio,
-     calendario."fecha_limite" AS calendario_fecha_limite
-FROM
-     "public"."calendario" calendario]]>
+		<![CDATA[Select DISTINCT cal.id_actividad "ID Actividad", carr.nombre "Carrera", per.nombre "Periodo", tact.nombre_tipo_actividad "Tipo Actividad",cal.nombre_actividad "Nombre", cal.descripcion "Descripcion", cal.fecha_inicio "Inicio", cal.fecha_limite "Limite" 
+from calendario cal, periodo_academico per, tipo_actividad tact, carrera carr
+where carr.codigo=cal.id_carrera and per.id_periodo=cal.id_periodo and tact.id_tipoactividad=cal.id_tipoactividad
+order by cal.id_actividad;]]>
 	</queryString>
-	<field name="calendario_id_actividad" class="java.lang.Integer"/>
-	<field name="calendario_id_carrera" class="java.lang.String"/>
-	<field name="calendario_id_periodo" class="java.lang.Integer"/>
-	<field name="calendario_id_tipoactividad" class="java.lang.Integer"/>
-	<field name="calendario_nombre_actividad" class="java.lang.String"/>
-	<field name="calendario_descripcion" class="java.lang.String"/>
-	<field name="calendario_fecha_inicio" class="java.sql.Date"/>
-	<field name="calendario_fecha_limite" class="java.sql.Date"/>
+	<field name="ID Actividad" class="java.lang.Integer"/>
+	<field name="Carrera" class="java.lang.String"/>
+	<field name="Periodo" class="java.lang.String"/>
+	<field name="Tipo Actividad" class="java.lang.String"/>
+	<field name="Nombre" class="java.lang.String"/>
+	<field name="Descripcion" class="java.lang.String"/>
+	<field name="Inicio" class="java.sql.Date"/>
+	<field name="Limite" class="java.sql.Date"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -132,44 +125,44 @@ FROM
 				<reportElement x="485" y="0" width="1" height="16" uuid="01cffcdb-cc30-43b9-86d7-87d114fcbc82"/>
 			</line>
 			<textField>
-				<reportElement x="0" y="0" width="73" height="16" uuid="162fc95a-71c3-4e8e-a112-2cb199ed8b8e"/>
+				<reportElement x="0" y="0" width="73" height="16" uuid="ce753235-c95f-4388-bb6d-01c380e98476"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{calendario_id_actividad}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ID Actividad}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="74" y="0" width="72" height="16" uuid="d75d4389-01a8-4c8e-8838-b2fd342b92f1"/>
+				<reportElement x="74" y="0" width="72" height="16" uuid="01b63f78-ce3a-4d0b-b46d-23c075be71a3"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{calendario_id_carrera}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Carrera}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="147" y="0" width="66" height="16" uuid="eae98e0d-580b-4b64-9019-7a2e942216dd"/>
+				<reportElement x="147" y="0" width="66" height="16" uuid="3ca1f0dd-ba82-4532-8688-af5e9d505400"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{calendario_id_periodo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Periodo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="214" y="0" width="71" height="16" uuid="2bfcc293-9102-47bb-a2bd-2b5901cb4a30"/>
+				<reportElement x="214" y="0" width="71" height="16" uuid="6ffb5ce6-a3a0-496a-a6eb-9996eff39187"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{calendario_id_tipoactividad}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Tipo Actividad}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="286" y="0" width="66" height="16" uuid="88a8fd7d-2425-4893-8d8a-edd625281fa3"/>
+				<reportElement x="286" y="0" width="66" height="16" uuid="6ba1f6e0-e1c4-4510-b3ac-13182013477d"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{calendario_nombre_actividad}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="353" y="0" width="66" height="16" uuid="0499d9e5-333b-4143-9d66-6d58c4bad06e"/>
+				<reportElement x="352" y="0" width="67" height="16" uuid="742545f5-cc16-410c-87a9-5cfce810d8da"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{calendario_descripcion}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Descripcion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="420" y="0" width="65" height="16" uuid="bdeb2420-9b75-423e-9bfa-30d6bd9713dd"/>
+				<reportElement x="420" y="0" width="65" height="16" uuid="57d7c218-1692-4f88-a578-d9cf1818f627"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{calendario_fecha_inicio}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Inicio}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="486" y="0" width="69" height="16" uuid="9f3a51a6-5378-49c1-9ac0-69a4dfdede97"/>
+				<reportElement x="485" y="0" width="70" height="16" uuid="c6f8cdf5-f20d-41ba-839e-231193f40f4b"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{calendario_fecha_limite}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Limite}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

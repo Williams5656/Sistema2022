@@ -6,6 +6,7 @@ package POA.Modelo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -51,7 +52,30 @@ public class EvidenciaBD extends EvidenciaMD{
         }
         return lista;
     }
-    
+    public List<EvidenciaMD> obtenerdatos(int identificador) {
+        try {
+            List<EvidenciaMD> lista = new ArrayList<EvidenciaMD>();
+            String sql = "select * from evidencia where \"id_evidencia\"='" + identificador + "'";
+            ResultSet rs = conectar.query(sql);
+            byte[] is;
+            while (rs.next()) {
+                EvidenciaMD a = new EvidenciaMD();
+                a.setId_objetivo(rs.getInt("id_evidencia"));
+                a.setId_actividades(rs.getInt("id_actividades"));
+                a.setId_poa(rs.getInt("id_poa"));
+                a.setId_proyecto(rs.getInt("id_proyecto"));
+                a.setId_objetivo(rs.getInt("id_objetivo"));
+                a.setArchivo(rs.getString("archivo"));
+                lista.add(a);
+            }
+            rs.close();//cerramos conexion base.
+            return lista;
+        } catch (SQLException ex) {
+            Logger.getLogger(EvidenciaBD.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
     public void guardar(int id_evidencia, int id_actividades, int id_poa, int id_proyecto, int id_objetivo, String archivo){
         
         String sql = "insert into evidencia (id_evidencia, id_actividades, id_poa, id_proyecto, id_objetivo,archivo) VALUES (" + id_evidencia+", "+

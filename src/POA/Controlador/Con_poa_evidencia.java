@@ -25,8 +25,12 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import POA.Modelo.Validadores.anio_evidecia;
+import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import net.sf.jasperreports.engine.JRException;
@@ -83,6 +87,12 @@ public class Con_poa_evidencia {
         listaObjetivos = baseDatosObjetivos.mostrarDatos();
         cargarComboCarrera();
         cargarComboAnio();
+        vista.getTabla_Evidencia().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                seleccionar();
+            }
+        });
         lista();
     }
 
@@ -121,6 +131,56 @@ public class Con_poa_evidencia {
         vista.getCbx_obje_opera().addItemListener(new actividad_evidencia(vista.getCbx_obje_opera(), vista.getCbx_actividad()));
     }
 
+    public void seleccionar() {
+        vista.getBtnGuardar().setEnabled(false);
+        vista.getBtnModificar().setEnabled(true);
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) vista.getTabla_Evidencia().getModel();
+        int id_evid = (int) modelo.getValueAt(vista.getTabla_Evidencia().getSelectedRow(), 0);
+        System.out.println(id_evid);
+        List<EvidenciaMD> lista = baseDatosEvidencias.obtenerdatos(id_evid);
+        baseDatosEvidencias.setId_objetivo(lista.get(0).getId_objetivo());
+        baseDatosEvidencias.setId_actividades(lista.get(0).getId_actividades());
+        baseDatosEvidencias.setId_poa(lista.get(0).getId_poa());
+        baseDatosEvidencias.setId_proyecto(lista.get(0).getId_proyecto());
+        baseDatosEvidencias.setId_objetivo(lista.get(0).getId_objetivo());
+        baseDatosEvidencias.setArchivo(lista.get(0).getArchivo());
+
+        for (int j = 0; j < lista.size(); j++) {
+            for (int y = 0; y < listaPoa.size(); y++) {
+                if (lista.get(j).getId_poa() == listaPoa.get(y).getId_POA()) {
+                    for (int i = 0; i < listaCarreras.size(); i++) {
+                        if (listaCarreras.get(i).getCodigo_carrera().equalsIgnoreCase(String.valueOf(listaPoa.get(y).getId_carrera()))) {
+                            vista.getCbx_carrera().setSelectedItem(listaCarreras.get(i).getNombre_carrera());
+                            cargarComboAnio();
+                        }
+                    }
+                    vista.getCbx_anio().setSelectedItem(listaPoa.get(y).getAnio());
+                }
+            }
+            for (int i = 0; i < listaProyecto.size(); i++) {
+                if (lista.get(j).getId_proyecto() == listaProyecto.get(i).getId_proyecto()) {
+                    vista.getCbx_proyecto().setSelectedItem(String.valueOf(listaProyecto.get(i).getId_proyecto()));
+                    cargarComboAnio();
+                }
+            }
+            for (int i = 0; i < listaObjetivos.size(); i++) {
+                if (lista.get(j).getId_objetivo() == listaObjetivos.get(i).getId_objetivo_operativo()) {
+                    vista.getCbx_obje_opera().setSelectedItem(listaObjetivos.get(i).getObjetivo());
+                    cargarComboAnio();
+                }
+            }
+            for (int i = 0; i < listaActividades.size(); i++) {
+                if (lista.get(j).getId_actividades() == listaActividades.get(i).getId_actividades()) {
+                    vista.getCbx_actividad().setSelectedItem(listaActividades.get(i).getActividad());
+                    cargarComboAnio();
+                }
+            }
+            vista.getTxtArchivo().setText(lista.get(j).getArchivo());
+        }
+
+    }
+
     public int id_actvidad(JComboBox comboactividad) {
         String actividad = (String) vista.getCbx_actividad().getSelectedItem();
         int id_actividad = 0;
@@ -152,17 +212,19 @@ public class Con_poa_evidencia {
     }
 
     public void nuevo() {
-        vista.getCbx_actividad().setSelectedItem("");
-        vista.getCbx_anio().setSelectedItem("");
-        vista.getCbx_carrera().setSelectedItem("");
-        vista.getCbx_obje_opera().setSelectedItem("");
-        vista.getCbx_proyecto().setSelectedItem("");
-        vista.getTxtArchivo().setText("");
         vista.getCbx_proyecto().setEnabled(true);
         vista.getCbx_carrera().setEnabled(true);
         vista.getCbx_anio().setEnabled(true);
         vista.getCbx_obje_opera().setEnabled(true);
         vista.getCbx_actividad().setEnabled(true);
+        vista.getCbx_carrera().setSelectedItem("Seleccionar");
+        vista.getCbx_anio().setSelectedItem("Seleccionar");
+        vista.getCbx_proyecto().setSelectedItem("Seleccionar");
+        vista.getCbx_obje_opera().setSelectedItem("Seleccionar");
+        vista.getCbx_actividad().setSelectedItem("Seleccionar");
+        vista.getTxtArchivo().setText("");
+        
+
         lista();
     }
 

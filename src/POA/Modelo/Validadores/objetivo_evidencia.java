@@ -23,11 +23,6 @@ import javax.swing.JComboBox;
  * @author ASUS
  */
 public class objetivo_evidencia implements ItemListener {
-
-     private ArrayList<ObjetivoOperativoMD> listaObjetivosOperativos = new ArrayList();
-    private ArrayList<ProyectoMD> listaProyectos = new ArrayList<>();
-    private ProyectoBD baseDatosProyecto = new ProyectoBD();
-    private ObjetivoOperativoBD baseDatosObjOperativo = new ObjetivoOperativoBD();
     JComboBox comboProyecto, comboObjetivo;
 
     public objetivo_evidencia(JComboBox comboProyecto, JComboBox comboObjetivo) {
@@ -43,13 +38,12 @@ public class objetivo_evidencia implements ItemListener {
             comboObjetivo.addItem("Seleccionar");
         } else if (Con_poa_evidencia.proyecto.equalsIgnoreCase("yes")) {
             if (proyecto != null) {
-                listaObjetivosOperativos = baseDatosObjOperativo.mostrarDatos();
                 int id_proyecto = id_proyecto(comboProyecto);
                 comboObjetivo.removeAllItems();
                 comboObjetivo.addItem("Seleccionar");
-                for (int i = 0; i < listaObjetivosOperativos.size(); i++) {
-                    if (listaObjetivosOperativos.get(i).getId_proyecto() == id_proyecto) {
-                        comboObjetivo.addItem(String.valueOf(listaObjetivosOperativos.get(i).getObjetivo()));
+                for (int i = 0; i < Con_poa_evidencia.listaObjetivos.size(); i++) {
+                    if (Con_poa_evidencia.listaObjetivos.get(i).getId_proyecto() == id_proyecto) {
+                        comboObjetivo.addItem(String.valueOf(Con_poa_evidencia.listaObjetivos.get(i).getObjetivo()));
                         Con_poa_evidencia.actividad="Yes";
                     }
                 }
@@ -63,17 +57,16 @@ public class objetivo_evidencia implements ItemListener {
     }
 
     public int id_proyecto(JComboBox comboproyecto) {
-        listaProyectos = baseDatosProyecto.mostrarDatos();
         String proyecto = (String) comboproyecto.getSelectedItem();
         int id_proyecto = 0;
         if (Con_poa_evidencia.proyecto.equalsIgnoreCase("yes")) {
             if (proyecto != null) {
                 if (proyecto != "Seleccionar") {
                     id_proyecto = Integer.parseInt(proyecto.trim());
-                    for (int i = 0; i < listaProyectos.size(); i++) {
-                        if (listaProyectos.get(i).getId_Poa() == Con_poa_evidencia.id_poa) {
-                            if ((String.valueOf(listaProyectos.get(i).getId_proyecto()).equalsIgnoreCase(proyecto))) {
-                                id_proyecto = listaProyectos.get(i).getId_proyecto();
+                    for (int i = 0; i < Con_poa_evidencia.listaProyecto.size(); i++) {
+                        if (Con_poa_evidencia.listaProyecto.get(i).getId_Poa() == Con_poa_evidencia.id_poa) {
+                            if ((String.valueOf(Con_poa_evidencia.listaProyecto.get(i).getId_proyecto()).equalsIgnoreCase(proyecto))) {
+                                id_proyecto = Con_poa_evidencia.listaProyecto.get(i).getId_proyecto();
                             }
                         }
                     }

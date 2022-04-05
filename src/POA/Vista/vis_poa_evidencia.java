@@ -188,7 +188,7 @@ public class vis_poa_evidencia extends Fondos.fondo_internalframe {
         txtBuscar = new javax.swing.JTextField();
 
         setClosable(true);
-        setPreferredSize(new java.awt.Dimension(1002, 537));
+        setPreferredSize(new java.awt.Dimension(1285, 537));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -247,18 +247,15 @@ public class vis_poa_evidencia extends Fondos.fondo_internalframe {
 
         tabla_Evidencia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "ID EVIDENCIA", "ID_ACTIVIDAES", "ID_POA", "ID_PROYECTO", "ID_OBJETIVO", "ARCHIVO"
+                "Evidencia", "Carrera", "Año", "Proyecto", "Objetivo", "Actividad", "Archivo"
             }
         ));
         jScrollPane1.setViewportView(tabla_Evidencia);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, 520, 310));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 780, 310));
         getContentPane().add(txtArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 430, 220, -1));
 
         jLabel9.setText("OBJETIVO");

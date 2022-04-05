@@ -24,12 +24,6 @@ import POA.Controlador.Con_poa_evidencia;
  */
 public class proyecto_evidencia implements ItemListener {
 private JComboBox Cbx_carrera, Cbx_anio, Cbx_proyecto;
-    private List<POA.Modelo.CarreraMD> listaCarreras = new ArrayList<>();
-    private List<POA.Modelo.PoaMD> listaPoa = new ArrayList<>();
-    private ArrayList<ProyectoMD> listaProyectos = new ArrayList<>();
-    private ProyectoBD baseDatosProyecto = new ProyectoBD();
-    private CarreraBD baseDatosCarrera = new CarreraBD();
-    private PoaBD baseDatosPoa = new PoaBD();
 
     public proyecto_evidencia(JComboBox Cbx_carrera, JComboBox Cbx_anio, JComboBox Cbx_proyecto) {
         this.Cbx_carrera = Cbx_carrera;
@@ -39,9 +33,6 @@ private JComboBox Cbx_carrera, Cbx_anio, Cbx_proyecto;
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        listaPoa = baseDatosPoa.mostrarDatos();
-        listaProyectos = baseDatosProyecto.mostrarDatos();
-        listaPoa = baseDatosPoa.mostrarDatos();
         String carrera = (String) Cbx_carrera.getSelectedItem();
         String anio = (String) Cbx_anio.getSelectedItem();
         int poa = 0;
@@ -50,22 +41,21 @@ private JComboBox Cbx_carrera, Cbx_anio, Cbx_proyecto;
             if (carrera != "Seleccionar" && anio != "Seleccionar") {
                 Cbx_proyecto.removeAllItems();
                 Cbx_proyecto.addItem("Seleccionar");
-                listaCarreras = baseDatosCarrera.mostrardatos();
-                for (int i = 0; i < listaCarreras.size(); i++) {
-                    if (listaCarreras.get(i).getNombre_carrera().equalsIgnoreCase(carrera)) {
-                        id_carrera = listaCarreras.get(i).getCodigo_carrera();
+                for (int i = 0; i < Con_poa_evidencia.listaCarreras.size(); i++) {
+                    if (Con_poa_evidencia.listaCarreras.get(i).getNombre_carrera().equalsIgnoreCase(carrera)) {
+                        id_carrera = Con_poa_evidencia.listaCarreras.get(i).getCodigo_carrera();
                     }
                 }
-                for (int i = 0; i < listaPoa.size(); i++) {
-                    if (String.valueOf(listaPoa.get(i).getId_carrera()).equalsIgnoreCase(id_carrera)) {
-                        if (listaPoa.get(i).getAnio().equalsIgnoreCase(anio)) {
-                            poa = listaPoa.get(i).getId_POA();
+                for (int i = 0; i < Con_poa_evidencia.listaPoa.size(); i++) {
+                    if (String.valueOf(Con_poa_evidencia.listaPoa.get(i).getId_carrera()).equalsIgnoreCase(id_carrera)) {
+                        if (Con_poa_evidencia.listaPoa.get(i).getAnio().equalsIgnoreCase(anio)) {
+                            poa = Con_poa_evidencia.listaPoa.get(i).getId_POA();
                         }
                     }
                 }
-                for (int j = 0; j < listaProyectos.size(); j++) {
-                    if (listaProyectos.get(j).getId_Poa() == poa) {
-                        Cbx_proyecto.addItem(String.valueOf(listaProyectos.get(j).getId_proyecto()));
+                for (int j = 0; j < Con_poa_evidencia.listaProyecto.size(); j++) {
+                    if (Con_poa_evidencia.listaProyecto.get(j).getId_Poa() == poa) {
+                        Cbx_proyecto.addItem(String.valueOf(Con_poa_evidencia.listaProyecto.get(j).getId_proyecto()));
                         Con_poa_evidencia.proyecto="YES";
                     }
                 }

@@ -40,17 +40,21 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author USUARIO
  */
-public class Con_poa_evidencia  {
+public class Con_poa_evidencia {
 
     private final vis_poa_evidencia vista;
-    private List<POA.Modelo.ActividadesMD> listaActividaes = new ArrayList<>();
-    private ActividadesBD baseDatosactividades = new ActividadesBD();
-    private List<POA.Modelo.CarreraMD> listaCarreras = new ArrayList<>();
-    private List<POA.Modelo.PoaMD> listaPoa = new ArrayList<>();
-    private List<POA.Modelo.EvidenciaMD> listaEvidencias = new ArrayList<>();
+    public static List<POA.Modelo.CarreraMD> listaCarreras = new ArrayList<>();
+    public static List<POA.Modelo.PoaMD> listaPoa = new ArrayList<>();
+    List<POA.Modelo.EvidenciaMD> listaEvidencias = new ArrayList<>();
+    public static List<POA.Modelo.ProyectoMD> listaProyecto = new ArrayList<>();
+    public static List<POA.Modelo.ActividadesMD> listaActividades = new ArrayList<>();
+    public static List<POA.Modelo.ObjetivoOperativoMD> listaObjetivos = new ArrayList<>();
     private CarreraBD baseDatosCarrera = new CarreraBD();
+    private ProyectoBD baseDatosProyecto = new ProyectoBD();
     private PoaBD baseDatosPoa = new PoaBD();
     private EvidenciaBD baseDatosEvidencias = new EvidenciaBD();
+    private ActividadesBD baseDatosActividades = new ActividadesBD();
+    private ObjetivoOperativoBD baseDatosObjetivos = new ObjetivoOperativoBD();
     public static String anio = "";
     public static String id_carrera = "";
     public static int id_poa = 0;
@@ -60,12 +64,10 @@ public class Con_poa_evidencia  {
     public static int proyecto_id = 0;
     public static String actividad = "";
     public static int id_actividad = 0;
-    
 
     public Con_poa_evidencia(vis_poa_evidencia vista) {
         this.vista = vista;
         vista.setVisible(true);
-        
         vista.getBtnGuardar().addActionListener(e -> guardar());
         vista.getBtnNuevo().addActionListener(e -> nuevo());
         vista.getBtnImprimir().addActionListener(e -> imprimir());
@@ -74,29 +76,34 @@ public class Con_poa_evidencia  {
         vista.getCbx_anio().setEnabled(false);
         vista.getCbx_obje_opera().setEnabled(false);
         vista.getCbx_actividad().setEnabled(false);
+        listaCarreras = baseDatosCarrera.mostrardatos();
+        listaPoa = baseDatosPoa.mostrarDatos();
+        listaProyecto = baseDatosProyecto.mostrarDatos();
+        listaActividades = baseDatosActividades.mostrarDatos();
+        listaObjetivos = baseDatosObjetivos.mostrarDatos();
         cargarComboCarrera();
         cargarComboAnio();
         lista();
     }
-    public void imprimir(){
+
+    public void imprimir() {
         Conect con = new Conect();
         System.out.println("Imprimir");
-            try {
-               
-                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Evidencia.jasper"));
-                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
-                JasperViewer jv = new JasperViewer(jp, false);
-                JOptionPane.showMessageDialog(null, "Imprimiendo Evidencias");
-                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                jv.setVisible(true);
-            } catch (JRException e) {
-                System.out.println("no se pudo encontrar registros" + e.getMessage());
-                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
-            }
+        try {
+
+            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Evidencia.jasper"));
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+            JasperViewer jv = new JasperViewer(jp, false);
+            JOptionPane.showMessageDialog(null, "Imprimiendo Evidencias");
+            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            jv.setVisible(true);
+        } catch (JRException e) {
+            System.out.println("no se pudo encontrar registros" + e.getMessage());
+            Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
+
     public void cargarComboCarrera() {
-        listaCarreras = baseDatosCarrera.mostrardatos();
-        listaPoa = baseDatosPoa.mostrarDatos();
         for (int j = 0; j < listaPoa.size(); j++) {
             for (int i = 0; i < listaCarreras.size(); i++) {
                 if (Integer.parseInt(listaCarreras.get(i).getCodigo_carrera()) == listaPoa.get(j).getId_carrera()) {
@@ -115,17 +122,16 @@ public class Con_poa_evidencia  {
     }
 
     public int id_actvidad(JComboBox comboactividad) {
-        listaActividaes=baseDatosactividades.mostrarDatos();
         String actividad = (String) vista.getCbx_actividad().getSelectedItem();
         int id_actividad = 0;
         if (Con_poa_evidencia.actividad.equals("")) {
         } else if (Con_poa_evidencia.actividad.equalsIgnoreCase("yes")) {
             if (actividad != null) {
                 if (actividad != "Seleccionar") {
-                    for (int i = 0; i < listaActividaes.size(); i++) {
-                        if (listaActividaes.get(i).getActividad().equalsIgnoreCase(actividad)) {
-                            if (listaActividaes.get(i).getId_objetivo_operativo() == Con_poa_evidencia.objetivo_id) {
-                                id_actividad = listaActividaes.get(i).getId_actividades();
+                    for (int i = 0; i < listaActividades.size(); i++) {
+                        if (listaActividades.get(i).getActividad().equalsIgnoreCase(actividad)) {
+                            if (listaActividades.get(i).getId_objetivo_operativo() == Con_poa_evidencia.objetivo_id) {
+                                id_actividad = listaActividades.get(i).getId_actividades();
                             }
                         }
                     }
@@ -139,10 +145,10 @@ public class Con_poa_evidencia  {
         int actividad_id = id_actvidad(vista.getCbx_actividad());
         listaEvidencias = baseDatosEvidencias.mostrarDatos();
         int cod_evid = listaEvidencias.size() + 1;
-        baseDatosEvidencias.guardar(cod_evid, actividad_id,id_poa,proyecto_id,objetivo_id, vista.getTxtArchivo().getText());
+        baseDatosEvidencias.guardar(cod_evid, actividad_id, id_poa, proyecto_id, objetivo_id, vista.getTxtArchivo().getText());
         lista();
         nuevo();
-        
+
     }
 
     public void nuevo() {
@@ -160,22 +166,43 @@ public class Con_poa_evidencia  {
         lista();
     }
 
-    public void lista(){
+    public void lista() {
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTabla_Evidencia().getModel();
         List<EvidenciaMD> lista = baseDatosEvidencias.mostrarDatos();
         int columnas = modelo.getColumnCount();
-        for (int j = vista.getTabla_Evidencia().getRowCount()-1;j >= 0; j--) {
-            modelo.removeRow(j);        }
-        
-        for (int i = 0; i < lista.size(); i++) {
+        for (int j = vista.getTabla_Evidencia().getRowCount() - 1; j >= 0; j--) {
+            modelo.removeRow(j);
+        }
+        for (int j = 0; j < lista.size(); j++) {
             modelo.addRow(new Object[columnas]);
-            vista.getTabla_Evidencia().setValueAt(lista.get(i).getId_evidencia(), i, 0);
-            vista.getTabla_Evidencia().setValueAt(lista.get(i).getId_actividades(), i, 1);
-            vista.getTabla_Evidencia().setValueAt(lista.get(i).getId_poa(), i, 2);
-            vista.getTabla_Evidencia().setValueAt(lista.get(i).getId_proyecto(), i, 3);
-            vista.getTabla_Evidencia().setValueAt(lista.get(i).getId_objetivo(), i, 4);
-            vista.getTabla_Evidencia().setValueAt(lista.get(i).getArchivo(), i, 5); 
+            vista.getTabla_Evidencia().setValueAt(lista.get(j).getId_evidencia(), j, 0);
+            for (int k = 0; k < listaPoa.size(); k++) {
+                if (lista.get(j).getId_poa() == listaPoa.get(k).getId_POA()) {
+                    for (int i = 0; i < listaCarreras.size(); i++) {
+                        if (Integer.parseInt(listaCarreras.get(i).getCodigo_carrera()) == listaPoa.get(j).getId_carrera()) {
+                            vista.getTabla_Evidencia().setValueAt(listaCarreras.get(i).getNombre_carrera(), j, 1);
+                        }
+                    }
+                    vista.getTabla_Evidencia().setValueAt(listaPoa.get(k).getAnio(), j, 2);
+                }
+            }
+            for (int i = 0; i < listaProyecto.size(); i++) {
+                if (lista.get(j).getId_proyecto() == listaProyecto.get(i).getId_proyecto()) {
+                    vista.getTabla_Evidencia().setValueAt(listaProyecto.get(i).getNum_proyecto_carrera(), j, 3);
+                }
+            }
+            for (int i = 0; i < listaObjetivos.size(); i++) {
+                if (lista.get(j).getId_actividades() == listaObjetivos.get(i).getId_objetivo_operativo()) {
+                    vista.getTabla_Evidencia().setValueAt(listaObjetivos.get(i).getNum_objetivo_proyecto(), j, 4);
+                }
+            }
+            for (int i = 0; i < listaActividades.size(); i++) {
+                if (lista.get(j).getId_actividades() == listaActividades.get(i).getId_actividades()) {
+                    vista.getTabla_Evidencia().setValueAt(listaActividades.get(i).getActividad(), j, 5);
+                }
+            }
+            vista.getTabla_Evidencia().setValueAt(lista.get(j).getArchivo(), j, 6);
         }
     }
 }

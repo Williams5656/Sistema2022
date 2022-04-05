@@ -196,7 +196,6 @@ public class Con_documentacion {
     }
     public void seleccionar() {
         activarBotones();
-        System.out.println("Seleccionar");
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTablaDocumentacion().getModel();
         int id_plan = (int) modelo.getValueAt(vista.getTablaDocumentacion().getSelectedRow(), 0);
@@ -229,8 +228,11 @@ public class Con_documentacion {
     public void modificar (){
         int plan = Integer.parseInt(vista.getTxt_numPlan().getText());
         String estado = (String) vista.getComboEstado().getSelectedItem();
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        String fecha = formato.format(vista.getFecha().getDate());
         bddocumentacion.setId_plan (Integer.parseInt(vista.getTxt_numPlan().getText()));
         bddocumentacion.setHorasGuia(Integer.parseInt(vista.getTxt_horaguia().getText()));
+        bddocumentacion.setFecha(fecha);
         bddocumentacion.setEstado(estado);
         int resp = JOptionPane.showConfirmDialog(null, "¿Desea Modificar?","",JOptionPane.YES_NO_OPTION);
         if (resp == JOptionPane.YES_OPTION) {

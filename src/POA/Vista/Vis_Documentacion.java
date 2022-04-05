@@ -363,7 +363,7 @@ public class Vis_Documentacion extends javax.swing.JInternalFrame  {
         btnguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/guardar.png"))); // NOI18N
         getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 390, 50, 40));
 
-        comboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Entregado y Firmado", "Entregado Revisar", "Con Error", "No Entrega", "Sin Firmas" }));
         getContentPane().add(comboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, 110, -1));
         getContentPane().add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 110, -1));
 

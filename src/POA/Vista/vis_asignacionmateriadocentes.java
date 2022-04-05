@@ -181,6 +181,7 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
         btnguardar = new javax.swing.JButton();
         txtdocente = new javax.swing.JTextField();
         combodocentes = new javax.swing.JComboBox<>();
+        btnimprimir = new javax.swing.JButton();
         lbdocente = new javax.swing.JLabel();
 
         setClosable(true);
@@ -208,7 +209,7 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
 
         btnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/modificar.png"))); // NOI18N
         getContentPane().add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, -1, 40));
-        getContentPane().add(id_asignacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 70, -1));
+        getContentPane().add(id_asignacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, 70, -1));
 
         btneliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/WhatsApp Image 2022-02-15 at 00.32.29.jpeg"))); // NOI18N
         getContentPane().add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, -1, -1));
@@ -276,6 +277,9 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
 
         getContentPane().add(combodocentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 370, -1));
 
+        btnimprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/impresion.png"))); // NOI18N
+        getContentPane().add(btnimprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, -1));
+
         lbdocente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/fondo azul (1).jpg"))); // NOI18N
         getContentPane().add(lbdocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 500));
 
@@ -292,6 +296,7 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
     private javax.swing.JButton btncrearplan;
     private javax.swing.JButton btneliminar;
     private javax.swing.JButton btnguardar;
+    private javax.swing.JButton btnimprimir;
     private javax.swing.JButton btnmodificar;
     private javax.swing.JComboBox<String> cboxasignatura;
     private javax.swing.JComboBox<String> cboxciclo;

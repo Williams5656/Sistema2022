@@ -391,11 +391,12 @@
     <Component class="javax.swing.JComboBox" name="comboEstado">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+          <StringArray count="5">
+            <StringItem index="0" value="Entregado y Firmado"/>
+            <StringItem index="1" value="Entregado Revisar"/>
+            <StringItem index="2" value="Con Error"/>
+            <StringItem index="3" value="No Entrega"/>
+            <StringItem index="4" value="Sin Firmas"/>
           </StringArray>
         </Property>
       </Properties>

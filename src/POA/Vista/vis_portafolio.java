@@ -419,7 +419,7 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("ACCION"));
 
-        btn_buscar.setText("BUSCAR");
+        btn_buscar.setText("IMPRIMIR");
 
         btn_subir.setText("SUBIR");
 

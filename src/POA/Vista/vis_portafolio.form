@@ -456,7 +456,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btn_buscar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="BUSCAR"/>
+            <Property name="text" type="java.lang.String" value="IMPRIMIR"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btn_subir">

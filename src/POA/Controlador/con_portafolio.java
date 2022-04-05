@@ -7,8 +7,17 @@ package POA.Controlador;
 import POA.Modelo.*;
 import POA.Vista.*;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -30,6 +39,7 @@ public class con_portafolio {
         llenarCombo();
         vista.getBtnModulos().addActionListener(e-> tabla_modulo());
         vista.getBtnSilabo().addActionListener(e-> tabla_silabo());
+        vista.getBtn_buscar().addActionListener(e-> imprimir());
     }
     
     public void guardar(){
@@ -153,6 +163,22 @@ public class con_portafolio {
             if (listMat.get(i).getCod_materia().equals(cod)) return listMat.get(i).getNombre_materia();
         }
         return null;
+    }
+    
+     public void imprimir(){
+          Conect con = new Conect();
+            try {
+               
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/r_modulo.jasper"));
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
+                JOptionPane.showMessageDialog(null, "Imprimiendo Periodo");
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException e) {
+                System.out.println("no se pudo encontrar registros" + e.getMessage());
+                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+            }
     }
     
 }

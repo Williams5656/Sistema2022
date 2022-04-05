@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6ebaa9e4-19fe-408d-93eb-b17ed9cb4c2c">
-	<property name="ireport.zoom" value="1.4641000000000017"/>
+	<property name="ireport.zoom" value="1.7715610000000026"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
@@ -93,7 +93,7 @@ order by cal.id_actividad;]]>
 				<text><![CDATA[F Inicio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="486" y="0" width="69" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="5b07c67b-a628-4726-9200-b73f5f55fc69"/>
+				<reportElement mode="Opaque" x="486" y="0" width="70" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="5b07c67b-a628-4726-9200-b73f5f55fc69"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -102,7 +102,7 @@ order by cal.id_actividad;]]>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="16" splitType="Stretch">
+		<band height="17" splitType="Stretch">
 			<line>
 				<reportElement x="73" y="0" width="1" height="16" uuid="ab60ea36-66a9-4291-b6a5-d62d17f7126f"/>
 			</line>
@@ -164,6 +164,15 @@ order by cal.id_actividad;]]>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{Limite}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="0" y="16" width="555" height="1" uuid="57ea3ff5-108a-4e11-b991-15cacf3b1870"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="1" height="16" uuid="83189c44-ed87-423c-83de-a15defa359a2"/>
+			</line>
+			<line>
+				<reportElement x="555" y="0" width="1" height="17" uuid="7b395c95-7d6d-4497-86c1-5d417989268c"/>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>

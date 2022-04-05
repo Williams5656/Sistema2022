@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e479fdbd-39af-4331-9f0f-fa03d1153342">
-	<property name="ireport.zoom" value="2.143588810000002"/>
-	<property name="ireport.x" value="22"/>
+	<property name="ireport.zoom" value="1.7715610000000037"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
 		<![CDATA[Select res.id_responsable , cal.nombre_actividad, per.nombres ||per.apellidos
@@ -15,16 +15,16 @@ where res.cedula=per.cedula and res.id_actividad=cal.id_actividad;]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="121" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="39" width="555" height="20" uuid="8ca23250-2fc3-42e3-b7da-909b220479fc"/>
+				<reportElement x="0" y="80" width="555" height="20" uuid="8ca23250-2fc3-42e3-b7da-909b220479fc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Instituto Superior Tecnológico del Azuay]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="59" width="555" height="20" uuid="da16e441-4a73-4791-9c18-0c3c08794bcd"/>
+				<reportElement x="0" y="100" width="555" height="20" uuid="da16e441-4a73-4791-9c18-0c3c08794bcd"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -33,12 +33,12 @@ where res.cedula=per.cedula and res.id_actividad=cal.id_actividad;]]>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="2" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
 		<band height="21">
 			<staticText>
-				<reportElement mode="Opaque" x="284" y="1" width="102" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="dc2a43f8-e662-4425-a043-bfdfbc599d64"/>
+				<reportElement mode="Opaque" x="284" y="1" width="103" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="dc2a43f8-e662-4425-a043-bfdfbc599d64"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -52,7 +52,7 @@ where res.cedula=per.cedula and res.id_actividad=cal.id_actividad;]]>
 				<text><![CDATA[Actividades]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="137" y="1" width="61" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="5577b805-b94b-44e1-96f4-d8ec90d3ebe4"/>
+				<reportElement mode="Opaque" x="136" y="1" width="62" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="5577b805-b94b-44e1-96f4-d8ec90d3ebe4"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -61,7 +61,7 @@ where res.cedula=per.cedula and res.id_actividad=cal.id_actividad;]]>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="18">
+		<band height="19">
 			<line>
 				<reportElement x="198" y="0" width="1" height="18" uuid="07d60599-313a-4c53-8b69-9c049e6828bb"/>
 			</line>
@@ -83,6 +83,15 @@ where res.cedula=per.cedula and res.id_actividad=cal.id_actividad;]]>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{nombre_actividad}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="137" y="18" width="249" height="1" uuid="55eddea2-5938-4bb1-a74c-69f8364d8271"/>
+			</line>
+			<line>
+				<reportElement x="386" y="0" width="1" height="19" uuid="518f4672-7a75-4b26-be65-a8167c9c7f30"/>
+			</line>
+			<line>
+				<reportElement x="136" y="0" width="1" height="19" uuid="de79c329-3067-4cc4-9a6d-708183a0aef8"/>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>

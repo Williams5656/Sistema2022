@@ -111,14 +111,14 @@ public class MateriaBD extends MateriaMD{
 //        }
 //    }
 
-//    public boolean Eliminar(String codigo_carrera) {
-//        String nsql = " delete from carrera where \"codigo\"='" + codigo_carrera + "'";
-//        if (conectar.noQuery(nsql) == null) {
-//            return true;
-//        } else {
-//            System.out.println("error eliminar");
-//            return false;
-//        }
-//    }
+    public boolean Eliminar(String id) {
+        String nsql = " delete from materia where \"codigo\"='" + id + "'";
+        if (conectar.noQuery(nsql) == null) {
+            return true;
+        } else {
+            System.out.println("error eliminar");
+            return false;
+        }
+    }
 
 }

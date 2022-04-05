@@ -62,7 +62,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="10" y="130" width="-1" height="20"/>
+          <AbsoluteConstraints x="10" y="180" width="-1" height="20"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -75,45 +75,29 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="10" y="180" width="-1" height="20"/>
+          <AbsoluteConstraints x="10" y="130" width="-1" height="20"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="txtcodmateria">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="120" y="130" width="150" height="-1"/>
+          <AbsoluteConstraints x="120" y="180" width="150" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="txtnombremateria">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="70" y="180" width="200" height="-1"/>
+          <AbsoluteConstraints x="70" y="130" width="200" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JComboBox" name="comboCarrera_mat">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="17">
-            <StringItem index="0" value="Seleccione"/>
-            <StringItem index="1" value="Entrenamiento Deportivo"/>
-            <StringItem index="2" value="Tecnolog&#xed;a en An&#xe1;lisis de Sistemas"/>
-            <StringItem index="3" value="Tecnolog&#xed;a en Desarrollo Infantil Integral "/>
-            <StringItem index="4" value="Tecnolog&#xed;a en Seguridad Penitenciaria "/>
-            <StringItem index="5" value="Tecnolog&#xed;a Superior en Asesor&#xed;a Financiera "/>
-            <StringItem index="6" value="Tecnolog&#xed;a Superior en Desarrollo de Software "/>
-            <StringItem index="7" value="Tecnolog&#xed;a Superior en Electricidad"/>
-            <StringItem index="8" value="Tecnolog&#xed;a Superior en Mec&#xe1;nica Industrial"/>
-            <StringItem index="9" value="Tecnolog&#xed;a Superior en Procesamiento Industrial de la Madera"/>
-            <StringItem index="10" value="T&#xe9;cnico Superior en Seguridad Ciudadana y Orden P&#xfa;blico "/>
-            <StringItem index="11" value="Tecnolog&#xed;a Superior en Control de Incendios y Operaciones de Rescate"/>
-            <StringItem index="12" value="Tecnolog&#xed;a en Gesti&#xf3;n del Patrimonio Hist&#xf3;rico Cultural"/>
-            <StringItem index="13" value="Tecnolog&#xed;a Superior en Ciberseguridad"/>
-            <StringItem index="14" value="Producci&#xf3;n y Realizaci&#xf3;n Audiovisual"/>
-            <StringItem index="15" value="Tecnolog&#xed;a Superior en Big Data"/>
-            <StringItem index="16" value=" "/>
+          <StringArray count="1">
+            <StringItem index="0" value=" "/>
           </StringArray>
         </Property>
       </Properties>
@@ -149,15 +133,7 @@
     <Component class="javax.swing.JComboBox" name="comboareacarrera">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="7">
-            <StringItem index="0" value="Seleccione"/>
-            <StringItem index="1" value="&#xc0;rea  de Administraci&#xf2;n"/>
-            <StringItem index="2" value="&#xc0;rea de Sociales"/>
-            <StringItem index="3" value="&#xc0;rea de Humanidades"/>
-            <StringItem index="4" value=" "/>
-            <StringItem index="5" value=" "/>
-            <StringItem index="6" value=" "/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -254,6 +230,25 @@
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="280" y="180" width="-1" height="20"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNombre">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="66" red="33" type="rgb"/>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder>
+              <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+            </LineBorder>
+          </Border>
+        </Property>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="70" y="10" width="200" height="20"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -393,6 +388,26 @@
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="300" y="240" width="-1" height="30"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JButton" name="btneliminar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Delete"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="430" y="270" width="-1" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnimprimir">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Imprimir"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="560" y="0" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>

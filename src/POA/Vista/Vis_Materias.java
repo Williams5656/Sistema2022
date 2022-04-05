@@ -6,6 +6,7 @@
 package POA.Vista;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -40,7 +41,7 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         this.btnguardar = btnguardar;
     }
 
-    public JComboBox<String> getComboCarrera_mat() {
+     public JComboBox<String> getComboCarrera_mat() {
         return comboCarrera_mat;
     }
 
@@ -112,6 +113,30 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         this.txtnombremateria = txtnombremateria;
     }
 
+    public JLabel getLblNombre() {
+        return lblNombre;
+    }
+
+    public void setLblNombre(JLabel lblNombre) {
+        this.lblNombre = lblNombre;
+    }
+
+    public JButton getBtneliminar() {
+        return btneliminar;
+    }
+
+    public void setBtneliminar(JButton btneliminar) {
+        this.btneliminar = btneliminar;
+    }
+
+    public JButton getBtnimprimir() {
+        return btnimprimir;
+    }
+
+    public void setBtnimprimir(JButton btnimprimir) {
+        this.btnimprimir = btnimprimir;
+    }
+
  
     /**
      * This method is called from within the constructor to initialize the form.
@@ -137,12 +162,15 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         txtcreditos = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
         comboplan = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablamateria = new javax.swing.JTable();
         jSeparator7 = new javax.swing.JSeparator();
         btnguardar = new javax.swing.JButton();
         btncancelar = new javax.swing.JButton();
+        btneliminar = new javax.swing.JButton();
+        btnimprimir = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -160,21 +188,20 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Còdigo de Materia*");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, 20));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, 20));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText(" Materia*");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, 20));
-        getContentPane().add(txtcodmateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 150, -1));
-        getContentPane().add(txtnombremateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 200, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, 20));
+        getContentPane().add(txtcodmateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 150, -1));
+        getContentPane().add(txtnombremateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 200, -1));
 
-        comboCarrera_mat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Entrenamiento Deportivo", "Tecnología en Análisis de Sistemas", "Tecnología en Desarrollo Infantil Integral ", "Tecnología en Seguridad Penitenciaria ", "Tecnología Superior en Asesoría Financiera ", "Tecnología Superior en Desarrollo de Software ", "Tecnología Superior en Electricidad", "Tecnología Superior en Mecánica Industrial", "Tecnología Superior en Procesamiento Industrial de la Madera", "Técnico Superior en Seguridad Ciudadana y Orden Público ", "Tecnología Superior en Control de Incendios y Operaciones de Rescate", "Tecnología en Gestión del Patrimonio Histórico Cultural", "Tecnología Superior en Ciberseguridad", "Producción y Realización Audiovisual", "Tecnología Superior en Big Data", " " }));
+        comboCarrera_mat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         getContentPane().add(comboCarrera_mat, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 200, -1));
 
         comboejeformacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Unidad Bàsica", "Unidad Profesional", "Unidad de Integraciòn Curricular" }));
         getContentPane().add(comboejeformacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 150, -1));
 
-        comboareacarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Àrea  de Administraciòn", "Àrea de Sociales", "Àrea de Humanidades", " ", " ", " " }));
         getContentPane().add(comboareacarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 110, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -197,6 +224,10 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Àrea de carrera*");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, -1, 20));
+
+        lblNombre.setForeground(new java.awt.Color(51, 102, 255));
+        lblNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        getContentPane().add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 200, 20));
 
         comboplan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", " " }));
         getContentPane().add(comboplan, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 130, 120, -1));
@@ -226,13 +257,21 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         btncancelar.setText("Cancelar");
         getContentPane().add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, -1, 30));
 
+        btneliminar.setText("Delete");
+        getContentPane().add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, -1, -1));
+
+        btnimprimir.setText("Imprimir");
+        getContentPane().add(btnimprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btncancelar;
+    private javax.swing.JButton btneliminar;
     private javax.swing.JButton btnguardar;
+    private javax.swing.JButton btnimprimir;
     private javax.swing.JComboBox<String> comboCarrera_mat;
     private javax.swing.JComboBox<String> comboareacarrera;
     private javax.swing.JComboBox<String> combociclo;
@@ -248,6 +287,7 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JLabel lblNombre;
     private javax.swing.JTable tablamateria;
     private javax.swing.JTextField txtcodmateria;
     private javax.swing.JTextField txtcreditos;

@@ -215,20 +215,20 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 50, 40));
 
         jLabel4.setText("Objetivo Operativo:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 220, 130, 20));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 220, 140, 20));
 
         jLabel5.setText("Actividad:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 270, 100, 20));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 270, 110, 20));
 
         jLabel6.setText("Responsable:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 350, 100, 20));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 350, 110, 20));
 
         jLabel7.setText("Plazo:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 390, 100, 20));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 390, 110, 20));
 
         jLabel8.setText("Recursos Financieros:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 430, 120, 20));
-        getContentPane().add(txtrecursos_financieros, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 430, 120, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, 140, 20));
+        getContentPane().add(txtrecursos_financieros, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 430, 70, -1));
         getContentPane().add(fecha_plazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 390, 230, -1));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -271,14 +271,14 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         btnmodificar.setContentAreaFilled(false);
         jPanel1.add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 10, 90, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 470, 360, 80));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, 360, 80));
 
         getContentPane().add(combo_objetivo_operarivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 220, 230, -1));
 
         getContentPane().add(combo_responsable, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 350, 230, -1));
 
         comborecursos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Ista", "Autogestion" }));
-        getContentPane().add(comborecursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 430, 90, -1));
+        getContentPane().add(comborecursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 430, 130, -1));
 
         txtactividad.setColumns(20);
         txtactividad.setRows(5);
@@ -291,13 +291,13 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, 260, 40));
 
         jLabel18.setText("$");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 430, 10, 20));
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 430, 10, 20));
 
         btnindicador.setText("AÑADIR INDICADOR");
         getContentPane().add(btnindicador, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 560, 140, 40));
 
         jLabel1.setText("Proyecto:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, 100, 20));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 170, 110, 20));
 
         getContentPane().add(comboproyectos, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 170, 230, -1));
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1000, 20));

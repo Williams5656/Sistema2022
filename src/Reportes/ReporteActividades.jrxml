@@ -64,10 +64,7 @@ FROM
 		<field name="actividades_plazo" class="java.sql.Date"/>
 	</subDataset>
 	<queryString>
-		<![CDATA[
-
-
-Select act.actividad AS Actividad, ob.objetivo AS Objetivo,act.responsable AS Responsable, act.recurso_financiero AS Recurso_financiero, act.plazo AS Plazo
+		<![CDATA[Select act.actividad AS Actividad, ob.objetivo AS Objetivo,act.responsable AS Responsable, act.recurso_financiero AS Recurso_financiero, act.plazo AS Plazo
 from actividades as act
 Inner JOIN objetivo_operativo as ob on act.id_objetivo_operativo = ob.id_objetivo_operativo]]>
 	</queryString>
@@ -82,12 +79,16 @@ Inner JOIN objetivo_operativo as ob on act.id_objetivo_operativo = ob.id_objetiv
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="71" y="12" width="423" height="63" uuid="39cf72c3-1228-4600-8710-cf15692b24ce"/>
+				<reportElement x="0" y="0" width="391" height="57" uuid="39cf72c3-1228-4600-8710-cf15692b24ce"/>
 				<textElement textAlignment="Center">
 					<font size="22" isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[REPORTE DE ACTIVIDADES SISTEMA 2022]]></text>
 			</staticText>
+			<image>
+				<reportElement x="416" y="0" width="139" height="72" uuid="bff4d9e3-3a02-456f-aea5-300b488b2238"/>
+				<imageExpression><![CDATA["C:\\Users\\HP\\Documents\\NetBeansProjects\\Sistema2022\\src\\POA\\Vista\\img\\logo2222.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

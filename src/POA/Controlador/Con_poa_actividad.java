@@ -15,6 +15,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.DateFormat;
 import java.text.Format;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,11 +40,17 @@ public class Con_poa_actividad {
       private ObjetivoOperativoBD baseDatosObjetivoOperativo = new ObjetivoOperativoBD();
       private ArrayList <ObjetivoOperativoMD> listaObjetivosOperativos = new ArrayList();
       private ArrayList <ProyectoMD> listaProyectos = new ArrayList<>();
+      private ArrayList<ActividadesMD> listactividades = new ArrayList();
       private ProyectoBD baseDatosProyecto = new ProyectoBD();
       private ActividadesBD baseDatosactividades = new ActividadesBD();
       private ArrayList<Integer> listas = new ArrayList();
       private int idobjetivo=0;
-
+      private SimpleDateFormat formatos = new SimpleDateFormat("yyyy-MM-dd");
+      private SimpleDateFormat formatosd = new SimpleDateFormat("yyyy/MM/dd");
+      
+      private boolean tablaSeleccionada = false;
+      private static int id_act;
+      
       private docenteBD bdocente = new docenteBD();
       private PersonaBD bpersona = new PersonaBD();
       
@@ -52,21 +59,36 @@ public class Con_poa_actividad {
     public Con_poa_actividad(vis_poa_actividad vista) {
        this.vista = vista;
         vista.setVisible(true);
+        vista.getComboproyectos().setEnabled(false);
+        vista.getCombo_objetivo_operarivo().setEnabled(false);
+        vista.getBtnguardar().setEnabled(false);
         cargarComboProyecto();
         cargarObjetivos();
         cargarcombo();
         //cargarOB();
-        vista.getBtnimprimir().addActionListener(e->imprimir());  
-        vista.getBtnindicador().addActionListener(e->ventindicador());
-        vista.getBtnguardar().addActionListener(e->guardar());   
+        vista.getBtnnuevo().addActionListener(e->nuevo());  
+        vista.getBtnimprimir().addActionListener(e->imprimir()); 
+        vista.getBtneliminar().addActionListener(e->lista()); 
+        vista.getBtnindicador().addActionListener(e->abrirVentanaProyectos());
+        vista.getBtnguardar().addActionListener(e->guardar()); 
+        vista.getTablaactividades().addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                seleccionar();
+                
+                seleccionartabla();
+            }
+            
+        });
+        
         vista.getComboproyectos().addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent itemEvent) {
                 cargarObjetivos();
             }
         });
         
-        lista();
-        //HOLAAAA
+        
+
         
         vista.getCombo_objetivo_operarivo().addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent itemEvent) {
@@ -153,7 +175,7 @@ public class Con_poa_actividad {
         String responsable = (String) vista.getCombo_responsable().getSelectedItem();         
         baseDatosactividades.setResponsable(responsable);
         
-        SimpleDateFormat formatos = new SimpleDateFormat("yyyy-MM-dd");
+        
         String fecha = formatos.format(vista.getFecha_plazo().getDate());
 
         baseDatosactividades.setPlazo(fecha);
@@ -177,12 +199,92 @@ public class Con_poa_actividad {
             //nuevo();
         }else{
             baseDatosactividades.guardar(idobjetivo, actividad, responsable,fecha, recursost);
+            
             lista();
 
-
-            //nuevo();
+            nuevo();
             
         }
+    }
+    
+    public void nuevo(){
+        vista.getBtnguardar().setEnabled(true);
+        vista.getBtnmodificar().setEnabled(false);
+        
+        vista.getComboproyectos().setEnabled(true);
+        vista.getCombo_objetivo_operarivo().setEnabled(true);
+        vista.getTxtactividad().setText("");
+        vista.getComborecursos().setSelectedItem("Seleccionar");
+        vista.getTxtrecursos_financieros().setText("");    
+        vista.getFecha_plazo().setDate(null);
+    }
+    
+    public void seleccionar(){
+        vista.getBtnguardar().setEnabled(false);
+        vista.getBtnmodificar().setEnabled(true);
+        vista.getComboproyectos().setEnabled(false);
+        vista.getCombo_objetivo_operarivo().setEnabled(false);
+        
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) vista.getTablaactividades().getModel();
+        int cedula = (int) modelo.getValueAt(vista.getTablaactividades().getSelectedRow(), 1);
+        int ob = (int) modelo.getValueAt(vista.getTablaactividades().getSelectedRow(), 0);
+        List<ActividadesMD>lista1 = baseDatosactividades.obtenerdatosxpor(cedula,ob);
+        
+            baseDatosactividades.setId_actividades(lista1.get(0).getId_actividades());
+            baseDatosactividades.setId_objetivo_operativo(lista1.get(0).getId_objetivo_operativo());
+            baseDatosactividades.setActividad((lista1.get(0).getActividad()));
+            baseDatosactividades.setResponsable(lista1.get(0).getResponsable());
+            baseDatosactividades.setPlazo(lista1.get(0).getPlazo());
+            baseDatosactividades.setRecurso_financiero(lista1.get(0).getRecurso_financiero());
+
+
+
+            vista.getTxtactividad().setText(baseDatosactividades.getActividad());
+            vista.getTxtrecursos_financieros().setText(baseDatosactividades.getRecurso_financiero());
+            vista.getCombo_responsable().setSelectedItem(baseDatosactividades.getResponsable()+ "");
+            vista.getCombo_responsable().setSelectedItem(baseDatosactividades.getRecurso_financiero()+ "");
+            vista.getComborecursos().setSelectedItem(baseDatosactividades.getRecurso_financiero()+ "");
+
+            
+            try {
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+            Date d = formato.parse(baseDatosactividades.getPlazo());
+            vista.getFecha_plazo().setDate(d);
+        } catch (ParseException ex) {
+            Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+            
+            String[] cadena = baseDatosactividades.getRecurso_financiero().split(" ");
+            
+            String part1 = cadena[0];
+            String part2 = cadena[2];
+            // 123
+            System.out.println(part1);
+            System.out.println(part2);
+            vista.getComborecursos().setSelectedItem(part1);
+            vista.getTxtrecursos_financieros().setText(part2);
+            
+            
+            
+            
+            
+            
+            
+            
+//            id_proyecto = poabd.getId_proyecto();
+//            lista_objetivo();
+//            vista.getBtn_modificar().setEnabled(true);
+//            vista.getBtn_eliminar().setEnabled(true);
+//            vista.getBtn_guardar().setEnabled(false);
+//            vista.getTxtarea_obopera().setEnabled(true);
+//            vista.getBtnAñadir().setEnabled(true);
+//            vista.getTabla_proyecto().setEnabled(true);
+        
+        
+        
+        
     }
     
     
@@ -195,10 +297,7 @@ public class Con_poa_actividad {
         for (int i = 0; i < listaObjetivosOperativos.size(); i++) {
             if (listaObjetivosOperativos.get(i).getObjetivo().equals(objetivo)&&listaObjetivosOperativos.get(i).getId_proyecto()== Integer.valueOf(proyect)) {
                 idobj=listaObjetivosOperativos.get(i).getId_objetivo_operativo();
-                
-                
-                
-                
+                 
             }
         }
         
@@ -229,6 +328,8 @@ public class Con_poa_actividad {
                     }
 
                 }
+                
+            }else{
                 
             }
         
@@ -269,44 +370,7 @@ public class Con_poa_actividad {
     }
     
     
-//    public void seleccionar(){
-//        
-//        
-//        //vista.getBtnguardar().setEnabled(false);
-//        //vista.getBtnmodificar().setEnabled(true);
-//        //vista.getTxtcodigo().setEditable(false);
-//        DefaultTableModel modelo;
-//        modelo = (DefaultTableModel) vista.getTablaactividades().getModel();
-//        String codigo = (String) modelo.getValueAt(vista.getTablaactividades().getSelectedRow(), 0);
-//        System.out.println(codigo);
-//        List<ActividadesMD> lista = baseDatosactividades.mostrarDatos;
-//        bdproduct.setCodigo(lista.get(0).getCodigo());
-//        bdproduct.setNombre(lista.get(0).getNombre());
-//        bdproduct.setMarca(lista.get(0).getMarca());
-//        bdproduct.setCantidad(lista.get(0).getCantidad());
-//        bdproduct.setPrecio(lista.get(0).getPrecio());
-//        bdproduct.setEstado(lista.get(0).getEstado());
-//        bdproduct.setDescripcion(lista.get(0).getDescripcion());
-//        
-//        vista.getTxtcodigo().setText(bdproduct.getCodigo());
-//        vista.getTxtnombre().setText(bdproduct.getNombre());
-//        vista.getCombomarca().setSelectedItem(bdproduct.getMarca());
-//        vista.getTxtcantidad().setText(bdproduct.getCantidad()+"");
-//        
-//        if (bdproduct.getEstado().equals("Activo")) {
-//            vista.getBtnradioestado1().setSelected(true);
-//        }
-//        
-//        if (bdproduct.getEstado().equals("Inactivo")) {
-//            vista.getBtnradioestado().setSelected(true);
-//        }
-//        
-//        
-//        vista.getTxtprecio().setText(bdproduct.getPrecio()+"");
-//        vista.getTxtdescripcion().setText(bdproduct.getDescripcion());
-//         
-//    }
-    
+  
     public void lista(){
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTablaactividades().getModel();
@@ -345,6 +409,35 @@ public class Con_poa_actividad {
             }
     }
     
+    
+    
+//    public void seleccionartabla(){
+//        int seleccionado = vista.getTablaactividades().getSelectedRow();
+//        tablaSeleccionada = true;
+//        
+//        id_act = listactividades.get(seleccionado).getId_actividades();
+//        
+//        System.out.println(id_act);
+//    }
+     
+    public void abrirVentanaProyectos(){
+       
+       if (tablaSeleccionada){
+        vis_poa_actividad_indicador zap = new vis_poa_actividad_indicador();
+        Con_principal.vista.getESCRITORIO().add(zap);
+        Dimension desktopSize = Con_principal.vista.getESCRITORIO().getSize();
+        Dimension FrameSize = zap.getSize();
+        zap.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        Con_poa_actividad_indicador proyectos = new Con_poa_actividad_indicador(zap);
+       }
+       else{
+           JOptionPane.showMessageDialog(null, "Debe seleccionar un POA de la tabla");
+       }
+    }
+    
+    public static int getIdAct() {
+        return id_act;
+    }
     
     
 }

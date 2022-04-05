@@ -299,6 +299,9 @@ public class cont_usuario {
             vista.getTableUsuario().setValueAt(lista.get(i).getEstado(), i, 4);            
             
         }
+        
+        
+        
     }
     
 }

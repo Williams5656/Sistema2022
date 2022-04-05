@@ -27,6 +27,24 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
         
     }
 
+    public JComboBox<String> getComboobjetivo() {
+        return comboobjetivo;
+    }
+
+    public void setComboobjetivo(JComboBox<String> comboobjetivo) {
+        this.comboobjetivo = comboobjetivo;
+    }
+
+    public JComboBox<String> getComboproyecto() {
+        return comboproyecto;
+    }
+
+    public void setComboproyecto(JComboBox<String> comboproyecto) {
+        this.comboproyecto = comboproyecto;
+    }
+    
+    
+
     public JButton getBtnguardar() {
         return btnguardar;
     }
@@ -100,29 +118,44 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
         jScrollPane4 = new javax.swing.JScrollPane();
         tablaindicador = new javax.swing.JTable();
         btnguardar = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        comboobjetivo = new javax.swing.JComboBox<>();
+        comboproyecto = new javax.swing.JComboBox<>();
 
         setClosable(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("INDICADOR");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 19, -1, 35));
 
         jLabel9.setText("Actividad:");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 167, 90, 20));
 
         comboactividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        getContentPane().add(comboactividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 167, 210, -1));
 
         jLabel17.setText("Indicador:");
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 110, 20));
 
         txtindicador.setColumns(20);
         txtindicador.setRows(5);
         jScrollPane2.setViewportView(txtindicador);
 
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 207, 210, 90));
+
         jLabel10.setText("Linea Base%:");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 317, 110, 20));
 
         lineabase.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 10));
+        getContentPane().add(lineabase, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 317, 70, -1));
 
         jLabel2.setText("Meta:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 357, 110, 20));
 
         meta.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 10));
+        getContentPane().add(meta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 357, 70, -1));
 
         tablaindicador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,77 +165,28 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
                 {null, null, null, null, null}
             },
             new String [] {
-                "Id_Indicador", "Id_Actividad", "Indicador", "Linea Base%", "Meta"
+                "Id_Indicador", "Actividad", "Indicador", "Linea Base%", "Meta"
             }
         ));
         jScrollPane4.setViewportView(tablaindicador);
 
-        btnguardar.setText("GUARDAR");
+        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 370, 230));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(308, 308, 308))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(lineabase, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(meta, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboactividad, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnguardar)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboactividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lineabase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(meta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnguardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(32, Short.MAX_VALUE))
-        );
+        btnguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/guardar.png"))); // NOI18N
+        btnguardar.setText("GUARDAR");
+        getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 340, 140, 40));
+
+        jLabel11.setText("Proyecto:");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 104, 90, 20));
+
+        jLabel12.setText("Objetivo:");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 135, 90, 20));
+
+        comboobjetivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        getContentPane().add(comboobjetivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 135, 210, -1));
+
+        comboproyecto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        getContentPane().add(comboproyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 104, 210, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -211,8 +195,12 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnguardar;
     private javax.swing.JComboBox<String> comboactividad;
+    private javax.swing.JComboBox<String> comboobjetivo;
+    private javax.swing.JComboBox<String> comboproyecto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel9;

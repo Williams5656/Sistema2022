@@ -57,12 +57,13 @@ public class Con_calendario {
     Responsables_ActividadMD resp = new Responsables_ActividadMD();
     private docenteMD docentemd = new docenteMD();
     CalendarioBD calendar = new CalendarioBD();
+    String[] tabla;
     public static ArrayList<Responsables_ActividadMD> ListaResp = new ArrayList<>();
 
     public Con_calendario(Vis_Calendar vista) {
         this.vista = vista;
         vista.setVisible(true);
-        vista.getBtn_añadir().addActionListener(e -> responsable());
+        vista.getBtn_añadir().addActionListener(e -> responsables());
         vista.getBtn_guardar().addActionListener(e -> guardar());
         vista.getTxt_id_A().setEnabled(false);
         vista.getBtn_n_actividad().addActionListener(e -> Crear_actividad());
@@ -82,8 +83,13 @@ public class Con_calendario {
         vista.getTabla_calendario().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                listaPersona.clear();
+               
                 seleccionarCalendario();
+                cargar_resp();
+                
             }
+            
 
         });
         Cargardatos_c();
@@ -96,38 +102,41 @@ public class Con_calendario {
         Ihnabilitar();
 
     }
-    public void imprimir_resposables(){
-          Conect con = new Conect();
-            try {
-               
-                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/R_Responsables.jasper"));
-                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
-                JasperViewer jv = new JasperViewer(jp, false);
-                JOptionPane.showMessageDialog(null, "Imprimiendo Responsables");
-                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                jv.setVisible(true);
-            } catch (JRException e) {
-                System.out.println("no se pudo encontrar registros" + e.getMessage());
-                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
-            }
-        
+
+    public void imprimir_resposables() {
+        Conect con = new Conect();
+        try {
+
+            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/R_Responsables.jasper"));
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+            JasperViewer jv = new JasperViewer(jp, false);
+            JOptionPane.showMessageDialog(null, "Imprimiendo Responsables");
+            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            jv.setVisible(true);
+        } catch (JRException e) {
+            System.out.println("no se pudo encontrar registros" + e.getMessage());
+            Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+        }
+
     }
-        public void imprimir_actividad(){
-          Conect con = new Conect();
-            try {
-               
-                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/R_Actividad.jasper"));
-                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
-                JasperViewer jv = new JasperViewer(jp, false);
-                JOptionPane.showMessageDialog(null, "Imprimiendo Actividades");
-                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                jv.setVisible(true);
-            } catch (JRException e) {
-                System.out.println("no se pudo encontrar registros" + e.getMessage());
-                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
-            }
-        
+
+    public void imprimir_actividad() {
+        Conect con = new Conect();
+        try {
+
+            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/R_Actividad.jasper"));
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+            JasperViewer jv = new JasperViewer(jp, false);
+            JOptionPane.showMessageDialog(null, "Imprimiendo Actividades");
+            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            jv.setVisible(true);
+        } catch (JRException e) {
+            System.out.println("no se pudo encontrar registros" + e.getMessage());
+            Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+        }
+
     }
+
     public void Crear_actividad() {
         vista.getTxt_id_A().setText(String.valueOf(calen.codigo_act()));
         vista.getTxt_N_actividad().setEnabled(true);
@@ -174,19 +183,11 @@ public class Con_calendario {
     }
 
     public void Cargardatos_c() {
-        listaPersona = bdpersona.mostrardatos();
-        listaDocente = baseDatosDocente.mostrardatos();
-        vector = new String[listaDocente.size()];
-        int contador = 0;
-        for (PersonaMD persona : listaPersona) {
-            for (docenteMD docente : listaDocente) {
-                if (persona.getCedula().equals(docente.getCedula()) && docente.getEstado().equals("ACTIVO")) {
-                    at.addItem(persona.getNombres() + " " + persona.getApellidos());
-                    vector[contador] = persona.getCedula();
-                    contador++;
-                    System.out.println(persona.getNombres() + " " + contador);
-                }
-            }
+        Responsables_ActividadBD resbd = new Responsables_ActividadBD();
+        listaPersona = resbd.nombres_docente();
+        for (int i = 0; i < listaPersona.size(); i++) {
+            at.addItem(listaPersona.get(i).getNombres());
+
         }
     }
 
@@ -204,10 +205,11 @@ public class Con_calendario {
             if (calendar.insertar()) {
                 JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
                 cargarListaAct(0);
-                guardarResp();
+                guadar_responsable_base();
                 DefaultTableModel modelo2;
                 modelo2 = (DefaultTableModel) vista.getTabla_responsables().getModel();
                 modelo2.setNumRows(0);
+
                 lista();
                 limpiar();
             } else {
@@ -285,23 +287,6 @@ public class Con_calendario {
         }
     }
 
-    public void guardarResp() {
-        for (int i = 0; i < ListaResp.size(); i++) {
-
-            String cedula = ListaResp.get(i).getCedula();
-            resbd.setId_responsable(calen.codigo());
-            resbd.setId_actividad(Integer.parseInt(vista.getTxt_id_A().getText()));
-            resbd.setCedula(cedula);
-            if (resbd.insertarresponsable()) {
-                JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
-                cargarLista("");
-            } else {
-                JOptionPane.showMessageDialog(null, "ERRROR AL GUARDAR RESPONSABLE");
-            }
-        }
-        vista.getTxt_id_A().setText("");
-    }
-
     public void cargarLista(String aguja) {
         DefaultTableModel tblModel;
         tblModel = (DefaultTableModel) vista.getTabla_responsable().getModel();
@@ -326,19 +311,40 @@ public class Con_calendario {
         });
     }
 
-    public void responsable() {
+    public void guadar_responsable_base() {
+
+        resbd.setId_actividad(Integer.parseInt(vista.getTxt_id_A().getText()));
+        System.out.println("responsable");
+        String pos = at.getItemSelected().toString();
+
+        for (int i = 0; i < listaPersona.size(); i++) {
+            for (int j = 0; j < vista.getTabla_responsables().getRowCount(); j++) {
+                System.out.println("tabla: " + vista.getTabla_responsables().getRowCount());
+                if (listaPersona.get(i).getNombres().equals(vista.getTabla_responsables().getValueAt(j, 0).toString())) {
+                    resbd.setId_responsable(calen.codigo());
+                    resbd.setCedula(listaPersona.get(i).getCedula());
+                    resbd.insertarresponsable();
+                    cargarLista("");
+                }
+            }
+        }
+        ListaResp.clear();
+    }
+
+    public void responsables() {
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTabla_responsables().getModel();
         Responsables_ActividadMD l = new Responsables_ActividadMD(vista.getTxt_responsables().getText());
         ListaResp.add(l);
         modelo.setNumRows(0);
+
         ListaResp.stream().forEach(r -> {
-            String[] tabla = {r.getCedula()};
+            tabla = new String[]{r.getCedula()};
             modelo.addRow(tabla);
         });
         vista.getTxt_responsables().setText("");
-
     }
+    
 
     private void cargarDialogo(int origen) throws SQLException {
         vista.getT_Actividad_D().setSize(460, 320);//dimensiones
@@ -384,7 +390,28 @@ public class Con_calendario {
         vista.getD_txt_Nombre().setText("");
         vista.getD_txt_Descripcion().setText("");
     }
-
+    
+    public void cargar_personas(){
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) vista.getTabla_responsables().getModel();
+        modelo.setNumRows(0);
+        listaPersona.stream().forEach(r -> {
+             tabla = new String[]{r.getNombres()};
+            modelo.addRow(tabla);
+        });
+    }
+    public int id_actividad(){
+        int fila = vista.getTabla_calendario().getSelectedRow();
+        int cod=Integer.parseInt(vista.getTabla_calendario().getValueAt(fila, 0).toString());
+        return cod;
+    }
+    public void cargar_resp(){
+        int id=id_actividad();
+        System.out.println("id"+id);
+        listaPersona=resbd.nombres_responsables(id);
+        System.out.println("per"+listaPersona.size());
+        cargar_personas();
+    }
     public void seleccionarCalendario() {
         DefaultTableModel modelo;
         vista.getBtn_modificar().setEnabled(true);
@@ -425,13 +452,13 @@ public class Con_calendario {
             Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-//    public void seleccionarResp(String aguja){
-//        List<Responsables_ActividadMD> lista = resbd.obtenerdatos(aguja);
-//        resbd.setCedula(cedula);
-//    }
-    
-    
-    
+
+    public void seleccionarResp(String aguja) {
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) vista.getTabla_responsables().getModel();
+        aguja = modelo.getValueAt(vista.getTabla_responsables().getSelectedRow(), 0).toString();
+        List<Responsables_ActividadMD> listac = resbd.obtenerdatos(aguja);
+
+    }
 
 }

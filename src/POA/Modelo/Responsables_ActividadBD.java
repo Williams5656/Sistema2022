@@ -21,7 +21,7 @@ public class Responsables_ActividadBD extends Responsables_ActividadMD  {
     
     public  boolean insertarresponsable() {  
         String nsql = "INSERT INTO responsables_act(id_responsable,id_actividad,cedula)" + "VALUES ('" + getId_responsable() + "','" + getId_actividad() + "','" + getCedula() + "')";
-
+        System.out.println("datos: "+getId_responsable()+"vvvvv"+getId_actividad()+""+getId_actividad());
         if (conectar.noQuery(nsql) == null) {
             return true;
         } else {
@@ -68,4 +68,45 @@ public class Responsables_ActividadBD extends Responsables_ActividadMD  {
             return null;
         }
     }
+    public List<PersonaMD> nombres_docente() {
+  
+        try {
+            String sql1 ="select * from nombres_docente";
+            List<PersonaMD> lista = new ArrayList<PersonaMD>();
+            ResultSet rs = conectar.query(sql1);
+            while (rs.next()) {
+                PersonaMD m = new PersonaMD();
+                m.setCedula(rs.getString("cedula"));
+                m.setNombres(rs.getString("nombre"));
+                lista.add(m);
+            }
+            rs.close();
+            return lista;
+        } catch (Exception e) {
+            Logger.getLogger(Responsables_ActividadBD.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    public List<PersonaMD> nombres_responsables(int id) {
+  
+        try {
+            String sql1 ="select DISTINCT pe.nombres  ||' '|| pe.apellidos as nombres from persona pe\n" +
+               "   join responsables_act r on r.cedula=pe.cedula where id_actividad= "+id;
+            System.out.println("id_ actividad"+getId_actividad());
+            List<PersonaMD> lista = new ArrayList<PersonaMD>();
+            ResultSet rs = conectar.query(sql1);
+            while (rs.next()) {
+                PersonaMD m = new PersonaMD();
+                m.setNombres(rs.getString("nombres"));
+                lista.add(m);
+            }
+            rs.close();
+            return lista;
+        } catch (Exception e) {
+            Logger.getLogger(Responsables_ActividadBD.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    
+    
 }

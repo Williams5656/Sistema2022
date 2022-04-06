@@ -341,7 +341,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         txt_descripcion = new javax.swing.JTextArea();
         combo_actividad = new javax.swing.JComboBox();
         combo_periodo = new javax.swing.JComboBox();
-        comobo_carrera = new javax.swing.JComboBox<String>();
+        comobo_carrera = new javax.swing.JComboBox<>();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         Btn_añadir_Tactividad = new javax.swing.JButton();
@@ -488,6 +488,12 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Id actividad:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 15, -1, -1));
+
+        txt_id_A.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_id_AActionPerformed(evt);
+            }
+        });
         jPanel1.add(txt_id_A, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 12, 150, -1));
 
         jLabel2.setText("Nombre Carrera:");
@@ -672,6 +678,10 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
     private void D_txt_idTipoAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_D_txt_idTipoAActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_D_txt_idTipoAActionPerformed
+
+    private void txt_id_AActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_id_AActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_id_AActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

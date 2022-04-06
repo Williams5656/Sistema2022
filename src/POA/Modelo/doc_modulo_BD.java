@@ -197,4 +197,52 @@ public class doc_modulo_BD extends doc_modulo_MD {
         return true;
     }
 
+    public List<doc_modulo_MD> buscar_x_parametro(int id_periodo, boolean periodo, String nom_materia, boolean materia) {
+        try {
+            List<doc_modulo_MD> lista = new ArrayList<doc_modulo_MD>();
+            String sql = "select * from doc_modulo " ;
+            if(periodo == true && materia == false){
+                sql = sql + "where \"id_periodo\"='" + id_periodo + "'";
+            }
+            if(periodo == false && materia == true){
+                sql = sql + "where \"id_materia\"= (select codigo from materia where upper (materia) LIKE '%" + nom_materia + "%')" ;
+            }
+            if(periodo == true && materia == true ){
+               sql = sql + "where \"id_periodo\"='" + id_periodo + "' and "
+                       + "\"id_materia\"= (select codigo from materia where upper (materia) LIKE '%" + nom_materia + "%')" ;
+            }
+            ResultSet rs = conectar.query(sql);
+            byte[] is;
+            while (rs.next()) {
+                doc_modulo_MD m = new doc_modulo_MD();
+                m.setId_doc_modulo(rs.getInt("id_doc_modulo"));
+                m.setId_periodo(rs.getInt("id_periodo"));
+                m.setId_materia(rs.getString("id_materia"));
+                is = rs.getBytes("documento");
+
+                is = rs.getBytes("documento");
+                if (is != null) {
+                    try {
+                        is = Base64.decode(is, 0, rs.getBytes("documento").length);
+//                    BufferedImage bi=Base64.decode( ImageIO.read(is));
+                        m.setDocumento(getImage(is, false));
+                    } catch (Exception ex) {
+                        m.setDocumento(null);
+                        Logger.getLogger(doc_modulo_BD.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    m.setDocumento(null);
+                }
+
+                lista.add(m);
+
+            }
+            rs.close();
+            return lista;
+        } catch (SQLException e) {
+
+            Logger.getLogger(doc_modulo_MD.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
 }

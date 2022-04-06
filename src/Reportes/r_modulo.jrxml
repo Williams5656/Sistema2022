@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4f2defc5-eb13-42dc-897e-8db7406e063b">
 	<property name="ireport.zoom" value="1.771561000000001"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="29"/>
+	<property name="ireport.y" value="19"/>
 	<queryString>
 		<![CDATA[select d.id_doc_modulo, per.nombre, mat.materia from doc_modulo d,materia mat, periodo_academico per where d.id_periodo=per.id_periodo and d.id_materia=mat.materia]]>
 	</queryString>

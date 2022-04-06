@@ -75,12 +75,19 @@ public class Con_Asignacion_Docente {
     public void plan() {
         int seleccionado;
         seleccionado = (int) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 0);
+        System.out.println(seleccionado);
         if (seleccionado == 0) {
             JOptionPane.showMessageDialog(ESCRITORIO, "Seleccione un docente");
         } else {
             vista.setVisible(false);
             Vis_Documentacion doc = new Vis_Documentacion();
             Con_documentacion per = new Con_documentacion(doc, seleccionado);
+            per.cargarDatos();
+            per.desactivarBotones();
+            per.eventoHoraguiaSi();
+            per.eventoHoraguiaNo();
+            per.datos();
+            per.lista();
         }
     }
 
@@ -286,6 +293,9 @@ public class Con_Asignacion_Docente {
         vista.getBtneliminar().setEnabled(true);
         vista.getBtnmodificar().setEnabled(true);
         vista.getBtnguardar().setEnabled(false);
+        vista.getId_asignacion().setEnabled(false);
+        vista.getTxtdocente().setEnabled(false);
+        vista.getCombodocentes().setEnabled(false);
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTablaasignaciondocentemateria().getModel();
         String identificacion = (String) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 1);

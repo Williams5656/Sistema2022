@@ -70,19 +70,12 @@ public class Con_documentacion {
         vista.setVisible(true);
         vista.getGuias().add(vista.getRadioSi());
         vista.getGuias().add(vista.getRadioNo());
-        asignacion = id_asignacion;
-        cargarDatos();      
+        asignacion = id_asignacion;            
         System.out.println(asignacion + "=  ID");
         vista.getBtnnuevo().addActionListener(e -> nuevo());
         vista.getBtn_regresar().addActionListener(e -> regresar());
         vista.getBtnguardar().addActionListener(e -> guardar());
         vista.getBtneditar().addActionListener(e -> modificar());
-        
-        datos();
-        desactivarBotones();
-        eventoHoraguiaSi();
-        eventoHoraguiaNo();
-        lista();
     }
     
     public void activarBotones() {
@@ -90,6 +83,7 @@ public class Con_documentacion {
         vista.getBtneditar().setEnabled(true);
         vista.getFecha().setEnabled(true);
         vista.getComboEstado().setEnabled(true);
+        vista.getTxt_horaguia().setEnabled(true);
         vista.getTxt_plan().setText("");
         vista.getTxt_horaguia().setText("");
         vista.getComboEstado().setSelectedIndex(0);
@@ -105,8 +99,7 @@ public class Con_documentacion {
         vista.getFecha().setEnabled(false);
         vista.getComboEstado().setEnabled(false);
         vista.getTxt_horaguia().setEnabled(false);
-        desactivarRadio();
-        
+        desactivarRadio();      
     }
     
     public void activarRadio() {
@@ -196,6 +189,7 @@ public class Con_documentacion {
     }
     public void seleccionar() {
         activarBotones();
+        vista.getBtnguardar().setEnabled(false);
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTablaDocumentacion().getModel();
         int id_plan = (int) modelo.getValueAt(vista.getTablaDocumentacion().getSelectedRow(), 0);
@@ -226,7 +220,7 @@ public class Con_documentacion {
         vista.getComboEstado().setSelectedItem(bddocumentacion.getEstado());
     }
     public void modificar (){
-        int plan = Integer.parseInt(vista.getTxt_numPlan().getText());
+        int plan = Integer.parseInt(vista.getTxt_plan().getText());
         String estado = (String) vista.getComboEstado().getSelectedItem();
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         String fecha = formato.format(vista.getFecha().getDate());
@@ -275,7 +269,9 @@ public class Con_documentacion {
         listaPeriodo = basePeriodo.lista_periodos();
         listaMateria = baseMateria.mostrardatos();
         listaArea = baseArea.mostrardatos();
+        System.out.println(asignacion);
         for (AsignacionMateriaDocentesMD asignacion1 : listaasignacion) {
+            System.out.println(asignacion1.getAsignatura());
             if (asignacion1.getId_asignacio()== asignacion ) {
                 vista.getTxt_cedula().setText(asignacion1.getIdentificacion());
                 vista.getTxt_ciclo().setText(asignacion1.getCiclo());
@@ -318,8 +314,7 @@ public class Con_documentacion {
     
     public void lista() {
         modelo.setRowCount(0);
-        modelo.setColumnCount(0);
-        
+        modelo.setColumnCount(0);        
         modelo.addColumn("Id_plan");
         modelo.addColumn("Numero");
         modelo.addColumn("Asignacion");
@@ -332,10 +327,10 @@ public class Con_documentacion {
         
        
         for (int i = 0; i < lista.size(); i++) {
-            if (lista.get(i).getId_asignacion().equals(asignacion)) {
+            if (lista.get(i).getId_asignacion().equals(asignacion + "")) {
                 fila[0] = lista.get(i).getId_plan();
                 fila[1] = lista.get(i).getNumero();
-                fila[2] = asignacion;
+                fila[2] = asignacion + "";
                 fila[3] = lista.get(i).getFecha();
                 fila[4] = lista.get(i).getGuias();
                 fila[5] = lista.get(i).getHorasGuia();

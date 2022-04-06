@@ -53,7 +53,7 @@ public class DocumentacionBD extends DocumentacionMD{
     public List<DocumentacionMD> obtenerdatos(int id_plan) {
         try {
             List<DocumentacionMD> lista = new ArrayList<DocumentacionMD>();
-            String sql = "select * from documentacion" + " where \"id_plan\"='" + id_plan + "'";
+            String sql = "select * from documentacion" + " where id_plan =" + id_plan + "";
             ResultSet rs = conectar.query(sql);
             while (rs.next()) {
                 DocumentacionMD doc = new DocumentacionMD();
@@ -86,7 +86,8 @@ public class DocumentacionBD extends DocumentacionMD{
         }
     }
     public boolean modificar(int id_plan) {
-        String sql = "update documentacion set \"fecha\"='" + getFecha()+ "',\"guia\"='" + getGuias()+ "',\"hora_guias\"='" + getHorasGuia()+"',\"estado\"='" + getEstado()+ "'"
+        String sql = "update documentacion set \"fecha\"='" + getFecha()+ "',\"guia\"='" + getGuias()+ "',\"hora_guias\"=" 
+                + getHorasGuia()+",\"estado\"='" + getEstado()+ "'"
                 + " where \"id_plan\"= " + id_plan + ";";
 
         if (conectar.noQuery(sql) == null) {

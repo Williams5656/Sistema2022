@@ -138,6 +138,15 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
     public void setBtnindicador(JButton btnindicador) {
         this.btnindicador = btnindicador;
     }
+
+    public JButton getBtnlistar() {
+        return btnlistar;
+    }
+
+    public void setBtnlistar(JButton btnlistar) {
+        this.btnlistar = btnlistar;
+    }
+    
     
     
 
@@ -183,6 +192,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         btnimprimir = new javax.swing.JButton();
+        btnlistar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -294,7 +304,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 430, 10, 20));
 
         btnindicador.setText("AÑADIR INDICADOR");
-        getContentPane().add(btnindicador, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 560, 140, 40));
+        getContentPane().add(btnindicador, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 560, 170, 40));
 
         jLabel1.setText("Proyecto:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 170, 110, 20));
@@ -307,7 +317,15 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
 
         btnimprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/impresion.png"))); // NOI18N
         btnimprimir.setText("Imprimir");
-        getContentPane().add(btnimprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 560, 120, 40));
+        getContentPane().add(btnimprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 560, 120, 40));
+
+        btnlistar.setText("LISTAR");
+        btnlistar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlistarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnlistar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, -1, -1));
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 640));
 
         pack();
@@ -321,12 +339,17 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnnuevoActionPerformed
 
+    private void btnlistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlistarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnlistarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btneliminar;
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnimprimir;
     private javax.swing.JButton btnindicador;
+    private javax.swing.JButton btnlistar;
     private javax.swing.JButton btnmodificar;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JComboBox<String> combo_objetivo_operarivo;

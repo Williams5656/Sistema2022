@@ -27,21 +27,7 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
         
     }
 
-    public JComboBox<String> getComboobjetivo() {
-        return comboobjetivo;
-    }
-
-    public void setComboobjetivo(JComboBox<String> comboobjetivo) {
-        this.comboobjetivo = comboobjetivo;
-    }
-
-    public JComboBox<String> getComboproyecto() {
-        return comboproyecto;
-    }
-
-    public void setComboproyecto(JComboBox<String> comboproyecto) {
-        this.comboproyecto = comboproyecto;
-    }
+ 
     
     
 
@@ -118,10 +104,7 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
         jScrollPane4 = new javax.swing.JScrollPane();
         tablaindicador = new javax.swing.JTable();
         btnguardar = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        comboobjetivo = new javax.swing.JComboBox<>();
-        comboproyecto = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
 
         setClosable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -131,31 +114,30 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 19, -1, 35));
 
         jLabel9.setText("Actividad:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 167, 90, 20));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 90, 20));
 
-        comboactividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
-        getContentPane().add(comboactividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 167, 210, -1));
+        getContentPane().add(comboactividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 210, -1));
 
         jLabel17.setText("Indicador:");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 110, 20));
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 110, 20));
 
         txtindicador.setColumns(20);
         txtindicador.setRows(5);
         jScrollPane2.setViewportView(txtindicador);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 207, 210, 90));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 210, 90));
 
         jLabel10.setText("Linea Base%:");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 317, 110, 20));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 110, 20));
 
         lineabase.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 10));
-        getContentPane().add(lineabase, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 317, 70, -1));
+        getContentPane().add(lineabase, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 70, -1));
 
         jLabel2.setText("Meta:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 357, 110, 20));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 110, 20));
 
         meta.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 10));
-        getContentPane().add(meta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 357, 70, -1));
+        getContentPane().add(meta, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 70, -1));
 
         tablaindicador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -175,18 +157,7 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
         btnguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/guardar.png"))); // NOI18N
         btnguardar.setText("GUARDAR");
         getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 340, 140, 40));
-
-        jLabel11.setText("Proyecto:");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 104, 90, 20));
-
-        jLabel12.setText("Objetivo:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 135, 90, 20));
-
-        comboobjetivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
-        getContentPane().add(comboobjetivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 135, 210, -1));
-
-        comboproyecto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
-        getContentPane().add(comboproyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 104, 210, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -195,14 +166,11 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnguardar;
     private javax.swing.JComboBox<String> comboactividad;
-    private javax.swing.JComboBox<String> comboobjetivo;
-    private javax.swing.JComboBox<String> comboproyecto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;

@@ -8,6 +8,7 @@ package POA.Modelo.Validadores;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JTextField;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -35,7 +36,7 @@ public class Letras {
         }
         );
     }
-
+    
     public static void dosespacios(JTextField t) { //consume elespacio si es pulsado dos veces
         t.addKeyListener(new KeyAdapter() {
             @Override
@@ -72,6 +73,18 @@ public class Letras {
     }
 
     public static void numero_letras(JTextField t, int a) { // determina el numero maximo de letras
+        t.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (t.getText().length() > a) {
+                    e.consume();
+                }
+            }
+        }
+        );
+    }
+    
+    public static void numero_letras(JTextArea t, int a) { // determina el numero maximo de letras
         t.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {

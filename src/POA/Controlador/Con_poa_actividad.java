@@ -19,7 +19,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -67,7 +69,7 @@ public class Con_poa_actividad {
         cargarcombo();
         //cargarOB();
         vista.getBtnnuevo().addActionListener(e->nuevo());  
-        vista.getBtnimprimir().addActionListener(e->imprimir()); 
+        vista.getBtnimprimir().addActionListener(e->imprimirpersona()); 
         vista.getBtneliminar().addActionListener(e->lista()); 
         vista.getBtnindicador().addActionListener(e->abrirVentanaProyectos());
         vista.getBtnguardar().addActionListener(e->guardar()); 
@@ -390,23 +392,57 @@ public class Con_poa_actividad {
         }
     }
     
-    private void imprimir(){
-          Conect con = new Conect();
-            try {
+    
+    
+    
+    public void imprimirpersona(){
+       Conect con = new Conect();
+        String[] reportes = {
+            "Seleccione Una Opcion",
+            "Reporte Por Actividad",
+            "Reporte Completo"
+        };
+        //Ctrl_MYICON icon = new Ctrl_MYICON(40, 50);
+        String resp = (String) JOptionPane.showInputDialog(null, "Seleccione un reporte", "Reporte De Actividades",
+                JOptionPane.DEFAULT_OPTION, null, reportes, reportes[0]);
+        if (resp.equals("Seleccione Una Opcion")) {
+            JOptionPane.showMessageDialog(null, " seleccione uno de los campos");
 
-                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/ReporteActividades.jasper"));
-                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+        }
+        if (resp.equals("Reporte Por Actividad")) {
+ 
+            try {
+               // JOptionPane.showMessageDialog(null, "Imprimiendo Persona");
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/ReporteActividades_Id.jasper"));
+                Map<String, Object> params = new HashMap<String, Object>();
+ String aguja = JOptionPane.showInputDialog("Ingrese la actividad");
+////                String aguja = vista.getTxtBuscar().getText();
+                System.out.println("actividad;;;;"+ aguja);
+                params.put("actividad",aguja);
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
                 JasperViewer jv = new JasperViewer(jp, false);
-//                Map parametro = new HashMap();
-//                parametro.clear();
-//                parametro.put("logos",this.getClass().getResourceAsStream(imagen));
-                JOptionPane.showMessageDialog(null, "Imprimiendo Actividades");
                 jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                 jv.setVisible(true);
             } catch (JRException e) {
                 System.out.println("no se pudo encontrar registros" + e.getMessage());
-                Logger.getLogger(Con_poa_actividad.class.getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
             }
+
+        }
+        if (resp.equals("Reporte Completo")) {
+
+            try {
+
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/ReporteActividades.jasper"));
+
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException e) {
+                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
     }
     
     

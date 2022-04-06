@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package POA.Controlador;
+
 import POA.Modelo.*;
 
 import POA.Vista.Vis_Materias;
@@ -22,7 +23,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -35,6 +38,9 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
+import POA.Modelo.Validadores.Numeros;
+import POA.Modelo.Validadores.Letras;
+import javax.swing.JTextField;
 
 /**
  *
@@ -48,20 +54,24 @@ public class Con_Materia {
     CarreraBD bdcarrera = new CarreraBD();
     List<CarreraMD> listac = bdcarrera.mostrardatos();
     private AreaCarreraBD bdarea = new AreaCarreraBD();
-    //PerfilBD bdperfil = new PerfilBD();
     List<AreaCarreraMD> listaa = bdarea.mostrardatos();
     private DefaultTableModel modelo = new DefaultTableModel();
 
     public Con_Materia(Vis_Materias vista) {
         this.vista = vista;
         vista.setVisible(true);
+        desactivarbotones();
         campocarrera();
         campoarea();
+        validarcod();
+        validarmateria();
+        validaciones();
 //        buscar();
         vista.getBtncancelar().addActionListener(e -> cancelar());
         vista.getBtnguardar().addActionListener(e -> guardar());
         vista.getBtneliminar().addActionListener(e -> eliminar());
-        vista.getBtnimprimir().addActionListener(e -> imprimir());
+        vista.getBtnimprimir().addActionListener(e -> imprimirmateria());
+        vista.getBtnnuevo().addActionListener(e -> nuevo());
         vista.getTablamateria().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -73,13 +83,7 @@ public class Con_Materia {
 
     public void guardar() {
 
-//        String idCarrera = "";
 //        String nombre = (String) vista.getComboCarrera_mat().getSelectedItem();
-//        for (int i = 0; i < listac.size(); i++) {
-//            if (nombre.equals(listac.get(i).getNombre_carrera())) {
-//                idCarrera = listac.get(i).getCodigo_carrera();
-//            }
-//        }
 //        materia.setNombre_carrera(nombre);
         String eje = (String) vista.getComboejeformacion().getSelectedItem();
         materia.setEje_formacion(eje);
@@ -105,13 +109,14 @@ public class Con_Materia {
     }
 
     public void seleccionar() {
-        
+
         int select = vista.getTablamateria().getSelectedRow();
 //        DefaultTableModel modelo;
 //        modelo = (DefaultTableModel) vista.getTablamateria().getModel();
 //        String codigo = (String) modelo.getValueAt(vista.getTablamateria().getSelectedRow(), 0);
-////        System.out.println(codigo);
+//        System.out.println(codigo);
         List<MateriaMD> lista = materia.mostrardatos();
+//        List<MateriaMD> lista = materia.obtenerdatos(codigo);
         materia.setNombre_carrera(lista.get(select).getNombre_carrera());
         materia.setEje_formacion(lista.get(select).getEje_formacion());
         materia.setCod_materia(lista.get(select).getCod_materia());
@@ -155,8 +160,45 @@ public class Con_Materia {
         }
     }
 
-    public void nuevo() {
+    public void desactivarbotones() {
+       
+        vista.getBtnguardar().setEnabled(false);
+        vista.getBtnnuevo().setEnabled(true);
+        vista.getBtnimprimir().setEnabled(true);
+        vista.getBtneliminar().setEnabled(false);
+        vista.getBtncancelar().setEnabled(false);
+        vista.getComboCarrera_mat().setEnabled(false);
+        vista.getComboareacarrera().setEnabled(false);
+        vista.getCombociclo().setEnabled(false);
+        vista.getComboejeformacion().setEnabled(false);
+        vista.getComboplan().setEnabled(false);
+        vista.getTxtcodmateria().setEnabled(false);
+        vista.getTxtcreditos().setEnabled(false);
+        vista.getTxtnombremateria().setEnabled(false);
 
+    }
+
+    public void activarbotones() {
+
+        vista.getBtnguardar().setEnabled(true);
+//        vista.getBtnnuevo().setEnabled(true);
+        vista.getBtnimprimir().setEnabled(true);
+        vista.getBtneliminar().setEnabled(true);
+        vista.getBtncancelar().setEnabled(true);
+        vista.getComboCarrera_mat().setEnabled(true);
+        vista.getComboareacarrera().setEnabled(true);
+        vista.getCombociclo().setEnabled(true);
+        vista.getComboejeformacion().setEnabled(true);
+        vista.getComboplan().setEnabled(true);
+        vista.getTxtcodmateria().setEnabled(true);
+        vista.getTxtcreditos().setEnabled(true);
+        vista.getTxtnombremateria().setEnabled(true);
+
+    }
+        
+    public void nuevo() {
+        
+        activarbotones();
         vista.getComboCarrera_mat().setSelectedItem("");
         vista.getComboejeformacion().setSelectedItem("");
         vista.getTxtcodmateria().setText("");
@@ -175,27 +217,28 @@ public class Con_Materia {
         }
     }
 
-    public void campoarea() { 
+    public void campoarea() {
         vista.getComboareacarrera().removeAllItems();
         vista.getComboareacarrera().addItem("");
-        for (int j = 0; j < lista.size(); j++) {
-            for (int i = 0; i < listaa.size(); i++) {
-                if (Integer.toString(listaa.get(i).getIdArea()) == lista.get(j).getArea()) {
-                    vista.getComboareacarrera().addItem(Integer.toString(listaa.get(i).getIdArea()));
-                }
-            }
-        }
-//        for (int i = 0; i < listaa.size(); i++) {
-//            vista.getComboCarrera_mat().addItem(listaa.get(i).getNombre_carrera());
-//        }
-//        String id_area;
-//        for (AreaCarreraMD areac : listaa){
-//            if (((vista.getComboareacarrera()).getSelectedItem()).equals(areac.getIdArea())){
-//                    id_area = Integer.toString(areac.getIdArea());
+
+//        for (int j = 0; j < lista.size(); j++) {
+//            for (int i = 0; i < listaa.size(); i++) {
+//                if (Integer.toString(listaa.get(i).getIdArea()) == lista.get(j).getArea()) {
+//                    vista.getComboareacarrera().addItem(Integer.toString(listaa.get(i).getIdArea()));
 //                }
 //            }
+//        }
+//        for (int i = 0; i < listaa.size(); i++) {
+//            vista.getComboareacarrera().addItem(Integer.toString(listaa.get(i).getIdArea()));
+//        }
+        PerfilBD bdperfil = new PerfilBD();
+        List<PerfilMD> listap = bdperfil.mostrardatos();
+        for (int i = 0; i < listap.size(); i++) {
+            vista.getComboareacarrera().addItem(listap.get(i).getNombre());
+        }
+
     }
-    
+
 //    public void buscar() {
 //        listac = bdcarrera.mostrardatos();
 //        vista.getComboCarrera_mat().addKeyListener(new KeyAdapter() {
@@ -212,13 +255,11 @@ public class Con_Materia {
 //            }
 //        });
 //    }
-
     private void eliminar() {
-        int seleccionado = vista.getTablamateria().getSelectedRow();
-        int resp2 = JOptionPane.showConfirmDialog(null, "CONFIRME SI ESTA SEGURO DE ELIMINAR");
-        if (resp2 == 0) {
-            if (materia.Eliminar(lista.get(seleccionado).getCod_materia())) {
-                JOptionPane.showMessageDialog(null, "ELIMINADO CORRECTAMENTE");
+        int resp1 = JOptionPane.showConfirmDialog(null, "CONFIRME SI DESEA ELIMINAR");
+        if (resp1 == 0) {
+            if (materia.Eliminar(vista.getTxtcodmateria().getText())) {
+                JOptionPane.showMessageDialog(null, "Datos actualizados");
                 listam();
                 nuevo();
             } else {
@@ -244,7 +285,111 @@ public class Con_Materia {
     }
 
     public void cancelar() {
+        int select = JOptionPane.showConfirmDialog(null, "DESEA CANCELAR!", "", JOptionPane.YES_NO_OPTION);
+        if (select == 0) {
+            vista.setVisible(true);
+        }
+    }
 
+    boolean validarcod() {
+        String codigo = (String) vista.getTxtcodmateria().getText();
+        List<MateriaMD> lista_cod = materia.obtenerdatos(codigo);
+        for (int i = 0; i < lista_cod.size(); i++) {
+            if (codigo == (lista_cod.get(i).getCod_materia())) {
+                JOptionPane.showMessageDialog(null, "Còdigo ya existe!", "Verifique", 0);
+                return false;
+            }
+        }
+        return true;
+    }
+
+    boolean validarmateria() {
+        String codigo = (String) vista.getTxtnombremateria().getText();
+        List<MateriaMD> lista_cod = materia.obtenerdatos(codigo);
+        for (int i = 0; i < lista_cod.size(); i++) {
+            if (codigo == (lista_cod.get(i).getNombre_materia())) {
+                JOptionPane.showMessageDialog(null, "Materia ya existe!", "Verifique", 0);
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    private void only_num(JTextField t) {                                       
+            t.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyChar() < '0' | e.getKeyChar() > '9' | (vista.getTxtcreditos().getText().length() >= 3)) {
+                    e.consume();
+                }
+            }
+        }
+      );
+    } 
+    
+    public void validaciones() {
+
+        Letras.solo_letras(vista.getTxtnombremateria());
+        Letras.dosespacios(vista.getTxtnombremateria());
+        only_num(vista.getTxtcreditos());
+//        Numeros.solo_numeros(vista.getTxtcreditos());
+        Letras.numero_letras(vista.getTxtcodmateria(), 4);
+        Letras.no_espacios(vista.getTxtcodmateria());
+        vista.getTablamateria().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    seleccionar();
+                } catch (Exception ex) {
+                    Logger.getLogger(Con_Materia.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+    }
+
+    public void imprimirmateria() {
+        Conect con = new Conect();
+        String[] reportes = {
+            "Seleccione Una Opcion",
+            "Reporte Con Nombre de Materia",
+            "Reporte Completo"
+        };
+        //Ctrl_MYICON icon = new Ctrl_MYICON(40, 50);
+        String resp = (String) JOptionPane.showInputDialog(null, "Seleccione un reporte", "Reporte De Materias",
+                JOptionPane.DEFAULT_OPTION, null, reportes, reportes[0]);
+        if (resp.equals("Seleccione Una Opcion")) {
+            JOptionPane.showMessageDialog(null, " seleccione uno de los campos");
+
+        }
+        if (resp.equals("Reporte Con Nombre de Materia")) {
+
+            try {
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/RepMaterias.jasper"));
+                Map<String, Object> params = new HashMap<String, Object>();
+                String aguja = JOptionPane.showInputDialog("Ingrese la materia");
+                System.out.println("materia;;;;" + aguja);
+                params.put("materia", aguja);
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException e) {
+                System.out.println("no se pudo encontrar registros" + e.getMessage());
+                Logger.getLogger(Con_Materia.class.getName()).log(Level.SEVERE, null, e);
+            }
+
+        }
+        if (resp.equals("Reporte Completo")) {
+            try {
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/RepMaterias.jasper"));
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException e) {
+                Logger.getLogger(Con_Materia.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
     }
 
 }

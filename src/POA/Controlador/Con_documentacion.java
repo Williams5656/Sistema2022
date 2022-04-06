@@ -29,6 +29,8 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import POA.Modelo.Validadores.Numeros;
+import POA.Modelo.Validadores.Letras;
 
 /**
  *
@@ -57,6 +59,7 @@ public class Con_documentacion {
     public Con_documentacion(Vis_Documentacion vista, int id_asignacion) {
         
         this.vista = vista;
+        validaciones();
         ESCRITORIO.add(vista);
         Dimension desktopSize = ESCRITORIO.getSize();
         Dimension FrameSize = vista.getSize();
@@ -177,7 +180,6 @@ public class Con_documentacion {
             }else{
                  bddocumentacion.setHorasGuia(Integer.parseInt(vista.getTxt_horaguia().getText()));
             }
-           
             if (bddocumentacion.insertar()) {
                 JOptionPane.showMessageDialog(null, "DATOS GUARDADOS CORRECTAMENTE");
                 lista();
@@ -342,5 +344,21 @@ public class Con_documentacion {
         vista.getTablaDocumentacion().setModel(modelo);
         
     }
-    
+     
+    public void validaciones() {
+
+        Letras.numero_letras(vista.getTxt_horaguia(), 2);
+        Letras.no_espacios(vista.getTxt_horaguia());
+        vista.getTablaDocumentacion().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    seleccionar();
+                } catch (Exception ex) {
+                    Logger.getLogger(Con_documentacion.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+    }
+        
 }

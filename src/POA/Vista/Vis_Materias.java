@@ -137,7 +137,14 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         this.btnimprimir = btnimprimir;
     }
 
- 
+    public JButton getBtnnuevo() {
+        return btnnuevo;
+    }
+
+    public void setBtnnuevo(JButton btnnuevo) {
+        this.btnnuevo = btnnuevo;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -171,6 +178,7 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         btncancelar = new javax.swing.JButton();
         btneliminar = new javax.swing.JButton();
         btnimprimir = new javax.swing.JButton();
+        btnnuevo = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -252,16 +260,19 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         getContentPane().add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 10, 300));
 
         btnguardar.setText("Guardar");
-        getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 80, 30));
+        getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 80, 30));
 
         btncancelar.setText("Cancelar");
         getContentPane().add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, -1, 30));
 
         btneliminar.setText("Delete");
-        getContentPane().add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, -1, -1));
+        getContentPane().add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, -1, -1));
 
-        btnimprimir.setText("Imprimir");
-        getContentPane().add(btnimprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, -1, -1));
+        btnimprimir.setText("Reporte");
+        getContentPane().add(btnimprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, -1, -1));
+
+        btnnuevo.setText("Nuevo");
+        getContentPane().add(btnnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -272,6 +283,7 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
     private javax.swing.JButton btneliminar;
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnimprimir;
+    private javax.swing.JButton btnnuevo;
     private javax.swing.JComboBox<String> comboCarrera_mat;
     private javax.swing.JComboBox<String> comboareacarrera;
     private javax.swing.JComboBox<String> combociclo;

@@ -181,6 +181,7 @@ public class con_periodoAcademico {
     public void modificar(){
         periodo.modificar(estado_fila(),Integer.parseInt(vista.getTabla().getValueAt(vista.getTabla().getSelectedRow(),0).toString()));
         periodo.llenar_tabla(vista.getTabla());
+        vista.getBtnestado().setEnabled(false);
     }
 
 }

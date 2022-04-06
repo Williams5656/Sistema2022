@@ -165,8 +165,8 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
         lblIdPeriodo.setForeground(new java.awt.Color(0, 0, 255));
         jPanel1.add(lblIdPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 70, 20));
 
-        btnestado.setText("DESACTIVAR");
-        jPanel1.add(btnestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, -1, -1));
+        btnestado.setText("CAMBIO ESTADO");
+        jPanel1.add(btnestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, -1));
 
         lblNombrePeriodo.setForeground(new java.awt.Color(0, 0, 204));
         jPanel1.add(lblNombrePeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 260, 20));
@@ -177,7 +177,7 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
         jPanel1.add(btn_repor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
 
         btnCrear.setText("CREAR");
-        jPanel1.add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, -1, -1));
+        jPanel1.add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, -1, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("MOSTRAR DATOS"));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

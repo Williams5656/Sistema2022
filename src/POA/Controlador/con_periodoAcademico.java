@@ -148,7 +148,7 @@ public class con_periodoAcademico {
           Conect con = new Conect();
             try {
                
-                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/R_periodo.jasper"));
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/R_periodo_academico_lista.jasper"));
                 JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
                 JasperViewer jv = new JasperViewer(jp, false);
                 JOptionPane.showMessageDialog(null, "Imprimiendo Periodo");

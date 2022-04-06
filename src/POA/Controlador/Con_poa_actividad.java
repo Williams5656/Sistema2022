@@ -76,7 +76,7 @@ public class Con_poa_actividad {
             public void mouseClicked(MouseEvent e) {
                 seleccionar();
                 
-                seleccionartabla();
+                //seleccionartabla();
             }
             
         });

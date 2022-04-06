@@ -9,6 +9,8 @@ import POA.Modelo.PeriodoacademicoBD;
 import POA.Modelo.doc_modulo_BD;
 import POA.Modelo.doc_silabo_BD;
 import POA.Vista.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -33,8 +35,19 @@ public class con_periodoAcademico {
     public con_periodoAcademico(vis_PeriodoAcademico vista) {
         this.vista = vista;
         vista.setVisible(true);
+        vista.getBtnestado().setEnabled(false);
         vista.getBtnCrear().addActionListener(e -> ingresar());
         vista.getBtn_repor().addActionListener(e -> imprimir());
+        vista.getBtnestado().addActionListener(e -> modificar());
+        vista.getTabla().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (vista.getTabla().getSelectedRow()>-1){
+                    vista.getBtnestado().setEnabled(true);                    
+                }else vista.getBtnestado().setEnabled(false);
+            }
+        }
+        );        
         periodo.llenar_tabla(vista.getTabla());
     }
 
@@ -158,6 +171,16 @@ public class con_periodoAcademico {
                 System.out.println("no se pudo encontrar registros" + e.getMessage());
                 Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
             }
+    }
+    
+    public boolean estado_fila(){
+        if (vista.getTabla().getValueAt(vista.getTabla().getSelectedRow(),5).toString().equals("Activo")) return false;
+        else return true;
+    }
+    
+    public void modificar(){
+        periodo.modificar(estado_fila(),Integer.parseInt(vista.getTabla().getValueAt(vista.getTabla().getSelectedRow(),0).toString()));
+        periodo.llenar_tabla(vista.getTabla());
     }
 
 }

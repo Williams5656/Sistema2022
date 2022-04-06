@@ -25,11 +25,11 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
     }
 
     public JButton getBtnCrear() {
-        return btnCrear;
+        return btnestado;
     }
 
     public void setBtnCrear(JButton btnCrear) {
-        this.btnCrear = btnCrear;
+        this.btnestado = btnCrear;
     }
 
     public JComboBox<String> getComboEstado() {
@@ -96,6 +96,16 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
         this.btn_repor = btn_repor;
     }
 
+    public JButton getBtnestado() {
+        return btnestado;
+    }
+
+    public void setBtnestado(JButton btnestado) {
+        this.btnestado = btnestado;
+    }
+    
+    
+
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -115,11 +125,12 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         comboEstado = new javax.swing.JComboBox<>();
         lblIdPeriodo = new javax.swing.JLabel();
-        btnCrear = new javax.swing.JButton();
+        btnestado = new javax.swing.JButton();
         lblNombrePeriodo = new javax.swing.JLabel();
         dateFechaInicio = new com.toedter.calendar.JDateChooser();
         dateFechaFin = new com.toedter.calendar.JDateChooser();
         btn_repor = new javax.swing.JButton();
+        btnCrear = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
@@ -154,8 +165,8 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
         lblIdPeriodo.setForeground(new java.awt.Color(0, 0, 255));
         jPanel1.add(lblIdPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 70, 20));
 
-        btnCrear.setText("CREAR");
-        jPanel1.add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
+        btnestado.setText("DESACTIVAR");
+        jPanel1.add(btnestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, -1, -1));
 
         lblNombrePeriodo.setForeground(new java.awt.Color(0, 0, 204));
         jPanel1.add(lblNombrePeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 260, 20));
@@ -164,6 +175,9 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
 
         btn_repor.setText("reporte");
         jPanel1.add(btn_repor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
+
+        btnCrear.setText("CREAR");
+        jPanel1.add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, -1, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("MOSTRAR DATOS"));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -215,6 +229,7 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrear;
     private javax.swing.JButton btn_repor;
+    private javax.swing.JButton btnestado;
     private javax.swing.JComboBox<String> comboEstado;
     private com.toedter.calendar.JDateChooser dateFechaFin;
     private com.toedter.calendar.JDateChooser dateFechaInicio;

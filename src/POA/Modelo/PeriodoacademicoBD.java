@@ -125,6 +125,19 @@ public class PeriodoacademicoBD extends PeriodoacademicoMD {
             return false;
         }
     }
+    
+        public boolean modificar(boolean est, int cod) {
+
+        String nsql = "update periodo_academico set estado=" + est + " where id_periodo= "+ cod +";";
+
+        if (conectar.noQuery(nsql) == null) {
+            return true;
+        } else {
+
+            System.out.println("Error al cambiar estado");
+            return false;
+        }
+    }
 
     public boolean validar_fechas(String car, Date fec_ini, Date fec_fin) {
         String sql = "select val_periodo('" + car + "','" + fec_ini + "','" + fec_ini + "');";

@@ -2,12 +2,12 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f782b3b5-c770-4c49-8625-609e95285898">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="185"/>
 	<parameter name="actividad" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select ev.id_evidencia"Evidencia",car.nombre "Carrera",pro.num_proyecto_carrera "Num_Proyecto", poa.anio"Anio" ,act.actividad "Actividad", obj.num_objetivo_proyecto"Num_objetivo", ev.archivo "Archivo"
+		<![CDATA[select ev.id_evidencia"Evidencia",car.nombre "Carrera",pro.num_proyecto_carrera "Num_Proyecto", poa.anio"Anio" ,act.actividad "Actividad", obj.objetivo "Num_objetivo", ev.archivo "Archivo"
 from actividades act, evidencia ev, carrera car, poa, proyecto pro, objetivo_operativo obj
 where act.id_actividades = ev.id_actividades 
 and car.codigo = CAST( poa.id_carrera AS VARCHAR(10)) 
@@ -20,7 +20,7 @@ and obj.id_objetivo_operativo = ev.id_objetivo and ev.id_actividades =  CAST( $P
 	<field name="Num_Proyecto" class="java.lang.Integer"/>
 	<field name="Anio" class="java.lang.String"/>
 	<field name="Actividad" class="java.lang.String"/>
-	<field name="Num_objetivo" class="java.lang.Integer"/>
+	<field name="Num_objetivo" class="java.lang.String"/>
 	<field name="Archivo" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -60,7 +60,7 @@ and obj.id_objetivo_operativo = ev.id_objetivo and ev.id_actividades =  CAST( $P
 				<text><![CDATA[Actividad:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="43" y="65" width="152" height="39" forecolor="#000000" backcolor="#FFFFFF" uuid="f366a79d-f8f7-4d63-bcf8-be7636d8b27b"/>
+				<reportElement mode="Opaque" x="102" y="65" width="115" height="39" forecolor="#000000" backcolor="#FFFFFF" uuid="f366a79d-f8f7-4d63-bcf8-be7636d8b27b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="18" isBold="true"/>
 				</textElement>
@@ -102,35 +102,28 @@ and obj.id_objetivo_operativo = ev.id_objetivo and ev.id_actividades =  CAST( $P
 				<textFieldExpression><![CDATA[$F{Num_objetivo}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Opaque" x="43" y="220" width="137" height="39" forecolor="#000000" backcolor="#FFFFFF" uuid="26e065f2-ef77-4dd2-8978-6280cc7b8392"/>
+				<reportElement mode="Opaque" x="102" y="220" width="115" height="39" forecolor="#000000" backcolor="#FFFFFF" uuid="26e065f2-ef77-4dd2-8978-6280cc7b8392"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Proyecto:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="43" y="143" width="137" height="39" forecolor="#000000" backcolor="#FFFFFF" uuid="7b9c49ed-22f8-45a0-a7b6-3b048cb506ee"/>
+				<reportElement mode="Opaque" x="102" y="143" width="115" height="39" forecolor="#000000" backcolor="#FFFFFF" uuid="7b9c49ed-22f8-45a0-a7b6-3b048cb506ee"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Año:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="43" y="298" width="152" height="39" forecolor="#000000" backcolor="#FFFFFF" uuid="ea1f9ef5-9536-46b5-983e-e7f623ff54b5"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="18" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Proyecto:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="43" y="298" width="152" height="39" forecolor="#000000" backcolor="#FFFFFF" uuid="5cc5b510-b2c9-42b4-945f-03e7cfef8496"/>
+				<reportElement mode="Opaque" x="83" y="298" width="134" height="39" forecolor="#000000" backcolor="#FFFFFF" uuid="5cc5b510-b2c9-42b4-945f-03e7cfef8496"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Objetivo:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="43" y="377" width="152" height="39" forecolor="#000000" backcolor="#FFFFFF" uuid="f4313e18-32ff-4a46-adcf-2c14f326b004"/>
+				<reportElement mode="Opaque" x="83" y="379" width="130" height="39" forecolor="#000000" backcolor="#FFFFFF" uuid="f4313e18-32ff-4a46-adcf-2c14f326b004"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="18" isBold="true"/>
 				</textElement>
@@ -150,17 +143,17 @@ and obj.id_objetivo_operativo = ev.id_objetivo and ev.id_actividades =  CAST( $P
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="8" splitType="Stretch"/>
-	</columnFooter>
-	<pageFooter>
-		<band height="11" splitType="Stretch"/>
-	</pageFooter>
-	<summary>
-		<band height="115" splitType="Stretch">
+		<band height="125" splitType="Stretch">
 			<image>
-				<reportElement x="354" y="0" width="201" height="115" uuid="701401a1-460c-4429-bac3-ac72cfd980e4"/>
+				<reportElement x="375" y="0" width="201" height="115" uuid="701401a1-460c-4429-bac3-ac72cfd980e4"/>
 				<imageExpression><![CDATA["D:\\Users\\Documents\\NetBeansProjects\\Sistema2022\\build\\classes\\POA\\Vista\\img\\logo Instituto.png"]]></imageExpression>
 			</image>
 		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="7" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="115" splitType="Stretch"/>
 	</summary>
 </jasperReport>

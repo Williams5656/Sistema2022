@@ -20,7 +20,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
@@ -65,7 +69,7 @@ public class Con_poa_proyectos {
         vista.getBtn_nuevo().addActionListener(e -> nuevo());
         vista.getBtn_guardar().addActionListener(e -> guardar());
         vista.getBtnAñadir().addActionListener(e -> guardarobjetivo());
-        vista.getBtn_imprimir().addActionListener(e -> imprimir());
+        vista.getBtn_imprimir().addActionListener(e -> imprimirpro());
         vista.getTabla_lista_proyectos().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -158,8 +162,7 @@ public class Con_poa_proyectos {
         vista.getTxt_obestra().setText("");
         vista.getTxt_obtac().setText("");
         vista.getTxtarea_obopera().setText("");
-        
-        
+
         int a = 0;
         vista.getN_proyectos().setText(vista.getTabla_lista_proyectos().getRowCount() + 1 + "");
 
@@ -189,19 +192,24 @@ public class Con_poa_proyectos {
     }
 
     public void guardarobjetivo() {
-        int num = 0;
-        int ob = 0;
-        String objetivo = "";
-        num = Integer.parseInt(vista.getN_proyectos().getText());
-        ob = (vista.getTabla_proyecto().getRowCount() + 1);
-        objetivo = (vista.getTxtarea_obopera().getText());
         if (vista.getTxtarea_obopera().getText().equals("")) {
             JOptionPane.showMessageDialog(null, "INGRESE UN OBJETIVO OPERATIVO");
+        } else if (vista.getTxt_obestra().getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "SELECCIONE UN PROYECTO");
         } else {
-            obbd.guardar(num, ob, objetivo);
-            lista_objetivo();
+            int num = 0;
+            int ob = 0;
+            String objetivo = "";
+            num = Integer.parseInt(vista.getN_proyectos().getText());
+            ob = (vista.getTabla_proyecto().getRowCount() + 1);
+            objetivo = (vista.getTxtarea_obopera().getText());
+            if (vista.getTxtarea_obopera().getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "INGRESE UN OBJETIVO OPERATIVO");
+            } else {
+                obbd.guardar(num, ob, objetivo);
+                lista_objetivo();
+            }
         }
-
     }
 
     public void seleccionar() {
@@ -245,19 +253,75 @@ public class Con_poa_proyectos {
         Con_poa_actividad proyectos = new Con_poa_actividad(zap);
 
     }
-    public void imprimir(){
+
+    public void imprimir() {
         Conect con = new Conect();
         try {
 
             JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Poa_proyectos.jasper"));
             JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
             JasperViewer jv = new JasperViewer(jp, false);
-            JOptionPane.showMessageDialog(null, "IMPRESO");
+
             jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             jv.setVisible(true);
         } catch (JRException e) {
             System.out.println("no se pudo encontrar registros" + e.getMessage());
+        }
     }
+
+    public void imprimirpro() {
+        Conect con = new Conect();
+        String[] reportes = {
+            "Seleccione Una Opcion",
+            "Reporte Con POA",
+            "Reporte Completo"
+        };
+        //Ctrl_MYICON icon = new Ctrl_MYICON(40, 50);
+        String resp = (String) JOptionPane.showInputDialog(null, "Seleccione un reporte", "Reporte De Proyectos",
+                JOptionPane.DEFAULT_OPTION, null, reportes, reportes[0]);
+        if (resp.equals("Seleccione Una Opcion")) {
+            JOptionPane.showMessageDialog(null, " seleccione uno de los campos");
+
+        }
+        if (resp.equals("Reporte Con POA")) {
+
+            try {
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Poa_proyectos.jasper"));
+                Map<String, Object> params = new HashMap<String, Object>();
+                String aguja = JOptionPane.showInputDialog("Ingrese una numero de proyecto");
+                int agujas = 0;
+                agujas = Integer.parseInt(aguja);
+
+                params.put("POA", agujas);
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException e) {
+                System.out.println("no se pudo encontrar registros" + e.getMessage());
+                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+            }
+
+        }
+        if (resp.equals("Reporte Completo")) {
+            try {
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Poa_proyectos.jasper"));
+                Map<String, Object> params = new HashMap<String, Object>();
+                int agujas = 0;
+                for (int i = 0; i < lista.size(); i++) {
+                    agujas = lista.get(i).getNum_proyecto_carrera();
+                    params.put("POA", agujas);
+                    JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
+                    JasperViewer jv = new JasperViewer(jp, false);
+                    jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    jv.setVisible(true);
+                }
+
+            } catch (JRException e) {
+                System.out.println("no se pudo encontrar registros" + e.getMessage());
+                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
     }
 //    public void seleccionarobjetivo() {
 //        DefaultTableModel modelo;

@@ -88,6 +88,7 @@ public class Con_poa_evidencia {
         vista.getCbx_anio().setEnabled(false);
         vista.getCbx_obje_opera().setEnabled(false);
         vista.getCbx_actividad().setEnabled(false);
+        vista.getTxtArchivo().setEnabled(false);
         listaCarreras = baseDatosCarrera.mostrardatos();
         listaPoa = baseDatosPoa.mostrarDatos();
         listaProyecto = baseDatosProyecto.mostrarDatos();
@@ -276,6 +277,7 @@ public class Con_poa_evidencia {
     }
 
     public void nuevo() {
+        vista.getTxtArchivo().setEnabled(true);
         vista.getBtnGuardar().setEnabled(true);
         vista.getBtnEliminar().setEnabled(false);
         vista.getBtnModificar().setEnabled(false);

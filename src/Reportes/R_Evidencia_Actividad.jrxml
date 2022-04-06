@@ -1,44 +1,166 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f782b3b5-c770-4c49-8625-609e95285898">
-	<queryString language="SQL">
-		<![CDATA[SELECT
-     evidencia."id_evidencia" AS evidencia_id_evidencia,
-     evidencia."id_actividades" AS evidencia_id_actividades,
-     evidencia."id_poa" AS evidencia_id_poa,
-     evidencia."id_proyecto" AS evidencia_id_proyecto,
-     evidencia."id_objetivo" AS evidencia_id_objetivo,
-     evidencia."archivo" AS evidencia_archivo
-FROM
-     "public"."evidencia" evidencia]]>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="actividad" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select ev.id_evidencia"Evidencia",car.nombre "Carrera",pro.num_proyecto_carrera "Num_Proyecto", poa.anio"Anio" ,act.actividad "Actividad", obj.num_objetivo_proyecto"Num_objetivo", ev.archivo "Archivo"
+from actividades act, evidencia ev, carrera car, poa, proyecto pro, objetivo_operativo obj
+where act.id_actividades = ev.id_actividades 
+and car.codigo = CAST( poa.id_carrera AS VARCHAR(10)) 
+and poa.id_poa = ev.id_poa 
+and pro.id_proyecto = ev.id_proyecto 
+and obj.id_objetivo_operativo = ev.id_objetivo and ev.id_actividades =  CAST( $P{actividad} AS Integer) ;]]>
 	</queryString>
-	<field name="evidencia_id_evidencia" class="java.lang.Integer"/>
-	<field name="evidencia_id_actividades" class="java.lang.Integer"/>
-	<field name="evidencia_id_poa" class="java.lang.Integer"/>
-	<field name="evidencia_id_proyecto" class="java.lang.Integer"/>
-	<field name="evidencia_id_objetivo" class="java.lang.Integer"/>
-	<field name="evidencia_archivo" class="java.lang.String"/>
+	<field name="Evidencia" class="java.lang.Integer"/>
+	<field name="Carrera" class="java.lang.String"/>
+	<field name="Num_Proyecto" class="java.lang.Integer"/>
+	<field name="Anio" class="java.lang.String"/>
+	<field name="Actividad" class="java.lang.String"/>
+	<field name="Num_objetivo" class="java.lang.Integer"/>
+	<field name="Archivo" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="134" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="114" width="555" height="20" uuid="343f2109-eb41-4906-b47f-90647134bfb6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lista de Evidencias]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="94" width="555" height="20" uuid="e94e6fb0-8bfe-4a17-88fe-1102e77ccf72"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Instituto Superior Tecnológico del Azuay]]></text>
+			</staticText>
+			<image>
+				<reportElement x="-24" y="6" width="600" height="88" uuid="dd40b6be-95bb-447d-a2a1-098322482c8e"/>
+				<imageExpression><![CDATA["D:\\Users\\Documents\\NetBeansProjects\\Sistema 22\\build\\classes\\POA\\Vista\\img\\ISTA.jpg"]]></imageExpression>
+			</image>
+		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="26" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="418" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="126" y="0" width="142" height="41" forecolor="#000000" backcolor="#FFFFFF" uuid="2c9a0602-9f8a-49a9-b2ea-47fcc6b11999"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Actividad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="43" y="65" width="152" height="39" forecolor="#000000" backcolor="#FFFFFF" uuid="f366a79d-f8f7-4d63-bcf8-be7636d8b27b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Carrera:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="268" y="0" width="156" height="41" uuid="6e25912a-efe2-4859-8e3b-c318a7b47cda"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Actividad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="217" y="104" width="194" height="39" uuid="fb3f5807-7f24-4119-8a5e-8efe70f6f93a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Carrera}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="217" y="259" width="194" height="39" uuid="61c48527-d3b0-4bce-9ea2-9776431f3804"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Num_Proyecto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="217" y="181" width="194" height="39" uuid="84267d02-971c-4ab6-aee9-dddecb9e2186"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Anio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="217" y="337" width="194" height="40" uuid="7cc56f86-b6a9-445d-8ad6-d891eb0c3250"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Num_objetivo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="43" y="220" width="137" height="39" forecolor="#000000" backcolor="#FFFFFF" uuid="26e065f2-ef77-4dd2-8978-6280cc7b8392"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Proyecto:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="43" y="143" width="137" height="39" forecolor="#000000" backcolor="#FFFFFF" uuid="7b9c49ed-22f8-45a0-a7b6-3b048cb506ee"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Año:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="43" y="298" width="152" height="39" forecolor="#000000" backcolor="#FFFFFF" uuid="ea1f9ef5-9536-46b5-983e-e7f623ff54b5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Proyecto:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="43" y="298" width="152" height="39" forecolor="#000000" backcolor="#FFFFFF" uuid="5cc5b510-b2c9-42b4-945f-03e7cfef8496"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Objetivo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="43" y="377" width="152" height="39" forecolor="#000000" backcolor="#FFFFFF" uuid="f4313e18-32ff-4a46-adcf-2c14f326b004"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Archivo:]]></text>
+			</staticText>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="52" splitType="Stretch">
+			<textField>
+				<reportElement x="217" y="0" width="194" height="42" uuid="87bee813-824c-4b7e-bf2a-21f4512144fe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Archivo}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="8" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="11" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="115" splitType="Stretch">
+			<image>
+				<reportElement x="354" y="0" width="201" height="115" uuid="701401a1-460c-4429-bac3-ac72cfd980e4"/>
+				<imageExpression><![CDATA["D:\\Users\\Documents\\NetBeansProjects\\Sistema2022\\build\\classes\\POA\\Vista\\img\\logo Instituto.png"]]></imageExpression>
+			</image>
+		</band>
 	</summary>
 </jasperReport>

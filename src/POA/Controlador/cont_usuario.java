@@ -12,6 +12,7 @@ import POA.Modelo.RolBD;
 import POA.Modelo.RolMD;
 import POA.Modelo.UsuarioBD;
 import POA.Modelo.UsuarioMD;
+import POA.Modelo.Validadores.*;
 import POA.Vista.Vis_Usuario;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -49,18 +50,21 @@ public class cont_usuario {
             
         });
         
-//        validar();
+       validar();
         roles();
         lista();
         
     }
     
-//    public void validar(){
-//        vista.getTxtcedula().addKeyListener(new TxtVNumeros(vista.getTxtcedula()));
-//        vista.getTxtnombres().addKeyListener(new TxtVLetras(vista.getTxtnombres()));
-//        vista.getTxtsalario().addKeyListener(new TxtVNumeros(vista.getTxtsalario()));
-//        
-//    }
+    public void validar(){
+        //cedula
+        Letras.no_espacios(vista.getTxtcedula());
+        Letras.numero_letras(vista.getTxtcedula(), 9);
+        Numeros.solo_numeros(vista.getTxtcedula());
+        //Usuarios
+        Letras.numero_letras(vista.getTxtUsuario(), 9);
+        
+    }
     
     public void roles(){
         

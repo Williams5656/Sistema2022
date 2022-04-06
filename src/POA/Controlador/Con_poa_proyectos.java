@@ -305,22 +305,16 @@ public class Con_poa_proyectos {
         }
         if (resp.equals("Reporte Completo")) {
             try {
-                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Poa_proyectos.jasper"));
-                Map<String, Object> params = new HashMap<String, Object>();
-                int agujas = 0;
-                for (int i = 0; i < lista.size(); i++) {
-                    agujas = lista.get(i).getNum_proyecto_carrera();
-                    params.put("POA", agujas);
-                    JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
-                    JasperViewer jv = new JasperViewer(jp, false);
-                    jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                    jv.setVisible(true);
-                }
 
-            } catch (JRException e) {
-                System.out.println("no se pudo encontrar registros" + e.getMessage());
-                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
-            }
+            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Poa_proyectos_completos.jasper"));
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+            JasperViewer jv = new JasperViewer(jp, false);
+
+            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            jv.setVisible(true);
+        } catch (JRException e) {
+            System.out.println("no se pudo encontrar registros" + e.getMessage());
+        }
         }
     }
 //    public void seleccionarobjetivo() {

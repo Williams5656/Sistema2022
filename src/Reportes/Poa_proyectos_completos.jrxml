@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d43ec3cd-1a41-4154-b8dd-99637a12a742">
+	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.x" value="43"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     proyecto."id_proyecto" AS proyecto_id_proyecto,
+     proyecto."id_poa" AS proyecto_id_poa,
+     proyecto."num_proyecto_carrera" AS proyecto_num_proyecto_carrera,
+     proyecto."objetivo_estrategico" AS proyecto_objetivo_estrategico,
+     proyecto."objetivo_tactico" AS proyecto_objetivo_tactico,
+     proyecto."estrategia" AS proyecto_estrategia
+FROM
+     "public"."proyecto" proyecto]]>
+	</queryString>
+	<field name="proyecto_id_proyecto" class="java.lang.Integer"/>
+	<field name="proyecto_id_poa" class="java.lang.Integer"/>
+	<field name="proyecto_num_proyecto_carrera" class="java.lang.Integer"/>
+	<field name="proyecto_objetivo_estrategico" class="java.lang.String"/>
+	<field name="proyecto_objetivo_tactico" class="java.lang.String"/>
+	<field name="proyecto_estrategia" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="555" height="79" uuid="932234dc-33b7-46bb-af9c-cdeacf135bb6"/>
+				<imageExpression><![CDATA["C:\\Users\\USUARIO\\Documents\\TERCER CICLO\\PROGRAMACION VISUAL\\Sistema2022\\src\\POA\\Vista\\img\\ISTA.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="22" height="20" forecolor="#000000" backcolor="#669DE4" uuid="e421af04-2203-45b7-8982-89f78345f369"/>
+				<text><![CDATA[POA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="42" y="0" width="53" height="20" backcolor="#669DE4" uuid="ef862cfe-5f1f-44d0-9fd9-ddf804df416c"/>
+				<text><![CDATA[PROYECTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="114" y="0" width="128" height="20" backcolor="#669DE4" uuid="0fb81516-5c46-427c-92bc-71afa1ace371"/>
+				<text><![CDATA[OBJETIVO ESTRATEGICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="265" y="1" width="100" height="20" backcolor="#669DE4" uuid="d768a1a4-9909-4cb5-b462-3551395dcb6d"/>
+				<text><![CDATA[OBJETIVO TACTICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="393" y="1" width="66" height="20" backcolor="#669DE4" uuid="73fa61c4-108e-4311-81be-77c2a1cf5cfa"/>
+				<text><![CDATA[ESTRATEGIA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement mode="Transparent" x="265" y="8" width="100" height="20" backcolor="#CCCCCC" uuid="3548b618-35b3-49db-9879-24c34caad15f"/>
+				<textFieldExpression><![CDATA[$F{proyecto_objetivo_tactico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="393" y="8" width="66" height="20" backcolor="#CCCCCC" uuid="febd555d-7c3a-4f8d-8b82-e5011af65cc1"/>
+				<textFieldExpression><![CDATA[$F{proyecto_estrategia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="55" y="8" width="21" height="20" backcolor="#CCCCCC" uuid="b8039dc8-e636-4133-8056-c068149ff1f5"/>
+				<textFieldExpression><![CDATA[$F{proyecto_id_proyecto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="114" y="8" width="128" height="20" backcolor="#CCCCCC" uuid="e67e26ef-39c2-4a87-8a8b-f6c79d1fae9e"/>
+				<textFieldExpression><![CDATA[$F{proyecto_objetivo_estrategico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="0" y="8" width="23" height="20" backcolor="#FFFFFF" uuid="727ee9c3-7052-4777-8305-8e66d5206414"/>
+				<textFieldExpression><![CDATA[$F{proyecto_id_poa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

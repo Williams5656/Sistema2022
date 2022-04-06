@@ -218,7 +218,8 @@ public class Con_Asignacion_Docente {
             modelo.addRow(fila);
         }
         vista.getTablaasignaciondocentemateria().setModel(modelo);
-
+        int id_asignacion1 = bdasignacion.id()+1;
+        vista.getId_asignacion().setText(id_asignacion1+ "");
     }
 
     public void guardar() {

@@ -155,4 +155,18 @@ public class AsignacionMateriaDocenteBD extends AsignacionMateriaDocentesMD{
         return idMateria;
     }
         
+      public int id() {
+        int id_asigancion= 1;
+        String sql="select max(id_asignacion) as id from asignacion_docentes";
+        ResultSet rs = conectar.query(sql);
+        try {
+            while (rs.next()) {
+                
+                id_asigancion = rs.getInt("id");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PerfilBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id_asigancion;
+    }  
 }

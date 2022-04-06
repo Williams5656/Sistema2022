@@ -48,7 +48,6 @@ public class objetivo_evidencia implements ItemListener {
                     }
                 }
                 Con_poa_evidencia.proyecto_id=id_proyecto;
-                System.out.println("Proyecto: "+Con_poa_evidencia.proyecto_id);
             } else {
                 comboObjetivo.removeAllItems();
                 comboObjetivo.addItem("Seleccionar");

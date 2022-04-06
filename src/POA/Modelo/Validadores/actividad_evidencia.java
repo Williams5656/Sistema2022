@@ -21,8 +21,9 @@ import javax.swing.JComboBox;
  */
 public class actividad_evidencia implements ItemListener {
 
+    private JComboBox Cbx_obje_opera, Cbx_actividad;
 
-    private JComboBox Cbx_obje_opera, Cbx_actividad;;
+    ;
 
     public actividad_evidencia(JComboBox Cbx_obje_opera, JComboBox Cbx_actividad) {
         this.Cbx_obje_opera = Cbx_obje_opera;
@@ -33,6 +34,8 @@ public class actividad_evidencia implements ItemListener {
     public void itemStateChanged(ItemEvent e) {
         String objetivoo = (String) Cbx_obje_opera.getSelectedItem();
         int id_objetivo = 0;
+        Cbx_actividad.removeAllItems();
+        Cbx_actividad.addItem("Seleccionar");
         if (Con_poa_evidencia.proyecto.equals("")) {
             Cbx_actividad.removeAllItems();
             Cbx_actividad.addItem("Seleccionar");
@@ -47,7 +50,6 @@ public class actividad_evidencia implements ItemListener {
                         }
                     }
                     Con_poa_evidencia.objetivo_id = id_objetivo;
-                    System.out.println("Objetivo: " + Con_poa_evidencia.objetivo_id);
                 } else {
                     Cbx_actividad.removeAllItems();
                     Cbx_actividad.addItem("Seleccionar");
@@ -56,6 +58,9 @@ public class actividad_evidencia implements ItemListener {
                 Cbx_actividad.removeAllItems();
                 Cbx_actividad.addItem("Seleccionar");
             }
+        } else {
+            Cbx_actividad.removeAllItems();
+            Cbx_actividad.addItem("Seleccionar");
         }
     }
 

@@ -20,6 +20,7 @@ import javax.swing.JComboBox;
  * @author ASUS
  */
 public class anio_evidecia implements ItemListener {
+
     private JComboBox Cbx_carrera, Cbx_anio;
 
     public anio_evidecia(JComboBox Cbx_carrera, JComboBox Cbx_anio) {
@@ -30,24 +31,29 @@ public class anio_evidecia implements ItemListener {
     @Override
     public void itemStateChanged(ItemEvent e) {
         String nomcarrera = (String) Cbx_carrera.getSelectedItem();
-        int id_carrera=id_carrera(Cbx_carrera);
-        if (nomcarrera != "Seleccionar") {
+        if (nomcarrera.equalsIgnoreCase("")) {
             Cbx_anio.removeAllItems();
             Cbx_anio.addItem("Seleccionar");
-            for (int i = 0; i < Con_poa_evidencia.listaPoa.size(); i++) {
-                if (Con_poa_evidencia.listaPoa.get(i).getId_carrera() == id_carrera) {
-                    Cbx_anio.addItem(Con_poa_evidencia.listaPoa.get(i).getAnio());
-               }
-            }
         } else {
-            Cbx_anio.removeAllItems();
-            Cbx_anio.addItem("Seleccionar");
+            if (nomcarrera != "Seleccionar") {
+                Cbx_anio.removeAllItems();
+                Cbx_anio.addItem("Seleccionar");
+                int id_carrera = id_carrera(Cbx_carrera);
+                for (int i = 0; i < Con_poa_evidencia.listaPoa.size(); i++) {
+                    if (Con_poa_evidencia.listaPoa.get(i).getId_carrera() == id_carrera) {
+                        Cbx_anio.addItem(Con_poa_evidencia.listaPoa.get(i).getAnio());
+                    }
+                }
+            } else {
+                Cbx_anio.removeAllItems();
+                Cbx_anio.addItem("Seleccionar");
+            }
         }
     }
 
     public int id_carrera(JComboBox combocarrera) {
         String nomcarrera = (String) Cbx_carrera.getSelectedItem();
-        String id_carrera="";
+        String id_carrera = "0";
         for (int i = 0; i < Con_poa_evidencia.listaCarreras.size(); i++) {
             if (Con_poa_evidencia.listaCarreras.get(i).getNombre_carrera().equalsIgnoreCase(nomcarrera)) {
                 id_carrera = Con_poa_evidencia.listaCarreras.get(i).getCodigo_carrera();

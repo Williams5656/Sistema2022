@@ -106,6 +106,7 @@ public class Con_Asignacion_Docente {
         vista.getCboxparalelo().setEnabled(true);
         vista.getCboxciclo().setEnabled(true);
         vista.getCboxperiodo().setEnabled(true);
+        vista.getCombodocentes().setEnabled(true);
     }
     public void imprimir() {
         Conect con = new Conect();
@@ -184,6 +185,7 @@ public class Con_Asignacion_Docente {
         vista.getTxtdocente().setText("");
         vista.getId_asignacion().setText("");
         vista.getCombodocentes().removeAllItems();
+        cargarpersona();
         vista.getCboxasignatura().setSelectedIndex(0);
         vista.getCboxciclo().setSelectedIndex(0);
         vista.getCboxjornada().setSelectedIndex(0);

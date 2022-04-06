@@ -28,6 +28,8 @@ import POA.Modelo.Validadores.anio_evidecia;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -70,6 +72,7 @@ public class Con_poa_evidencia {
     public static int id_actividad = 0, id_act = 0;
     int id_evidencia = 0;
     boolean x = false;
+    int actividad_imprimir = 0;
 
     public Con_poa_evidencia(vis_poa_evidencia vista) {
         this.vista = vista;
@@ -79,6 +82,7 @@ public class Con_poa_evidencia {
         vista.getBtnImprimir().addActionListener(e -> imprimir());
         vista.getBtnEliminar().addActionListener(e -> eliminar());
         vista.getBtnModificar().addActionListener(e -> modificar());
+        vista.getBtnImprimir().setEnabled(false);
         vista.getCbx_proyecto().setEnabled(false);
         vista.getCbx_carrera().setEnabled(false);
         vista.getCbx_anio().setEnabled(false);
@@ -102,17 +106,59 @@ public class Con_poa_evidencia {
 
     public void imprimir() {
         Conect con = new Conect();
-        System.out.println("Imprimir");
-        try {
-            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/R_Evidencia.jasper"));
-            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
-            JasperViewer jv = new JasperViewer(jp, false);
-            JOptionPane.showMessageDialog(null, "Imprimiendo Evidencias");
-            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-            jv.setVisible(true);
-        } catch (JRException e) {
-            System.out.println("no se pudo encontrar registros" + e.getMessage());
-            Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+        String[] reportes = {
+            "Seleccione Una Opcion",
+            "Reporte por Actividad",
+            "Reporte Completo"
+        };
+        //Ctrl_MYICON icon = new Ctrl_MYICON(40, 50);
+        String resp = (String) JOptionPane.showInputDialog(null, "Seleccione un reporte", "Reporte De Personas",
+                JOptionPane.DEFAULT_OPTION, null, reportes, reportes[0]);
+        if (resp.equals("Seleccione Una Opcion")) {
+            JOptionPane.showMessageDialog(null, " seleccione uno de los campos");
+
+        }
+        if (resp.equals("Reporte por Actividad")) {
+            if (actividad_imprimir != 0) {
+                String actividades="";
+                for (int i = 0; i < listaActividades.size(); i++) {
+                    if(listaActividades.get(i).getId_actividades()==actividad_imprimir){
+                        actividades=listaActividades.get(i).getActividad();
+                    }
+                }
+                int resp2 = JOptionPane.showConfirmDialog(null, "Imprimir las evidencias de la Actividad " + actividades);
+                if (resp2 == 0) {
+                    try {
+                        JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/R_Evidencia_Actividad.jasper"));
+                        Map<String, Object> params = new HashMap<String, Object>();
+                        String aguja = String.valueOf(actividad_imprimir);
+                        System.out.println("actividad;;;;" + aguja);
+                        params.put("actividad", aguja);
+                        JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
+                        JasperViewer jv = new JasperViewer(jp, false);
+                        jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                        jv.setVisible(true);
+                    } catch (JRException e) {
+                        System.out.println("No se pudo encontrar registros" + e.getMessage());
+                        Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+                    }
+                }
+            }
+
+        }
+        if (resp.equals("Reporte Completo")) {
+
+            try {
+                JOptionPane.showMessageDialog(null, "Imprimiendo Evidencias");
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/R_Evidencia.jasper"));
+
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException e) {
+                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+            }
         }
     }
 
@@ -135,6 +181,7 @@ public class Con_poa_evidencia {
     }
 
     public void seleccionar() {
+        vista.getBtnImprimir().setEnabled(true);
         vista.getBtnGuardar().setEnabled(false);
         vista.getBtnEliminar().setEnabled(true);
         vista.getBtnModificar().setEnabled(true);
@@ -144,6 +191,7 @@ public class Con_poa_evidencia {
         id_evidencia = id_evid;
         System.out.println(id_evid);
         List<EvidenciaMD> lista = baseDatosEvidencias.obtenerdatos(id_evid);
+        actividad_imprimir = lista.get(0).getId_actividades();
         baseDatosEvidencias.setId_objetivo(lista.get(0).getId_objetivo());
         baseDatosEvidencias.setId_actividades(lista.get(0).getId_actividades());
         baseDatosEvidencias.setId_poa(lista.get(0).getId_poa());
@@ -252,12 +300,12 @@ public class Con_poa_evidencia {
         String actividad = (String) vista.getCbx_actividad().getSelectedItem();
         if (vista.getTxtArchivo().equals("") || carrera.equalsIgnoreCase("Selecionar") || anio.equalsIgnoreCase("Selecionar") || proyecto.equalsIgnoreCase("Selecionar") || objetivo.equalsIgnoreCase("Selecionar") || actividad.equalsIgnoreCase("Selecionar")) {
             JOptionPane.showMessageDialog(null, "LLene todos los campos para poder guardar");
-            x=false;
+            x = false;
         } else {
             poa = id_poa(vista.getCbx_carrera(), vista.getCbx_anio());
             proyectoo = id_proyecto(vista.getCbx_proyecto());
             id_obj = id_objetivo(vista.getCbx_obje_opera());
-            x=true;
+            x = true;
             id_act = id_actvidad(vista.getCbx_actividad());
 
             baseDatosEvidencias.setId_actividades(id_act);
@@ -378,8 +426,8 @@ public class Con_poa_evidencia {
                 }
             }
             for (int i = 0; i < listaObjetivos.size(); i++) {
-                if (lista.get(j).getId_objetivo()== listaObjetivos.get(i).getId_objetivo_operativo()) {
-                    vista.getTabla_Evidencia().setValueAt(listaObjetivos.get(i).getNum_objetivo_proyecto(), j, 4);
+                if (lista.get(j).getId_objetivo() == listaObjetivos.get(i).getId_objetivo_operativo()) {
+                    vista.getTabla_Evidencia().setValueAt(listaObjetivos.get(i).getObjetivo(), j, 4);
                 }
             }
             for (int i = 0; i < listaActividades.size(); i++) {

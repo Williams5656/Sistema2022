@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fbd1a032-5a31-4503-b2b0-bf1d74e96847">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="91"/>
+	<parameter name="carrera" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[Select a.carrera as id_carrera, c.nombre as carrera, p.nombre as perfil, d.nombres||' '|| d.apellidos as responsable
+from area_carrera a join carrera c on c.codigo=a.carrera 
+join perfil p on p.codigo=a.perfil join persona d on d.cedula= a.responsable
+where a.carrera=$P{carrera}]]>
+	</queryString>
+	<field name="id_carrera" class="java.lang.String"/>
+	<field name="carrera" class="java.lang.String"/>
+	<field name="perfil" class="java.lang.String"/>
+	<field name="responsable" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="1" width="555" height="78" uuid="7d0f89c2-c56b-4d36-9e1a-bf8538c05a80"/>
+				<imageExpression><![CDATA["C:\\Users\\Usuario\\Documents\\NetBeansProjects\\Sistema2022\\src\\POA\\Vista\\img\\ISTA.jpg"]]></imageExpression>
+			</image>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="439" y="34" width="100" height="20" uuid="99ab80bd-04eb-42b7-8895-d5215ca82336"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="247" y="0" width="251" height="20" forecolor="#006699" uuid="73dd5e98-7532-456c-bb17-bddba51fc0fd"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{carrera}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="188" y="0" width="59" height="20" forecolor="#006699" uuid="62f16c0b-04a9-424c-a806-8f41166d4572"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Carrera ]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="160" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="a9f2be5e-a852-4b3d-b267-07dfc8a8d09e"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Perfil]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="160" y="1" width="332" height="21" forecolor="#FFFFFF" backcolor="#006699" uuid="781f937b-32f1-4aa5-bf47-810db029b191"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Responsable]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="492" height="1" uuid="1a9eda47-fdf4-492b-b0b1-22954e9ac4e4"/>
+			</line>
+			<line>
+				<reportElement x="0" y="19" width="492" height="3" uuid="5ef0fbc5-38a8-4fae-81a0-47e1ee7238d3"/>
+			</line>
+			<line>
+				<reportElement x="0" y="1" width="1" height="19" uuid="0b85698a-adf0-495d-97c1-02ba3ab932d1"/>
+			</line>
+			<line>
+				<reportElement x="160" y="0" width="1" height="19" uuid="dc3bb1e0-a707-4930-8d8f-46f98b6b4281"/>
+			</line>
+			<line>
+				<reportElement x="491" y="0" width="1" height="19" uuid="06b24eb3-e679-4dda-9c98-abcfa86861b5"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="20" width="492" height="1" uuid="6352cdcf-15fd-42cc-b089-ad9e027f1103"/>
+			</line>
+			<line>
+				<reportElement x="0" y="1" width="1" height="19" uuid="b63e6d72-1c89-4166-a2c3-a58a2193017e"/>
+			</line>
+			<line>
+				<reportElement x="161" y="1" width="1" height="19" uuid="661b85b8-5eb0-4e08-9f89-d3105ecd8450"/>
+			</line>
+			<textField>
+				<reportElement x="172" y="0" width="319" height="20" uuid="1ef06760-f20f-4ad7-9f6a-65737e87686e"/>
+				<textFieldExpression><![CDATA[$F{responsable}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="1" width="157" height="20" uuid="3da2717f-8470-43fd-beef-0389314ace14"/>
+				<textFieldExpression><![CDATA[$F{perfil}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="492" y="0" width="1" height="19" uuid="33c1d77a-1bf3-4a69-ab0d-ebcdd2a8384a"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="439" y="34" width="100" height="20" uuid="302dd0fa-e49b-4c97-9289-d04de757c2e3"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

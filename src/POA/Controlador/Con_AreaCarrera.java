@@ -22,7 +22,9 @@ import POA.Vista.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -66,7 +68,8 @@ public class Con_AreaCarrera {
         vista.getBtn_modificar().addActionListener(e -> modificar());
         vista.getBtn_eliminar().addActionListener(e -> eliminar());
         vista.getBtn_nuevo().addActionListener(e -> nuevo());
-        vista.getBtn_imprimir().addActionListener(e -> imprimir());
+        vista.getBtn_imprimir().addActionListener(e -> imprimirArea());
+        vista.getComboCarrera().addActionListener(e -> accion_combobox());
         vista.getTablaAreaCarrera().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -74,22 +77,74 @@ public class Con_AreaCarrera {
             }
         });
         desactivarBotones();
-        eventoCarrera();
-//        lista();
         listaCarrera = baseDatosCarrera.mostrardatos();
         listaPerfiles = baseDatosPerfil.mostrardatos();
         listaDocente = baseDatosDocente.mostrardatos();
         listaPersona = baseDatosPersona.mostrardatos();
     }
 
-    public void imprimir() {
+    public void accion_combobox() {
+        lista();
+    }
+
+    public void imprimirArea() {
         Conect con = new Conect();
+        String[] reportes = {
+            "Seleccione Una Opcion",
+            "Reporte por Carrera",
+            "Reporte Completo"
+        };
+        //Ctrl_MYICON icon = new Ctrl_MYICON(40, 50);
+        String resp = (String) JOptionPane.showInputDialog(null, "Seleccione un reporte", "REPORTE DE AREAS DE CARRERA",
+                JOptionPane.DEFAULT_OPTION, null, reportes, reportes[0]);
+        if (resp.equals("Seleccione Una Opcion")) {
+            JOptionPane.showMessageDialog(null, " Seleccione uno de los campos");
+
+        }
+        if (resp.equals("Reporte por Carrera")) {
+            String carreraCombo = (String) vista.getComboCarrera().getSelectedItem();
+            String codigoCarrera = "";
+            codigoCarrera = basePerfil.mostrarIdCarrera(carreraCombo);
+            try {
+                // JOptionPane.showMessageDialog(null, "Imprimiendo Persona");
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/ReporteAreaCarrera1.jasper"));
+                Map<String, Object> params = new HashMap<String, Object>();
+                //String aguja = JOptionPane.showInputDialog("Ingrese una Cedula de persona");
+                String aguja= codigoCarrera;
+                //String aguja = vista.getTxtBuscar().getText();
+                //System.out.println("cedula;;;;" + aguja);
+                params.put("carrera", aguja);
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException e) {
+                System.out.println("no se pudo encontrar registros" + e.getMessage());
+                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+            }
+
+        }
+        if (resp.equals("Reporte Completo")) {
         try {
 
             JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/ReporteAreaCarrera.jasper"));
             JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
             JasperViewer jv = new JasperViewer(jp, false);
-            JOptionPane.showMessageDialog(null, "Imprimiendo");
+            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            jv.setVisible(true);
+        } catch (JRException e) {
+            System.out.println("no se pudo encontrar registros" + e.getMessage());
+            Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+        }
+        }
+    }
+
+    public void imprimir() {
+        Conect con = new Conect();
+        try {
+            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/ReporteAreaCarrera.jasper"));
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+            JasperViewer jv = new JasperViewer(jp, false);
             jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             jv.setVisible(true);
         } catch (JRException e) {
@@ -143,16 +198,6 @@ public class Con_AreaCarrera {
         for (CarreraMD carrera : listaCarrera) {
             vista.getComboCarrera().addItem(carrera.getNombre_carrera());
         }
-    }
-
-    public void eventoCarrera() {
-        vista.getComboCarrera().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                lista();
-            }
-
-        });
     }
 
     private void nuevo() {

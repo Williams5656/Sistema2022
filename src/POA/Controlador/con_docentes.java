@@ -23,8 +23,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static POA.Vista.Vis_Principal.*;
 import java.awt.Color;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -48,7 +51,7 @@ public class con_docentes {
         vista.getBtnguardar().addActionListener(e -> guardar());
         vista.getBtnmodificar().addActionListener(e -> modificar());
         vista.getBtn_estado().addActionListener(e -> cambiarestado());
-        vista.getBtncancelar().addActionListener(e->nuevo());
+        vista.getBtncancelar().addActionListener(e -> nuevo());
         vista.getBtnimprimir().addActionListener(e -> imprimir());
         buscarpersona();
         eventotabla();
@@ -57,22 +60,54 @@ public class con_docentes {
         inhabilitar_botones();
 
     }
-    
-    public void imprimir(){
-          Conect con = new Conect();
-            try {
-               
-                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/ReporteDocentes.jasper"));
-                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
-                JasperViewer jv = new JasperViewer(jp, false);
-                JOptionPane.showMessageDialog(null, "Imprimiendo Docentes");
-                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                jv.setVisible(true);
-            } catch (JRException e) {
-                System.out.println("no se pudo encontrar registros" + e.getMessage());
-                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+
+    public void imprimir() {
+        Conect con = new Conect();
+
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) vista.getTabla_docentes().getModel();
+        int s = vista.getTabla_docentes().getSelectedRow();
+
+        if (s >= 0) {
+            String aguja = (String) modelo.getValueAt(vista.getTabla_docentes().getSelectedRow(), 0);
+            int x = JOptionPane.showConfirmDialog(null, "DESEA IMPRIMIR CÉDULA: "+aguja);
+            if (x == 0) {
+                try {
+                    JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/ReporteporDocente.jasper"));
+                    Map<String, Object> params = new HashMap<String, Object>();
+                    
+
+                    System.out.println("cedula;;;;" + aguja);
+                    params.put("cedula", aguja);
+                    JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
+                    JasperViewer jv = new JasperViewer(jp, false);
+                    jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    jv.setVisible(true);
+                    vista.getTabla_docentes().setSelectionMode(0);
+                } catch (JRException e) {
+                    System.out.println("no se pudo encontrar registros" + e.getMessage());
+                    Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+                }
             }
-        
+
+        } else {
+
+            int x = JOptionPane.showConfirmDialog(null, "DESEA IMPRIMIR TODO");
+            if (x == 0) {
+                try {
+
+                    JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/ReporteDocentes.jasper"));
+                    JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+                    JasperViewer jv = new JasperViewer(jp, false);
+                    jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    jv.setVisible(true);
+                } catch (JRException e) {
+                    System.out.println("no se pudo encontrar registros" + e.getMessage());
+                    Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+                }
+            }
+        }
+
     }
 
     public void inhabilitar_botones() {
@@ -134,7 +169,6 @@ public class con_docentes {
         List<PersonaMD> lista = bdpersona.obtenerdatos(vista.getTxtidentificacion().getText());
         List<docenteMD> listadoc = bddocente.obtenerdatos(vista.getTxtidentificacion().getText());
         int con = 0;
-        
 
         for (int i = 0; i < lista.size(); i++) {
             if (vista.getTxtidentificacion().getText().equalsIgnoreCase(lista.get(i).getCedula())) {
@@ -152,7 +186,7 @@ public class con_docentes {
                     vista.getLbfoto().setIcon(null);
                 }
                 if (lista.get(i).getEstado().equalsIgnoreCase("ACTIVO")) {
-                    
+
                     habilitar_botones();
                     for (int j = 0; j < listadoc.size(); j++) {
                         if (listadoc.get(j).getCedula().equalsIgnoreCase(vista.getTxtidentificacion().getText())) {
@@ -163,10 +197,7 @@ public class con_docentes {
                 }
             }
         }
-        
-        
-        
-        
+
         if (con != 1) {
             vista.getLbnombreycedula().setText("");
             vista.getLbfoto().setIcon(null);
@@ -245,10 +276,9 @@ public class con_docentes {
         vista.getBtn_estado().setEnabled(true);
         vista.getBtnmodificar().setEnabled(true);
         habilitar_botones();
-        
+
         vista.getBtnguardar().setEnabled(false);
-        
-        
+
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTabla_docentes().getModel();
         String cedula = (String) modelo.getValueAt(vista.getTabla_docentes().getSelectedRow(), 0);
@@ -307,7 +337,6 @@ public class con_docentes {
         vista.getLbbtnregistarpersona().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                
 
                 vis_Persona persona = new vis_Persona();
                 Con_persona per = new Con_persona(persona);
@@ -327,7 +356,7 @@ public class con_docentes {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                vista.getLbbtnregistarpersona().setForeground(new Color(255,153,0));
+                vista.getLbbtnregistarpersona().setForeground(new Color(255, 153, 0));
             }
 
         });
@@ -355,7 +384,5 @@ public class con_docentes {
         }
 
     }
-    
-    
 
 }

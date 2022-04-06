@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="41d3c657-23a9-4e34-8ce0-79c278ceb92c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="3"/>
+	<parameter name="cedula" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     docente."cedula" AS docente_cedula,
+     docente."titulo" AS docente_titulo,
+     docente."abreviatura" AS docente_abreviatura,
+     docente."tiempo" AS docente_tiempo,
+     docente."ocupacion" AS docente_ocupacion,
+     docente."estado" AS docente_estado,
+     persona."cedula" AS persona_cedula,
+     persona."nombres" AS persona_nombres,
+     persona."apellidos" AS persona_apellidos,
+     persona."fecha_nacimiento" AS persona_fecha_nacimiento,
+     persona."direccion" AS persona_direccion,
+     persona."correo" AS persona_correo,
+     persona."telefono" AS persona_telefono,
+     persona."foto" AS persona_foto,
+     persona."estado" AS persona_estado
+FROM
+     "public"."persona" persona INNER JOIN "public"."docente" docente ON persona."cedula" = docente."cedula"
+where docente."cedula"=$P{cedula}]]>
+	</queryString>
+	<field name="docente_cedula" class="java.lang.String"/>
+	<field name="docente_titulo" class="java.lang.String"/>
+	<field name="docente_abreviatura" class="java.lang.String"/>
+	<field name="docente_tiempo" class="java.lang.String"/>
+	<field name="docente_ocupacion" class="java.lang.String"/>
+	<field name="docente_estado" class="java.lang.String"/>
+	<field name="persona_cedula" class="java.lang.String"/>
+	<field name="persona_nombres" class="java.lang.String"/>
+	<field name="persona_apellidos" class="java.lang.String"/>
+	<field name="persona_fecha_nacimiento" class="java.sql.Date"/>
+	<field name="persona_direccion" class="java.lang.String"/>
+	<field name="persona_correo" class="java.lang.String"/>
+	<field name="persona_telefono" class="java.lang.String"/>
+	<field name="persona_foto" class="java.lang.Object"/>
+	<field name="persona_estado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="65" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="455" y="45" width="100" height="20" uuid="59cc40c3-2059-4316-93f5-15fbf1f28e3d"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="20" uuid="d0316c0e-13a6-4c8f-8f19-17f7535b5587"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Instituto Superior Tecnológico del Azuay]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="555" height="20" uuid="5e181389-1a4b-4f47-9ea6-4a2051d2710f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de Docentes]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="246" splitType="Stretch">
+			<textField>
+				<reportElement x="137" y="86" width="242" height="20" uuid="7604b3fd-e446-4fef-9fd6-3d6dbf7e4518"/>
+				<textFieldExpression><![CDATA[$F{persona_nombres}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="37" y="86" width="100" height="20" uuid="4357f713-87cf-49ca-a4eb-a881f41cc1cf"/>
+				<text><![CDATA[NOMBRES:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="46" width="100" height="20" uuid="08f773a5-49d3-47a1-b0f8-5d928de1b53c"/>
+				<text><![CDATA[APELLIDOS:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="137" y="46" width="242" height="20" uuid="57769015-2c10-4db7-95a9-e783c4fd3068"/>
+				<textFieldExpression><![CDATA[$F{persona_apellidos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="37" y="8" width="100" height="20" uuid="2eb4a07e-fcca-43cb-b26a-fdd3bcbd392d"/>
+				<text><![CDATA[CEDULA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="137" y="8" width="242" height="20" uuid="d0dc3c38-950f-49f3-9d65-05f731454af4"/>
+				<textFieldExpression><![CDATA[$F{persona_cedula}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="37" y="121" width="100" height="20" uuid="493397e2-f8fe-4d75-b583-eb0bd8f00f0a"/>
+				<text><![CDATA[CELULAR:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="137" y="121" width="242" height="20" uuid="ac33844c-3bb6-48d7-a55e-87366a878b00"/>
+				<textFieldExpression><![CDATA[$F{persona_telefono}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="37" y="160" width="100" height="20" uuid="2d3a65dd-b09c-4ab6-81e0-b18de674be61"/>
+				<text><![CDATA[CORREO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="137" y="160" width="242" height="20" uuid="ab51f6e7-b34c-4f49-86c6-eb65f89c3255"/>
+				<textFieldExpression><![CDATA[$F{persona_correo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="37" y="195" width="100" height="20" uuid="1e874260-88c4-490c-acd3-7693aa87bcc0"/>
+				<text><![CDATA[NACIMIENTO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="137" y="195" width="242" height="20" uuid="02f55112-4ee4-47c0-8499-f23f78d3fb69"/>
+				<textFieldExpression><![CDATA[$F{persona_fecha_nacimiento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="37" y="226" width="100" height="20" uuid="8d0f27fe-95b3-4d5b-9990-cf400714a1ac"/>
+				<text><![CDATA[TÍTULO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="137" y="226" width="242" height="20" uuid="5f5c8724-2f04-4ff8-8631-08c9f9474adb"/>
+				<textFieldExpression><![CDATA[$F{docente_titulo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

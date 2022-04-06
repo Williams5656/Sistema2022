@@ -101,7 +101,6 @@ public class Con_poa_actividad {
             }
         });
         
-        buscar();
         validar();
     }
     
@@ -246,15 +245,6 @@ public class Con_poa_actividad {
             baseDatosactividades.setRecurso_financiero(lista1.get(0).getRecurso_financiero());
             }
         }
-         
-        
-     
-        
-            
-
-
-            
-   
 
             vista.getTxtactividad().setText(baseDatosactividades.getActividad());
             vista.getTxtrecursos_financieros().setText(baseDatosactividades.getRecurso_financiero());
@@ -334,7 +324,9 @@ public class Con_poa_actividad {
 
                             modelo.addRow(new Object[columnas]);
                             vista.getTablaactividades().setValueAt(lista1.get(i).getId_actividades(), i, 0);
-                            vista.getTablaactividades().setValueAt(lista1.get(i).getId_objetivo_operativo(), i, 1);
+                            int idrol = lista1.get(i).getId_objetivo_operativo();
+                            List<ObjetivoOperativoMD> listar2 = baseDatosObjetivoOperativo.obtenerdatos(idrol);
+                            vista.getTablaactividades().setValueAt(listar2.get(0).getObjetivo(), i, 1);
                             vista.getTablaactividades().setValueAt(lista1.get(i).getActividad(), i, 2);
                             vista.getTablaactividades().setValueAt(lista1.get(i).getResponsable(), i, 3);
                             vista.getTablaactividades().setValueAt(lista1.get(i).getRecurso_financiero(), i, 4);
@@ -343,8 +335,6 @@ public class Con_poa_actividad {
                     }
 
                 }
-                
-            }else{
                 
             }
         
@@ -390,7 +380,6 @@ public class Con_poa_actividad {
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTablaactividades().getModel();
         List<ActividadesMD> lista = baseDatosactividades.mostrarDatos();
-        List<ObjetivoOperativoMD> listar = baseDatosObjetivoOperativo.mostrarDatos();
         int columnas = modelo.getColumnCount();
         for (int j = vista.getTablaactividades().getRowCount()-1;j >= 0; j--) {
             modelo.removeRow(j);        }

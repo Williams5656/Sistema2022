@@ -42,7 +42,7 @@ public class ObjetivoOperativoBD {
         
         ArrayList<ObjetivoOperativoMD> lista = new ArrayList<>();
         
-        String sql = "select * from objetivo_operativo"+ " where\"id_objetivo_operativo\"='" + id + "'";
+        String sql = "select DISTINCT* from objetivo_operativo"+ " where\"id_objetivo_operativo\"='" + id + "'";
         ResultSet rs= conectar.query(sql);
         try {
             while(rs.next()){

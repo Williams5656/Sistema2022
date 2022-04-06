@@ -111,7 +111,7 @@ public class ActividadesBD extends ActividadesMD{
     public List<ActividadesMD> obtenerdatosxind(int identificador) {
         try {
             List<ActividadesMD> lista = new ArrayList<ActividadesMD>();
-            String sql = "select * from actividades where \"id_actividades\"='" + identificador + "'";
+            String sql = "select  * from actividades where \"id_actividades\"='" + identificador + "'";
             ResultSet rs = conectar.query(sql);
             byte[] is;
             while (rs.next()) {

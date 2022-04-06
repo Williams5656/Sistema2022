@@ -6,7 +6,7 @@ package POA.Modelo;
  * @author PC FACTORY
  */
 public class AsignacionMateriaDocentesMD {
-    private String id_asignacio;
+    private int id_asignacio;
     private String identificacion;
     private String asignatura;
     private String ciclo;
@@ -17,7 +17,7 @@ public class AsignacionMateriaDocentesMD {
     public AsignacionMateriaDocentesMD() {
     }
 
-    public AsignacionMateriaDocentesMD(String id_asignacio, String identificacion, String asignatura, String ciclo, String paralelo, String jornada, String periodo) {
+    public AsignacionMateriaDocentesMD(int id_asignacio, String identificacion, String asignatura, String ciclo, String paralelo, String jornada, String periodo) {
         this.id_asignacio = id_asignacio;
         this.identificacion = identificacion;
         this.asignatura = asignatura;
@@ -27,13 +27,15 @@ public class AsignacionMateriaDocentesMD {
         this.periodo = periodo;
     }
 
-    public String getId_asignacio() {
+    public int getId_asignacio() {
         return id_asignacio;
     }
 
-    public void setId_asignacio(String id_asignacio) {
+    public void setId_asignacio(int id_asignacio) {
         this.id_asignacio = id_asignacio;
     }
+
+    
 
     public String getIdentificacion() {
         return identificacion;

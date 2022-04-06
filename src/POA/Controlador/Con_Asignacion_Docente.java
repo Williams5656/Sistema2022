@@ -1,9 +1,6 @@
 package POA.Controlador;
 
-import static POA.Controlador.Con_principal.vista;
 import POA.Modelo.*;
-import POA.Vista.Vis_Principal.*;
-
 import POA.Modelo.AsignacionMateriaDocenteBD;
 import POA.Modelo.PeriodoacademicoBD;
 import POA.Modelo.PeriodoacademicoMD;
@@ -19,10 +16,16 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static POA.Vista.Vis_Principal.*;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
-import javax.swing.Action;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -30,7 +33,7 @@ import javax.swing.Action;
  */
 public class Con_Asignacion_Docente {
 
-    public static String id_asignacion;
+    public static int id_asignacion;
     private final vis_asignacionmateriadocentes vista;
     AsignacionMateriaDocenteBD bdasignacion = new AsignacionMateriaDocenteBD();
     docenteBD bddocente = new docenteBD();
@@ -50,6 +53,7 @@ public class Con_Asignacion_Docente {
         cargarpersona();
         vista.getBtnguardar().addActionListener(e -> guardar());
         vista.getBtnmodificar().addActionListener(e -> modificar());
+        vista.getBtnimprimir().addActionListener(e -> imprimir());
         vista.getBtnagregar().addActionListener(e -> nuevo());
         vista.getBtneliminar().addActionListener(e -> eliminar());
         vista.getBtncrearplan().addActionListener(e -> plan());
@@ -69,9 +73,9 @@ public class Con_Asignacion_Docente {
     }
 
     public void plan() {
-        String seleccionado = "";
-        seleccionado = (String) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 0);
-        if (seleccionado == "") {
+        int seleccionado;
+        seleccionado = (int) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 0);
+        if (seleccionado == 0) {
             JOptionPane.showMessageDialog(ESCRITORIO, "Seleccione un docente");
         } else {
             vista.setVisible(false);
@@ -95,6 +99,22 @@ public class Con_Asignacion_Docente {
         vista.getCboxparalelo().setEnabled(true);
         vista.getCboxciclo().setEnabled(true);
         vista.getCboxperiodo().setEnabled(true);
+    }
+    public void imprimir() {
+        Conect con = new Conect();
+        try {
+
+            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Asignacion_Docentes.jasper"));
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+            JasperViewer jv = new JasperViewer(jp, false);
+            JOptionPane.showMessageDialog(null, "Imprimiendo");
+            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            jv.setVisible(true);
+        } catch (JRException e) {
+            System.out.println("no se pudo encontrar registros" + e.getMessage());
+            Logger.getLogger(Con_Asignacion_Docente.class.getName()).log(Level.SEVERE, null, e);
+        }
+
     }
 
     public void inhabilitar_botones() {
@@ -205,7 +225,7 @@ public class Con_Asignacion_Docente {
         String ciclo = (String) vista.getCboxciclo().getSelectedItem();
         String jornada = (String) vista.getCboxjornada().getSelectedItem();
         String paralelo = (String) vista.getCboxparalelo().getSelectedItem();
-        bdasignacion.setId_asignacio(vista.getId_asignacion().getText());
+        bdasignacion.setId_asignacio(Integer.parseInt(vista.getId_asignacion().getText()));
         bdasignacion.setIdentificacion(vista.getTxtdocente().getText());
         bdasignacion.setPeriodo(codigoPeriodo + "");
         bdasignacion.setAsignatura(codigoMateria);
@@ -230,8 +250,8 @@ public class Con_Asignacion_Docente {
         String ciclo = (String) vista.getCboxciclo().getSelectedItem();
         String jornada = (String) vista.getCboxjornada().getSelectedItem();
         String paralelo = (String) vista.getCboxparalelo().getSelectedItem();
-        String asignacion = vista.getId_asignacion().getText();
-        bdasignacion.setId_asignacio(asignacion);
+        int asignacion = Integer.parseInt(vista.getId_asignacion().getText());
+        bdasignacion.setId_asignacio(Integer.parseInt(vista.getId_asignacion().getText()));
         bdasignacion.setIdentificacion(vista.getTxtdocente().getText());
         bdasignacion.setPeriodo(periodo);
         bdasignacion.setAsignatura(codigoMateria);
@@ -288,7 +308,7 @@ public class Con_Asignacion_Docente {
         bdpersona.setNombres(listaper.get(0).getNombres());
         bdpersona.setApellidos(listaper.get(0).getApellidos());
 
-        vista.getId_asignacion().setText(bdasignacion.getId_asignacio());
+        vista.getId_asignacion().setText(bdasignacion.getId_asignacio() + "");
         vista.getTxtdocente().setText(bdasignacion.getIdentificacion());
         vista.getCboxperiodo().setSelectedItem(bdasignacion.getPeriodo());
         vista.getCboxasignatura().setSelectedItem(id_asig);

@@ -51,10 +51,10 @@ public class Con_documentacion {
     private PersonaBD baseDatosPersona = new PersonaBD();
     private List<AreaCarreraMD> listaArea = new ArrayList<>();
     private AreaCarreraBD baseArea = new AreaCarreraBD();
-    String asignacion = "";
+    int asignacion;
     private static int plan;
     
-    public Con_documentacion(Vis_Documentacion vista, String id_asignacion) {
+    public Con_documentacion(Vis_Documentacion vista, int id_asignacion) {
         
         this.vista = vista;
         ESCRITORIO.add(vista);
@@ -172,7 +172,7 @@ public class Con_documentacion {
             JOptionPane.showMessageDialog(null, "SELECCIONE EL ESTADO");
         } else {
             bddocumentacion.setNumero(Integer.parseInt(vista.getTxt_plan().getText()));
-            bddocumentacion.setId_asignacion(asignacion);
+            bddocumentacion.setId_asignacion(asignacion + "");
             String estado = (String) vista.getComboEstado().getSelectedItem();
             bddocumentacion.setEstado(estado);
             bddocumentacion.setGuias(Radio());
@@ -276,7 +276,7 @@ public class Con_documentacion {
         listaMateria = baseMateria.mostrardatos();
         listaArea = baseArea.mostrardatos();
         for (AsignacionMateriaDocentesMD asignacion1 : listaasignacion) {
-            if (asignacion1.getId_asignacio().equals(asignacion)) {
+            if (asignacion1.getId_asignacio()== asignacion ) {
                 vista.getTxt_cedula().setText(asignacion1.getIdentificacion());
                 vista.getTxt_ciclo().setText(asignacion1.getCiclo());
                 vista.getTxt_jornada().setText(asignacion1.getJornada());

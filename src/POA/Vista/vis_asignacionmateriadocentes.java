@@ -94,6 +94,14 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
         this.btnmodificar = btnmodificar;
     }
 
+    public JButton getBtnimprimir() {
+        return btnimprimir;
+    }
+
+    public void setBtnimprimir(JButton btnimprimir) {
+        this.btnimprimir = btnimprimir;
+    }
+    
     public JComboBox<String> getCboxasignatura() {
         return cboxasignatura;
     }

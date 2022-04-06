@@ -15,9 +15,11 @@ import java.util.logging.Logger;
 public class AsignacionMateriaDocenteBD extends AsignacionMateriaDocentesMD{
     Conect conectar = new Conect();
 
-    public AsignacionMateriaDocenteBD(String id_asignacio, String identificacion, String asignatura, String ciclo, String paralelo, String jornada, String periodo) {
+    public AsignacionMateriaDocenteBD(int id_asignacio, String identificacion, String asignatura, String ciclo, String paralelo, String jornada, String periodo) {
         super(id_asignacio, identificacion, asignatura, ciclo, paralelo, jornada, periodo);
     }
+
+    
 
     
     public AsignacionMateriaDocenteBD() {
@@ -30,7 +32,7 @@ public class AsignacionMateriaDocenteBD extends AsignacionMateriaDocentesMD{
             ResultSet rs = conectar.query(sql);
             while (rs.next()) {
                 AsignacionMateriaDocentesMD asignacion = new AsignacionMateriaDocentesMD();
-                asignacion.setId_asignacio(rs.getString("id_asignacion"));
+                asignacion.setId_asignacio(rs.getInt("id_asignacion"));
                 asignacion.setIdentificacion(rs.getString("identificacion"));
                 asignacion.setPeriodo(rs.getString("periodo"));
                 asignacion.setAsignatura(rs.getString("asignatura"));
@@ -56,7 +58,7 @@ public class AsignacionMateriaDocenteBD extends AsignacionMateriaDocentesMD{
             ResultSet rs = conectar.query(sql);
             while (rs.next()) {
                 AsignacionMateriaDocentesMD asignacion = new AsignacionMateriaDocentesMD();
-                asignacion.setId_asignacio(rs.getString("id_asignacion"));
+                asignacion.setId_asignacio(rs.getInt("id_asignacion"));
                 asignacion.setIdentificacion(rs.getString("identificacion"));
                 asignacion.setAsignatura(rs.getString("asignatura"));
                 asignacion.setCiclo(rs.getString("ciclo"));
@@ -85,7 +87,7 @@ public class AsignacionMateriaDocenteBD extends AsignacionMateriaDocentesMD{
             return false;
         }
     }
-    public boolean modificar(String id_asignacion) {
+    public boolean modificar(int id_asignacion) {
        
         String sql = "UPDATE asignacion_docentes set \"ciclo\"='" + getCiclo()+ "',\"paralelo\"='" + getParalelo()+ "',\"jornada\"='" + getJornada()+ "',\"asignatura\"='" + getAsignatura()+ "'"
                 + " where \"id_asignacion\"='" + id_asignacion + "';";

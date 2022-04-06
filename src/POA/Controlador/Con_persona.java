@@ -114,7 +114,9 @@ public class Con_persona {
                // JOptionPane.showMessageDialog(null, "Imprimiendo Persona");
                 JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Personas.jasper"));
                 Map<String, Object> params = new HashMap<String, Object>();
-                String aguja = JOptionPane.showInputDialog("Ingrese una Cedula de persona");
+ String aguja = JOptionPane.showInputDialog("Ingrese una Cedula de persona");
+////                String aguja = vista.getTxtBuscar().getText();
+                System.out.println("cedula;;;;"+ aguja);
                 params.put("cedula",aguja);
                 JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
                 JasperViewer jv = new JasperViewer(jp, false);

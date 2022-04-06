@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="319bf86a-c37b-4e03-98e0-0d14406c2f65">
+	<property name="ireport.zoom" value="0.75"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="actividad" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[Select act.actividad AS Actividad, ob.objetivo AS Objetivo,act.responsable AS Responsable, act.recurso_financiero AS Recurso_financiero, act.plazo AS Plazo
+from actividades as act
+Inner JOIN objetivo_operativo as ob on act.id_objetivo_operativo = ob.id_objetivo_operativo and act.actividad =$P{actividad}]]>
+	</queryString>
+	<field name="actividad" class="java.lang.String"/>
+	<field name="objetivo" class="java.lang.String"/>
+	<field name="responsable" class="java.lang.String"/>
+	<field name="recurso_financiero" class="java.lang.String"/>
+	<field name="plazo" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="135" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="555" height="135" uuid="5af1dbcd-8134-4b7c-8c94-a0f92d6125c8"/>
+				<imageExpression><![CDATA["C:\\Users\\HP\\Documents\\NetBeansProjects\\Sistema2022\\src\\POA\\Vista\\img\\ISTA.jpg"]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="0" y="72" width="555" height="61" backcolor="#000099" uuid="5ac0b4e7-463a-47da-9e22-182e1a99f582"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="139" y="72" width="284" height="57" forecolor="#FFFFFF" uuid="89b42277-b82e-4a82-aee8-9d29e513dd9b"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[REPORTE INDIVUDAL DE ACTIVIDADES SISTEMA 2022]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="2" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="6" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="304" splitType="Stretch">
+			<staticText>
+				<reportElement x="139" y="81" width="136" height="30" uuid="ddddd72d-da5f-47cb-8803-1984d3a091fc"/>
+				<textElement>
+					<font size="16" isBold="true" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Objetivo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="292" y="81" width="185" height="30" uuid="85ac353a-5c08-4fde-af51-733026f8de11"/>
+				<textElement>
+					<font size="14" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{objetivo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="137" y="22" width="138" height="30" uuid="2c584a35-eadf-425d-9be0-f0f3f138e37b"/>
+				<textElement>
+					<font size="16" isBold="true" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Actividad:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="290" y="22" width="185" height="30" uuid="678da114-b053-4041-a949-bf2a512cb13f"/>
+				<textElement>
+					<font size="14" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{actividad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="139" y="144" width="136" height="30" uuid="0c4d1a93-2e3e-4dfd-bb71-8909db779389"/>
+				<textElement>
+					<font size="16" isBold="true" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Responsable:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="292" y="144" width="185" height="30" uuid="73e6ab65-9b8e-45ec-908c-417c2ab611d0"/>
+				<textElement>
+					<font size="14" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{responsable}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="139" y="204" width="136" height="30" uuid="9680d2ef-80b0-4fbe-a7d2-5730e7cffb6b"/>
+				<textElement>
+					<font size="16" isBold="true" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Recurso financiero:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="292" y="204" width="185" height="30" uuid="5ba10dcb-93f5-40ee-890c-3bb174893503"/>
+				<textElement>
+					<font size="14" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{recurso_financiero}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="139" y="262" width="136" height="30" uuid="2456fe0f-b4fa-418a-b86b-f8dec5f13f52"/>
+				<textElement>
+					<font size="16" isBold="true" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Plazo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="292" y="262" width="185" height="30" uuid="cfc3e1d5-c977-45fb-b23e-0ac06064d1d0"/>
+				<textElement>
+					<font size="14" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{plazo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="9" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="66" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="66" backcolor="#000099" uuid="f5502dbb-eabe-44f0-8b98-04de49342f92"/>
+			</rectangle>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" forecolor="#FFFFFF" uuid="0ab7c4f9-1753-44e4-a42b-95325e9c5b18"/>
+				<textElement>
+					<font size="14" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="38" splitType="Stretch"/>
+	</summary>
+</jasperReport>

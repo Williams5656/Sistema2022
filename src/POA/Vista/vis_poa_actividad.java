@@ -68,12 +68,12 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         this.btnnuevo = btnnuevo;
     }
 
-    public JComboBox<String> getCombo_objetivo_operarivo() {
-        return combo_objetivo_operarivo;
+    public JComboBox<String> getCombo_objetivo_operativo() {
+        return combo_objetivo_operativo;
     }
 
-    public void setCombo_objetivo_operarivo(JComboBox<String> combo_objetivo_operarivo) {
-        this.combo_objetivo_operarivo = combo_objetivo_operarivo;
+    public void setCombo_objetivo_operativo(JComboBox<String> combo_objetivo_operarivo) {
+        this.combo_objetivo_operativo = combo_objetivo_operarivo;
     }
 
     public JComboBox<String> getCombo_responsable() {
@@ -150,13 +150,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         this.btnindicador = btnindicador;
     }
 
-    public JButton getBtnlistar() {
-        return btnlistar;
-    }
-
-    public void setBtnlistar(JButton btnlistar) {
-        this.btnlistar = btnlistar;
-    }
+   
     
     
     
@@ -190,7 +184,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         btnmodificar = new javax.swing.JButton();
-        combo_objetivo_operarivo = new javax.swing.JComboBox<>();
+        combo_objetivo_operativo = new javax.swing.JComboBox<>();
         combo_responsable = new javax.swing.JComboBox<>();
         comborecursos = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -200,7 +194,6 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         btnindicador = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         btnimprimir = new javax.swing.JButton();
-        btnlistar = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         lblproyecto = new javax.swing.JLabel();
@@ -294,7 +287,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 520, 360, 80));
 
-        getContentPane().add(combo_objetivo_operarivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 270, 230, -1));
+        getContentPane().add(combo_objetivo_operativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 270, 230, -1));
 
         getContentPane().add(combo_responsable, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 400, 230, -1));
 
@@ -321,14 +314,6 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         btnimprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/impresion.png"))); // NOI18N
         btnimprimir.setText("Imprimir");
         getContentPane().add(btnimprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 610, 120, 40));
-
-        btnlistar.setText("LISTAR");
-        btnlistar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnlistarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnlistar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 190, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel17.setText("ACTIVIDADES");
@@ -357,20 +342,15 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnnuevoActionPerformed
 
-    private void btnlistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlistarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnlistarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btneliminar;
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnimprimir;
     private javax.swing.JButton btnindicador;
-    private javax.swing.JButton btnlistar;
     private javax.swing.JButton btnmodificar;
     private javax.swing.JButton btnnuevo;
-    private javax.swing.JComboBox<String> combo_objetivo_operarivo;
+    private javax.swing.JComboBox<String> combo_objetivo_operativo;
     private javax.swing.JComboBox<String> combo_responsable;
     private javax.swing.JComboBox<String> comborecursos;
     private com.toedter.calendar.JDateChooser fecha_plazo;

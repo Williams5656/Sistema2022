@@ -116,48 +116,8 @@ public class Con_poa_actividad_indicador {
         
     }
     
-//    public void cargarComboProyectos(){
-//        
-//        vista.getComboproyecto().removeAllItems();
-//        
-//        
-//        listaProyectos = baseDatosProyecto.mostrarDatos();
-//        
-//        for (ProyectoMD proyectos : listaProyectos){
-//            if (Con_Poa1.getId_poa() == proyectos.getId_Poa()){
-//                vista.getComboproyecto().addItem(String.valueOf(proyectos.getId_proyecto()));
-//                
-//                
-//            }
-//        }
-//    }
     
-//    public void cargarComboObjetivos(){
-//        String itemCombo = (String) vista.getComboproyecto().getSelectedItem();
-//        int num_proyecto = Integer.parseInt(String.valueOf(itemCombo.charAt(itemCombo.length() - 1)));
-//        
-//        
-//        vista.getComboobjetivo().removeAllItems();
-//        listaProyectos = baseDatosProyecto.mostrarDatos();
-//        listaObjetivosOperativos = baseDatosObjetivoOperativo.mostrarDatos();
-//        
-//
-//        for (ProyectoMD proyectos : listaProyectos){
-//            if (num_proyecto == proyectos.getId_proyecto()){
-//                for (ObjetivoOperativoMD objetivos : listaObjetivosOperativos){
-//                    if (objetivos.getId_proyecto() == proyectos.getId_proyecto()){
-//                        vista.getComboobjetivo().addItem(objetivos.getObjetivo() + "");
-//                        
-//
-//                    }
-//                }
-//            }
-//        }
-//        
-//            
-//    }
-    
-      public void cargarcombo(){
+        public void cargarcombo(){
         
           System.out.println(actividad);
         

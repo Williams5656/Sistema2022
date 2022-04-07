@@ -65,7 +65,7 @@ public class Con_poa_actividad {
        this.vista = vista;
        idproyecto=id_pro;
         vista.setVisible(true);
-        vista.getCombo_objetivo_operarivo().setEnabled(false);
+        vista.getCombo_objetivo_operativo().setEnabled(false);
         
 
         cargarObjetivos();
@@ -74,7 +74,6 @@ public class Con_poa_actividad {
         //cargarOB();
         vista.getBtnnuevo().addActionListener(e->nuevo());  
         vista.getBtnimprimir().addActionListener(e->imprimirpersona()); 
-        vista.getBtnlistar().addActionListener(e->lista()); 
         vista.getBtnindicador().addActionListener(e->abrirVentanaindicador());
         vista.getBtnguardar().addActionListener(e->guardar()); 
         vista.getTablaactividades().addMouseListener(new MouseAdapter(){
@@ -92,7 +91,7 @@ public class Con_poa_actividad {
         
 
         
-        vista.getCombo_objetivo_operarivo().addItemListener(new ItemListener() {
+        vista.getCombo_objetivo_operativo().addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent itemEvent) {
                 buscar();
             }
@@ -107,7 +106,7 @@ public class Con_poa_actividad {
     
     public void cargarObjetivos(){
         
-        listaObjetivosOperativos = baseDatosObjetivoOperativo.mostrarDatos();
+        listaObjetivosOperativos = baseDatosObjetivoOperativo.obtenerdatosparacombo(idproyecto);
         
         for (int i = 0; i < listaObjetivosOperativos.size(); i++) {
             for (int j = 0; j <Con_poa_proyectos.listasobjetivos.size() ; j++) {
@@ -115,7 +114,7 @@ public class Con_poa_actividad {
                     
                 }
                 if (listaObjetivosOperativos.get(i).getId_objetivo_operativo()==Con_poa_proyectos.listasobjetivos.get(j)) {
-                    vista.getCombo_objetivo_operarivo().addItem(listaObjetivosOperativos.get(i).getObjetivo());
+                    vista.getCombo_objetivo_operativo().addItem(listaObjetivosOperativos.get(i).getObjetivo());
                     System.out.println(listaObjetivosOperativos.get(i).getObjetivo());
                 }
                 
@@ -137,10 +136,10 @@ public class Con_poa_actividad {
         String recursost;
         baseDatosactividades.setId_actividades(baseDatosactividades.valid());
 
-        int objetivo = (int) vista.getCombo_objetivo_operarivo().getSelectedIndex();
-        idobjetivo= listas.get(objetivo);
+        int objetivo = (int) vista.getCombo_objetivo_operativo().getSelectedIndex();
+        idobjetivo= Con_poa_proyectos.listasobjetivos.get(objetivo);
         
-        baseDatosactividades.setId_objetivo_operativo(listas.get(objetivo));
+        baseDatosactividades.setId_objetivo_operativo(Con_poa_proyectos.listasobjetivos.get(objetivo));
    
         baseDatosactividades.setActividad(String.valueOf( vista.getTxtactividad().getText()));
         actividad=String.valueOf( vista.getTxtactividad().getText());
@@ -158,14 +157,7 @@ public class Con_poa_actividad {
         baseDatosactividades.setRecurso_financiero(recursof+" $ "+vista.getTxtrecursos_financieros().getText());
         
         recursost=recursof+" $ "+vista.getTxtrecursos_financieros().getText();
-        
-        System.out.println(baseDatosactividades.valid());
-        System.out.println(idobjetivo);
-        System.out.println(actividad);
-        System.out.println(fecha);
-        System.out.println(recursost);
-        System.out.println(responsable);
-        System.out.println("LISTA "+listas.get(objetivo));
+
  
         if (vista.getTxtactividad().getText().equals("")||responsable.equals("Seleccionar")||vista.getTxtrecursos_financieros().getText().equals("")) {
             JOptionPane.showMessageDialog(null, "No puede haber campos vacios");
@@ -185,7 +177,7 @@ public class Con_poa_actividad {
         vista.getBtnmodificar().setEnabled(false);
         
 
-        vista.getCombo_objetivo_operarivo().setEnabled(true);
+        vista.getCombo_objetivo_operativo().setEnabled(true);
         vista.getTxtactividad().setText("");
         vista.getComborecursos().setSelectedItem("Seleccionar");
         vista.getTxtrecursos_financieros().setText("");    
@@ -201,7 +193,7 @@ public class Con_poa_actividad {
         vista.getBtnguardar().setEnabled(false);
         vista.getBtnmodificar().setEnabled(true);
 
-        vista.getCombo_objetivo_operarivo().setEnabled(false);
+        vista.getCombo_objetivo_operativo().setEnabled(false);
         vista.getBtneliminar().setEnabled(true);
         
         DefaultTableModel modelo;
@@ -273,7 +265,7 @@ public class Con_poa_actividad {
     
     public void buscar() {
         
-        String objetivo = (String) vista.getCombo_objetivo_operarivo().getSelectedItem();
+        String objetivo = (String) vista.getCombo_objetivo_operativo().getSelectedItem();
 
         int idobj = 0;
 
@@ -314,6 +306,8 @@ public class Con_poa_actividad {
 
                 }
                 
+            }else{
+                modelo.setRowCount(0);
             }
         
     }

@@ -86,6 +86,9 @@ public class ObjetivoOperativoBD {
         return lista;
     }
     
+    
+    
+    
     public void guardar(int id_proyecto, int num_objetivo_proyecto, String objetivo){
         
         String sql = "insert into objetivo_operativo (id_proyecto, num_objetivo_proyecto, objetivo) VALUES (" + 

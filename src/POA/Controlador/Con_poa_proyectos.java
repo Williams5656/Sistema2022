@@ -46,6 +46,7 @@ public class Con_poa_proyectos {
     private final vis_poa_proyectos vista;
     public static int id_pro;
     public static ArrayList<Integer> listasobjetivos = new ArrayList();
+    public static ArrayList<Integer> listas_id_objetivos = new ArrayList();
     ProyectoBD poabd = new ProyectoBD();
     ObjetivoOperativoBD obbd = new ObjetivoOperativoBD();
     private List<ProyectoMD> lista = new ArrayList<>();
@@ -343,8 +344,10 @@ public class Con_poa_proyectos {
             if (listaoperativo.get(i).getId_proyecto()==ob) {
                
                 listasobjetivos.add(listaoperativo.get(i).getId_objetivo_operativo());
-                System.out.println(listaoperativo.get(i).getId_objetivo_operativo());
+                
+
                 id_pro=listaoperativo.get(i).getId_proyecto();
+                System.out.println(id_pro);
                 
                 
             }

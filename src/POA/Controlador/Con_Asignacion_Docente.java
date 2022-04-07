@@ -134,6 +134,7 @@ public class Con_Asignacion_Docente {
         vista.getCboxjornada().setEnabled(false);
         vista.getCboxparalelo().setEnabled(false);
         vista.getCboxperiodo().setEnabled(false);
+        vista.getCombodocentes().setEnabled(false);
 
     }
 
@@ -285,10 +286,16 @@ public class Con_Asignacion_Docente {
         vista.getTxtdocente().addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                buscar();
+                if(vista.getTxtdocente().getText().length()>=10){
+                    buscar();
+                }else{
+                    inhabilitar_botones();
+                    
+                }
             }
 
         });
+        
     }
 
     public void seleccionar() {

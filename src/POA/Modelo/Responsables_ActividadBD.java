@@ -21,11 +21,20 @@ public class Responsables_ActividadBD extends Responsables_ActividadMD  {
     
     public  boolean insertarresponsable() {  
         String nsql = "INSERT INTO responsables_act(id_responsable,id_actividad,cedula)" + "VALUES ('" + getId_responsable() + "','" + getId_actividad() + "','" + getCedula() + "')";
-        System.out.println("datos: "+getId_responsable()+"vvvvv"+getId_actividad()+""+getId_actividad());
         if (conectar.noQuery(nsql) == null) {
             return true;
         } else {
             System.out.println("Error");
+            return false;
+        }
+    }
+    public boolean editarresponsable(int id_actividad){
+        
+        String nsql = "update responsables_act set cedula='" + getCedula() + "'" + " where id_actividad='" + id_actividad + "'";
+        if (conectar.noQuery(nsql) == null) {
+            return true;
+        } else {
+            System.out.println("error al editar");
             return false;
         }
     }
@@ -78,6 +87,26 @@ public class Responsables_ActividadBD extends Responsables_ActividadMD  {
                 PersonaMD m = new PersonaMD();
                 m.setCedula(rs.getString("cedula"));
                 m.setNombres(rs.getString("nombre"));
+                lista.add(m);
+            }
+            rs.close();
+            return lista;
+        } catch (Exception e) {
+            Logger.getLogger(Responsables_ActividadBD.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+    public List<Responsables_ActividadMD> datos_responsables() {
+  
+        try {
+            String sql1 ="select * from nombres_responsables";
+            List<Responsables_ActividadMD> lista = new ArrayList<Responsables_ActividadMD>();
+            ResultSet rs = conectar.query(sql1);
+            while (rs.next()) {
+                Responsables_ActividadMD m = new Responsables_ActividadMD();
+                m.setId_responsable(rs.getInt("id_resp"));
+                m.setId_actividad(rs.getInt("nombre_actividad"));
+                m.setCedula(rs.getString("nombres"));
                 lista.add(m);
             }
             rs.close();

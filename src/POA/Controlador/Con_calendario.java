@@ -63,7 +63,7 @@ public class Con_calendario {
     public Con_calendario(Vis_Calendar vista) {
         this.vista = vista;
         vista.setVisible(true);
-        vista.getBtn_añadir().addActionListener(e -> responsables());
+        vista.getBtn_añadir().addActionListener(e -> añadir_responsables());
         vista.getBtn_guardar().addActionListener(e -> guardar());
         vista.getTxt_id_A().setEnabled(false);
         vista.getBtn_n_actividad().addActionListener(e -> Crear_actividad());
@@ -84,12 +84,11 @@ public class Con_calendario {
             @Override
             public void mouseClicked(MouseEvent e) {
                 listaPersona.clear();
-               
+
                 seleccionarCalendario();
                 cargar_resp();
-                
+
             }
-            
 
         });
         Cargardatos_c();
@@ -99,6 +98,7 @@ public class Con_calendario {
         cargarLista("");
         cargarListaAct(0);
         lista();
+        listaresponsable();
         Ihnabilitar();
 
     }
@@ -148,7 +148,13 @@ public class Con_calendario {
         vista.getFecha_inicio().setEnabled(true);
         vista.getFecha_limite().setEnabled(true);
         vista.getBtn_añadir().setEnabled(true);
+        vista.getBtn_guardar().setEnabled(true);
+        vista.getBtn_modificar().setEnabled(false);
         limpiar();
+        DefaultTableModel modelo2;
+        modelo2 = (DefaultTableModel) vista.getTabla_responsables().getModel();
+        modelo2.setNumRows(0);
+        ListaResp.clear();
     }
 
     public void Ihnabilitar() {
@@ -209,8 +215,8 @@ public class Con_calendario {
                 DefaultTableModel modelo2;
                 modelo2 = (DefaultTableModel) vista.getTabla_responsables().getModel();
                 modelo2.setNumRows(0);
-
                 lista();
+                listaresponsable();
                 limpiar();
             } else {
                 JOptionPane.showMessageDialog(null, "ERRROR AL GUARDAR");
@@ -227,13 +233,18 @@ public class Con_calendario {
         if (res == 0) {
             if (calendar.modificar(Integer.parseInt(vista.getTxt_id_A().getText()))) {
                 JOptionPane.showMessageDialog(null, "Datos actualizados");
+//                editar_responsable_base();
+//                DefaultTableModel modelo2;
+//                modelo2 = (DefaultTableModel) vista.getTabla_responsables().getModel();
+//                modelo2.setNumRows(0);
+//                
+//                listaresponsable();
                 lista();
                 limpiar();
             } else {
                 JOptionPane.showMessageDialog(null, "Error al modificar");
             }
         }
-
     }
 
     public void Cargardatos() {
@@ -285,6 +296,24 @@ public class Con_calendario {
             vista.getTabla_calendario().setValueAt(listacale.get(i).getFecha_Inicio(), i, 6);
             vista.getTabla_calendario().setValueAt(listacale.get(i).getFecha_Limite(), i, 7);
         }
+
+    }
+
+    public void listaresponsable() {
+        DefaultTableModel modelo1;
+        modelo1 = (DefaultTableModel) vista.getTabla_responsable().getModel();
+        List<Responsables_ActividadMD> listar = resbd.datos_responsables();
+        for (int j = vista.getTabla_responsable().getRowCount() - 1; j >= 0; j--) {
+            modelo1.removeRow(j);
+        }
+
+        int columnasp = modelo1.getColumnCount();
+        for (int i = 0; i < listar.size(); i++) {
+            modelo1.addRow(new Object[columnasp]);
+            vista.getTabla_responsable().setValueAt(listar.get(i).getId_responsable(), i, 0);
+            vista.getTabla_responsable().setValueAt(listar.get(i).getId_actividad(), i, 1);
+            vista.getTabla_responsable().setValueAt(listar.get(i).getCedula(), i, 2);
+        }
     }
 
     public void cargarLista(String aguja) {
@@ -312,11 +341,9 @@ public class Con_calendario {
     }
 
     public void guadar_responsable_base() {
-
         resbd.setId_actividad(Integer.parseInt(vista.getTxt_id_A().getText()));
         System.out.println("responsable");
         String pos = at.getItemSelected().toString();
-
         for (int i = 0; i < listaPersona.size(); i++) {
             for (int j = 0; j < vista.getTabla_responsables().getRowCount(); j++) {
                 System.out.println("tabla: " + vista.getTabla_responsables().getRowCount());
@@ -331,20 +358,42 @@ public class Con_calendario {
         ListaResp.clear();
     }
 
-    public void responsables() {
-        DefaultTableModel modelo;
-        modelo = (DefaultTableModel) vista.getTabla_responsables().getModel();
-        Responsables_ActividadMD l = new Responsables_ActividadMD(vista.getTxt_responsables().getText());
-        ListaResp.add(l);
-        modelo.setNumRows(0);
+    public void editar_responsable_base() {
 
-        ListaResp.stream().forEach(r -> {
-            tabla = new String[]{r.getCedula()};
-            modelo.addRow(tabla);
-        });
-        vista.getTxt_responsables().setText("");
+        resbd.setId_actividad(Integer.parseInt(vista.getTxt_id_A().getText()));
+        System.out.println("responsable");
+        String pos = at.getItemSelected().toString();
+
+        for (int i = 0; i < listaPersona.size(); i++) {
+            for (int j = 0; j < vista.getTabla_responsables().getRowCount(); j++) {
+                System.out.println("tabla: " + vista.getTabla_responsables().getRowCount());
+                if (listaPersona.get(i).getNombres().equals(vista.getTabla_responsables().getValueAt(j, 0).toString())) {
+                    resbd.setId_responsable(calen.codigo());
+                    resbd.setCedula(listaPersona.get(i).getCedula());
+                    resbd.editarresponsable(Integer.parseInt(vista.getTxt_id_A().getText()));
+                }
+            }
+        }
+        ListaResp.clear();
     }
-    
+
+    public void añadir_responsables() {
+        if (!vista.getTxt_responsables().getText().equals("")) {
+            DefaultTableModel modelo;
+            modelo = (DefaultTableModel) vista.getTabla_responsables().getModel();
+            Responsables_ActividadMD l = new Responsables_ActividadMD(vista.getTxt_responsables().getText());
+            ListaResp.add(l);
+            //modelo.setNumRows(0);
+            ListaResp.stream().forEach(r -> {
+                tabla = new String[]{r.getCedula()};
+                modelo.addRow(tabla);
+            });
+            vista.getTxt_responsables().setText("");
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese un nombre");
+        }
+
+    }
 
     private void cargarDialogo(int origen) throws SQLException {
         vista.getT_Actividad_D().setSize(460, 320);//dimensiones
@@ -390,31 +439,35 @@ public class Con_calendario {
         vista.getD_txt_Nombre().setText("");
         vista.getD_txt_Descripcion().setText("");
     }
-    
-    public void cargar_personas(){
+
+    public void cargar_personas() {
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTabla_responsables().getModel();
         modelo.setNumRows(0);
         listaPersona.stream().forEach(r -> {
-             tabla = new String[]{r.getNombres()};
+            tabla = new String[]{r.getNombres()};
             modelo.addRow(tabla);
         });
     }
-    public int id_actividad(){
+
+    public int id_actividad() {
         int fila = vista.getTabla_calendario().getSelectedRow();
-        int cod=Integer.parseInt(vista.getTabla_calendario().getValueAt(fila, 0).toString());
+        int cod = Integer.parseInt(vista.getTabla_calendario().getValueAt(fila, 0).toString());
         return cod;
     }
-    public void cargar_resp(){
-        int id=id_actividad();
-        System.out.println("id"+id);
-        listaPersona=resbd.nombres_responsables(id);
-        System.out.println("per"+listaPersona.size());
+
+    public void cargar_resp() {
+        int id = id_actividad();
+        System.out.println("id" + id);
+        listaPersona = resbd.nombres_responsables(id);
+        System.out.println("per" + listaPersona.size());
         cargar_personas();
     }
+
     public void seleccionarCalendario() {
         DefaultTableModel modelo;
         vista.getBtn_modificar().setEnabled(true);
+        vista.getBtn_guardar().setEnabled(false);
         modelo = (DefaultTableModel) vista.getTabla_calendario().getModel();
         int idactividad = (int) modelo.getValueAt(vista.getTabla_calendario().getSelectedRow(), 0);
         List<CalendarioMD> listac = calendar.obtenerDatos(idactividad);
@@ -454,10 +507,7 @@ public class Con_calendario {
     }
 
     public void seleccionarResp(String aguja) {
-        DefaultTableModel modelo;
-        modelo = (DefaultTableModel) vista.getTabla_responsables().getModel();
-        aguja = modelo.getValueAt(vista.getTabla_responsables().getSelectedRow(), 0).toString();
-        List<Responsables_ActividadMD> listac = resbd.obtenerdatos(aguja);
+        int select = vista.getTabla_responsables().getSelectedRow();
 
     }
 

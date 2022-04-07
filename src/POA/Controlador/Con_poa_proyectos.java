@@ -14,6 +14,7 @@ import POA.Modelo.PoaBD;
 import POA.Modelo.PoaMD;
 import POA.Modelo.ProyectoBD;
 import POA.Modelo.ProyectoMD;
+
 import POA.Vista.vis_poa_proyectos;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
@@ -58,6 +59,7 @@ public class Con_poa_proyectos {
     
     private static int id_proyecto;
     int poa = 0;
+    
     private boolean tablaSeleccionada = false;
 
     public Con_poa_proyectos(vis_poa_proyectos vista, int id_poa) {
@@ -74,15 +76,22 @@ public class Con_poa_proyectos {
         vista.getBtn_guardar().addActionListener(e -> guardar());
         vista.getBtnAñadir().addActionListener(e -> guardarobjetivo());
         vista.getBtn_imprimir().addActionListener(e -> imprimirpro());
+        vista.getBtnSiguiente().addActionListener(e -> abrirVentanaactividades());
+        
+        
         vista.getTabla_lista_proyectos().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                seleccionar();//To change body of generated methods, choose Tools | Templates.
+                //To change body of generated methods, choose Tools | Templates.
+                seleccionarobjetivo();
+                seleccionar();
             }
 
         });
-        vista.getBtnSiguiente().addActionListener(e -> abrirVentanaactividades());
+        
         lista_poa();
+        
+        
 
     }
 
@@ -337,7 +346,7 @@ public class Con_poa_proyectos {
     public void seleccionarobjetivo(){
         
         DefaultTableModel modelo;
-        modelo = (DefaultTableModel) vista.getTabla_proyecto().getModel();
+        modelo = (DefaultTableModel) vista.getTabla_lista_proyectos().getModel();
         
         int ob = (int) modelo.getValueAt(vista.getTabla_lista_proyectos().getSelectedRow(), 1);
         tablaSeleccionada = true;
@@ -351,5 +360,21 @@ public class Con_poa_proyectos {
         
         System.out.println(ob);
   
+    }
+    
+    
+    public void abrirVentanaactividad(){
+       
+       if (tablaSeleccionada){
+           POA.Vista.vis_poa_actividad zap = new POA.Vista.vis_poa_actividad();
+        Con_principal.vista.getESCRITORIO().add(zap);
+        Dimension desktopSize = Con_principal.vista.getESCRITORIO().getSize();
+        Dimension FrameSize = zap.getSize();
+        zap.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        Con_poa_actividad proyectos = new Con_poa_actividad(zap);
+       }
+       else{
+           JOptionPane.showMessageDialog(null, "Debe seleccionar una actividad de la tabla");
+       }
     }
 }

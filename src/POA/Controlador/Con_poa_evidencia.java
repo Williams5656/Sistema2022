@@ -82,6 +82,7 @@ public class Con_poa_evidencia {
         vista.getBtnImprimir().addActionListener(e -> imprimir());
         vista.getBtnEliminar().addActionListener(e -> eliminar());
         vista.getBtnModificar().addActionListener(e -> modificar());
+        vista.getBtnBuscar().addActionListener(e -> buscar());
         vista.getBtnImprimir().setEnabled(false);
         vista.getCbx_proyecto().setEnabled(false);
         vista.getCbx_carrera().setEnabled(false);
@@ -121,10 +122,10 @@ public class Con_poa_evidencia {
         }
         if (resp.equals("Reporte por Actividad")) {
             if (actividad_imprimir != 0) {
-                String actividades="";
+                String actividades = "";
                 for (int i = 0; i < listaActividades.size(); i++) {
-                    if(listaActividades.get(i).getId_actividades()==actividad_imprimir){
-                        actividades=listaActividades.get(i).getActividad();
+                    if (listaActividades.get(i).getId_actividades() == actividad_imprimir) {
+                        actividades = listaActividades.get(i).getActividad();
                     }
                 }
                 int resp2 = JOptionPane.showConfirmDialog(null, "Imprimir las evidencias de la Actividad " + actividades);
@@ -164,8 +165,8 @@ public class Con_poa_evidencia {
     }
 
     public void cargarComboCarrera() {
-        for (int j = 0; j < listaPoa.size(); j++) {
-            for (int i = 0; i < listaCarreras.size(); i++) {
+        for (int i = 0; i < listaCarreras.size(); i++) {
+            for (int j = 0; j < listaPoa.size(); j++) {
                 if (Integer.parseInt(listaCarreras.get(i).getCodigo_carrera()) == listaPoa.get(j).getId_carrera()) {
                     vista.getCbx_carrera().addItem(listaCarreras.get(i).getNombre_carrera());
                 }
@@ -259,6 +260,64 @@ public class Con_poa_evidencia {
             }
         }
         return id_actividad;
+    }
+
+    public void buscar() {
+        if (vista.getTxtBuscar().getText().equals("")) {
+            lista();
+        } else {
+            DefaultTableModel modelo;
+            modelo = (DefaultTableModel) vista.getTabla_Evidencia().getModel();
+            List<EvidenciaMD> lista3 = baseDatosEvidencias.mostrarDatos();
+            List<Integer> listaid_actividades = new ArrayList<>();
+            for (int i = 0; i < listaActividades.size(); i++) {
+                if (listaActividades.get(i).getActividad().equals(vista.getTxtBuscar().getText())) {
+                    listaid_actividades.add(listaActividades.get(i).getId_actividades());
+                }
+            }
+            for (int i = 0; i <listaid_actividades.size(); i++) {
+                System.out.println(listaid_actividades.get(i));
+            }
+            int columnas = modelo.getColumnCount();
+            for (int j = vista.getTabla_Evidencia().getRowCount() - 1; j >= 0; j--) {
+                modelo.removeRow(j);
+                for (int l = 0; l < lista3.size(); l++) {
+                    for (int p = 0; p < listaid_actividades.size(); p++) {
+                        if (lista3.get(l).getId_actividades() == listaid_actividades.get(p)) {
+                            modelo.addRow(new Object[columnas]);
+                            vista.getTabla_Evidencia().setValueAt(lista3.get(l).getId_evidencia(), j, 0);
+                            for (int k = 0; k < listaPoa.size(); k++) {
+                                if (lista3.get(l).getId_poa() == listaPoa.get(k).getId_POA()) {
+                                    for (int i = 0; i < listaCarreras.size(); i++) {
+                                        if (Integer.parseInt(listaCarreras.get(i).getCodigo_carrera()) == listaPoa.get(k).getId_carrera()) {
+                                            vista.getTabla_Evidencia().setValueAt(listaCarreras.get(i).getNombre_carrera(), j, 1);
+                                        }
+                                    }
+                                    vista.getTabla_Evidencia().setValueAt(listaPoa.get(k).getAnio(), j, 2);
+                                }
+                            }
+                            for (int i = 0; i < listaProyecto.size(); i++) {
+                                if (lista3.get(l).getId_proyecto() == listaProyecto.get(i).getId_proyecto()) {
+                                    vista.getTabla_Evidencia().setValueAt(listaProyecto.get(i).getNum_proyecto_carrera(), j, 3);
+                                }
+                            }
+                            for (int i = 0; i < listaObjetivos.size(); i++) {
+                                if (lista3.get(l).getId_objetivo() == listaObjetivos.get(i).getId_objetivo_operativo()) {
+                                    vista.getTabla_Evidencia().setValueAt(listaObjetivos.get(i).getObjetivo(), j, 4);
+                                }
+                            }
+                            for (int i = 0; i < listaActividades.size(); i++) {
+                                if (lista3.get(l).getId_actividades() == listaActividades.get(i).getId_actividades()) {
+                                    vista.getTabla_Evidencia().setValueAt(listaActividades.get(i).getActividad(), j, 5);
+                                }
+                            }
+                            vista.getTabla_Evidencia().setValueAt(lista3.get(j).getArchivo(), j, 6);
+                        }
+                    }
+                }
+            }
+        }
+        nuevo();
     }
 
     public void guardar() {

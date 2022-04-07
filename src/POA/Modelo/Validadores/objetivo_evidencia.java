@@ -61,10 +61,9 @@ public class objetivo_evidencia implements ItemListener {
         if (Con_poa_evidencia.proyecto.equalsIgnoreCase("yes")) {
             if (proyecto != null) {
                 if (proyecto != "Seleccionar") {
-                    id_proyecto = Integer.parseInt(proyecto.trim());
                     for (int i = 0; i < Con_poa_evidencia.listaProyecto.size(); i++) {
                         if (Con_poa_evidencia.listaProyecto.get(i).getId_Poa() == Con_poa_evidencia.id_poa) {
-                            if ((String.valueOf(Con_poa_evidencia.listaProyecto.get(i).getId_proyecto()).equalsIgnoreCase(proyecto))) {
+                            if ((String.valueOf(Con_poa_evidencia.listaProyecto.get(i).getNum_proyecto_carrera()).equalsIgnoreCase(proyecto))) {
                                 id_proyecto = Con_poa_evidencia.listaProyecto.get(i).getId_proyecto();
                             }
                         }

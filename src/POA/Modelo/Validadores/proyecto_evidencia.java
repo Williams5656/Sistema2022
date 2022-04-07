@@ -59,11 +59,12 @@ public class proyecto_evidencia implements ItemListener {
                     }
                     for (int j = 0; j < Con_poa_evidencia.listaProyecto.size(); j++) {
                         if (Con_poa_evidencia.listaProyecto.get(j).getId_Poa() == poa) {
-                            Cbx_proyecto.addItem(String.valueOf(Con_poa_evidencia.listaProyecto.get(j).getId_proyecto()));
+                            Cbx_proyecto.addItem(String.valueOf(Con_poa_evidencia.listaProyecto.get(j).getNum_proyecto_carrera()));
                             Con_poa_evidencia.proyecto = "YES";
                         }
                     }
-                    Con_poa_evidencia.id_poa = poa;;
+                    Con_poa_evidencia.id_poa = poa;
+                    System.out.println("Poa: "+Con_poa_evidencia.id_poa);
                 }
 
             } else {

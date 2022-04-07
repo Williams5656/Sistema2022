@@ -105,12 +105,19 @@ public class Con_poa_actividad {
     
     
     public void cargarObjetivos(){
-
+        
+        listaObjetivosOperativos = baseDatosObjetivoOperativo.mostrarDatos();
+        
         for (int i = 0; i < listaObjetivosOperativos.size(); i++) {
-            for (int j = 0; j < Con_poa_proyectos.listasobjetivos.size(); j++) {
+            for (int j = 0; j <Con_poa_proyectos.listasobjetivos.size() ; j++) {
+                if (tablaSeleccionada) {
+                    
+                }
                 if (listaObjetivosOperativos.get(i).getId_objetivo_operativo()==Con_poa_proyectos.listasobjetivos.get(j)) {
                     vista.getCombo_objetivo_operarivo().addItem(listaObjetivosOperativos.get(i).getObjetivo());
+                    System.out.println(listaObjetivosOperativos.get(i).getObjetivo());
                 }
+                
             }
         }
         

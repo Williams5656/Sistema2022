@@ -38,11 +38,35 @@ public class ObjetivoOperativoBD {
         }
         return lista;
     }
-     public ArrayList<ObjetivoOperativoMD> obtenerdatos(int id){
+    public ArrayList<ObjetivoOperativoMD> obtenerdatos(int id){
         
         ArrayList<ObjetivoOperativoMD> lista = new ArrayList<>();
         
         String sql = "select DISTINCT* from objetivo_operativo"+ " where\"id_objetivo_operativo\"='" + id + "'";
+        ResultSet rs= conectar.query(sql);
+        try {
+            while(rs.next()){
+                ObjetivoOperativoMD m = new ObjetivoOperativoMD();
+                m.setId_objetivo_operativo(rs.getInt("id_objetivo_operativo"));
+                m.setId_proyecto(rs.getInt("id_proyecto"));
+                m.setNum_objetivo_proyecto(rs.getInt("num_objetivo_proyecto"));
+                m.setObjetivo(rs.getString("objetivo"));
+                
+                lista.add(m);
+            }
+            
+//            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ObjetivoOperativoMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
+    }
+    
+    public ArrayList<ObjetivoOperativoMD> obtenerdatosparacombo(int id){
+        
+        ArrayList<ObjetivoOperativoMD> lista = new ArrayList<>();
+        
+        String sql = "select DISTINCT* from objetivo_operativo"+ " where\"id_proyecto\"='" + id + "'";
         ResultSet rs= conectar.query(sql);
         try {
             while(rs.next()){

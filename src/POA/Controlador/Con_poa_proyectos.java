@@ -56,7 +56,6 @@ public class Con_poa_proyectos {
     private PoaBD baseDatosPoa = new PoaBD();
     private List<POA.Modelo.CarreraMD> listaCarreras = new ArrayList<>();
     private POA.Modelo.CarreraBD baseDatosCarrera = new CarreraBD();
-    
     private static int id_proyecto;
     int poa = 0;
     
@@ -76,7 +75,7 @@ public class Con_poa_proyectos {
         vista.getBtn_guardar().addActionListener(e -> guardar());
         vista.getBtnAñadir().addActionListener(e -> guardarobjetivo());
         vista.getBtn_imprimir().addActionListener(e -> imprimirpro());
-        vista.getBtnSiguiente().addActionListener(e -> abrirVentanaactividades());
+        vista.getBtnSiguiente().addActionListener(e -> abrirVentanaactividad());
         
         
         vista.getTabla_lista_proyectos().addMouseListener(new MouseAdapter() {
@@ -256,17 +255,6 @@ public class Con_poa_proyectos {
 
     }
 
-    public void abrirVentanaactividades() {
-
-        POA.Vista.vis_poa_actividad zap = new POA.Vista.vis_poa_actividad();
-        Con_principal.vista.getESCRITORIO().add(zap);
-        Dimension desktopSize = Con_principal.vista.getESCRITORIO().getSize();
-        Dimension FrameSize = zap.getSize();
-        zap.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-        Con_poa_actividad proyectos = new Con_poa_actividad(zap);
-
-    }
-
     public void imprimir() {
         Conect con = new Conect();
         try {
@@ -350,10 +338,14 @@ public class Con_poa_proyectos {
         
         int ob = (int) modelo.getValueAt(vista.getTabla_lista_proyectos().getSelectedRow(), 1);
         tablaSeleccionada = true;
+        listaoperativo = obbd.obtenerdatosparacombo(ob);
         for (int i = 0; i < listaoperativo.size(); i++) {
             if (listaoperativo.get(i).getId_proyecto()==ob) {
                
                 listasobjetivos.add(listaoperativo.get(i).getId_objetivo_operativo());
+                System.out.println(listaoperativo.get(i).getId_objetivo_operativo());
+                
+                
                 
             }
         }

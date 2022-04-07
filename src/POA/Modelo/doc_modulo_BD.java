@@ -137,21 +137,21 @@ public class doc_modulo_BD extends doc_modulo_MD {
         }
     }
 
-    public boolean insertar() {
+    public boolean insertar_doc(int cod) {
         //Transformo image a base64 encode para postgresl
-//          String ef = null;
-//        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-//        try {
-//            BufferedImage img = toBufferedImage(getDocumento());
-//            ImageIO.write(img, "PNG", bos);
-//            byte[] imgb = bos.toByteArray();
-//            ef = Base64.encodeBytes(imgb);
-//        } catch (IOException ex) {
-//            Logger.getLogger(doc_modulo_BD.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+          String ef = null;
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        try {
+            BufferedImage img = toBufferedImage(getDocumento());
+            ImageIO.write(img, "PNG", bos);
+            byte[] imgb = bos.toByteArray();
+            ef = Base64.encodeBytes(imgb);
+        } catch (IOException ex) {
+            Logger.getLogger(doc_modulo_BD.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         //borrado el documento del iserte
-        String nsql = "INSERT INTO doc_modulo(id_periodo,id_materia)" + "VALUES ('" + getId_periodo() + "','" + getId_materia() + "');";
+        String nsql = "update doc_modulo set documento = '" + ef + "' where id_doc_modulo = " +  cod + ";";
 
         if (conectar.noQuery(nsql) == null) {
             return true;

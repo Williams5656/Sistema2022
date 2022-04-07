@@ -6,9 +6,14 @@ package POA.Controlador;
 
 import POA.Modelo.*;
 import POA.Vista.*;
+import java.awt.Image;
+import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
@@ -43,28 +48,18 @@ public class con_portafolio {
         vista.getBtn_buscar().addActionListener(e-> tabla_buscar());
     }
     
+    public void subir_doc_modulo(){        
+        JFileChooser j = new JFileChooser();
+        j.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        int estado = j.showOpenDialog(null);
+        if (estado == JFileChooser.APPROVE_OPTION) {
+           bdmodulo.insertar_doc(Integer.parseInt(vista.getTbl_Datos().getValueAt(vista.getTbl_Datos().getSelectedRow(), 0).toString()));
+        }
+    }
     public void buscar(){
         String periodo = (String) vista.getComboPeriodAcademico().getSelectedItem().toString();
         bdmodulo.buscar_x_parametro(cod_periodo(periodo), vista.getChk_periodo().isSelected(), 
                 vista.getTxt_materia().getText(), vista.getChk_materia().isSelected());
-    }
-    public void guardar(){
-        int idPeriodo = 0;
-        String idMateria = "";
-        String nomPeriodo = (String) vista.getComboPeriodAcademico().getSelectedItem();
-        for (int i = 0; i < listPer.size(); i++) {
-            if(nomPeriodo.equals(listPer.get(i).getNombre())){
-                idPeriodo = listPer.get(i).getIdperiodo();
-            }
-        }
-        bdmodulo.setId_materia(idMateria);
-        bdmodulo.setId_periodo(idPeriodo);
-        if(bdmodulo.insertar()){
-          JOptionPane.showMessageDialog(null, "DATOS GUARDADOS");  
-        } else {
-            JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR");
-        }
-        
     }
     
     public void llenarCombo(){    

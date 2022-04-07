@@ -7,8 +7,10 @@ package POA.Modelo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.postgresql.util.Base64;
 
 /**
  *
@@ -75,5 +77,34 @@ public class IndicadorBD extends IndicadorMD{
             return 0;
         }
         return 0;
+    }
+    
+    public List<IndicadorMD> obtenerdatos(String id) {
+        try {
+            List<IndicadorMD> lista = new ArrayList<IndicadorMD>();
+            String sql = "select * from indicador"+" where \"id_indicador\"='"+id+"'";
+            ResultSet rs = conectar.query(sql);
+            byte[] is;
+
+            while (rs.next()) {
+                IndicadorMD m = new IndicadorMD();
+                m.setId_indicador(rs.getInt("id_indicador"));
+                m.setIndicador(rs.getString("indicador"));
+                m.setLinea_base(rs.getInt("linea_base"));
+                m.setMeta(rs.getInt("meta"));
+                m.setId_actividades(rs.getInt("id_actividades"));                
+                
+                
+                lista.add(m);
+            }
+            rs.close();
+            return lista;
+        } catch (SQLException e) {
+            
+            Logger.getLogger(IndicadorBD.class.getName()).log(Level.SEVERE,null,e);
+        
+        }
+        return null;
+
     }
 }

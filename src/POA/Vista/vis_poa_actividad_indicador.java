@@ -27,6 +27,31 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
         
     }
 
+    public JButton getBtneliminar() {
+        return btneliminar;
+    }
+
+    public void setBtneliminar(JButton btneliminar) {
+        this.btneliminar = btneliminar;
+    }
+
+    public JButton getBtnmodificar() {
+        return btnmodificar;
+    }
+
+    public void setBtnmodificar(JButton btnmodificar) {
+        this.btnmodificar = btnmodificar;
+    }
+
+    public JButton getBtnnuevo() {
+        return btnnuevo;
+    }
+
+    public void setBtnnuevo(JButton btnnuevo) {
+        this.btnnuevo = btnnuevo;
+    }
+
+    
  
     
     
@@ -103,8 +128,10 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
         meta = new javax.swing.JSpinner();
         jScrollPane4 = new javax.swing.JScrollPane();
         tablaindicador = new javax.swing.JTable();
+        btnnuevo = new javax.swing.JButton();
         btnguardar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        btnmodificar = new javax.swing.JButton();
+        btneliminar = new javax.swing.JButton();
 
         setClosable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -154,23 +181,49 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
 
         getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 370, 230));
 
+        btnnuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/nuevo.png"))); // NOI18N
+        btnnuevo.setBorderPainted(false);
+        btnnuevo.setContentAreaFilled(false);
+        btnnuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnnuevoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 340, 80, 50));
+
         btnguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/guardar.png"))); // NOI18N
-        btnguardar.setText("GUARDAR");
-        getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 340, 140, 40));
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 410));
+        btnguardar.setBorderPainted(false);
+        btnguardar.setContentAreaFilled(false);
+        getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 340, 72, 50));
+
+        btnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/modificar.png"))); // NOI18N
+        btnmodificar.setBorderPainted(false);
+        btnmodificar.setContentAreaFilled(false);
+        getContentPane().add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 340, 90, 50));
+
+        btneliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/WhatsApp Image 2022-02-15 at 00.32.29.jpeg"))); // NOI18N
+        btneliminar.setBorderPainted(false);
+        btneliminar.setContentAreaFilled(false);
+        getContentPane().add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 340, 80, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnnuevoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btneliminar;
     private javax.swing.JButton btnguardar;
+    private javax.swing.JButton btnmodificar;
+    private javax.swing.JButton btnnuevo;
     private javax.swing.JComboBox<String> comboactividad;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;

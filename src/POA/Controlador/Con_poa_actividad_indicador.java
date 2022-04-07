@@ -57,6 +57,13 @@ public class Con_poa_actividad_indicador {
         //vista.getBtnmodificar().addActionListener(e->modificar());
         //vista.getBtncambiarest().addActionListener(e->cambiarestado());
         //vista.getBtneliminar().addActionListener(e->eliminar());
+        vista.getTablaindicador().addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                seleccionar();
+            }
+            
+        });
 
 //        vista.getTablaproductos().addMouseListener(new MouseAdapter(){
 //            @Override
@@ -128,9 +135,8 @@ public class Con_poa_actividad_indicador {
                   
                     vista.getComboactividad().addItem(act.getActividad());
                     listaact.add(act.getId_actividades());
-  
-              }
-          }
+                }
+            }
           
           
         
@@ -172,9 +178,29 @@ public class Con_poa_actividad_indicador {
         Numeros.solo_numerosspiner(vista.getLineabase());
     }
     
-    
-      
-      
-      
+    public void seleccionar(){
+        vista.getBtnguardar().setEnabled(false);
+        vista.getBtnmodificar().setEnabled(true);
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) vista.getTablaindicador().getModel();
+        String placa = (String) modelo.getValueAt(vista.getTablaindicador().getSelectedRow(), 0);
+        System.out.println(placa);
+        List<IndicadorMD> lista = bdindicador.obtenerdatos(placa);
+        bdindicador.setId_indicador(lista.get(0).getId_indicador());
+        bdindicador.setIndicador(lista.get(0).getIndicador());
+        bdindicador.setLinea_base(lista.get(0).getLinea_base());
+        bdindicador.setMeta(lista.get(0).getMeta());
+        bdindicador.setId_actividades(lista.get(0).getId_actividades());
+       
+        
+        vista.getTxtindicador().setText(bdindicador.getIndicador());
 
+        vista.getLineabase().setValue(bdindicador.getLinea_base());
+        vista.getMeta().setValue(bdindicador.getMeta());
+        
+         
+    }
+      
+      
+      
 }

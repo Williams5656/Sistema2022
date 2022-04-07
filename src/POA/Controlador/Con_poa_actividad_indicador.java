@@ -179,11 +179,13 @@ public class Con_poa_actividad_indicador {
     }
     
     public void seleccionar(){
+        String actividad;
         vista.getBtnguardar().setEnabled(false);
         vista.getBtnmodificar().setEnabled(true);
+        vista.getComboactividad().setEnabled(false);
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTablaindicador().getModel();
-        String placa = (String) modelo.getValueAt(vista.getTablaindicador().getSelectedRow(), 0);
+        int placa = (int) modelo.getValueAt(vista.getTablaindicador().getSelectedRow(), 0);
         System.out.println(placa);
         List<IndicadorMD> lista = bdindicador.obtenerdatos(placa);
         bdindicador.setId_indicador(lista.get(0).getId_indicador());
@@ -191,10 +193,13 @@ public class Con_poa_actividad_indicador {
         bdindicador.setLinea_base(lista.get(0).getLinea_base());
         bdindicador.setMeta(lista.get(0).getMeta());
         bdindicador.setId_actividades(lista.get(0).getId_actividades());
-       
+        
         
         vista.getTxtindicador().setText(bdindicador.getIndicador());
-
+        int idrol = lista.get(0).getId_actividades();
+        List<ActividadesMD> listar1 = baseDatosactividades.obtenerdatosxind(idrol);
+        vista.getComboactividad().addItem(listar1.get(0).getActividad()+"");
+        System.out.println(listar1.get(0).getActividad());
         vista.getLineabase().setValue(bdindicador.getLinea_base());
         vista.getMeta().setValue(bdindicador.getMeta());
         

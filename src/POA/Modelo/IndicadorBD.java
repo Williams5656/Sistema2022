@@ -79,7 +79,7 @@ public class IndicadorBD extends IndicadorMD{
         return 0;
     }
     
-    public List<IndicadorMD> obtenerdatos(String id) {
+    public List<IndicadorMD> obtenerdatos(int id) {
         try {
             List<IndicadorMD> lista = new ArrayList<IndicadorMD>();
             String sql = "select * from indicador"+" where \"id_indicador\"='"+id+"'";

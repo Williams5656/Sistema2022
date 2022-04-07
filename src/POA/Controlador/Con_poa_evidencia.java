@@ -275,7 +275,7 @@ public class Con_poa_evidencia {
                     listaid_actividades.add(listaActividades.get(i).getId_actividades());
                 }
             }
-            for (int i = 0; i <listaid_actividades.size(); i++) {
+            for (int i = 0; i < listaid_actividades.size(); i++) {
                 System.out.println(listaid_actividades.get(i));
             }
             int columnas = modelo.getColumnCount();

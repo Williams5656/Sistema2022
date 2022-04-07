@@ -49,7 +49,6 @@ public class Con_principal {
         vista.getBtn_asignacion().addActionListener(e -> asignacion());
         vista.getBtn_carrera().addActionListener(e -> carrera());
         vista.getBtn_poa().addActionListener(e -> poa());
-        vista.getBtn_actividades().addActionListener(e -> actividad());
          vista.getBtn_evidencias().addActionListener(e -> evidencia());
          vista.getBtn_periodos().addActionListener(e -> periodo());
          vista.getBtn_docentes().addActionListener(e -> docentes());
@@ -151,15 +150,7 @@ public class Con_principal {
         user.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         Con_Poa1 us = new Con_Poa1(user);
     }
-
-    private void actividad() {
-        vis_poa_actividad user = new vis_poa_actividad();
-        vista.getESCRITORIO().add(user);
-        Dimension desktopSize = vista.getESCRITORIO().getSize();
-        Dimension FrameSize = user.getSize();
-        user.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-       Con_poa_actividad rol=new Con_poa_actividad(user);
-    }   
+ 
      private void evidencia() {
           vis_poa_evidencia user = new vis_poa_evidencia();
         vista.getESCRITORIO().add(user);

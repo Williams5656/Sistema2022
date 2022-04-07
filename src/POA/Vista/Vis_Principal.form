@@ -170,11 +170,6 @@
                 <Property name="text" type="java.lang.String" value="INICIO"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="btn_actividades">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="ACTIVIDADES"/>
-              </Properties>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="btn_evidencias">
               <Properties>
                 <Property name="text" type="java.lang.String" value="EVIDENCIAS"/>

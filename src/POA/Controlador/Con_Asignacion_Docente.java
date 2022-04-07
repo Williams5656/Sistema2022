@@ -77,15 +77,19 @@ public class Con_Asignacion_Docente {
     }
 
     public void plan() {
-        int seleccionado;
-        seleccionado = (int) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 0);
-        System.out.println(seleccionado);
-        if (seleccionado == 0) {
+        String seleccionado = "";
+        int id = 0;
+        seleccionado = (String) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 0);
+        lista = bdasignacion.obtenerdatos(seleccionado);
+        for (AsignacionMateriaDocentesMD asignacion : lista) {
+            id = asignacion.getId_asignacio();
+        }
+        if (id == 0) {
             JOptionPane.showMessageDialog(ESCRITORIO, "Seleccione un docente");
         } else {
             vista.setVisible(false);
             Vis_Documentacion doc = new Vis_Documentacion();
-            Con_documentacion per = new Con_documentacion(doc, seleccionado);
+            Con_documentacion per = new Con_documentacion(doc, id);
             per.cargarDatos();
             per.desactivarBotones();
             per.eventoHoraguiaSi();

@@ -8,6 +8,7 @@ package POA.Modelo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -109,5 +110,32 @@ public class DocumentacionBD extends DocumentacionMD{
         }
     }
     
-    
+    public int numfecha(String fecha) {
+        int fecha1 = 0;
+        String sql="select count (fecha) as num from documentacion where cast ('"+ fecha +"'as date) > fecha";
+        ResultSet rs = conectar.query(sql);
+        try {
+            while (rs.next()) {
+                
+                fecha1 = rs.getInt("num");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PerfilBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return fecha1;
+    }
+     public int fecha() {
+        int fecha1 = 0;
+        String sql="select count (fecha) as num from documentacion ";
+        ResultSet rs = conectar.query(sql);
+        try {
+            while (rs.next()) {
+                
+                fecha1 = rs.getInt("num");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PerfilBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return fecha1;
+    }
 }

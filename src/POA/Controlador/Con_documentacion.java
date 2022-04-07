@@ -174,18 +174,22 @@ public class Con_documentacion {
             bddocumentacion.setGuias(Radio());
             SimpleDateFormat formato6 = new SimpleDateFormat("yyyy-MM-dd");
             String fecha = formato6.format(vista.getFecha().getDate());
-            bddocumentacion.setFecha(fecha);
-            if (vista.getTxt_horaguia().getText().equals("")) {
-                bddocumentacion.setHorasGuia(0);
+            if (bddocumentacion.numfecha(fecha) == bddocumentacion.fecha()) {
+                bddocumentacion.setFecha(fecha);
+                if (vista.getTxt_horaguia().getText().equals("")) {
+                    bddocumentacion.setHorasGuia(0);
+                } else {
+                    bddocumentacion.setHorasGuia(Integer.parseInt(vista.getTxt_horaguia().getText()));
+                }
+                if (bddocumentacion.insertar()) {
+                    JOptionPane.showMessageDialog(null, "DATOS GUARDADOS CORRECTAMENTE");
+                    lista();
+                    nuevo();
+                } else {
+                    JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR");
+                }
             }else{
-                 bddocumentacion.setHorasGuia(Integer.parseInt(vista.getTxt_horaguia().getText()));
-            }
-            if (bddocumentacion.insertar()) {
-                JOptionPane.showMessageDialog(null, "DATOS GUARDADOS CORRECTAMENTE");
-                lista();
-                nuevo();
-            } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR");
+                JOptionPane.showMessageDialog(null, "LA FECHA INGRESADA ES MENOR A EL ULTIMO PLAN");
             }
         }
     }

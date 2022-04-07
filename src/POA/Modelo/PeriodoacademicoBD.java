@@ -34,7 +34,7 @@ public class PeriodoacademicoBD extends PeriodoacademicoMD {
     public List<PeriodoacademicoMD> lista_periodos() {
         try {
             List<PeriodoacademicoMD> lista = new ArrayList<PeriodoacademicoMD>();
-            String sql = "select * from periodo_academico";
+            String sql = "select * from periodo_academico where estado = true";
             ResultSet rs = conectar.query(sql);
 
             while (rs.next()) {

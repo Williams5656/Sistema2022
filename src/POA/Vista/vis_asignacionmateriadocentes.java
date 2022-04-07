@@ -59,7 +59,13 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
         this.lbdocente = lbdocente;
     }
 
-   
+    public JComboBox<String> getCboxcarrera() {
+        return cboxcarrera;
+    }
+
+    public void setCboxcarrera(JComboBox<String> cboxcarrera) {
+        this.cboxcarrera = cboxcarrera;
+    }
     
 
     public JButton getBtnagregar() {
@@ -190,6 +196,8 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
         txtdocente = new javax.swing.JTextField();
         combodocentes = new javax.swing.JComboBox<>();
         btnimprimir = new javax.swing.JButton();
+        cboxcarrera = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
         lbdocente = new javax.swing.JLabel();
 
         setClosable(true);
@@ -226,7 +234,7 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
         getContentPane().add(btncrearplan, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, -1, -1));
 
         cboxciclo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "1", "2", "3", "4", "5", "6", "7", "8" }));
-        getContentPane().add(cboxciclo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 120, -1));
+        getContentPane().add(cboxciclo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, 120, -1));
 
         jLabel6.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -234,7 +242,7 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
         cboxjornada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "MATUTINA", "VESPERTINA", "NOCTURNA" }));
-        getContentPane().add(cboxjornada, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 100, -1));
+        getContentPane().add(cboxjornada, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 150, -1));
 
         jLabel4.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -243,15 +251,15 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
 
         jLabel3.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("CICLO:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, -1, -1));
+        jLabel3.setText("CARRERA:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
 
-        getContentPane().add(cboxasignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 100, -1));
+        getContentPane().add(cboxasignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 150, -1));
 
         jLabel5.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("PARALELO:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, -1, -1));
 
         cboxparalelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "A", "B", "C", "D", "E", "F" }));
         cboxparalelo.addActionListener(new java.awt.event.ActionListener() {
@@ -259,7 +267,7 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
                 cboxparaleloActionPerformed(evt);
             }
         });
-        getContentPane().add(cboxparalelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, 120, -1));
+        getContentPane().add(cboxparalelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, 120, -1));
 
         jLabel1.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -283,13 +291,20 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
         getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, -1, -1));
         getContentPane().add(txtdocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 170, 20));
 
-        getContentPane().add(combodocentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 370, -1));
+        getContentPane().add(combodocentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 370, -1));
 
         btnimprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/impresion.png"))); // NOI18N
         getContentPane().add(btnimprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, -1));
 
+        getContentPane().add(cboxcarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 260, -1));
+
+        jLabel8.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("CICLO:");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, -1, -1));
+
         lbdocente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/fondo azul (1).jpg"))); // NOI18N
-        getContentPane().add(lbdocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 500));
+        getContentPane().add(lbdocente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -307,6 +322,7 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnimprimir;
     private javax.swing.JButton btnmodificar;
     private javax.swing.JComboBox<String> cboxasignatura;
+    private javax.swing.JComboBox<String> cboxcarrera;
     private javax.swing.JComboBox<String> cboxciclo;
     private javax.swing.JComboBox<String> cboxjornada;
     private javax.swing.JComboBox<String> cboxparalelo;
@@ -320,6 +336,7 @@ public class vis_asignacionmateriadocentes extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbdocente;
     private javax.swing.JTable tablaasignaciondocentemateria;

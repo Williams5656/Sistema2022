@@ -115,8 +115,7 @@ public class AsignacionMateriaDocenteBD extends AsignacionMateriaDocentesMD{
         String sql="select id_periodo from periodo_academico where nombre= '" + nombre+ "'";
         ResultSet rs = conectar.query(sql);
         try {
-            while (rs.next()) {
-                
+            while (rs.next()) {                
                 idPeriodo=rs.getInt("id_periodo");
             }
         } catch (SQLException ex) {

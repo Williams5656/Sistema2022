@@ -139,7 +139,7 @@ public class doc_modulo_BD extends doc_modulo_MD {
 
     public boolean insertar_doc(int cod) {
         //Transformo image a base64 encode para postgresl
-          String ef = null;
+        String ef = null;
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         try {
             BufferedImage img = toBufferedImage(getDocumento());

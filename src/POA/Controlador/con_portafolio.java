@@ -7,6 +7,8 @@ package POA.Controlador;
 import POA.Modelo.*;
 import POA.Vista.*;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -46,16 +48,11 @@ public class con_portafolio {
         vista.getBtnSilabo().addActionListener(e-> tabla_silabo());
         vista.getBtnImprimir().addActionListener(e-> imprimir());
         vista.getBtn_buscar().addActionListener(e-> tabla_buscar());
+        vista.getBtn_subir().addActionListener(e-> subir_datos());
+          
     }
     
-    public void subir_doc_modulo(){        
-        JFileChooser j = new JFileChooser();
-        j.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        int estado = j.showOpenDialog(null);
-        if (estado == JFileChooser.APPROVE_OPTION) {
-           bdmodulo.insertar_doc(Integer.parseInt(vista.getTbl_Datos().getValueAt(vista.getTbl_Datos().getSelectedRow(), 0).toString()));
-        }
-    }
+
     public void buscar(){
         String periodo = (String) vista.getComboPeriodAcademico().getSelectedItem().toString();
         bdmodulo.buscar_x_parametro(cod_periodo(periodo), vista.getChk_periodo().isSelected(), 
@@ -235,5 +232,27 @@ public class con_portafolio {
                 Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
             }
     }
-    
+   
+    public void subir_doc_modulo(){        
+        JFileChooser j = new JFileChooser();
+        j.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        int estado = j.showOpenDialog(null);
+        if (estado == JFileChooser.APPROVE_OPTION) {
+            try {
+                Image icono = ImageIO.read(j.getSelectedFile()).getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+                bdmodulo.setDocumento(icono);
+                
+            } catch (IOException ex) {
+                Logger.getLogger(con_portafolio.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           bdmodulo.insertar_doc(Integer.parseInt(vista.getTbl_Datos().getValueAt(vista.getTbl_Datos().getSelectedRow(), 0).toString()));
+        }
+    }     
+     
+    public void subir_datos(){
+        if (vista.getBtnModulos().isSelected() && vista.getTbl_Datos().getSelectedRow()>-1){
+            subir_doc_modulo();
+        }
+    } 
+     
 }

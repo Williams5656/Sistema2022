@@ -44,7 +44,7 @@ import net.sf.jasperreports.view.JasperViewer;
 public class Con_poa_proyectos {
 
     private final vis_poa_proyectos vista;
-    public static int id_ob;
+    public static int id_pro;
     public static ArrayList<Integer> listasobjetivos = new ArrayList();
     ProyectoBD poabd = new ProyectoBD();
     ObjetivoOperativoBD obbd = new ObjetivoOperativoBD();
@@ -344,7 +344,7 @@ public class Con_poa_proyectos {
                
                 listasobjetivos.add(listaoperativo.get(i).getId_objetivo_operativo());
                 System.out.println(listaoperativo.get(i).getId_objetivo_operativo());
-                
+                id_pro=listaoperativo.get(i).getId_proyecto();
                 
                 
             }
@@ -363,10 +363,14 @@ public class Con_poa_proyectos {
         Dimension desktopSize = Con_principal.vista.getESCRITORIO().getSize();
         Dimension FrameSize = zap.getSize();
         zap.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-        Con_poa_actividad proyectos = new Con_poa_actividad(zap);
+        Con_poa_actividad proyectos = new Con_poa_actividad(zap,id_pro);
        }
        else{
            JOptionPane.showMessageDialog(null, "Debe seleccionar una actividad de la tabla");
        }
     }
+
+    public static int getId_pro() {
+        return id_pro;
+    }        
 }

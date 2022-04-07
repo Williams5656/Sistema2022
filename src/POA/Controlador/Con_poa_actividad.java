@@ -58,11 +58,12 @@ public class Con_poa_actividad {
       
       private docenteBD bdocente = new docenteBD();
       private PersonaBD bpersona = new PersonaBD();
-      
+      int idproyecto=0;
       
 
-    public Con_poa_actividad(vis_poa_actividad vista) {
+    public Con_poa_actividad(vis_poa_actividad vista, int id_pro) {
        this.vista = vista;
+       idproyecto=id_pro;
         vista.setVisible(true);
         vista.getCombo_objetivo_operarivo().setEnabled(false);
         
@@ -474,7 +475,4 @@ public class Con_poa_actividad {
         return id_act;
     }
 
-    
-    
-    
 }

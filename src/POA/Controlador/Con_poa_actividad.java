@@ -33,6 +33,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
+import POA.Controlador.Con_poa_proyectos.*;
 
 /**
  *
@@ -63,10 +64,9 @@ public class Con_poa_actividad {
     public Con_poa_actividad(vis_poa_actividad vista) {
        this.vista = vista;
         vista.setVisible(true);
-        vista.getComboproyectos().setEnabled(false);
         vista.getCombo_objetivo_operarivo().setEnabled(false);
         
-        cargarComboProyecto();
+
         cargarObjetivos();
         cargarcombo();
         desactivar();
@@ -86,11 +86,7 @@ public class Con_poa_actividad {
             
         });
         
-        vista.getComboproyectos().addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent itemEvent) {
-                cargarObjetivos();
-            }
-        });
+        
         
         
 
@@ -106,40 +102,34 @@ public class Con_poa_actividad {
     
     
     
-    public void cargarComboProyecto(){
-        
-        vista.getComboproyectos().removeAllItems();
-        
-        
-        listaProyectos = baseDatosProyecto.mostrarDatos();
-        
-        for (ProyectoMD proyectos : listaProyectos){
-            if (Con_Poa1.getId_poa() == proyectos.getId_Poa()){
-                vista.getComboproyectos().addItem(String.valueOf(proyectos.getId_proyecto()));
-                
-                
-            }
-        }
-    }
+    
     
     public void cargarObjetivos(){
-        String itemCombo = (String) vista.getComboproyectos().getSelectedItem();
-        int num_proyecto = Integer.parseInt(String.valueOf(itemCombo.charAt(itemCombo.length() - 1)));
-        
-        
-        vista.getCombo_objetivo_operarivo().removeAllItems();
-        listaProyectos = baseDatosProyecto.mostrarDatos();
-        listaObjetivosOperativos = baseDatosObjetivoOperativo.mostrarDatos();
-        listas.clear();
+//        String itemCombo = (String) vista.getComboproyectos().getSelectedItem();
+//        int num_proyecto = Integer.parseInt(String.valueOf(itemCombo.charAt(itemCombo.length() - 1)));
+//        
+//        
+//        vista.getCombo_objetivo_operarivo().removeAllItems();
+//        listaProyectos = baseDatosProyecto.mostrarDatos();
+//        listaObjetivosOperativos = baseDatosObjetivoOperativo.mostrarDatos();
+//        listas.clear();
+//
+//        for (ProyectoMD proyectos : listaProyectos){
+//            if (num_proyecto == proyectos.getId_proyecto()){
+//                for (ObjetivoOperativoMD objetivos : listaObjetivosOperativos){
+//                    if (objetivos.getId_proyecto() == proyectos.getId_proyecto()){
+//                        vista.getCombo_objetivo_operarivo().addItem(objetivos.getObjetivo() + "");
+//                        listas.add(objetivos.getId_objetivo_operativo());
+//
+//                    }
+//                }
+//            }
+//        }
 
-        for (ProyectoMD proyectos : listaProyectos){
-            if (num_proyecto == proyectos.getId_proyecto()){
-                for (ObjetivoOperativoMD objetivos : listaObjetivosOperativos){
-                    if (objetivos.getId_proyecto() == proyectos.getId_proyecto()){
-                        vista.getCombo_objetivo_operarivo().addItem(objetivos.getObjetivo() + "");
-                        listas.add(objetivos.getId_objetivo_operativo());
-
-                    }
+        for (int i = 0; i < listaObjetivosOperativos.size(); i++) {
+            for (int j = 0; j < Con_poa_proyectos.listasobjetivos.size(); j++) {
+                if (listaObjetivosOperativos.get(i).getId_objetivo_operativo()==Con_poa_proyectos.listasobjetivos.get(j)) {
+                    vista.getCombo_objetivo_operarivo().addItem(listaObjetivosOperativos.get(i).getObjetivo());
                 }
             }
         }
@@ -206,7 +196,7 @@ public class Con_poa_actividad {
         vista.getBtnguardar().setEnabled(true);
         vista.getBtnmodificar().setEnabled(false);
         
-        vista.getComboproyectos().setEnabled(true);
+
         vista.getCombo_objetivo_operarivo().setEnabled(true);
         vista.getTxtactividad().setText("");
         vista.getComborecursos().setSelectedItem("Seleccionar");
@@ -222,7 +212,7 @@ public class Con_poa_actividad {
     public void seleccionar(){
         vista.getBtnguardar().setEnabled(false);
         vista.getBtnmodificar().setEnabled(true);
-        vista.getComboproyectos().setEnabled(false);
+
         vista.getCombo_objetivo_operarivo().setEnabled(false);
         vista.getBtneliminar().setEnabled(true);
         
@@ -296,11 +286,11 @@ public class Con_poa_actividad {
     public void buscar() {
         
         String objetivo = (String) vista.getCombo_objetivo_operarivo().getSelectedItem();
-        String proyect = (String) vista.getComboproyectos().getSelectedItem();
+
         int idobj = 0;
-        System.out.println(proyect);
+
         for (int i = 0; i < listaObjetivosOperativos.size(); i++) {
-            if (listaObjetivosOperativos.get(i).getObjetivo().equals(objetivo)&&listaObjetivosOperativos.get(i).getId_proyecto()== Integer.valueOf(proyect)) {
+            if (listaObjetivosOperativos.get(i).getObjetivo().equals(objetivo)) {
                 idobj=listaObjetivosOperativos.get(i).getId_objetivo_operativo();
                  
             }
@@ -367,12 +357,7 @@ public class Con_poa_actividad {
         
     }
     
-    public void cargarOB(){
-        vista.getCombo_objetivo_operarivo().addItemListener(new objetivo_evidencia(vista.getComboproyectos(), vista.getCombo_objetivo_operarivo()));
-        
-        
-
-    }
+    
     
     
   

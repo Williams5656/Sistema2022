@@ -8,6 +8,7 @@ package POA.Vista;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -83,13 +84,23 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         this.combo_responsable = combo_responsable;
     }
 
-    public JComboBox<String> getComboproyectos() {
-        return comboproyectos;
+    public JLabel getLblaniopoa() {
+        return lblaniopoa;
     }
 
-    public void setComboproyectos(JComboBox<String> comboproyectos) {
-        this.comboproyectos = comboproyectos;
+    public void setLblaniopoa(JLabel lblaniopoa) {
+        this.lblaniopoa = lblaniopoa;
     }
+
+    public JLabel getLblproyecto() {
+        return lblproyecto;
+    }
+
+    public void setLblproyecto(JLabel lblproyecto) {
+        this.lblproyecto = lblproyecto;
+    }
+
+    
 
     public JComboBox<String> getComborecursos() {
         return comborecursos;
@@ -187,13 +198,13 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         btnindicador = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        comboproyectos = new javax.swing.JComboBox<>();
         jSeparator2 = new javax.swing.JSeparator();
-        jLabel2 = new javax.swing.JLabel();
         btnimprimir = new javax.swing.JButton();
         btnlistar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        lblproyecto = new javax.swing.JLabel();
+        lblaniopoa = new javax.swing.JLabel();
 
         setClosable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -211,35 +222,35 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tablaactividades);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 530, 430));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 530, 430));
 
         txtbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtbuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(txtbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 170, 25));
+        getContentPane().add(txtbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 170, 25));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/buscar (2).png"))); // NOI18N
         jButton1.setContentAreaFilled(false);
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 50, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 50, 40));
 
         jLabel4.setText("Objetivo Operativo:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 220, 140, 20));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 270, 140, 20));
 
         jLabel5.setText("Actividad:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 270, 110, 20));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 320, 110, 20));
 
         jLabel6.setText("Responsable:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 350, 110, 20));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 400, 110, 20));
 
         jLabel7.setText("Plazo:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 390, 110, 20));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 440, 110, 20));
 
         jLabel8.setText("Recursos Financieros:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, 140, 20));
-        getContentPane().add(txtrecursos_financieros, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 430, 70, -1));
-        getContentPane().add(fecha_plazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 390, 230, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 480, 140, 20));
+        getContentPane().add(txtrecursos_financieros, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 480, 70, -1));
+        getContentPane().add(fecha_plazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 440, 230, -1));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -281,43 +292,35 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         btnmodificar.setContentAreaFilled(false);
         jPanel1.add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 10, 90, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, 360, 80));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 520, 360, 80));
 
-        getContentPane().add(combo_objetivo_operarivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 220, 230, -1));
+        getContentPane().add(combo_objetivo_operarivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 270, 230, -1));
 
-        getContentPane().add(combo_responsable, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 350, 230, -1));
+        getContentPane().add(combo_responsable, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 400, 230, -1));
 
         comborecursos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Ista", "Autogestion" }));
-        getContentPane().add(comborecursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 430, 130, -1));
+        getContentPane().add(comborecursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 480, 130, -1));
 
         txtactividad.setColumns(20);
         txtactividad.setRows(5);
         jScrollPane3.setViewportView(txtactividad);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 260, 230, 80));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 310, 230, 80));
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel16.setText("ACTIVIDADES");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, 260, 40));
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel16.setText("PROYECTO");
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, 120, 40));
 
         jLabel18.setText("$");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 430, 10, 20));
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 480, 10, 20));
 
         btnindicador.setText("AÑADIR INDICADOR");
-        getContentPane().add(btnindicador, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 560, 170, 40));
-
-        jLabel1.setText("Proyecto:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 170, 110, 20));
-
-        getContentPane().add(comboproyectos, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 170, 230, -1));
-        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1000, 20));
-
-        jLabel2.setText("JOHANN");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 120, 30));
+        getContentPane().add(btnindicador, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 610, 170, 40));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 1000, 10));
 
         btnimprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/impresion.png"))); // NOI18N
         btnimprimir.setText("Imprimir");
-        getContentPane().add(btnimprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 560, 120, 40));
+        getContentPane().add(btnimprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 610, 120, 40));
 
         btnlistar.setText("LISTAR");
         btnlistar.addActionListener(new java.awt.event.ActionListener() {
@@ -325,8 +328,23 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
                 btnlistarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnlistar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, -1, -1));
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 640));
+        getContentPane().add(btnlistar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 190, -1, -1));
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel17.setText("ACTIVIDADES");
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 260, 40));
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel19.setText("POA");
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 40, 40));
+
+        lblproyecto.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblproyecto.setText("jLabel1");
+        getContentPane().add(lblproyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 90, 100, 40));
+
+        lblaniopoa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblaniopoa.setText("jLabel1");
+        getContentPane().add(lblaniopoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 100, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -354,19 +372,17 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnnuevo;
     private javax.swing.JComboBox<String> combo_objetivo_operarivo;
     private javax.swing.JComboBox<String> combo_responsable;
-    private javax.swing.JComboBox<String> comboproyectos;
     private javax.swing.JComboBox<String> comborecursos;
     private com.toedter.calendar.JDateChooser fecha_plazo;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -376,6 +392,8 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblaniopoa;
+    private javax.swing.JLabel lblproyecto;
     private javax.swing.JTable tablaactividades;
     private javax.swing.JTextArea txtactividad;
     private javax.swing.JTextField txtbuscar;

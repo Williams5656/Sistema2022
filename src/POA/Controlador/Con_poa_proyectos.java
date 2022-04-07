@@ -43,6 +43,8 @@ import net.sf.jasperreports.view.JasperViewer;
 public class Con_poa_proyectos {
 
     private final vis_poa_proyectos vista;
+    public static int id_ob;
+    public static ArrayList<Integer> listasobjetivos = new ArrayList();
     ProyectoBD poabd = new ProyectoBD();
     ObjetivoOperativoBD obbd = new ObjetivoOperativoBD();
     private List<ProyectoMD> lista = new ArrayList<>();
@@ -53,8 +55,10 @@ public class Con_poa_proyectos {
     private PoaBD baseDatosPoa = new PoaBD();
     private List<POA.Modelo.CarreraMD> listaCarreras = new ArrayList<>();
     private POA.Modelo.CarreraBD baseDatosCarrera = new CarreraBD();
+    
     private static int id_proyecto;
     int poa = 0;
+    private boolean tablaSeleccionada = false;
 
     public Con_poa_proyectos(vis_poa_proyectos vista, int id_poa) {
         this.vista = vista;
@@ -88,7 +92,7 @@ public class Con_poa_proyectos {
 
         modelo.addColumn("Id_poa");
         modelo.addColumn("Id_proyecto");
-        modelo.addColumn("Numero_carrera");
+        modelo.addColumn("Numero de Proyecto");
         modelo.addColumn("Objetivo estrategico");
         modelo.addColumn("Objetivo tactico");
         modelo.addColumn("estrategia");
@@ -328,4 +332,24 @@ public class Con_poa_proyectos {
 //        vista.getTxtarea_obopera().setText(listaoperativo.get(select).getObjetivo() + "");
 //
 //    }
+    
+    
+    public void seleccionarobjetivo(){
+        
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) vista.getTabla_proyecto().getModel();
+        
+        int ob = (int) modelo.getValueAt(vista.getTabla_lista_proyectos().getSelectedRow(), 1);
+        tablaSeleccionada = true;
+        for (int i = 0; i < listaoperativo.size(); i++) {
+            if (listaoperativo.get(i).getId_proyecto()==ob) {
+               
+                listasobjetivos.add(listaoperativo.get(i).getId_objetivo_operativo());
+                
+            }
+        }
+        
+        System.out.println(ob);
+  
+    }
 }

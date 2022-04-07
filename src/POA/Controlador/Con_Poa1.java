@@ -122,7 +122,7 @@ public class Con_Poa1 {
  
     }
      
-     public void seleccionar(){
+    public void seleccionar(){
         int seleccionado = vista.getTablaPoa().getSelectedRow();
         tablaSeleccionada = true;
         
@@ -144,7 +144,6 @@ public class Con_Poa1 {
        }
     }
     
-
     public static int getId_poa() {
         return id_poa;
     }

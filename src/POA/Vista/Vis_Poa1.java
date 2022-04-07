@@ -95,6 +95,24 @@ public class Vis_Poa1 extends javax.swing.JInternalFrame {
     public void setyChooser(JYearChooser yChooser) {
         this.yChooser = yChooser;
     }
+
+    public JButton getBtnimprimir() {
+        return btnimprimir;
+    }
+
+    public void setBtnimprimir(JButton btnimprimir) {
+        this.btnimprimir = btnimprimir;
+    }
+
+    public JTextField getTxtidcarrera() {
+        return txtidcarrera;
+    }
+
+    public void setTxtidcarrera(JTextField txtidcarrera) {
+        this.txtidcarrera = txtidcarrera;
+    }
+    
+    
     
     
 
@@ -113,6 +131,7 @@ public class Vis_Poa1 extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         yChooser = new com.toedter.calendar.JYearChooser();
         cbxCarrera = new javax.swing.JComboBox<>();
+        txtidcarrera = new javax.swing.JTextField();
         btnTerminado = new javax.swing.JButton();
         btnAniadirProyectos = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -122,6 +141,7 @@ public class Vis_Poa1 extends javax.swing.JInternalFrame {
         btnGuardar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        btnimprimir = new javax.swing.JButton();
 
         setClosable(true);
 
@@ -132,9 +152,10 @@ public class Vis_Poa1 extends javax.swing.JInternalFrame {
 
         jLabel1.setText("CARRERA:");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
-        jPanel2.add(yChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 90, -1));
+        jPanel2.add(yChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 160, -1));
 
-        jPanel2.add(cbxCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 440, -1));
+        jPanel2.add(cbxCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 160, -1));
+        jPanel2.add(txtidcarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 50, -1));
 
         btnTerminado.setText("Terminado");
 
@@ -163,6 +184,8 @@ public class Vis_Poa1 extends javax.swing.JInternalFrame {
 
         btnEliminar.setText("Eliminar");
 
+        btnimprimir.setText("Imprimir");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -178,6 +201,8 @@ public class Vis_Poa1 extends javax.swing.JInternalFrame {
                         .addComponent(btnModificar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEliminar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnimprimir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAniadirProyectos, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -203,7 +228,8 @@ public class Vis_Poa1 extends javax.swing.JInternalFrame {
                     .addComponent(btnNuevo)
                     .addComponent(btnGuardar)
                     .addComponent(btnModificar)
-                    .addComponent(btnEliminar))
+                    .addComponent(btnEliminar)
+                    .addComponent(btnimprimir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -241,6 +267,7 @@ public class Vis_Poa1 extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnTerminado;
+    private javax.swing.JButton btnimprimir;
     private javax.swing.JComboBox<String> cbxCarrera;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -249,6 +276,7 @@ public class Vis_Poa1 extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaPoa;
+    private javax.swing.JTextField txtidcarrera;
     private com.toedter.calendar.JYearChooser yChooser;
     // End of variables declaration//GEN-END:variables
 }

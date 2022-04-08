@@ -17,6 +17,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTextField;
+import POA.Modelo.Validadores.Numeros;
+import POA.Modelo.Validadores.Letras;
 
 public class con_carrera {
 
@@ -30,13 +33,13 @@ public class con_carrera {
     public con_carrera(Vis_Carrera vista) {
         this.vista = vista;
         vista.setVisible(true);
+        desactivarbotones();
+        validaciones();
         //vista.setLocationRelativeTo(null);
-
         vista.getBtnNuevo().addActionListener(e -> nuevo());
         vista.getBtnGuardar().addActionListener(e -> guardar());
         vista.getBtnModificar().addActionListener(e -> modificar());
         vista.getBtnEliminar().addActionListener(e -> eliminar());
-
 //        vista.getBtnBuscarc().addActionListener(e->buscarced());
         vista.getTablaCarrera().addMouseListener(new MouseAdapter() {
             @Override
@@ -46,10 +49,38 @@ public class con_carrera {
 
         });
         listam();
-        buscar1();
+        buscar();
     }
 
-    public void buscar1() {
+    public void desactivarbotones() {
+
+        vista.getBtnGuardar().setEnabled(false);
+        vista.getBtnNuevo().setEnabled(true);
+//      vista.getBtnimprimir().setEnabled(true);
+        vista.getBtnModificar().setEnabled(false);
+        vista.getBtnEliminar().setEnabled(false);
+        vista.getComboCarrera().setEnabled(false);
+        vista.getTxtCodigo_carrera().setEnabled(false);
+        vista.getTxtFecha_inicio().setEnabled(false);
+        vista.getTxtCoordinador().setEnabled(false);
+
+    }
+
+    public void activarbotones() {
+
+        vista.getBtnGuardar().setEnabled(true);
+        vista.getBtnNuevo().setEnabled(true);
+//      vista.getBtnimprimir().setEnabled(true);
+        vista.getBtnModificar().setEnabled(true);
+        vista.getBtnEliminar().setEnabled(true);
+        vista.getComboCarrera().setEnabled(true);
+        vista.getTxtCodigo_carrera().setEnabled(true);
+        vista.getTxtFecha_inicio().setEnabled(true);
+        vista.getTxtCoordinador().setEnabled(true);
+
+    }
+
+    public void buscar() {
         listaPersonas = bdpersona.mostrardatos();
         vista.getTxtCoordinador().addKeyListener(new KeyAdapter() {
             @Override
@@ -70,8 +101,7 @@ public class con_carrera {
     }
 
     public void guardar() {
-//        boolean existente = false;
-//        carrera.setNombre_carrera(vista.getTxtNombre_carrera().getText());
+
         String n_carrera = (String) vista.getComboCarrera().getSelectedItem();
         carrera.setNombre_carrera(n_carrera);
         carrera.setCodigo_carrera(vista.getTxtCodigo_carrera().getText());
@@ -116,11 +146,9 @@ public class con_carrera {
         vista.getCmbModalidad().setSelectedItem(carrera.getModalidad());
         vista.getTxtCoordinador().setText(carrera.getCoordinador());
 
-        String nombre = "[" + carrera.getCoordinador() + "] " + bdpersona.getNombres() + " " + bdpersona.getApellidos();
+        String nombre = bdpersona.getNombres() + " " + bdpersona.getApellidos();
         vista.getLblNombre().setText(nombre);
 
-//        String nombre = bdpersona.getCedula();
-//        vista.getLblNombre().setText(nombre);
     }
 
     public void listam() {
@@ -186,6 +214,7 @@ public class con_carrera {
 
     public void nuevo() {
 
+        activarbotones();
         vista.getTxtCodigo_carrera().setText("");
         vista.getComboCarrera().setSelectedItem("");
         vista.getTxtFecha_inicio().setText("");
@@ -224,7 +253,7 @@ public class con_carrera {
         int ca = 0;
         do {
             Random r = new Random();
-            b = r.nextInt(000000001 + 999999999) + 999999999;
+            b = r.nextInt(1);
             co = Integer.toString(b);
             CarreraBD car = new CarreraBD(null, co, null, null, null);
             if (car.hasNext()) {
@@ -235,4 +264,37 @@ public class con_carrera {
         } while (ca != 0);
         return b;
     }
+
+    private void only_num(JTextField t) {
+        t.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyChar() < '0' | e.getKeyChar() > '9' | (vista.getTxtCoordinador().getText().length() >= 10)) {
+                    System.out.println("Ingrese cèdula");
+                    e.consume();
+                }
+            }
+        }
+        );
+    }
+
+    public void validaciones() {
+
+        Numeros.solo_numeros(vista.getTxtCoordinador());
+        only_num(vista.getTxtCoordinador());
+//        Numeros.solo_numeros(vista.getTxtCodigo_carrera());
+        Letras.numero_letras(vista.getTxtCodigo_carrera(), 4);
+        Letras.no_espacios(vista.getTxtCodigo_carrera());
+        vista.getTablaCarrera().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    seleccionar();
+                } catch (Exception ex) {
+                    Logger.getLogger(con_carrera.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+    }
+
 }

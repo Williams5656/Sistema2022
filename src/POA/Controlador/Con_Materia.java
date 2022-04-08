@@ -134,14 +134,8 @@ public class Con_Materia {
         materia.setCreditos(lista.get(select).getCreditos());
         materia.setPlan(lista.get(select).getPlan());
         materia.setArea(lista.get(select).getArea());
-//        
-//        for (int i = 0; i < 10; i++) {
-//            if (vista.getComboCarrera_mat().getSelectedItem().equals(listac.get(i).getNombre_carrera())) {
-//                String nombre = listac.get(i).getNombre_carrera();
-//                vista.getLblNombre().setText(nombre);
-//            }
-//        }
-               for (CarreraMD carrera : listac) {
+
+        for (CarreraMD carrera : listac) {
             if (carrera.getCodigo_carrera().equals(lista.get(select).getNombre_carrera())) {
                 vista.getComboCarrera_mat().setSelectedItem(carrera.getNombre_carrera());
             }
@@ -155,9 +149,6 @@ public class Con_Materia {
         vista.getTxtcreditos().setText(materia.getCreditos());
         vista.getComboplan().setSelectedItem(materia.getPlan());
         vista.getComboareacarrera().setSelectedItem(materia.getArea());
-
-//        String nombre = materia.getNombre_carrera();
-//        vista.getLblNombre().setText(nombre);
 
     }
 
@@ -183,7 +174,7 @@ public class Con_Materia {
     }
 
     public void desactivarbotones() {
-       
+
         vista.getBtnguardar().setEnabled(false);
         vista.getBtnnuevo().setEnabled(true);
         vista.getBtnimprimir().setEnabled(true);
@@ -217,9 +208,9 @@ public class Con_Materia {
         vista.getTxtnombremateria().setEnabled(true);
 
     }
-        
+
     public void nuevo() {
-        
+
         activarbotones();
         vista.getComboCarrera_mat().setSelectedItem("");
         vista.getComboejeformacion().setSelectedItem("");
@@ -236,7 +227,7 @@ public class Con_Materia {
         vista.getComboCarrera_mat().addItem("");
         for (int i = 0; i < listac.size(); i++) {
             vista.getComboCarrera_mat().addItem(listac.get(i).getNombre_carrera());
-        }    
+        }
     }
 
     public void campoarea() {
@@ -247,23 +238,6 @@ public class Con_Materia {
         }
     }
 
-//    public void buscar() {
-//        listac = bdcarrera.mostrardatos();
-//        vista.getComboCarrera_mat().addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyReleased(KeyEvent e) {
-//                for (CarreraMD carre : listac) {
-//                    if (carre.getNombre_carrera().equals(vista.getComboCarrera_mat().getSelectedItem())) {
-//                        vista.getLblNombre().setText(carre.getNombre_carrera());
-//                    }
-//                }
-//                if (vista.getComboCarrera_mat().getSelectedItem().equals("")) {
-//                    vista.getLblNombre().setText("");
-//                }
-//            }
-//        });
-//    }
-    
     private void eliminar() {
         int resp1 = JOptionPane.showConfirmDialog(null, "CONFIRME SI DESEA ELIMINAR");
         if (resp1 == 0) {
@@ -323,9 +297,9 @@ public class Con_Materia {
         }
         return true;
     }
-    
-    private void only_num(JTextField t) {                                       
-            t.addKeyListener(new KeyAdapter() {
+
+    private void only_num(JTextField t) {
+        t.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
                 if (e.getKeyChar() < '0' | e.getKeyChar() > '9' | (vista.getTxtcreditos().getText().length() >= 3)) {
@@ -333,9 +307,9 @@ public class Con_Materia {
                 }
             }
         }
-      );
-    } 
-    
+        );
+    }
+
     public void validaciones() {
 
         Letras.solo_letras(vista.getTxtnombremateria());

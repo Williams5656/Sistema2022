@@ -113,14 +113,6 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         this.txtnombremateria = txtnombremateria;
     }
 
-    public JLabel getLblNombre() {
-        return lblNombre;
-    }
-
-    public void setLblNombre(JLabel lblNombre) {
-        this.lblNombre = lblNombre;
-    }
-
     public JButton getBtneliminar() {
         return btneliminar;
     }
@@ -169,7 +161,6 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         txtcreditos = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        lblNombre = new javax.swing.JLabel();
         comboplan = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablamateria = new javax.swing.JTable();
@@ -233,10 +224,6 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         jLabel7.setText("Àrea de carrera*");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, -1, 20));
 
-        lblNombre.setForeground(new java.awt.Color(51, 102, 255));
-        lblNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        getContentPane().add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 200, 20));
-
         comboplan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " ", " " }));
         getContentPane().add(comboplan, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 130, 120, -1));
 
@@ -299,7 +286,6 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JLabel lblNombre;
     private javax.swing.JTable tablamateria;
     private javax.swing.JTextField txtcodmateria;
     private javax.swing.JTextField txtcreditos;

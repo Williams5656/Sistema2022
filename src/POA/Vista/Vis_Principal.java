@@ -6,6 +6,7 @@
 package POA.Vista;
 
 import javax.swing.JDesktopPane;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -176,6 +177,22 @@ public class Vis_Principal extends javax.swing.JFrame {
         this.btnPortafolio = btnPortafolio;
     }
 
+    public JLabel getLbCarrera() {
+        return lbCarrera;
+    }
+
+    public void setLbCarrera(JLabel lbCarrera) {
+        this.lbCarrera = lbCarrera;
+    }
+
+    public JLabel getLbUsuario() {
+        return lbUsuario;
+    }
+
+    public void setLbUsuario(JLabel lbUsuario) {
+        this.lbUsuario = lbUsuario;
+    }
+
    
 
     
@@ -191,6 +208,8 @@ public class Vis_Principal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         ESCRITORIO = new javax.swing.JDesktopPane();
         jLabel4 = new javax.swing.JLabel();
+        lbUsuario = new javax.swing.JLabel();
+        lbCarrera = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         MENU_USUARIO = new javax.swing.JMenu();
         btn_usuario = new javax.swing.JMenuItem();
@@ -221,21 +240,42 @@ public class Vis_Principal extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/logo2222.png"))); // NOI18N
 
+        lbUsuario.setBackground(new java.awt.Color(0, 0, 0));
+        lbUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbUsuario.setForeground(new java.awt.Color(51, 51, 255));
+        lbUsuario.setText("jLabel1");
+
+        lbCarrera.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbCarrera.setForeground(new java.awt.Color(51, 51, 255));
+        lbCarrera.setText("jLabel1");
+
         ESCRITORIO.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ESCRITORIO.setLayer(lbUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ESCRITORIO.setLayer(lbCarrera, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout ESCRITORIOLayout = new javax.swing.GroupLayout(ESCRITORIO);
         ESCRITORIO.setLayout(ESCRITORIOLayout);
         ESCRITORIOLayout.setHorizontalGroup(
             ESCRITORIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ESCRITORIOLayout.createSequentialGroup()
-                .addGap(0, 740, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
+                .addGroup(ESCRITORIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 373, Short.MAX_VALUE)
                 .addComponent(jLabel4))
         );
         ESCRITORIOLayout.setVerticalGroup(
             ESCRITORIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ESCRITORIOLayout.createSequentialGroup()
-                .addGap(0, 398, Short.MAX_VALUE)
-                .addComponent(jLabel4))
+            .addGroup(ESCRITORIOLayout.createSequentialGroup()
+                .addContainerGap(398, Short.MAX_VALUE)
+                .addGroup(ESCRITORIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ESCRITORIOLayout.createSequentialGroup()
+                        .addComponent(lbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lbCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36))))
         );
 
         jMenuBar1.setBackground(new java.awt.Color(204, 204, 204));
@@ -447,6 +487,8 @@ public class Vis_Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel lbCarrera;
+    private javax.swing.JLabel lbUsuario;
     private javax.swing.JMenu menuPortafolio;
     // End of variables declaration//GEN-END:variables
 }

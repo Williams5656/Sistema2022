@@ -36,7 +36,7 @@ public class Con_principal {
 
     public static Vis_Principal vista;
 
-    public Con_principal(Vis_Principal vista) {
+    public Con_principal(Vis_Principal vista,String nom, String carr) {
        this.vista = vista;
         vista.setVisible(true);
         vista.setLocationRelativeTo(null);
@@ -57,6 +57,8 @@ public class Con_principal {
          vista.getBtn_AreaCarrera().addActionListener(e-> areaCarrera());
          vista.getBtn_asignaciondocentes().addActionListener(e -> asignaciondocentes());
          vista.getBtnPortafolio().addActionListener(e-> portafolio());
+         vista.getLbUsuario().setText(nom);
+         vista.getLbCarrera().setText(carr);
     }
 
     private void portafolio(){

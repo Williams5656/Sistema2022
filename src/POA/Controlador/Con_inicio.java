@@ -41,8 +41,9 @@ public class Con_inicio {
         List<UsuarioMD> lista = dbp.mostrardatos();
         for (int i = 0; i < lista.size(); i++) {
             if (vista.getTxtusuario().getText().equals(lista.get(i).getNombreUsuario()) && vista.getTxtclave().getText().equals(lista.get(i).getContrasenia())&&lista.get(i).getEstado().equals("Activo")) {
+                String[] v = dbp.persona_carrera(lista.get(i).getCedula());
                 Vis_Principal vistamenu = new Vis_Principal();
-                Con_principal menu = new Con_principal(vistamenu);
+                Con_principal menu = new Con_principal(vistamenu,v[0],v[1]);
                 vista.setVisible(false);
                 vista.getLblcomp().setVisible(false);
                 vistamenu.setVisible(true);

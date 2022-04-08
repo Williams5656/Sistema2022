@@ -72,7 +72,23 @@ public class UsuarioBD extends UsuarioMD {
         }
     }
 
+public String[] persona_carrera(String cedula){
+    String[] res = new String[2];
+    try {
+            String sql = "select p.nombres|| ' ' || p.apellidos, c.nombre from persona p, carrera c where p.cedula= '" + cedula+"' and c.coordinador ='"+cedula+"'";
+            ResultSet rs = conectar.query(sql);
+            while (rs.next()) {
 
+                res[0]=(rs.getString(1));
+                res[01]=(rs.getString(2)); 
+            }
+            rs.close();
+            return res;
+        } catch (Exception e) {
+            Logger.getLogger(UsuarioBD.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+}
   public boolean guardar() {
        
         String nsql = "INSERT INTO usuario(cedula,usuario,contrasenia,rol,estado)" + "VALUES ('" + getCedula()+ "','" + getNombreUsuario()+ "','" + getContrasenia()+ "','" + getRol()+"','" + getEstado()+ "')";

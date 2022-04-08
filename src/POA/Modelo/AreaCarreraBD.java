@@ -104,4 +104,19 @@ public class AreaCarreraBD extends AreaCarreraMD {
             return false;
         }
     }
+   
+    public String mostrarIdArea(String nombre) {
+        String idArea = "";
+        String sql = "select id_area from area_carrera where id_area= '" + nombre + "'";
+        ResultSet rs = conectar.query(sql);
+        try {
+            while (rs.next()) {
+                idArea  = rs.getString("id_area");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AreaCarreraBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return idArea ;
+    }
+ 
 }

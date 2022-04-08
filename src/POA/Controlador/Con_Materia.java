@@ -55,6 +55,8 @@ public class Con_Materia {
     List<CarreraMD> listac = bdcarrera.mostrardatos();
     private AreaCarreraBD bdarea = new AreaCarreraBD();
     List<AreaCarreraMD> listaa = bdarea.mostrardatos();
+    private PerfilBD bdperfil = new PerfilBD();
+    List<PerfilMD> listap = bdperfil.mostrardatos();
     private DefaultTableModel modelo = new DefaultTableModel();
 
     public Con_Materia(Vis_Materias vista) {
@@ -85,6 +87,10 @@ public class Con_Materia {
 
 //        String nombre = (String) vista.getComboCarrera_mat().getSelectedItem();
 //        materia.setNombre_carrera(nombre);
+        String carreraCombo = (String) vista.getComboCarrera_mat().getSelectedItem();
+        String codigoCarrera = "";
+        codigoCarrera = bdperfil.mostrarIdCarrera(carreraCombo);
+        materia.setNombre_carrera(codigoCarrera);
         String eje = (String) vista.getComboejeformacion().getSelectedItem();
         materia.setEje_formacion(eje);
         materia.setCod_materia(vista.getTxtcodmateria().getText());
@@ -94,11 +100,14 @@ public class Con_Materia {
         materia.setCreditos(vista.getTxtcreditos().getText());
         String plan = (String) vista.getComboplan().getSelectedItem();
         materia.setPlan(plan);
+        String areaCombo = (String) vista.getComboareacarrera().getSelectedItem();
+        String codigoArea = "";
+        codigoArea = bdarea.mostrarIdArea(areaCombo);
+        materia.setArea(codigoArea);
 //        String areac = (String) vista.getComboareacarrera().getSelectedItem();
 //        materia.setArea(areac);
 //        materia.setArea(areacarrera);
-//        bdcarrera.setCodigo_carrera(idCarrera);
-//        bdarea.setIdArea(campoarea());
+
         if (materia.insertar()) {
             JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
             listam();
@@ -125,6 +134,18 @@ public class Con_Materia {
         materia.setCreditos(lista.get(select).getCreditos());
         materia.setPlan(lista.get(select).getPlan());
         materia.setArea(lista.get(select).getArea());
+//        
+//        for (int i = 0; i < 10; i++) {
+//            if (vista.getComboCarrera_mat().getSelectedItem().equals(listac.get(i).getNombre_carrera())) {
+//                String nombre = listac.get(i).getNombre_carrera();
+//                vista.getLblNombre().setText(nombre);
+//            }
+//        }
+               for (CarreraMD carrera : listac) {
+            if (carrera.getCodigo_carrera().equals(lista.get(select).getNombre_carrera())) {
+                vista.getComboCarrera_mat().setSelectedItem(carrera.getNombre_carrera());
+            }
+        }
 
         vista.getComboCarrera_mat().setSelectedItem(materia.getNombre_carrera());
         vista.getComboejeformacion().setSelectedItem(materia.getEje_formacion());
@@ -135,8 +156,9 @@ public class Con_Materia {
         vista.getComboplan().setSelectedItem(materia.getPlan());
         vista.getComboareacarrera().setSelectedItem(materia.getArea());
 
-//        String nombre = "[" + materia.getNombre_carrera()+ "]" + bdcarrera.getCodigo_carrera();
+//        String nombre = materia.getNombre_carrera();
 //        vista.getLblNombre().setText(nombre);
+
     }
 
     public void listam() {
@@ -214,29 +236,15 @@ public class Con_Materia {
         vista.getComboCarrera_mat().addItem("");
         for (int i = 0; i < listac.size(); i++) {
             vista.getComboCarrera_mat().addItem(listac.get(i).getNombre_carrera());
-        }
+        }    
     }
 
     public void campoarea() {
         vista.getComboareacarrera().removeAllItems();
         vista.getComboareacarrera().addItem("");
-
-//        for (int j = 0; j < lista.size(); j++) {
-//            for (int i = 0; i < listaa.size(); i++) {
-//                if (Integer.toString(listaa.get(i).getIdArea()) == lista.get(j).getArea()) {
-//                    vista.getComboareacarrera().addItem(Integer.toString(listaa.get(i).getIdArea()));
-//                }
-//            }
-//        }
-//        for (int i = 0; i < listaa.size(); i++) {
-//            vista.getComboareacarrera().addItem(Integer.toString(listaa.get(i).getIdArea()));
-//        }
-        PerfilBD bdperfil = new PerfilBD();
-        List<PerfilMD> listap = bdperfil.mostrardatos();
-        for (int i = 0; i < listap.size(); i++) {
-            vista.getComboareacarrera().addItem(listap.get(i).getNombre());
+        for (int i = 0; i < listaa.size(); i++) {
+            vista.getComboareacarrera().addItem(Integer.toString(listaa.get(i).getIdArea()));
         }
-
     }
 
 //    public void buscar() {
@@ -246,7 +254,7 @@ public class Con_Materia {
 //            public void keyReleased(KeyEvent e) {
 //                for (CarreraMD carre : listac) {
 //                    if (carre.getNombre_carrera().equals(vista.getComboCarrera_mat().getSelectedItem())) {
-//                        vista.getLblNombre().setText(carre.getCodigo_carrera());
+//                        vista.getLblNombre().setText(carre.getNombre_carrera());
 //                    }
 //                }
 //                if (vista.getComboCarrera_mat().getSelectedItem().equals("")) {
@@ -255,6 +263,7 @@ public class Con_Materia {
 //            }
 //        });
 //    }
+    
     private void eliminar() {
         int resp1 = JOptionPane.showConfirmDialog(null, "CONFIRME SI DESEA ELIMINAR");
         if (resp1 == 0) {

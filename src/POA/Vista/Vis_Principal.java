@@ -258,11 +258,14 @@ public class Vis_Principal extends javax.swing.JFrame {
         ESCRITORIOLayout.setHorizontalGroup(
             ESCRITORIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ESCRITORIOLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
                 .addGroup(ESCRITORIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 373, Short.MAX_VALUE)
+                    .addGroup(ESCRITORIOLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(lbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ESCRITORIOLayout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(lbCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 305, Short.MAX_VALUE)
                 .addComponent(jLabel4))
         );
         ESCRITORIOLayout.setVerticalGroup(
@@ -272,10 +275,10 @@ public class Vis_Principal extends javax.swing.JFrame {
                 .addGroup(ESCRITORIOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ESCRITORIOLayout.createSequentialGroup()
-                        .addComponent(lbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lbCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36))))
+                        .addComponent(lbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61))))
         );
 
         jMenuBar1.setBackground(new java.awt.Color(204, 204, 204));

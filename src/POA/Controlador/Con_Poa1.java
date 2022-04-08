@@ -6,6 +6,7 @@ package POA.Controlador;
 
 import POA.Vista.*;
 import POA.Controlador.*;
+import POA.Modelo.Validadores.*;
 import static POA.Controlador.Con_principal.vista;
 import POA.Modelo.CarreraBD;
 import POA.Modelo.PoaBD;
@@ -26,7 +27,7 @@ public class Con_Poa1 {
     private final Vis_Poa1 vista;
     private DefaultTableModel model = new DefaultTableModel();
     private ArrayList<POA.Modelo.PoaMD> listaPOA = new ArrayList();
-    private List<POA.Modelo.CarreraMD> listaCarreras = new ArrayList<>();
+    public static List<POA.Modelo.CarreraMD> listaCarreras = new ArrayList<>();
     private POA.Modelo.PoaBD baseDatosPoa = new PoaBD();
     private POA.Modelo.CarreraBD baseDatosCarrera = new CarreraBD();
     private static int id_poa;
@@ -34,17 +35,17 @@ public class Con_Poa1 {
 
     public Con_Poa1(Vis_Poa1 vista) {
         this.vista = vista;
-
         listaCarreras = baseDatosCarrera.mostrardatos();
         listaPOA = baseDatosPoa.mostrarDatos();
-        for (POA.Modelo.CarreraMD carr : listaCarreras) {
-            vista.getCbxCarrera().addItem(carr.getNombre_carrera());
+        for (int i = 0; i < listaCarreras.size(); i++) {
+            vista.getCbxCarrera().addItem(listaCarreras.get(i).getNombre_carrera());
         }
-
         vista.setVisible(true);
         vista.getBtnModificar().setEnabled(false);
         vista.getBtnEliminar().setEnabled(false);
+        vista.getBtnAniadirProyectos().setEnabled(false);
         vista.setTitle("POA");
+        vista.getLbid_carrera().setText("");
         vista.getBtnGuardar().addActionListener(e -> guardar());
         vista.getBtnAniadirProyectos().addActionListener(e -> abrirVentanaProyectos());
         vista.getBtnNuevo().addActionListener(e -> limpiarCampos());
@@ -55,22 +56,23 @@ public class Con_Poa1 {
                 seleccionar();
             }
         ;
-
         });
-        
+        validar();
         lista();
 
+    }
+
+    public void validar() {
+        vista.getCbxCarrera().addItemListener(new id_carrera(vista.getCbxCarrera(), vista.getLbid_carrera()));
     }
 
     public void lista() {
         model.setRowCount(0);
         model.setColumnCount(0);
-
         model.addColumn("Id_poa");
         model.addColumn("Carrera");
         model.addColumn("Año");
         model.addColumn("Estado");
-
         listaCarreras = baseDatosCarrera.mostrardatos();
         listaPOA = baseDatosPoa.mostrarDatos();
         for (POA.Modelo.PoaMD user : listaPOA) {
@@ -93,20 +95,28 @@ public class Con_Poa1 {
     }
 
     public void guardar() {
-        int id_carrera;
+        int id_carrera = 0;
         listaCarreras = baseDatosCarrera.mostrardatos();
         for (POA.Modelo.CarreraMD carr : listaCarreras) {
             if (((String) vista.getCbxCarrera().getSelectedItem()).equals(carr.getNombre_carrera())) {
                 id_carrera = Integer.parseInt(carr.getCodigo_carrera());
-                System.out.println(vista.getyChooser().getValue());
-                baseDatosPoa.guardar(id_carrera, vista.getyChooser().getValue() + "", "Activo");
             }
         }
-
-        lista();
-        JOptionPane.showMessageDialog(null, "Guardado");
-        limpiarCampos();
-
+        boolean f = false;
+        String anio = String.valueOf(vista.getyChooser().getValue());
+        for (int i = 0; i < listaPOA.size(); i++) {
+            if (listaPOA.get(i).getId_carrera() == id_carrera && listaPOA.get(i).getAnio().equalsIgnoreCase(anio)) {
+                f = true;
+            }
+        }
+        if (f == true) {
+            JOptionPane.showMessageDialog(null, "Este Poa ya existe");
+        } else {
+            baseDatosPoa.guardar(id_carrera, vista.getyChooser().getValue() + "", "Activo");
+            lista();
+            JOptionPane.showMessageDialog(null, "Guardado");
+            limpiarCampos();
+        }
     }
 
     public void nuevo() {
@@ -127,13 +137,13 @@ public class Con_Poa1 {
     public void seleccionar() {
         int seleccionado = vista.getTablaPoa().getSelectedRow();
         tablaSeleccionada = true;
-
         id_poa = listaPOA.get(seleccionado).getId_POA();
+        vista.getBtnAniadirProyectos().setEnabled(true);
     }
 
     public void abrirVentanaProyectos() {
 
-        if (tablaSeleccionada) {
+        if (tablaSeleccionada==true) {
             POA.Vista.vis_poa_proyectos zap = new vis_poa_proyectos();
             Con_principal.vista.getESCRITORIO().add(zap);
             Dimension desktopSize = Con_principal.vista.getESCRITORIO().getSize();

@@ -53,11 +53,11 @@ public class Con_poa_actividad_indicador {
 //        cargarComboObjetivos();
         
   
-        //vista.getBtnnuevo().addActionListener(e->nuevo());
+        vista.getBtnnuevo().addActionListener(e->nuevo());
         vista.getBtnguardar().addActionListener(e->guardar());
-        //vista.getBtnmodificar().addActionListener(e->modificar());
+        vista.getBtnmodificar().addActionListener(e->modificar());
         //vista.getBtncambiarest().addActionListener(e->cambiarestado());
-        //vista.getBtneliminar().addActionListener(e->eliminar());
+        vista.getBtneliminar().addActionListener(e->eliminar());
         vista.getTablaindicador().addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -109,10 +109,62 @@ public class Con_poa_actividad_indicador {
         }else{
             bdindicador.guardar(idactividad, lineab, meta, indicador);
             
-            lista();
+            buscar();
+            nuevo();
             
         }
         
+    }
+    
+    private void eliminar(){
+        int id_indicadoreliminar =Integer.parseInt(vista.getLblid_indicador().getText());
+        bdindicador.setId_indicador(id_indicadoreliminar);
+        int resp2 = JOptionPane.showConfirmDialog(null, "Confirme si esta seguro de eliminar");
+        if (resp2==0) {
+            if (bdindicador.Eliminar(id_indicadoreliminar)) {
+                JOptionPane.showMessageDialog(null, "Datos eliminados");
+                buscar();
+                nuevo();
+            }else{
+                 JOptionPane.showMessageDialog(null, "Error al eliminar");
+            }
+        }
+    }
+    
+    public void modificar(){
+        bdindicador.setId_indicador(Integer.parseInt(vista.getLblid_indicador().getText()));
+        bdindicador.setIndicador(vista.getTxtindicador().getText());
+        
+        
+        int lineabmod = (int) vista.getLineabase().getValue();
+        
+        bdindicador.setLinea_base(lineabmod);
+        
+        int metamod = (int) vista.getMeta().getValue();
+        bdindicador.setMeta(metamod);
+        
+        int actividad = (int) vista.getComboactividad().getSelectedIndex();
+        idactividad= listaact.get(actividad);
+        bdindicador.setId_actividades(idactividad);
+        int id_indicador =Integer.parseInt(vista.getLblid_indicador().getText());
+        int resp2 = JOptionPane.showConfirmDialog(null, "Confirme si esta seguro modificar");
+        if (resp2==0) {
+            if (bdindicador.modificar(id_indicador)) {
+                JOptionPane.showMessageDialog(null, "Datos actualizados");
+                buscar();
+                nuevo();
+            }else{
+                 JOptionPane.showMessageDialog(null, "Error al modificar");
+            }
+        }
+    }
+    
+    public void nuevo(){
+        vista.getBtnguardar().setEnabled(true);
+        vista.getBtnmodificar().setEnabled(false);
+        vista.getTxtindicador().setText("");
+        vista.getLineabase().setValue(0);
+        vista.getMeta().setValue(0);
     }
     
     
@@ -171,6 +223,7 @@ public class Con_poa_actividad_indicador {
     }
     
     public void seleccionar(){
+        
         String actividad;
         vista.getBtnguardar().setEnabled(false);
         vista.getBtnmodificar().setEnabled(true);
@@ -186,7 +239,7 @@ public class Con_poa_actividad_indicador {
         bdindicador.setMeta(lista.get(0).getMeta());
         bdindicador.setId_actividades(lista.get(0).getId_actividades());
         
-        
+        vista.getLblid_indicador().setText(String.valueOf(bdindicador.getId_indicador()));
         vista.getTxtindicador().setText(bdindicador.getIndicador());
         int idrol = lista.get(0).getId_actividades();
         List<ActividadesMD> listar1 = baseDatosactividades.obtenerdatosxind(idrol);
@@ -201,7 +254,7 @@ public class Con_poa_actividad_indicador {
     public void buscar() {
         
         
-       
+        
         
             DefaultTableModel modelo;
             modelo = (DefaultTableModel) vista.getTablaindicador().getModel();
@@ -233,6 +286,9 @@ public class Con_poa_actividad_indicador {
             
     
     }
+    
+    
+    
       
       
       

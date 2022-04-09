@@ -351,10 +351,10 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         getContentPane().add(lblaniopoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 100, 40));
 
         lbl_id.setText("---");
-        getContentPane().add(lbl_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 190, 80, -1));
+        getContentPane().add(lbl_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 190, 30, -1));
 
         jLabel2.setText("ID:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 190, 80, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 190, 20, -1));
 
         btnregresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icons8_Double_Left_20px.png"))); // NOI18N
         getContentPane().add(btnregresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 10, 60, 40));

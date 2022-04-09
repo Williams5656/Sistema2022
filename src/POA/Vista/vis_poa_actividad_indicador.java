@@ -8,6 +8,7 @@ package POA.Vista;
 import POA.Modelo.ActividadesBD;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -27,6 +28,16 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
         
     }
 
+    public JLabel getLblid_indicador() {
+        return lblid_indicador;
+    }
+
+    public void setLblid_indicador(JLabel lblid_indicador) {
+        this.lblid_indicador = lblid_indicador;
+    }
+    
+    
+    
     public JButton getBtneliminar() {
         return btneliminar;
     }
@@ -136,6 +147,8 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        lblid_indicador = new javax.swing.JLabel();
 
         setClosable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -145,30 +158,30 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 19, -1, 35));
 
         jLabel9.setText("Actividad:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 90, 20));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 90, 20));
 
-        getContentPane().add(comboactividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 210, -1));
+        getContentPane().add(comboactividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 210, -1));
 
         jLabel17.setText("Indicador:");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 110, 20));
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 110, 20));
 
         txtindicador.setColumns(20);
         txtindicador.setRows(5);
         jScrollPane2.setViewportView(txtindicador);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 210, 90));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 210, 90));
 
         jLabel10.setText("Linea Base%:");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 110, 20));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 110, 20));
 
         lineabase.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 10));
-        getContentPane().add(lineabase, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 70, -1));
+        getContentPane().add(lineabase, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 70, -1));
 
         jLabel2.setText("Meta:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 110, 20));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 110, 20));
 
         meta.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 10));
-        getContentPane().add(meta, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 70, -1));
+        getContentPane().add(meta, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 70, -1));
 
         tablaindicador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -222,6 +235,12 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
         jLabel6.setText("MODIFICAR");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 390, -1, -1));
 
+        jLabel7.setText("ID:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 20, -1));
+
+        lblid_indicador.setText("--");
+        getContentPane().add(lblid_indicador, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 20, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -244,9 +263,11 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JLabel lblid_indicador;
     private javax.swing.JSpinner lineabase;
     private javax.swing.JSpinner meta;
     private javax.swing.JTable tablaindicador;

@@ -136,4 +136,32 @@ public class IndicadorBD extends IndicadorMD{
         return null;
 
     }
+    
+    public boolean modificar(int id){
+        
+            String sql= "UPDATE indicador set \"indicador\"='"+getIndicador()+ "',\"linea_base\"='"+getLinea_base()+  "',\"meta\"='"+getMeta()+ "'"
+                    + " where \"id_indicador\"='"+id+"'";
+            
+            if(conectar.noQuery(sql)==null){
+                return true;
+                }
+                else{
+                    System.out.println("error al editar");
+   
+        return false;
+                }
+            
+            }
+    
+    
+     public boolean Eliminar(int id){
+                String nsql= " delete from indicador where \"id_indicador\"='" + id + "'";
+                if(conectar.noQuery(nsql)==null){
+                return true;
+                }
+                else{
+                    System.out.println("error eliminar");
+                    return false;
+                }        
+    }
 }

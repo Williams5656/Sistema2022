@@ -75,7 +75,7 @@ public class Con_principal {
         Dimension desktopSize = vista.getESCRITORIO().getSize();
         Dimension FrameSize = periodo.getSize();
         periodo.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-        con_periodoAcademico peri = new con_periodoAcademico(periodo);
+        con_periodoAcademico peri = new con_periodoAcademico(periodo,vista.getLbCarrera().getText());
     }
     private void perfil() {
         Vis_Perfil zap = new Vis_Perfil();

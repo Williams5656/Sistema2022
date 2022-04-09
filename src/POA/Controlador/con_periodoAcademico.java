@@ -32,7 +32,7 @@ public class con_periodoAcademico {
     PeriodoacademicoBD periodo = new PeriodoacademicoBD();
     private String carrera = "1";
 
-    public con_periodoAcademico(vis_PeriodoAcademico vista) {
+    public con_periodoAcademico(vis_PeriodoAcademico vista,String carrera) {
         this.vista = vista;
         vista.setVisible(true);
         vista.getBtnestado().setEnabled(false);
@@ -70,7 +70,7 @@ public class con_periodoAcademico {
             }
             
             doc_modulo_BD mod=new doc_modulo_BD();
-            if (mod.crear_modulos() == true) {
+            if (mod.crear_modulos(carrera) == true) {
                 System.out.println("Modulos creados");
             } else {
                 System.out.println("error al crear modulos del periodo");}

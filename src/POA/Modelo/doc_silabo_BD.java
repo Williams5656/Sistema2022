@@ -161,7 +161,7 @@ public class doc_silabo_BD extends doc_silabo_MD {
         }
     }
 
-        public boolean crear_silabos() {
+        public boolean crear_silabos(String carrera) {
         int cod_max=0;
         ResultSet rs;
         try {
@@ -177,7 +177,7 @@ public class doc_silabo_BD extends doc_silabo_MD {
         List<String> lista_mat=new ArrayList<>();
         
         try {
-            rs = conectar.query("select codigo from materia");//auemntar un where en la consulta cuado materia se relacione con carrera
+            rs = conectar.query("select codigo from materia where nombre='"+carrera+"'");
             while (rs.next()) {
                 lista_mat.add(rs.getString(1));
             }

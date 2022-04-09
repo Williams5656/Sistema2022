@@ -76,7 +76,7 @@ public class con_periodoAcademico {
                 System.out.println("error al crear modulos del periodo");}
             
             doc_silabo_BD sil=new doc_silabo_BD();
-            if (sil.crear_silabos()== true) {
+            if (sil.crear_silabos(carrera)== true) {
                 System.out.println("Silabos creados");
             } else {
                 System.out.println("error al crear modulos del periodo");}

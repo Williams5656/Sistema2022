@@ -46,6 +46,7 @@ public class Con_poa_actividad_indicador {
         vista.setVisible(true);
         cargarcombo();
         validadores();
+        buscar();
 
         
 //        cargarComboProyectos();
@@ -64,23 +65,14 @@ public class Con_poa_actividad_indicador {
             }
             
         });
-
-//        vista.getTablaproductos().addMouseListener(new MouseAdapter(){
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                seleccionar();
-//            }
-//            
-//        });
-
-//        vista.getComboproyecto().addItemListener(new ItemListener() {
-//            public void itemStateChanged(ItemEvent itemEvent) {
-//                cargarComboObjetivos();
-//            }
-//        });
+         vista.getComboactividad().addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent itemEvent) {
+                buscar();
+            }
+        });
         
 
-        lista();
+        //lista();
         
         
         
@@ -204,6 +196,42 @@ public class Con_poa_actividad_indicador {
         vista.getMeta().setValue(bdindicador.getMeta());
         
          
+    }
+    
+    public void buscar() {
+        
+        
+       
+        
+            DefaultTableModel modelo;
+            modelo = (DefaultTableModel) vista.getTablaindicador().getModel();
+            int actividad = (int) vista.getComboactividad().getSelectedIndex();
+            idactividad= listaact.get(actividad);
+            List<IndicadorMD> lista = bdindicador.obtenerdatosxactividad(idactividad);
+            
+            int columnas = modelo.getColumnCount();
+            for (int j = vista.getTablaindicador().getRowCount() - 1; j >= 0; j--) {
+                modelo.removeRow(j);
+                for (int i = 0; i < lista.size(); i++) {
+                    if (lista.get(i).getId_actividades()==idactividad) {
+                        modelo.addRow(new Object[columnas]);
+                        vista.getTablaindicador().setValueAt(lista.get(i).getId_indicador(), i, 0);
+                        int idrol = lista.get(i).getId_actividades();
+                        List<ActividadesMD> listar1 = baseDatosactividades.obtenerdatosxind(idrol);
+                        vista.getTablaindicador().setValueAt(listar1.get(0).getActividad(), i, 1);
+                        vista.getTablaindicador().setValueAt(lista.get(i).getIndicador(), i, 2);
+                        vista.getTablaindicador().setValueAt(lista.get(i).getLinea_base(), i, 3);
+                        vista.getTablaindicador().setValueAt(lista.get(i).getMeta(), i, 4);
+                        
+                        
+
+                        
+
+                    }
+                }
+            } 
+            
+    
     }
       
       

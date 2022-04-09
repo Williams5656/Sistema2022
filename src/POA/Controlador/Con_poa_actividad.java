@@ -76,6 +76,9 @@ public class Con_poa_actividad {
         vista.getBtnimprimir().addActionListener(e->imprimirpersona()); 
         vista.getBtnindicador().addActionListener(e->abrirVentanaindicador());
         vista.getBtnguardar().addActionListener(e->guardar()); 
+        vista.getBtnmodificar().addActionListener(e->modificar()); 
+        vista.getBtneliminar().addActionListener(e->eliminar());
+        vista.getBtnregresar().addActionListener(e->vaciarcombo());
         vista.getTablaactividades().addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -99,7 +102,12 @@ public class Con_poa_actividad {
         
         validar();
     }
-    
+    public void vaciarcombo(){
+        
+        vista.getCombo_objetivo_operativo().removeAllItems();
+        vista.getCombo_responsable().removeAllItems();
+        this.vista.setVisible(false);
+    }
     
     
     
@@ -110,9 +118,7 @@ public class Con_poa_actividad {
         
         for (int i = 0; i < listaObjetivosOperativos.size(); i++) {
             for (int j = 0; j <Con_poa_proyectos.listasobjetivos.size() ; j++) {
-                if (tablaSeleccionada) {
-                    
-                }
+                
                 if (listaObjetivosOperativos.get(i).getId_objetivo_operativo()==Con_poa_proyectos.listasobjetivos.get(j)) {
                     vista.getCombo_objetivo_operativo().addItem(listaObjetivosOperativos.get(i).getObjetivo());
                     System.out.println(listaObjetivosOperativos.get(i).getObjetivo());
@@ -215,7 +221,7 @@ public class Con_poa_actividad {
             baseDatosactividades.setRecurso_financiero(lista1.get(0).getRecurso_financiero());
             }
         }
-
+            vista.getLbl_id().setText(baseDatosactividades.getId_actividades()+"");
             vista.getTxtactividad().setText(baseDatosactividades.getActividad());
             vista.getTxtrecursos_financieros().setText(baseDatosactividades.getRecurso_financiero());
             vista.getCombo_responsable().setSelectedItem(baseDatosactividades.getResponsable()+ "");
@@ -241,21 +247,7 @@ public class Con_poa_actividad {
             vista.getComborecursos().setSelectedItem(part1);
             vista.getTxtrecursos_financieros().setText(part2);
             
-            
-            
-            
-            
-            
-            
-            
-//            id_proyecto = poabd.getId_proyecto();
-//            lista_objetivo();
-//            vista.getBtn_modificar().setEnabled(true);
-//            vista.getBtn_eliminar().setEnabled(true);
-//            vista.getBtn_guardar().setEnabled(false);
-//            vista.getTxtarea_obopera().setEnabled(true);
-//            vista.getBtnAñadir().setEnabled(true);
-//            vista.getTabla_proyecto().setEnabled(true);
+
         
         
         
@@ -281,15 +273,13 @@ public class Con_poa_actividad {
             modelo = (DefaultTableModel) vista.getTablaactividades().getModel();
             List<ActividadesMD> lista1 = baseDatosactividades.obtenerdatos(idobj);
             System.out.println(lista1.size());
-            if (lista1.size()!=0) {
+           
                     
               
                 int columnas = modelo.getColumnCount();
                 for (int j = vista.getTablaactividades().getRowCount() - 1; j >= 0; j--) {
                     modelo.removeRow(j);
-
-
-
+                    
                     for (int i = 0; i < lista1.size(); i++) {
 
                             modelo.addRow(new Object[columnas]);
@@ -306,9 +296,7 @@ public class Con_poa_actividad {
 
                 }
                 
-            }else{
-                modelo.setRowCount(0);
-            }
+            
         
     }
     
@@ -467,6 +455,50 @@ public class Con_poa_actividad {
 
     public static int getId_act() {
         return id_act;
+    }
+    
+    private void eliminar(){
+        baseDatosactividades.setId_actividades(Integer.parseInt(vista.getLbl_id().getText()));
+        int resp2 = JOptionPane.showConfirmDialog(null, "Confirme si esta seguro de eliminar");
+        if (resp2==0) {
+            if (baseDatosactividades.Eliminar(vista.getLbl_id().getText())) {
+                JOptionPane.showMessageDialog(null, "Datos eliminados");
+                lista();
+                nuevo();
+            }else{
+                 
+                 JOptionPane.showMessageDialog(null, "!!Existen indicadores relacionados a esta actividad (ELIMINE LOS INDICADORES PRIMERO)");
+                 
+                 
+            }
+        }
+    }
+    
+    public void modificar(){
+        baseDatosactividades.setId_actividades(Integer.parseInt(vista.getLbl_id().getText()));
+        baseDatosactividades.setActividad(vista.getTxtactividad().getText());
+        
+        SimpleDateFormat formato6 = new SimpleDateFormat("yyyy-MM-dd");
+        String fecha = formato6.format(vista.getFecha_plazo().getDate());
+        baseDatosactividades.setPlazo(fecha);
+        String recursof = (String) vista.getComborecursos().getSelectedItem();
+         baseDatosactividades.setRecurso_financiero(recursof+" $ "+vista.getTxtrecursos_financieros().getText());
+        
+        String responsable = (String) vista.getCombo_responsable().getSelectedItem();
+        baseDatosactividades.setResponsable(responsable);
+
+
+        
+        int resp2 = JOptionPane.showConfirmDialog(null, "Confirme si esta seguro modificar");
+        if (resp2==0) {
+            if (baseDatosactividades.modificar(vista.getLbl_id().getText())) {
+                JOptionPane.showMessageDialog(null, "Datos actualizados");
+                lista();
+                nuevo();
+            }else{
+                 JOptionPane.showMessageDialog(null, "Error al modificar");
+            }
+        }
     }
 
 }

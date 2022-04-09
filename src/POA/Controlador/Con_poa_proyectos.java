@@ -336,7 +336,7 @@ public class Con_poa_proyectos {
         
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTabla_lista_proyectos().getModel();
-        
+        listasobjetivos.clear();
         int ob = (int) modelo.getValueAt(vista.getTabla_lista_proyectos().getSelectedRow(), 1);
         tablaSeleccionada = true;
         listaoperativo = obbd.obtenerdatosparacombo(ob);

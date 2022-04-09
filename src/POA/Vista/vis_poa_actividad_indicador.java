@@ -132,6 +132,10 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
         btnguardar = new javax.swing.JButton();
         btnmodificar = new javax.swing.JButton();
         btneliminar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setClosable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -189,22 +193,34 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
                 btnnuevoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 340, 80, 50));
+        getContentPane().add(btnnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 350, 50, 50));
 
         btnguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/guardar.png"))); // NOI18N
         btnguardar.setBorderPainted(false);
         btnguardar.setContentAreaFilled(false);
-        getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 340, 72, 50));
+        getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 350, 50, 50));
 
         btnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/modificar.png"))); // NOI18N
         btnmodificar.setBorderPainted(false);
         btnmodificar.setContentAreaFilled(false);
-        getContentPane().add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 340, 90, 50));
+        getContentPane().add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 350, 50, 50));
 
         btneliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/WhatsApp Image 2022-02-15 at 00.32.29.jpeg"))); // NOI18N
         btneliminar.setBorderPainted(false);
         btneliminar.setContentAreaFilled(false);
-        getContentPane().add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 340, 80, 50));
+        getContentPane().add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 350, 50, 50));
+
+        jLabel3.setText("ELIMINAR");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 390, -1, -1));
+
+        jLabel4.setText("NUEVO");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, -1, -1));
+
+        jLabel5.setText("GUARDAR");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 390, -1, -1));
+
+        jLabel6.setText("MODIFICAR");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 390, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -224,6 +240,10 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;

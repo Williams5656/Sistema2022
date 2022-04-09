@@ -107,4 +107,33 @@ public class IndicadorBD extends IndicadorMD{
         return null;
 
     }
+    
+    public List<IndicadorMD> obtenerdatosxactividad(int id) {
+        try {
+            List<IndicadorMD> lista = new ArrayList<IndicadorMD>();
+            String sql = "select * from indicador"+" where \"id_actividades\"='"+id+"'";
+            ResultSet rs = conectar.query(sql);
+            byte[] is;
+
+            while (rs.next()) {
+                IndicadorMD m = new IndicadorMD();
+                m.setId_indicador(rs.getInt("id_indicador"));
+                m.setIndicador(rs.getString("indicador"));
+                m.setLinea_base(rs.getInt("linea_base"));
+                m.setMeta(rs.getInt("meta"));
+                m.setId_actividades(rs.getInt("id_actividades"));                
+                
+                
+                lista.add(m);
+            }
+            rs.close();
+            return lista;
+        } catch (SQLException e) {
+            
+            Logger.getLogger(IndicadorBD.class.getName()).log(Level.SEVERE,null,e);
+        
+        }
+        return null;
+
+    }
 }

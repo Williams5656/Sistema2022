@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import org.postgresql.util.Base64;
 /**
  *
@@ -158,6 +159,40 @@ public class ActividadesBD extends ActividadesMD{
         }
     }
     
+    public boolean modificar(String id){
+         
+         
+           String sql= "UPDATE actividades set \"actividad\"='"+getActividad()+ "',\"responsable\"='"+getResponsable()+  "',\"recurso_financiero\"='"+getRecurso_financiero()+ "',\"plazo\"='"+getPlazo()+"'"
+                    + " where \"id_actividades\"='"+id+"'";
+            
+            if(conectar.noQuery(sql)==null){
+                return true;
+                }
+                else{
+                    System.out.println("error al editar");
+   
+        return false;
+                }
+            
+            }
     
+    public boolean Eliminar(String id){
+                String nsql= " delete from actividades where \"id_actividades\"='" + id + "'";
+                
+                try {
+                    if(conectar.noQuery(nsql)==null){
+                    return true;
+                    }
+                    else{
+                        System.out.println("error eliminar");
+                        return false;
+                    }  
+                 } catch (Exception e) {
+                     
+                    JOptionPane.showMessageDialog(null, "!!Existen indicadores relacionados a esta actividad");
+                    return false;
+                 }
+                      
+    }
   
 }

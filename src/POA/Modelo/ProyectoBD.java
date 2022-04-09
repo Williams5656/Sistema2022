@@ -3,12 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package POA.Modelo;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import org.postgresql.util.Base64;
 
 /**
  *
@@ -86,5 +91,19 @@ public class ProyectoBD extends ProyectoMD{
         
         conectar.noQuery(sql);
         
+    }
+    
+    public boolean modificar(String placa) {
+       
+        String sql = "UPDATE proyecto set \"id_poa\"='" + getId_Poa()+ "',\"num_proyecto_carrera\"='" + getNum_proyecto_carrera() + "',\"objetivo_estrategico\"='" + getObjetivo_estrategico()+ "',\"objetivo_tactico\"='" + getObjetivo_tactico()+ "',\"estrategia\"='" + getEstrategia()+ "'"
+                + " where \"id_proyecto\"='" + placa + "'";
+
+        if (conectar.noQuery(sql) == null) {
+            return true;
+        } else {
+            System.out.println("error mi estimado cabeza gato");
+            return false;
+        }
+
     }
 }

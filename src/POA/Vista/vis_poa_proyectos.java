@@ -46,13 +46,7 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
 
     
 
-    public JToggleButton getBtnAñadir() {
-        return btneliminar;
-    }
-
-    public void setBtnAñadir(JToggleButton btnAñadir) {
-        this.btneliminar = btnAñadir;
-    }
+    
 
     public JToggleButton getBtnSiguiente() {
         return btnSiguiente;
@@ -142,6 +136,31 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
         this.btn_imprimir = btn_imprimir;
     }
 
+    public JToggleButton getBtnAñadir_op() {
+        return btnAñadir_op;
+    }
+
+    public void setBtnAñadir_op(JToggleButton btnAñadir_op) {
+        this.btnAñadir_op = btnAñadir_op;
+    }
+
+    public JToggleButton getBtneliminar_op() {
+        return btneliminar_op;
+    }
+
+    public void setBtneliminar_op(JToggleButton btneliminar_op) {
+        this.btneliminar_op = btneliminar_op;
+    }
+
+    public JToggleButton getBtnmodificar_op() {
+        return btnmodificar_op;
+    }
+
+    public void setBtnmodificar_op(JToggleButton btnmodificar_op) {
+        this.btnmodificar_op = btnmodificar_op;
+    }
+
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -177,9 +196,9 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla_proyecto = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
-        btneliminar = new javax.swing.JToggleButton();
-        btnAñadir = new javax.swing.JToggleButton();
-        btnmodificar = new javax.swing.JToggleButton();
+        btneliminar_op = new javax.swing.JToggleButton();
+        btnAñadir_op = new javax.swing.JToggleButton();
+        btnmodificar_op = new javax.swing.JToggleButton();
         btn_guardar = new javax.swing.JToggleButton();
         jLabel12 = new javax.swing.JLabel();
         btn_imprimir = new javax.swing.JButton();
@@ -282,38 +301,38 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
         jLabel8.setText("OBJETIVO OPÉRATIVO:");
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 30));
 
-        btneliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/delete.jpg"))); // NOI18N
-        btneliminar.setText("Eliminar");
-        btneliminar.setBorderPainted(false);
-        btneliminar.setContentAreaFilled(false);
-        btneliminar.addActionListener(new java.awt.event.ActionListener() {
+        btneliminar_op.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/delete.jpg"))); // NOI18N
+        btneliminar_op.setText("Eliminar");
+        btneliminar_op.setBorderPainted(false);
+        btneliminar_op.setContentAreaFilled(false);
+        btneliminar_op.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btneliminarActionPerformed(evt);
+                btneliminar_opActionPerformed(evt);
             }
         });
-        jPanel3.add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, -1, -1));
+        jPanel3.add(btneliminar_op, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, -1, -1));
 
-        btnAñadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icono_agregar.png"))); // NOI18N
-        btnAñadir.setText("Añadir Objetivo");
-        btnAñadir.setBorderPainted(false);
-        btnAñadir.setContentAreaFilled(false);
-        btnAñadir.addActionListener(new java.awt.event.ActionListener() {
+        btnAñadir_op.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icono_agregar.png"))); // NOI18N
+        btnAñadir_op.setText("Añadir Objetivo");
+        btnAñadir_op.setBorderPainted(false);
+        btnAñadir_op.setContentAreaFilled(false);
+        btnAñadir_op.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAñadirActionPerformed(evt);
+                btnAñadir_opActionPerformed(evt);
             }
         });
-        jPanel3.add(btnAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
+        jPanel3.add(btnAñadir_op, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
 
-        btnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icons8_Report_Card_20px.png"))); // NOI18N
-        btnmodificar.setText("Modificar");
-        btnmodificar.setBorderPainted(false);
-        btnmodificar.setContentAreaFilled(false);
-        btnmodificar.addActionListener(new java.awt.event.ActionListener() {
+        btnmodificar_op.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icons8_Report_Card_20px.png"))); // NOI18N
+        btnmodificar_op.setText("Modificar");
+        btnmodificar_op.setBorderPainted(false);
+        btnmodificar_op.setContentAreaFilled(false);
+        btnmodificar_op.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnmodificarActionPerformed(evt);
+                btnmodificar_opActionPerformed(evt);
             }
         });
-        jPanel3.add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, -1, -1));
+        jPanel3.add(btnmodificar_op, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, -1, -1));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 510, 250));
 
@@ -353,31 +372,31 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
+    private void btneliminar_opActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminar_opActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btneliminarActionPerformed
+    }//GEN-LAST:event_btneliminar_opActionPerformed
 
-    private void btnAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirActionPerformed
+    private void btnAñadir_opActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadir_opActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAñadirActionPerformed
+    }//GEN-LAST:event_btnAñadir_opActionPerformed
 
-    private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
+    private void btnmodificar_opActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificar_opActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnmodificarActionPerformed
+    }//GEN-LAST:event_btnmodificar_opActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Tabla_lista_proyectos;
     private javax.swing.JTable Tabla_proyecto;
-    private javax.swing.JToggleButton btnAñadir;
+    private javax.swing.JToggleButton btnAñadir_op;
     private javax.swing.JToggleButton btnSiguiente;
     private javax.swing.JButton btn_eliminar;
     private javax.swing.JToggleButton btn_guardar;
     private javax.swing.JButton btn_imprimir;
     private javax.swing.JButton btn_modificar;
     private javax.swing.JButton btn_nuevo;
-    private javax.swing.JToggleButton btneliminar;
-    private javax.swing.JToggleButton btnmodificar;
+    private javax.swing.JToggleButton btneliminar_op;
+    private javax.swing.JToggleButton btnmodificar_op;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;

@@ -70,11 +70,11 @@ public class Con_poa_proyectos {
         vista.getBtn_modificar().setEnabled(false);
         vista.getBtn_guardar().setEnabled(false);
         vista.getTxtarea_obopera().setEnabled(false);
-        vista.getBtnAñadir().setEnabled(false);
+        vista.getBtnAñadir_op().setEnabled(false);
         vista.getTabla_proyecto().setEnabled(false);
         vista.getBtn_nuevo().addActionListener(e -> nuevo());
         vista.getBtn_guardar().addActionListener(e -> guardar());
-        vista.getBtnAñadir().addActionListener(e -> guardarobjetivo());
+        vista.getBtnAñadir_op().addActionListener(e -> guardarobjetivo());
         vista.getBtn_imprimir().addActionListener(e -> imprimirpro());
         vista.getBtnSiguiente().addActionListener(e -> abrirVentanaactividad());
         
@@ -85,6 +85,15 @@ public class Con_poa_proyectos {
                 //To change body of generated methods, choose Tools | Templates.
                 seleccionarobjetivo();
                 seleccionar();
+            }
+
+        });
+        
+        vista.getTabla_proyecto().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //To change body of generated methods, choose Tools | Templates.
+                seleccionarob();
             }
 
         });
@@ -133,26 +142,19 @@ public class Con_poa_proyectos {
 
         modelo1.setRowCount(0);
         modelo1.setColumnCount(0);
+        modelo1.addColumn("ID proyecto");
         modelo1.addColumn("Numero_objetivo_proyecto");
         modelo1.addColumn("Objetivo");
-        Object[] fila = new Object[2];
+        Object[] fila = new Object[3];
 
         listaoperativo = obbd.mostrarDatos();
-//        for (ObjetivoOperativoMD user : listaoperativo) {
-////        for (int i = 0; i < listaoperativo.size(); i++) {
-//            for (ProyectoMD usuario : lista) {
-//                if (id_proyecto == user.getId_proyecto()) {
-//                    fila[0] = user.getNum_objetivo_proyecto();
-//                    fila[1] = user.getObjetivo();
-//                    modelo1.addRow(fila);
-//                }
-//            }
-//        }
+
         for (int i = 0; i < listaoperativo.size(); i++) {
             if (listaoperativo.get(i).getId_proyecto() == id_proyecto) {
-                fila[0] = listaoperativo.get(i).getNum_objetivo_proyecto();
-                fila[1] = listaoperativo.get(i).getObjetivo();
-                System.out.println(id_proyecto);
+                fila[0] = listaoperativo.get(i).getId_proyecto();
+                fila[1] = listaoperativo.get(i).getNum_objetivo_proyecto();
+                fila[2] = listaoperativo.get(i).getObjetivo();
+
                 modelo1.addRow(fila);
             }
 
@@ -167,7 +169,7 @@ public class Con_poa_proyectos {
         vista.getBtn_eliminar().setEnabled(false);
         vista.getBtn_modificar().setEnabled(false);
         vista.getTxtarea_obopera().setEnabled(false);
-        vista.getBtnAñadir().setEnabled(false);
+        vista.getBtnAñadir_op().setEnabled(false);
         vista.getTabla_proyecto().setEnabled(false);
         int idpoa = vista.getTabla_lista_proyectos().getSelectedRow();
         int idpoas = vista.getTabla_proyecto().getSelectedRow();
@@ -250,8 +252,26 @@ public class Con_poa_proyectos {
             vista.getBtn_eliminar().setEnabled(true);
             vista.getBtn_guardar().setEnabled(false);
             vista.getTxtarea_obopera().setEnabled(true);
-            vista.getBtnAñadir().setEnabled(true);
+            vista.getBtnAñadir_op().setEnabled(true);
             vista.getTabla_proyecto().setEnabled(true);
+        }
+
+    }
+    public void seleccionarob() {
+
+//        DefaultTableModel modelo;
+        modelo1 = (DefaultTableModel) vista.getTabla_proyecto().getModel();
+        int cedula = (int) modelo1.getValueAt(vista.getTabla_proyecto().getSelectedRow(), 0);
+        int cedulas= (int) modelo1.getValueAt(vista.getTabla_proyecto().getSelectedRow(),1);
+        List<ObjetivoOperativoMD> listas = obbd.obtenerdatosob(cedula,cedulas);
+        if (listas.size() > 0) {
+            obbd.setObjetivo(listas.get(0).getObjetivo());
+            
+
+            vista.getTxtarea_obopera().setText(obbd.getObjetivo()+ "");
+            
+            
+            
         }
 
     }
@@ -319,17 +339,7 @@ public class Con_poa_proyectos {
         }
         }
     }
-//    public void seleccionarobjetivo() {
-//        DefaultTableModel modelo;
-//        modelo = (DefaultTableModel) vista.getTabla_proyecto().getModel();
-//        int select = vista.getTabla_proyecto().getSelectedRow();
-//
-//        listaoperativo = obbd.mostrarDatos();
-//        obbd.setObjetivo(listaoperativo.get(0).getObjetivo());
-//
-//        vista.getTxtarea_obopera().setText(listaoperativo.get(select).getObjetivo() + "");
-//
-//    }
+
     
     
     public void seleccionarobjetivo(){

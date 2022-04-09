@@ -210,7 +210,7 @@ public class Con_poa_actividad {
          int ob = (int) modelo.getValueAt(vista.getTablaactividades().getSelectedRow(), 0);
          
 
-         for (int i = 0; i < 10; i++) {
+         for (int i = 0; i < listar.size(); i++) {
             if (listar.get(i).getObjetivo().equals(cedula)) {
                 List<ActividadesMD>lista1 = baseDatosactividades.obtenerdatosxpor(listar.get(i).getId_objetivo_operativo(),ob);
                 baseDatosactividades.setId_actividades(lista1.get(0).getId_actividades());

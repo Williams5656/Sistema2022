@@ -160,6 +160,30 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
         this.btnmodificar_op = btnmodificar_op;
     }
 
+    public JLabel getLb_anio() {
+        return Lb_anio;
+    }
+
+    public void setLb_anio(JLabel Lb_anio) {
+        this.Lb_anio = Lb_anio;
+    }
+
+    public JLabel getLb_carrera() {
+        return Lb_carrera;
+    }
+
+    public void setLb_carrera(JLabel Lb_carrera) {
+        this.Lb_carrera = Lb_carrera;
+    }
+
+    public JLabel getLb_poa() {
+        return Lb_poa;
+    }
+
+    public void setLb_poa(JLabel Lb_poa) {
+        this.Lb_poa = Lb_poa;
+    }
+
    
     /**
      * This method is called from within the constructor to initialize the form.
@@ -205,9 +229,9 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        Lb_anio = new javax.swing.JLabel();
+        Lb_poa = new javax.swing.JLabel();
+        Lb_carrera = new javax.swing.JLabel();
 
         jToolBar1.setRollover(true);
 
@@ -360,14 +384,14 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
         jLabel20.setText("AÑO:");
         getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 80, -1));
 
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 70, -1));
+        Lb_anio.setText("jLabel1");
+        getContentPane().add(Lb_anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 270, -1));
 
-        jLabel2.setText("jLabel1");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 70, -1));
+        Lb_poa.setText("jLabel1");
+        getContentPane().add(Lb_poa, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 270, -1));
 
-        jLabel4.setText("jLabel1");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 70, -1));
+        Lb_carrera.setText("jLabel1");
+        getContentPane().add(Lb_carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 280, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -386,6 +410,9 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Lb_anio;
+    private javax.swing.JLabel Lb_carrera;
+    private javax.swing.JLabel Lb_poa;
     private javax.swing.JTable Tabla_lista_proyectos;
     private javax.swing.JTable Tabla_proyecto;
     private javax.swing.JToggleButton btnAñadir_op;
@@ -397,7 +424,6 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_nuevo;
     private javax.swing.JToggleButton btneliminar_op;
     private javax.swing.JToggleButton btnmodificar_op;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -407,10 +433,8 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;

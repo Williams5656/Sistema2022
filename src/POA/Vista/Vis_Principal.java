@@ -388,6 +388,7 @@ public class Vis_Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(MENU_ACADEMICO);
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icons8_Classroom_20px.png"))); // NOI18N
         jMenu1.setText("POA");
 
         btn_poa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icons8_Console_20px.png"))); // NOI18N
@@ -400,6 +401,7 @@ public class Vis_Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icons8_Calendar_20px.png"))); // NOI18N
         jMenu2.setText("Calendario");
 
         btn_calendario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icono_agregar.png"))); // NOI18N
@@ -408,6 +410,7 @@ public class Vis_Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        menuPortafolio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/ingreso_silabo.png"))); // NOI18N
         menuPortafolio.setText("Portafolio");
 
         btnPortafolio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icons8_Course_20px.png"))); // NOI18N

@@ -31,6 +31,7 @@ public class Con_Poa1 {
     private POA.Modelo.PoaBD baseDatosPoa = new PoaBD();
     private POA.Modelo.CarreraBD baseDatosCarrera = new CarreraBD();
     private static int id_poa;
+    private static String carrera, anios;
     private boolean tablaSeleccionada = false;
 
     public Con_Poa1(Vis_Poa1 vista) {
@@ -82,16 +83,19 @@ public class Con_Poa1 {
             for (POA.Modelo.CarreraMD carr : listaCarreras) {
                 if (user.getId_carrera() == Integer.parseInt(carr.getCodigo_carrera())) {
                     fila[1] = carr.getNombre_carrera();
+                    carrera=carr.getNombre_carrera();
                 }
             }
 
             fila[2] = user.getAnio();
+            anios=user.getAnio();
             fila[3] = user.getEstado();
-
+            
             model.addRow(fila);
         }
 
         vista.getTablaPoa().setModel(model);
+        
     }
 
     public void guardar() {
@@ -149,7 +153,7 @@ public class Con_Poa1 {
             Dimension desktopSize = Con_principal.vista.getESCRITORIO().getSize();
             Dimension FrameSize = zap.getSize();
             zap.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-            Con_poa_proyectos proyectos = new Con_poa_proyectos(zap, id_poa);
+            Con_poa_proyectos proyectos = new Con_poa_proyectos(zap, id_poa,carrera,anios);
         } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un POA de la tabla");
         }

@@ -59,10 +59,10 @@ public class Con_poa_proyectos {
     private POA.Modelo.CarreraBD baseDatosCarrera = new CarreraBD();
     private static int id_proyecto;
     int poa = 0;
-    
+
     private boolean tablaSeleccionada = false;
 
-    public Con_poa_proyectos(vis_poa_proyectos vista, int id_poa) {
+    public Con_poa_proyectos(vis_poa_proyectos vista, int id_poa,String carrera, String anio) {
         this.vista = vista;
         poa = id_poa;
         vista.setVisible(true);
@@ -77,8 +77,7 @@ public class Con_poa_proyectos {
         vista.getBtnAñadir_op().addActionListener(e -> guardarobjetivo());
         vista.getBtn_imprimir().addActionListener(e -> imprimirpro());
         vista.getBtnSiguiente().addActionListener(e -> abrirVentanaactividad());
-        
-        
+
         vista.getTabla_lista_proyectos().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -88,7 +87,7 @@ public class Con_poa_proyectos {
             }
 
         });
-        
+
         vista.getTabla_proyecto().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -97,12 +96,15 @@ public class Con_poa_proyectos {
             }
 
         });
-        
+        vista.getLb_poa().setText(id_poa+"");
+        vista.getLb_carrera().setText(carrera);
+        vista.getLb_anio().setText(anio+"");
+
         lista_poa();
-        
-        
 
     }
+
+    
 
     public void lista_poa() {
         modelo.setRowCount(0);
@@ -257,21 +259,19 @@ public class Con_poa_proyectos {
         }
 
     }
+
     public void seleccionarob() {
 
 //        DefaultTableModel modelo;
         modelo1 = (DefaultTableModel) vista.getTabla_proyecto().getModel();
         int cedula = (int) modelo1.getValueAt(vista.getTabla_proyecto().getSelectedRow(), 0);
-        int cedulas= (int) modelo1.getValueAt(vista.getTabla_proyecto().getSelectedRow(),1);
-        List<ObjetivoOperativoMD> listas = obbd.obtenerdatosob(cedula,cedulas);
+        int cedulas = (int) modelo1.getValueAt(vista.getTabla_proyecto().getSelectedRow(), 1);
+        List<ObjetivoOperativoMD> listas = obbd.obtenerdatosob(cedula, cedulas);
         if (listas.size() > 0) {
             obbd.setObjetivo(listas.get(0).getObjetivo());
-            
 
-            vista.getTxtarea_obopera().setText(obbd.getObjetivo()+ "");
-            
-            
-            
+            vista.getTxtarea_obopera().setText(obbd.getObjetivo() + "");
+
         }
 
     }
@@ -328,22 +328,20 @@ public class Con_poa_proyectos {
         if (resp.equals("Reporte Completo")) {
             try {
 
-            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Poa_proyectos_completos.jasper"));
-            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
-            JasperViewer jv = new JasperViewer(jp, false);
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Poa_proyectos_completos.jasper"));
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
 
-            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-            jv.setVisible(true);
-        } catch (JRException e) {
-            System.out.println("no se pudo encontrar registros" + e.getMessage());
-        }
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException e) {
+                System.out.println("no se pudo encontrar registros" + e.getMessage());
+            }
         }
     }
 
-    
-    
-    public void seleccionarobjetivo(){
-        
+    public void seleccionarobjetivo() {
+
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTabla_lista_proyectos().getModel();
         listasobjetivos.clear();
@@ -351,39 +349,35 @@ public class Con_poa_proyectos {
         tablaSeleccionada = true;
         listaoperativo = obbd.obtenerdatosparacombo(ob);
         for (int i = 0; i < listaoperativo.size(); i++) {
-            if (listaoperativo.get(i).getId_proyecto()==ob) {
-               
-                listasobjetivos.add(listaoperativo.get(i).getId_objetivo_operativo());
-                
+            if (listaoperativo.get(i).getId_proyecto() == ob) {
 
-                id_pro=listaoperativo.get(i).getId_proyecto();
+                listasobjetivos.add(listaoperativo.get(i).getId_objetivo_operativo());
+
+                id_pro = listaoperativo.get(i).getId_proyecto();
                 System.out.println(id_pro);
-                
-                
+
             }
         }
-        
+
         System.out.println(ob);
-  
+
     }
-    
-    
-    public void abrirVentanaactividad(){
-       
-       if (tablaSeleccionada){
-           POA.Vista.vis_poa_actividad zap = new POA.Vista.vis_poa_actividad();
-        Con_principal.vista.getESCRITORIO().add(zap);
-        Dimension desktopSize = Con_principal.vista.getESCRITORIO().getSize();
-        Dimension FrameSize = zap.getSize();
-        zap.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-        Con_poa_actividad proyectos = new Con_poa_actividad(zap,id_pro);
-       }
-       else{
-           JOptionPane.showMessageDialog(null, "Debe seleccionar una actividad de la tabla");
-       }
+
+    public void abrirVentanaactividad() {
+
+        if (tablaSeleccionada) {
+            POA.Vista.vis_poa_actividad zap = new POA.Vista.vis_poa_actividad();
+            Con_principal.vista.getESCRITORIO().add(zap);
+            Dimension desktopSize = Con_principal.vista.getESCRITORIO().getSize();
+            Dimension FrameSize = zap.getSize();
+            zap.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+            Con_poa_actividad proyectos = new Con_poa_actividad(zap, id_pro);
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una actividad de la tabla");
+        }
     }
 
     public static int getId_pro() {
         return id_pro;
-    }        
+    }
 }

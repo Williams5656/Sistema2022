@@ -177,6 +177,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/POA/Vista/img/icons8_Classroom_20px.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="POA"/>
           </Properties>
           <SubComponents>
@@ -200,6 +203,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/POA/Vista/img/icons8_Calendar_20px.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Calendario"/>
           </Properties>
           <SubComponents>
@@ -215,6 +221,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuPortafolio">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/POA/Vista/img/ingreso_silabo.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Portafolio"/>
           </Properties>
           <SubComponents>

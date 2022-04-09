@@ -126,6 +126,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="btn_periodos">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/POA/Vista/img/icons8_Literature_20px.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Periodo_Academico"/>
               </Properties>
               <Events>
@@ -134,11 +137,17 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="btn_docentes">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/POA/Vista/img/icons8_Graduation_Cap_20px.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Docentes"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="btn_materia">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/POA/Vista/img/icons8_Course_20px.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Materias"/>
               </Properties>
               <Events>
@@ -147,6 +156,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Btn_AreaCarrera">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/POA/Vista/img/icons8-carpeta-de-documentos-20.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Areas de Carrera"/>
               </Properties>
               <Events>
@@ -155,6 +167,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="btn_asignaciondocentes">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/POA/Vista/img/icons8_Documents_20px.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Asignacion Docentes"/>
               </Properties>
             </MenuItem>
@@ -167,11 +182,17 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="btn_poa">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/POA/Vista/img/icons8_Console_20px.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="INICIO"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="btn_evidencias">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/POA/Vista/img/icons8_Protect_20px.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="EVIDENCIAS"/>
               </Properties>
             </MenuItem>
@@ -184,6 +205,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="btn_calendario">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/POA/Vista/img/icono_agregar.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Nuevo"/>
               </Properties>
             </MenuItem>
@@ -196,6 +220,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="btnPortafolio">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/POA/Vista/img/icons8_Course_20px.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Portafolios"/>
               </Properties>
             </MenuItem>

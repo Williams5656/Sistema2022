@@ -351,6 +351,7 @@ public class Vis_Principal extends javax.swing.JFrame {
         btn_permisos.setText("Permisos");
         MENU_ACADEMICO.add(btn_permisos);
 
+        btn_periodos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icons8_Literature_20px.png"))); // NOI18N
         btn_periodos.setText("Periodo_Academico");
         btn_periodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -359,9 +360,11 @@ public class Vis_Principal extends javax.swing.JFrame {
         });
         MENU_ACADEMICO.add(btn_periodos);
 
+        btn_docentes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icons8_Graduation_Cap_20px.png"))); // NOI18N
         btn_docentes.setText("Docentes");
         MENU_ACADEMICO.add(btn_docentes);
 
+        btn_materia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icons8_Course_20px.png"))); // NOI18N
         btn_materia.setText("Materias");
         btn_materia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -370,6 +373,7 @@ public class Vis_Principal extends javax.swing.JFrame {
         });
         MENU_ACADEMICO.add(btn_materia);
 
+        Btn_AreaCarrera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icons8-carpeta-de-documentos-20.png"))); // NOI18N
         Btn_AreaCarrera.setText("Areas de Carrera");
         Btn_AreaCarrera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -378,6 +382,7 @@ public class Vis_Principal extends javax.swing.JFrame {
         });
         MENU_ACADEMICO.add(Btn_AreaCarrera);
 
+        btn_asignaciondocentes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icons8_Documents_20px.png"))); // NOI18N
         btn_asignaciondocentes.setText("Asignacion Docentes");
         MENU_ACADEMICO.add(btn_asignaciondocentes);
 
@@ -385,9 +390,11 @@ public class Vis_Principal extends javax.swing.JFrame {
 
         jMenu1.setText("POA");
 
+        btn_poa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icons8_Console_20px.png"))); // NOI18N
         btn_poa.setText("INICIO");
         jMenu1.add(btn_poa);
 
+        btn_evidencias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icons8_Protect_20px.png"))); // NOI18N
         btn_evidencias.setText("EVIDENCIAS");
         jMenu1.add(btn_evidencias);
 
@@ -395,6 +402,7 @@ public class Vis_Principal extends javax.swing.JFrame {
 
         jMenu2.setText("Calendario");
 
+        btn_calendario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icono_agregar.png"))); // NOI18N
         btn_calendario.setText("Nuevo");
         jMenu2.add(btn_calendario);
 
@@ -402,6 +410,7 @@ public class Vis_Principal extends javax.swing.JFrame {
 
         menuPortafolio.setText("Portafolio");
 
+        btnPortafolio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icons8_Course_20px.png"))); // NOI18N
         btnPortafolio.setText("Portafolios");
         menuPortafolio.add(btnPortafolio);
 

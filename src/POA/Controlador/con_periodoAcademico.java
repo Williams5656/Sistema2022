@@ -30,9 +30,10 @@ public class con_periodoAcademico {
 
     private final vis_PeriodoAcademico vista;
     PeriodoacademicoBD periodo = new PeriodoacademicoBD();
-    private String carrera = "1";
+    private String carrera;
 
     public con_periodoAcademico(vis_PeriodoAcademico vista,String carrera) {
+        this.carrera=carrera;
         this.vista = vista;
         vista.setVisible(true);
         vista.getBtnestado().setEnabled(false);
@@ -58,7 +59,7 @@ public class con_periodoAcademico {
                     + "-"
                     + mes_anio(vista.getDateFechaFin().getDate().getMonth(),
                             vista.getDateFechaFin().getDate().getYear()));
-            periodo.setCarrera(carrera);
+            periodo.setCarrera(periodo.cod_carrera(carrera));
             periodo.setFechainicio(vista.getDateFechaInicio().getDate());
             periodo.setFechafin(vista.getDateFechaFin().getDate());
             periodo.setEstado(combo_esta());

@@ -47,7 +47,7 @@ public class doc_notas_BD extends doc_notas_MD {
     public Object[][] datos_unidos() {
         try {
             String sql = "select n.id_doc_nota, n.descripcion, ps.nombres||' '||ps.apellidos as docente,\n"
-                    + "per.nombre as periodo, mt.materia, ad.ciclo, ad.jornada, ad.paralelo\n"
+                    + "per.nombre as periodo, mt.materia, ad.ciclo, ad.jornada, ad.paralelo, n.documento\n"
                     + "from doc_nota n\n"
                     + "join asignacion_docentes ad on n.id_asignacion=ad.id_asignacion\n"
                     + "join persona ps on ad.identificacion=ps.cedula\n"
@@ -58,19 +58,23 @@ public class doc_notas_BD extends doc_notas_MD {
             while (rs.next()) { 
                 n_fil++;
             }
-            Object [][] m= new String[n_fil][8];
-            int f=0;                    
-            while (rs.next()) {                
-                m[f][0]=rs.getObject(1);
-                m[f][1]=rs.getObject(2);
-                m[f][2]=rs.getObject(3);
-                m[f][3]=rs.getObject(4);
-                m[f][4]=rs.getObject(5);
-                m[f][5]=rs.getObject(6);
-                m[f][6]=rs.getObject(7);
-                m[f][7]=rs.getObject(8);
-            }
             rs.close();
+            ResultSet rs2 = conectar.query(sql);
+            Object [][] m= new String[n_fil][9];
+            int f=0;                    
+            while (rs2.next()) {                
+                m[f][0]=rs2.getObject(1);
+                m[f][1]=rs2.getObject(2);
+                m[f][2]=rs2.getObject(3);
+                m[f][3]=rs2.getObject(4);
+                m[f][4]=rs2.getObject(5);
+                m[f][5]=rs2.getObject(6);
+                m[f][6]=rs2.getObject(7);
+                m[f][7]=rs2.getObject(8);
+                m[f][8]=rs2.getObject(9);
+                f++;
+            }
+            rs2.close();
             return m;
         } catch (SQLException e) {
             Logger.getLogger(doc_modulo_MD.class.getName()).log(Level.SEVERE, null, e);

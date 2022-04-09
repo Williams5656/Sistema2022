@@ -194,7 +194,37 @@ public class doc_silabo_BD extends doc_silabo_MD {
             }
         }
         return true;
-    }                
+    }   
+        
+        public Object[][] datos_unidos() {
+        try {
+            String sql = "select sb.id_doc_silabo, per.nombre, mt.materia, sb.documento\n" +
+                "from doc_silabo sb \n" +
+                "join periodo_academico per on sb.id_periodo=per.id_periodo\n" +
+                "join materia mt on sb.id_materia=mt.codigo";
+            ResultSet rs = conectar.query(sql);
+            int n_fil=0;
+            while (rs.next()) { 
+                n_fil++;
+            }
+            rs.close();
+            ResultSet rs2= conectar.query(sql);
+            Object [][] m= new String[n_fil][4];
+            int f=0;                    
+            while (rs2.next()) {                
+                m[f][0]=rs2.getString(1);  
+                m[f][1]=rs2.getString(2);
+                m[f][2]=rs2.getString(3);
+                m[f][3]=rs2.getBytes(4);
+                f++;
+            }
+            rs2.close();
+            return m;
+        } catch (SQLException e) {
+            Logger.getLogger(doc_modulo_MD.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    };    
     
 
 }

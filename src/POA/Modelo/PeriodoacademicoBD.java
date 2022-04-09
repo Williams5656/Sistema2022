@@ -152,7 +152,17 @@ public class PeriodoacademicoBD extends PeriodoacademicoMD {
         return false;
     }
 
-    public void ArrayList(JComboBox j){
-        
+    public String cod_carrera(String j){
+        String sql = "select codigo from carrera where nombre='"+j+"';";
+        ResultSet rs = conectar.query(sql);
+        try {
+            while (rs.next()) {
+                return rs.getString(1);
+            }
+        } catch (Exception e) {
+            System.out.println("Error  al encontrar el codigo de carrera");
+        }
+        return null;
     }
+    
 }

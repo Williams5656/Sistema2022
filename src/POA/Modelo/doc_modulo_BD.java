@@ -196,7 +196,39 @@ public class doc_modulo_BD extends doc_modulo_MD {
         }
         return true;
     }
-
+    
+    
+    public Object[][] datos_unidos() {
+        try {
+            String sql = "select md.id_doc_modulo, per.nombre, mt.materia, md.documento\n" +
+                "from doc_modulo md \n" +
+                "join periodo_academico per on md.id_periodo=per.id_periodo\n" +
+                "join materia mt on md.id_materia=mt.codigo";
+            ResultSet rs = conectar.query(sql);
+            int n_fil=0;
+            while (rs.next()) { 
+                n_fil++;
+            }
+            rs.close();
+            ResultSet rs2= conectar.query(sql);
+            Object [][] m= new String[n_fil][4];
+            int f=0;                    
+            while (rs2.next()) {                
+                m[f][0]=rs2.getString(1);  
+                m[f][1]=rs2.getString(2);
+                m[f][2]=rs2.getString(3);
+                m[f][3]=rs2.getBytes(4);
+                f++;
+            }
+            rs2.close();
+            return m;
+        } catch (SQLException e) {
+            Logger.getLogger(doc_modulo_MD.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    };
+    
+    
     public List<doc_modulo_MD> buscar_x_parametro(int id_periodo, boolean periodo, String nom_materia, boolean materia) {
         try {
             List<doc_modulo_MD> lista = new ArrayList<doc_modulo_MD>();

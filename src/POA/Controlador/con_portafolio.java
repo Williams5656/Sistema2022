@@ -31,209 +31,209 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author Isaac Mejia
  */
 public class con_portafolio {
+
     private final vis_portafolio vista;
-    doc_modulo_BD bdmodulo = new doc_modulo_BD();    
+    doc_modulo_BD bdmodulo = new doc_modulo_BD();
     private String carrera = "1";
     MateriaBD materiabd = new MateriaBD();
     List<MateriaMD> listMat = materiabd.mostrardatos();
     PeriodoacademicoBD periodobd = new PeriodoacademicoBD();
     List<PeriodoacademicoMD> listPer = periodobd.lista_periodos();
-    
 
     public con_portafolio(vis_portafolio vista) {
         this.vista = vista;
         vista.setVisible(true);
         llenarCombo();
-        vista.getBtnModulos().addActionListener(e-> tabla_modulo());
-        vista.getBtnSilabo().addActionListener(e-> tabla_silabo());
-        vista.getBtnImprimir().addActionListener(e-> imprimir());
-        vista.getBtn_buscar().addActionListener(e-> tabla_buscar());
-        vista.getBtn_subir().addActionListener(e-> subir_datos());
-          
-    }
-    
+        vista.getBtnModulos().addActionListener(e -> tabla_modulo());
+        vista.getBtnSilabo().addActionListener(e -> tabla_silabo());
+        vista.getBtnImprimir().addActionListener(e -> imprimir());
+        vista.getBtn_buscar().addActionListener(e -> tabla_buscar());
+        vista.getBtn_subir().addActionListener(e -> subir_datos());
 
-    public void buscar(){
+    }
+
+    public void buscar() {
         String periodo = (String) vista.getComboPeriodAcademico().getSelectedItem().toString();
-        bdmodulo.buscar_x_parametro(cod_periodo(periodo), vista.getChk_periodo().isSelected(), 
+        bdmodulo.buscar_x_parametro(cod_periodo(periodo), vista.getChk_periodo().isSelected(),
                 vista.getTxt_materia().getText(), vista.getChk_materia().isSelected());
     }
-    
-    public void llenarCombo(){    
+
+    public void llenarCombo() {
         for (int i = 0; i < listPer.size(); i++) {
             vista.getComboPeriodAcademico().addItem(listPer.get(i).getNombre());
-        }       
-    }
-    
-    public class noeditablemodelo extends DefaultTableModel
-    {
-        public boolean isCellEditable (int row, int column)
-        {
-       return false;
         }
     }
-    
-    public void tabla_modulo(){
-        noeditablemodelo modelo= new noeditablemodelo(){
-      public Class<?> getColumnClass(int column)
-      {
-        switch(column)
-        {
-        case 0:
-          return String.class;
-        case 1:
-          return String.class;
-        case 2:
-          return String.class;
-        case 3:          
-          return Boolean.class;
-        default:
-            return String.class;
+
+    public class noeditablemodelo extends DefaultTableModel {
+
+        public boolean isCellEditable(int row, int column) {
+            return false;
         }
-      }
-    };
+    }
+
+    public void tabla_modulo() {
+        noeditablemodelo modelo = new noeditablemodelo() {
+            public Class<?> getColumnClass(int column) {
+                switch (column) {
+                    case 0:
+                        return String.class;
+                    case 1:
+                        return String.class;
+                    case 2:
+                        return String.class;
+                    case 3:
+                        return Boolean.class;
+                    default:
+                        return String.class;
+                }
+            }
+        };
         modelo.addColumn("Codigo");
         modelo.addColumn("Periodo");
         modelo.addColumn("Materia");
         modelo.addColumn("Documento");
-        
-        doc_modulo_BD mod=new doc_modulo_BD();
-        List<doc_modulo_MD> modulos=mod.mostrardatos();
-        
-        for (int i = 0; i < modulos.size(); i++) {
+
+        doc_modulo_BD mod = new doc_modulo_BD();
+        Object[][] modulos = mod.datos_unidos();
+
+        for (int i = 0; i < modulos.length; i++) {
             modelo.addRow(new Object[0]);
-            modelo.setValueAt(modulos.get(i).getId_doc_modulo(), i, 0);
-            modelo.setValueAt(nom_periodo(modulos.get(i).getId_periodo()), i, 1);
-            modelo.setValueAt(nom_materia(modulos.get(i).getId_materia()), i, 2);
-            modelo.setValueAt((modulos.get(i).getDocumento()!=null),i,3);            
+            modelo.setValueAt(modulos[i][0], i, 0);
+            modelo.setValueAt(modulos[i][1], i, 1);
+            modelo.setValueAt(modulos[i][2], i, 2);
+            modelo.setValueAt((modulos[i][3] != null), i, 3);
         }
-        
-        vista.getTbl_Datos().setModel(modelo);             
+
+        vista.getTbl_Datos().setModel(modelo);
     }
-    
-    public void tabla_buscar(){
-        noeditablemodelo modelo= new noeditablemodelo(){
-      public Class<?> getColumnClass(int column)
-      {
-        switch(column)
-        {
-        case 0:
-          return String.class;
-        case 1:
-          return String.class;
-        case 2:
-          return String.class;
-        case 3:          
-          return Boolean.class;
-        default:
-            return String.class;
-        }
-      }
-    };
+
+    public void tabla_buscar() {
+        noeditablemodelo modelo = new noeditablemodelo() {
+            public Class<?> getColumnClass(int column) {
+                switch (column) {
+                    case 0:
+                        return String.class;
+                    case 1:
+                        return String.class;
+                    case 2:
+                        return String.class;
+                    case 3:
+                        return Boolean.class;
+                    default:
+                        return String.class;
+                }
+            }
+        };
         modelo.addColumn("Codigo");
         modelo.addColumn("Periodo");
         modelo.addColumn("Materia");
         modelo.addColumn("Documento");
-        
-        doc_modulo_BD mod=new doc_modulo_BD();
-        List<doc_modulo_MD> modulos=mod.buscar_x_parametro(cod_periodo(vista.getComboPeriodAcademico().getSelectedItem().toString()), 
-                vista.getChk_periodo().isSelected(), 
+
+        doc_modulo_BD mod = new doc_modulo_BD();
+        List<doc_modulo_MD> modulos = mod.buscar_x_parametro(cod_periodo(vista.getComboPeriodAcademico().getSelectedItem().toString()),
+                vista.getChk_periodo().isSelected(),
                 vista.getTxt_materia().getText().toUpperCase(), vista.getChk_materia().isSelected());
-        
+
         for (int i = 0; i < modulos.size(); i++) {
             modelo.addRow(new Object[0]);
             modelo.setValueAt(modulos.get(i).getId_doc_modulo(), i, 0);
             modelo.setValueAt(nom_periodo(modulos.get(i).getId_periodo()), i, 1);
             modelo.setValueAt(nom_materia(modulos.get(i).getId_materia()), i, 2);
-            modelo.setValueAt((modulos.get(i).getDocumento()!=null),i,3);            
+            modelo.setValueAt((modulos.get(i).getDocumento() != null), i, 3);
         }
-        
-        vista.getTbl_Datos().setModel(modelo);             
+
+        vista.getTbl_Datos().setModel(modelo);
     }
-    
-    
-     public void tabla_silabo(){
-        noeditablemodelo modelo= new noeditablemodelo(){
-      public Class<?> getColumnClass(int column)
-      {
-        switch(column)
-        {
-        case 0:
-          return String.class;
-        case 1:
-          return String.class;
-        case 2:
-          return String.class;
-        case 3:          
-          return Boolean.class;
-        default:
-            return String.class;
-        }
-      }
-    };
+
+    public void tabla_silabo() {
+        noeditablemodelo modelo = new noeditablemodelo() {
+            public Class<?> getColumnClass(int column) {
+                switch (column) {
+                    case 0:
+                        return String.class;
+                    case 1:
+                        return String.class;
+                    case 2:
+                        return String.class;
+                    case 3:
+                        return Boolean.class;
+                    default:
+                        return String.class;
+                }
+            }
+        };
         modelo.addColumn("Codigo");
         modelo.addColumn("Periodo");
         modelo.addColumn("Materia");
         modelo.addColumn("Documento");
-        
-        doc_silabo_BD mod=new doc_silabo_BD();
-        List<doc_silabo_MD> modulos=mod.mostrardatos();
-        
+
+        doc_silabo_BD mod = new doc_silabo_BD();
+        List<doc_silabo_MD> modulos = mod.mostrardatos();
+
         for (int i = 0; i < modulos.size(); i++) {
             modelo.addRow(new Object[0]);
             modelo.setValueAt(modulos.get(i).getId_doc_silabo(), i, 0);
             modelo.setValueAt(nom_periodo(modulos.get(i).getId_periodo()), i, 1);
             modelo.setValueAt(nom_materia(modulos.get(i).getId_materia()), i, 2);
-            modelo.setValueAt((modulos.get(i).getDocumento()!=null),i,3);            
+            modelo.setValueAt((modulos.get(i).getDocumento() != null), i, 3);
         }
-        
-        vista.getTbl_Datos().setModel(modelo);             
+
+        vista.getTbl_Datos().setModel(modelo);
     }
-    
-    public String nom_periodo(int cod){
+
+    public String nom_periodo(int cod) {
         for (int i = 0; i < listPer.size(); i++) {
-            if (listPer.get(i).getIdperiodo()==cod) return listPer.get(i).getNombre();
+            if (listPer.get(i).getIdperiodo() == cod) {
+                return listPer.get(i).getNombre();
+            }
         }
         return null;
     }
-    
-    public String nom_materia(String cod){
+
+    public String nom_materia(String cod) {
         for (int i = 0; i < listMat.size(); i++) {
-            if (listMat.get(i).getCod_materia().equals(cod)) return listMat.get(i).getNombre_materia();
+            if (listMat.get(i).getCod_materia().equals(cod)) {
+                return listMat.get(i).getNombre_materia();
+            }
         }
         return null;
     }
-    public int cod_periodo(String nomb){
+
+    public int cod_periodo(String nomb) {
         for (int i = 0; i < listPer.size(); i++) {
-            if (listPer.get(i).getNombre().equals(nomb)) return listPer.get(i).getIdperiodo();
+            if (listPer.get(i).getNombre().equals(nomb)) {
+                return listPer.get(i).getIdperiodo();
+            }
         }
         return 0;
     }
-    
-    public String cod_materia(String nom){
+
+    public String cod_materia(String nom) {
         for (int i = 0; i < listMat.size(); i++) {
-            if (listMat.get(i).getNombre_materia().toLowerCase().contains(nom)== true) return listMat.get(i).getCod_materia();
+            if (listMat.get(i).getNombre_materia().toLowerCase().contains(nom) == true) {
+                return listMat.get(i).getCod_materia();
+            }
         }
         return null;
     }
-    
-     public void imprimir(){
-          Conect con = new Conect();
-            try {
-               
-                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/r_modulo.jasper"));
-                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
-                JasperViewer jv = new JasperViewer(jp, false);
-                JOptionPane.showMessageDialog(null, "Imprimiendo Periodo");
-                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                jv.setVisible(true);
-            } catch (JRException e) {
-                System.out.println("no se pudo encontrar registros" + e.getMessage());
-                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
-            }
+
+    public void imprimir() {
+        Conect con = new Conect();
+        try {
+
+            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/r_modulo.jasper"));
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+            JasperViewer jv = new JasperViewer(jp, false);
+            JOptionPane.showMessageDialog(null, "Imprimiendo Periodo");
+            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            jv.setVisible(true);
+        } catch (JRException e) {
+            System.out.println("no se pudo encontrar registros" + e.getMessage());
+            Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
-   
-    public void subir_doc_modulo(){        
+
+    public void subir_doc_modulo() {
         JFileChooser j = new JFileChooser();
         j.setFileSelectionMode(JFileChooser.FILES_ONLY);
         int estado = j.showOpenDialog(null);
@@ -241,18 +241,18 @@ public class con_portafolio {
             try {
                 Image icono = ImageIO.read(j.getSelectedFile()).getScaledInstance(100, 100, Image.SCALE_DEFAULT);
                 bdmodulo.setDocumento(icono);
-                
+
             } catch (IOException ex) {
                 Logger.getLogger(con_portafolio.class.getName()).log(Level.SEVERE, null, ex);
             }
-           bdmodulo.insertar_doc(Integer.parseInt(vista.getTbl_Datos().getValueAt(vista.getTbl_Datos().getSelectedRow(), 0).toString()));
+            bdmodulo.insertar_doc(Integer.parseInt(vista.getTbl_Datos().getValueAt(vista.getTbl_Datos().getSelectedRow(), 0).toString()));
         }
-    }     
-     
-    public void subir_datos(){
-        if (vista.getBtnModulos().isSelected() && vista.getTbl_Datos().getSelectedRow()>-1){
+    }
+
+    public void subir_datos() {
+        if (vista.getBtnModulos().isSelected() && vista.getTbl_Datos().getSelectedRow() > -1) {
             subir_doc_modulo();
         }
-    } 
-     
+    }
+
 }

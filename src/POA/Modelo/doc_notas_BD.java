@@ -23,7 +23,7 @@ public class doc_notas_BD extends doc_notas_MD {
     public doc_notas_BD() {
     }
 
-    public boolean crear_silabos() {
+    public boolean crear_notas() {
         int cod_max = 0;
         ResultSet rs;
         try {

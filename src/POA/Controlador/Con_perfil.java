@@ -5,6 +5,7 @@
  */
 package POA.Controlador;
 
+import POA.Modelo.Conect;
 import POA.Modelo.ModeloAsignacion;
 import POA.Modelo.PerfilBD;
 import POA.Modelo.PerfilMD;
@@ -14,8 +15,17 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -35,6 +45,7 @@ public class Con_perfil {
         vista.getBtn_modificar().addActionListener(e -> modificar());
         vista.getBtn_eliminar().addActionListener(e -> eliminar());
         vista.getBtn_nuevo().addActionListener(e -> nuevo());
+        vista.getBtn_imprimir().addActionListener(e -> imprimir());
         Letras.solo_letras(vista.getTxtNombre());
         vista.getTablaPerfil().addMouseListener(new MouseAdapter() {
             @Override
@@ -53,9 +64,21 @@ public class Con_perfil {
             }
         });
         lista();
-    }
+    } ;
+    public void imprimir() {
+        Conect con = new Conect();
+        try {
+            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/ReportePerfil.jasper"));
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+            JasperViewer jv = new JasperViewer(jp, false);
+            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            jv.setVisible(true);
+        } catch (JRException e) {
+            System.out.println("no se pudo encontrar registros" + e.getMessage());
+            Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+        }
 
-    ;
+    }
     private void nuevo() {
         vista.getBtn_guardar().setEnabled(true);
         vista.getBtn_modificar().setEnabled(false);

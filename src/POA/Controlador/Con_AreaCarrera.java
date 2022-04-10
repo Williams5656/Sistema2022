@@ -57,6 +57,7 @@ public class Con_AreaCarrera {
     private PersonaBD baseDatosPersona = new PersonaBD();
     String vector[];
     PerfilBD basePerfil = new PerfilBD();
+    int select = 0;
 
     public Con_AreaCarrera(Vis_AreaCarrera vista) {
         this.vista = vista;
@@ -110,7 +111,7 @@ public class Con_AreaCarrera {
                 JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/ReporteAreaCarrera1.jasper"));
                 Map<String, Object> params = new HashMap<String, Object>();
                 //String aguja = JOptionPane.showInputDialog("Ingrese una Cedula de persona");
-                String aguja= codigoCarrera;
+                String aguja = codigoCarrera;
                 //String aguja = vista.getTxtBuscar().getText();
                 //System.out.println("cedula;;;;" + aguja);
                 params.put("carrera", aguja);
@@ -125,17 +126,17 @@ public class Con_AreaCarrera {
 
         }
         if (resp.equals("Reporte Completo")) {
-        try {
+            try {
 
-            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/ReporteAreaCarrera.jasper"));
-            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
-            JasperViewer jv = new JasperViewer(jp, false);
-            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-            jv.setVisible(true);
-        } catch (JRException e) {
-            System.out.println("no se pudo encontrar registros" + e.getMessage());
-            Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
-        }
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/ReporteAreaCarrera.jasper"));
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException e) {
+                System.out.println("no se pudo encontrar registros" + e.getMessage());
+                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+            }
         }
     }
 
@@ -161,6 +162,7 @@ public class Con_AreaCarrera {
         vista.getComboPerfil().setEnabled(false);
         vista.getComboResponsable().setEnabled(false);
         vista.getComboCarrera().setEnabled(false);
+        vista.getBtn_nuevo().setEnabled(true);
     }
 
     public void cargarComboPerfil() {
@@ -209,7 +211,7 @@ public class Con_AreaCarrera {
         vista.getComboCarrera().setEnabled(true);
         vista.getComboPerfil().setSelectedIndex(0);
         vista.getComboResponsable().setSelectedIndex(0);
-        vista.getComboCarrera().setSelectedIndex(0);
+        //vista.getComboCarrera().setSelectedIndex(0);
 
     }
 
@@ -225,16 +227,35 @@ public class Con_AreaCarrera {
         String codigoCarrera = "";
         codigoCarrera = basePerfil.mostrarIdCarrera(carreraCombo);
         bdarea.setIdCarrera(codigoCarrera);
-        if (bdarea.insertar()) {
-            JOptionPane.showMessageDialog(null, "DATOS GUARDADOS CORRECTAMENTE");
-            lista();
-            nuevo();
-        } else {
-            JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR");
+        int comparacion = 0;
+        int com = 0;
+        comparacion = basePerfil.verificarPerfil(codigoCarrera, codigoPerfil);
+        com = basePerfil.verificarResponsable(codigoCarrera, cedula);
+        
+        if (comparacion != 0) {
+            JOptionPane.showMessageDialog(null, "El perfil ya existe");
+            vista.getComboPerfil().setSelectedIndex(0);
         }
+        if (com != 0) {
+            JOptionPane.showMessageDialog(null, "Ya existe este responsable");
+            vista.getComboResponsable().setSelectedIndex(0);
+        }
+        if (comparacion == 0 && com == 0) {
+            if (bdarea.insertar()) {
+                JOptionPane.showMessageDialog(null, "DATOS GUARDADOS CORRECTAMENTE");
+                lista();
+                nuevo();
+                desactivarBotones();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR");
+            }
+        }
+
     }
 
     private void modificarBase() {
+        int id = 0;
+        id = Integer.parseInt(vista.getTablaAreaCarrera().getValueAt(select, 0).toString());
         int posicion = vista.getComboResponsable().getSelectedIndex() - 1;
         String cedula = vector[posicion];
         bdarea.setIdResponsable(cedula);
@@ -246,17 +267,17 @@ public class Con_AreaCarrera {
         String codigoCarrera = "";
         codigoCarrera = basePerfil.mostrarIdCarrera(carreraCombo);
         bdarea.setIdCarrera(codigoCarrera);
-        int seleccionado = vista.getTablaAreaCarrera().getSelectedRow();
         int resp2 = JOptionPane.showConfirmDialog(null, "CONFIRME SI ESTA SEGURO DE MODIFICAR");
-        if (resp2 == 0) {
-            if (bdarea.modificar(lista.get(seleccionado).getIdArea())) {
-                JOptionPane.showMessageDialog(null, "DATOS ACTUALIZADOS");
-                lista();
-                nuevo();
-            } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL MODIFICAR");
+            if (resp2 == 0) {
+                if (bdarea.modificar(id)) {
+                    JOptionPane.showMessageDialog(null, "DATOS ACTUALIZADOS");
+                    lista();
+                    nuevo();
+                } else {
+                    JOptionPane.showMessageDialog(null, "ERROR AL MODIFICAR");
+                }
             }
-        }
+       
     }
 
     private void guardar() {
@@ -269,6 +290,7 @@ public class Con_AreaCarrera {
             JOptionPane.showMessageDialog(null, "Seleccione el Responsable");
         } else {
             insertarBase();
+            
         }
     }
 
@@ -277,10 +299,11 @@ public class Con_AreaCarrera {
     }
 
     private void eliminar() {
-        int seleccionado = vista.getTablaAreaCarrera().getSelectedRow();
-        int resp2 = JOptionPane.showConfirmDialog(null, "CONFIRME SI ESTA SEGURO DE MODIFICAR");
+        int id = 0;
+        id = Integer.parseInt(vista.getTablaAreaCarrera().getValueAt(select, 0).toString());
+        int resp2 = JOptionPane.showConfirmDialog(null, "CONFIRME SI ESTA SEGURO DE ELIMINAR");
         if (resp2 == 0) {
-            if (bdarea.eliminar(lista.get(seleccionado).getIdArea())) {
+            if (bdarea.eliminar(id)) {
                 JOptionPane.showMessageDialog(null, "ELIMINADO CORRECTAMENTE");
                 lista();
                 nuevo();
@@ -292,29 +315,42 @@ public class Con_AreaCarrera {
     }
 
     private void seleccionar() {
-        int select = vista.getTablaAreaCarrera().getSelectedRow();
+        int id = 0;
+        String c = "";
+        String p = "";
+        String r = "";
+        select = vista.getTablaAreaCarrera().getSelectedRow();
         vista.getBtn_modificar().setEnabled(true);
         vista.getBtn_eliminar().setEnabled(true);
         vista.getBtn_guardar().setEnabled(false);
         vista.getComboCarrera().setEnabled(true);
         vista.getComboPerfil().setEnabled(true);
         vista.getComboResponsable().setEnabled(true);
-        lista = bdarea.mostrardatos();
-        for (PerfilMD perfil : listaPerfiles) {
-            if (perfil.getCodigo() == lista.get(select).getIdPerfil()) {
-                vista.getComboPerfil().setSelectedItem(perfil.getNombre());
-            }
-        }
-        for (CarreraMD carrera : listaCarrera) {
-            if (carrera.getCodigo_carrera().equals(lista.get(select).getIdCarrera())) {
-                vista.getComboCarrera().setSelectedItem(carrera.getNombre_carrera());
-            }
-        }
-        for (PersonaMD persona : listaPersona) {
-            if (persona.getCedula().equals(lista.get(select).getIdResponsable())) {
-                vista.getComboResponsable().setSelectedItem(persona.getNombres() + " " + persona.getApellidos());
-            }
-        }
+
+        id = Integer.parseInt(vista.getTablaAreaCarrera().getValueAt(select, 0).toString());
+        c = vista.getTablaAreaCarrera().getValueAt(select, 1).toString();
+        p = vista.getTablaAreaCarrera().getValueAt(select, 2).toString();
+        r = vista.getTablaAreaCarrera().getValueAt(select, 3).toString();
+        //vista.getComboCarrera().setSelectedItem(c);
+        vista.getComboPerfil().setSelectedItem(p);
+        vista.getComboResponsable().setSelectedItem(basePerfil.mostrarIdDocente(r));
+
+//        for (CarreraMD carrera : listaCarrera) {
+//            if (carrera.getCodigo_carrera().equals(lista.get(id).getIdCarrera())) {
+//                vista.getComboCarrera().setSelectedItem(carrera.getNombre_carrera());
+//                System.out.println(lista.get(select).getIdCarrera() + " hola");
+//            }
+//        }
+//        for (PerfilMD perfil : listaPerfiles) {
+//            if (perfil.getCodigo() == lista.get(select).getIdPerfil()) {
+//                vista.getComboPerfil().setSelectedItem(perfil.getNombre());
+//            }
+//        }
+//        for (PersonaMD persona : listaPersona) {
+//            if (persona.getCedula().equals(lista.get(select).getIdResponsable())) {
+//                vista.getComboResponsable().setSelectedItem(persona.getNombres() + " " + persona.getApellidos());
+//            }
+//        }
     }
 
     public void lista() {

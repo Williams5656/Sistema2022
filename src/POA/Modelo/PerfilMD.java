@@ -11,7 +11,7 @@ package POA.Modelo;
  */
 public class PerfilMD {
     private int codigo;
-    private String nombre;
+    String nombre;
     private String descripcion;
 
     public PerfilMD() {

@@ -10,7 +10,8 @@
 		<![CDATA[SELECT
      *
 FROM
-     "v_area" v_area]]>
+     "v_area" v_area
+order by 1]]>
 	</queryString>
 	<field name="carrera" class="java.lang.String"/>
 	<field name="perfil" class="java.lang.String"/>

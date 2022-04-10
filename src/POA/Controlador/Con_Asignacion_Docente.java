@@ -16,6 +16,8 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static POA.Vista.Vis_Principal.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -65,6 +67,12 @@ public class Con_Asignacion_Docente {
             @Override
             public void mouseClicked(MouseEvent e) {
                 seleccionar();
+            }
+        });
+        vista.getCboxcarrera().addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                seleccionarCarrera();
             }
         });
         listaMateria = baseDatosMateria.mostrardatos();
@@ -329,6 +337,8 @@ public class Con_Asignacion_Docente {
     }
 
     public void seleccionar() {
+        cargarComboCarrera();
+        cargarComboMateria();
         habilitar_botones();
         vista.getBtneliminar().setEnabled(true);
         vista.getBtnmodificar().setEnabled(true);
@@ -350,6 +360,7 @@ public class Con_Asignacion_Docente {
         bdasignacion.setId_asignacio(listaasig.get(0).getId_asignacio());
         bdasignacion.setIdentificacion(listaasig.get(0).getIdentificacion());
         bdasignacion.setPeriodo(periodo);
+        
         bdasignacion.setAsignatura(listaasig.get(0).getAsignatura());
         bdasignacion.setParalelo(listaasig.get(0).getParalelo());
         bdasignacion.setJornada(listaasig.get(0).getJornada());
@@ -409,7 +420,23 @@ public class Con_Asignacion_Docente {
 
         }
     }
-    
+    public void seleccionarCarrera(){
+        System.out.println("Seleccionar Carrera");
+        String nombre ="";
+        String id_carrera = "";
+        nombre = (String) vista.getCboxcarrera().getSelectedItem();
+        for (CarreraMD carreraMD : listaCarrera) {
+            if(carreraMD.getNombre_carrera().equalsIgnoreCase(nombre)){
+                id_carrera = carreraMD.getCodigo_carrera();
+            }
+        }
+        listaMateria = baseDatosMateria.nombresCarrera(id_carrera);
+        vista.getCboxasignatura().removeAllItems();
+        vista.getCboxasignatura().addItem("Seleccione");
+        for (MateriaMD materiaMD : listaMateria) {
+            vista.getCboxasignatura().addItem(materiaMD.getNombre_materia());
+        }
+    }
     public void accion_combobox(){
         List<PersonaMD> lista = bdpersona.mostrardatos();
         for (int i = 0; i < lista.size(); i++) {

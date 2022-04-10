@@ -86,7 +86,30 @@ public class MateriaBD extends MateriaMD{
             return null;
         }
     }
-
+    public List<MateriaMD> nombresCarrera(String codigo) {
+        try {
+            List<MateriaMD> lista = new ArrayList<MateriaMD>();
+            String sql = "select * from materia" + " where \"nombre\"='" + codigo + "'";
+            ResultSet rs = conectar.query(sql);
+            while (rs.next()) {
+                MateriaMD m = new MateriaMD();
+                m.setNombre_carrera(rs.getString("nombre"));
+                m.setEje_formacion(rs.getString("eje"));
+                m.setCod_materia(rs.getString("codigo"));
+                m.setNombre_materia(rs.getString("materia"));
+                m.setCiclo(rs.getString("ciclo"));
+                m.setCreditos(rs.getString("creditos"));
+                m.setPlan(rs.getString("plan"));
+                m.setArea(rs.getString("area"));
+                lista.add(m);
+            }
+            rs.close();
+            return lista;
+        } catch (SQLException e) {
+            Logger.getLogger(MateriaMD.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
     public boolean insertar() {
 
         String nsql = "INSERT INTO materia(nombre,eje,codigo,materia,ciclo,creditos,plan,area)" + "VALUES ('" + getNombre_carrera() + "','" + getEje_formacion()+ "','" + getCod_materia()+ "','" + getNombre_materia()+ "','" + getCiclo()+ "','" + getCreditos() + "','" + getPlan() + "','" + getArea()+ "')";

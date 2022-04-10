@@ -63,15 +63,15 @@ public class doc_notas_BD extends doc_notas_MD {
             Object [][] m= new String[n_fil][9];
             int f=0;                    
             while (rs2.next()) {                
-                m[f][0]=rs2.getObject(1);
-                m[f][1]=rs2.getObject(2);
-                m[f][2]=rs2.getObject(3);
-                m[f][3]=rs2.getObject(4);
-                m[f][4]=rs2.getObject(5);
-                m[f][5]=rs2.getObject(6);
-                m[f][6]=rs2.getObject(7);
-                m[f][7]=rs2.getObject(8);
-                m[f][8]=rs2.getObject(9);
+                m[f][0]=rs2.getString(1);
+                m[f][1]=rs2.getString(2);
+                m[f][2]=rs2.getString(3);
+                m[f][3]=rs2.getString(4);
+                m[f][4]=rs2.getString(5);
+                m[f][5]=rs2.getString(6);
+                m[f][6]=rs2.getString(7);
+                m[f][7]=rs2.getString(8);
+                m[f][8]=rs2.getBytes(9);
                 f++;
             }
             rs2.close();

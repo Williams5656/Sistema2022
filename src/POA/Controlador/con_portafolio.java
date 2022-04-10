@@ -47,6 +47,7 @@ public class con_portafolio {
         llenarCombo();
         vista.getBtnModulos().addActionListener(e -> tabla_modulo());
         vista.getBtnSilabo().addActionListener(e -> tabla_silabo());
+        vista.getBtnNotas().addActionListener(e -> tabla_notas());
         vista.getBtnImprimir().addActionListener(e -> imprimir());
         vista.getBtn_buscar().addActionListener(e -> buscar());
         vista.getBtn_subir().addActionListener(e -> subir_datos());
@@ -177,6 +178,62 @@ public class con_portafolio {
             modelo.setValueAt(modulos[i][1], i, 1);
             modelo.setValueAt(modulos[i][2], i, 2);
             modelo.setValueAt((modulos[i][3] != null), i, 3);
+        }
+
+        vista.getTbl_Datos().setModel(modelo);
+    }
+    
+    public void tabla_notas() {
+        noeditablemodelo modelo = new noeditablemodelo() {
+            public Class<?> getColumnClass(int column) {
+                switch (column) {
+                    case 0:
+                        return String.class;
+                    case 1:
+                        return String.class;
+                    case 2:
+                        return String.class;
+                    case 3:
+                        return String.class;
+                    case 4:
+                        return String.class;
+                    case 5:
+                        return String.class;
+                    case 6:
+                        return String.class;
+                    case 7:
+                        return String.class;  
+                    case 8:
+                        return Boolean.class;
+                    default:
+                        return String.class;
+                }
+            }
+        };
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Docente");
+        modelo.addColumn("Periodo");
+        modelo.addColumn("Materia");
+        modelo.addColumn("Ciclo");
+        modelo.addColumn("Jornada");
+        modelo.addColumn("Paralelo");
+        modelo.addColumn("Documento");
+
+        doc_notas_BD mod = new doc_notas_BD();
+        Object[][] modulos = mod.datos_unidos();
+
+        for (int i = 0; i < modulos.length; i++) {
+            modelo.addRow(new Object[0]);
+            modelo.setValueAt(modulos[i][0], i, 0);
+            modelo.setValueAt(modulos[i][1], i, 1);
+            modelo.setValueAt(modulos[i][2], i, 2);
+            modelo.setValueAt(modulos[i][3], i, 3);
+            modelo.setValueAt(modulos[i][4], i, 4);
+            modelo.setValueAt(modulos[i][5], i, 5);
+            modelo.setValueAt(modulos[i][6], i, 6);
+            modelo.setValueAt(modulos[i][7], i, 7);
+            modelo.setValueAt((modulos[i][8] != null), i, 8);
         }
 
         vista.getTbl_Datos().setModel(modelo);

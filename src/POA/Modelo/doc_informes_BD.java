@@ -14,11 +14,11 @@ import java.util.logging.Logger;
  *
  * @author MIGUEL
  */
-public class doc_notas_BD extends doc_notas_MD {
+public class doc_informes_BD extends doc_notas_MD {
 
     Conect conectar = new Conect();
 
-    public doc_notas_BD() {
+    public doc_informes_BD() {
     }
 
     public boolean crear_notas() {
@@ -29,8 +29,8 @@ public class doc_notas_BD extends doc_notas_MD {
             while (rs.next()) {
                 cod_max = rs.getInt(1);
             }
-            if (conectar.noQuery("INSERT INTO doc_nota(id_asignacion,descripcion) VALUES ('" + cod_max + "','Interciclo')") == null
-                    && conectar.noQuery("INSERT INTO doc_nota(id_asignacion,descripcion) VALUES ('" + cod_max + "','Finales')") == null); else {
+            if (conectar.noQuery("INSERT INTO doc_informe_silabo(id_asignacion,descripcion) VALUES ('" + cod_max + "','Interciclo')") == null
+                    && conectar.noQuery("INSERT INTO doc_informe_silabo(id_asignacion,descripcion) VALUES ('" + cod_max + "','Final')") == null); else {
                 System.out.println("Error al crear las notas");
                 return false;
             }
@@ -44,9 +44,9 @@ public class doc_notas_BD extends doc_notas_MD {
 
     public Object[][] datos_unidos() {
         try {
-            String sql = "select n.id_doc_nota, n.descripcion, ps.nombres||' '||ps.apellidos as docente,\n"
+            String sql = "select n.id_informe_silabo, n.descripcion, ps.nombres||' '||ps.apellidos as docente,\n"
                     + "per.nombre as periodo, mt.materia, ad.ciclo, ad.jornada, ad.paralelo, n.documento\n"
-                    + "from doc_nota n\n"
+                    + "from doc_informe_silabo n\n"
                     + "join asignacion_docentes ad on n.id_asignacion=ad.id_asignacion\n"
                     + "join persona ps on ad.identificacion=ps.cedula\n"
                     + "join periodo_academico per on ad.periodo=cast(per.id_periodo as varchar)\n"

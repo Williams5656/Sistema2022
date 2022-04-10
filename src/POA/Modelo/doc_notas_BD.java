@@ -31,8 +31,8 @@ public class doc_notas_BD extends doc_notas_MD {
             while (rs.next()) {
                 cod_max = rs.getInt(1);
             }
-            if (conectar.noQuery("INSERT INTO doc_nota(id_periodo,descripcion) VALUES ('" + cod_max + "','Interciclo')") == null
-                    && conectar.noQuery("INSERT INTO doc_nota(id_periodo,descripcion) VALUES ('" + cod_max + "','Finales')") == null); else {
+            if (conectar.noQuery("INSERT INTO doc_nota(id_asignacion,descripcion) VALUES ('" + cod_max + "','Interciclo')") == null
+                    && conectar.noQuery("INSERT INTO doc_nota(id_asignacion,descripcion) VALUES ('" + cod_max + "','Finales')") == null); else {
                 System.out.println("Error al crear las notas");
                 return false;
             }

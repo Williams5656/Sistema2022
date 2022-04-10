@@ -7,6 +7,7 @@ package POA.Controlador;
 import POA.Modelo.Conect;
 import POA.Modelo.PeriodoacademicoBD;
 import POA.Modelo.doc_modulo_BD;
+import POA.Modelo.doc_planes_claseBD;
 import POA.Modelo.doc_silabo_BD;
 import POA.Vista.*;
 import java.awt.event.MouseAdapter;
@@ -82,9 +83,15 @@ public class con_periodoAcademico {
             } else {
                 System.out.println("error al crear modulos del periodo");}
             
+            doc_planes_claseBD pla=new doc_planes_claseBD();
+            if (pla.crear_planes(carrera)== true) {
+                System.out.println("Planes creados");
+            } else {
+                System.out.println("error al crear planes en periodo");}
+            
             periodo.llenar_tabla(vista.getTabla());
             
-        } else; //colocar un joption despues desde una clase general;        
+        } else System.out.println("periodos en conflicto");       
     }
 
     public boolean combo_esta() {
@@ -153,6 +160,7 @@ public class con_periodoAcademico {
             return false;
         }
         if (periodo.validar_fechas(carrera, vista.getDateFechaInicio().getDate(), vista.getDateFechaFin().getDate()) == false) {
+            System.out.println("error en el validador de la base");
             return false;
         }
         return true;

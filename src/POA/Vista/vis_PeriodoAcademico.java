@@ -24,13 +24,6 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
         initComponents();
     }
 
-    public JButton getBtnCrear() {
-        return btnestado;
-    }
-
-    public void setBtnCrear(JButton btnCrear) {
-        this.btnestado = btnCrear;
-    }
 
     public JComboBox<String> getComboEstado() {
         return comboEstado;
@@ -88,6 +81,14 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
         this.tabla = tabla;
     }
 
+    public JButton getBtnCrear() {
+        return btnCrear;
+    }
+
+    public void setBtnCrear(JButton btnCrear) {
+        this.btnCrear = btnCrear;
+    }
+
     public JButton getBtn_repor() {
         return btn_repor;
     }
@@ -103,7 +104,8 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
     public void setBtnestado(JButton btnestado) {
         this.btnestado = btnestado;
     }
-    
+
+
     
 
     

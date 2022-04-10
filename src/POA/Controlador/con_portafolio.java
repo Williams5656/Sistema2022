@@ -48,7 +48,7 @@ public class con_portafolio {
         vista.getBtnModulos().addActionListener(e -> tabla_modulo());
         vista.getBtnSilabo().addActionListener(e -> tabla_silabo());
         vista.getBtnImprimir().addActionListener(e -> imprimir());
-        //vista.getBtn_buscar().addActionListener(e -> tabla_buscar());
+        vista.getBtn_buscar().addActionListener(e -> buscar());
         vista.getBtn_subir().addActionListener(e -> subir_datos());
 
     }
@@ -65,6 +65,10 @@ public class con_portafolio {
         public boolean isCellEditable(int row, int column) {
             return false;
         }
+    }
+    
+    public void buscar(){
+        if (vista.getBtnModulos().isSelected()) tabla_buscar_modulo();
     }
 
     public void tabla_modulo() {
@@ -128,7 +132,8 @@ public class con_portafolio {
         doc_modulo_BD mod = new doc_modulo_BD();
         Object[][] modulos = mod.buscar_x_parametro(carrera,cod_periodo(vista.getComboPeriodAcademico().getSelectedItem().toString()),
                 vista.getChk_periodo().isSelected(),
-                vista.getTxt_materia().getText().toUpperCase(), vista.getChk_materia().isSelected());
+                vista.getTxt_materia().getText().toUpperCase(), 
+                vista.getChk_materia().isSelected());
 
         for (int i = 0; i < modulos.length; i++) {
             modelo.addRow(new Object[0]);

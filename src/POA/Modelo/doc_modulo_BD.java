@@ -151,7 +151,7 @@ public class doc_modulo_BD extends doc_modulo_MD {
         }
 
         //borrado el documento del iserte
-        String nsql = "update doc_modulo set documento = '" + ef + "' where id_doc_modulo = " +  cod + ";";
+        String nsql = "update doc_modulo set documento = '" + ef + "' where id_doc_modulo = " + cod + ";";
 
         if (conectar.noQuery(nsql) == null) {
             return true;
@@ -163,7 +163,7 @@ public class doc_modulo_BD extends doc_modulo_MD {
     }
 
     public boolean crear_modulos(String carrera) {
-        int cod_max=0;
+        int cod_max = 0;
         ResultSet rs;
         try {
             rs = conectar.query("select max (id_periodo) from periodo_academico");
@@ -174,11 +174,11 @@ public class doc_modulo_BD extends doc_modulo_MD {
             System.out.println("Error al seleccionar el cod maximo de periodo");
             return false;
         }
-        
-        List<String> lista_mat=new ArrayList<>();
-        
+
+        List<String> lista_mat = new ArrayList<>();
+
         try {
-            rs = conectar.query("select codigo from materia where nombre='"+carrera+"'");
+            rs = conectar.query("select codigo from materia where nombre='" + carrera + "'");
             while (rs.next()) {
                 lista_mat.add(rs.getString(1));
             }
@@ -186,39 +186,37 @@ public class doc_modulo_BD extends doc_modulo_MD {
             System.out.println("Error al seleccionar el cod de materia");
             return false;
         }
-        
+
         for (int i = 0; i < lista_mat.size(); i++) {
-            if (conectar.noQuery("INSERT INTO doc_modulo(id_periodo,id_materia)" + "VALUES ('" + cod_max + "','" + lista_mat.get(i) + "');") == null);
-            else {
-                System.out.println("Error al crear el modulo "+lista_mat.get(i));
+            if (conectar.noQuery("INSERT INTO doc_modulo(id_periodo,id_materia)" + "VALUES ('" + cod_max + "','" + lista_mat.get(i) + "');") == null); else {
+                System.out.println("Error al crear el modulo " + lista_mat.get(i));
                 return false;
             }
         }
         return true;
     }
-    
-    
+
     public Object[][] datos_unidos(String carrera) {
         try {
-            String sql = "select md.id_doc_modulo, per.nombre, mt.materia, md.documento\n" +
-                "from doc_modulo md \n" +
-                "join periodo_academico per on md.id_periodo=per.id_periodo\n" +
-                "join materia mt on md.id_materia=mt.codigo" +
-                " where mt.nombre=(select codigo from carrera where nombre="+carrera+")";
+            String sql = "select md.id_doc_modulo, per.nombre, mt.materia, md.documento\n"
+                    + "from doc_modulo md \n"
+                    + "join periodo_academico per on md.id_periodo=per.id_periodo\n"
+                    + "join materia mt on md.id_materia=mt.codigo"
+                    + " where mt.nombre=(select codigo from carrera where nombre='" + carrera + "')";
             ResultSet rs = conectar.query(sql);
-            int n_fil=0;
-            while (rs.next()) { 
+            int n_fil = 0;
+            while (rs.next()) {
                 n_fil++;
             }
             rs.close();
-            ResultSet rs2= conectar.query(sql);
-            Object [][] m= new String[n_fil][4];
-            int f=0;                    
-            while (rs2.next()) {                
-                m[f][0]=rs2.getString(1);  
-                m[f][1]=rs2.getString(2);
-                m[f][2]=rs2.getString(3);
-                m[f][3]=rs2.getBytes(4);
+            ResultSet rs2 = conectar.query(sql);
+            Object[][] m = new String[n_fil][4];
+            int f = 0;
+            while (rs2.next()) {
+                m[f][0] = rs2.getString(1);
+                m[f][1] = rs2.getString(2);
+                m[f][2] = rs2.getString(3);
+                m[f][3] = rs2.getBytes(4);
                 f++;
             }
             rs2.close();
@@ -227,40 +225,39 @@ public class doc_modulo_BD extends doc_modulo_MD {
             Logger.getLogger(doc_modulo_MD.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
-    };
+    }   
     
-    
-    public Object[][] buscar_x_parametro(String carrera,int id_periodo, boolean periodo, String nom_materia, boolean materia) {
+    public Object[][] buscar_x_parametro(String carrera, int id_periodo, boolean periodo, String nom_materia, boolean materia) {
         try {
-            String sql = "select md.id_doc_modulo, per.nombre, mt.materia, md.documento\n" +
-                "from doc_modulo md \n" +
-                "join periodo_academico per on md.id_periodo=per.id_periodo\n" +
-                "join materia mt on md.id_materia=mt.codigo";
-            if(periodo == true && materia == false){
-                sql = sql + "where \"md.id_periodo\"='" + id_periodo + "'";
+            String sql = "select md.id_doc_modulo, per.nombre, mt.materia, md.documento\n"
+                    + "from doc_modulo md \n"
+                    + "join periodo_academico per on md.id_periodo=per.id_periodo\n"
+                    + "join materia mt on md.id_materia=mt.codigo ";
+            if (periodo == true && materia == false) {
+                sql = sql + "where md.id_periodo='" + id_periodo + "'";
             }
-            if(periodo == false && materia == true){
-                sql = sql + "where \"md.id_materia\"= (select codigo from materia where upper (materia) LIKE '%" + nom_materia + "%')" ;
+            if (periodo == false && materia == true) {
+                sql = sql + "where md.id_materia= (select codigo from materia where upper (materia) LIKE '%" + nom_materia + "%')";
             }
-            if(periodo == true && materia == true ){
-               sql = sql + "where \"md.id_periodo\"='" + id_periodo + "' and "
-                       + "\"md.id_materia\"= (select codigo from materia where upper (materia) LIKE '%" + nom_materia + "%')" ;
+            if (periodo == true && materia == true) {
+                sql = sql + "where md.id_periodo='" + id_periodo + "' and "
+                        + "md.id_materia= (select codigo from materia where upper (materia) LIKE '%" + nom_materia + "%')";
             }
-            sql = sql +" and where mt.nombre=(select codigo from carrera where nombre="+carrera+")";
+            sql = sql + " and mt.nombre=(select codigo from carrera where nombre='" + carrera + "')";
             ResultSet rs = conectar.query(sql);
-            int n_fil=0;
-            while (rs.next()) { 
+            int n_fil = 0;
+            while (rs.next()) {
                 n_fil++;
             }
             rs.close();
-            ResultSet rs2= conectar.query(sql);
-            Object [][] m= new String[n_fil][4];
-            int f=0;                    
-            while (rs2.next()) {                
-                m[f][0]=rs2.getString(1);  
-                m[f][1]=rs2.getString(2);
-                m[f][2]=rs2.getString(3);
-                m[f][3]=rs2.getBytes(4);
+            ResultSet rs2 = conectar.query(sql);
+            Object[][] m = new String[n_fil][4];
+            int f = 0;
+            while (rs2.next()) {
+                m[f][0] = rs2.getString(1);
+                m[f][1] = rs2.getString(2);
+                m[f][2] = rs2.getString(3);
+                m[f][3] = rs2.getBytes(4);
                 f++;
             }
             rs2.close();

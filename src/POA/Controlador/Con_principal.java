@@ -67,7 +67,7 @@ public class Con_principal {
         Dimension desktopSize = vista.getESCRITORIO().getSize();
         Dimension FrameSize = port.getSize();
         port.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-        con_portafolio p = new con_portafolio(port);
+        con_portafolio p = new con_portafolio(port,vista.getLbCarrera().getText());
     }
     private void periodo(){
         vis_PeriodoAcademico periodo = new vis_PeriodoAcademico();

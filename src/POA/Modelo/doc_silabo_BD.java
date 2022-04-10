@@ -196,12 +196,13 @@ public class doc_silabo_BD extends doc_silabo_MD {
         return true;
     }   
         
-        public Object[][] datos_unidos() {
+        public Object[][] datos_unidos(String carrera) {
         try {
             String sql = "select sb.id_doc_silabo, per.nombre, mt.materia, sb.documento\n" +
                 "from doc_silabo sb \n" +
                 "join periodo_academico per on sb.id_periodo=per.id_periodo\n" +
-                "join materia mt on sb.id_materia=mt.codigo";
+                "join materia mt on sb.id_materia=mt.codigo"+
+                " where mt.nombre=(select codigo from carrera where nombre="+carrera+")";
             ResultSet rs = conectar.query(sql);
             int n_fil=0;
             while (rs.next()) { 

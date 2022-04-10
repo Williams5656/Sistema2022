@@ -198,12 +198,13 @@ public class doc_modulo_BD extends doc_modulo_MD {
     }
     
     
-    public Object[][] datos_unidos() {
+    public Object[][] datos_unidos(String carrera) {
         try {
             String sql = "select md.id_doc_modulo, per.nombre, mt.materia, md.documento\n" +
                 "from doc_modulo md \n" +
                 "join periodo_academico per on md.id_periodo=per.id_periodo\n" +
-                "join materia mt on md.id_materia=mt.codigo";
+                "join materia mt on md.id_materia=mt.codigo" +
+                " where mt.nombre=(select codigo from carrera where nombre="+carrera+")";
             ResultSet rs = conectar.query(sql);
             int n_fil=0;
             while (rs.next()) { 
@@ -229,50 +230,42 @@ public class doc_modulo_BD extends doc_modulo_MD {
     };
     
     
-    public List<doc_modulo_MD> buscar_x_parametro(int id_periodo, boolean periodo, String nom_materia, boolean materia) {
+    public Object[][] buscar_x_parametro(String carrera,int id_periodo, boolean periodo, String nom_materia, boolean materia) {
         try {
-            List<doc_modulo_MD> lista = new ArrayList<doc_modulo_MD>();
-            String sql = "select * from doc_modulo " ;
+            String sql = "select md.id_doc_modulo, per.nombre, mt.materia, md.documento\n" +
+                "from doc_modulo md \n" +
+                "join periodo_academico per on md.id_periodo=per.id_periodo\n" +
+                "join materia mt on md.id_materia=mt.codigo";
             if(periodo == true && materia == false){
-                sql = sql + "where \"id_periodo\"='" + id_periodo + "'";
+                sql = sql + "where \"md.id_periodo\"='" + id_periodo + "'";
             }
             if(periodo == false && materia == true){
-                sql = sql + "where \"id_materia\"= (select codigo from materia where upper (materia) LIKE '%" + nom_materia + "%')" ;
+                sql = sql + "where \"md.id_materia\"= (select codigo from materia where upper (materia) LIKE '%" + nom_materia + "%')" ;
             }
             if(periodo == true && materia == true ){
-               sql = sql + "where \"id_periodo\"='" + id_periodo + "' and "
-                       + "\"id_materia\"= (select codigo from materia where upper (materia) LIKE '%" + nom_materia + "%')" ;
+               sql = sql + "where \"md.id_periodo\"='" + id_periodo + "' and "
+                       + "\"md.id_materia\"= (select codigo from materia where upper (materia) LIKE '%" + nom_materia + "%')" ;
             }
+            sql = sql +" and where mt.nombre=(select codigo from carrera where nombre="+carrera+")";
             ResultSet rs = conectar.query(sql);
-            byte[] is;
-            while (rs.next()) {
-                doc_modulo_MD m = new doc_modulo_MD();
-                m.setId_doc_modulo(rs.getInt("id_doc_modulo"));
-                m.setId_periodo(rs.getInt("id_periodo"));
-                m.setId_materia(rs.getString("id_materia"));
-                is = rs.getBytes("documento");
-
-                is = rs.getBytes("documento");
-                if (is != null) {
-                    try {
-                        is = Base64.decode(is, 0, rs.getBytes("documento").length);
-//                    BufferedImage bi=Base64.decode( ImageIO.read(is));
-                        m.setDocumento(getImage(is, false));
-                    } catch (Exception ex) {
-                        m.setDocumento(null);
-                        Logger.getLogger(doc_modulo_BD.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                } else {
-                    m.setDocumento(null);
-                }
-
-                lista.add(m);
-
+            int n_fil=0;
+            while (rs.next()) { 
+                n_fil++;
             }
             rs.close();
-            return lista;
+            ResultSet rs2= conectar.query(sql);
+            Object [][] m= new String[n_fil][4];
+            int f=0;                    
+            while (rs2.next()) {                
+                m[f][0]=rs2.getString(1);  
+                m[f][1]=rs2.getString(2);
+                m[f][2]=rs2.getString(3);
+                m[f][3]=rs2.getBytes(4);
+                f++;
+            }
+            rs2.close();
+            return m;
         } catch (SQLException e) {
-
             Logger.getLogger(doc_modulo_MD.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }

@@ -34,29 +34,25 @@ public class con_portafolio {
 
     private final vis_portafolio vista;
     doc_modulo_BD bdmodulo = new doc_modulo_BD();
-    private String carrera = "1";
+    private String carrera;
     MateriaBD materiabd = new MateriaBD();
     List<MateriaMD> listMat = materiabd.mostrardatos();
     PeriodoacademicoBD periodobd = new PeriodoacademicoBD();
     List<PeriodoacademicoMD> listPer = periodobd.lista_periodos();
 
-    public con_portafolio(vis_portafolio vista) {
+    public con_portafolio(vis_portafolio vista,String carrera) {
         this.vista = vista;
+        this.carrera = carrera;
         vista.setVisible(true);
         llenarCombo();
         vista.getBtnModulos().addActionListener(e -> tabla_modulo());
         vista.getBtnSilabo().addActionListener(e -> tabla_silabo());
         vista.getBtnImprimir().addActionListener(e -> imprimir());
-        vista.getBtn_buscar().addActionListener(e -> tabla_buscar());
+        //vista.getBtn_buscar().addActionListener(e -> tabla_buscar());
         vista.getBtn_subir().addActionListener(e -> subir_datos());
 
     }
 
-    public void buscar() {
-        String periodo = (String) vista.getComboPeriodAcademico().getSelectedItem().toString();
-        bdmodulo.buscar_x_parametro(cod_periodo(periodo), vista.getChk_periodo().isSelected(),
-                vista.getTxt_materia().getText(), vista.getChk_materia().isSelected());
-    }
 
     public void llenarCombo() {
         for (int i = 0; i < listPer.size(); i++) {
@@ -94,7 +90,7 @@ public class con_portafolio {
         modelo.addColumn("Documento");
 
         doc_modulo_BD mod = new doc_modulo_BD();
-        Object[][] modulos = mod.datos_unidos();
+        Object[][] modulos = mod.datos_unidos(carrera);
 
         for (int i = 0; i < modulos.length; i++) {
             modelo.addRow(new Object[0]);
@@ -107,7 +103,7 @@ public class con_portafolio {
         vista.getTbl_Datos().setModel(modelo);
     }
 
-    public void tabla_buscar() {
+    public void tabla_buscar_modulo() {
         noeditablemodelo modelo = new noeditablemodelo() {
             public Class<?> getColumnClass(int column) {
                 switch (column) {
@@ -130,16 +126,16 @@ public class con_portafolio {
         modelo.addColumn("Documento");
 
         doc_modulo_BD mod = new doc_modulo_BD();
-        List<doc_modulo_MD> modulos = mod.buscar_x_parametro(cod_periodo(vista.getComboPeriodAcademico().getSelectedItem().toString()),
+        Object[][] modulos = mod.buscar_x_parametro(carrera,cod_periodo(vista.getComboPeriodAcademico().getSelectedItem().toString()),
                 vista.getChk_periodo().isSelected(),
                 vista.getTxt_materia().getText().toUpperCase(), vista.getChk_materia().isSelected());
 
-        for (int i = 0; i < modulos.size(); i++) {
+        for (int i = 0; i < modulos.length; i++) {
             modelo.addRow(new Object[0]);
-            modelo.setValueAt(modulos.get(i).getId_doc_modulo(), i, 0);
-            modelo.setValueAt(nom_periodo(modulos.get(i).getId_periodo()), i, 1);
-            modelo.setValueAt(nom_materia(modulos.get(i).getId_materia()), i, 2);
-            modelo.setValueAt((modulos.get(i).getDocumento() != null), i, 3);
+            modelo.setValueAt(modulos[i][0], i, 0);
+            modelo.setValueAt(modulos[i][1], i, 1);
+            modelo.setValueAt(modulos[i][2], i, 2);
+            modelo.setValueAt((modulos[i][3] != null), i, 3);
         }
 
         vista.getTbl_Datos().setModel(modelo);
@@ -168,14 +164,14 @@ public class con_portafolio {
         modelo.addColumn("Documento");
 
         doc_silabo_BD mod = new doc_silabo_BD();
-        List<doc_silabo_MD> modulos = mod.mostrardatos();
+        Object[][] modulos = mod.datos_unidos(carrera);
 
-        for (int i = 0; i < modulos.size(); i++) {
+        for (int i = 0; i < modulos.length; i++) {
             modelo.addRow(new Object[0]);
-            modelo.setValueAt(modulos.get(i).getId_doc_silabo(), i, 0);
-            modelo.setValueAt(nom_periodo(modulos.get(i).getId_periodo()), i, 1);
-            modelo.setValueAt(nom_materia(modulos.get(i).getId_materia()), i, 2);
-            modelo.setValueAt((modulos.get(i).getDocumento() != null), i, 3);
+            modelo.setValueAt(modulos[i][0], i, 0);
+            modelo.setValueAt(modulos[i][1], i, 1);
+            modelo.setValueAt(modulos[i][2], i, 2);
+            modelo.setValueAt((modulos[i][3] != null), i, 3);
         }
 
         vista.getTbl_Datos().setModel(modelo);

@@ -272,6 +272,15 @@ public class Con_Asignacion_Docente {
         } else {
             JOptionPane.showMessageDialog(null, "Error al guardar");
         }
+        /////autocreacion documntos, dudas consultar miguel///////////////////////
+        doc_notas_BD not=new doc_notas_BD();
+        if (not.crear_notas()) {
+            System.out.println("notas creadas");
+        } else {
+            System.out.println( "Error al guardar");
+        }
+         /////autocreacion documntos, dudas consultar miguel///////////////////////
+        
     }
 
     public void modificar() {

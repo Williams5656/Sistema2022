@@ -45,18 +45,18 @@ public class Con_calendario {
     private final Vis_Calendar vista;
     CarreraBD carrerabd = new CarreraBD();
     CalendarioBD calen = new CalendarioBD();
-    private PersonaBD bdpersona = new PersonaBD();
-    private docenteBD baseDatosDocente = new docenteBD();
-    private List<docenteMD> listaDocente = new ArrayList<>();
-    private List<PersonaMD> listaPersona = new ArrayList<>();
-    String vector[];
-    private TextAutoCompleter at;
+    PersonaBD bdpersona = new PersonaBD();
+    docenteBD baseDatosDocente = new docenteBD();
+    List<docenteMD> listaDocente = new ArrayList<>();
+    List<PersonaMD> listaPersona = new ArrayList<>();
     T_ActividadBD T_actividadbd = new T_ActividadBD();
     PeriodoacademicoBD periodobd = new PeriodoacademicoBD();
-    private DefaultTableModel modelo;
+    DefaultTableModel modelo;
     Responsables_ActividadMD resp = new Responsables_ActividadMD();
-    private docenteMD docentemd = new docenteMD();
+    docenteMD docentemd = new docenteMD();
     CalendarioBD calendar = new CalendarioBD();
+    String vector[];
+    TextAutoCompleter at;
     String[] tabla;
     public static ArrayList<Responsables_ActividadMD> ListaResp = new ArrayList<>();
 
@@ -80,11 +80,11 @@ public class Con_calendario {
         vista.getD_Btn_Guardar().addActionListener(e -> guardarActividad());
         vista.getBtn_modificar().addActionListener(e -> Modificar());
         vista.getD_Btn_Cancelar().addActionListener(e -> vista.getT_Actividad_D().dispose());
+        vista.getBtn_eliminar().addActionListener(e -> eliminar());
         vista.getTabla_calendario().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                listaPersona.clear();
-
+                //listaPersona.clear();
                 seleccionarCalendario();
                 cargar_resp();
 
@@ -100,6 +100,7 @@ public class Con_calendario {
         lista();
         listaresponsable();
         Ihnabilitar();
+        fecha();
 
     }
 
@@ -189,7 +190,6 @@ public class Con_calendario {
     }
 
     public void Cargardatos_c() {
-        Responsables_ActividadBD resbd = new Responsables_ActividadBD();
         listaPersona = resbd.nombres_docente();
         for (int i = 0; i < listaPersona.size(); i++) {
             at.addItem(listaPersona.get(i).getNombres());
@@ -228,18 +228,19 @@ public class Con_calendario {
     }
 
     public void Modificar() {
+        eliminarresp();
         Cargardatos();
+
         int res = JOptionPane.showConfirmDialog(null, "Confirme");
         if (res == 0) {
             if (calendar.modificar(Integer.parseInt(vista.getTxt_id_A().getText()))) {
-                JOptionPane.showMessageDialog(null, "Datos actualizados");
-//                editar_responsable_base();
-//                DefaultTableModel modelo2;
-//                modelo2 = (DefaultTableModel) vista.getTabla_responsables().getModel();
-//                modelo2.setNumRows(0);
-//                
-//                listaresponsable();
+                guadar_responsable_base();
+                JOptionPane.showMessageDialog(null, "Datos Actualizados");
+                DefaultTableModel modelo2;
+                modelo2 = (DefaultTableModel) vista.getTabla_responsables().getModel();
+                modelo2.setNumRows(0);
                 lista();
+                listaresponsable();
                 limpiar();
             } else {
                 JOptionPane.showMessageDialog(null, "Error al modificar");
@@ -247,7 +248,26 @@ public class Con_calendario {
         }
     }
 
+    private void eliminarresp() {
+        resbd.eliminar(Integer.parseInt(vista.getTxt_id_A().getText()));
+    }
+
     public void Cargardatos() {
+        Date fecha = null, fecha1 = null;
+        String formato = null;
+        String formato1 = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        // Tranformar la fecha a String
+        if (vista.getFecha_inicio() != null) {
+            fecha = vista.getFecha_inicio().getDate();
+            formato = sdf.format(fecha);
+        }
+        if (vista.getFecha_limite() != null) {
+            fecha1 = vista.getFecha_limite().getDate();
+            formato1 = sdf.format(fecha1);          // formato1 = new SimpleDateFormat("d/M/y H:m:s").format(fecha1);
+        }
+        formato = formato + " 00:00:00";
+        formato1 = formato1 + " 11:59:59";
         List<PeriodoacademicoMD> lista = periodobd.lista_periodos();
         int idperiodo = vista.getCombo_periodo().getSelectedIndex();
         int nperiodo = lista.get(idperiodo).getIdperiodo();
@@ -258,16 +278,23 @@ public class Con_calendario {
         int idCA = vista.getComobo_carrera().getSelectedIndex();
         String nCA = listaCA.get(idCA).getCodigo_carrera();
         SimpleDateFormat formato6 = new SimpleDateFormat("yyyy-MM-dd");
-        String fechaini = formato6.format(vista.getFecha_inicio().getDate());
-        String fechalim = formato6.format(vista.getFecha_limite().getDate());
+//        String fechaini = formato6.format(vista.getFecha_inicio().getDate());
+//        String fechalim = formato6.format(vista.getFecha_limite().getDate());
         calendar.setId_Actividad(Integer.parseInt(vista.getTxt_id_A().getText()));
         calendar.setId_Carrera(nCA);
         calendar.setId_Periodo(nperiodo);
         calendar.setid_TipoActividad(nTA);
         calendar.setNombre_Actividad(vista.getTxt_N_actividad().getText());
         calendar.setDescripcion(vista.getTxt_descripcion().getText());
-        calendar.setFecha_Inicio(fechaini);
-        calendar.setFecha_Limite(fechalim);
+        calendar.setFecha_Inicio(fecha());
+        calendar.setFecha_Limite(fecha());
+    }
+
+    public String fecha() {
+        Date fecha = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String fecha1 = sdf.format(fecha);
+        return fecha1;
     }
 
     public void lista() {
@@ -280,6 +307,7 @@ public class Con_calendario {
         }
         for (int i = 0; i < listacale.size(); i++) {
             modelo.addRow(new Object[columnas]);
+            fecha();
             String idcarr = listacale.get(i).getId_Carrera();
             List<CarreraMD> listaCA = carrerabd.obtenerdatos(idcarr);
             int idtipo = listacale.get(i).getid_TipoActividad();
@@ -295,6 +323,7 @@ public class Con_calendario {
             vista.getTabla_calendario().setValueAt(listacale.get(i).getDescripcion(), i, 5);
             vista.getTabla_calendario().setValueAt(listacale.get(i).getFecha_Inicio(), i, 6);
             vista.getTabla_calendario().setValueAt(listacale.get(i).getFecha_Limite(), i, 7);
+
         }
 
     }
@@ -310,9 +339,8 @@ public class Con_calendario {
         int columnasp = modelo1.getColumnCount();
         for (int i = 0; i < listar.size(); i++) {
             modelo1.addRow(new Object[columnasp]);
-            vista.getTabla_responsable().setValueAt(listar.get(i).getId_responsable(), i, 0);
-            vista.getTabla_responsable().setValueAt(listar.get(i).getId_actividad(), i, 1);
-            vista.getTabla_responsable().setValueAt(listar.get(i).getCedula(), i, 2);
+            vista.getTabla_responsable().setValueAt(listar.get(i).getId_actividad(), i, 0);
+            vista.getTabla_responsable().setValueAt(listar.get(i).getCedula(), i, 1);
         }
     }
 
@@ -322,7 +350,7 @@ public class Con_calendario {
         tblModel.setNumRows(0);
         List<Responsables_ActividadMD> lista = resbd.obtenerdatos(aguja);
         lista.stream().forEach(r -> {
-            String[] responsable = {String.valueOf(r.getId_responsable()), String.valueOf(r.getId_actividad()), r.getCedula()};
+            String[] responsable = {String.valueOf(r.getId_actividad()), r.getCedula()};
             tblModel.addRow(responsable);
         });
     }
@@ -341,10 +369,15 @@ public class Con_calendario {
     }
 
     public void guadar_responsable_base() {
+        listaPersona = resbd.nombres_docente();
         resbd.setId_actividad(Integer.parseInt(vista.getTxt_id_A().getText()));
-        System.out.println("responsable");
+        System.out.println("responsable" + vista.getTxt_id_A().getText());
         String pos = at.getItemSelected().toString();
+        System.out.println("possss" + pos);
+        System.out.println("tablaaaaaa" + vista.getTabla_responsables().getRowCount());
+        System.out.println("personaaaaa" + listaPersona.size());
         for (int i = 0; i < listaPersona.size(); i++) {
+            System.out.println("persona" + listaPersona.size());
             for (int j = 0; j < vista.getTabla_responsables().getRowCount(); j++) {
                 System.out.println("tabla: " + vista.getTabla_responsables().getRowCount());
                 if (listaPersona.get(i).getNombres().equals(vista.getTabla_responsables().getValueAt(j, 0).toString())) {
@@ -358,38 +391,30 @@ public class Con_calendario {
         ListaResp.clear();
     }
 
-    public void editar_responsable_base() {
-
-        resbd.setId_actividad(Integer.parseInt(vista.getTxt_id_A().getText()));
-        System.out.println("responsable");
-        String pos = at.getItemSelected().toString();
-
-        for (int i = 0; i < listaPersona.size(); i++) {
-            for (int j = 0; j < vista.getTabla_responsables().getRowCount(); j++) {
-                System.out.println("tabla: " + vista.getTabla_responsables().getRowCount());
-                if (listaPersona.get(i).getNombres().equals(vista.getTabla_responsables().getValueAt(j, 0).toString())) {
-                    resbd.setId_responsable(calen.codigo());
-                    resbd.setCedula(listaPersona.get(i).getCedula());
-                    resbd.editarresponsable(Integer.parseInt(vista.getTxt_id_A().getText()));
-                }
-            }
-        }
-        ListaResp.clear();
-    }
-
     public void añadir_responsables() {
-        if (!vista.getTxt_responsables().getText().equals("")) {
-            DefaultTableModel modelo;
-            modelo = (DefaultTableModel) vista.getTabla_responsables().getModel();
-            Responsables_ActividadMD l = new Responsables_ActividadMD(vista.getTxt_responsables().getText());
-            ListaResp.add(l);
-            //modelo.setNumRows(0);
-            ListaResp.stream().forEach(r -> {
-                tabla = new String[]{r.getCedula()};
-                modelo.addRow(tabla);
-            });
-            vista.getTxt_responsables().setText("");
-        } else {
+        int a = 0, b = 0;
+        listaPersona = resbd.nombres_docente();
+        for (int i = 0; i < listaPersona.size(); i++) {
+            if (listaPersona.get(i).getNombres().equals(vista.getTxt_responsables().getText())) {
+                if (!vista.getTxt_responsables().getText().equals("")) {
+                    DefaultTableModel modelo;
+                    modelo = (DefaultTableModel) vista.getTabla_responsables().getModel();
+                    Responsables_ActividadMD l = new Responsables_ActividadMD(vista.getTxt_responsables().getText());
+                    ListaResp.add(l);
+                    ListaResp.stream().forEach(r -> {
+                        tabla = new String[]{r.getCedula()};
+                        modelo.addRow(tabla);
+                    });
+                    vista.getTxt_responsables().setText("");
+                    b = 1;
+                }
+                a = 1;
+            }
+            
+        }
+        if (a == 0) {
+            JOptionPane.showMessageDialog(null, "El nombre es incorrecto");
+        } else if (b == 0) {
             JOptionPane.showMessageDialog(null, "Ingrese un nombre");
         }
 
@@ -506,9 +531,15 @@ public class Con_calendario {
         }
     }
 
-    public void seleccionarResp(String aguja) {
-        int select = vista.getTabla_responsables().getSelectedRow();
-
+    public void eliminar() {
+        DefaultTableModel modelo2;
+        modelo2 = (DefaultTableModel) vista.getTabla_responsables().getModel();
+        int fila = vista.getTabla_responsables().getSelectedRow();
+        if (fila >= 0) {
+            modelo2.removeRow(fila);
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccionar Fila");
+        }
     }
 
 }

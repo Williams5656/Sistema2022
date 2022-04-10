@@ -42,7 +42,7 @@ public class doc_notas_BD extends doc_notas_MD {
         return true;
     }
 
-    public Object[][] datos_unidos() {
+    public Object[][] datos_unidos(String carrera) {
         try {
             String sql = "select n.id_doc_nota, n.descripcion, ps.nombres||' '||ps.apellidos as docente,\n"
                     + "per.nombre as periodo, mt.materia, ad.ciclo, ad.jornada, ad.paralelo, n.documento\n"
@@ -50,7 +50,8 @@ public class doc_notas_BD extends doc_notas_MD {
                     + "join asignacion_docentes ad on n.id_asignacion=ad.id_asignacion\n"
                     + "join persona ps on ad.identificacion=ps.cedula\n"
                     + "join periodo_academico per on ad.periodo=cast(per.id_periodo as varchar)\n"
-                    + "join materia mt on ad.asignatura=mt.codigo";
+                    + "join materia mt on ad.asignatura=mt.codigo"
+                    + " where mt.nombre=(select codigo from carrera where nombre='" + carrera + "')";
             ResultSet rs = conectar.query(sql);
             int n_fil=0;
             while (rs.next()) { 

@@ -7,6 +7,7 @@ package POA.Modelo;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -114,9 +115,8 @@ public class PeriodoacademicoBD extends PeriodoacademicoMD {
     }
 
     public boolean insertar() {
-
-        String nsql = "INSERT INTO periodo_academico(nombre,fecha_inicio,fecha_fin,id_carrera,estado)" + "VALUES ('" + getNombre() + "','" + getFechainicio() + "','" + getFechafin() + "','" + getCarrera() + "','" + isEstado() + "')";
-
+        SimpleDateFormat form = new SimpleDateFormat("yyyy/MM/dd");
+        String nsql = "INSERT INTO periodo_academico(nombre,fecha_inicio,fecha_fin,id_carrera,estado)" + "VALUES ('" + getNombre() + "','" + form.format(getFechainicio()) + "','" + form.format(getFechafin()) + "','" + getCarrera() + "','" + isEstado() + "')";
         if (conectar.noQuery(nsql) == null) {
             return true;
         } else {
@@ -140,7 +140,9 @@ public class PeriodoacademicoBD extends PeriodoacademicoMD {
     }
 
     public boolean validar_fechas(String car, Date fec_ini, Date fec_fin) {
-        String sql = "select val_periodo('" + car + "','" + fec_ini + "','" + fec_ini + "');";
+        SimpleDateFormat form = new SimpleDateFormat("yyyy/MM/dd");
+        String sql = "select val_periodo((select codigo from carrera where nombre='" + car + "'),'" + form.format(fec_ini) + "','" + form.format(fec_fin) + "');";
+        System.out.println("sql");
         ResultSet rs = conectar.query(sql);
         try {
             while (rs.next()) {

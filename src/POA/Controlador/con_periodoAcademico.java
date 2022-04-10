@@ -12,6 +12,7 @@ import POA.Modelo.doc_silabo_BD;
 import POA.Vista.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -159,7 +160,10 @@ public class con_periodoAcademico {
         if (vista.getDateFechaFin().getDate().before(vista.getDateFechaInicio().getDate())) {
             return false;
         }
-        if (periodo.validar_fechas(carrera, vista.getDateFechaInicio().getDate(), vista.getDateFechaFin().getDate()) == false) {
+        
+        if (periodo.validar_fechas(carrera, 
+                vista.getDateFechaInicio().getDate(), 
+                vista.getDateFechaFin().getDate()) == false) {
             System.out.println("error en el validador de la base");
             return false;
         }

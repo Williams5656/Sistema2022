@@ -26,11 +26,14 @@ public class doc_planes_claseBD extends doc_planes_claseMD {
     public boolean crear_planes(String carrera) {
         int cod_max = 0;
         ResultSet rs;
+        ResultSet rs2;
+        ResultSet rs3;
         try {
             rs = conectar.query("select max (id_periodo) from periodo_academico");
             while (rs.next()) {
                 cod_max = rs.getInt(1);
             }
+            rs.close();
         } catch (Exception e) {
             System.out.println("Error al seleccionar el cod maximo de periodo");
             return false;
@@ -39,10 +42,11 @@ public class doc_planes_claseBD extends doc_planes_claseMD {
         List<String> lista_mat = new ArrayList<>();
 
         try {
-            rs = conectar.query("select codigo from materia where nombre='" + carrera + "'");
-            while (rs.next()) {
-                lista_mat.add(rs.getString(1));
+            rs2 = conectar.query("select codigo from materia where nombre=(select codigo from carrera where nombre='" + carrera + "')");
+            while (rs2.next()) {
+                lista_mat.add(rs2.getString(1));
             }
+            rs2.close();
         } catch (Exception e) {
             System.out.println("Error al seleccionar el cod de materia");
             return false;
@@ -52,10 +56,11 @@ public class doc_planes_claseBD extends doc_planes_claseMD {
 
         for (int i = 0; i < lista_mat.size(); i++) {
             try {
-                rs = conectar.query("select plan from materia where codigo='" + lista_mat.get(i) + "'");
-                while (rs.next()) {
-                    lista_planes.add(rs.getInt(1));
+                rs3 = conectar.query("select plan from materia where codigo='" + lista_mat.get(i) + "'");
+                while (rs3.next()) {
+                    lista_planes.add(rs3.getInt(1));
                 }
+                rs3.close();
             } catch (Exception e) {
                 System.out.println("Error al seleccionar los planes de materia");
                 return false;
@@ -64,7 +69,9 @@ public class doc_planes_claseBD extends doc_planes_claseMD {
 
         for (int i = 0; i < lista_mat.size(); i++) {
             for (int j = 0; j < lista_planes.get(i); j++) {
-                if (conectar.noQuery("INSERT INTO doc_planes_clase(id_periodo,id_materia,numero)" + "VALUES ('" + cod_max + "','" + lista_mat.get(i) + "',"+ (j+1) +");") == null);
+                if (conectar.noQuery("INSERT INTO doc_planes_clase(id_periodo,id_materia,numero)" + "VALUES ('" + cod_max + "','" + lista_mat.get(i) + "',"+ (j+1) +");") == null){
+                   System.out.println("plan "+lista_mat.get(i)+ " plan n° "+lista_planes.get(j)); 
+                }                
                 else {
                     System.out.println("Error al crear los doc de planes de clase " + lista_mat.get(i));
                     return false;

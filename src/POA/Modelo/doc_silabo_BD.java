@@ -163,11 +163,13 @@ public class doc_silabo_BD extends doc_silabo_MD {
     public boolean crear_silabos(String carrera) {
         int cod_max = 0;
         ResultSet rs;
+        ResultSet rs2;
         try {
             rs = conectar.query("select max (id_periodo) from periodo_academico");
             while (rs.next()) {
                 cod_max = rs.getInt(1);
             }
+            rs.close();
         } catch (Exception e) {
             System.out.println("Error al seleccionar el cod maximo de periodo");
             return false;
@@ -176,17 +178,20 @@ public class doc_silabo_BD extends doc_silabo_MD {
         List<String> lista_mat = new ArrayList<>();
 
         try {
-            rs = conectar.query("select codigo from materia where nombre='" + carrera + "'");
-            while (rs.next()) {
-                lista_mat.add(rs.getString(1));
+            rs2 = conectar.query("select codigo from materia where nombre=(select codigo from carrera where nombre='" + carrera + "')");
+            while (rs2.next()) {
+                lista_mat.add(rs2.getString(1));
             }
+            rs2.close();
         } catch (Exception e) {
             System.out.println("Error al seleccionar el cod de materia");
             return false;
         }
 
         for (int i = 0; i < lista_mat.size(); i++) {
-            if (conectar.noQuery("INSERT INTO doc_silabo(id_periodo,id_materia)" + "VALUES ('" + cod_max + "','" + lista_mat.get(i) + "');") == null); else {
+            if (conectar.noQuery("INSERT INTO doc_silabo(id_periodo,id_materia)" + "VALUES ('" + cod_max + "','" + lista_mat.get(i) + "');") == null){
+                System.out.println("silabo "+lista_mat.get(i));}                
+                else {
                 System.out.println("Error al crear el silado " + lista_mat.get(i));
                 return false;
             }

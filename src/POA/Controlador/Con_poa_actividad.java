@@ -59,19 +59,30 @@ public class Con_poa_actividad {
       private docenteBD bdocente = new docenteBD();
       private PersonaBD bpersona = new PersonaBD();
       int idproyecto=0;
-      
+      int numproyecto=0;
+      String anio_poa;
 
-    public Con_poa_actividad(vis_poa_actividad vista, int id_pro) {
+    public Con_poa_actividad(vis_poa_actividad vista, int id_pro,int num_proyecto,String aniopoa) {
        this.vista = vista;
        idproyecto=id_pro;
+       
+       numproyecto=num_proyecto;
+       anio_poa=aniopoa;
+       
+       
         vista.setVisible(true);
         vista.getCombo_objetivo_operativo().setEnabled(false);
+        
+        vista.getLblproyecto().setText(String.valueOf(numproyecto));
+        vista.getLblaniopoa().setText(aniopoa);
+        
         
 
         cargarObjetivos();
         cargarcombo();
         desactivar();
-        //cargarOB();
+        buscar();
+
         vista.getBtnnuevo().addActionListener(e->nuevo());  
         vista.getBtnimprimir().addActionListener(e->imprimirpersona()); 
         vista.getBtnindicador().addActionListener(e->abrirVentanaindicador());

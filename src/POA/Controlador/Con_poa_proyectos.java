@@ -58,6 +58,8 @@ public class Con_poa_proyectos {
     private List<POA.Modelo.CarreraMD> listaCarreras = new ArrayList<>();
     private POA.Modelo.CarreraBD baseDatosCarrera = new CarreraBD();
     private static int id_proyecto;
+    private static int num_proyecto;
+    private static String aniopoa;
     int poa = 0;
 
     private boolean tablaSeleccionada = false;
@@ -347,7 +349,7 @@ public class Con_poa_proyectos {
     }
 
     public void seleccionarobjetivo() {
-
+        int poatemp;
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTabla_lista_proyectos().getModel();
         listasobjetivos.clear();
@@ -361,6 +363,24 @@ public class Con_poa_proyectos {
 
                 id_pro = listaoperativo.get(i).getId_proyecto();
                 System.out.println(id_pro);
+                
+                
+                for (int j = 0; j < lista.size(); j++) {
+                    if (lista.get(j).getId_proyecto()==id_pro) {
+                    num_proyecto = lista.get(j).getNum_proyecto_carrera();
+                    poatemp=lista.get(j).getId_Poa();
+                        for (int k = 0; k < listapoa.size(); k++) {
+                            if (poatemp==listapoa.get(k).getId_POA()) {
+                            aniopoa=listapoa.get(k).getAnio();
+                            }
+                        }
+                    
+                        
+                    }
+                }
+                
+                
+                
 
             }
         }
@@ -377,7 +397,7 @@ public class Con_poa_proyectos {
             Dimension desktopSize = Con_principal.vista.getESCRITORIO().getSize();
             Dimension FrameSize = zap.getSize();
             zap.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-            Con_poa_actividad proyectos = new Con_poa_actividad(zap, id_pro);
+            Con_poa_actividad proyectos = new Con_poa_actividad(zap,id_pro,num_proyecto,aniopoa);
         } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar una actividad de la tabla");
         }

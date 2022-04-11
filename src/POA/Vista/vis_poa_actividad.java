@@ -320,8 +320,8 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 270, 230, 80));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel16.setText("PROYECTO");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, 120, 40));
+        jLabel16.setText("PROYECTO:");
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 110, 40));
 
         jLabel18.setText("$");
         getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 440, 10, 20));
@@ -339,16 +339,16 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 260, 40));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel19.setText("POA");
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 40, 40));
+        jLabel19.setText("POA:");
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 50, 40));
 
         lblproyecto.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblproyecto.setText("jLabel1");
-        getContentPane().add(lblproyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 90, 100, 40));
+        getContentPane().add(lblproyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 100, 40));
 
         lblaniopoa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblaniopoa.setText("jLabel1");
-        getContentPane().add(lblaniopoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 100, 40));
+        getContentPane().add(lblaniopoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 70, 40));
 
         lbl_id.setText("---");
         getContentPane().add(lbl_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 190, 30, -1));

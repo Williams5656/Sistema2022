@@ -40,7 +40,7 @@ public class con_portafolio {
     PeriodoacademicoBD periodobd = new PeriodoacademicoBD();
     List<PeriodoacademicoMD> listPer = periodobd.lista_periodos();
 
-    public con_portafolio(vis_portafolio vista,String carrera) {
+    public con_portafolio(vis_portafolio vista, String carrera) {
         this.vista = vista;
         this.carrera = carrera;
         vista.setVisible(true);
@@ -48,12 +48,14 @@ public class con_portafolio {
         vista.getBtnModulos().addActionListener(e -> tabla_modulo());
         vista.getBtnSilabo().addActionListener(e -> tabla_silabo());
         vista.getBtnNotas().addActionListener(e -> tabla_notas());
+        vista.getBtnPlanesClase().addActionListener(e -> tabla_planes());
+        vista.getBtnInstrumentosEv().addActionListener(e -> tabla_instrumentos());
+        vista.getBtnInformesSilabo().addActionListener(e -> tabla_informes());
         vista.getBtnImprimir().addActionListener(e -> imprimir());
         vista.getBtn_buscar().addActionListener(e -> buscar());
         vista.getBtn_subir().addActionListener(e -> subir_datos());
 
     }
-
 
     public void llenarCombo() {
         for (int i = 0; i < listPer.size(); i++) {
@@ -67,9 +69,11 @@ public class con_portafolio {
             return false;
         }
     }
-    
-    public void buscar(){
-        if (vista.getBtnModulos().isSelected()) tabla_buscar_modulo();
+
+    public void buscar() {
+        if (vista.getBtnModulos().isSelected()) {
+            tabla_buscar_modulo();
+        }
     }
 
     public void tabla_modulo() {
@@ -131,9 +135,9 @@ public class con_portafolio {
         modelo.addColumn("Documento");
 
         doc_modulo_BD mod = new doc_modulo_BD();
-        Object[][] modulos = mod.buscar_x_parametro(carrera,cod_periodo(vista.getComboPeriodAcademico().getSelectedItem().toString()),
+        Object[][] modulos = mod.buscar_x_parametro(carrera, cod_periodo(vista.getComboPeriodAcademico().getSelectedItem().toString()),
                 vista.getChk_periodo().isSelected(),
-                vista.getTxt_materia().getText().toUpperCase(), 
+                vista.getTxt_materia().getText().toUpperCase(),
                 vista.getChk_materia().isSelected());
 
         for (int i = 0; i < modulos.length; i++) {
@@ -183,6 +187,46 @@ public class con_portafolio {
         vista.getTbl_Datos().setModel(modelo);
     }
     
+     public void tabla_planes() {
+        noeditablemodelo modelo = new noeditablemodelo() {
+            public Class<?> getColumnClass(int column) {
+                switch (column) {
+                    case 0:
+                        return String.class;
+                    case 1:
+                        return String.class;
+                    case 2:
+                        return String.class;
+                    case 3:
+                        return String.class;
+                    case 4:
+                        return Boolean.class;
+                    default:
+                        return String.class;
+                }
+            }
+        };
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Periodo");
+        modelo.addColumn("Materia");
+        modelo.addColumn("N° Plan");
+        modelo.addColumn("Documento");
+
+        doc_planes_claseBD mod = new doc_planes_claseBD();
+        Object[][] modulos = mod.datos_unidos(carrera);
+
+        for (int i = 0; i < modulos.length; i++) {
+            modelo.addRow(new Object[0]);
+            modelo.setValueAt(modulos[i][0], i, 0);
+            modelo.setValueAt(modulos[i][1], i, 1);
+            modelo.setValueAt(modulos[i][2], i, 2);
+            modelo.setValueAt(modulos[i][3], i, 3);
+            modelo.setValueAt((modulos[i][4] != null), i, 4);
+        }
+
+        vista.getTbl_Datos().setModel(modelo);
+    }
+
     public void tabla_notas() {
         noeditablemodelo modelo = new noeditablemodelo() {
             public Class<?> getColumnClass(int column) {
@@ -202,7 +246,7 @@ public class con_portafolio {
                     case 6:
                         return String.class;
                     case 7:
-                        return String.class;  
+                        return String.class;
                     case 8:
                         return Boolean.class;
                     default:
@@ -211,7 +255,7 @@ public class con_portafolio {
             }
         };
         modelo.addColumn("Codigo");
-        modelo.addColumn("Descripcion");
+        modelo.addColumn("Seccion");
         modelo.addColumn("Docente");
         modelo.addColumn("Periodo");
         modelo.addColumn("Materia");
@@ -221,7 +265,119 @@ public class con_portafolio {
         modelo.addColumn("Documento");
 
         doc_notas_BD mod = new doc_notas_BD();
-        Object[][] modulos = mod.datos_unidos();
+        Object[][] modulos = mod.datos_unidos(carrera);
+
+        for (int i = 0; i < modulos.length; i++) {
+            modelo.addRow(new Object[0]);
+            modelo.setValueAt(modulos[i][0], i, 0);
+            modelo.setValueAt(modulos[i][1], i, 1);
+            modelo.setValueAt(modulos[i][2], i, 2);
+            modelo.setValueAt(modulos[i][3], i, 3);
+            modelo.setValueAt(modulos[i][4], i, 4);
+            modelo.setValueAt(modulos[i][5], i, 5);
+            modelo.setValueAt(modulos[i][6], i, 6);
+            modelo.setValueAt(modulos[i][7], i, 7);
+            modelo.setValueAt((modulos[i][8] != null), i, 8);
+        }
+
+        vista.getTbl_Datos().setModel(modelo);
+    }
+
+    public void tabla_instrumentos() {
+        noeditablemodelo modelo = new noeditablemodelo() {
+            public Class<?> getColumnClass(int column) {
+                switch (column) {
+                    case 0:
+                        return String.class;
+                    case 1:
+                        return String.class;
+                    case 2:
+                        return String.class;
+                    case 3:
+                        return String.class;
+                    case 4:
+                        return String.class;
+                    case 5:
+                        return String.class;
+                    case 6:
+                        return String.class;
+                    case 7:
+                        return String.class;
+                    case 8:
+                        return Boolean.class;
+                    default:
+                        return String.class;
+                }
+            }
+        };
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Instrumento");
+        modelo.addColumn("Docente");
+        modelo.addColumn("Periodo");
+        modelo.addColumn("Materia");
+        modelo.addColumn("Ciclo");
+        modelo.addColumn("Jornada");
+        modelo.addColumn("Paralelo");
+        modelo.addColumn("Documento");
+
+        doc_instrumento_evaluacionBD mod = new doc_instrumento_evaluacionBD();
+        Object[][] modulos = mod.datos_unidos(carrera);
+
+        for (int i = 0; i < modulos.length; i++) {
+            modelo.addRow(new Object[0]);
+            modelo.setValueAt(modulos[i][0], i, 0);
+            modelo.setValueAt(modulos[i][1], i, 1);
+            modelo.setValueAt(modulos[i][2], i, 2);
+            modelo.setValueAt(modulos[i][3], i, 3);
+            modelo.setValueAt(modulos[i][4], i, 4);
+            modelo.setValueAt(modulos[i][5], i, 5);
+            modelo.setValueAt(modulos[i][6], i, 6);
+            modelo.setValueAt(modulos[i][7], i, 7);
+            modelo.setValueAt((modulos[i][8] != null), i, 8);
+        }
+
+        vista.getTbl_Datos().setModel(modelo);
+    }
+
+    public void tabla_informes() {
+        noeditablemodelo modelo = new noeditablemodelo() {
+            public Class<?> getColumnClass(int column) {
+                switch (column) {
+                    case 0:
+                        return String.class;
+                    case 1:
+                        return String.class;
+                    case 2:
+                        return String.class;
+                    case 3:
+                        return String.class;
+                    case 4:
+                        return String.class;
+                    case 5:
+                        return String.class;
+                    case 6:
+                        return String.class;
+                    case 7:
+                        return String.class;
+                    case 8:
+                        return Boolean.class;
+                    default:
+                        return String.class;
+                }
+            }
+        };
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Informe");
+        modelo.addColumn("Docente");
+        modelo.addColumn("Periodo");
+        modelo.addColumn("Materia");
+        modelo.addColumn("Ciclo");
+        modelo.addColumn("Jornada");
+        modelo.addColumn("Paralelo");
+        modelo.addColumn("Documento");
+
+        doc_informes_BD mod = new doc_informes_BD();
+        Object[][] modulos = mod.datos_unidos(carrera);
 
         for (int i = 0; i < modulos.length; i++) {
             modelo.addRow(new Object[0]);

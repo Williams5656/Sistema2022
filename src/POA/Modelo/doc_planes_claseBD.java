@@ -83,8 +83,8 @@ public class doc_planes_claseBD extends doc_planes_claseMD {
 
     public Object[][] datos_unidos(String carrera) {
         try {
-            String sql = "select sb.id_doc_silabo, per.nombre, mt.materia, sb.documento\n"
-                    + "from doc_silabo sb \n"
+            String sql = "select sb.id_clase, per.nombre, mt.materia, sb.numero, sb.documento\n"
+                    + "from doc_planes_clase sb\n"
                     + "join periodo_academico per on sb.id_periodo=per.id_periodo\n"
                     + "join materia mt on sb.id_materia=mt.codigo"
                     + " where mt.nombre=(select codigo from carrera where nombre='" + carrera + "')";
@@ -95,13 +95,14 @@ public class doc_planes_claseBD extends doc_planes_claseMD {
             }
             rs.close();
             ResultSet rs2 = conectar.query(sql);
-            Object[][] m = new String[n_fil][4];
+            Object[][] m = new String[n_fil][5];
             int f = 0;
             while (rs2.next()) {
                 m[f][0] = rs2.getString(1);
                 m[f][1] = rs2.getString(2);
                 m[f][2] = rs2.getString(3);
-                m[f][3] = rs2.getBytes(4);
+                m[f][3] = rs2.getString(4);
+                m[f][4] = rs2.getBytes(5);
                 f++;
             }
             rs2.close();

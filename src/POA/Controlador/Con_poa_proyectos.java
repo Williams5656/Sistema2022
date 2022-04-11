@@ -261,11 +261,12 @@ public class Con_poa_proyectos {
     }
 
     public void seleccionarob() {
-
-//        DefaultTableModel modelo;
-        modelo1 = (DefaultTableModel) vista.getTabla_proyecto().getModel();
+        try{
+         modelo1 = (DefaultTableModel) vista.getTabla_proyecto().getModel();
+        
         int cedula = (int) modelo1.getValueAt(vista.getTabla_proyecto().getSelectedRow(), 0);
         int cedulas = (int) modelo1.getValueAt(vista.getTabla_proyecto().getSelectedRow(), 1);
+        
         List<ObjetivoOperativoMD> listas = obbd.obtenerdatosob(cedula, cedulas);
         if (listas.size() > 0) {
             obbd.setObjetivo(listas.get(0).getObjetivo());
@@ -273,6 +274,11 @@ public class Con_poa_proyectos {
             vista.getTxtarea_obopera().setText(obbd.getObjetivo() + "");
 
         }
+        } catch(java.lang.ClassCastException e){
+            
+        }
+//        
+       
 
     }
 

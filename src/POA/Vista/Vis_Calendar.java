@@ -331,7 +331,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         txt_descripcion = new javax.swing.JTextArea();
         combo_actividad = new javax.swing.JComboBox();
         combo_periodo = new javax.swing.JComboBox();
-        comobo_carrera = new javax.swing.JComboBox<String>();
+        comobo_carrera = new javax.swing.JComboBox<>();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         Btn_añadir_Tactividad = new javax.swing.JButton();
@@ -362,8 +362,6 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
 
         jLabel7.setText("TIPO ACTIVIDAD:");
 
-        combo_tipo_actividad_repor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         btn_cancelar.setText("CANCELAR");
 
         btn_aceptar.setText("ACEPTAR");
@@ -373,41 +371,37 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
+                        .addGap(48, 48, 48)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(206, 206, 206)
-                                .addComponent(combo_tipo_actividad_repor, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel5)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(114, 114, 114)
-                                .addComponent(jLabel7)
-                                .addGap(140, 140, 140))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
+                                .addGap(41, 41, 41)
                                 .addComponent(btn_aceptar)
-                                .addGap(99, 99, 99)))
-                        .addComponent(btn_cancelar)))
-                .addContainerGap(75, Short.MAX_VALUE))
+                                .addGap(103, 103, 103)
+                                .addComponent(btn_cancelar))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(157, 157, 157)
+                                .addComponent(combo_tipo_actividad_repor, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel7))))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addComponent(jLabel5)
-                .addGap(81, 81, 81)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(combo_tipo_actividad_repor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(87, 87, 87)
+                .addGap(58, 58, 58)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_aceptar)
                     .addComponent(btn_cancelar))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout Imprimir_DLayout = new javax.swing.GroupLayout(Imprimir_D.getContentPane());

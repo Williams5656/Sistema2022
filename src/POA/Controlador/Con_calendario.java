@@ -70,7 +70,13 @@ public class Con_calendario {
         vista.getBtn_guardar().addActionListener(e -> guardar());
         vista.getTxt_id_A().setEnabled(false);
         vista.getBtn_n_actividad().addActionListener(e -> Crear_actividad());
-        vista.getBtn_actividades().addActionListener(e -> imprimir_actividad());
+        vista.getBtn_actividades().addActionListener(e -> {
+            try {
+                cargarImprimir(1);
+            } catch (SQLException ex) {
+                Logger.getLogger(Con_rol.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         vista.getBtn_responsables().addActionListener(e -> imprimir_resposables());
         at = new TextAutoCompleter(vista.getTxt_responsables());
         vista.getBtn_añadir_Tactividad().addActionListener(l -> {
@@ -431,6 +437,22 @@ public class Con_calendario {
         vista.getD_txt_idTipoA().setText(String.valueOf(T_actividadbd.codigo()));
         vista.getT_Actividad_D().setVisible(true);
         vista.getD_txt_idTipoA().setEditable(false);
+    }
+     private void cargarImprimir(int origen) throws SQLException {
+        vista.getImprimir_D().setSize(560, 275);//dimensiones
+        vista.getImprimir_D().setLocationRelativeTo(vista);//posicion
+    
+        vista.getImprimir_D().setTitle("Ingresar Tipo De Actividad");
+        D_tipo_actividad();
+        vista.getImprimir_D().setVisible(true);
+
+    }
+     
+      public void D_tipo_actividad() {
+        List<T_actividadMD> listar = T_actividadbd.mostrardatos();
+        for (int i = 0; i < listar.size(); i++) {
+            vista.getCombo_tipo_actividad_repor().addItem(listar.get(i).getNombre());
+        }
     }
 
     public void guardarActividad() {

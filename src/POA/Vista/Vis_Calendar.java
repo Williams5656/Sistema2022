@@ -125,13 +125,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         this.btn_guardar = btn_guardar;
     }
 
-    public JButton getBtn_imprimir() {
-        return btn_imprimir;
-    }
 
-    public void setBtn_imprimir(JButton btn_imprimir) {
-        this.btn_imprimir = btn_imprimir;
-    }
 
     public JButton getBtn_modificar() {
         return btn_modificar;
@@ -320,10 +314,6 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         D_txt_Descripcion = new javax.swing.JTextField();
         D_Btn_Guardar = new javax.swing.JButton();
         D_Btn_Cancelar = new javax.swing.JButton();
-        btn_n_actividad = new javax.swing.JButton();
-        btn_modificar = new javax.swing.JButton();
-        btn_guardar = new javax.swing.JButton();
-        btn_imprimir = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txt_id_A = new javax.swing.JTextField();
@@ -341,7 +331,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         txt_descripcion = new javax.swing.JTextArea();
         combo_actividad = new javax.swing.JComboBox();
         combo_periodo = new javax.swing.JComboBox();
-        comobo_carrera = new javax.swing.JComboBox<>();
+        comobo_carrera = new javax.swing.JComboBox<String>();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         Btn_añadir_Tactividad = new javax.swing.JButton();
@@ -359,8 +349,13 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         tabla_responsable = new javax.swing.JTable();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        btn_responsables = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        btn_n_actividad = new javax.swing.JButton();
+        btn_guardar = new javax.swing.JButton();
+        btn_modificar = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
         btn_actividades = new javax.swing.JButton();
+        btn_responsables = new javax.swing.JButton();
 
         jLabel5.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
         jLabel5.setText("SELECCIONE EL TIPO DE ACTIVIDAD PARA EL REPORTE");
@@ -462,29 +457,6 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         setResizable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btn_n_actividad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icono_agregar.png"))); // NOI18N
-        btn_n_actividad.setText("Crear Actividad");
-        getContentPane().add(btn_n_actividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 56, -1, -1));
-
-        btn_modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/modificar.png"))); // NOI18N
-        btn_modificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_modificarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btn_modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 50, -1, -1));
-
-        btn_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/guardar.png"))); // NOI18N
-        getContentPane().add(btn_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 50, -1, -1));
-
-        btn_imprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/impresion.png"))); // NOI18N
-        btn_imprimir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_imprimirActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btn_imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 50, -1, -1));
-
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -573,7 +545,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         Fecha_limite.setDateFormatString("yyyy-MM-dd hh:mm:ss");
         jPanel1.add(Fecha_limite, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, 160, 20));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 97, 440, 720));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 117, 440, 700));
 
         jLabel6.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 36)); // NOI18N
         jLabel6.setText("CALENDARIO ACADÉMICO");
@@ -627,9 +599,9 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(240, 240, 240)
-                        .addComponent(Jl_evidencia, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
+                        .addGap(207, 207, 207)
+                        .addComponent(Jl_evidencia, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72)
                         .addComponent(btn_evidencia))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -652,23 +624,91 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel17)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Jl_evidencia, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_evidencia))
-                .addContainerGap(12, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(btn_evidencia)
+                        .addGap(0, 12, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(293, 293, 293)
+                        .addComponent(Jl_evidencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, 920, 710));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 120, 920, 700));
 
-        btn_responsables.setText("RESPONSABLES");
-        getContentPane().add(btn_responsables, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 60, -1, -1));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Aciones"));
+
+        btn_n_actividad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icono_agregar.png"))); // NOI18N
+        btn_n_actividad.setText("Crear Actividad");
+
+        btn_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/guardar.png"))); // NOI18N
+
+        btn_modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/modificar.png"))); // NOI18N
+        btn_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_modificarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(btn_n_actividad))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btn_guardar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_modificar)))
+                .addContainerGap(54, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn_n_actividad)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_guardar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_modificar, javax.swing.GroupLayout.Alignment.TRAILING)))
+        );
+
+        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 250, 110));
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Imprimir"));
 
         btn_actividades.setText("ACTIVIDADES");
-        getContentPane().add(btn_actividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 20, -1, -1));
+
+        btn_responsables.setText("RESPONSABLES");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(btn_actividades, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_responsables, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_responsables, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                    .addComponent(btn_actividades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 20, 260, 80));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -676,10 +716,6 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
     private void combo_actividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_actividadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_combo_actividadActionPerformed
-
-    private void btn_imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_imprimirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_imprimirActionPerformed
 
     private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
         // TODO add your handling code here:
@@ -722,7 +758,6 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_eliminar;
     private javax.swing.JButton btn_evidencia;
     private javax.swing.JButton btn_guardar;
-    private javax.swing.JButton btn_imprimir;
     private javax.swing.JButton btn_modificar;
     private javax.swing.JButton btn_n_actividad;
     private javax.swing.JButton btn_responsables;
@@ -751,6 +786,8 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

@@ -14,6 +14,8 @@ import POA.Modelo.Responsables_ActividadMD;
 import POA.Modelo.Responsables_ActividadBD;
 import POA.Modelo.docenteMD;
 import com.mxrck.autocompleter.TextAutoCompleter;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -55,6 +57,7 @@ public class Con_calendario {
     Responsables_ActividadMD resp = new Responsables_ActividadMD();
     docenteMD docentemd = new docenteMD();
     CalendarioBD calendar = new CalendarioBD();
+     private List<CalendarioMD> listacalendario = new ArrayList<>();
     String vector[];
     TextAutoCompleter at;
     String[] tabla;
@@ -101,6 +104,7 @@ public class Con_calendario {
         listaresponsable();
         Ihnabilitar();
         fecha();
+        buscar();
 
     }
 
@@ -141,15 +145,14 @@ public class Con_calendario {
     public void Crear_actividad() {
         vista.getTxt_id_A().setText(String.valueOf(calen.codigo_act()));
         vista.getTxt_N_actividad().setEnabled(true);
-        vista.getTxt_descripcion().setEnabled(true);
+        
         vista.getComobo_carrera().setEnabled(true);
         vista.getCombo_periodo().setEnabled(true);
         vista.getCombo_actividad().setEnabled(true);
         vista.getBtn_añadir_Tactividad().setEnabled(true);
-        vista.getFecha_inicio().setEnabled(true);
-        vista.getFecha_limite().setEnabled(true);
+        
         vista.getBtn_añadir().setEnabled(true);
-        vista.getBtn_guardar().setEnabled(true);
+        
         vista.getBtn_modificar().setEnabled(false);
         limpiar();
         DefaultTableModel modelo2;
@@ -169,9 +172,9 @@ public class Con_calendario {
         vista.getFecha_limite().setEnabled(false);
         vista.getBtn_añadir().setEnabled(false);
         vista.getBtn_evidencia().setEnabled(false);
-        vista.getBtn_guardar().setEnabled(true);
+        vista.getBtn_guardar().setEnabled(false);
         vista.getBtn_modificar().setEnabled(false);
-        vista.getBtn_imprimir().setEnabled(false);
+        //vista.getBtn_imprimir().setEnabled(false);
     }
 
     public void carrera() {
@@ -372,8 +375,8 @@ public class Con_calendario {
         listaPersona = resbd.nombres_docente();
         resbd.setId_actividad(Integer.parseInt(vista.getTxt_id_A().getText()));
         System.out.println("responsable" + vista.getTxt_id_A().getText());
-        String pos = at.getItemSelected().toString();
-        System.out.println("possss" + pos);
+        //String pos = at.getItemSelected().toString();
+        //System.out.println("possss" + pos);
         System.out.println("tablaaaaaa" + vista.getTabla_responsables().getRowCount());
         System.out.println("personaaaaa" + listaPersona.size());
         for (int i = 0; i < listaPersona.size(); i++) {
@@ -541,5 +544,32 @@ public class Con_calendario {
             JOptionPane.showMessageDialog(null, "Seleccionar Fila");
         }
     }
-
+    
+     public void buscar() {
+        listacalendario = calendar.mostrardatos();
+        vista.getTxt_N_actividad().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                int con = 0;
+                for (CalendarioMD person : listacalendario) {
+                    if (person.getNombre_Actividad().equals(vista.getTxt_N_actividad().getText())) {                       
+                       con=1;
+                    }
+                }
+                 if(con==1){
+                     JOptionPane.showMessageDialog(null, "La Actividad ya existente");
+                        vista.getTxt_descripcion().setEnabled(false);
+                        vista.getFecha_inicio().setEnabled(false);
+                        vista.getFecha_limite().setEnabled(false);
+                        vista.getBtn_guardar().setEnabled(false);
+                        
+                    }else{
+                        vista.getTxt_descripcion().setEnabled(true);
+                        vista.getFecha_inicio().setEnabled(true);
+                        vista.getFecha_limite().setEnabled(true);
+                        vista.getBtn_guardar().setEnabled(true);
+                 }
+            }
+        });
+    }
 }

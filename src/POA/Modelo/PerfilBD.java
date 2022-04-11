@@ -189,4 +189,34 @@ public class PerfilBD extends PerfilMD {
         }
         return idPerfil;
     } 
+    public int vPerfil(int codigo, String carrera,int cedula) {
+        int idPerfil=0;
+        
+        String sql="select * from area_carrera where id_area= " + codigo+ " and carrera='" + carrera + "' and perfil =" + cedula;
+        ResultSet rs = conectar.query(sql);
+        try {
+            while (rs.next()) {
+                
+                idPerfil++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PerfilBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return idPerfil;
+    } 
+    public int vResponsable(int codigo, String carrera,String cedula) {
+        int idPerfil=0;
+        
+        String sql="select * from area_carrera where id_area= " + codigo+ " and carrera='" + carrera + "' and responsable = '" + cedula +"'";
+        ResultSet rs = conectar.query(sql);
+        try {
+            while (rs.next()) {
+                
+                idPerfil++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PerfilBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return idPerfil;
+    } 
 }

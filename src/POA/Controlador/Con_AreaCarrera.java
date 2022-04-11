@@ -231,7 +231,7 @@ public class Con_AreaCarrera {
         int com = 0;
         comparacion = basePerfil.verificarPerfil(codigoCarrera, codigoPerfil);
         com = basePerfil.verificarResponsable(codigoCarrera, cedula);
-        
+
         if (comparacion != 0) {
             JOptionPane.showMessageDialog(null, "El perfil ya existe");
             vista.getComboPerfil().setSelectedIndex(0);
@@ -267,7 +267,42 @@ public class Con_AreaCarrera {
         String codigoCarrera = "";
         codigoCarrera = basePerfil.mostrarIdCarrera(carreraCombo);
         bdarea.setIdCarrera(codigoCarrera);
-        int resp2 = JOptionPane.showConfirmDialog(null, "CONFIRME SI ESTA SEGURO DE MODIFICAR");
+        int comparacion = 0;
+        int com = 0;
+        comparacion = basePerfil.verificarPerfil(codigoCarrera, codigoPerfil);
+        com = basePerfil.verificarResponsable(codigoCarrera, cedula);
+        int comparacion1 = 0;
+        int com1 = 0;
+        comparacion1 = basePerfil.vPerfil(id, codigoCarrera, codigoPerfil);
+        com1 = basePerfil.vResponsable(id, codigoCarrera, cedula);
+        int a = 1;
+        int b = 1;
+        if (comparacion1 != 0) {
+            if (com == 0) {
+                a = 0;
+            } else if (com != 0) {
+                a = 2;
+            }
+
+        }
+        if (com1 != 0) {
+            if (comparacion == 0) {
+                b = 0;
+            } else if (comparacion != 0) {
+                b = 2;
+            }
+
+        }
+        if (b == 2) {
+            JOptionPane.showMessageDialog(null, "El perfil ya existe");
+            vista.getComboPerfil().setSelectedIndex(0);
+        }
+        if (a == 2) {
+            JOptionPane.showMessageDialog(null, "Ya existe este responsable");
+            vista.getComboResponsable().setSelectedIndex(0);
+        }
+        if (a == 0 && b == 0) {
+            int resp2 = JOptionPane.showConfirmDialog(null, "CONFIRME SI ESTA SEGURO DE MODIFICAR");
             if (resp2 == 0) {
                 if (bdarea.modificar(id)) {
                     JOptionPane.showMessageDialog(null, "DATOS ACTUALIZADOS");
@@ -277,7 +312,8 @@ public class Con_AreaCarrera {
                     JOptionPane.showMessageDialog(null, "ERROR AL MODIFICAR");
                 }
             }
-       
+        }
+
     }
 
     private void guardar() {
@@ -290,7 +326,7 @@ public class Con_AreaCarrera {
             JOptionPane.showMessageDialog(null, "Seleccione el Responsable");
         } else {
             insertarBase();
-            
+
         }
     }
 

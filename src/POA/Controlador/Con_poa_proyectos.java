@@ -64,7 +64,7 @@ public class Con_poa_proyectos {
 
     private boolean tablaSeleccionada = false;
 
-    public Con_poa_proyectos(vis_poa_proyectos vista, int id_poa,String carrera, String anio) {
+    public Con_poa_proyectos(vis_poa_proyectos vista, int id_poa, String carrera, String anio) {
         this.vista = vista;
         poa = id_poa;
         vista.setVisible(true);
@@ -76,7 +76,11 @@ public class Con_poa_proyectos {
         vista.getTabla_proyecto().setEnabled(false);
         vista.getBtn_nuevo().addActionListener(e -> nuevo());
         vista.getBtn_guardar().addActionListener(e -> guardar());
+        vista.getBtn_modificar().addActionListener(e -> modificar());
+        vista.getBtn_eliminar().addActionListener(e -> eliminar());
         vista.getBtnAñadir_op().addActionListener(e -> guardarobjetivo());
+        vista.getBtnmodificar_op().addActionListener(e -> modificarobjetivo());
+        vista.getBtneliminar_op().addActionListener(e -> eliminarobjetivo());
         vista.getBtn_imprimir().addActionListener(e -> imprimirpro());
         vista.getBtnSiguiente().addActionListener(e -> abrirVentanaactividad());
 
@@ -98,15 +102,13 @@ public class Con_poa_proyectos {
             }
 
         });
-        vista.getLb_poa().setText(id_poa+"");
+        vista.getLb_poa().setText(id_poa + "");
         vista.getLb_carrera().setText(carrera);
-        vista.getLb_anio().setText(anio+"");
+        vista.getLb_anio().setText(anio + "");
 
         lista_poa();
 
     }
-
-    
 
     public void lista_poa() {
         modelo.setRowCount(0);
@@ -209,6 +211,44 @@ public class Con_poa_proyectos {
         }
 
     }
+    
+    public void modificar() {
+
+        poabd.setObjetivo_estrategico(vista.getTxt_obestra().getText());
+        poabd.setObjetivo_tactico(vista.getTxt_obtac().getText());
+        poabd.setEstrategia((vista.getTxt_estrategia().getText()));
+        
+        int resp_2 = JOptionPane.showConfirmDialog(null, "CONFIMRA MI ESTIMADO CABEZA GATO");
+        if (resp_2 == 0) {
+            if (poabd.modificar(vista.getN_proyectos().getText())) {
+                JOptionPane.showMessageDialog(null, "DATOS ACTUALIZADOS MI ÑAÑO");
+                lista_poa();
+                nuevo();
+            } else {
+                JOptionPane.showMessageDialog(null, "NI ESO MI ESTIMADO JOSE DELGADO");
+            }
+        }
+    }
+    
+     public void eliminar() {
+
+        int a = JOptionPane.showConfirmDialog(null, "REALMENTE DESA ELIMINAR  ", "CONFIRMAR ELIMINAR", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (a == 0) {
+            DefaultTableModel modelo;
+            modelo = (DefaultTableModel) vista.getTabla_lista_proyectos().getModel();
+            String codigo = (String) modelo.getValueAt(vista.getTabla_lista_proyectos().getSelectedRow(), 0);
+            List<ProyectoMD> m = poabd.mostrarDatos();
+            if (poabd.Eliminar(codigo)) {
+                JOptionPane.showMessageDialog(null, "DATOS Eliminados");
+            } else {
+                JOptionPane.showMessageDialog(null, "error al elmiinar");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "error ");
+        }
+        lista_poa();
+        nuevo();
+    }
 
     public void guardarobjetivo() {
         if (vista.getTxtarea_obopera().getText().equals("")) {
@@ -229,6 +269,42 @@ public class Con_poa_proyectos {
                 lista_objetivo();
             }
         }
+    }
+    public void modificarobjetivo() {
+
+        obbd.setObjetivo(vista.getTxtarea_obopera().getText());
+        
+        
+        int resp_2 = JOptionPane.showConfirmDialog(null, "CONFIMRA MI ESTIMADO CABEZA GATO");
+        if (resp_2 == 0) {
+            if (obbd.modificar(vista.getTxtarea_obopera().getText())) {
+                JOptionPane.showMessageDialog(null, "DATOS ACTUALIZADOS MI ÑAÑO");
+                lista_objetivo();
+                nuevo();
+            } else {
+                JOptionPane.showMessageDialog(null, "NI ESO MI ESTIMADO JOSE DELGADO");
+            }
+        }
+    }
+    
+     public void eliminarobjetivo() {
+
+        int a = JOptionPane.showConfirmDialog(null, "REALMENTE DESA ELIMINAR  ", "CONFIRMAR ELIMINAR", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (a == 0) {
+            DefaultTableModel modelo;
+            modelo = (DefaultTableModel) vista.getTabla_proyecto().getModel();
+            String codigo = (String) modelo.getValueAt(vista.getTabla_proyecto().getSelectedRow(), 0);
+            List<ObjetivoOperativoMD> m = obbd.mostrarDatos();
+            if (obbd.Eliminar(codigo)) {
+                JOptionPane.showMessageDialog(null, "DATOS Eliminados");
+            } else {
+                JOptionPane.showMessageDialog(null, "error al elmiinar");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "error ");
+        }
+        lista_poa();
+        nuevo();
     }
 
     public void seleccionar() {
@@ -263,24 +339,23 @@ public class Con_poa_proyectos {
     }
 
     public void seleccionarob() {
-        try{
-         modelo1 = (DefaultTableModel) vista.getTabla_proyecto().getModel();
-        
-        int cedula = (int) modelo1.getValueAt(vista.getTabla_proyecto().getSelectedRow(), 0);
-        int cedulas = (int) modelo1.getValueAt(vista.getTabla_proyecto().getSelectedRow(), 1);
-        
-        List<ObjetivoOperativoMD> listas = obbd.obtenerdatosob(cedula, cedulas);
-        if (listas.size() > 0) {
-            obbd.setObjetivo(listas.get(0).getObjetivo());
+        try {
+            modelo1 = (DefaultTableModel) vista.getTabla_proyecto().getModel();
 
-            vista.getTxtarea_obopera().setText(obbd.getObjetivo() + "");
+            int cedula = (int) modelo1.getValueAt(vista.getTabla_proyecto().getSelectedRow(), 0);
+            int cedulas = (int) modelo1.getValueAt(vista.getTabla_proyecto().getSelectedRow(), 1);
 
-        }
-        } catch(java.lang.ClassCastException e){
-            
+            List<ObjetivoOperativoMD> listas = obbd.obtenerdatosob(cedula, cedulas);
+            if (listas.size() > 0) {
+                obbd.setObjetivo(listas.get(0).getObjetivo());
+
+                vista.getTxtarea_obopera().setText(obbd.getObjetivo() + "");
+
+            }
+        } catch (java.lang.ClassCastException e) {
+
         }
 //        
-       
 
     }
 
@@ -363,24 +438,19 @@ public class Con_poa_proyectos {
 
                 id_pro = listaoperativo.get(i).getId_proyecto();
                 System.out.println(id_pro);
-                
-                
+
                 for (int j = 0; j < lista.size(); j++) {
-                    if (lista.get(j).getId_proyecto()==id_pro) {
-                    num_proyecto = lista.get(j).getNum_proyecto_carrera();
-                    poatemp=lista.get(j).getId_Poa();
+                    if (lista.get(j).getId_proyecto() == id_pro) {
+                        num_proyecto = lista.get(j).getNum_proyecto_carrera();
+                        poatemp = lista.get(j).getId_Poa();
                         for (int k = 0; k < listapoa.size(); k++) {
-                            if (poatemp==listapoa.get(k).getId_POA()) {
-                            aniopoa=listapoa.get(k).getAnio();
+                            if (poatemp == listapoa.get(k).getId_POA()) {
+                                aniopoa = listapoa.get(k).getAnio();
                             }
                         }
-                    
-                        
+
                     }
                 }
-                
-                
-                
 
             }
         }
@@ -397,7 +467,7 @@ public class Con_poa_proyectos {
             Dimension desktopSize = Con_principal.vista.getESCRITORIO().getSize();
             Dimension FrameSize = zap.getSize();
             zap.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-            Con_poa_actividad proyectos = new Con_poa_actividad(zap,id_pro,num_proyecto,aniopoa);
+            Con_poa_actividad proyectos = new Con_poa_actividad(zap, id_pro, num_proyecto, aniopoa);
         } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar una actividad de la tabla");
         }

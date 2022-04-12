@@ -121,4 +121,28 @@ public class ObjetivoOperativoBD extends ObjetivoOperativoMD {
         conectar.noQuery(sql);
 
     }
+    
+    public boolean modificar(String placa) {
+       
+        String sql = "UPDATE objetivo_operativo set \"id_poa\"='" + getObjetivo()+ "'"
+                + " where \"id_proyecto\"='" + placa + "'";
+
+        if (conectar.noQuery(sql) == null) {
+            return true;
+        } else {
+            System.out.println("error mi estimado cabeza gato");
+            return false;
+        }
+
+    }
+    
+    public boolean Eliminar(String placa) {
+        String nsql = " delete from objetivo_operativo where \"id_proyecto\"='" + placa + "'";
+        if (conectar.noQuery(nsql) == null) {
+            return true;
+        } else {
+            System.out.println("error eliminar");
+            return false;
+        }
+    }
 }

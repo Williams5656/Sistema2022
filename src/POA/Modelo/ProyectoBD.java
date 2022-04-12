@@ -108,7 +108,7 @@ public class ProyectoBD extends ProyectoMD{
     }
     
     public boolean Eliminar(String placa) {
-        String nsql = " delete from proyecto where \"id_poa\"='" + placa + "'";
+        String nsql = " delete from proyecto where \"id_proyecto\"='" + placa + "'";
         if (conectar.noQuery(nsql) == null) {
             return true;
         } else {

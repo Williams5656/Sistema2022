@@ -260,12 +260,15 @@ public class Con_Asignacion_Docente {
         int codigoPeriodo = 0;
         codigoPeriodo = baseAsignacion.mostrarIdPeriodo(periodo);
         String asignatura = (String) vista.getCboxasignatura().getSelectedItem();
+        String carrera = (String) vista.getCboxcarrera().getSelectedItem();
         String codigoMateria = "";
+        String codigoCarrera = "";
         codigoMateria = baseAsignacion.mostrarIdMateria(asignatura);
+        
         String ciclo = (String) vista.getCboxciclo().getSelectedItem();
         String jornada = (String) vista.getCboxjornada().getSelectedItem();
         String paralelo = (String) vista.getCboxparalelo().getSelectedItem();
-        bdasignacion.setId_asignacio(Integer.parseInt(vista.getId_asignacion().getText()));
+        bdasignacion.setId_asignacio(Integer.parseInt(vista.getId_asignacion().getText()));       
         bdasignacion.setIdentificacion(vista.getTxtdocente().getText());
         bdasignacion.setPeriodo(codigoPeriodo + "");
         bdasignacion.setAsignatura(codigoMateria);
@@ -353,6 +356,7 @@ public class Con_Asignacion_Docente {
         List<PersonaMD> listaper = bdpersona.obtenerdatos(identificacion);
         List<docenteMD> lista = bddocente.obtenerdatos(identificacion);
         List<AsignacionMateriaDocentesMD> listaasig = bdasignacion.obtenerdatos(identificacion);
+        String carrera = bdasignacion.mostrarCarrera(identificacion);
         String periodo = bdasignacion.mostrarPeriodo(Integer.parseInt(listaasig.get(0).getPeriodo()));
         bdpersona.setNombres(listaper.get(0).getNombres());
         bdpersona.setApellidos(listaper.get(0).getApellidos());
@@ -360,8 +364,8 @@ public class Con_Asignacion_Docente {
         bdasignacion.setId_asignacio(listaasig.get(0).getId_asignacio());
         bdasignacion.setIdentificacion(listaasig.get(0).getIdentificacion());
         bdasignacion.setPeriodo(periodo);
-        
         bdasignacion.setAsignatura(listaasig.get(0).getAsignatura());
+        
         bdasignacion.setParalelo(listaasig.get(0).getParalelo());
         bdasignacion.setJornada(listaasig.get(0).getJornada());
         bdasignacion.setCiclo(listaasig.get(0).getCiclo());
@@ -372,6 +376,7 @@ public class Con_Asignacion_Docente {
         vista.getId_asignacion().setText(bdasignacion.getId_asignacio() + "");
         vista.getTxtdocente().setText(bdasignacion.getIdentificacion());
         vista.getCboxperiodo().setSelectedItem(bdasignacion.getPeriodo());
+        vista.getCboxcarrera().setSelectedItem(carrera);
         vista.getCboxasignatura().setSelectedItem(id_asig);
         vista.getCboxciclo().setSelectedItem(bdasignacion.getCiclo());
         vista.getCboxjornada().setSelectedItem(bdasignacion.getJornada());

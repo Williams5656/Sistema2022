@@ -374,7 +374,7 @@ public class Con_poa_evidencia {
             baseDatosEvidencias.setId_proyecto(proyecto_id);
             baseDatosEvidencias.setId_objetivo(id_obj);
             baseDatosEvidencias.setArchivo(vista.getTxtArchivo().getText());
-            int resp = JOptionPane.showConfirmDialog(null, "Confirme si esta seguro de moficar");
+            int resp = JOptionPane.showConfirmDialog(null, "Confirme si esta seguro de modificar");
             if (resp == 0) {
                 if (baseDatosEvidencias.modificar(String.valueOf(id_evidencia))) {
                     JOptionPane.showMessageDialog(null, "Datos Actualizados");

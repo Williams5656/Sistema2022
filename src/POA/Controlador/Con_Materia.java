@@ -58,15 +58,13 @@ public class Con_Materia {
     List<PerfilMD> listap = bdperfil.mostrardatos();
     private DefaultTableModel modelo = new DefaultTableModel();
     PerfilBD basePerfil = new PerfilBD();
+    int select = 0;
 
     public Con_Materia(Vis_Materias vista) {
         this.vista = vista;
         vista.setVisible(true);
         desactivarbotones();
         campocarrera();
-        //validarcod();
-//        validarcod();
-        validarmateria();
         validaciones();
 //        buscar();
         vista.getBtncancelar().addActionListener(e -> cancelar());
@@ -101,96 +99,88 @@ public class Con_Materia {
     }
 
     public void guardar() {
-       boolean c = true;
-//        String nombre = (String) vista.getComboCarrera_mat().getSelectedItem();
-//        materia.setNombre_carrera(nombre);
-
 //        materia.setCod_materia(vista.getTxtcodmateria().getText());
-           String codigo = (String) vista.getTxtcodmateria().getText();
-           List<MateriaMD> lista_cod = materia.obtenerdatos(codigo);
-                    for (int i = 0; i < lista_cod.size(); i++) {
-                if (lista_cod.get(i).getCod_materia().equals(vista.getTxtcodmateria().getText())) {
-                    JOptionPane.showMessageDialog(null, "Codigo ya existe \n Verifique");
-                    vista.getTxtcodmateria().setText("");
-                    c = false;
-                    break;
-                }
-            }
-                    if (c == true) {
-        String carreraCombo = (String) vista.getComboCarrera_mat().getSelectedItem();
-        String codigoCarrera = "";
-        codigoCarrera = bdperfil.mostrarIdCarrera(carreraCombo);
-        materia.setNombre_carrera(codigoCarrera);
-        String eje = (String) vista.getComboejeformacion().getSelectedItem();
-        materia.setEje_formacion(eje);
-        
-        materia.setCod_materia(vista.getTxtcodmateria().getText());
-        
-        materia.setNombre_materia(vista.getTxtnombremateria().getText());
-        String ciclo = (String) vista.getCombociclo().getSelectedItem();
-        materia.setCiclo(ciclo);
-        materia.setCreditos(vista.getTxtcreditos().getText());
-        String plan = (String) vista.getComboplan().getSelectedItem();
-        materia.setPlan(plan);
-        
-        
-        String areaCombo = (String) vista.getComboareacarrera().getSelectedItem();
-        String codigoArea = "";
+        String mate = (String) vista.getTxtnombremateria().getText();
+//        List<MateriaMD> lista_mat = materia.obtenerdatos(mate);
+        String codigo = (String) vista.getTxtcodmateria().getText();
+//        List<MateriaMD> lista_cod = materia.obtenerdatos(codigo);
 
-        codigoArea = bdarea.mostrarIdArea(carreraCombo, areaCombo);
-
-        materia.setArea(codigoArea);
-        
-                if (materia.insertar()) {
-            JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
-            listam();
-            nuevo();
-        } else {
-            JOptionPane.showMessageDialog(null, "Error al guardar");
+//        for (int i = 0; i < lista_cod.size(); i++) {
+//            if (lista_cod.get(i).getCod_materia().equals(vista.getTxtcodmateria().getText())) {
+//                JOptionPane.showMessageDialog(null, "Codigo ya existe \n Verifique");
+//                vista.getTxtcodmateria().setText("");
+//                c = false;
+//                break;
+//            }
+//      }
+        String view = "";
+        String view2 = "";
+        view = materia.verificarMateria(mate);
+        view2 = materia.verificarCodMateria(codigo);
+        if (view != "") {
+            JOptionPane.showMessageDialog(null, "Materia ya existe!","\n Verifique",0);
+            vista.getTxtnombremateria().setText("");
         }
-
-                    }
-        
-//        String areac = (String) vista.getComboareacarrera().getSelectedItem();
-//        materia.setArea(areac);
-//        materia.setArea(areacarrera);
-
-
+        if (view2 != "") {
+            JOptionPane.showMessageDialog(null, "Còdigo ya existe!","\n Verifique",0);
+            vista.getTxtcodmateria().setText("");
+        }
+        if (view == "" && view2 == "") {
+            String carreraCombo = (String) vista.getComboCarrera_mat().getSelectedItem();
+            String codigoCarrera = "";
+            codigoCarrera = bdperfil.mostrarIdCarrera(carreraCombo);
+            materia.setNombre_carrera(codigoCarrera);
+            String eje = (String) vista.getComboejeformacion().getSelectedItem();
+            materia.setEje_formacion(eje);
+            materia.setCod_materia(vista.getTxtcodmateria().getText());
+            materia.setNombre_materia(vista.getTxtnombremateria().getText());
+            String ciclo = (String) vista.getCombociclo().getSelectedItem();
+            materia.setCiclo(ciclo);
+            materia.setCreditos(vista.getTxtcreditos().getText());
+            String plan = (String) vista.getComboplan().getSelectedItem();
+            materia.setPlan(plan);
+            String areaCombo = (String) vista.getComboareacarrera().getSelectedItem();
+            String codigoArea = "";
+            codigoArea = bdarea.mostrarIdArea(carreraCombo, areaCombo);
+            materia.setArea(codigoArea);
+            if (materia.insertar()) {
+                JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
+                listam();
+                nuevo();
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al guardar");
+            }
+        }
     }
 
     public void seleccionar() {
 
-        int select = vista.getTablamateria().getSelectedRow();
-//        DefaultTableModel modelo;
-//        modelo = (DefaultTableModel) vista.getTablamateria().getModel();
-//        String codigo = (String) modelo.getValueAt(vista.getTablamateria().getSelectedRow(), 0);
-//        System.out.println(codigo);
-        List<MateriaMD> lista = materia.mostrardatos();
-//        List<MateriaMD> lista = materia.obtenerdatos(codigo);
-        materia.setNombre_carrera(lista.get(select).getNombre_carrera());
-        materia.setEje_formacion(lista.get(select).getEje_formacion());
-        materia.setCod_materia(lista.get(select).getCod_materia());
-        materia.setNombre_materia(lista.get(select).getNombre_materia());
-        materia.setCiclo(lista.get(select).getCiclo());
-        materia.setCreditos(lista.get(select).getCreditos());
-        materia.setPlan(lista.get(select).getPlan());
-        materia.setArea(lista.get(select).getArea());
-
-        for (CarreraMD carrera : listac) {
-            if (carrera.getCodigo_carrera().equals(lista.get(select).getNombre_carrera())) {
-                vista.getComboCarrera_mat().setSelectedItem(carrera.getNombre_carrera());
-            }
-        }
-
-        vista.getComboCarrera_mat().setSelectedItem(materia.getNombre_carrera());
-        vista.getComboejeformacion().setSelectedItem(materia.getEje_formacion());
-        vista.getTxtcodmateria().setText(materia.getCod_materia());
-        vista.getTxtnombremateria().setText(materia.getNombre_materia());
-        vista.getCombociclo().setSelectedItem(materia.getCiclo());
-        vista.getTxtcreditos().setText(materia.getCreditos());
-        vista.getComboplan().setSelectedItem(materia.getPlan());
-        vista.getComboareacarrera().setSelectedItem(materia.getArea());
-
+        String ncarrera = "";
+        String nformacion = "";
+        String cmateria = "";
+        String nmateria = "";
+        String nciclo = "";
+        String ncreditos = "";
+        String nplan = "";
+        String narea = "";
+        select = vista.getTablamateria().getSelectedRow();
+        ncarrera = vista.getTablamateria().getValueAt(select, 0).toString();
+        nformacion = vista.getTablamateria().getValueAt(select, 1).toString();
+        cmateria = vista.getTablamateria().getValueAt(select, 2).toString();
+        nmateria = vista.getTablamateria().getValueAt(select, 3).toString();
+        nciclo = vista.getTablamateria().getValueAt(select, 4).toString();
+        ncreditos = vista.getTablamateria().getValueAt(select, 5).toString();
+        nplan = vista.getTablamateria().getValueAt(select, 6).toString();
+        narea = vista.getTablamateria().getValueAt(select, 7).toString();
+        vista.getComboCarrera_mat().setSelectedItem(ncarrera);
+        vista.getComboejeformacion().setSelectedItem(nformacion);
+        vista.getTxtcodmateria().setText(cmateria);
+        vista.getTxtnombremateria().setText(nmateria);
+        vista.getCombociclo().setSelectedItem(nciclo);
+        vista.getTxtcreditos().setText(ncreditos);
+        vista.getComboplan().setSelectedItem(nplan);
+        vista.getComboareacarrera().setSelectedItem(narea);
+        
     }
 
     public void listam() {
@@ -251,7 +241,7 @@ public class Con_Materia {
     }
 
     public void activarbotones() {
-
+        
         vista.getBtnguardar().setEnabled(true);
 //        vista.getBtnnuevo().setEnabled(true);
         vista.getBtnimprimir().setEnabled(true);
@@ -289,13 +279,11 @@ public class Con_Materia {
         }
     }
 
-
-
     private void eliminar() {
         int resp1 = JOptionPane.showConfirmDialog(null, "CONFIRME SI DESEA ELIMINAR");
         if (resp1 == 0) {
             if (materia.Eliminar(vista.getTxtcodmateria().getText())) {
-                JOptionPane.showMessageDialog(null, "Datos actualizados");
+                JOptionPane.showMessageDialog(null, "DATOS ELIMINADOS");
                 listam();
                 nuevo();
             } else {
@@ -324,6 +312,7 @@ public class Con_Materia {
         int select = JOptionPane.showConfirmDialog(null, "DESEA CANCELAR!", "", JOptionPane.YES_NO_OPTION);
         if (select == 0) {
             vista.setVisible(true);
+            nuevo();
         }
     }
 
@@ -339,17 +328,17 @@ public class Con_Materia {
 ////        return true;
 //    }
 
-    boolean validarmateria() {
-        String codigo = (String) vista.getTxtnombremateria().getText();
-        List<MateriaMD> lista_cod = materia.obtenerdatos(codigo);
-        for (int i = 0; i < lista_cod.size(); i++) {
-            if (codigo == (lista_cod.get(i).getNombre_materia())) {
-                JOptionPane.showMessageDialog(null, "Materia ya existe!", "Verifique", 0);
-                return false;
-            }
-        }
-        return true;
-    }
+//    boolean validarmateria() {
+//        String codigo = (String) vista.getTxtnombremateria().getText();
+//        List<MateriaMD> lista_cod = materia.obtenerdatos(codigo);
+//        for (int i = 0; i < lista_cod.size(); i++) {
+//            if (codigo == (lista_cod.get(i).getNombre_materia())) {
+//                JOptionPane.showMessageDialog(null, "Materia ya existe!", "Verifique", 0);
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
 
     private void only_num(JTextField t) {
         t.addKeyListener(new KeyAdapter() {
@@ -365,7 +354,7 @@ public class Con_Materia {
 
     public void validaciones() {
 
-        Letras.solo_letras(vista.getTxtnombremateria());
+        Letras.numero_letras(vista.getTxtnombremateria(),15);
         Letras.dosespacios(vista.getTxtnombremateria());
         only_num(vista.getTxtcreditos());
 //        Numeros.solo_numeros(vista.getTxtcreditos());

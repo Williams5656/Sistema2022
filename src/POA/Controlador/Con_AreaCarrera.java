@@ -277,31 +277,28 @@ public class Con_AreaCarrera {
         com1 = basePerfil.vResponsable(id, codigoCarrera, cedula);
         int a = 1;
         int b = 1;
+        int c=0;
         if (comparacion1 != 0) {
             if (com == 0) {
                 a = 0;
             } else if (com != 0) {
-                a = 2;
+                JOptionPane.showMessageDialog(null, "Ya existe este responsable");
+                vista.getComboResponsable().setSelectedIndex(0);
             }
+        } 
 
-        }
         if (com1 != 0) {
             if (comparacion == 0) {
                 b = 0;
             } else if (comparacion != 0) {
-                b = 2;
+                JOptionPane.showMessageDialog(null, "El perfil ya existe");
+                vista.getComboPerfil().setSelectedIndex(0);
             }
-
-        }
-        if (b == 2) {
+        }else if (comparacion != 0) {
             JOptionPane.showMessageDialog(null, "El perfil ya existe");
             vista.getComboPerfil().setSelectedIndex(0);
         }
-        if (a == 2) {
-            JOptionPane.showMessageDialog(null, "Ya existe este responsable");
-            vista.getComboResponsable().setSelectedIndex(0);
-        }
-        if (a == 0 && b == 0) {
+        if (a == 0 || b == 0) {
             int resp2 = JOptionPane.showConfirmDialog(null, "CONFIRME SI ESTA SEGURO DE MODIFICAR");
             if (resp2 == 0) {
                 if (bdarea.modificar(id)) {

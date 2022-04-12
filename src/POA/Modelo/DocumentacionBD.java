@@ -110,9 +110,9 @@ public class DocumentacionBD extends DocumentacionMD{
         }
     }
     
-    public int numfecha(String fecha) {
+    public int numfecha(String fecha,String id_asignacion) {
         int fecha1 = 0;
-        String sql="select count (fecha) as num from documentacion where cast ('"+ fecha +"'as date) > fecha";
+        String sql="select count (fecha) as num from documentacion where cast ('"+ fecha +"'as date) > fecha and id_asignacion = '"+id_asignacion+"'";
         ResultSet rs = conectar.query(sql);
         try {
             while (rs.next()) {
@@ -124,9 +124,9 @@ public class DocumentacionBD extends DocumentacionMD{
         }
         return fecha1;
     }
-     public int fecha() {
+     public int fecha(String id_asignacion) {
         int fecha1 = 0;
-        String sql="select count (fecha) as num from documentacion ";
+        String sql="select count (fecha) as num from documentacion where id_asignacion = '"+id_asignacion+"'";
         ResultSet rs = conectar.query(sql);
         try {
             while (rs.next()) {

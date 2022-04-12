@@ -31,16 +31,17 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import POA.Modelo.Validadores.Numeros;
 import POA.Modelo.Validadores.Letras;
+import POA.Modelo.Validadores.id_carrera;
 
 /**
  *
  * @author PC FACTORY
  */
 public class Con_documentacion {
-    
+
     public final Vis_Documentacion vista;
     DocumentacionBD bddocumentacion = new DocumentacionBD();
-    
+
     private DefaultTableModel modelo = new DefaultTableModel();
     private List<DocumentacionMD> lista = new ArrayList<>();
     private List<AsignacionMateriaDocentesMD> listaasignacion = new ArrayList<>();
@@ -54,10 +55,11 @@ public class Con_documentacion {
     private List<AreaCarreraMD> listaArea = new ArrayList<>();
     private AreaCarreraBD baseArea = new AreaCarreraBD();
     int asignacion;
+    boolean horas = false;
     private static int plan;
-    
+
     public Con_documentacion(Vis_Documentacion vista, int id_asignacion) {
-        
+
         this.vista = vista;
         validaciones();
         ESCRITORIO.add(vista);
@@ -73,14 +75,14 @@ public class Con_documentacion {
         vista.setVisible(true);
         vista.getGuias().add(vista.getRadioSi());
         vista.getGuias().add(vista.getRadioNo());
-        asignacion = id_asignacion;            
+        asignacion = id_asignacion;
         System.out.println(asignacion + "=  ID");
         vista.getBtnnuevo().addActionListener(e -> nuevo());
         vista.getBtn_regresar().addActionListener(e -> regresar());
         vista.getBtnguardar().addActionListener(e -> guardar());
         vista.getBtneditar().addActionListener(e -> modificar());
     }
-    
+
     public void activarBotones() {
         vista.getBtnguardar().setEnabled(true);
         vista.getBtneditar().setEnabled(true);
@@ -94,7 +96,7 @@ public class Con_documentacion {
         limpiarRadios();
         activarRadio();
     }
-    
+
     public void desactivarBotones() {
         vista.getBtnguardar().setEnabled(false);
         vista.getBtneditar().setEnabled(false);
@@ -102,23 +104,23 @@ public class Con_documentacion {
         vista.getFecha().setEnabled(false);
         vista.getComboEstado().setEnabled(false);
         vista.getTxt_horaguia().setEnabled(false);
-        desactivarRadio();      
+        desactivarRadio();
     }
-    
+
     public void activarRadio() {
         vista.getRadioSi().setEnabled(true);
         vista.getRadioNo().setEnabled(true);
     }
-    
+
     public void desactivarRadio() {
         vista.getRadioSi().setEnabled(false);
         vista.getRadioNo().setEnabled(false);
     }
-    
+
     public void limpiarRadios() {
         vista.getGuias().clearSelection();
     }
-    
+
     public String Radio() {
         if (vista.getRadioSi().isSelected()) {
             return vista.getRadioSi().getText();
@@ -134,10 +136,11 @@ public class Con_documentacion {
         vista.getRadioSi().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                horas = true;
                 vista.getTxt_horaguia().setEditable(true);
                 vista.getTxt_horaguia().setEnabled(true);
             }
-            
+
         });
     }
 
@@ -145,24 +148,24 @@ public class Con_documentacion {
         vista.getRadioNo().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                horas = false;
                 vista.getTxt_horaguia().setEditable(false);
                 vista.getTxt_horaguia().setEnabled(false);
             }
-            
+
         });
     }
-    
+
     public void nuevo() {
         activarBotones();
-        if (vista.getTablaDocumentacion().getRowCount()<plan) {
+        if (vista.getTablaDocumentacion().getRowCount() < plan) {
             vista.getTxt_plan().setText(vista.getTablaDocumentacion().getRowCount() + 1 + "");
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "El numero de plan esta exedido");
         }
-        
-        
+
     }
-    
+
     public void guardar() {
         if (Radio().equals("0")) {
             JOptionPane.showMessageDialog(null, "SELECCIONE EL ESTADO");
@@ -174,25 +177,30 @@ public class Con_documentacion {
             bddocumentacion.setGuias(Radio());
             SimpleDateFormat formato6 = new SimpleDateFormat("yyyy-MM-dd");
             String fecha = formato6.format(vista.getFecha().getDate());
-            if (bddocumentacion.numfecha(fecha) == bddocumentacion.fecha()) {
-                bddocumentacion.setFecha(fecha);
-                if (vista.getTxt_horaguia().getText().equals("")) {
-                    bddocumentacion.setHorasGuia(0);
+            if (bddocumentacion.numfecha(fecha, asignacion + "") == bddocumentacion.fecha(asignacion + "")) {
+                if (horas && Integer.parseInt(vista.getTxt_horaguia().getText()) == 0) {
+                    JOptionPane.showMessageDialog(null, "Las horas debe ser mayor a cero");
                 } else {
-                    bddocumentacion.setHorasGuia(Integer.parseInt(vista.getTxt_horaguia().getText()));
+                    bddocumentacion.setFecha(fecha);
+                    if (vista.getTxt_horaguia().getText().equals("")) {
+                        bddocumentacion.setHorasGuia(0);
+                    } else {
+                        bddocumentacion.setHorasGuia(Integer.parseInt(vista.getTxt_horaguia().getText()));
+                    }
+                    if (bddocumentacion.insertar()) {
+                        JOptionPane.showMessageDialog(null, "DATOS GUARDADOS CORRECTAMENTE");
+                        lista();
+                        nuevo();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR");
+                    }
                 }
-                if (bddocumentacion.insertar()) {
-                    JOptionPane.showMessageDialog(null, "DATOS GUARDADOS CORRECTAMENTE");
-                    lista();
-                    nuevo();
-                } else {
-                    JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR");
-                }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "LA FECHA INGRESADA ES MENOR A EL ULTIMO PLAN");
             }
         }
     }
+
     public void seleccionar() {
         activarBotones();
         vista.getBtnguardar().setEnabled(false);
@@ -206,16 +214,16 @@ public class Con_documentacion {
         bddocumentacion.setHorasGuia(listadoc.get(0).getHorasGuia());
         bddocumentacion.setFecha(listadoc.get(0).getFecha());
         bddocumentacion.setEstado(listadoc.get(0).getEstado());
-        
-        vista.getTxt_plan().setText(bddocumentacion.getId_plan()+"");
+
+        vista.getTxt_plan().setText(bddocumentacion.getId_plan() + "");
         String guia = bddocumentacion.getGuias();
         if (guia.equalsIgnoreCase("SI")) {
             vista.getRadioSi().setSelected(true);
-        }else{
+        } else {
             vista.getRadioNo().setSelected(true);
         }
         System.out.println(bddocumentacion.getFecha());
-        vista.getTxt_horaguia().setText(bddocumentacion.getHorasGuia()+"");
+        vista.getTxt_horaguia().setText(bddocumentacion.getHorasGuia() + "");
         try {
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
             Date d1 = formato.parse(bddocumentacion.getFecha());
@@ -225,18 +233,19 @@ public class Con_documentacion {
         }
         vista.getComboEstado().setSelectedItem(bddocumentacion.getEstado());
     }
-    public void modificar (){
+
+    public void modificar() {
         int plan = Integer.parseInt(vista.getTxt_plan().getText());
         String estado = (String) vista.getComboEstado().getSelectedItem();
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         String fecha = formato.format(vista.getFecha().getDate());
-        bddocumentacion.setId_plan (Integer.parseInt(vista.getTxt_numPlan().getText()));
+        bddocumentacion.setId_plan(Integer.parseInt(vista.getTxt_numPlan().getText()));
         bddocumentacion.setHorasGuia(Integer.parseInt(vista.getTxt_horaguia().getText()));
         bddocumentacion.setFecha(fecha);
         bddocumentacion.setEstado(estado);
-        int resp = JOptionPane.showConfirmDialog(null, "¿Desea Modificar?","",JOptionPane.YES_NO_OPTION);
+        int resp = JOptionPane.showConfirmDialog(null, "¿Desea Modificar?", "", JOptionPane.YES_NO_OPTION);
         if (resp == JOptionPane.YES_OPTION) {
-            if (bddocumentacion.modificar(plan)){
+            if (bddocumentacion.modificar(plan)) {
                 JOptionPane.showMessageDialog(null, "DATOS MODIFICADOS");
                 lista();
                 nuevo();
@@ -245,18 +254,19 @@ public class Con_documentacion {
             }
         }
     }
+
     public void regresar() {
         vista.setVisible(false);
         vis_asignacionmateriadocentes doc = new vis_asignacionmateriadocentes();
         Con_Asignacion_Docente per = new Con_Asignacion_Docente(doc);
-        
+
         ESCRITORIO.add(doc);
         Dimension desktopSize = ESCRITORIO.getSize();
         Dimension FrameSize = doc.getSize();
         doc.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-        
+
     }
-    
+
     public void datos() {
         vista.getTxt_cedula().setEditable(false);
         vista.getTxt_ciclo().setEditable(false);
@@ -268,8 +278,8 @@ public class Con_documentacion {
         vista.getTxt_paralelo().setEditable(false);
         vista.getTxt_periodo().setEditable(false);
     }
-    
-    public void cargarDatos() {       
+
+    public void cargarDatos() {
         listaasignacion = baseAsignacion.mostrardatos();
         listaPersona = baseDatosPersona.mostrardatos();
         listaPeriodo = basePeriodo.lista_periodos();
@@ -278,7 +288,7 @@ public class Con_documentacion {
         System.out.println(asignacion);
         for (AsignacionMateriaDocentesMD asignacion1 : listaasignacion) {
             System.out.println(asignacion1.getAsignatura());
-            if (asignacion1.getId_asignacio()== asignacion ) {
+            if (asignacion1.getId_asignacio() == asignacion) {
                 vista.getTxt_cedula().setText(asignacion1.getIdentificacion());
                 vista.getTxt_ciclo().setText(asignacion1.getCiclo());
                 vista.getTxt_jornada().setText(asignacion1.getJornada());
@@ -297,7 +307,7 @@ public class Con_documentacion {
                     if (materia.getCod_materia().equals(asignacion1.getAsignatura())) {
                         vista.getTxt_materia().setText(materia.getNombre_materia());
                         vista.getTxt_numPlan().setText(materia.getPlan());
-                        plan=Integer.parseInt(materia.getPlan());
+                        plan = Integer.parseInt(materia.getPlan());
                         for (AreaCarreraMD area : listaArea) {
                             if (area.getIdArea() == Integer.parseInt(materia.getArea())) {
                                 for (PersonaMD persona : listaPersona) {
@@ -306,21 +316,21 @@ public class Con_documentacion {
                                     }
                                 }
                             }
-                            
+
                         }
-                        
+
                     }
                 }
-                
+
             }
-            
+
         }
-        
+
     }
-    
+
     public void lista() {
         modelo.setRowCount(0);
-        modelo.setColumnCount(0);        
+        modelo.setColumnCount(0);
         modelo.addColumn("Id_plan");
         modelo.addColumn("Numero");
         modelo.addColumn("Asignacion");
@@ -330,8 +340,7 @@ public class Con_documentacion {
         modelo.addColumn("Estado");
         Object[] fila = new Object[7];
         lista = bddocumentacion.mostrardatos();
-        
-       
+
         for (int i = 0; i < lista.size(); i++) {
             if (lista.get(i).getId_asignacion().equals(asignacion + "")) {
                 fila[0] = lista.get(i).getId_plan();
@@ -341,14 +350,14 @@ public class Con_documentacion {
                 fila[4] = lista.get(i).getGuias();
                 fila[5] = lista.get(i).getHorasGuia();
                 fila[6] = lista.get(i).getEstado();
-                modelo.addRow(fila);                
+                modelo.addRow(fila);
             }
-            
+
         }
         vista.getTablaDocumentacion().setModel(modelo);
-        
+
     }
-     
+
     public void validaciones() {
 
         Letras.numero_letras(vista.getTxt_horaguia(), 2);
@@ -364,5 +373,5 @@ public class Con_documentacion {
             }
         });
     }
-        
+
 }

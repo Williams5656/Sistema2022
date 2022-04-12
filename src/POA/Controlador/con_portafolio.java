@@ -59,7 +59,7 @@ public class con_portafolio {
         vista.getBtnInstrumentosEv().addActionListener(e -> tabla_instrumentos());
         vista.getBtnInformesSilabo().addActionListener(e -> tabla_informes());
         vista.getBtnImprimir().addActionListener(e -> imprimir());
-        vista.getBtn_buscar().addActionListener(e -> buscar());
+        vista.getBtn_buscar().addActionListener(e -> tabla_buscar());
         vista.getBtn_subir().addActionListener(e -> subir_datos());
 
     }
@@ -137,7 +137,7 @@ public class con_portafolio {
 
     public void buscar() {
         if (vista.getBtnModulos().isSelected()) {
-            tabla_buscar_modulo();
+            tabla_modulo();
         }
     }
 
@@ -164,8 +164,10 @@ public class con_portafolio {
         modelo.addColumn("Documento");
 
         doc_modulo_BD mod = new doc_modulo_BD();
-        Object[][] modulos = mod.datos_unidos(carrera);
-
+        Object[][] modulos;
+        
+        modulos = mod.datos_unidos(carrera);
+        
         for (int i = 0; i < modulos.length; i++) {
             modelo.addRow(new Object[0]);
             modelo.setValueAt(modulos[i][0], i, 0);
@@ -177,42 +179,27 @@ public class con_portafolio {
         vista.getTbl_Datos().setModel(modelo);
     }
 
-    public void tabla_buscar_modulo() {
-        noeditablemodelo modelo = new noeditablemodelo() {
-            public Class<?> getColumnClass(int column) {
-                switch (column) {
-                    case 0:
-                        return String.class;
-                    case 1:
-                        return String.class;
-                    case 2:
-                        return String.class;
-                    case 3:
-                        return Boolean.class;
-                    default:
-                        return String.class;
+    public void tabla_buscar() {
+        noeditablemodelo modelo = (noeditablemodelo) vista.getTbl_Datos().getModel();
+
+        if(vista.getBtnModulos().isSelected()){
+            if (!vista.getChk_materia().isSelected() && vista.getChk_periodo().isSelected()){
+                String com=vista.getComboPeriodAcademico().getSelectedItem().toString();
+                for (int i = 0; i < modelo.getRowCount(); i++) {
+                    if (!modelo.getValueAt(i, 1).toString().equals(com)){
+                        modelo.removeRow(i);
+                    }
                 }
             }
-        };
-        modelo.addColumn("Codigo");
-        modelo.addColumn("Periodo");
-        modelo.addColumn("Materia");
-        modelo.addColumn("Documento");
-
-        doc_modulo_BD mod = new doc_modulo_BD();
-        Object[][] modulos = mod.buscar_x_parametro(carrera, cod_periodo(vista.getComboPeriodAcademico().getSelectedItem().toString()),
-                vista.getChk_periodo().isSelected(),
-                vista.getTxt_materia().getText().toUpperCase(),
-                vista.getChk_materia().isSelected());
-
-        for (int i = 0; i < modulos.length; i++) {
-            modelo.addRow(new Object[0]);
-            modelo.setValueAt(modulos[i][0], i, 0);
-            modelo.setValueAt(modulos[i][1], i, 1);
-            modelo.setValueAt(modulos[i][2], i, 2);
-            modelo.setValueAt((modulos[i][3] != null), i, 3);
+            if (vista.getChk_materia().isSelected() && !vista.getChk_periodo().isSelected()){
+                String com=vista.getTxt_materia().getText();
+                for (int i = 0; i < modelo.getRowCount(); i++) {
+                    if (!com.matches(modelo.getValueAt(i, 2).toString())){
+                        modelo.removeRow(i);
+                    }
+                }
+            }
         }
-
         vista.getTbl_Datos().setModel(modelo);
     }
 

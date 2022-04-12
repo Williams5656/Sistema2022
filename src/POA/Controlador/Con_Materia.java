@@ -47,8 +47,7 @@ import javax.swing.JTextField;
  * @author A
  */
 public class Con_Materia {
-
-    public static Vis_Materias vista;
+ public static Vis_Materias vista;
     private MateriaBD materia = new MateriaBD();
     private List<MateriaMD> lista = new ArrayList<>();
     CarreraBD bdcarrera = new CarreraBD();
@@ -58,13 +57,14 @@ public class Con_Materia {
     private PerfilBD bdperfil = new PerfilBD();
     List<PerfilMD> listap = bdperfil.mostrardatos();
     private DefaultTableModel modelo = new DefaultTableModel();
+    PerfilBD basePerfil = new PerfilBD();
 
     public Con_Materia(Vis_Materias vista) {
         this.vista = vista;
         vista.setVisible(true);
         desactivarbotones();
         campocarrera();
-        campoarea();
+        //validarcod();
 //        validarcod();
         validarmateria();
         validaciones();
@@ -74,6 +74,7 @@ public class Con_Materia {
         vista.getBtneliminar().addActionListener(e -> eliminar());
         vista.getBtnimprimir().addActionListener(e -> imprimirmateria());
         vista.getBtnnuevo().addActionListener(e -> nuevo());
+        vista.getComboCarrera_mat().addActionListener(e -> cArea());
         vista.getTablamateria().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -81,6 +82,22 @@ public class Con_Materia {
             }
         });
         listam();
+    }
+
+    public void cArea() {
+        String carreraCombo = (String) vista.getComboCarrera_mat().getSelectedItem();
+        String codigoCarrera = "";
+        codigoCarrera = basePerfil.mostrarIdCarrera(carreraCombo);
+        vista.getComboareacarrera().removeAllItems();
+        vista.getComboareacarrera().addItem("");
+        listaa = bdarea.mostrardatos();
+        for (PerfilMD perfil : listap) {
+            for (AreaCarreraMD area : listaa) {
+                if (perfil.getCodigo()== area.getIdPerfil() && codigoCarrera.equalsIgnoreCase(area.getIdCarrera())) {         
+                    vista.getComboareacarrera().addItem(perfil.getNombre());
+                }
+            }
+        }
     }
 
     public void guardar() {
@@ -115,9 +132,13 @@ public class Con_Materia {
         materia.setCreditos(vista.getTxtcreditos().getText());
         String plan = (String) vista.getComboplan().getSelectedItem();
         materia.setPlan(plan);
+        
+        
         String areaCombo = (String) vista.getComboareacarrera().getSelectedItem();
         String codigoArea = "";
-         codigoArea = bdarea.mostrarIdArea(areaCombo);
+
+        codigoArea = bdarea.mostrarIdArea(carreraCombo, areaCombo);
+
         materia.setArea(codigoArea);
         
                 if (materia.insertar()) {
@@ -250,13 +271,7 @@ public class Con_Materia {
         }
     }
 
-    public void campoarea() {
-        vista.getComboareacarrera().removeAllItems();
-        vista.getComboareacarrera().addItem("");
-        for (int i = 0; i < listaa.size(); i++) {
-            vista.getComboareacarrera().addItem(Integer.toString(listaa.get(i).getIdArea()));
-        }
-    }
+
 
     private void eliminar() {
         int resp1 = JOptionPane.showConfirmDialog(null, "CONFIRME SI DESEA ELIMINAR");

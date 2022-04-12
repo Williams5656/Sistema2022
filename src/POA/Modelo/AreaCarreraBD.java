@@ -17,8 +17,7 @@ import java.util.logging.Logger;
  * @author Usuario
  */
 public class AreaCarreraBD extends AreaCarreraMD {
-
-    Conect conectar = new Conect();
+ Conect conectar = new Conect();
 
     public AreaCarreraBD() {
     }
@@ -105,9 +104,9 @@ public class AreaCarreraBD extends AreaCarreraMD {
         }
     }
    
-    public String mostrarIdArea(String nombre) {
+    public String mostrarIdArea(String carrera, String area) {
         String idArea = "";
-        String sql = "select id_area from area_carrera where id_area= '" + nombre + "'";
+        String sql = "select id_area from area_carrera ar join perfil pe on ar.perfil=pe.codigo join carrera c on ar.carrera=c.codigo where c.nombre='" + carrera + "' and pe.nombre='" + area + "'";
         ResultSet rs = conectar.query(sql);
         try {
             while (rs.next()) {

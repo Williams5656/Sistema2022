@@ -61,7 +61,7 @@ public class Con_calendario {
     CalendarioBD calendar = new CalendarioBD();
      private List<CalendarioMD> listacalendario = new ArrayList<>();
     String vector[];
-    TextAutoCompleter at;
+    TextAutoCompleter at, tp;
     String[] tabla;
     public static ArrayList<Responsables_ActividadMD> ListaResp = new ArrayList<>();
 
@@ -72,6 +72,7 @@ public class Con_calendario {
         vista.getBtn_guardar().addActionListener(e -> guardar());
         vista.getTxt_id_A().setEnabled(false);
         vista.getBtn_n_actividad().addActionListener(e -> Crear_actividad());
+        vista.getBtn_aceptar().addActionListener(e -> Imp_T_Actividad());
         vista.getBtn_actividades().addActionListener(e -> {
             try {
                 cargarImprimir(1);
@@ -81,6 +82,7 @@ public class Con_calendario {
         });
         vista.getBtn_responsables().addActionListener(e -> imprimir_resposables());
         at = new TextAutoCompleter(vista.getTxt_responsables());
+        //tp = new TextAutoCompleter(JOptionPane.showInputDialog("Ingrese el nombre del tipo de actividad").to);
         vista.getBtn_añadir_Tactividad().addActionListener(l -> {
             try {
                 cargarDialogo(1);
@@ -135,6 +137,7 @@ public class Con_calendario {
 
     }
         public void imprimirpersona(){
+             
        Conect con = new Conect();
         String[] reportes = {
             "Seleccione Una Opcion",
@@ -149,24 +152,12 @@ public class Con_calendario {
 
         }
         if (resp.equals("Reporte por Actividad")) {
- 
-            try {
-               // JOptionPane.showMessageDialog(null, "Imprimiendo Persona");
-                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/R_Actividad_1.jasper"));
-                Map<String, Object> params = new HashMap<String, Object>();
- String aguja = JOptionPane.showInputDialog("Ingrese el nombre del tipo de actividad");
-////                String aguja = vista.getTxtBuscar().getText();
-                System.out.println("cedula;;;;"+ aguja);
-                params.put("cedula",aguja);
-                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
-                JasperViewer jv = new JasperViewer(jp, false);
-                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                jv.setVisible(true);
-            } catch (JRException e) {
-                System.out.println("no se pudo encontrar registros" + e.getMessage());
-                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+             try {
+                cargarImprimir(1);
+            } catch (SQLException ex) {
+                Logger.getLogger(Con_rol.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+          
         }
         if (resp.equals("Reporte Completo")) {
 
@@ -199,7 +190,28 @@ public class Con_calendario {
         }
 
     }
+public void Imp_T_Actividad(){
+    Conect con = new Conect();
+    String aguja ="";
+      try {
+               // JOptionPane.showMessageDialog(null, "Imprimiendo Persona");
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/R_Actividad_1.jasper"));
+                Map<String, Object> params = new HashMap<String, Object>();
+            
+            aguja = (String)vista.getCombo_tipo_actividad_repor().getSelectedItem();
+////                String aguja = vista.getTxtBuscar().getText();
+                System.out.println("Actividad;;;;"+ aguja);
+                params.put("Actividad",aguja);
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException e) {
+                System.out.println("no se pudo encontrar registros" + e.getMessage());
+                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+            }
 
+}
     public void Crear_actividad() {
         vista.getTxt_id_A().setText(String.valueOf(calen.codigo_act()));
         vista.getTxt_N_actividad().setEnabled(true);
@@ -245,8 +257,10 @@ public class Con_calendario {
 
     public void tipo_actividad() {
         List<T_actividadMD> listar = T_actividadbd.mostrardatos();
+        
         for (int i = 0; i < listar.size(); i++) {
             vista.getCombo_actividad().addItem(listar.get(i).getNombre());
+            //tp.additem(listar.get(i).getNombre());
         }
     }
 

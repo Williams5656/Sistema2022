@@ -45,7 +45,14 @@ public class con_portafolio {
         this.carrera = carrera;
         vista.setVisible(true);
         llenarCombo();
+        btns_apagados();
         vista.getBtnModulos().addActionListener(e -> tabla_modulo());
+        vista.getBtnModulos().addActionListener(l -> botones());
+        vista.getBtnSilabo().addActionListener(l -> botones());
+        vista.getBtnInstrumentosEv().addActionListener(l -> botones());
+        vista.getBtnInformesSilabo().addActionListener(l -> botones());
+        vista.getBtnPlanesClase().addActionListener(l -> botones());
+        vista.getBtnNotas().addActionListener(l -> botones());
         vista.getBtnSilabo().addActionListener(e -> tabla_silabo());
         vista.getBtnNotas().addActionListener(e -> tabla_notas());
         vista.getBtnPlanesClase().addActionListener(e -> tabla_planes());
@@ -55,6 +62,64 @@ public class con_portafolio {
         vista.getBtn_buscar().addActionListener(e -> buscar());
         vista.getBtn_subir().addActionListener(e -> subir_datos());
 
+    }
+
+    public void btns_apagados() {
+        vista.getComboPeriodAcademico().setEnabled(false);
+        vista.getComboCiclo().setEnabled(false);
+        vista.getComboSeccion().setEnabled(false);
+        vista.getChk_ciclo().setEnabled(false);
+        vista.getChk_materia().setEnabled(false);
+        vista.getChk_periodo().setEnabled(false);
+        vista.getChk_seccion().setEnabled(false);
+        vista.getChk_paralelo().setEnabled(false);
+        vista.getPar_a().setEnabled(false);
+        vista.getPar_b().setEnabled(false);
+        vista.getBtn_buscar().setEnabled(false);
+        vista.getBtnImprimir().setEnabled(false);
+        vista.getBtn_subir().setEnabled(false);
+        vista.getBtn_actua().setEnabled(false);
+        vista.getTxt_materia().setEditable(false);
+    }
+
+    public void botones() {
+        if (vista.getBtnModulos().isSelected() == true || vista.getBtnSilabo().isSelected() == true || vista.getBtnPlanesClase().isSelected() == true) {
+            vista.getBtn_buscar().setEnabled(true);
+            vista.getBtnImprimir().setEnabled(true);
+            vista.getBtn_subir().setEnabled(true);
+            vista.getBtn_actua().setEnabled(true);
+            vista.getChk_materia().setEnabled(true);
+            vista.getChk_periodo().setEnabled(true);
+            vista.getComboPeriodAcademico().setEnabled(true);
+            vista.getTxt_materia().setEditable(true);
+        }
+
+        if (vista.getBtnInstrumentosEv().isSelected() == true || vista.getBtnInformesSilabo().isSelected() == true || vista.getBtnNotas().isSelected() == true) {
+            vista.getComboPeriodAcademico().setEnabled(true);
+            vista.getComboCiclo().setEnabled(true);
+            vista.getComboSeccion().setEnabled(true);
+            vista.getChk_ciclo().setEnabled(true);
+            vista.getChk_materia().setEnabled(true);
+            vista.getTxt_materia().setEditable(true);
+            vista.getChk_periodo().setEnabled(true);
+            vista.getChk_seccion().setEnabled(true);
+            vista.getChk_paralelo().setEnabled(true);
+            vista.getPar_a().setEnabled(true);
+            vista.getPar_b().setEnabled(true);
+            vista.getBtn_buscar().setEnabled(true);
+            vista.getBtnImprimir().setEnabled(true);
+            vista.getBtn_subir().setEnabled(true);
+            vista.getBtn_actua().setEnabled(true);
+            vista.getTxt_materia().setEditable(true);
+        } else {
+            vista.getComboCiclo().setEnabled(false);
+            vista.getComboSeccion().setEnabled(false);
+            vista.getChk_ciclo().setEnabled(false);
+            vista.getChk_seccion().setEnabled(false);
+            vista.getChk_paralelo().setEnabled(false);
+            vista.getPar_a().setEnabled(false);
+            vista.getPar_b().setEnabled(false);
+        }
     }
 
     public void llenarCombo() {
@@ -186,8 +251,8 @@ public class con_portafolio {
 
         vista.getTbl_Datos().setModel(modelo);
     }
-    
-     public void tabla_planes() {
+
+    public void tabla_planes() {
         noeditablemodelo modelo = new noeditablemodelo() {
             public Class<?> getColumnClass(int column) {
                 switch (column) {

@@ -52,28 +52,28 @@ order by cal.id_actividad;]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[ID Actividad]]></text>
+				<text><![CDATA[ Actividad]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="147" y="0" width="67" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="0c5c7574-653e-4313-ae35-b5c6415c4427"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[ID Periodo]]></text>
+				<text><![CDATA[ Periodo]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="73" y="0" width="74" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="40b21833-2322-491d-aa86-916b28b08512"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[ID Carrera]]></text>
+				<text><![CDATA[ Carrera]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="214" y="0" width="71" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="ccdf37ea-136c-4af0-a633-c143ad908fa5"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[ID Tipo Act]]></text>
+				<text><![CDATA[ Tipo Act]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="285" y="0" width="67" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="9eebb9e6-90fa-4a33-88b1-3c283b484232"/>

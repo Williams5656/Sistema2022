@@ -159,6 +159,23 @@ public class CalendarioBD extends CalendarioMD {
             return null;
         }
     }
+         public int validar_Nombre_act() {
+
+        int fila = 0;
+        try {
+            System.out.println(getNombre_Actividad() + " nombre_actividad");
+            String sql = "Select * from responsables_act nombre_actividad= '" + getNombre_Actividad() + "'";
+            ResultSet rs = conectar.query(sql);
+            while (rs.next()) {
+                fila++;
+            }
+            return fila;
+        } catch (SQLException ex) {
+            Logger.getLogger(CalendarioBD.class.getName()).log(Level.SEVERE, null, ex);
+            return fila;
+        }
+    }
+
 //            public boolean validar_nombre(String nombre) {
 //            String sql1 ="Select DISTINCT nombre_actividad as nombres \n" + "from calendario" +
 //               " where nombre_actividad = '"+nombre+"'";

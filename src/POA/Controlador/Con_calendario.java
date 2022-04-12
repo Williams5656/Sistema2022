@@ -16,6 +16,7 @@ import POA.Modelo.docenteMD;
 import com.mxrck.autocompleter.TextAutoCompleter;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -59,7 +60,7 @@ public class Con_calendario {
     Responsables_ActividadMD resp = new Responsables_ActividadMD();
     docenteMD docentemd = new docenteMD();
     CalendarioBD calendar = new CalendarioBD();
-     private List<CalendarioMD> listacalendario = new ArrayList<>();
+    private List<CalendarioMD> listacalendario = new ArrayList<>();
     String vector[];
     TextAutoCompleter at, tp;
     String[] tabla;
@@ -89,6 +90,7 @@ public class Con_calendario {
         vista.getBtn_prueba().addActionListener(e -> imprimirpersona());
         vista.getD_Btn_Cancelar().addActionListener(e -> vista.getT_Actividad_D().dispose());
         vista.getBtn_eliminar().addActionListener(e -> eliminar());
+        //vista.getTxt_N_actividad().addKeyListener(validar_act());
         vista.getTabla_calendario().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -129,9 +131,10 @@ public class Con_calendario {
         }
 
     }
-        public void imprimirpersona(){
-             
-       Conect con = new Conect();
+
+    public void imprimirpersona() {
+
+        Conect con = new Conect();
         String[] reportes = {
             "Seleccione Una Opcion",
             "Reporte por Actividad",
@@ -145,12 +148,12 @@ public class Con_calendario {
 
         }
         if (resp.equals("Reporte por Actividad")) {
-             try {
+            try {
                 cargarImprimir(1);
             } catch (SQLException ex) {
                 Logger.getLogger(Con_rol.class.getName()).log(Level.SEVERE, null, ex);
             }
-          
+
         }
         if (resp.equals("Reporte Completo")) {
 
@@ -167,6 +170,7 @@ public class Con_calendario {
             }
         }
     }
+
     public void imprimir_actividad() {
         Conect con = new Conect();
         try {
@@ -183,39 +187,44 @@ public class Con_calendario {
         }
 
     }
-public void Imp_T_Actividad(){
-    Conect con = new Conect();
-    String aguja ="";
-      try {
-               // JOptionPane.showMessageDialog(null, "Imprimiendo Persona");
-                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/R_Actividad_1.jasper"));
-                Map<String, Object> params = new HashMap<String, Object>();
-            
-            aguja = (String)vista.getCombo_tipo_actividad_repor().getSelectedItem();
-////                String aguja = vista.getTxtBuscar().getText();
-                System.out.println("Actividad;;;;"+ aguja);
-                params.put("Actividad",aguja);
-                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
-                JasperViewer jv = new JasperViewer(jp, false);
-                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                jv.setVisible(true);
-            } catch (JRException e) {
-                System.out.println("no se pudo encontrar registros" + e.getMessage());
-                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
-            }
 
-}
+    public void Imp_T_Actividad() {
+        Conect con = new Conect();
+        String aguja = "";
+        try {
+            // JOptionPane.showMessageDialog(null, "Imprimiendo Persona");
+            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/R_Actividad_1.jasper"));
+            Map<String, Object> params = new HashMap<String, Object>();
+
+            aguja = (String) vista.getCombo_tipo_actividad_repor().getSelectedItem();
+////                String aguja = vista.getTxtBuscar().getText();
+            System.out.println("Actividad;;;;" + aguja);
+            params.put("Actividad", aguja);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
+            JasperViewer jv = new JasperViewer(jp, false);
+            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            jv.setVisible(true);
+        } catch (JRException e) {
+            System.out.println("no se pudo encontrar registros" + e.getMessage());
+            Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+    }
+
     public void Crear_actividad() {
         vista.getTxt_id_A().setText(String.valueOf(calen.codigo_act()));
         vista.getTxt_N_actividad().setEnabled(true);
-        
+         vista.getTxt_responsables().setEditable(true);
         vista.getComobo_carrera().setEnabled(true);
         vista.getCombo_periodo().setEnabled(true);
         vista.getCombo_actividad().setEnabled(true);
         vista.getBtn_añadir_Tactividad().setEnabled(true);
-        
+
         vista.getBtn_añadir().setEnabled(true);
-        
+        vista.getTxt_descripcion().setEnabled(true);
+        vista.getFecha_inicio().setEnabled(true);
+        vista.getFecha_limite().setEnabled(true);
+        vista.getBtn_guardar().setEnabled(true);
         vista.getBtn_modificar().setEnabled(false);
         limpiar();
         DefaultTableModel modelo2;
@@ -237,7 +246,6 @@ public void Imp_T_Actividad(){
         vista.getBtn_evidencia().setEnabled(false);
         vista.getBtn_guardar().setEnabled(false);
         vista.getBtn_modificar().setEnabled(false);
-        //vista.getBtn_imprimir().setEnabled(false);
     }
 
     public void carrera() {
@@ -250,7 +258,7 @@ public void Imp_T_Actividad(){
 
     public void tipo_actividad() {
         List<T_actividadMD> listar = T_actividadbd.mostrardatos();
-        
+
         for (int i = 0; i < listar.size(); i++) {
             vista.getCombo_actividad().addItem(listar.get(i).getNombre());
             //tp.additem(listar.get(i).getNombre());
@@ -398,7 +406,9 @@ public void Imp_T_Actividad(){
     }
 
     public void listaresponsable() {
+        
         DefaultTableModel modelo1;
+        
         modelo1 = (DefaultTableModel) vista.getTabla_responsable().getModel();
         List<Responsables_ActividadMD> listar = resbd.datos_responsables();
         for (int j = vista.getTabla_responsable().getRowCount() - 1; j >= 0; j--) {
@@ -407,8 +417,11 @@ public void Imp_T_Actividad(){
 
         int columnasp = modelo1.getColumnCount();
         for (int i = 0; i < listar.size(); i++) {
+            int idtipo = listar.get(i).getId_actividad();
+            List<CalendarioMD> listaca = calen.obtenerDatos(idtipo);
+            
             modelo1.addRow(new Object[columnasp]);
-            vista.getTabla_responsable().setValueAt(listar.get(i).getId_actividad(), i, 0);
+            vista.getTabla_responsable().setValueAt(listaca.get(0).getNombre_Actividad(), i, 0);
             vista.getTabla_responsable().setValueAt(listar.get(i).getCedula(), i, 1);
         }
     }
@@ -468,6 +481,7 @@ public void Imp_T_Actividad(){
                 if (!vista.getTxt_responsables().getText().equals("")) {
                     DefaultTableModel modelo;
                     modelo = (DefaultTableModel) vista.getTabla_responsables().getModel();
+                    modelo.setNumRows(0);
                     Responsables_ActividadMD l = new Responsables_ActividadMD(vista.getTxt_responsables().getText());
                     ListaResp.add(l);
                     ListaResp.stream().forEach(r -> {
@@ -479,7 +493,7 @@ public void Imp_T_Actividad(){
                 }
                 a = 1;
             }
-            
+
         }
         if (a == 0) {
             JOptionPane.showMessageDialog(null, "El nombre es incorrecto");
@@ -498,16 +512,17 @@ public void Imp_T_Actividad(){
         vista.getT_Actividad_D().setVisible(true);
         vista.getD_txt_idTipoA().setEditable(false);
     }
-     private void cargarImprimir(int origen) throws SQLException {
+
+    private void cargarImprimir(int origen) throws SQLException {
         vista.getImprimir_D().setSize(560, 275);//dimensiones
         vista.getImprimir_D().setLocationRelativeTo(vista);//posicion
-    
+
         vista.getImprimir_D().setTitle("Ingresar Tipo De Actividad");
         vista.getImprimir_D().setVisible(true);
 
     }
-     
-      public void D_tipo_actividad() {
+
+    public void D_tipo_actividad() {
         List<T_actividadMD> listar = T_actividadbd.mostrardatos();
         for (int i = 0; i < listar.size(); i++) {
             vista.getCombo_tipo_actividad_repor().addItem(listar.get(i).getNombre());
@@ -575,8 +590,13 @@ public void Imp_T_Actividad(){
 
     public void seleccionarCalendario() {
         DefaultTableModel modelo;
+        Crear_actividad();
+        vista.getTxt_responsables().setEditable(false);
+        vista.getBtn_añadir().setEnabled(false);
         vista.getBtn_modificar().setEnabled(true);
         vista.getBtn_guardar().setEnabled(false);
+        vista.getBtn_evidencia().setEnabled(true);
+        vista.getBtn_añadir_Tactividad().setEnabled(false);
         modelo = (DefaultTableModel) vista.getTabla_calendario().getModel();
         int idactividad = (int) modelo.getValueAt(vista.getTabla_calendario().getSelectedRow(), 0);
         List<CalendarioMD> listac = calendar.obtenerDatos(idactividad);
@@ -625,26 +645,50 @@ public void Imp_T_Actividad(){
             JOptionPane.showMessageDialog(null, "Seleccionar Fila");
         }
     }
-     public void validar(){
-         listacalendario = calendar.mostrardatos();
-         int con = 0;
-         for (int i = 0; i < listacalendario.size(); i++) {
-             if (vista.getTxt_N_actividad().getText().equalsIgnoreCase(listacalendario.get(i).getNombre_Actividad())) {                       
-                       con=1;
-                    }    
-         }
-         if (con==1) {
-             JOptionPane.showMessageDialog(null, "La Actividad ya existente");
-                    vista.getTxt_descripcion().setEnabled(false);
-                    vista.getFecha_inicio().setEnabled(false);
-                    vista.getFecha_limite().setEnabled(false);
-                    vista.getBtn_guardar().setEnabled(false);
-         }else{
-                        vista.getTxt_descripcion().setEnabled(true);
-                        vista.getFecha_inicio().setEnabled(true);
-                        vista.getFecha_limite().setEnabled(true);
-                        vista.getBtn_guardar().setEnabled(true);
-                 }
-     }
-     
+
+    public void validar() {
+        listacalendario = calendar.mostrardatos();
+        int con = 0;
+        for (int i = 0; i < listacalendario.size(); i++) {
+            if (vista.getTxt_N_actividad().getText().equalsIgnoreCase(listacalendario.get(i).getNombre_Actividad())) {
+                con = 1;
+            }
+        }
+        if (con == 1) {
+            JOptionPane.showMessageDialog(null, "La Actividad ya existente");
+            vista.getTxt_descripcion().setEnabled(false);
+            vista.getFecha_inicio().setEnabled(false);
+            vista.getFecha_limite().setEnabled(false);
+            vista.getBtn_guardar().setEnabled(false);
+        } else {
+            vista.getTxt_descripcion().setEnabled(true);
+            vista.getFecha_inicio().setEnabled(true);
+            vista.getFecha_limite().setEnabled(true);
+            vista.getBtn_guardar().setEnabled(true);
+        }
+    }
+
+    public KeyListener validar_act() {
+        KeyListener kl = new KeyListener() {
+            @Override
+
+            public void keyTyped(KeyEvent e) {
+                
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                   int usuario = calen.validar_Nombre_act();
+                if (usuario != 0) {
+                    JOptionPane.showMessageDialog(null, "Este nombre ya esta siendo utlizado", "", 0);
+                }
+            }
+        };
+        return kl;
+    }
+
 }

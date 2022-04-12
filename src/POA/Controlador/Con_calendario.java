@@ -73,13 +73,6 @@ public class Con_calendario {
         vista.getTxt_id_A().setEnabled(false);
         vista.getBtn_n_actividad().addActionListener(e -> Crear_actividad());
         vista.getBtn_aceptar().addActionListener(e -> Imp_T_Actividad());
-        vista.getBtn_actividades().addActionListener(e -> {
-            try {
-                cargarImprimir(1);
-            } catch (SQLException ex) {
-                Logger.getLogger(Con_rol.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
         vista.getBtn_responsables().addActionListener(e -> imprimir_resposables());
         at = new TextAutoCompleter(vista.getTxt_responsables());
         //tp = new TextAutoCompleter(JOptionPane.showInputDialog("Ingrese el nombre del tipo de actividad").to);
@@ -636,7 +629,7 @@ public void Imp_T_Actividad(){
          listacalendario = calendar.mostrardatos();
          int con = 0;
          for (int i = 0; i < listacalendario.size(); i++) {
-             if (vista.getTxt_N_actividad().getText().equals(listacalendario.get(i).getNombre_Actividad())) {                       
+             if (vista.getTxt_N_actividad().getText().equalsIgnoreCase(listacalendario.get(i).getNombre_Actividad())) {                       
                        con=1;
                     }    
          }

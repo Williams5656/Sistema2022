@@ -28,9 +28,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         initComponents();
     }
 
-    public JButton getBtn_actividades() {
-        return btn_actividades;
-    }
+
 
     public JButton getBtn_prueba() {
         return btn_prueba;
@@ -48,9 +46,6 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         this.Validar_n = Validar_n;
     }
 
-    public void setBtn_actividades(JButton btn_actividades) {
-        this.btn_actividades = btn_actividades;
-    }
 
     public JButton getBtn_responsables() {
         return btn_responsables;
@@ -347,7 +342,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         txt_descripcion = new javax.swing.JTextArea();
         combo_actividad = new javax.swing.JComboBox();
         combo_periodo = new javax.swing.JComboBox();
-        comobo_carrera = new javax.swing.JComboBox<String>();
+        comobo_carrera = new javax.swing.JComboBox<>();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         Btn_añadir_Tactividad = new javax.swing.JButton();
@@ -371,7 +366,6 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         btn_guardar = new javax.swing.JButton();
         btn_modificar = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
-        btn_actividades = new javax.swing.JButton();
         btn_responsables = new javax.swing.JButton();
         btn_prueba = new javax.swing.JButton();
 
@@ -700,33 +694,37 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Imprimir"));
 
-        btn_actividades.setText("ACTIVIDADES");
-
         btn_responsables.setText("RESPONSABLES");
+
+        btn_prueba.setText("ACTIVIDADES");
+        btn_prueba.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_pruebaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(btn_actividades, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(btn_prueba, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_responsables, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btn_responsables, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+            .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_responsables, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                    .addComponent(btn_actividades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_responsables, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(btn_prueba, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 20, 260, 80));
-
-        btn_prueba.setText("IMP");
-        getContentPane().add(btn_prueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 70, -1, -1));
+        getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 20, 270, 80));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -755,6 +753,10 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_id_AActionPerformed
 
+    private void btn_pruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pruebaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_pruebaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_añadir_Tactividad;
@@ -771,7 +773,6 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
     private javax.swing.JTable Tabla_calendario;
     private javax.swing.JButton Validar_n;
     private javax.swing.JButton btn_aceptar;
-    private javax.swing.JButton btn_actividades;
     private javax.swing.JButton btn_añadir;
     private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_eliminar;

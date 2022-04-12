@@ -203,14 +203,32 @@ public class Con_Materia {
         }
         for (int i = 0; i < lista.size(); i++) {
             modelo.addRow(new Object[columnas]);
-            vista.getTablamateria().setValueAt(lista.get(i).getNombre_carrera(), i, 0);
+            
+            for (int j = 0; j < listac.size(); j++) {
+                if(lista.get(i).getNombre_carrera().equalsIgnoreCase(listac.get(j).getCodigo_carrera())){
+                    vista.getTablamateria().setValueAt(listac.get(j).getNombre_carrera(), i, 0);
+                }
+            }
+            
+            
             vista.getTablamateria().setValueAt(lista.get(i).getEje_formacion(), i, 1);
             vista.getTablamateria().setValueAt(lista.get(i).getCod_materia(), i, 2);
             vista.getTablamateria().setValueAt(lista.get(i).getNombre_materia(), i, 3);
             vista.getTablamateria().setValueAt(lista.get(i).getCiclo(), i, 4);
             vista.getTablamateria().setValueAt(lista.get(i).getCreditos(), i, 5);
             vista.getTablamateria().setValueAt(lista.get(i).getPlan(), i, 6);
-            vista.getTablamateria().setValueAt(lista.get(i).getArea(), i, 7);
+            
+            for (int j = 0; j< listaa.size(); j++) {
+                if(lista.get(i).getArea().equalsIgnoreCase(listaa.get(j).getIdArea()+"")){
+                    for (int k = 0; k<listap.size(); k++) {
+                        if(listap.get(k).getCodigo()==(listaa.get(j).getIdPerfil())){
+                            vista.getTablamateria().setValueAt(listap.get(k).getNombre(), i, 7);
+                        }
+                    }
+                     
+                }
+            }
+           
         }
     }
 

@@ -75,6 +75,12 @@ public class Con_Asignacion_Docente {
                 seleccionarCarrera();
             }
         });
+        vista.getCboxasignatura().addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                seleccionarMateria();
+            }
+        });
         listaMateria = baseDatosMateria.mostrardatos();
         listaPeriodo = baseDatosPeriodo.lista_periodos();
         vista.getBtnagregar().setEnabled(true);
@@ -455,6 +461,17 @@ public class Con_Asignacion_Docente {
         vista.getCboxasignatura().addItem("Seleccione");
         for (MateriaMD materiaMD : listaMateria) {
             vista.getCboxasignatura().addItem(materiaMD.getNombre_materia());
+        }
+    }
+    public void seleccionarMateria(){
+        System.out.println("Seleccionar Materia");
+        String nombre ="";
+        nombre = (String) vista.getCboxasignatura().getSelectedItem();
+        vista.getCboxciclo().removeAllItems();
+        for (MateriaMD materiaMD : listaMateria) {
+            if(materiaMD.getNombre_materia().equalsIgnoreCase(nombre)){
+                vista.getCboxciclo().addItem(materiaMD.getCiclo());
+            }
         }
     }
     public void accion_combobox(){

@@ -32,6 +32,22 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         return btn_actividades;
     }
 
+    public JButton getBtn_prueba() {
+        return btn_prueba;
+    }
+
+    public void setBtn_prueba(JButton btn_prueba) {
+        this.btn_prueba = btn_prueba;
+    }
+
+    public JButton getValidar_n() {
+        return Validar_n;
+    }
+
+    public void setValidar_n(JButton Validar_n) {
+        this.Validar_n = Validar_n;
+    }
+
     public void setBtn_actividades(JButton btn_actividades) {
         this.btn_actividades = btn_actividades;
     }
@@ -331,7 +347,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         txt_descripcion = new javax.swing.JTextArea();
         combo_actividad = new javax.swing.JComboBox();
         combo_periodo = new javax.swing.JComboBox();
-        comobo_carrera = new javax.swing.JComboBox<>();
+        comobo_carrera = new javax.swing.JComboBox<String>();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         Btn_añadir_Tactividad = new javax.swing.JButton();
@@ -339,6 +355,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         jLabel15 = new javax.swing.JLabel();
         Fecha_inicio = new com.toedter.calendar.JDateChooser();
         Fecha_limite = new com.toedter.calendar.JDateChooser();
+        Validar_n = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -356,6 +373,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         jPanel6 = new javax.swing.JPanel();
         btn_actividades = new javax.swing.JButton();
         btn_responsables = new javax.swing.JButton();
+        btn_prueba = new javax.swing.JButton();
 
         jLabel5.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
         jLabel5.setText("SELECCIONE EL TIPO DE ACTIVIDAD PARA EL REPORTE");
@@ -539,6 +557,9 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         Fecha_limite.setDateFormatString("yyyy-MM-dd hh:mm:ss");
         jPanel1.add(Fecha_limite, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, 160, 20));
 
+        Validar_n.setText("V");
+        jPanel1.add(Validar_n, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 117, 440, 700));
 
         jLabel6.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 36)); // NOI18N
@@ -704,6 +725,9 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
 
         getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 20, 260, 80));
 
+        btn_prueba.setText("IMP");
+        getContentPane().add(btn_prueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 70, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -745,6 +769,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
     private javax.swing.JLabel Jl_evidencia;
     private javax.swing.JDialog T_Actividad_D;
     private javax.swing.JTable Tabla_calendario;
+    private javax.swing.JButton Validar_n;
     private javax.swing.JButton btn_aceptar;
     private javax.swing.JButton btn_actividades;
     private javax.swing.JButton btn_añadir;
@@ -754,6 +779,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_modificar;
     private javax.swing.JButton btn_n_actividad;
+    private javax.swing.JButton btn_prueba;
     private javax.swing.JButton btn_responsables;
     private javax.swing.JComboBox combo_actividad;
     private javax.swing.JComboBox combo_periodo;

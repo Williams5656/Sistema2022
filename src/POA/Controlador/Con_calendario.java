@@ -24,6 +24,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -88,6 +90,8 @@ public class Con_calendario {
         });
         vista.getD_Btn_Guardar().addActionListener(e -> guardarActividad());
         vista.getBtn_modificar().addActionListener(e -> Modificar());
+        vista.getValidar_n().addActionListener(e -> validar());
+        vista.getBtn_prueba().addActionListener(e -> imprimirpersona());
         vista.getD_Btn_Cancelar().addActionListener(e -> vista.getT_Actividad_D().dispose());
         vista.getBtn_eliminar().addActionListener(e -> eliminar());
         vista.getTabla_calendario().addMouseListener(new MouseAdapter() {
@@ -110,7 +114,7 @@ public class Con_calendario {
         listaresponsable();
         Ihnabilitar();
         fecha();
-        buscar();
+        D_tipo_actividad();
 
     }
 
@@ -130,7 +134,55 @@ public class Con_calendario {
         }
 
     }
+        public void imprimirpersona(){
+       Conect con = new Conect();
+        String[] reportes = {
+            "Seleccione Una Opcion",
+            "Reporte por Actividad",
+            "Reporte Completo"
+        };
+        //Ctrl_MYICON icon = new Ctrl_MYICON(40, 50);
+        String resp = (String) JOptionPane.showInputDialog(null, "Seleccione un reporte", "Reporte",
+                JOptionPane.DEFAULT_OPTION, null, reportes, reportes[0]);
+        if (resp.equals("Seleccione Una Opcion")) {
+            JOptionPane.showMessageDialog(null, " seleccione uno de los campos");
 
+        }
+        if (resp.equals("Reporte por Actividad")) {
+ 
+            try {
+               // JOptionPane.showMessageDialog(null, "Imprimiendo Persona");
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/R_Actividad_1.jasper"));
+                Map<String, Object> params = new HashMap<String, Object>();
+ String aguja = JOptionPane.showInputDialog("Ingrese el nombre del tipo de actividad");
+////                String aguja = vista.getTxtBuscar().getText();
+                System.out.println("cedula;;;;"+ aguja);
+                params.put("cedula",aguja);
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException e) {
+                System.out.println("no se pudo encontrar registros" + e.getMessage());
+                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+            }
+
+        }
+        if (resp.equals("Reporte Completo")) {
+
+            try {
+                JOptionPane.showMessageDialog(null, "imprimiendo Actividades");
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/R_Actividad.jasper"));
+
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException e) {
+                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+    }
     public void imprimir_actividad() {
         Conect con = new Conect();
         try {
@@ -225,6 +277,7 @@ public class Con_calendario {
                 modelo2 = (DefaultTableModel) vista.getTabla_responsables().getModel();
                 modelo2.setNumRows(0);
                 lista();
+                Ihnabilitar();
                 listaresponsable();
                 limpiar();
             } else {
@@ -443,7 +496,6 @@ public class Con_calendario {
         vista.getImprimir_D().setLocationRelativeTo(vista);//posicion
     
         vista.getImprimir_D().setTitle("Ingresar Tipo De Actividad");
-        D_tipo_actividad();
         vista.getImprimir_D().setVisible(true);
 
     }
@@ -566,32 +618,26 @@ public class Con_calendario {
             JOptionPane.showMessageDialog(null, "Seleccionar Fila");
         }
     }
-    
-     public void buscar() {
-        listacalendario = calendar.mostrardatos();
-        vista.getTxt_N_actividad().addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent e) {
-                int con = 0;
-                for (CalendarioMD person : listacalendario) {
-                    if (person.getNombre_Actividad().equals(vista.getTxt_N_actividad().getText())) {                       
+     public void validar(){
+         listacalendario = calendar.mostrardatos();
+         int con = 0;
+         for (int i = 0; i < listacalendario.size(); i++) {
+             if (vista.getTxt_N_actividad().getText().equals(listacalendario.get(i).getNombre_Actividad())) {                       
                        con=1;
-                    }
-                }
-                 if(con==1){
-                     JOptionPane.showMessageDialog(null, "La Actividad ya existente");
-                        vista.getTxt_descripcion().setEnabled(false);
-                        vista.getFecha_inicio().setEnabled(false);
-                        vista.getFecha_limite().setEnabled(false);
-                        vista.getBtn_guardar().setEnabled(false);
-                        
-                    }else{
+                    }    
+         }
+         if (con==1) {
+             JOptionPane.showMessageDialog(null, "La Actividad ya existente");
+                    vista.getTxt_descripcion().setEnabled(false);
+                    vista.getFecha_inicio().setEnabled(false);
+                    vista.getFecha_limite().setEnabled(false);
+                    vista.getBtn_guardar().setEnabled(false);
+         }else{
                         vista.getTxt_descripcion().setEnabled(true);
                         vista.getFecha_inicio().setEnabled(true);
                         vista.getFecha_limite().setEnabled(true);
                         vista.getBtn_guardar().setEnabled(true);
                  }
-            }
-        });
-    }
+     }
+     
 }

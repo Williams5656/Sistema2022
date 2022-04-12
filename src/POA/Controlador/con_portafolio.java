@@ -180,26 +180,81 @@ public class con_portafolio {
     }
 
     public void tabla_buscar() {
-        noeditablemodelo modelo = (noeditablemodelo) vista.getTbl_Datos().getModel();
+        noeditablemodelo modelo = (noeditablemodelo) vista.getTbl_Datos().getModel();        
 
         if(vista.getBtnModulos().isSelected()){
-            if (!vista.getChk_materia().isSelected() && vista.getChk_periodo().isSelected()){
+            
+            if (vista.getChk_materia().isSelected()==true && vista.getChk_periodo().isSelected()==true){
+                String com=vista.getTxt_materia().getText().toUpperCase();
+                String com2=vista.getComboPeriodAcademico().getSelectedItem().toString();                
+                for (int i = 0; i < modelo.getRowCount(); i++) {
+                    if (!modelo.getValueAt(i, 1).toString().equals(com2)
+                    || !modelo.getValueAt(i, 2).toString().toUpperCase().matches(".*"+com+".*")){
+                        modelo.removeRow(i);
+                        i=i-1;
+                    }
+                }    
+            }
+            
+            if (vista.getChk_materia().isSelected()==false && vista.getChk_periodo().isSelected()==true){
                 String com=vista.getComboPeriodAcademico().getSelectedItem().toString();
                 for (int i = 0; i < modelo.getRowCount(); i++) {
                     if (!modelo.getValueAt(i, 1).toString().equals(com)){
                         modelo.removeRow(i);
+                        i=i-1;
                     }
                 }
             }
-            if (vista.getChk_materia().isSelected() && !vista.getChk_periodo().isSelected()){
-                String com=vista.getTxt_materia().getText();
+            
+            if (vista.getChk_materia().isSelected()==true && vista.getChk_periodo().isSelected()==false){
+                String com=vista.getTxt_materia().getText().toUpperCase();
                 for (int i = 0; i < modelo.getRowCount(); i++) {
-                    if (!com.matches(modelo.getValueAt(i, 2).toString())){
+                    if (!modelo.getValueAt(i, 2).toString().toUpperCase().matches(".*"+com+".*")){
                         modelo.removeRow(i);
+                        i=i-1;
                     }
                 }
             }
+            
         }
+        
+        if(vista.getBtnSilabo().isSelected()){
+            
+            if (vista.getChk_materia().isSelected()==true && vista.getChk_periodo().isSelected()==true){
+                String com=vista.getTxt_materia().getText().toUpperCase();
+                String com2=vista.getComboPeriodAcademico().getSelectedItem().toString();                
+                for (int i = 0; i < modelo.getRowCount(); i++) {
+                    if (!modelo.getValueAt(i, 1).toString().equals(com2)
+                    || !modelo.getValueAt(i, 2).toString().toUpperCase().matches(".*"+com+".*")){
+                        modelo.removeRow(i);
+                        i=i-1;
+                    }
+                }    
+            }
+            
+            if (vista.getChk_materia().isSelected()==false && vista.getChk_periodo().isSelected()==true){
+                String com=vista.getComboPeriodAcademico().getSelectedItem().toString();
+                for (int i = 0; i < modelo.getRowCount(); i++) {
+                    if (!modelo.getValueAt(i, 1).toString().equals(com)){
+                        modelo.removeRow(i);
+                        i=i-1;
+                    }
+                }
+            }
+            
+            if (vista.getChk_materia().isSelected()==true && vista.getChk_periodo().isSelected()==false){
+                String com=vista.getTxt_materia().getText().toUpperCase();
+                for (int i = 0; i < modelo.getRowCount(); i++) {
+                    if (!modelo.getValueAt(i, 2).toString().toUpperCase().matches(".*"+com+".*")){
+                        modelo.removeRow(i);
+                        i=i-1;
+                    }
+                }
+            }
+            
+        }
+        
+        vista.getBtn_buscar().setEnabled(false);
         vista.getTbl_Datos().setModel(modelo);
     }
 

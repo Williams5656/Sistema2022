@@ -218,6 +218,9 @@ public class Con_Asignacion_Docente {
         vista.getCboxperiodo().setSelectedIndex(0);
         vista.getBtnguardar().setEnabled(true);
         habilitar_botones();
+        vista.getTablaasignaciondocentemateria().setModel(modelo);
+        int id_asignacion1 = bdasignacion.id()+1;
+        vista.getId_asignacion().setText(id_asignacion1+ "");
     }
 
     public void lista() {

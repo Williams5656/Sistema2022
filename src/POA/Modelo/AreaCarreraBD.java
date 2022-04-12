@@ -118,5 +118,5 @@ public class AreaCarreraBD extends AreaCarreraMD {
         }
         return idArea ;
     }
- 
+    
 }

@@ -288,7 +288,19 @@ public class Con_Asignacion_Docente {
         if (not.crear_notas()) {
             System.out.println("notas creadas");
         } else {
-            System.out.println( "Error al guardar");
+            System.out.println( "Error al crear notas");
+        }
+        doc_instrumento_evaluacionBD ins=new doc_instrumento_evaluacionBD();
+        if (ins.crear_intrumentos()) {
+            System.out.println("instrumentos creadas");
+        } else {
+            System.out.println( "Error al crear instrumentos");
+        }
+        doc_informes_BD inf=new doc_informes_BD();
+        if (inf.crear_notas()) {
+            System.out.println("informes creados");
+        } else {
+            System.out.println( "Error al crear informes");
         }
          /////autocreacion documntos, dudas consultar miguel///////////////////////
         

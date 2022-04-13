@@ -337,7 +337,7 @@ public class vis_portafolio extends javax.swing.JInternalFrame {
         radiogroupParalelo.add(par_b);
         par_b.setText("B");
 
-        comboSeccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matutino", "Nocturno" }));
+        comboSeccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matutina", "Nocturna" }));
 
         chk_periodo.setText("PERIODO ACADEMICO");
 

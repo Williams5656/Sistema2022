@@ -294,13 +294,14 @@ public class Con_AreaCarrera {
                 vista.getComboPerfil().setSelectedIndex(0);
             }
         }
-        if (a == 0 && b == 0) {
+        if (a == 0 || b == 0) {
             int resp2 = JOptionPane.showConfirmDialog(null, "CONFIRME SI ESTA SEGURO DE MODIFICAR");
             if (resp2 == 0) {
                 if (bdarea.modificar(id)) {
                     JOptionPane.showMessageDialog(null, "DATOS ACTUALIZADOS");
                     lista();
                     nuevo();
+                    desactivarBotones();
                 } else {
                     JOptionPane.showMessageDialog(null, "ERROR AL MODIFICAR");
                 }

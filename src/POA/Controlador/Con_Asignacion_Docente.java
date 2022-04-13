@@ -190,15 +190,13 @@ public class Con_Asignacion_Docente {
             for (int i = 0; i < lista.size(); i++) {
                 for (int j = 0; j < listadoc.size(); j++) {
 
-                    if (vista.getTxtdocente().getText().equalsIgnoreCase(listadoc.get(j).getCedula())) {
+                    if (vista.getTxtdocente().getText().equalsIgnoreCase(listadoc.get(j).getCedula())&& listadoc.get(i).getEstado().equalsIgnoreCase("ACTIVO")) {
                         if (listadoc.get(j).getCedula().equals(lista.get(i).getCedula())) {
                             String nombre = lista.get(i).getNombres() + " " + lista.get(i).getApellidos();
                             //vista.getTxtnombredocente().setText(nombre);
                             con = 1;
                             vista.getCombodocentes().addItem(nombre);
                             habilitar_botones();
-                            System.out.println(listadoc.get(j).getCedula());
-                            System.out.println(listadoc.get(j).getEstado());
 
                         }
                     }

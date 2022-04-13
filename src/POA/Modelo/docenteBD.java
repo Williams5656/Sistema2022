@@ -105,6 +105,7 @@ public class docenteBD extends docenteMD {
                 docente.setAbreviatura(rs.getString("abreviatura"));
                 docente.setTiempo(rs.getString("tiempo"));
                 docente.setOcupacion(rs.getString("ocupacion"));
+                docente.setEstado(rs.getString("estado"));
                 lista.add(docente);
             }
 

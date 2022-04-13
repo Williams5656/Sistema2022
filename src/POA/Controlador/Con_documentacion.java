@@ -4,6 +4,7 @@ import POA.Modelo.AreaCarreraBD;
 import POA.Modelo.AreaCarreraMD;
 import POA.Modelo.AsignacionMateriaDocenteBD;
 import POA.Modelo.AsignacionMateriaDocentesMD;
+import POA.Modelo.Conect;
 import POA.Modelo.DocumentacionBD;
 import POA.Modelo.DocumentacionMD;
 import POA.Modelo.MateriaBD;
@@ -32,6 +33,15 @@ import javax.swing.table.DefaultTableModel;
 import POA.Modelo.Validadores.Numeros;
 import POA.Modelo.Validadores.Letras;
 import POA.Modelo.Validadores.id_carrera;
+import java.util.HashMap;
+import java.util.Map;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -81,6 +91,28 @@ public class Con_documentacion {
         vista.getBtn_regresar().addActionListener(e -> regresar());
         vista.getBtnguardar().addActionListener(e -> guardar());
         vista.getBtneditar().addActionListener(e -> modificar());
+        vista.getBtnimprimir().addActionListener(e-> imprimir());
+    }
+    public void imprimir(){
+        Conect con = new Conect();
+        String docente = vista.getTxt_nombre().getText();
+            try {
+                // JOptionPane.showMessageDialog(null, "Imprimiendo Persona");
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/RPlanes.jasper"));
+                Map<String, Object> params = new HashMap<String, Object>();
+                //String aguja = JOptionPane.showInputDialog("Ingrese una Cedula de persona");
+                String aguja = docente;
+                //String aguja = vista.getTxtBuscar().getText();
+                //System.out.println("cedula;;;;" + aguja);
+                params.put("doc", aguja);
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException e) {
+                System.out.println("no se pudo encontrar registros" + e.getMessage());
+                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+            }
     }
 
     public void activarBotones() {
@@ -300,7 +332,7 @@ public class Con_documentacion {
                 }
                 for (PersonaMD persona : listaPersona) {
                     if (persona.getCedula().equals(asignacion1.getIdentificacion())) {
-                        vista.getTxt_nombre().setText(persona.getNombres() + " " + persona.getApellidos());
+                        vista.getTxt_nombre().setText(persona.getApellidos() + " " + persona.getNombres());
                     }
                 };
                 for (MateriaMD materia : listaMateria) {
@@ -312,7 +344,7 @@ public class Con_documentacion {
                             if (area.getIdArea() == Integer.parseInt(materia.getArea())) {
                                 for (PersonaMD persona : listaPersona) {
                                     if (area.getIdResponsable().equals(persona.getCedula())) {
-                                        vista.getTxt_gestor().setText(persona.getNombres() + " " + persona.getApellidos());
+                                        vista.getTxt_gestor().setText(persona.getApellidos() + " " + persona.getNombres());
                                     }
                                 }
                             }

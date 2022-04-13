@@ -25,6 +25,14 @@ public class Vis_Documentacion extends javax.swing.JInternalFrame  {
     public Vis_Documentacion() {
         initComponents();
     }
+    
+    public JButton getBtnimprimir() {
+        return btnimprimir;
+    }
+
+    public void setBtnimprimir(JButton btnimprimir) {
+        this.btnimprimir = btnimprimir;
+    }
 
     public JButton getBtneditar() {
         return btneditar;
@@ -244,6 +252,7 @@ public class Vis_Documentacion extends javax.swing.JInternalFrame  {
         btn_regresar = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         txt_horaguia = new javax.swing.JTextField();
+        btnimprimir = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -361,7 +370,7 @@ public class Vis_Documentacion extends javax.swing.JInternalFrame  {
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, -1, -1));
 
         btnguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/guardar.png"))); // NOI18N
-        getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 390, 50, 40));
+        getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, 50, 40));
 
         comboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Entregado y Firmado", "Entregado Revisar", "Con Error", "No Entrega", "Sin Firmas" }));
         getContentPane().add(comboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, 140, -1));
@@ -401,6 +410,9 @@ public class Vis_Documentacion extends javax.swing.JInternalFrame  {
         getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, -1, -1));
         getContentPane().add(txt_horaguia, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 260, 100, -1));
 
+        btnimprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/impresion.png"))); // NOI18N
+        getContentPane().add(btnimprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 390, 50, 40));
+
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/fondo azul (1).jpg"))); // NOI18N
         getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 520));
 
@@ -424,6 +436,7 @@ public class Vis_Documentacion extends javax.swing.JInternalFrame  {
     private javax.swing.JButton btn_regresar;
     private javax.swing.JButton btneditar;
     private javax.swing.JButton btnguardar;
+    private javax.swing.JButton btnimprimir;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JComboBox<String> comboEstado;
     private com.toedter.calendar.JDateChooser fecha;

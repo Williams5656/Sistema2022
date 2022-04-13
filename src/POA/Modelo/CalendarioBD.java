@@ -164,7 +164,7 @@ public class CalendarioBD extends CalendarioMD {
         int fila = 0;
         try {
             System.out.println(getNombre_Actividad() + " nombre_actividad");
-            String sql = "Select * from responsables_act nombre_actividad= '" + getNombre_Actividad() + "'";
+            String sql = "Select * from calendario where nombre_actividad = '" + getNombre_Actividad() + "'";
             ResultSet rs = conectar.query(sql);
             while (rs.next()) {
                 fila++;

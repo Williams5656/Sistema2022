@@ -214,7 +214,7 @@ public class Con_calendario {
     public void Crear_actividad() {
         vista.getTxt_id_A().setText(String.valueOf(calen.codigo_act()));
         vista.getTxt_N_actividad().setEnabled(true);
-         vista.getTxt_responsables().setEditable(true);
+        vista.getTxt_responsables().setEditable(true);
         vista.getComobo_carrera().setEnabled(true);
         vista.getCombo_periodo().setEnabled(true);
         vista.getCombo_actividad().setEnabled(true);
@@ -284,20 +284,26 @@ public class Con_calendario {
         if (!vista.getTxt_id_A().getText().equals("") && !vista.getComobo_carrera().getSelectedItem().equals("Seleccione") && !vista.getCombo_periodo().getSelectedItem().equals("Seleccione") && !vista.getCombo_actividad().getSelectedItem().equals("Seleccione")
                 && !vista.getTxt_N_actividad().getText().equals("") && !vista.getTxt_N_actividad().getText().equals("") && !vista.getTxt_descripcion().getText().equals("")) {
             Cargardatos();
-            if (calendar.insertar()) {
-                JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
-                cargarListaAct(0);
-                guadar_responsable_base();
-                DefaultTableModel modelo2;
-                modelo2 = (DefaultTableModel) vista.getTabla_responsables().getModel();
-                modelo2.setNumRows(0);
-                lista();
-                Ihnabilitar();
-                listaresponsable();
-                limpiar();
+            int nombre = calen.validar_Nombre_act();
+            if (nombre != 0) {
+                JOptionPane.showMessageDialog(null, "Este nombre ya esta siendo utlizado", "", 0);
             } else {
-                JOptionPane.showMessageDialog(null, "ERRROR AL GUARDAR");
+                if (calendar.insertar()) {
+                    JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
+                    cargarListaAct(0);
+                    guadar_responsable_base();
+                    DefaultTableModel modelo2;
+                    modelo2 = (DefaultTableModel) vista.getTabla_responsables().getModel();
+                    modelo2.setNumRows(0);
+                    lista();
+                    Ihnabilitar();
+                    listaresponsable();
+                    limpiar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "ERRROR AL GUARDAR");
+                }
             }
+
         } else {
             JOptionPane.showMessageDialog(null, "Llene todos los campos");
         }
@@ -307,7 +313,6 @@ public class Con_calendario {
     public void Modificar() {
         eliminarresp();
         Cargardatos();
-
         int res = JOptionPane.showConfirmDialog(null, "Confirme");
         if (res == 0) {
             if (calendar.modificar(Integer.parseInt(vista.getTxt_id_A().getText()))) {
@@ -356,7 +361,7 @@ public class Con_calendario {
         String nCA = listaCA.get(idCA).getCodigo_carrera();
         SimpleDateFormat formato6 = new SimpleDateFormat("yyyy-MM-dd");
 //        String fechaini = formato6.format(vista.getFecha_inicio().getDate());
-//        String fechalim = formato6.format(vista.getFecha_limite().getDate());
+        String fechalim = formato6.format(vista.getFecha_limite().getDate());
         calendar.setId_Actividad(Integer.parseInt(vista.getTxt_id_A().getText()));
         calendar.setId_Carrera(nCA);
         calendar.setId_Periodo(nperiodo);
@@ -364,7 +369,7 @@ public class Con_calendario {
         calendar.setNombre_Actividad(vista.getTxt_N_actividad().getText());
         calendar.setDescripcion(vista.getTxt_descripcion().getText());
         calendar.setFecha_Inicio(fecha());
-        calendar.setFecha_Limite(fecha());
+        calendar.setFecha_Limite(fechalim);
     }
 
     public String fecha() {
@@ -406,9 +411,9 @@ public class Con_calendario {
     }
 
     public void listaresponsable() {
-        
+
         DefaultTableModel modelo1;
-        
+
         modelo1 = (DefaultTableModel) vista.getTabla_responsable().getModel();
         List<Responsables_ActividadMD> listar = resbd.datos_responsables();
         for (int j = vista.getTabla_responsable().getRowCount() - 1; j >= 0; j--) {
@@ -419,7 +424,7 @@ public class Con_calendario {
         for (int i = 0; i < listar.size(); i++) {
             int idtipo = listar.get(i).getId_actividad();
             List<CalendarioMD> listaca = calen.obtenerDatos(idtipo);
-            
+
             modelo1.addRow(new Object[columnasp]);
             vista.getTabla_responsable().setValueAt(listaca.get(0).getNombre_Actividad(), i, 0);
             vista.getTabla_responsable().setValueAt(listar.get(i).getCedula(), i, 1);
@@ -673,7 +678,13 @@ public class Con_calendario {
             @Override
 
             public void keyTyped(KeyEvent e) {
-                
+                listacalendario = calendar.mostrardatos();
+                int con = 0;
+                for (int i = 0; i < listacalendario.size(); i++) {
+                    if (vista.getTxt_N_actividad().getText().equals(listacalendario.get(i).getNombre_Actividad())) {
+                        JOptionPane.showMessageDialog(null, "La Actividad ya existente");
+                    }
+                }
             }
 
             @Override
@@ -682,10 +693,10 @@ public class Con_calendario {
 
             @Override
             public void keyReleased(KeyEvent e) {
-                   int usuario = calen.validar_Nombre_act();
-                if (usuario != 0) {
-                    JOptionPane.showMessageDialog(null, "Este nombre ya esta siendo utlizado", "", 0);
-                }
+                int usuario = calen.validar_Nombre_act();
+//                if (usuario != 0) {
+//                    JOptionPane.showMessageDialog(null, "Este nombre ya esta siendo utlizado", "", 0);
+//                }
             }
         };
         return kl;

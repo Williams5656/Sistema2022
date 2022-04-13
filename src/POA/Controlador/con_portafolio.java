@@ -92,6 +92,10 @@ public class con_portafolio {
             vista.getChk_periodo().setEnabled(true);
             vista.getComboPeriodAcademico().setEnabled(true);
             vista.getTxt_materia().setEditable(true);
+            vista.getChk_materia().setSelected(false);
+            vista.getChk_periodo().setSelected(false);
+            vista.getTxt_materia().setText("");
+            vista.getComboPeriodAcademico().setSelectedIndex(0);
         }
 
         if (vista.getBtnInstrumentosEv().isSelected() == true || vista.getBtnInformesSilabo().isSelected() == true || vista.getBtnNotas().isSelected() == true) {
@@ -165,9 +169,9 @@ public class con_portafolio {
 
         doc_modulo_BD mod = new doc_modulo_BD();
         Object[][] modulos;
-        
+
         modulos = mod.datos_unidos(carrera);
-        
+
         for (int i = 0; i < modulos.length; i++) {
             modelo.addRow(new Object[0]);
             modelo.setValueAt(modulos[i][0], i, 0);
@@ -180,80 +184,490 @@ public class con_portafolio {
     }
 
     public void tabla_buscar() {
-        noeditablemodelo modelo = (noeditablemodelo) vista.getTbl_Datos().getModel();        
+        noeditablemodelo modelo = (noeditablemodelo) vista.getTbl_Datos().getModel();
 
-        if(vista.getBtnModulos().isSelected()){
-            
-            if (vista.getChk_materia().isSelected()==true && vista.getChk_periodo().isSelected()==true){
-                String com=vista.getTxt_materia().getText().toUpperCase();
-                String com2=vista.getComboPeriodAcademico().getSelectedItem().toString();                
+        //MODULOS------------------------------------------------------------------------------------
+        if (vista.getBtnModulos().isSelected()) {
+            if (vista.getChk_materia().isSelected() == true && vista.getChk_periodo().isSelected() == true) {
+                String com = vista.getTxt_materia().getText().toUpperCase();
+                String com2 = vista.getComboPeriodAcademico().getSelectedItem().toString();
                 for (int i = 0; i < modelo.getRowCount(); i++) {
                     if (!modelo.getValueAt(i, 1).toString().equals(com2)
-                    || !modelo.getValueAt(i, 2).toString().toUpperCase().matches(".*"+com+".*")){
+                            || !modelo.getValueAt(i, 2).toString().toUpperCase().matches(".*" + com + ".*")) {
                         modelo.removeRow(i);
-                        i=i-1;
-                    }
-                }    
-            }
-            
-            if (vista.getChk_materia().isSelected()==false && vista.getChk_periodo().isSelected()==true){
-                String com=vista.getComboPeriodAcademico().getSelectedItem().toString();
-                for (int i = 0; i < modelo.getRowCount(); i++) {
-                    if (!modelo.getValueAt(i, 1).toString().equals(com)){
-                        modelo.removeRow(i);
-                        i=i-1;
+                        i = i - 1;
                     }
                 }
             }
-            
-            if (vista.getChk_materia().isSelected()==true && vista.getChk_periodo().isSelected()==false){
-                String com=vista.getTxt_materia().getText().toUpperCase();
+
+            if (vista.getChk_materia().isSelected() == false && vista.getChk_periodo().isSelected() == true) {
+                String com = vista.getComboPeriodAcademico().getSelectedItem().toString();
                 for (int i = 0; i < modelo.getRowCount(); i++) {
-                    if (!modelo.getValueAt(i, 2).toString().toUpperCase().matches(".*"+com+".*")){
+                    if (!modelo.getValueAt(i, 1).toString().equals(com)) {
                         modelo.removeRow(i);
-                        i=i-1;
+                        i = i - 1;
                     }
                 }
             }
-            
+
+            if (vista.getChk_materia().isSelected() == true && vista.getChk_periodo().isSelected() == false) {
+                String com = vista.getTxt_materia().getText().toUpperCase();
+                for (int i = 0; i < modelo.getRowCount(); i++) {
+                    if (!modelo.getValueAt(i, 2).toString().toUpperCase().matches(".*" + com + ".*")) {
+                        modelo.removeRow(i);
+                        i = i - 1;
+                    }
+                }
+            }
         }
-        
-        if(vista.getBtnSilabo().isSelected()){
-            
-            if (vista.getChk_materia().isSelected()==true && vista.getChk_periodo().isSelected()==true){
-                String com=vista.getTxt_materia().getText().toUpperCase();
-                String com2=vista.getComboPeriodAcademico().getSelectedItem().toString();                
+
+        //SILABOS------------------------------------------------------------------------------------
+        if (vista.getBtnSilabo().isSelected()) {
+            if (vista.getChk_materia().isSelected() == true && vista.getChk_periodo().isSelected() == true) {
+                String com = vista.getTxt_materia().getText().toUpperCase();
+                String com2 = vista.getComboPeriodAcademico().getSelectedItem().toString();
                 for (int i = 0; i < modelo.getRowCount(); i++) {
                     if (!modelo.getValueAt(i, 1).toString().equals(com2)
-                    || !modelo.getValueAt(i, 2).toString().toUpperCase().matches(".*"+com+".*")){
+                            || !modelo.getValueAt(i, 2).toString().toUpperCase().matches(".*" + com + ".*")) {
                         modelo.removeRow(i);
-                        i=i-1;
-                    }
-                }    
-            }
-            
-            if (vista.getChk_materia().isSelected()==false && vista.getChk_periodo().isSelected()==true){
-                String com=vista.getComboPeriodAcademico().getSelectedItem().toString();
-                for (int i = 0; i < modelo.getRowCount(); i++) {
-                    if (!modelo.getValueAt(i, 1).toString().equals(com)){
-                        modelo.removeRow(i);
-                        i=i-1;
+                        i = i - 1;
                     }
                 }
             }
-            
-            if (vista.getChk_materia().isSelected()==true && vista.getChk_periodo().isSelected()==false){
-                String com=vista.getTxt_materia().getText().toUpperCase();
+
+            if (vista.getChk_materia().isSelected() == false && vista.getChk_periodo().isSelected() == true) {
+                String com = vista.getComboPeriodAcademico().getSelectedItem().toString();
                 for (int i = 0; i < modelo.getRowCount(); i++) {
-                    if (!modelo.getValueAt(i, 2).toString().toUpperCase().matches(".*"+com+".*")){
+                    if (!modelo.getValueAt(i, 1).toString().equals(com)) {
                         modelo.removeRow(i);
-                        i=i-1;
+                        i = i - 1;
                     }
                 }
             }
-            
+
+            if (vista.getChk_materia().isSelected() == true && vista.getChk_periodo().isSelected() == false) {
+                String com = vista.getTxt_materia().getText().toUpperCase();
+                for (int i = 0; i < modelo.getRowCount(); i++) {
+                    if (!modelo.getValueAt(i, 2).toString().toUpperCase().matches(".*" + com + ".*")) {
+                        modelo.removeRow(i);
+                        i = i - 1;
+                    }
+                }
+            }
+
         }
-        
+
+        //PLANES DE CLASES------------------------------------------------------------------------------------
+        if (vista.getBtnPlanesClase().isSelected()) {
+            if (vista.getChk_materia().isSelected() == true && vista.getChk_periodo().isSelected() == true) {
+                String com = vista.getTxt_materia().getText().toUpperCase();
+                String com2 = vista.getComboPeriodAcademico().getSelectedItem().toString();
+                for (int i = 0; i < modelo.getRowCount(); i++) {
+                    if (!modelo.getValueAt(i, 1).toString().equals(com2)
+                            || !modelo.getValueAt(i, 2).toString().toUpperCase().matches(".*" + com + ".*")) {
+                        modelo.removeRow(i);
+                        i = i - 1;
+                    }
+                }
+            }
+
+            if (vista.getChk_materia().isSelected() == false && vista.getChk_periodo().isSelected() == true) {
+                String com = vista.getComboPeriodAcademico().getSelectedItem().toString();
+                for (int i = 0; i < modelo.getRowCount(); i++) {
+                    if (!modelo.getValueAt(i, 1).toString().equals(com)) {
+                        modelo.removeRow(i);
+                        i = i - 1;
+                    }
+                }
+            }
+
+            if (vista.getChk_materia().isSelected() == true && vista.getChk_periodo().isSelected() == false) {
+                String com = vista.getTxt_materia().getText().toUpperCase();
+                for (int i = 0; i < modelo.getRowCount(); i++) {
+                    if (!modelo.getValueAt(i, 2).toString().toUpperCase().matches(".*" + com + ".*")) {
+                        modelo.removeRow(i);
+                        i = i - 1;
+                    }
+                }
+            }
+        }
+
+        //INSTRUMENTOS DE EVALUACION------------------------------------------------------------------------------------
+        if (vista.getBtnInstrumentosEv().isSelected()) {
+
+            if (vista.getChk_periodo().isSelected() == true && vista.getChk_materia().isSelected() == false
+                    && vista.getChk_paralelo().isSelected() == false && vista.getChk_ciclo().isSelected() == false
+                    && vista.getChk_seccion().isSelected() == false) {
+                String com = vista.getComboPeriodAcademico().getSelectedItem().toString();
+                for (int i = 0; i < modelo.getRowCount(); i++) {
+                    if (!modelo.getValueAt(i, 3).toString().equals(com)) {
+                        modelo.removeRow(i);
+                        i = i - 1;
+                    }
+                }
+            }
+
+            if (vista.getChk_periodo().isSelected() == false && vista.getChk_materia().isSelected() == true
+                    && vista.getChk_paralelo().isSelected() == false && vista.getChk_ciclo().isSelected() == false
+                    && vista.getChk_seccion().isSelected() == false) {
+                String com = vista.getTxt_materia().getText().toUpperCase();
+                for (int i = 0; i < modelo.getRowCount(); i++) {
+                    if (!modelo.getValueAt(i, 4).toString().toUpperCase().matches(".*" + com + ".*")) {
+                        modelo.removeRow(i);
+                        i = i - 1;
+                    }
+                }
+            }
+
+            if (vista.getChk_periodo().isSelected() == false && vista.getChk_materia().isSelected() == false
+                    && vista.getChk_paralelo().isSelected() == true && vista.getChk_ciclo().isSelected() == false
+                    && vista.getChk_seccion().isSelected() == false) {
+                if (vista.getPar_a().isSelected()) {
+                    String paraleloA = "A";
+                    for (int i = 0; i < modelo.getRowCount(); i++) {
+                        if (!modelo.getValueAt(i, 7).toString().toUpperCase().matches(".*" + paraleloA + ".*")){
+                            modelo.removeRow(i);
+                            i = i - 1;
+                        }
+                    }
+                }
+                if (vista.getPar_b().isSelected()) {
+                    String paraleloB = "B";
+                    for (int i = 0; i < modelo.getRowCount(); i++) {
+                        if (!modelo.getValueAt(i, 7).toString().toUpperCase().matches(".*" + paraleloB + ".*")){
+                            modelo.removeRow(i);
+                            i = i - 1;
+                        }
+                    }
+                }
+            }
+            
+            if (vista.getChk_periodo().isSelected() == false && vista.getChk_materia().isSelected() == false
+                    && vista.getChk_paralelo().isSelected() == false && vista.getChk_ciclo().isSelected() == true
+                    && vista.getChk_seccion().isSelected() == false) {
+                String ciclo = vista.getComboCiclo().getSelectedItem().toString();
+                for (int i = 0; i < modelo.getRowCount(); i++) {
+                    if (!modelo.getValueAt(i, 5).toString().equals(ciclo)) {
+                        modelo.removeRow(i);
+                        i = i - 1;
+                    }
+                }
+            }
+            
+            if (vista.getChk_periodo().isSelected() == false && vista.getChk_materia().isSelected() == false
+                    && vista.getChk_paralelo().isSelected() == false && vista.getChk_ciclo().isSelected() == false
+                    && vista.getChk_seccion().isSelected() == true) {
+                String seccion = vista.getComboSeccion().getSelectedItem().toString().toUpperCase();
+                for (int i = 0; i < modelo.getRowCount(); i++) {
+                    if (!modelo.getValueAt(i, 6).toString().toUpperCase().equals(seccion)) {
+                        modelo.removeRow(i);
+                        i = i - 1;
+                    }
+                }
+            }
+            
+            if (vista.getChk_periodo().isSelected() == true && vista.getChk_materia().isSelected() == true
+                    && vista.getChk_paralelo().isSelected() == false && vista.getChk_ciclo().isSelected() == false
+                    && vista.getChk_seccion().isSelected() == false) {
+                String com = vista.getComboPeriodAcademico().getSelectedItem().toString();
+                String materia = vista.getTxt_materia().getText().toUpperCase();
+                for (int i = 0; i < modelo.getRowCount(); i++ ) {
+                    if (!modelo.getValueAt(i, 3).toString().equals(com) ||
+                            !modelo.getValueAt(i, 4).toString().toUpperCase().matches(".*" + materia + ".*")) {
+                        modelo.removeRow(i);
+                        i = i - 1;
+                    }
+                }
+            }
+            
+            if (vista.getChk_periodo().isSelected() == true && vista.getChk_materia().isSelected() == false
+                    && vista.getChk_paralelo().isSelected() == true && vista.getChk_ciclo().isSelected() == false
+                    && vista.getChk_seccion().isSelected() == false) {
+                String com = vista.getComboPeriodAcademico().getSelectedItem().toString();
+                if (vista.getPar_a().isSelected()) {
+                    String paraleloA = "A";
+                    for (int i = 0; i < modelo.getRowCount(); i++) {
+                        if (!modelo.getValueAt(i, 7).toString().toUpperCase().matches(".*" + paraleloA + ".*") ||
+                                !modelo.getValueAt(i, 3).toString().equals(com)){ 
+                            modelo.removeRow(i);
+                            i = i - 1;
+                        }
+                    }
+                }
+                if (vista.getPar_b().isSelected()) {
+                    String paraleloB = "B";
+                    for (int i = 0; i < modelo.getRowCount(); i++) {
+                        if (!modelo.getValueAt(i, 7).toString().toUpperCase().matches(".*" + paraleloB + ".*") ||
+                                !modelo.getValueAt(i, 3).toString().equals(com)){
+                            modelo.removeRow(i);
+                            i = i - 1;
+                        }
+                    }
+                }
+            }
+            
+            if (vista.getChk_periodo().isSelected() == true && vista.getChk_materia().isSelected() == false
+                    && vista.getChk_paralelo().isSelected() == false && vista.getChk_ciclo().isSelected() == true
+                    && vista.getChk_seccion().isSelected() == false) {
+                String com = vista.getComboPeriodAcademico().getSelectedItem().toString();
+                String ciclo = vista.getComboCiclo().getSelectedItem().toString();
+                for (int i = 0; i < modelo.getRowCount(); i++) {
+                    if (!modelo.getValueAt(i, 3).toString().equals(com) ||
+                            !modelo.getValueAt(i, 5).toString().equals(ciclo)) {
+                        modelo.removeRow(i);
+                        i = i - 1;
+                    }
+                }
+            }
+            
+            if (vista.getChk_periodo().isSelected() == true && vista.getChk_materia().isSelected() == false
+                    && vista.getChk_paralelo().isSelected() == false && vista.getChk_ciclo().isSelected() == false
+                    && vista.getChk_seccion().isSelected() == true) {
+                String com = vista.getComboPeriodAcademico().getSelectedItem().toString();
+                String seccion = vista.getComboSeccion().getSelectedItem().toString().toUpperCase();
+                for (int i = 0; i < modelo.getRowCount(); i++) {
+                    if (!modelo.getValueAt(i, 3).toString().equals(com) ||
+                            !modelo.getValueAt(i, 6).toString().toUpperCase().equals(seccion)) {
+                        modelo.removeRow(i);
+                        i = i - 1;
+                    }
+                }
+            }
+            
+            if (vista.getChk_periodo().isSelected() == true && vista.getChk_materia().isSelected() == true
+                    && vista.getChk_paralelo().isSelected() == true && vista.getChk_ciclo().isSelected() == false
+                    && vista.getChk_seccion().isSelected() == false) {
+                String com = vista.getComboPeriodAcademico().getSelectedItem().toString();
+                String materia = vista.getTxt_materia().getText().toUpperCase();
+                if (vista.getPar_a().isSelected()) {
+                    String paraleloA = "A";
+                    for (int i = 0; i < modelo.getRowCount(); i++) {
+                        if (!modelo.getValueAt(i, 7).toString().toUpperCase().matches(".*" + paraleloA + ".*") ||
+                                !modelo.getValueAt(i, 3).toString().equals(com) ||
+                                !modelo.getValueAt(i, 4).toString().toUpperCase().matches(".*" + materia + ".*")){
+                            modelo.removeRow(i);
+                            i = i - 1;
+                        }
+                    }
+                }
+                if (vista.getPar_b().isSelected()) {
+                    String paraleloB = "B";
+                    for (int i = 0; i < modelo.getRowCount(); i++) {
+                        if (!modelo.getValueAt(i, 7).toString().toUpperCase().matches(".*" + paraleloB + ".*") ||
+                                !modelo.getValueAt(i, 3).toString().equals(com) ||
+                                !modelo.getValueAt(i, 4).toString().toUpperCase().matches(".*" + materia + ".*")){
+                            modelo.removeRow(i);
+                            i = i - 1;
+                        }
+                    }
+                }
+            }
+            
+            if (vista.getChk_periodo().isSelected() == true && vista.getChk_materia().isSelected() == true
+                    && vista.getChk_paralelo().isSelected() == false && vista.getChk_ciclo().isSelected() == true
+                    && vista.getChk_seccion().isSelected() == false) {
+                String com = vista.getComboPeriodAcademico().getSelectedItem().toString();
+                String materia = vista.getTxt_materia().getText().toUpperCase();
+                String ciclo = vista.getComboCiclo().getSelectedItem().toString();
+                for (int i = 0; i < modelo.getRowCount(); i++ ) {
+                    if (!modelo.getValueAt(i, 3).toString().equals(com) ||
+                            !modelo.getValueAt(i, 4).toString().toUpperCase().matches(".*" + materia + ".*")
+                            || !modelo.getValueAt(i, 5).toString().equals(ciclo)) {
+                        modelo.removeRow(i);
+                        i = i - 1;
+                    }
+                }
+            }
+            
+            if (vista.getChk_periodo().isSelected() == true && vista.getChk_materia().isSelected() == true
+                    && vista.getChk_paralelo().isSelected() == false && vista.getChk_ciclo().isSelected() == false
+                    && vista.getChk_seccion().isSelected() == true) {
+                String com = vista.getComboPeriodAcademico().getSelectedItem().toString();
+                String materia = vista.getTxt_materia().getText().toUpperCase();
+                String seccion = vista.getComboSeccion().getSelectedItem().toString().toUpperCase();
+                for (int i = 0; i < modelo.getRowCount(); i++ ) {
+                    if (!modelo.getValueAt(i, 3).toString().equals(com) ||
+                            !modelo.getValueAt(i, 4).toString().toUpperCase().matches(".*" + materia + ".*")
+                            || !modelo.getValueAt(i, 6).toString().toUpperCase().equals(seccion)) {
+                        modelo.removeRow(i);
+                        i = i - 1;
+                    }
+                }
+            }
+            
+            if (vista.getChk_periodo().isSelected() == true && vista.getChk_materia().isSelected() == false
+                    && vista.getChk_paralelo().isSelected() == true && vista.getChk_ciclo().isSelected() == true
+                    && vista.getChk_seccion().isSelected() == false) {
+                String com = vista.getComboPeriodAcademico().getSelectedItem().toString();
+                String ciclo = vista.getComboCiclo().getSelectedItem().toString();
+                if (vista.getPar_a().isSelected()) {
+                    String paraleloA = "A";
+                    for (int i = 0; i < modelo.getRowCount(); i++) {
+                        if (!modelo.getValueAt(i, 7).toString().toUpperCase().matches(".*" + paraleloA + ".*") ||
+                                !modelo.getValueAt(i, 3).toString().equals(com)
+                                || !modelo.getValueAt(i, 5).toString().equals(ciclo)){
+                            modelo.removeRow(i);
+                            i = i - 1;
+                        }
+                    }
+                }
+                if (vista.getPar_b().isSelected()) {
+                    String paraleloB = "B";
+                    for (int i = 0; i < modelo.getRowCount(); i++) {
+                        if (!modelo.getValueAt(i, 7).toString().toUpperCase().matches(".*" + paraleloB + ".*") ||
+                                !modelo.getValueAt(i, 3).toString().equals(com) ||
+                                !modelo.getValueAt(i, 5).toString().equals(ciclo)){
+                            modelo.removeRow(i);
+                            i = i - 1;
+                        }
+                    }
+                }
+            }
+            
+            if (vista.getChk_periodo().isSelected() == true && vista.getChk_materia().isSelected() == false
+                    && vista.getChk_paralelo().isSelected() == true && vista.getChk_ciclo().isSelected() == false
+                    && vista.getChk_seccion().isSelected() == true) {
+                String com = vista.getComboPeriodAcademico().getSelectedItem().toString();
+                String seccion = vista.getComboSeccion().getSelectedItem().toString().toUpperCase();
+                if (vista.getPar_a().isSelected()) {
+                    String paraleloA = "A";
+                    for (int i = 0; i < modelo.getRowCount(); i++) {
+                        if (!modelo.getValueAt(i, 7).toString().toUpperCase().matches(".*" + paraleloA + ".*") ||
+                                !modelo.getValueAt(i, 3).toString().equals(com)
+                                || !modelo.getValueAt(i, 6).toString().toUpperCase().equals(seccion)){
+                            modelo.removeRow(i);
+                            i = i - 1;
+                        }
+                    }
+                }
+                if (vista.getPar_b().isSelected()) {
+                    String paraleloB = "B";
+                    for (int i = 0; i < modelo.getRowCount(); i++) {
+                        if (!modelo.getValueAt(i, 7).toString().toUpperCase().matches(".*" + paraleloB + ".*") ||
+                                !modelo.getValueAt(i, 3).toString().equals(com) ||
+                                !!modelo.getValueAt(i, 6).toString().toUpperCase().equals(seccion)){
+                            modelo.removeRow(i);
+                            i = i - 1;
+                        }
+                    }
+                }
+            }
+            
+            if (vista.getChk_periodo().isSelected() == true && vista.getChk_materia().isSelected() == false
+                    && vista.getChk_paralelo().isSelected() == false && vista.getChk_ciclo().isSelected() == true
+                    && vista.getChk_seccion().isSelected() == true) {
+                String com = vista.getComboPeriodAcademico().getSelectedItem().toString();
+                String seccion = vista.getComboSeccion().getSelectedItem().toString().toUpperCase();
+                String ciclo = vista.getComboCiclo().getSelectedItem().toString();
+                for (int i = 0; i < modelo.getRowCount(); i++ ) {
+                    if (!modelo.getValueAt(i, 3).toString().equals(com) ||
+                            !modelo.getValueAt(i, 5).toString().equals(ciclo)
+                            || !modelo.getValueAt(i, 6).toString().toUpperCase().equals(seccion)) {
+                        modelo.removeRow(i);
+                        i = i - 1;
+                    }
+                }
+            }
+            
+            if (vista.getChk_periodo().isSelected() == true && vista.getChk_materia().isSelected() == true
+                    && vista.getChk_paralelo().isSelected() == true && vista.getChk_ciclo().isSelected() == true
+                    && vista.getChk_seccion().isSelected() == false) {
+                String com = vista.getComboPeriodAcademico().getSelectedItem().toString();
+                String materia = vista.getTxt_materia().getText().toUpperCase();
+                String ciclo = vista.getComboCiclo().getSelectedItem().toString();
+                if (vista.getPar_a().isSelected()) {
+                    String paraleloA = "A";
+                    for (int i = 0; i < modelo.getRowCount(); i++) {
+                        if (!modelo.getValueAt(i, 7).toString().toUpperCase().matches(".*" + paraleloA + ".*") ||
+                                !modelo.getValueAt(i, 3).toString().equals(com) ||
+                                !modelo.getValueAt(i, 4).toString().toUpperCase().matches(".*" + materia + ".*")
+                                || !modelo.getValueAt(i, 5).toString().equals(ciclo)){
+                            modelo.removeRow(i);
+                            i = i - 1;
+                        }
+                    }
+                }
+                if (vista.getPar_b().isSelected()) {
+                    String paraleloB = "B";
+                    for (int i = 0; i < modelo.getRowCount(); i++) {
+                        if (!modelo.getValueAt(i, 7).toString().toUpperCase().matches(".*" + paraleloB + ".*") ||
+                                !modelo.getValueAt(i, 3).toString().equals(com) ||
+                                !modelo.getValueAt(i, 4).toString().toUpperCase().matches(".*" + materia + ".*")
+                                || !modelo.getValueAt(i, 5).toString().equals(ciclo)){
+                            modelo.removeRow(i);
+                            i = i - 1;
+                        }
+                    }
+                }
+            }
+            
+            if (vista.getChk_periodo().isSelected() == true && vista.getChk_materia().isSelected() == true
+                    && vista.getChk_paralelo().isSelected() == true && vista.getChk_ciclo().isSelected() == false
+                    && vista.getChk_seccion().isSelected() == true) {
+                String com = vista.getComboPeriodAcademico().getSelectedItem().toString();
+                String materia = vista.getTxt_materia().getText().toUpperCase();
+                String seccion = vista.getComboSeccion().getSelectedItem().toString().toUpperCase();
+                if (vista.getPar_a().isSelected()) {
+                    String paraleloA = "A";
+                    for (int i = 0; i < modelo.getRowCount(); i++) {
+                        if (!modelo.getValueAt(i, 7).toString().toUpperCase().matches(".*" + paraleloA + ".*") ||
+                                !modelo.getValueAt(i, 3).toString().equals(com) ||
+                                !modelo.getValueAt(i, 4).toString().toUpperCase().matches(".*" + materia + ".*")
+                                || !modelo.getValueAt(i, 6).toString().toUpperCase().equals(seccion)){
+                            modelo.removeRow(i);
+                            i = i - 1;
+                        }
+                    }
+                }
+                if (vista.getPar_b().isSelected()) {
+                    String paraleloB = "B";
+                    for (int i = 0; i < modelo.getRowCount(); i++) {
+                        if (!modelo.getValueAt(i, 7).toString().toUpperCase().matches(".*" + paraleloB + ".*") ||
+                                !modelo.getValueAt(i, 3).toString().equals(com) ||
+                                !modelo.getValueAt(i, 4).toString().toUpperCase().matches(".*" + materia + ".*")
+                                || !modelo.getValueAt(i, 6).toString().toUpperCase().equals(seccion)){
+                            modelo.removeRow(i);
+                            i = i - 1;
+                        }
+                    }
+                }
+            }
+            
+            if (vista.getChk_periodo().isSelected() == true && vista.getChk_materia().isSelected() == true
+                    && vista.getChk_paralelo().isSelected() == true && vista.getChk_ciclo().isSelected() == true
+                    && vista.getChk_seccion().isSelected() == true) {
+                String com = vista.getComboPeriodAcademico().getSelectedItem().toString();
+                String materia = vista.getTxt_materia().getText().toUpperCase();
+                String seccion = vista.getComboSeccion().getSelectedItem().toString().toUpperCase();
+                String ciclo = vista.getComboCiclo().getSelectedItem().toString();
+                if (vista.getPar_a().isSelected()) {
+                    String paraleloA = "A";
+                    for (int i = 0; i < modelo.getRowCount(); i++) {
+                        if (!modelo.getValueAt(i, 7).toString().toUpperCase().matches(".*" + paraleloA + ".*") ||
+                                !modelo.getValueAt(i, 3).toString().equals(com) ||
+                                !modelo.getValueAt(i, 4).toString().toUpperCase().matches(".*" + materia + ".*")
+                                || !modelo.getValueAt(i, 6).toString().toUpperCase().equals(seccion)
+                                || !modelo.getValueAt(i, 5).toString().equals(ciclo)){
+                            modelo.removeRow(i);
+                            i = i - 1;
+                        }
+                    }
+                }
+                if (vista.getPar_b().isSelected()) {
+                    String paraleloB = "B";
+                    for (int i = 0; i < modelo.getRowCount(); i++) {
+                        if (!modelo.getValueAt(i, 7).toString().toUpperCase().matches(".*" + paraleloB + ".*") ||
+                                !modelo.getValueAt(i, 3).toString().equals(com) ||
+                                !modelo.getValueAt(i, 4).toString().toUpperCase().matches(".*" + materia + ".*")
+                                || !modelo.getValueAt(i, 6).toString().toUpperCase().equals(seccion)
+                                || !modelo.getValueAt(i, 5).toString().equals(ciclo)){
+                            modelo.removeRow(i);
+                            i = i - 1;
+                        }
+                    }
+                }
+            }
+        }
         vista.getBtn_buscar().setEnabled(false);
         vista.getTbl_Datos().setModel(modelo);
     }

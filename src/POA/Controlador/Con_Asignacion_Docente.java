@@ -84,7 +84,7 @@ public class Con_Asignacion_Docente {
         listaMateria = baseDatosMateria.mostrardatos();
         listaPeriodo = baseDatosPeriodo.lista_periodos();
         vista.getBtnagregar().setEnabled(true);
-        vista.getCombodocentes().addActionListener(e->accion_combobox());
+        vista.getCombodocentes().addActionListener(e -> accion_combobox());
         inhabilitar_botones();
         buscardocente();
         lista();
@@ -130,6 +130,7 @@ public class Con_Asignacion_Docente {
         vista.getCboxperiodo().setEnabled(true);
         vista.getCombodocentes().setEnabled(true);
     }
+
     public void imprimir() {
         Conect con = new Conect();
         try {
@@ -169,6 +170,7 @@ public class Con_Asignacion_Docente {
             vista.getCboxperiodo().addItem(periodo.getNombre());
         }
     }
+
     public void cargarComboCarrera() {
         vista.getCboxcarrera().removeAllItems();
         vista.getCboxcarrera().addItem("Seleccione");
@@ -186,21 +188,19 @@ public class Con_Asignacion_Docente {
         int con = 0;
         try {
             for (int i = 0; i < lista.size(); i++) {
-                if (vista.getTxtdocente().getText().equalsIgnoreCase(listadoc.get(i).getCedula())) {
-                    if (listadoc.get(i).getCedula().equals(lista.get(i).getCedula())) {
-                        String nombre =lista.get(i).getNombres() + " " + lista.get(i).getApellidos();
-                        //vista.getTxtnombredocente().setText(nombre);
-                        con = 1;
-                        vista.getCombodocentes().addItem(nombre);
-                    }
-                    if (listadoc.get(i).getEstado().equalsIgnoreCase("ACTIVO")) {
-                        habilitar_botones();
-                        for (int j = 0; j < listadoc.size(); j++) {
-                            if (listadoc.get(j).getCedula().equalsIgnoreCase(vista.getTxtdocente().getText())) {
-                                inhabilitar_botones();
-                            }
-                        }
+                for (int j = 0; j < listadoc.size(); j++) {
 
+                    if (vista.getTxtdocente().getText().equalsIgnoreCase(listadoc.get(j).getCedula())) {
+                        if (listadoc.get(j).getCedula().equals(lista.get(i).getCedula())) {
+                            String nombre = lista.get(i).getNombres() + " " + lista.get(i).getApellidos();
+                            //vista.getTxtnombredocente().setText(nombre);
+                            con = 1;
+                            vista.getCombodocentes().addItem(nombre);
+                            habilitar_botones();
+                            System.out.println(listadoc.get(j).getCedula());
+                            System.out.println(listadoc.get(j).getEstado());
+
+                        }
                     }
                 }
             }
@@ -225,8 +225,8 @@ public class Con_Asignacion_Docente {
         vista.getBtnguardar().setEnabled(true);
         habilitar_botones();
         vista.getTablaasignaciondocentemateria().setModel(modelo);
-        int id_asignacion1 = bdasignacion.id()+1;
-        vista.getId_asignacion().setText(id_asignacion1+ "");
+        int id_asignacion1 = bdasignacion.id() + 1;
+        vista.getId_asignacion().setText(id_asignacion1 + "");
     }
 
     public void lista() {
@@ -241,12 +241,12 @@ public class Con_Asignacion_Docente {
         lista = bdasignacion.mostrardatos();
         listaPeriodo = baseDatosPeriodo.lista_periodos();
         listaMateria = baseDatosMateria.mostrardatos();
-        String nombre= "";
-        for (AsignacionMateriaDocentesMD user : lista) {            
+        String nombre = "";
+        for (AsignacionMateriaDocentesMD user : lista) {
             fila[0] = user.getIdentificacion();
             listaPersona = bdpersona.obtenerdatos(user.getIdentificacion());
             for (PersonaMD userp : listaPersona) {
-                nombre = userp.getNombres()+ " " + userp.getApellidos();
+                nombre = userp.getNombres() + " " + userp.getApellidos();
             }
             fila[1] = nombre;
             for (MateriaMD carrera : listaMateria) {
@@ -259,8 +259,8 @@ public class Con_Asignacion_Docente {
             modelo.addRow(fila);
         }
         vista.getTablaasignaciondocentemateria().setModel(modelo);
-        int id_asignacion1 = bdasignacion.id()+1;
-        vista.getId_asignacion().setText(id_asignacion1+ "");
+        int id_asignacion1 = bdasignacion.id() + 1;
+        vista.getId_asignacion().setText(id_asignacion1 + "");
     }
 
     public void guardar() {
@@ -273,11 +273,11 @@ public class Con_Asignacion_Docente {
         String codigoMateria = "";
         String codigoCarrera = "";
         codigoMateria = baseAsignacion.mostrarIdMateria(asignatura);
-        
+
         String ciclo = (String) vista.getCboxciclo().getSelectedItem();
         String jornada = (String) vista.getCboxjornada().getSelectedItem();
         String paralelo = (String) vista.getCboxparalelo().getSelectedItem();
-        bdasignacion.setId_asignacio(Integer.parseInt(vista.getId_asignacion().getText()));       
+        bdasignacion.setId_asignacio(Integer.parseInt(vista.getId_asignacion().getText()));
         bdasignacion.setIdentificacion(vista.getTxtdocente().getText());
         bdasignacion.setPeriodo(codigoPeriodo + "");
         bdasignacion.setAsignatura(codigoMateria);
@@ -293,33 +293,33 @@ public class Con_Asignacion_Docente {
             JOptionPane.showMessageDialog(null, "Error al guardar");
         }
         /////autocreacion documntos, dudas consultar miguel///////////////////////
-        doc_notas_BD not=new doc_notas_BD();
+        doc_notas_BD not = new doc_notas_BD();
         if (not.crear_notas()) {
             System.out.println("notas creadas");
         } else {
-            System.out.println( "Error al crear notas");
+            System.out.println("Error al crear notas");
         }
-        doc_instrumento_evaluacionBD ins=new doc_instrumento_evaluacionBD();
+        doc_instrumento_evaluacionBD ins = new doc_instrumento_evaluacionBD();
         if (ins.crear_intrumentos()) {
             System.out.println("instrumentos creadas");
         } else {
-            System.out.println( "Error al crear instrumentos");
+            System.out.println("Error al crear instrumentos");
         }
-        doc_informes_BD inf=new doc_informes_BD();
+        doc_informes_BD inf = new doc_informes_BD();
         if (inf.crear_notas()) {
             System.out.println("informes creados");
         } else {
-            System.out.println( "Error al crear informes");
+            System.out.println("Error al crear informes");
         }
-         /////autocreacion documntos, dudas consultar miguel///////////////////////
-        
+        /////autocreacion documntos, dudas consultar miguel///////////////////////
+
     }
 
     public void modificar() {
         AsignacionMateriaDocenteBD baseAsignacion = new AsignacionMateriaDocenteBD();
         String periodo = (String) vista.getCboxperiodo().getSelectedItem();
         String asignatura = (String) vista.getCboxasignatura().getSelectedItem();
-        String codigoMateria =  baseAsignacion.mostrarIdMateria(asignatura);
+        String codigoMateria = baseAsignacion.mostrarIdMateria(asignatura);
         String ciclo = (String) vista.getCboxciclo().getSelectedItem();
         String jornada = (String) vista.getCboxjornada().getSelectedItem();
         String paralelo = (String) vista.getCboxparalelo().getSelectedItem();
@@ -332,9 +332,9 @@ public class Con_Asignacion_Docente {
         bdasignacion.setJornada(jornada);
         bdasignacion.setParalelo(paralelo);
 
-        int resp = JOptionPane.showConfirmDialog(null, "¿Desea Modificar?","",JOptionPane.YES_NO_OPTION);
+        int resp = JOptionPane.showConfirmDialog(null, "¿Desea Modificar?", "", JOptionPane.YES_NO_OPTION);
         if (resp == JOptionPane.YES_OPTION) {
-            if (bdasignacion.modificar(asignacion)){
+            if (bdasignacion.modificar(asignacion)) {
                 JOptionPane.showMessageDialog(null, "DATOS MODIFICADOS");
                 lista();
                 nuevo();
@@ -348,16 +348,13 @@ public class Con_Asignacion_Docente {
         vista.getTxtdocente().addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                if(vista.getTxtdocente().getText().length()>=10){
-                    buscar();
-                }else{
-                    inhabilitar_botones();
-                    
-                }
+                //if(vista.getTxtdocente().getText().length()>=10){
+                buscar();
+                //}
             }
 
         });
-        
+
     }
 
     public void seleccionar() {
@@ -381,12 +378,12 @@ public class Con_Asignacion_Docente {
         String periodo = bdasignacion.mostrarPeriodo(Integer.parseInt(listaasig.get(0).getPeriodo()));
         bdpersona.setNombres(listaper.get(0).getNombres());
         bdpersona.setApellidos(listaper.get(0).getApellidos());
-        String nombre =bdpersona.getNombres() + " " + bdpersona.getApellidos();
+        String nombre = bdpersona.getNombres() + " " + bdpersona.getApellidos();
         bdasignacion.setId_asignacio(listaasig.get(0).getId_asignacio());
         bdasignacion.setIdentificacion(listaasig.get(0).getIdentificacion());
         bdasignacion.setPeriodo(periodo);
         bdasignacion.setAsignatura(listaasig.get(0).getAsignatura());
-        
+
         bdasignacion.setParalelo(listaasig.get(0).getParalelo());
         bdasignacion.setJornada(listaasig.get(0).getJornada());
         bdasignacion.setCiclo(listaasig.get(0).getCiclo());
@@ -409,7 +406,7 @@ public class Con_Asignacion_Docente {
 
     private void eliminar() {
         String seleccionado = (String) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 0);
-        int resp2 = JOptionPane.showConfirmDialog(null, "CONFIRME SI ESTA SEGURO DE ELIMINAR","",JOptionPane.YES_NO_OPTION);
+        int resp2 = JOptionPane.showConfirmDialog(null, "CONFIRME SI ESTA SEGURO DE ELIMINAR", "", JOptionPane.YES_NO_OPTION);
         if (resp2 == JOptionPane.YES_NO_OPTION) {
             if (bdasignacion.eliminar(seleccionado)) {
                 JOptionPane.showMessageDialog(null, "ELIMINADO CORRECTAMENTE");
@@ -440,19 +437,20 @@ public class Con_Asignacion_Docente {
         for (int i = 0; i < lista.size(); i++) {
             for (int j = 0; j < listadoc.size(); j++) {
                 if (listadoc.get(j).getCedula().equalsIgnoreCase(lista.get(i).getCedula())) {
-                    vista.getCombodocentes().addItem(lista.get(i).getNombres()+" "+lista.get(i).getApellidos());
+                    vista.getCombodocentes().addItem(lista.get(i).getNombres() + " " + lista.get(i).getApellidos());
                 }
             }
 
         }
     }
-    public void seleccionarCarrera(){
+
+    public void seleccionarCarrera() {
         System.out.println("Seleccionar Carrera");
-        String nombre ="";
+        String nombre = "";
         String id_carrera = "";
         nombre = (String) vista.getCboxcarrera().getSelectedItem();
         for (CarreraMD carreraMD : listaCarrera) {
-            if(carreraMD.getNombre_carrera().equalsIgnoreCase(nombre)){
+            if (carreraMD.getNombre_carrera().equalsIgnoreCase(nombre)) {
                 id_carrera = carreraMD.getCodigo_carrera();
             }
         }
@@ -463,27 +461,27 @@ public class Con_Asignacion_Docente {
             vista.getCboxasignatura().addItem(materiaMD.getNombre_materia());
         }
     }
-    public void seleccionarMateria(){
+
+    public void seleccionarMateria() {
         System.out.println("Seleccionar Materia");
-        String nombre ="";
+        String nombre = "";
         nombre = (String) vista.getCboxasignatura().getSelectedItem();
         vista.getCboxciclo().removeAllItems();
         for (MateriaMD materiaMD : listaMateria) {
-            if(materiaMD.getNombre_materia().equalsIgnoreCase(nombre)){
+            if (materiaMD.getNombre_materia().equalsIgnoreCase(nombre)) {
                 vista.getCboxciclo().addItem(materiaMD.getCiclo());
             }
         }
     }
-    public void accion_combobox(){
+
+    public void accion_combobox() {
         List<PersonaMD> lista = bdpersona.mostrardatos();
         for (int i = 0; i < lista.size(); i++) {
-            if((lista.get(i).getNombres()+" "+lista.get(i).getApellidos()).equalsIgnoreCase((String) vista.getCombodocentes().getSelectedItem())){
+            if ((lista.get(i).getNombres() + " " + lista.get(i).getApellidos()).equalsIgnoreCase((String) vista.getCombodocentes().getSelectedItem())) {
                 vista.getTxtdocente().setText(lista.get(i).getCedula());
             }
         }
-        
-       
+
     }
-    
-    
+
 }

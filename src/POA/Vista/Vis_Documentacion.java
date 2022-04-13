@@ -402,7 +402,7 @@ public class Vis_Documentacion extends javax.swing.JInternalFrame  {
         getContentPane().add(txt_horaguia, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 260, 100, -1));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/fondo azul (1).jpg"))); // NOI18N
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 520));
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 520));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

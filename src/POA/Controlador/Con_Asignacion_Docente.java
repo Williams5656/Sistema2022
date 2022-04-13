@@ -19,6 +19,8 @@ import static POA.Vista.Vis_Principal.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
@@ -133,12 +135,46 @@ public class Con_Asignacion_Docente {
 
     public void imprimir() {
         Conect con = new Conect();
-        try {
+        String parametro = "";
+        String nombre="";         
+        List <String> listanombres = new ArrayList<>();
+        lista = bdasignacion.mostrardatos();
+        for (AsignacionMateriaDocentesMD asignacionMD : lista) {            
+            listaPersona = bdpersona.obtenerdatos(asignacionMD.getIdentificacion()); 
+            for (PersonaMD persona: listaPersona) {
+                nombre = persona.getNombres()+" " + persona.getApellidos();
+                listanombres.add(nombre);                
+            }
+        }
+        String [] nombres = new String  [listanombres.size()];
+        for (int i = 0; i < listanombres.size(); i++) {
+            nombres[i] = listanombres.get(i);
+            
+        }
+        String[] reportes = {
+            "Seleccione Una Opcion",
+            "Reporte por Docente",
+            "Reporte de Carreras",
+            "Reporte Completo"
+        };
+        //Ctrl_MYICON icon = new Ctrl_MYICON(40, 50);
+        String resp = (String) JOptionPane.showInputDialog(null, "Seleccione un reporte", "Reporte De Asignacion de Docentes",       
+                JOptionPane.DEFAULT_OPTION, null, reportes, reportes[0]);
+        if (resp.equals("Seleccione Una Opcion")) {
+            JOptionPane.showMessageDialog(null, " seleccione uno de los campos");
 
+        }else if (resp.equals("Reporte por Docente")){
+            parametro = (String) JOptionPane.showInputDialog(null, "Seleccione un docente", "Docentes",       
+                JOptionPane.DEFAULT_OPTION, null, nombres, nombres[0]);
+            
+        }
+        try {
+            Map p = new HashMap();
+            p.put("index","%"+ parametro + "%");
             JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Asignacion_Docentes.jasper"));
-            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, p, con.getCon());
             JasperViewer jv = new JasperViewer(jp, false);
-            JOptionPane.showMessageDialog(null, "Imprimiendo");
+            
             jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             jv.setVisible(true);
         } catch (JRException e) {

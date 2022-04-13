@@ -15,10 +15,10 @@ public class doc_silabo_MD {
 
     private int id_doc_silabo;
     private String id_materia;
-    private Image documento;
+    private byte[] documento;
     private int id_periodo;
 
-    public doc_silabo_MD(int id_doc_silabo, String id_materia, Image documento, int id_periodo) {
+    public doc_silabo_MD(int id_doc_silabo, String id_materia, byte[] documento, int id_periodo) {
         this.id_doc_silabo = id_doc_silabo;
         this.id_materia = id_materia;
         this.documento = documento;
@@ -44,11 +44,11 @@ public class doc_silabo_MD {
         this.id_materia = id_materia;
     }
 
-    public Image getDocumento() {
+    public byte[] getDocumento() {
         return documento;
     }
 
-    public void setDocumento(Image documento) {
+    public void setDocumento(byte[] documento) {
         this.documento = documento;
     }
 

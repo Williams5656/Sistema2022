@@ -15,18 +15,19 @@ public class doc_modulo_MD {
     private int id_doc_modulo;
     private int id_periodo;
     private String id_materia;
-    private Image documento;
+    private byte[] documento;
+    
+    
+    public doc_modulo_MD(){        
+    }
 
-    public doc_modulo_MD(int id_doc_modulo, int id_periodo, String id_materia, Image documento) {
+    public doc_modulo_MD(int id_doc_modulo, int id_periodo, String id_materia, byte[] documento) {
         this.id_doc_modulo = id_doc_modulo;
         this.id_periodo = id_periodo;
         this.id_materia = id_materia;
         this.documento = documento;
     }
 
-    public doc_modulo_MD(){
-        
-    }
     public int getId_doc_modulo() {
         return id_doc_modulo;
     }
@@ -51,16 +52,13 @@ public class doc_modulo_MD {
         this.id_materia = id_materia;
     }
 
-    public Image getDocumento() {
+    public byte[] getDocumento() {
         return documento;
     }
 
-    public void setDocumento(Image documento) {
+    public void setDocumento(byte[] documento) {
         this.documento = documento;
     }
-    
-    
-    
     
     
     

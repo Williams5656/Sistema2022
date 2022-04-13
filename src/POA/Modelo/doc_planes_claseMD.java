@@ -17,12 +17,12 @@ public class doc_planes_claseMD {
     private int id_periodo;
     private String id_materia;
     private int numero;
-    private Image documento;
+    private byte[] documento;
 
     public doc_planes_claseMD() {
     }
 
-    public doc_planes_claseMD(int id_clase, int id_periodo, String id_materia, int numero, Image documento) {
+    public doc_planes_claseMD(int id_clase, int id_periodo, String id_materia, int numero, byte[] documento) {
         this.id_clase = id_clase;
         this.id_periodo = id_periodo;
         this.id_materia = id_materia;
@@ -62,11 +62,11 @@ public class doc_planes_claseMD {
         this.numero = numero;
     }
 
-    public Image getDocumento() {
+    public byte[] getDocumento() {
         return documento;
     }
 
-    public void setDocumento(Image documento) {
+    public void setDocumento(byte[] documento) {
         this.documento = documento;
     }
     

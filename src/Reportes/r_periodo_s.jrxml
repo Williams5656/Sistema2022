@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f0b00848-a2c1-4394-9def-9c5e4a2e1899">
-	<property name="ireport.zoom" value="1.2396694214876038"/>
+	<property name="ireport.zoom" value="1.500000000000002"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="Carrera" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Codigo" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
@@ -16,7 +19,8 @@ case
 	when p.estado=false then 'Inactivo'
 end as Estado
 from periodo_academico p,carrera c
-where c.codigo=p.id_carrera and p.id_carrera=(select codigo from carrera where nombre=$P{Carrera})]]>
+where c.codigo=p.id_carrera and p.id_carrera=(select codigo from carrera where nombre=$P{Carrera})
+	and p.id_periodo=$P{Codigo}]]>
 	</queryString>
 	<field name="id_periodo" class="java.lang.Integer"/>
 	<field name="nombre" class="java.lang.String"/>
@@ -46,9 +50,9 @@ where c.codigo=p.id_carrera and p.id_carrera=(select codigo from carrera where n
 		</band>
 	</title>
 	<pageHeader>
-		<band height="24" splitType="Stretch">
+		<band height="39" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="46" height="20" uuid="0e36400d-4eb6-4407-b0b5-362d88103265"/>
+				<reportElement x="0" y="0" width="46" height="21" uuid="0e36400d-4eb6-4407-b0b5-362d88103265"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Cambria" size="12"/>
 				</textElement>
@@ -56,84 +60,81 @@ where c.codigo=p.id_carrera and p.id_carrera=(select codigo from carrera where n
 			</staticText>
 			<textField>
 				<reportElement x="46" y="1" width="509" height="20" uuid="9121e462-a5da-4b1e-b066-2f71c5969299"/>
-				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$P{Carrera}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="24" splitType="Stretch">
+		<band height="39" splitType="Stretch">
 			<rectangle>
-				<reportElement x="131" y="0" width="34" height="20" backcolor="#3333FF" uuid="9b63b9ef-828b-4838-ba60-9dabb980f151"/>
+				<reportElement x="96" y="0" width="34" height="20" backcolor="#3333FF" uuid="9b63b9ef-828b-4838-ba60-9dabb980f151"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="131" y="0" width="34" height="20" backcolor="#3333FF" uuid="1d7c8d46-aafe-46c8-973d-0f16547bac0e"/>
+				<reportElement x="96" y="0" width="34" height="20" backcolor="#3333FF" uuid="1d7c8d46-aafe-46c8-973d-0f16547bac0e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Codigo]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="165" y="0" width="65" height="20" backcolor="#3333FF" uuid="35948c2f-c7f9-43a7-888e-787bbaa4db5e"/>
+				<reportElement x="149" y="0" width="65" height="20" backcolor="#3333FF" uuid="35948c2f-c7f9-43a7-888e-787bbaa4db5e"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="165" y="0" width="65" height="20" backcolor="#3333FF" uuid="186eef97-3642-41f1-99e6-8a47e2840a57"/>
+				<reportElement x="149" y="0" width="65" height="20" backcolor="#3333FF" uuid="186eef97-3642-41f1-99e6-8a47e2840a57"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="230" y="0" width="65" height="20" backcolor="#3333FF" uuid="f2d5b3b3-57c9-44df-9a9d-a4f3749eeb28"/>
+				<reportElement x="236" y="0" width="65" height="20" backcolor="#3333FF" uuid="f2d5b3b3-57c9-44df-9a9d-a4f3749eeb28"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="230" y="0" width="65" height="20" backcolor="#3333FF" uuid="56a69181-697e-4159-8972-739088e830f4"/>
+				<reportElement x="236" y="0" width="65" height="20" backcolor="#3333FF" uuid="56a69181-697e-4159-8972-739088e830f4"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Inicio]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="295" y="0" width="65" height="20" backcolor="#3333FF" uuid="fac4f5dc-30c6-4452-8b4e-0eb91ca939f5"/>
+				<reportElement x="318" y="0" width="65" height="20" backcolor="#3333FF" uuid="fac4f5dc-30c6-4452-8b4e-0eb91ca939f5"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="295" y="0" width="65" height="20" backcolor="#3333FF" uuid="a630e71d-ae6b-48ec-a439-c4342ba1620f"/>
+				<reportElement x="318" y="0" width="65" height="20" backcolor="#3333FF" uuid="a630e71d-ae6b-48ec-a439-c4342ba1620f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Fin]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="360" y="0" width="65" height="20" backcolor="#3333FF" uuid="997f5fea-d20a-40ed-8453-402bb4fc660a"/>
+				<reportElement x="405" y="0" width="65" height="20" backcolor="#3333FF" uuid="997f5fea-d20a-40ed-8453-402bb4fc660a"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="360" y="0" width="65" height="20" backcolor="#3333FF" uuid="8914249f-2a93-4563-8d58-c2d4e2d54a1f"/>
+				<reportElement x="405" y="0" width="65" height="20" backcolor="#3333FF" uuid="8914249f-2a93-4563-8d58-c2d4e2d54a1f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Estado]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="19" splitType="Stretch">
+		<band height="42" splitType="Stretch">
 			<textField>
-				<reportElement mode="Opaque" x="131" y="0" width="34" height="18" backcolor="#FFFF66" uuid="0506a6a6-24a6-465c-bafe-f269dd835e23"/>
+				<reportElement mode="Opaque" x="96" y="0" width="34" height="18" backcolor="#FFFF66" uuid="0506a6a6-24a6-465c-bafe-f269dd835e23"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{id_periodo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="165" y="0" width="65" height="18" backcolor="#FFFFFF" uuid="b36e77fd-848b-4967-a893-4e453a93cc49"/>
+				<reportElement mode="Opaque" x="149" y="0" width="65" height="18" backcolor="#FFFFFF" uuid="b36e77fd-848b-4967-a893-4e453a93cc49"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="360" y="0" width="65" height="18" backcolor="#FFFF66" uuid="efea7cce-3016-4464-a552-3e3355ef1603"/>
+				<reportElement mode="Opaque" x="405" y="0" width="65" height="18" backcolor="#FFFF66" uuid="efea7cce-3016-4464-a552-3e3355ef1603"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
 			</textField>
-			<line>
-				<reportElement x="131" y="18" width="294" height="1" uuid="e2fda832-1ba5-4ecf-b662-3db4baf21bb1"/>
-			</line>
 			<textField>
-				<reportElement mode="Opaque" x="230" y="0" width="65" height="18" backcolor="#FFFF66" uuid="9ca22fb0-df5b-404d-b5ac-11b6950f2ee3"/>
+				<reportElement mode="Opaque" x="236" y="0" width="65" height="18" backcolor="#FFFF66" uuid="9ca22fb0-df5b-404d-b5ac-11b6950f2ee3"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{ini}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="295" y="0" width="65" height="18" uuid="3bee4db4-dafb-4d7c-9b25-753c85cedca3"/>
+				<reportElement x="318" y="0" width="65" height="18" uuid="3bee4db4-dafb-4d7c-9b25-753c85cedca3"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{fin}]]></textFieldExpression>
 			</textField>

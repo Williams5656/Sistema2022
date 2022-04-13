@@ -12,10 +12,10 @@ import POA.Modelo.doc_silabo_BD;
 import POA.Vista.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -42,6 +42,7 @@ public class con_periodoAcademico {
         vista.getBtnCrear().addActionListener(e -> ingresar());
         vista.getBtn_repor().addActionListener(e -> imprimir());
         vista.getBtnestado().addActionListener(e -> modificar());
+        System.out.println(vista.getTabla().getSelectedRow());
         vista.getTabla().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -171,19 +172,41 @@ public class con_periodoAcademico {
     }
     
     public void imprimir(){
-          Conect con = new Conect();
-            try {
-               
-                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/R_periodo_academico_lista.jasper"));
-                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+        Conect con = new Conect();
+        if(vista.getTabla().getSelectedRow() > -1){
+           try {               
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/r_periodo_s.jasper"));
+                Map<String, Object> params = new HashMap<String, Object>();
+                String carrera = this.carrera;
+                int cod= Integer.parseInt(vista.getTabla().getValueAt(vista.getTabla().getSelectedRow(),0).toString());
+                params.put("Carrera",carrera);
+                params.put("Codigo",cod);
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
                 JasperViewer jv = new JasperViewer(jp, false);
-                JOptionPane.showMessageDialog(null, "Imprimiendo Periodo");
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException e) {
+                System.out.println("no se pudo encontrar registros" + e.getMessage());
+                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+            } 
+        }
+        else{
+            try {               
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/r_periodo_l.jasper"));
+                Map<String, Object> params = new HashMap<String, Object>();
+                String carrera = this.carrera;                
+                params.put("Carrera",carrera);
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
                 jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                 jv.setVisible(true);
             } catch (JRException e) {
                 System.out.println("no se pudo encontrar registros" + e.getMessage());
                 Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
             }
+        }
+          
+            
     }
     
     public boolean estado_fila(){

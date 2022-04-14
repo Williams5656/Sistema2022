@@ -325,6 +325,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         D_txt_Descripcion = new javax.swing.JTextField();
         D_Btn_Guardar = new javax.swing.JButton();
         D_Btn_Cancelar = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -398,29 +399,40 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Id Tipo Actividad:");
-        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, -1, -1));
 
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Nombre:");
-        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
+        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, -1, -1));
 
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Descripción:");
-        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
+        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, -1, -1));
 
         D_txt_idTipoA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 D_txt_idTipoAActionPerformed(evt);
             }
         });
-        jPanel4.add(D_txt_idTipoA, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 175, -1));
-        jPanel4.add(D_txt_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 175, -1));
-        jPanel4.add(D_txt_Descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 175, -1));
+        jPanel4.add(D_txt_idTipoA, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 175, -1));
+        jPanel4.add(D_txt_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 175, -1));
+        jPanel4.add(D_txt_Descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 175, -1));
 
         D_Btn_Guardar.setText("Añadir");
-        jPanel4.add(D_Btn_Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, -1, -1));
+        jPanel4.add(D_Btn_Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, -1, -1));
 
         D_Btn_Cancelar.setText("Cancelar");
-        jPanel4.add(D_Btn_Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, -1, -1));
+        D_Btn_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                D_Btn_CancelarActionPerformed(evt);
+            }
+        });
+        jPanel4.add(D_Btn_Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, -1, -1));
+
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/fondo azul (1).jpg"))); // NOI18N
+        jPanel4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 270));
 
         T_Actividad_D.getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 270));
 
@@ -728,6 +740,10 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_id_AActionPerformed
 
+    private void D_Btn_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_D_Btn_CancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_D_Btn_CancelarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_añadir_Tactividad;
@@ -767,6 +783,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;

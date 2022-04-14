@@ -88,6 +88,7 @@ public class Con_calendario {
         vista.getBtn_modificar().addActionListener(e -> Modificar());
         vista.getValidar_n().addActionListener(e -> validar());
         vista.getBtn_prueba().addActionListener(e -> imprimirpersona());
+        vista.getBtn_cancelar().addActionListener(e -> vista.getT_Actividad_D().dispose());
         vista.getD_Btn_Cancelar().addActionListener(e -> vista.getT_Actividad_D().dispose());
         vista.getBtn_eliminar().addActionListener(e -> eliminar());
         //vista.getTxt_N_actividad().addKeyListener(validar_act());
@@ -146,7 +147,7 @@ public class Con_calendario {
             JOptionPane.showMessageDialog(null, " seleccione uno de los campos");
 
         }
-        if (resp.equals("Reporte Tipo Actividad")) {
+        if (resp.equals("Reporte por Actividad")) {
             try {
                 cargarImprimir(1);
             } catch (SQLException ex) {
@@ -170,22 +171,6 @@ public class Con_calendario {
         }
     }
 
-    public void imprimir_actividad() {
-        Conect con = new Conect();
-        try {
-
-            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/R_Actividad.jasper"));
-            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
-            JasperViewer jv = new JasperViewer(jp, false);
-            JOptionPane.showMessageDialog(null, "Imprimiendo Actividades");
-            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-            jv.setVisible(true);
-        } catch (JRException e) {
-            System.out.println("no se pudo encontrar registros" + e.getMessage());
-            Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
-        }
-
-    }
 
     public void Imp_T_Actividad() {
         Conect con = new Conect();
@@ -368,7 +353,7 @@ public class Con_calendario {
         calendar.setNombre_Actividad(vista.getTxt_N_actividad().getText());
         calendar.setDescripcion(vista.getTxt_descripcion().getText());
         calendar.setFecha_Inicio(fecha());
-        calendar.setFecha_Limite(fechalim);
+        calendar.setFecha_Limite(fecha());
     }
 
     public String fecha() {

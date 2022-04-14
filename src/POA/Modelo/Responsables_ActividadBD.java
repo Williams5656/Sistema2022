@@ -137,22 +137,6 @@ public class Responsables_ActividadBD extends Responsables_ActividadMD  {
         }
     }
     
-     public List<Integer> lista_responsables(int id) {
-  
-        try {
-            String sql1 ="select id_responsable from responsables_act where id_actividad="+getId_actividad()+" order by 1";
-            List<Integer> lista = new ArrayList<Integer>();
-            ResultSet rs = conectar.query(sql1);
-            while (rs.next()) {
-               lista.add(rs.getInt("id_responsable"));
-            }
-            rs.close();
-            return lista;
-        } catch (Exception e) {
-            Logger.getLogger(Responsables_ActividadBD.class.getName()).log(Level.SEVERE, null, e);
-            return null;
-        }
-    }
      public boolean eliminar(int id_act){
         String nsql = "delete from responsables_act where id_actividad='" +id_act+ "'";
         if(conectar.noQuery(nsql)==null){

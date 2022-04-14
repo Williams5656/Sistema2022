@@ -27,7 +27,7 @@ public class CalendarioBD extends CalendarioMD {
         super(id_Actividad, id_Carrera, id_Periodo, id_TipoActividad, Nombre_Actividad, Descripcion, Fecha_Inicio, Fecha_Limite);
     }
 
-     public List<CalendarioMD> mostrardatos() {
+    public List<CalendarioMD> mostrardatos() {
         List<CalendarioMD> listaA = new ArrayList<CalendarioMD>();
         try {
             String sql = "select * from calendario";
@@ -53,7 +53,7 @@ public class CalendarioBD extends CalendarioMD {
         }
 
     }
-   
+
     public List<CalendarioMD> obtenerDatos(int id_actividad) {
         List<CalendarioMD> listaA = new ArrayList<CalendarioMD>();
         try {
@@ -80,10 +80,8 @@ public class CalendarioBD extends CalendarioMD {
         }
 
     }
-   
 
-    
-     public int codigo() {
+    public int codigo() {
         try {
             int c = 0;
             String sql = "select max(id_responsable) as id_responsable from responsables_act";
@@ -97,7 +95,8 @@ public class CalendarioBD extends CalendarioMD {
             return 0;
         }
     }
-          public int codigo_act() {
+
+    public int codigo_act() {
         try {
             int c = 0;
             String sql = "select max(id_actividad) as id_actividad from calendario";
@@ -114,7 +113,7 @@ public class CalendarioBD extends CalendarioMD {
 
     public boolean insertar() {
         String nsql = "INSERT INTO calendario(id_actividad,id_carrera,id_periodo,id_tipoactividad,nombre_actividad,descripcion,fecha_inicio,fecha_limite)" + "VALUES ('"
-                + getId_Actividad() + "','" + getId_Carrera() + "','" + getId_Periodo() + "','" + getid_TipoActividad()  + "','" + getNombre_Actividad() + "','" + getDescripcion() + "','" + getFecha_Inicio() + "','" + getFecha_Limite() + "')";
+                + getId_Actividad() + "','" + getId_Carrera() + "','" + getId_Periodo() + "','" + getid_TipoActividad() + "','" + getNombre_Actividad() + "','" + getDescripcion() + "','" + getFecha_Inicio() + "','" + getFecha_Limite() + "')";
 
         if (conectar.noQuery(nsql) == null) {
             return true;
@@ -129,10 +128,9 @@ public class CalendarioBD extends CalendarioMD {
     public boolean modificar(int id_actividad) {
         //Transformo image a base64 encode para postgresl
 
-        String nsql = "update calendario set id_carrera='" + getId_Carrera()+ "',id_periodo='" + getId_Periodo() + "',id_tipoactividad='" + getid_TipoActividad()+ "',nombre_actividad='" + getNombre_Actividad() + 
-                 "',descripcion='" + getDescripcion() + "',fecha_inicio='" + getFecha_Inicio() + "',fecha_limite='" + getFecha_Limite()+ "'"
+        String nsql = "update calendario set id_carrera='" + getId_Carrera() + "',id_periodo='" + getId_Periodo() + "',id_tipoactividad='" + getid_TipoActividad() + "',nombre_actividad='" + getNombre_Actividad()
+                + "',descripcion='" + getDescripcion() + "',fecha_inicio='" + getFecha_Inicio() + "',fecha_limite='" + getFecha_Limite() + "'"
                 + " where id_actividad='" + id_actividad + "'";
-        
 
         if (conectar.noQuery(nsql) == null) {
             return true;
@@ -142,24 +140,8 @@ public class CalendarioBD extends CalendarioMD {
         }
 
     }
-    
-        public String validar_nombre(String nombre) {
-            String n ="";
-        try {
-            String sql1 ="Select DISTINCT nombre_actividad as nombres \n" + "from calendario" +
-               " where nombre_actividad = '"+nombre+"'";
-            ResultSet rs = conectar.query(sql1);
-            while (rs.next()) {
-                n = (rs.getString("nombres"));
-            }
-            rs.close();
-            return n;
-        } catch (Exception e) {
-            Logger.getLogger(Responsables_ActividadBD.class.getName()).log(Level.SEVERE, null, e);
-            return null;
-        }
-    }
-         public int validar_Nombre_act() {
+
+    public int validar_Nombre_act() {
 
         int fila = 0;
         try {
@@ -176,15 +158,4 @@ public class CalendarioBD extends CalendarioMD {
         }
     }
 
-//            public boolean validar_nombre(String nombre) {
-//            String sql1 ="Select DISTINCT nombre_actividad as nombres \n" + "from calendario" +
-//               " where nombre_actividad = '"+nombre+"'";
-//
-//            if (conectar.noQuery(sql1) == null) {
-//            return false;
-//        } else {
-//            System.out.println("Error");
-//            return true;
-//        }
-//    }
 }

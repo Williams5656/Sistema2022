@@ -14,13 +14,13 @@
 		'V'||ad.ciclo||paralelo
 	when jornada='NOCTURNA' then
 		'N'||ad.ciclo||paralelo
-end as "CICLO" , materia,p2.nombres||' '||p2.apellidos as "RESPONSABLE",fecha AS "PLAN",hora_guias AS "GUIA", c.nombre, pa.nombre as "Periodo Academico", d.numero
-from asignacion_docentes ad join persona p on ad.identificacion=p.cedula
+end as "CICLO" , materia,p2.nombres||' '||p2.apellidos as "RESPONSABLE",fecha AS "PLAN",hora_guias AS "GUIA", c.nombre,d.numero,pa.nombre
+from persona p join asignacion_docentes ad on p.cedula=ad.identificacion
+join documentacion d on d.id_asignacion=ad.id_asignacion||''
 join materia m on ad.asignatura=m.codigo
-join documentacion d on ad.id_asignacion||''=d.id_asignacion
 join area_carrera a on m.area=a.id_area||''
 join persona p2 on a.responsable=p2.cedula
-join carrera c on a.carrera=c.codigo
+join carrera c on c.codigo=m.nombre
 join periodo_academico pa on pa.id_periodo||''=ad.periodo
 where p.apellidos||' '||p.nombres=$P{doc}]]>
 	</queryString>
@@ -31,7 +31,6 @@ where p.apellidos||' '||p.nombres=$P{doc}]]>
 	<field name="PLAN" class="java.sql.Date"/>
 	<field name="GUIA" class="java.lang.Integer"/>
 	<field name="nombre" class="java.lang.String"/>
-	<field name="Periodo Academico" class="java.lang.String"/>
 	<field name="numero" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>

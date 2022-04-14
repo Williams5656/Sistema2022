@@ -111,7 +111,6 @@ public class Con_calendario {
         listaresponsable();
         Ihnabilitar();
         fecha();
-        D_tipo_actividad();
 
     }
 
@@ -147,7 +146,7 @@ public class Con_calendario {
             JOptionPane.showMessageDialog(null, " seleccione uno de los campos");
 
         }
-        if (resp.equals("Reporte por Actividad")) {
+        if (resp.equals("Reporte Tipo Actividad")) {
             try {
                 cargarImprimir(1);
             } catch (SQLException ex) {
@@ -158,7 +157,7 @@ public class Con_calendario {
         if (resp.equals("Reporte Completo")) {
 
             try {
-                JOptionPane.showMessageDialog(null, "imprimiendo Actividades");
+                JOptionPane.showMessageDialog(null, "Imprimiendo Actividades");
                 JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/R_Actividad.jasper"));
 
                 JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
@@ -521,8 +520,9 @@ public class Con_calendario {
     private void cargarImprimir(int origen) throws SQLException {
         vista.getImprimir_D().setSize(560, 275);//dimensiones
         vista.getImprimir_D().setLocationRelativeTo(vista);//posicion
-
-        vista.getImprimir_D().setTitle("Ingresar Tipo De Actividad");
+        vista.getCombo_tipo_actividad_repor().removeAllItems();
+         D_tipo_actividad();
+        vista.getImprimir_D().setTitle("Reporte Tipo Actividad");
         vista.getImprimir_D().setVisible(true);
 
     }

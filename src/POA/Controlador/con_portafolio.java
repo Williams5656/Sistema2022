@@ -74,29 +74,33 @@ public class con_portafolio {
         vista.getChk_periodo().setEnabled(false);
         vista.getChk_seccion().setEnabled(false);
         vista.getChk_paralelo().setEnabled(false);
-        vista.getPar_a().setEnabled(false);
-        vista.getPar_b().setEnabled(false);
+        vista.getComboparalelo().setEnabled(false);
+        vista.getCombodocu().setEnabled(false);
         vista.getBtn_buscar().setEnabled(false);
         vista.getBtnImprimir().setEnabled(false);
         vista.getBtn_subir().setEnabled(false);
-        vista.getBtn_actua().setEnabled(false);
+        vista.getChk_doc().setEnabled(false);
         vista.getTxt_materia().setEditable(false);
     }
 
     public void botones() {
         if (vista.getBtnModulos().isSelected() == true || vista.getBtnSilabo().isSelected() == true || vista.getBtnPlanesClase().isSelected() == true) {
+            vista.getComboPeriodAcademico().setEnabled(true);
+            vista.getComboCiclo().setEnabled(false);
+            vista.getComboSeccion().setEnabled(false);
+            vista.getChk_ciclo().setEnabled(false);
+            vista.getChk_materia().setEnabled(true);
+            vista.getChk_periodo().setEnabled(true);
+            vista.getChk_seccion().setEnabled(false);
+            vista.getChk_paralelo().setEnabled(false);
+            vista.getComboparalelo().setEnabled(false);
+            vista.getCombodocu().setEnabled(true);
             vista.getBtn_buscar().setEnabled(true);
             vista.getBtnImprimir().setEnabled(true);
             vista.getBtn_subir().setEnabled(true);
-            vista.getBtn_actua().setEnabled(true);
-            vista.getChk_materia().setEnabled(true);
-            vista.getChk_periodo().setEnabled(true);
-            vista.getComboPeriodAcademico().setEnabled(true);
-            vista.getTxt_materia().setEditable(true);
-            vista.getChk_materia().setSelected(false);
-            vista.getChk_periodo().setSelected(false);
-            vista.getTxt_materia().setText("");
-            vista.getComboPeriodAcademico().setSelectedIndex(0);
+            vista.getChk_doc().setEnabled(true);
+            vista.getTxt_materia().setEditable(true);         
+            limpiar();
         }
 
         if (vista.getBtnInstrumentosEv().isSelected() == true || vista.getBtnInformesSilabo().isSelected() == true || vista.getBtnNotas().isSelected() == true) {
@@ -105,26 +109,35 @@ public class con_portafolio {
             vista.getComboSeccion().setEnabled(true);
             vista.getChk_ciclo().setEnabled(true);
             vista.getChk_materia().setEnabled(true);
-            vista.getTxt_materia().setEditable(true);
             vista.getChk_periodo().setEnabled(true);
             vista.getChk_seccion().setEnabled(true);
             vista.getChk_paralelo().setEnabled(true);
-            vista.getPar_a().setEnabled(true);
-            vista.getPar_b().setEnabled(true);
+            vista.getComboparalelo().setEnabled(true);
+            vista.getCombodocu().setEnabled(true);
             vista.getBtn_buscar().setEnabled(true);
             vista.getBtnImprimir().setEnabled(true);
             vista.getBtn_subir().setEnabled(true);
-            vista.getBtn_actua().setEnabled(true);
-            vista.getTxt_materia().setEditable(true);
-        } else {
-            vista.getComboCiclo().setEnabled(false);
-            vista.getComboSeccion().setEnabled(false);
-            vista.getChk_ciclo().setEnabled(false);
-            vista.getChk_seccion().setEnabled(false);
-            vista.getChk_paralelo().setEnabled(false);
-            vista.getPar_a().setEnabled(false);
-            vista.getPar_b().setEnabled(false);
+            vista.getChk_doc().setEnabled(true);
+            vista.getTxt_materia().setEditable(true);         
+            limpiar();
         }
+    }
+    
+    public void limpiar(){        
+            vista.getTxt_materia().setText("");
+            
+            vista.getChk_periodo().setSelected(false);
+            vista.getChk_paralelo().setSelected(false);
+            vista.getChk_materia().setSelected(false);
+            vista.getChk_ciclo().setSelected(false);
+            vista.getChk_seccion().setSelected(false);
+            vista.getChk_doc().setSelected(false);
+            
+            vista.getComboPeriodAcademico().setSelectedIndex(0);
+            vista.getComboCiclo().setSelectedIndex(0);
+            vista.getComboparalelo().setSelectedIndex(0);
+            vista.getCombodocu().setSelectedIndex(0);
+            vista.getComboSeccion().setSelectedIndex(0);
     }
 
     public void llenarCombo() {
@@ -137,12 +150,6 @@ public class con_portafolio {
 
         public boolean isCellEditable(int row, int column) {
             return false;
-        }
-    }
-
-    public void buscar() {
-        if (vista.getBtnModulos().isSelected()) {
-            tabla_modulo();
         }
     }
 
@@ -208,10 +215,22 @@ public class con_portafolio {
                     }
                 }
             }
+            
+            if (vista.getChk_doc().isSelected() == true) {
+                boolean res;
+                if (vista.getCombodocu().getSelectedItem().toString()=="Subidos") res=true;
+                else res=false;
+                for (int i = 0; i < modelo.getRowCount(); i++) {
+                    if ((boolean)modelo.getValueAt(i, 3)!=res) {
+                        modelo.removeRow(i);
+                        i = i - 1;
+                    }
+                }
+            }
         }
 
         //PLANES DE CLASES------------------------------------------------------------------------------------
-        if (vista.getBtnModulos().isSelected() || vista.getBtnSilabo().isSelected()) {
+        if (vista.getBtnPlanesClase().isSelected()) {
 
             if (vista.getChk_periodo().isSelected() == true) {
                 String com = vista.getComboPeriodAcademico().getSelectedItem().toString();
@@ -232,15 +251,27 @@ public class con_portafolio {
                     }
                 }
             }
+            
+            if (vista.getChk_doc().isSelected() == true) {
+                boolean res;
+                if (vista.getCombodocu().getSelectedItem().toString()=="Subidos") res=true;
+                else res=false;
+                for (int i = 0; i < modelo.getRowCount(); i++) {
+                    if ((boolean)modelo.getValueAt(i, 4)!=res) {
+                        modelo.removeRow(i);
+                        i = i - 1;
+                    }
+                }
+            }
         }
 
         //INSTRUMENTOS DE EVALUACION---NOTAS---INFORMES------------------------------------------------------------------------------
         if (vista.getBtnInstrumentosEv().isSelected() || vista.getBtnInformesSilabo().isSelected() || vista.getBtnNotas().isSelected()) {
-
+            
             if (vista.getChk_periodo().isSelected() == true) {
                 String com = vista.getComboPeriodAcademico().getSelectedItem().toString();
                 for (int i = 0; i < modelo.getRowCount(); i++) {
-                    if (!modelo.getValueAt(i, 3).toString().equals(com)) {
+                    if (!modelo.getValueAt(i, 1).toString().equals(com)) {
                         modelo.removeRow(i);
                         i = i - 1;
                     }
@@ -250,30 +281,31 @@ public class con_portafolio {
             if (vista.getChk_materia().isSelected() == true) {
                 String com = vista.getTxt_materia().getText().toUpperCase();
                 for (int i = 0; i < modelo.getRowCount(); i++) {
-                    if (!modelo.getValueAt(i, 4).toString().toUpperCase().matches(".*" + com + ".*")) {
+                    if (!modelo.getValueAt(i, 2).toString().toUpperCase().matches(".*" + com + ".*")) {
                         modelo.removeRow(i);
                         i = i - 1;
                     }
                 }
             }
-
-            if (vista.getChk_paralelo().isSelected() == true) {
-                if (vista.getPar_a().isSelected()) {
-                    String paraleloA = "A";
-                    for (int i = 0; i < modelo.getRowCount(); i++) {
-                        if (!modelo.getValueAt(i, 7).toString().toUpperCase().matches(".*" + paraleloA + ".*")) {
-                            modelo.removeRow(i);
-                            i = i - 1;
-                        }
+            
+            if (vista.getChk_doc().isSelected() == true) {
+                boolean res;
+                if (vista.getCombodocu().getSelectedItem().toString()=="Subidos") res=true;
+                else res=false;
+                for (int i = 0; i < modelo.getRowCount(); i++) {
+                    if ((boolean)modelo.getValueAt(i, 8)!=res) {
+                        modelo.removeRow(i);
+                        i = i - 1;
                     }
                 }
-                if (vista.getPar_b().isSelected()) {
-                    String paraleloB = "B";
-                    for (int i = 0; i < modelo.getRowCount(); i++) {
-                        if (!modelo.getValueAt(i, 7).toString().toUpperCase().matches(".*" + paraleloB + ".*")) {
-                            modelo.removeRow(i);
-                            i = i - 1;
-                        }
+            }
+            
+            if (vista.getChk_paralelo().isSelected() == true) {
+                String com = vista.getComboparalelo().getSelectedItem().toString();
+                for (int i = 0; i < modelo.getRowCount(); i++) {
+                    if (!modelo.getValueAt(i, 7).toString().equals(com)) {
+                        modelo.removeRow(i);
+                        i = i - 1;
                     }
                 }
             }

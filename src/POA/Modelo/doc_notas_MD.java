@@ -16,12 +16,12 @@ public class doc_notas_MD {
     private int id_doc_nota;
     private String id_asignacion;
     private String descripcion;
-    private Image documento; 
+    private byte[] documento; 
 
     public doc_notas_MD() {
     }
 
-    public doc_notas_MD(int id_doc_nota, String id_asignacion, String descripcion, Image documento) {
+    public doc_notas_MD(int id_doc_nota, String id_asignacion, String descripcion, byte[] documento) {
         this.id_doc_nota = id_doc_nota;
         this.id_asignacion = id_asignacion;
         this.descripcion = descripcion;
@@ -52,11 +52,11 @@ public class doc_notas_MD {
         this.descripcion = descripcion;
     }
 
-    public Image getDocumento() {
+    public byte[] getDocumento() {
         return documento;
     }
 
-    public void setDocumento(Image documento) {
+    public void setDocumento(byte[] documento) {
         this.documento = documento;
     }
     

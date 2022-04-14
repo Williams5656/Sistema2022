@@ -14,13 +14,13 @@ import java.awt.Image;
 public class doc_instrumento_evaluacionMD {
     private int id_doc_instrumento;
     private String id_materia;
-    private Image documento;
+    private byte[] documento;
     private int id_periodo;
 
     public doc_instrumento_evaluacionMD() {
     }
 
-    public doc_instrumento_evaluacionMD(int id_doc_instrumento, String id_materia, Image documento, int id_periodo) {
+    public doc_instrumento_evaluacionMD(int id_doc_instrumento, String id_materia, byte[] documento, int id_periodo) {
         this.id_doc_instrumento = id_doc_instrumento;
         this.id_materia = id_materia;
         this.documento = documento;
@@ -43,11 +43,11 @@ public class doc_instrumento_evaluacionMD {
         this.id_materia = id_materia;
     }
 
-    public Image getDocumento() {
+    public byte[] getDocumento() {
         return documento;
     }
 
-    public void setDocumento(Image documento) {
+    public void setDocumento(byte[] documento) {
         this.documento = documento;
     }
 

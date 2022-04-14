@@ -74,7 +74,7 @@ public class doc_instrumento_evaluacionBD extends doc_instrumento_evaluacionMD{
             }
             rs.close();
             ResultSet rs2 = conectar.query(sql);
-            Object [][] m= new String[n_fil][9];
+            Object [][] m= new Object[n_fil][9];
             int f=0;                    
             while (rs2.next()) {                
                 m[f][0]=rs2.getString(1);

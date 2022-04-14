@@ -71,7 +71,7 @@ public class doc_notas_BD extends doc_notas_MD {
             }
             rs.close();
             ResultSet rs2 = conectar.query(sql);
-            Object[][] m = new String[n_fil][9];
+            Object[][] m = new Object[n_fil][9];
             int f = 0;
             while (rs2.next()) {
                 m[f][0] = rs2.getString(1);

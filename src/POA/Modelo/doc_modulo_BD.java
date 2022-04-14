@@ -99,12 +99,10 @@ public class doc_modulo_BD extends doc_modulo_MD {
             OutputStream out = new FileOutputStream("new.pdf");
             out.write(datosPDF);
 
-            //abrir archivo
             out.close();
             bos.close();
             ps.close();
             rs.close();
-            conectar.cierraConexion();
             try {
                 Desktop.getDesktop().open(new File("new.pdf"));
             } catch (Exception ex) {

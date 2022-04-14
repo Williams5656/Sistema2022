@@ -189,12 +189,10 @@ public class doc_planes_claseBD extends doc_planes_claseMD {
             OutputStream out = new FileOutputStream("new.pdf");
             out.write(datosPDF);
 
-            //abrir archivo
             out.close();
             bos.close();
             ps.close();
             rs.close();
-            conectar.cierraConexion();
             try {
                 Desktop.getDesktop().open(new File("new.pdf"));
             } catch (Exception ex) {

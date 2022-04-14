@@ -321,31 +321,31 @@ public class Con_Asignacion_Docente {
 
         if (bdasignacion.insertar()) {
             JOptionPane.showMessageDialog(null, "DATOS GUARDADOS");
+            /////autocreacion documntos, dudas consultar miguel///////////////////////
+            doc_notas_BD not = new doc_notas_BD();
+            if (not.crear_notas()) {
+                System.out.println("notas creadas");
+            } else {
+                System.out.println("Error al crear notas");
+            }
+            doc_instrumento_evaluacionBD ins = new doc_instrumento_evaluacionBD();
+            if (ins.crear_intrumentos()) {
+                System.out.println("instrumentos creadas");
+            } else {
+                System.out.println("Error al crear instrumentos");
+            }
+            doc_informes_BD inf = new doc_informes_BD();
+            if (inf.crear_notas()) {
+                System.out.println("informes creados");
+            } else {
+                System.out.println("Error al crear informes");
+            }
+            /////autocreacion documntos, dudas consultar miguel///////////////////////
             lista();
             nuevo();
         } else {
             JOptionPane.showMessageDialog(null, "Error al guardar");
         }
-        /////autocreacion documntos, dudas consultar miguel///////////////////////
-        doc_notas_BD not = new doc_notas_BD();
-        if (not.crear_notas()) {
-            System.out.println("notas creadas");
-        } else {
-            System.out.println("Error al crear notas");
-        }
-        doc_instrumento_evaluacionBD ins = new doc_instrumento_evaluacionBD();
-        if (ins.crear_intrumentos()) {
-            System.out.println("instrumentos creadas");
-        } else {
-            System.out.println("Error al crear instrumentos");
-        }
-        doc_informes_BD inf = new doc_informes_BD();
-        if (inf.crear_notas()) {
-            System.out.println("informes creados");
-        } else {
-            System.out.println("Error al crear informes");
-        }
-        /////autocreacion documntos, dudas consultar miguel///////////////////////
 
     }
 

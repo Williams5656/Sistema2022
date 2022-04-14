@@ -6,16 +6,11 @@ package POA.Controlador;
 
 import POA.Modelo.*;
 import POA.Vista.*;
-import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
@@ -36,6 +31,9 @@ public class con_portafolio {
     doc_modulo_BD bdmodulo = new doc_modulo_BD();
     doc_silabo_BD bdsilabo = new doc_silabo_BD();
     doc_planes_claseBD bdplanes = new doc_planes_claseBD();
+    doc_notas_BD bdnotas = new doc_notas_BD();
+    doc_informes_BD bdinformes = new doc_informes_BD();
+    doc_instrumento_evaluacionBD bdinstrumentos = new doc_instrumento_evaluacionBD();
     private String carrera;
     MateriaBD materiabd = new MateriaBD();
     List<MateriaMD> listMat = materiabd.mostrardatos();
@@ -993,6 +991,27 @@ public class con_portafolio {
                 System.out.println("Error al subir el archivo");
             }
         }
+        if (vista.getBtnNotas().isSelected() && vista.getTbl_Datos().getSelectedRow() > -1) {
+            if (bdnotas.insertar_doc(Integer.parseInt(vista.getTbl_Datos().getValueAt(vista.getTbl_Datos().getSelectedRow(), 0).toString()), vista)) {
+                System.out.println("Archivos subido");
+            } else {
+                System.out.println("Error al subir el archivo");
+            }
+        }
+        if (vista.getBtnInformesSilabo().isSelected() && vista.getTbl_Datos().getSelectedRow() > -1) {
+            if (bdinformes.insertar_doc(Integer.parseInt(vista.getTbl_Datos().getValueAt(vista.getTbl_Datos().getSelectedRow(), 0).toString()), vista)) {
+                System.out.println("Archivos subido");
+            } else {
+                System.out.println("Error al subir el archivo");
+            }
+        }
+        if (vista.getBtnInstrumentosEv().isSelected() && vista.getTbl_Datos().getSelectedRow() > -1) {
+            if (bdinstrumentos.insertar_doc(Integer.parseInt(vista.getTbl_Datos().getValueAt(vista.getTbl_Datos().getSelectedRow(), 0).toString()), vista)) {
+                System.out.println("Archivos subido");
+            } else {
+                System.out.println("Error al subir el archivo");
+            }
+        }
     }
 
     public void abrir() {
@@ -1009,6 +1028,15 @@ public class con_portafolio {
                             }
                             if (vista.getBtnPlanesClase().isSelected()) {
                                 bdplanes.abrir(Integer.parseInt(vista.getTbl_Datos().getValueAt(vista.getTbl_Datos().getSelectedRow(), 0).toString()));
+                            }
+                            if (vista.getBtnNotas().isSelected()) {
+                                bdnotas.abrir(Integer.parseInt(vista.getTbl_Datos().getValueAt(vista.getTbl_Datos().getSelectedRow(), 0).toString()));
+                            }
+                            if (vista.getBtnInformesSilabo().isSelected()) {
+                                bdinformes.abrir(Integer.parseInt(vista.getTbl_Datos().getValueAt(vista.getTbl_Datos().getSelectedRow(), 0).toString()));
+                            }
+                            if (vista.getBtnInstrumentosEv().isSelected()) {
+                                bdinstrumentos.abrir(Integer.parseInt(vista.getTbl_Datos().getValueAt(vista.getTbl_Datos().getSelectedRow(), 0).toString()));
                             }
                         } catch (Exception ex) {
                             System.out.println("Seleccione un archivo con documento");

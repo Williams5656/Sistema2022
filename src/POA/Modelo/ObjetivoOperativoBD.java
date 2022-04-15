@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -137,12 +138,20 @@ public class ObjetivoOperativoBD extends ObjetivoOperativoMD {
     }
     
     public boolean Eliminar(String placa) {
-        String nsql = " delete from objetivo_operativo where \"id_proyecto\"='" + placa + "'";
-        if (conectar.noQuery(nsql) == null) {
-            return true;
-        } else {
-            System.out.println("error eliminar");
-            return false;
-        }
+         String nsql= " delete from actividades where \"id_proyecto\"='" + placa + "'";
+                
+                try {
+                    if(conectar.noQuery(nsql)==null){
+                    return true;
+                    }
+                    else{
+                        System.out.println("error eliminar");
+                        return false;
+                    }  
+                 } catch (Exception e) {
+                     
+                    JOptionPane.showMessageDialog(null, "!!Existen actividades relacionados a este proyecto");
+                    return false;
+                 }
     }
 }

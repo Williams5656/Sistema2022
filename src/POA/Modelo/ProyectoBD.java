@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 import org.postgresql.util.Base64;
 
 /**
@@ -108,12 +109,20 @@ public class ProyectoBD extends ProyectoMD{
     }
     
     public boolean Eliminar(String placa) {
-        String nsql = " delete from proyecto where \"id_proyecto\"='" + placa + "'";
-        if (conectar.noQuery(nsql) == null) {
-            return true;
-        } else {
-            System.out.println("error eliminar");
-            return false;
-        }
+        String nsql= " delete from actividades where \"id_proyecto\"='" + placa + "'";
+                
+                try {
+                    if(conectar.noQuery(nsql)==null){
+                    return true;
+                    }
+                    else{
+                        System.out.println("error eliminar");
+                        return false;
+                    }  
+                 } catch (Exception e) {
+                     
+                    JOptionPane.showMessageDialog(null, "!!Existen actividades relacionados a este proyecto");
+                    return false;
+                 }
     }
 }

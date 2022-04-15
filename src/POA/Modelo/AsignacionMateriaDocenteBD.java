@@ -48,12 +48,12 @@ public class AsignacionMateriaDocenteBD extends AsignacionMateriaDocentesMD {
         }
     }
 
-    public List<AsignacionMateriaDocentesMD> obtenerdatos(String identificacion) {
+    public List<AsignacionMateriaDocentesMD> obtenerdatos(String id_asignacion) {
 
         try {
             List<AsignacionMateriaDocentesMD> lista = new ArrayList<AsignacionMateriaDocentesMD>();
 
-            String sql = "select * from asignacion_docentes" + " where\"identificacion\"='" + identificacion + "' and estado = 1";
+            String sql = "select * from asignacion_docentes" + " where\"id_asignacion\"='" + id_asignacion + "' and estado = 1";
             ResultSet rs = conectar.query(sql);
             while (rs.next()) {
                 AsignacionMateriaDocentesMD asignacion = new AsignacionMateriaDocentesMD();

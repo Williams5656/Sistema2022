@@ -1,97 +1,145 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4f2defc5-eb13-42dc-897e-8db7406e063b">
-	<property name="ireport.zoom" value="1.771561000000001"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="727a0308-2678-48a3-b27f-284d9521829c">
+	<property name="ireport.zoom" value="1.6105100000000039"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="19"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Carrera" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Codigos" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
-		<![CDATA[select d.id_doc_modulo, per.nombre, mat.materia from doc_modulo d,materia mat, periodo_academico per where d.id_periodo=per.id_periodo and d.id_materia=mat.materia]]>
+		<![CDATA[select md.id_doc_modulo, per.nombre, mt.materia,
+	case
+	when md.documento isnull=true then 'Faltante'
+	when md.documento isnull=false then 'Subido'
+	end
+	as estado
+	from doc_modulo md 
+    join periodo_academico per on md.id_periodo=per.id_periodo
+    join materia mt on md.id_materia=mt.codigo
+    where mt.nombre=(select codigo from carrera where nombre=$P{Carrera})
+	and md.id_doc_modulo in($P{Codigos});]]>
 	</queryString>
 	<field name="id_doc_modulo" class="java.lang.Integer"/>
 	<field name="nombre" class="java.lang.String"/>
 	<field name="materia" class="java.lang.String"/>
+	<field name="estado" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="455" y="0" width="100" height="20" uuid="12341c6f-7dcd-402b-a945-7bb1542dd595"/>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
-			<image>
-				<reportElement x="2" y="0" width="127" height="69" uuid="89e01d61-cd2b-4781-8ea3-7064093a3394"/>
-			</image>
-		</band>
-	</title>
-	<pageHeader>
-		<band height="41" splitType="Stretch">
+		<band height="40" splitType="Stretch">
 			<staticText>
-				<reportElement x="2" y="0" width="555" height="20" uuid="51120e2e-1d57-4367-a15d-1cd8563ab61a"/>
+				<reportElement x="0" y="20" width="555" height="20" uuid="728c7000-b97c-4cc0-8eca-964d70461b21"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Listado de Periodos Academicos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="20" uuid="f23e519a-1a5b-47ef-8121-f78ebd341ae9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Instituto Superior Tecnológico del Azuay]]></text>
 			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="22" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="20" width="555" height="20" uuid="744359d5-31a6-4ce8-99b5-6b3acb4f72ac"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="14" isBold="true"/>
+				<reportElement x="0" y="0" width="46" height="21" uuid="46c05023-719c-4561-a3cb-0edf0d2384bc"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Cambria" size="12"/>
 				</textElement>
-				<text><![CDATA[Lista de Periodos]]></text>
+				<text><![CDATA[Carrera: ]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="46" y="1" width="509" height="20" uuid="547e3c3c-da8b-44a4-80ca-ddbf60f4012c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{Carrera}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="60" splitType="Stretch">
+		<band height="25" splitType="Stretch">
 			<rectangle>
-				<reportElement x="2" y="40" width="100" height="20" backcolor="#0000FF" uuid="39c21656-8ed6-49b0-a037-99cfdd4a1779"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="102" y="40" width="100" height="20" backcolor="#0000FF" uuid="2e6bbc7a-a97a-4800-ba11-9793cbe6dc42"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="200" y="40" width="100" height="20" backcolor="#0000FF" uuid="cfdacec8-f78d-4318-9468-1acdd5a8d628"/>
+				<reportElement x="159" y="2" width="73" height="20" backcolor="#3333FF" uuid="d1275964-68cf-413f-aefc-768ac90ce64d"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="2" y="40" width="100" height="20" uuid="ea95a8cb-d4ff-4864-8f60-12801cbc0987"/>
-				<text><![CDATA[id_doc_modulo]]></text>
+				<reportElement x="159" y="2" width="73" height="20" backcolor="#3333FF" uuid="deb5e29d-a9dd-4761-be35-0ce1b1bc2108"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Periodo]]></text>
 			</staticText>
+			<rectangle>
+				<reportElement x="254" y="2" width="126" height="20" backcolor="#3333FF" uuid="f59f095c-1947-4148-aff0-2e9dc07e4653"/>
+			</rectangle>
 			<staticText>
-				<reportElement x="102" y="40" width="100" height="20" uuid="06c5f796-3946-4f3a-87c1-04b59c78e642"/>
-				<text><![CDATA[nombre]]></text>
+				<reportElement x="254" y="2" width="126" height="20" backcolor="#3333FF" uuid="eea53212-d9ea-4768-968d-dc6c4a4157d2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Materia]]></text>
 			</staticText>
+			<rectangle>
+				<reportElement x="402" y="2" width="65" height="20" backcolor="#3333FF" uuid="a9bfc985-b0d9-4179-9c80-897211206c41"/>
+			</rectangle>
 			<staticText>
-				<reportElement x="202" y="40" width="100" height="20" uuid="3db8d4d7-4fcb-49ec-a389-0b6d3a84b551"/>
-				<text><![CDATA[materia]]></text>
+				<reportElement x="402" y="2" width="65" height="20" backcolor="#3333FF" uuid="064fe501-2c3d-44f3-9e59-16610e09eecc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Documento]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="103" y="2" width="34" height="20" backcolor="#3333FF" uuid="2a34ec8b-34e7-41a4-96a4-bc09e01da9df"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="103" y="2" width="34" height="20" backcolor="#3333FF" uuid="72db1805-7e89-413d-a129-9673ebc8307c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Codigo]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="100" height="20" uuid="dd4d92f1-3312-44e0-ae0c-226669925c74"/>
+				<reportElement x="103" y="0" width="34" height="20" uuid="7f724a11-2171-4e27-a551-80db91dc07ef"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{id_doc_modulo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="100" y="0" width="100" height="20" uuid="b64c9d5a-25db-4de3-84a9-67126bdb93c7"/>
+				<reportElement mode="Opaque" x="159" y="0" width="73" height="20" backcolor="#FFFFCC" uuid="1d4ec6e1-ea75-45aa-822b-53a3beb50142"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="202" y="0" width="100" height="20" uuid="a8352456-7a3a-4960-8f04-2fe83bfa249d"/>
+				<reportElement x="254" y="0" width="126" height="20" uuid="a194324e-1be8-432e-81fb-1297b385e533"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{materia}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="402" y="0" width="65" height="20" backcolor="#FFFFCC" uuid="eafe454f-a4b3-4c53-97ab-81579f387476"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="147" y="0" width="1" height="19" forecolor="#999999" uuid="d184aaed-093a-4347-8094-fdca3c6e68ec"/>
+			</line>
+			<line>
+				<reportElement x="242" y="1" width="1" height="19" forecolor="#999999" uuid="68b57cbe-4ee0-41af-9b5f-7043954b795b"/>
+			</line>
+			<line>
+				<reportElement x="390" y="1" width="1" height="19" forecolor="#999999" uuid="9e06626c-d914-4f57-ac34-734e9c3c8fee"/>
+			</line>
+			<line>
+				<reportElement x="103" y="19" width="364" height="1" forecolor="#999999" uuid="c36ae527-840e-4aeb-a8ff-cdebb0757b8b"/>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="46" splitType="Stretch"/>
+		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch">
-			<textField>
-				<reportElement x="535" y="0" width="20" height="20" uuid="c24830ad-1072-4a1a-9fb5-562e97339fa0"/>
-				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-		</band>
+		<band height="54" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>

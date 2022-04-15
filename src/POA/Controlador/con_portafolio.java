@@ -8,7 +8,9 @@ import POA.Modelo.*;
 import POA.Vista.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -99,7 +101,7 @@ public class con_portafolio {
             vista.getBtnImprimir().setEnabled(true);
             vista.getBtn_subir().setEnabled(true);
             vista.getChk_doc().setEnabled(true);
-            vista.getTxt_materia().setEditable(true);         
+            vista.getTxt_materia().setEditable(true);
             limpiar();
         }
 
@@ -118,26 +120,26 @@ public class con_portafolio {
             vista.getBtnImprimir().setEnabled(true);
             vista.getBtn_subir().setEnabled(true);
             vista.getChk_doc().setEnabled(true);
-            vista.getTxt_materia().setEditable(true);         
+            vista.getTxt_materia().setEditable(true);
             limpiar();
         }
     }
-    
-    public void limpiar(){        
-            vista.getTxt_materia().setText("");
-            
-            vista.getChk_periodo().setSelected(false);
-            vista.getChk_paralelo().setSelected(false);
-            vista.getChk_materia().setSelected(false);
-            vista.getChk_ciclo().setSelected(false);
-            vista.getChk_seccion().setSelected(false);
-            vista.getChk_doc().setSelected(false);
-            
-            vista.getComboPeriodAcademico().setSelectedIndex(0);
-            vista.getComboCiclo().setSelectedIndex(0);
-            vista.getComboparalelo().setSelectedIndex(0);
-            vista.getCombodocu().setSelectedIndex(0);
-            vista.getComboSeccion().setSelectedIndex(0);
+
+    public void limpiar() {
+        vista.getTxt_materia().setText("");
+
+        vista.getChk_periodo().setSelected(false);
+        vista.getChk_paralelo().setSelected(false);
+        vista.getChk_materia().setSelected(false);
+        vista.getChk_ciclo().setSelected(false);
+        vista.getChk_seccion().setSelected(false);
+        vista.getChk_doc().setSelected(false);
+
+        vista.getComboPeriodAcademico().setSelectedIndex(0);
+        vista.getComboCiclo().setSelectedIndex(0);
+        vista.getComboparalelo().setSelectedIndex(0);
+        vista.getCombodocu().setSelectedIndex(0);
+        vista.getComboSeccion().setSelectedIndex(0);
     }
 
     public void llenarCombo() {
@@ -215,13 +217,16 @@ public class con_portafolio {
                     }
                 }
             }
-            
+
             if (vista.getChk_doc().isSelected() == true) {
                 boolean res;
-                if (vista.getCombodocu().getSelectedItem().toString()=="Subidos") res=true;
-                else res=false;
+                if (vista.getCombodocu().getSelectedItem().toString() == "Subidos") {
+                    res = true;
+                } else {
+                    res = false;
+                }
                 for (int i = 0; i < modelo.getRowCount(); i++) {
-                    if ((boolean)modelo.getValueAt(i, 3)!=res) {
+                    if ((boolean) modelo.getValueAt(i, 3) != res) {
                         modelo.removeRow(i);
                         i = i - 1;
                     }
@@ -251,13 +256,16 @@ public class con_portafolio {
                     }
                 }
             }
-            
+
             if (vista.getChk_doc().isSelected() == true) {
                 boolean res;
-                if (vista.getCombodocu().getSelectedItem().toString()=="Subidos") res=true;
-                else res=false;
+                if (vista.getCombodocu().getSelectedItem().toString() == "Subidos") {
+                    res = true;
+                } else {
+                    res = false;
+                }
                 for (int i = 0; i < modelo.getRowCount(); i++) {
-                    if ((boolean)modelo.getValueAt(i, 4)!=res) {
+                    if ((boolean) modelo.getValueAt(i, 4) != res) {
                         modelo.removeRow(i);
                         i = i - 1;
                     }
@@ -267,7 +275,7 @@ public class con_portafolio {
 
         //INSTRUMENTOS DE EVALUACION---NOTAS---INFORMES------------------------------------------------------------------------------
         if (vista.getBtnInstrumentosEv().isSelected() || vista.getBtnInformesSilabo().isSelected() || vista.getBtnNotas().isSelected()) {
-            
+
             if (vista.getChk_periodo().isSelected() == true) {
                 String com = vista.getComboPeriodAcademico().getSelectedItem().toString();
                 for (int i = 0; i < modelo.getRowCount(); i++) {
@@ -287,19 +295,22 @@ public class con_portafolio {
                     }
                 }
             }
-            
+
             if (vista.getChk_doc().isSelected() == true) {
                 boolean res;
-                if (vista.getCombodocu().getSelectedItem().toString()=="Subidos") res=true;
-                else res=false;
+                if (vista.getCombodocu().getSelectedItem().toString() == "Subidos") {
+                    res = true;
+                } else {
+                    res = false;
+                }
                 for (int i = 0; i < modelo.getRowCount(); i++) {
-                    if ((boolean)modelo.getValueAt(i, 8)!=res) {
+                    if ((boolean) modelo.getValueAt(i, 8) != res) {
                         modelo.removeRow(i);
                         i = i - 1;
                     }
                 }
             }
-            
+
             if (vista.getChk_paralelo().isSelected() == true) {
                 String com = vista.getComboparalelo().getSelectedItem().toString();
                 for (int i = 0; i < modelo.getRowCount(); i++) {
@@ -616,18 +627,33 @@ public class con_portafolio {
 
     public void imprimir() {
         Conect con = new Conect();
-        try {
-
-            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/r_modulo.jasper"));
-            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
-            JasperViewer jv = new JasperViewer(jp, false);
-            JOptionPane.showMessageDialog(null, "Imprimiendo Periodo");
-            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-            jv.setVisible(true);
-        } catch (JRException e) {
-            System.out.println("no se pudo encontrar registros" + e.getMessage());
-            Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+        String reporte="";
+        if (vista.getBtnModulos().isSelected()) {
+            reporte="/Reportes/r_modulo.jasper";
         }
+        try {               
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource(reporte));
+                Map<String, Object> params = new HashMap<String, Object>();
+                String carrera = this.carrera;
+                String cod="";
+                for (int i = 0; i < vista.getTbl_Datos().getRowCount(); i++) {
+                    if (i!=vista.getTbl_Datos().getRowCount()-1){
+                        cod=cod+vista.getTbl_Datos().getValueAt(i, 0).toString()+",";
+                    }
+                    else{
+                        cod=cod+vista.getTbl_Datos().getValueAt(i, 0).toString();
+                    }
+                }
+                params.put("Carrera",carrera);
+                params.put("Codigos",cod);
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException e) {
+                System.out.println("no se pudo encontrar registros" + e.getMessage());
+                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+            }
     }
 
     public void subir_datos() {

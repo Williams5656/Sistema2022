@@ -51,6 +51,7 @@ public class Con_Asignacion_Docente {
     private List<PeriodoacademicoMD> listaPeriodo = new ArrayList<>();
     private List<AsignacionMateriaDocentesMD> lista = new ArrayList<>();
     private PeriodoacademicoBD baseDatosPeriodo = new PeriodoacademicoBD();
+    private boolean tablaSeleccionada = false;
 
     public Con_Asignacion_Docente(vis_asignacionmateriadocentes vista) {
         this.vista = vista;
@@ -93,26 +94,39 @@ public class Con_Asignacion_Docente {
     }
 
     public void plan() {
-        int seleccionado = 0;
-        int id = 0;
-        seleccionado = (int) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 0);
-        lista = bdasignacion.obtenerdatos(seleccionado);
-        for (AsignacionMateriaDocentesMD asignacion : lista) {
-            id = asignacion.getId_asignacio();
-        }
-        if (id == 0) {
-            JOptionPane.showMessageDialog(ESCRITORIO, "Seleccione un docente");
-        } else {
+         if (tablaSeleccionada == true) {
             vista.setVisible(false);
             Vis_Documentacion doc = new Vis_Documentacion();
-            Con_documentacion per = new Con_documentacion(doc, id);
+            Con_documentacion per = new Con_documentacion(doc, id_asignacion);
             per.cargarDatos();
             per.desactivarBotones();
             per.eventoHoraguiaSi();
             per.eventoHoraguiaNo();
             per.datos();
             per.lista();
+         } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un docente de la tabla");
         }
+//        int seleccionado = 0;
+//        int id = 0;
+//        seleccionado = (int) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 0);
+//        lista = bdasignacion.obtenerdatos(seleccionado);
+//        for (AsignacionMateriaDocentesMD asignacion : lista) {
+//            id = asignacion.getId_asignacio();
+//        }
+//        if (id == 0) {
+//            JOptionPane.showMessageDialog(ESCRITORIO, "Seleccione un docente");
+//        } else {
+//            vista.setVisible(false);
+//            Vis_Documentacion doc = new Vis_Documentacion();
+//            Con_documentacion per = new Con_documentacion(doc, id_asignacion);
+//            per.cargarDatos();
+//            per.desactivarBotones();
+//            per.eventoHoraguiaSi();
+//            per.eventoHoraguiaNo();
+//            per.datos();
+//            per.lista();
+//        }
     }
 
     public void cargarComboMateria() {
@@ -261,6 +275,7 @@ public class Con_Asignacion_Docente {
         vista.getTablaasignaciondocentemateria().setModel(modelo);
         int id_asignacion1 = bdasignacion.id() + 1;
         vista.getId_asignacion().setText(id_asignacion1 + "");
+        tablaSeleccionada = false;
     }
 
     public void lista() {
@@ -438,6 +453,7 @@ public class Con_Asignacion_Docente {
         vista.getCboxparalelo().setSelectedItem(bdasignacion.getParalelo());
         vista.getCombodocentes().setSelectedItem(nombre);
         id_asignacion = bdasignacion.getId_asignacio();
+        tablaSeleccionada = true;
 
     }
 

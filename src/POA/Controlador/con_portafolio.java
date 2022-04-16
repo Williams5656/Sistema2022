@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
@@ -627,33 +626,87 @@ public class con_portafolio {
 
     public void imprimir() {
         Conect con = new Conect();
-        String reporte="";
-        if (vista.getBtnModulos().isSelected()) {
-            reporte="/Reportes/r_modulo.jasper";
+        String reporte = "";
+        if (vista.getBtnModulos().isSelected() || vista.getBtnSilabo().isSelected()) {
+            reporte = "/Reportes/r_portafolio_t1.jasper";
         }
-        try {               
-                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource(reporte));
-                Map<String, Object> params = new HashMap<String, Object>();
-                String carrera = this.carrera;
-                String cod="";
-                for (int i = 0; i < vista.getTbl_Datos().getRowCount(); i++) {
-                    if (i!=vista.getTbl_Datos().getRowCount()-1){
-                        cod=cod+vista.getTbl_Datos().getValueAt(i, 0).toString()+",";
-                    }
-                    else{
-                        cod=cod+vista.getTbl_Datos().getValueAt(i, 0).toString();
-                    }
-                }
-                params.put("Carrera",carrera);
-                params.put("Codigos",cod);
-                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
-                JasperViewer jv = new JasperViewer(jp, false);
-                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                jv.setVisible(true);
-            } catch (JRException e) {
-                System.out.println("no se pudo encontrar registros" + e.getMessage());
-                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+        
+        if (vista.getBtnPlanesClase().isSelected())  {
+            reporte = "/Reportes/r_portafolio_t2.jasper";
+        }
+        
+        if (vista.getBtnInstrumentosEv().isSelected() 
+                || vista.getBtnInformesSilabo().isSelected()
+                || vista.getBtnNotas().isSelected()) {
+            reporte = "/Reportes/r_portafolio_t3.jasper";
+        }
+        
+        
+        try {
+            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource(reporte));
+            Map<String, Object> params = new HashMap<String, Object>();
+            String carrera = this.carrera;
+            String Tabla = "";
+            String Documento = "";
+            String Id_doc = "";
+
+            if (vista.getBtnModulos().isSelected()) {
+                Tabla = "doc_modulo";
+                Documento = "Modulos";
+                Id_doc = "id_doc_modulo";
+            } 
+            
+            if (vista.getBtnSilabo().isSelected()) {
+                Tabla = "doc_silabo";
+                Documento = "Silabos";
+                Id_doc = "id_doc_silabo";
             }
+            
+            if (vista.getBtnPlanesClase().isSelected()) {
+                Tabla = "doc_planes_clase";
+                Documento = "Planes de Clase";
+                Id_doc = "id_clase";
+            }
+            
+            if (vista.getBtnInstrumentosEv().isSelected()) {
+                Tabla = "doc_instrumento_evaluacion";
+                Documento = "Instrumentos de Evaluacion";
+                Id_doc = "id_doc_instrumento";
+            }
+            
+            if (vista.getBtnInformesSilabo().isSelected()) {
+                Tabla = "doc_informe_silabo";
+                Documento = "Informe de Silabo";
+                Id_doc = "id_informe_silabo";
+            }
+            
+            if (vista.getBtnNotas().isSelected()) {
+                Tabla = "doc_nota";
+                Documento = "Notas";
+                Id_doc = "id_doc_nota";
+            }
+            
+            String cod = "";
+            for (int i = 0; i < vista.getTbl_Datos().getRowCount(); i++) {
+                if (i != vista.getTbl_Datos().getRowCount() - 1) {
+                    cod = cod + vista.getTbl_Datos().getValueAt(i, 0).toString() + ",";
+                } else {
+                    cod = cod + vista.getTbl_Datos().getValueAt(i, 0).toString();
+                }
+            }
+            params.put("Carrera", carrera);
+            params.put("Codigos", cod);
+            params.put("Tabla", Tabla);
+            params.put("Documento", Documento);
+            params.put("Id_doc", Id_doc);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
+            JasperViewer jv = new JasperViewer(jp, false);
+            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            jv.setVisible(true);
+        } catch (JRException e) {
+            System.out.println("no se pudo encontrar registros" + e.getMessage());
+            Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
 
     public void subir_datos() {

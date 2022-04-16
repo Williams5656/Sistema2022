@@ -6,23 +6,31 @@
 	<parameter name="Carrera" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="Codigos" class="java.lang.String">
+	<parameter name="Codigos" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Id_doc" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Tabla" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Documento" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select md.id_doc_modulo, per.nombre, mt.materia,
+		<![CDATA[select md.$P!{Id_doc} as id_codigos, per.nombre, mt.materia,
 	case
 	when md.documento isnull=true then 'Faltante'
 	when md.documento isnull=false then 'Subido'
 	end
 	as estado
-	from doc_modulo md 
+	from $P!{Tabla} md 
     join periodo_academico per on md.id_periodo=per.id_periodo
     join materia mt on md.id_materia=mt.codigo
-    where mt.nombre=(select codigo from carrera where nombre=$P{Carrera})
-	and md.id_doc_modulo in($P{Codigos});]]>
+    where  md.$P!{Id_doc} in($P!{Codigos});]]>
 	</queryString>
-	<field name="id_doc_modulo" class="java.lang.Integer"/>
+	<field name="id_codigos" class="java.lang.Integer"/>
 	<field name="nombre" class="java.lang.String"/>
 	<field name="materia" class="java.lang.String"/>
 	<field name="estado" class="java.lang.String"/>
@@ -48,7 +56,7 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="22" splitType="Stretch">
+		<band height="44" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="46" height="21" uuid="46c05023-719c-4561-a3cb-0edf0d2384bc"/>
 				<textElement verticalAlignment="Middle">
@@ -60,6 +68,20 @@
 				<reportElement x="46" y="1" width="509" height="20" uuid="547e3c3c-da8b-44a4-80ca-ddbf60f4012c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$P{Carrera}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="21" width="71" height="21" uuid="e4bfeae8-7a96-423f-a477-a94cb0036acf"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Cambria" size="12"/>
+				</textElement>
+				<text><![CDATA[Documentos:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="71" y="21" width="161" height="20" uuid="3b6ff762-11f7-4ac5-9624-96c383ab1cbc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Documento}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
@@ -102,11 +124,6 @@
 	<detail>
 		<band height="20" splitType="Stretch">
 			<textField>
-				<reportElement x="103" y="0" width="34" height="20" uuid="7f724a11-2171-4e27-a551-80db91dc07ef"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{id_doc_modulo}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement mode="Opaque" x="159" y="0" width="73" height="20" backcolor="#FFFFCC" uuid="1d4ec6e1-ea75-45aa-822b-53a3beb50142"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
@@ -133,6 +150,10 @@
 			<line>
 				<reportElement x="103" y="19" width="364" height="1" forecolor="#999999" uuid="c36ae527-840e-4aeb-a8ff-cdebb0757b8b"/>
 			</line>
+			<textField>
+				<reportElement x="103" y="1" width="34" height="18" uuid="eceb38d4-4c27-4af5-8f0a-c0cb53c03767"/>
+				<textFieldExpression><![CDATA[$F{id_codigos}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>

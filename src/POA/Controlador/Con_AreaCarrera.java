@@ -58,6 +58,7 @@ public class Con_AreaCarrera {
     String vector[];
     PerfilBD basePerfil = new PerfilBD();
     int select = 0;
+    boolean tablaSeleccionada=false;
 
     public Con_AreaCarrera(Vis_AreaCarrera vista) {
         this.vista = vista;
@@ -85,6 +86,7 @@ public class Con_AreaCarrera {
     }
 
     public void accion_combobox() {
+        tablaSeleccionada=true;
         lista();
     }
 
@@ -103,17 +105,14 @@ public class Con_AreaCarrera {
 
         }
         if (resp.equals("Reporte por Carrera")) {
-            String carreraCombo = (String) vista.getComboCarrera().getSelectedItem();
+            if (tablaSeleccionada==true) {
+                String carreraCombo = (String) vista.getComboCarrera().getSelectedItem();
             String codigoCarrera = "";
             codigoCarrera = basePerfil.mostrarIdCarrera(carreraCombo);
             try {
-                // JOptionPane.showMessageDialog(null, "Imprimiendo Persona");
                 JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/ReporteAreaCarrera1.jasper"));
                 Map<String, Object> params = new HashMap<String, Object>();
-                //String aguja = JOptionPane.showInputDialog("Ingrese una Cedula de persona");
                 String aguja = codigoCarrera;
-                //String aguja = vista.getTxtBuscar().getText();
-                //System.out.println("cedula;;;;" + aguja);
                 params.put("carrera", aguja);
                 JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
                 JasperViewer jv = new JasperViewer(jp, false);
@@ -123,6 +122,10 @@ public class Con_AreaCarrera {
                 System.out.println("no se pudo encontrar registros" + e.getMessage());
                 Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
             }
+            }else{
+                JOptionPane.showMessageDialog(null, "Debe seleccionar en la tabla");
+            }
+            
 
         }
         if (resp.equals("Reporte Completo")) {
@@ -212,6 +215,7 @@ public class Con_AreaCarrera {
         vista.getComboPerfil().setSelectedIndex(0);
         vista.getComboResponsable().setSelectedIndex(0);
         //vista.getComboCarrera().setSelectedIndex(0);
+        tablaSeleccionada=false;
 
     }
 
@@ -345,6 +349,7 @@ public class Con_AreaCarrera {
     }
 
     private void seleccionar() {
+        tablaSeleccionada=true;
         int id = 0;
         String c = "";
         String p = "";

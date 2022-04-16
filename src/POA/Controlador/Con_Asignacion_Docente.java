@@ -93,9 +93,9 @@ public class Con_Asignacion_Docente {
     }
 
     public void plan() {
-        String seleccionado = "";
+        int seleccionado = 0;
         int id = 0;
-        seleccionado = (String) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 0);
+        seleccionado = (int) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 0);
         lista = bdasignacion.obtenerdatos(seleccionado);
         for (AsignacionMateriaDocentesMD asignacion : lista) {
             id = asignacion.getId_asignacio();
@@ -266,30 +266,32 @@ public class Con_Asignacion_Docente {
     public void lista() {
         modelo.setRowCount(0);
         modelo.setColumnCount(0);
+        modelo.addColumn("id");
         modelo.addColumn("Cedula");
         modelo.addColumn("Docente");
         modelo.addColumn("Asignatura");
         modelo.addColumn("Ciclo");
         modelo.addColumn("Paralelo");
-        Object[] fila = new Object[5];
+        Object[] fila = new Object[6];
         lista = bdasignacion.mostrardatos();
         listaPeriodo = baseDatosPeriodo.lista_periodos();
         listaMateria = baseDatosMateria.mostrardatos();
         String nombre = "";
         for (AsignacionMateriaDocentesMD user : lista) {
-            fila[0] = user.getIdentificacion();
+            fila[0]= user.getId_asignacio();
+            fila[1] = user.getIdentificacion();
             listaPersona = bdpersona.obtenerdatos(user.getIdentificacion());
             for (PersonaMD userp : listaPersona) {
                 nombre = userp.getNombres() + " " + userp.getApellidos();
             }
-            fila[1] = nombre;
+            fila[2] = nombre;
             for (MateriaMD carrera : listaMateria) {
                 if (carrera.getCod_materia().equals(user.getAsignatura())) {
-                    fila[2] = carrera.getNombre_materia();
+                    fila[3] = carrera.getNombre_materia();
                 }
             }
-            fila[3] = user.getCiclo();
-            fila[4] = user.getParalelo();
+            fila[4] = user.getCiclo();
+            fila[5] = user.getParalelo();
             modelo.addRow(fila);
         }
         vista.getTablaasignaciondocentemateria().setModel(modelo);
@@ -403,11 +405,12 @@ public class Con_Asignacion_Docente {
         vista.getCombodocentes().setEnabled(false);
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTablaasignaciondocentemateria().getModel();
-        String identificacion = (String) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 0);
-        String id_asig = (String) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 2);
+        int id = (int) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 0);
+        String identificacion = (String) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 1);
+        String id_asig = (String) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 3);
         List<PersonaMD> listaper = bdpersona.obtenerdatos(identificacion);
         List<docenteMD> lista = bddocente.obtenerdatos(identificacion);
-        List<AsignacionMateriaDocentesMD> listaasig = bdasignacion.obtenerdatos(identificacion);
+        List<AsignacionMateriaDocentesMD> listaasig = bdasignacion.obtenerdatos(id);
         String carrera = bdasignacion.mostrarCarrera(identificacion);
         String periodo = bdasignacion.mostrarPeriodo(Integer.parseInt(listaasig.get(0).getPeriodo()));
         bdpersona.setNombres(listaper.get(0).getNombres());

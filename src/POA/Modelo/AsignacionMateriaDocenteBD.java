@@ -48,7 +48,7 @@ public class AsignacionMateriaDocenteBD extends AsignacionMateriaDocentesMD {
         }
     }
 
-    public List<AsignacionMateriaDocentesMD> obtenerdatos(String id_asignacion) {
+    public List<AsignacionMateriaDocentesMD> obtenerdatos(int id_asignacion) {
 
         try {
             List<AsignacionMateriaDocentesMD> lista = new ArrayList<AsignacionMateriaDocentesMD>();

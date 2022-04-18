@@ -123,11 +123,15 @@ public class ObjetivoOperativoBD extends ObjetivoOperativoMD {
 
     }
     
-    public boolean modificar(String placa) {
+    public boolean modificar(int placa,int ab) {
        
-        String sql = "UPDATE objetivo_operativo set \"id_poa\"='" + getObjetivo()+ "'"
-                + " where \"id_proyecto\"='" + placa + "'";
 
+        //String sql = "UPDATE objetivo_operativo set \"objetivo\"='" + getObjetivo()+"'"
+           //     + " where \"num_objetivo_proyecto\"='" + placa + "'";
+        String sql = "UPDATE objetivo_operativo set \"objetivo\"='" + getObjetivo()+"'"
+                + "where id_proyecto ="+placa+ " and num_objetivo_proyecto =" + ab;
+        
+        //String sql = "select id_proyecto, num_objetivo_proyecto, objetivo from objetivo_operativo" + " where id_proyecto =" + id + " and num_objetivo_proyecto =" + ab;
         if (conectar.noQuery(sql) == null) {
             return true;
         } else {
@@ -138,7 +142,7 @@ public class ObjetivoOperativoBD extends ObjetivoOperativoMD {
     }
     
     public boolean Eliminar(String placa) {
-         String nsql= " delete from actividades where \"id_proyecto\"='" + placa + "'";
+         String nsql= " delete from objetivo_operativo where \"objetivo\"='" + placa + "'";
                 
                 try {
                     if(conectar.noQuery(nsql)==null){

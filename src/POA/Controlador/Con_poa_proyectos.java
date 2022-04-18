@@ -177,6 +177,8 @@ public class Con_poa_proyectos {
         vista.getTxtarea_obopera().setEnabled(false);
         vista.getBtnAñadir_op().setEnabled(false);
         vista.getTabla_proyecto().setEnabled(false);
+        modelo1.setRowCount(0);
+        modelo1.setColumnCount(0);
         int idpoa = vista.getTabla_lista_proyectos().getSelectedRow();
         int idpoas = vista.getTabla_proyecto().getSelectedRow();
         vista.getTxt_estrategia().setText("");
@@ -236,7 +238,7 @@ public class Con_poa_proyectos {
         if (a == 0) {
             DefaultTableModel modelo;
             modelo = (DefaultTableModel) vista.getTabla_lista_proyectos().getModel();
-            String codigo = (String) modelo.getValueAt(vista.getTabla_lista_proyectos().getSelectedRow(), 0);
+            int codigo = (int) modelo.getValueAt(vista.getTabla_lista_proyectos().getSelectedRow(), 0);
             List<ProyectoMD> m = poabd.mostrarDatos();
             if (poabd.Eliminar(codigo)) {
                 JOptionPane.showMessageDialog(null, "DATOS Eliminados");
@@ -271,13 +273,18 @@ public class Con_poa_proyectos {
         }
     }
     public void modificarobjetivo() {
+modelo1 = (DefaultTableModel) vista.getTabla_proyecto().getModel();
 
+            int cedula = (int) modelo1.getValueAt(vista.getTabla_proyecto().getSelectedRow(), 0);
+            int cedulas = (int) modelo1.getValueAt(vista.getTabla_proyecto().getSelectedRow(), 1);
+
+             
         obbd.setObjetivo(vista.getTxtarea_obopera().getText());
         
         
         int resp_2 = JOptionPane.showConfirmDialog(null, "CONFIMRA MI ESTIMADO CABEZA GATO");
         if (resp_2 == 0) {
-            if (obbd.modificar(vista.getTxtarea_obopera().getText())) {
+            if (obbd.modificar(cedula,cedulas)) {
                 JOptionPane.showMessageDialog(null, "DATOS ACTUALIZADOS MI ÑAÑO");
                 lista_objetivo();
                 nuevo();
@@ -293,7 +300,7 @@ public class Con_poa_proyectos {
         if (a == 0) {
             DefaultTableModel modelo;
             modelo = (DefaultTableModel) vista.getTabla_proyecto().getModel();
-            String codigo = (String) modelo.getValueAt(vista.getTabla_proyecto().getSelectedRow(), 0);
+            String codigo = (String) modelo.getValueAt(vista.getTabla_proyecto().getSelectedRow(), 2);
             List<ObjetivoOperativoMD> m = obbd.mostrarDatos();
             if (obbd.Eliminar(codigo)) {
                 JOptionPane.showMessageDialog(null, "DATOS Eliminados");
@@ -303,7 +310,7 @@ public class Con_poa_proyectos {
         } else {
             JOptionPane.showMessageDialog(null, "error ");
         }
-        lista_poa();
+        lista_objetivo();
         nuevo();
     }
 

@@ -266,7 +266,6 @@ public class Con_Asignacion_Docente {
         vista.getCombodocentes().removeAllItems();
         cargarpersona();
         vista.getCboxasignatura().setSelectedIndex(0);
-        vista.getCboxciclo().setSelectedIndex(0);
         vista.getCboxjornada().setSelectedIndex(0);
         vista.getCboxparalelo().setSelectedIndex(0);
         vista.getCboxperiodo().setSelectedIndex(0);
@@ -423,10 +422,12 @@ public class Con_Asignacion_Docente {
         int id = (int) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 0);
         String identificacion = (String) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 1);
         String id_asig = (String) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 3);
+
+        
         List<PersonaMD> listaper = bdpersona.obtenerdatos(identificacion);
         List<docenteMD> lista = bddocente.obtenerdatos(identificacion);
         List<AsignacionMateriaDocentesMD> listaasig = bdasignacion.obtenerdatos(id);
-        String carrera = bdasignacion.mostrarCarrera(identificacion);
+        String carrera = bdasignacion.mostrarCarrera(id_asig);
         String periodo = bdasignacion.mostrarPeriodo(Integer.parseInt(listaasig.get(0).getPeriodo()));
         bdpersona.setNombres(listaper.get(0).getNombres());
         bdpersona.setApellidos(listaper.get(0).getApellidos());

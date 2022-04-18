@@ -159,12 +159,9 @@ public class AsignacionMateriaDocenteBD extends AsignacionMateriaDocentesMD {
 
     public String mostrarCarrera(String identificacion) {
         String carrera = "";
-        String sql = "select c.nombre as carrera from carrera c \n"
-                + "join materia m\n"
-                + "on m.nombre = c.codigo\n"
-                + "join asignacion_docentes ac \n"
-                + "on m.codigo = ac.asignatura\n"
-                + "where ac.identificacion = '" + identificacion + "'";
+        String sql= "select c.nombre as carrera from materia m join carrera c on c.codigo=m.nombre where m.materia = '" + identificacion + "'";
+        
+ 
         ResultSet rs = conectar.query(sql);
         try {
             while (rs.next()) {

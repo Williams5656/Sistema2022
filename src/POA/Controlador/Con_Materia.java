@@ -59,6 +59,7 @@ public class Con_Materia {
     private DefaultTableModel modelo = new DefaultTableModel();
     PerfilBD basePerfil = new PerfilBD();
     int select = 0;
+    boolean tablaSeleccionada=false;
 
     public Con_Materia(Vis_Materias vista) {
         this.vista = vista;
@@ -81,7 +82,12 @@ public class Con_Materia {
         });
         listam();
     }
-
+    
+    public void accion_combobox() {
+        tablaSeleccionada=true;
+        listam();
+    }
+    
     public void cArea() {
         String carreraCombo = (String) vista.getComboCarrera_mat().getSelectedItem();
         String codigoCarrera = "";
@@ -152,7 +158,7 @@ public class Con_Materia {
             }
         }
     }
-
+            
     public void seleccionar() {
 
         String ncarrera = "";
@@ -376,7 +382,7 @@ public class Con_Materia {
         Conect con = new Conect();
         String[] reportes = {
             "Seleccione Una Opcion",
-            "Reporte Con Nombre de Materia",
+            "Reporte por Carrera",
             "Reporte Completo"
         };
         //Ctrl_MYICON icon = new Ctrl_MYICON(40, 50);
@@ -386,35 +392,57 @@ public class Con_Materia {
             JOptionPane.showMessageDialog(null, " seleccione uno de los campos");
 
         }
-        if (resp.equals("Reporte Con Nombre de Materia")) {
-
+        if (resp.equals("Reporte por Carrera")) {
+             if (tablaSeleccionada==true) {
+            String carreraCombo = (String) vista.getComboCarrera_mat().getSelectedItem();
+            String codigoCarrera = "";
+            codigoCarrera = basePerfil.mostrarIdCarrera(carreraCombo);
             try {
-                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/RepMaterias.jasper"));
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/RepMateriasII.jasper"));
                 Map<String, Object> params = new HashMap<String, Object>();
-                String aguja = JOptionPane.showInputDialog("Ingrese la materia");
-                System.out.println("materia;;;;" + aguja);
-                params.put("materia", aguja);
+                String aguja = codigoCarrera;
+                params.put("carrera", aguja);
                 JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
                 JasperViewer jv = new JasperViewer(jp, false);
                 jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                 jv.setVisible(true);
             } catch (JRException e) {
                 System.out.println("no se pudo encontrar registros" + e.getMessage());
-                Logger.getLogger(Con_Materia.class.getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
             }
+            }else{
+                JOptionPane.showMessageDialog(null, "Seleccione tabla");
+            }
+
+//            try {
+//                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/RepMateriasII.jasper"));
+//                Map<String, Object> params = new HashMap<String, Object>();
+//                String aguja = JOptionPane.showInputDialog("Ingrese la materia");
+//                System.out.println("materia;;;;" + aguja);
+//                params.put("materia", aguja);
+//                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
+//                JasperViewer jv = new JasperViewer(jp, false);
+//                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+//                jv.setVisible(true);
+//            } catch (JRException e) {
+//                System.out.println("no se pudo encontrar registros" + e.getMessage());
+//                Logger.getLogger(Con_Materia.class.getName()).log(Level.SEVERE, null, e);
+//            }
 
         }
         if (resp.equals("Reporte Completo")) {
-            try {
-                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/RepMaterias.jasper"));
-                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
-                JasperViewer jv = new JasperViewer(jp, false);
-                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                jv.setVisible(true);
-            } catch (JRException e) {
-                Logger.getLogger(Con_Materia.class.getName()).log(Level.SEVERE, null, e);
-            }
+        try {
+            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/RepMaterias.jasper"));
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+            JasperViewer jv = new JasperViewer(jp, false);
+//            JOptionPane.showMessageDialog(null, "Imprimiendo Materias");
+            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            jv.setVisible(true);
+        } catch (JRException e) {
+            System.out.println("no se pudo encontrar registros" + e.getMessage());
+            Logger.getLogger(Con_Materia.class.getName()).log(Level.SEVERE, null, e);
+        }
         }
     }
-
+    
 }

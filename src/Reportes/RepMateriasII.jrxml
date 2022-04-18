@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="df216e83-e7b8-4fb5-a580-aaefdbddd571">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="carrera" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     *,
+     materia."codigo" AS materia_codigo,
+     materia."materia" AS materia_materia,
+     materia."area" AS materia_area,
+     materia."ciclo" AS materia_ciclo,
+     materia."nombre" AS materia_nombre,
+     materia."eje" AS materia_eje,
+     materia."creditos" AS materia_creditos,
+     materia."plan" AS materia_plan
+FROM
+     "materia" materia]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="eje" class="java.lang.String"/>
+	<field name="codigo" class="java.lang.String"/>
+	<field name="materia" class="java.lang.String"/>
+	<field name="ciclo" class="java.lang.String"/>
+	<field name="creditos" class="java.lang.String"/>
+	<field name="plan" class="java.lang.String"/>
+	<field name="area" class="java.lang.String"/>
+	<field name="materia_codigo" class="java.lang.String"/>
+	<field name="materia_materia" class="java.lang.String"/>
+	<field name="materia_area" class="java.lang.String"/>
+	<field name="materia_ciclo" class="java.lang.String"/>
+	<field name="materia_nombre" class="java.lang.String"/>
+	<field name="materia_eje" class="java.lang.String"/>
+	<field name="materia_creditos" class="java.lang.String"/>
+	<field name="materia_plan" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="63" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="555" height="20" uuid="a82f8652-beb1-45bb-b756-ce9fb3727658"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INSTITUTO SUPERIOR TECNOLÒGICO DEL AZUAY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="555" height="20" uuid="2aaeea9d-8af9-4b0a-9043-f2d089f586d8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE SEGÙN MATERIA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="266" y="3" width="209" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="05d70f88-753f-4f91-a045-203e20fa8903"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Materia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="61" y="3" width="205" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="d0acadc1-724d-43a7-9879-60fedc5552e8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Carrera]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="266" y="0" width="209" height="20" uuid="12e68e83-d5f2-410a-84b4-d9afbda1132a"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{materia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="61" y="0" width="205" height="20" uuid="20250fa6-3bd8-433f-82d3-10c47bb05cce"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

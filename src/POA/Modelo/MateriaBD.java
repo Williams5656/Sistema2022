@@ -143,33 +143,33 @@ public class MateriaBD extends MateriaMD{
             return false;
         }
     }
-    
-         public String verificarMateria(String nombre) {
-        String nMateria="";
-        String sql="select materia as nombre from materia where materia= '" + nombre+ "'";
+ 
+    public String verificarMateria(String nombre) {
+        String nMateria = "";
+        String sql = "select materia as nombre from materia where materia= '" + nombre + "'";
         ResultSet rs = conectar.query(sql);
         try {
-            while (rs.next()) {       
-                nMateria=rs.getString("nombre");;
+            while (rs.next()) {
+                nMateria = rs.getString("nombre");;
             }
         } catch (SQLException ex) {
             Logger.getLogger(MateriaBD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return nMateria;
-    } 
-         
-        public String verificarCodMateria(String nombre) {
-        String nCodigo="";
-        String sql="select codigo as nombre from materia where codigo= '" + nombre+ "'";
+    }
+
+    public String verificarCodMateria(String nombre) {
+        String nCodigo = "";
+        String sql = "select codigo as nombre from materia where codigo= '" + nombre + "'";
         ResultSet rs = conectar.query(sql);
         try {
-            while (rs.next()) {       
-                nCodigo=rs.getString("nombre");;
+            while (rs.next()) {
+                nCodigo = rs.getString("nombre");;
             }
         } catch (SQLException ex) {
             Logger.getLogger(MateriaBD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return nCodigo;
     } 
-         
+        
 }

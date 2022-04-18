@@ -130,8 +130,22 @@ public class CarreraBD extends CarreraMD {
         }
     }
 //
-    public boolean hasNext() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    public boolean hasNext() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+
+//    public String verificarCodCarrera(String nombre) {
+//        String nCodigo = "";
+//        String sql = "select codigo as nombre from carrera where codigo= '" + nombre + "'";
+//        ResultSet rs = conectar.query(sql);
+//        try {
+//            while (rs.next()) {
+//                nCodigo = rs.getString("nombre");;
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(CarreraBD.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return nCodigo;
+//    } 
 
 }

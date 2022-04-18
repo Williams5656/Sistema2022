@@ -20,6 +20,13 @@ import java.util.logging.Logger;
 import javax.swing.JTextField;
 import POA.Modelo.Validadores.Numeros;
 import POA.Modelo.Validadores.Letras;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class con_carrera {
 
@@ -40,6 +47,7 @@ public class con_carrera {
         vista.getBtnGuardar().addActionListener(e -> guardar());
         vista.getBtnModificar().addActionListener(e -> modificar());
         vista.getBtnEliminar().addActionListener(e -> eliminar());
+        vista.getBtnImprimir().addActionListener(e -> imprimir());
 //        vista.getBtnBuscarc().addActionListener(e->buscarced());
         vista.getTablaCarrera().addMouseListener(new MouseAdapter() {
             @Override
@@ -101,25 +109,33 @@ public class con_carrera {
     }
 
     public void guardar() {
-
+        boolean c=true;
         String n_carrera = (String) vista.getComboCarrera().getSelectedItem();
         carrera.setNombre_carrera(n_carrera);
-        carrera.setCodigo_carrera(vista.getTxtCodigo_carrera().getText());
-//        String cuenta=Integer.toString(generacodi());
-//        carrera.setCodigo_carrera(cuenta);
+//        carrera.setCodigo_carrera(vista.getTxtCodigo_carrera().getText());
+        String codigo = (String) vista.getTxtCodigo_carrera().getText();
+        List<CarreraMD> lista_cod = carrera.obtenerdatos(codigo);
+        for (int i = 0; i < lista_cod.size(); i++) {
+            if (lista_cod.get(i).getCodigo_carrera().equals(vista.getTxtCodigo_carrera().getText())) {
+                JOptionPane.showMessageDialog(null, "Còdigo ya existe!","\n Verifique",0);
+                vista.getTxtCodigo_carrera().setText("");
+                c = false;
+                break;
+            }
+        }
         carrera.setFecha_inicio(vista.getTxtFecha_inicio().getText());
         String modalidad = (String) vista.getCmbModalidad().getSelectedItem();
         carrera.setModalidad(modalidad);
-        carrera.setCoordinador(vista.getTxtCoordinador().getText());
-
-        if (carrera.insertar()) {
+        carrera.setCoordinador(vista.getTxtCoordinador().getText());  
+        if (c == true) {
+            if (carrera.insertar()) {
             JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
             listam();
             nuevo();
         } else {
             JOptionPane.showMessageDialog(null, "Error al guardar");
-        }
-
+        } 
+      }
     }
 
     public void seleccionar() {
@@ -197,14 +213,12 @@ public class con_carrera {
     }
 
     public void eliminar() {
-        int resp1 = JOptionPane.showConfirmDialog(null, "CONFIRME SI DESEA ELMINAR");
+        int resp1 = JOptionPane.showConfirmDialog(null, "CONFIRME SI DESEA ELIMINAR");
         if (resp1 == 0) {
             if (carrera.Eliminar(vista.getTxtCodigo_carrera().getText())) {
-
-                JOptionPane.showMessageDialog(null, "Datos actualizados");
+                JOptionPane.showMessageDialog(null, "DATOS ACTUALIZADOS");
                 listam();
                 nuevo();
-
             } else {
                 JOptionPane.showMessageDialog(null, "ERROR AL ELIMINAR");
             }
@@ -247,24 +261,22 @@ public class con_carrera {
         nuevo();
     }
 
-    public static int generacodi() {
-        String co = "";
-        int b = 0;
-        int ca = 0;
-        do {
-            Random r = new Random();
-            b = r.nextInt(1);
-            co = Integer.toString(b);
-            CarreraBD car = new CarreraBD(null, co, null, null, null);
-            if (car.hasNext()) {
-                ca += 1;
-            } else {
-                ca += 0;
-            }
-        } while (ca != 0);
-        return b;
-    }
+        public void imprimir() {
+        Conect con = new Conect();
+        try {
+            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/ReporteCarreras.jasper"));
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+            JasperViewer jv = new JasperViewer(jp, false);
+//            JOptionPane.showMessageDialog(null, "Imprimiendo Materias");
+            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            jv.setVisible(true);
+        } catch (JRException e) {
+            System.out.println("no se pudo encontrar registros" + e.getMessage());
+            Logger.getLogger(con_carrera.class.getName()).log(Level.SEVERE, null, e);
+        }
 
+    }
+        
     private void only_num(JTextField t) {
         t.addKeyListener(new KeyAdapter() {
             @Override

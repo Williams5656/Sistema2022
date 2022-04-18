@@ -253,13 +253,13 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         getContentPane().add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, -1, 30));
 
         btneliminar.setText("Delete");
-        getContentPane().add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, -1, -1));
+        getContentPane().add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 263, 70, 30));
 
         btnimprimir.setText("Reporte");
-        getContentPane().add(btnimprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, -1, -1));
+        getContentPane().add(btnimprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 3, 80, 30));
 
         btnnuevo.setText("Nuevo");
-        getContentPane().add(btnnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, -1, -1));
+        getContentPane().add(btnnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 263, 70, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

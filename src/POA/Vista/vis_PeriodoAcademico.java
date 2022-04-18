@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import POA.Modelo.Validadores.Fondos;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -85,6 +86,15 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
         return btnCrear;
     }
 
+    public JLabel getJlb_car() {
+        return jlb_car;
+    }
+
+    public void setJlb_car(JLabel jlb_car) {
+        this.jlb_car = jlb_car;
+    }
+    
+
     public void setBtnCrear(JButton btnCrear) {
         this.btnCrear = btnCrear;
     }
@@ -118,10 +128,10 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel1 = Fondos.fondo_panel("/POA/Vista/img/My project.png");
         jLabel1 = new javax.swing.JLabel();
         lblCarrera = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jlb_car = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -143,30 +153,37 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("INGRESO DATOS"));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("ID PERIODO:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
 
         lblCarrera.setForeground(new java.awt.Color(0, 0, 255));
         jPanel1.add(lblCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 150, 20));
 
-        jLabel3.setText("Carrera:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
+        jlb_car.setForeground(new java.awt.Color(0, 0, 0));
+        jlb_car.setText("Carrera:");
+        jPanel1.add(jlb_car, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
 
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("FechaInicio:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
 
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("FechaFin:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, -1));
 
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Estado:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, -1, -1));
 
+        comboEstado.setForeground(new java.awt.Color(0, 0, 0));
         comboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ABIERTO", "CERRADO" }));
         jPanel1.add(comboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 70, -1));
 
         lblIdPeriodo.setForeground(new java.awt.Color(0, 0, 255));
         jPanel1.add(lblIdPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 70, 20));
 
+        btnestado.setForeground(new java.awt.Color(0, 0, 0));
         btnestado.setText("CAMBIO ESTADO");
         jPanel1.add(btnestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, -1));
 
@@ -175,11 +192,13 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
         jPanel1.add(dateFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 110, -1));
         jPanel1.add(dateFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 110, -1));
 
-        btn_repor.setText("reporte");
-        jPanel1.add(btn_repor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
+        btn_repor.setForeground(new java.awt.Color(0, 0, 0));
+        btn_repor.setText("REPORTAR");
+        jPanel1.add(btn_repor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
 
+        btnCrear.setForeground(new java.awt.Color(0, 0, 0));
         btnCrear.setText("CREAR");
-        jPanel1.add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, -1, -1));
+        jPanel1.add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, -1, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("MOSTRAR DATOS"));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -236,13 +255,13 @@ public class vis_PeriodoAcademico extends javax.swing.JInternalFrame {
     private com.toedter.calendar.JDateChooser dateFechaFin;
     private com.toedter.calendar.JDateChooser dateFechaInicio;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jlb_car;
     private javax.swing.JLabel lblCarrera;
     private javax.swing.JLabel lblIdPeriodo;
     private javax.swing.JLabel lblNombrePeriodo;

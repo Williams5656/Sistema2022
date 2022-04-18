@@ -53,6 +53,7 @@ public class con_periodoAcademico {
         }
         );        
         periodo.llenar_tabla(vista.getTabla());
+        vista.getJlb_car().setText("Carrera: "+carrera);
     }
 
     public void ingresar() {

@@ -180,11 +180,11 @@ public class Con_Asignacion_Docente {
             JOptionPane.showMessageDialog(null, " seleccione uno de los campos");
 
         }else if (resp.equals("Reporte por Docente")){
-            parametro = "where per.cedula= (select cedula from persona where nombres || ' ' ||  apellidos= '"+(String) JOptionPane.showInputDialog(null, "Seleccione un docente", "Docentes",       
+            parametro = " per.cedula= (select cedula from persona where nombres || ' ' ||  apellidos= '"+(String) JOptionPane.showInputDialog(null, "Seleccione un docente", "Docentes",       
                 JOptionPane.DEFAULT_OPTION, null, nombres, nombres[0])+" ');"; 
         }
         else if (resp.equals("Reporte por Carreras")){
-            parametro = "where mat.nombre= '"+carrera+"';"; 
+            parametro = " mat.nombre= '"+carrera+"';"; 
         }
         else parametro="asig.id_asignacion=asig.id_asignacion;;";
         

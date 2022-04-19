@@ -526,13 +526,9 @@ public class Con_calendario {
                 if (!vista.getTxt_responsables().getText().equals("")) {
                     DefaultTableModel modelo;
                     modelo = (DefaultTableModel) vista.getTabla_responsables().getModel();
-                    modelo.setNumRows(0);
-                    Responsables_ActividadMD l = new Responsables_ActividadMD(vista.getTxt_responsables().getText());
-                    ListaResp.add(l);
-                    ListaResp.stream().forEach(r -> {
-                        tabla = new String[]{r.getCedula()};
-                        modelo.addRow(tabla);
-                    });
+                    String [] inf=new String [1];
+                    inf[0]=vista.getTxt_responsables().getText();
+                    modelo.addRow(inf);
                     vista.getTxt_responsables().setText("");
                     b = 1;
                 }
@@ -637,8 +633,8 @@ public class Con_calendario {
     public void seleccionarCalendario() {
         DefaultTableModel modelo;
         Crear_actividad();
-        vista.getTxt_responsables().setEditable(false);
-        vista.getBtn_añadir().setEnabled(false);
+        //vista.getTxt_responsables().setEditable(false);
+       // vista.getBtn_añadir().setEnabled(false);
         vista.getBtn_modificar().setEnabled(true);
         vista.getBtn_guardar().setEnabled(false);
         vista.getBtn_evidencia().setEnabled(true);

@@ -479,9 +479,11 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         jPanel1.add(txt_N_actividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 150, -1));
 
         btn_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/delete.jpg"))); // NOI18N
+        btn_eliminar.setToolTipText("Eliminar");
         jPanel1.add(btn_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 530, -1, -1));
 
         btn_añadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icono_agregar.png"))); // NOI18N
+        btn_añadir.setToolTipText("Agregar");
         jPanel1.add(btn_añadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 530, -1, -1));
 
         txt_descripcion.setColumns(20);
@@ -580,11 +582,11 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel16)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 890, 330));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 890, 350));
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Imprimir"));
 
@@ -596,6 +598,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         });
 
         btn_prueba.setText("ACTIVIDADES");
+        btn_prueba.setToolTipText("Reporte");
         btn_prueba.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_pruebaActionPerformed(evt);
@@ -630,9 +633,11 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         getContentPane().add(btn_n_actividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, -1));
 
         btn_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/guardar.png"))); // NOI18N
+        btn_guardar.setToolTipText("Guardar");
         getContentPane().add(btn_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 60, -1, -1));
 
         btn_modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/modificar.png"))); // NOI18N
+        btn_modificar.setToolTipText("Modificar");
         btn_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_modificarActionPerformed(evt);
@@ -680,19 +685,20 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
                 .addGap(16, 16, 16)
                 .addComponent(jLabel17)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                    .addContainerGap(139, Short.MAX_VALUE)
+                    .addContainerGap(159, Short.MAX_VALUE)
                     .addComponent(Jl_evidencia)
-                    .addContainerGap(139, Short.MAX_VALUE)))
+                    .addContainerGap(159, Short.MAX_VALUE)))
         );
 
-        getContentPane().add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 470, 890, 280));
+        getContentPane().add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 490, 890, 320));
 
-        btn_evidencia.setText("Subir evidencia");
-        getContentPane().add(btn_evidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 770, 160, 30));
+        btn_evidencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/subir.png"))); // NOI18N
+        btn_evidencia.setToolTipText("Subir evidencia");
+        getContentPane().add(btn_evidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 60, 60, -1));
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/fondo azul (2).jpg"))); // NOI18N
         getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 830));

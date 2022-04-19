@@ -405,7 +405,7 @@ public class Vis_Principal extends javax.swing.JFrame {
         jMenu2.setText("Calendario");
 
         btn_calendario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icono_agregar.png"))); // NOI18N
-        btn_calendario.setText("Nuevo");
+        btn_calendario.setText("Agendar");
         jMenu2.add(btn_calendario);
 
         jMenuBar1.add(jMenu2);

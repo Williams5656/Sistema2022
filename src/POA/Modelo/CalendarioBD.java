@@ -5,8 +5,6 @@
  */
 package POA.Modelo;
 
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;

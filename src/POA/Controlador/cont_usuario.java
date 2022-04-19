@@ -214,14 +214,6 @@ public class cont_usuario {
 
             }
         
-
-        
-            
-               
-
-            
-        
-
     }
 
     

@@ -17,6 +17,8 @@ import java.io.OutputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -162,7 +164,7 @@ public class CalendarioBD extends CalendarioMD {
 
         try {
 
-            String sql = "UPDATE calendario SET id_carrera= ?, id_periodo=?, id_tipoactividad=?, nombre_actividad=?, descripcion=?, archivo=? "
+            String sql = "UPDATE calendario SET id_carrera= ?, id_periodo=?, id_tipoactividad=?, nombre_actividad=?, descripcion=?, fecha_inicio=?,fecha_limite=?, archivo=? "
                     + " WHERE id_actividad = " + getId_Actividad();
 
             PreparedStatement ps = null;
@@ -174,9 +176,9 @@ public class CalendarioBD extends CalendarioMD {
             ps.setInt(3, getId_TipoActividad());
             ps.setString(4, getNombre_Actividad());
             ps.setString(5, getDescripcion());
-            //ps.setString(6, getFecha_Inicio());
-            //ps.setString(7, getFecha_Limite());
-            ps.setBytes(6, pdf1);
+            ps.setTimestamp(6, Timestamp.valueOf(getFecha_Inicio()));
+            ps.setTimestamp(7, Timestamp.valueOf(getFecha_Limite()));
+            ps.setBytes(8, pdf1);
             boolean ejecutar = false;
             ps.execute();
             if (ps.executeUpdate() == 1) {

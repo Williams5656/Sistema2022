@@ -26,7 +26,7 @@ public class PoaBD extends PoaMD{
             while(rs.next()){
                 PoaMD m = new PoaMD();
                 m.setId_POA(rs.getInt("id_poa"));
-                m.setId_carrera(rs.getInt("id_carrera"));
+                m.setId_carrera(rs.getString("id_carrera"));
                 m.setAnio(rs.getString("anio"));
                 m.setEstado(rs.getString("estado"));
                 
@@ -48,7 +48,7 @@ public class PoaBD extends PoaMD{
             while (rs.next()) {
                 PoaMD m = new PoaMD();
                 m.setId_POA(rs.getInt("id_poa"));
-                m.setId_carrera(rs.getInt("id_carrera"));
+                m.setId_carrera(rs.getString("id_carrera"));
                 m.setAnio(rs.getString("anio"));
                 m.setEstado(rs.getString("estado"));
                 lista.add(m);
@@ -60,7 +60,7 @@ public class PoaBD extends PoaMD{
             return null;
         }
     }
-    public void guardar(int id_carrera, String anio, String estado){
+    public void guardar(String id_carrera, String anio, String estado){
         
         String sql = "insert into poa (anio, id_carrera, estado) VALUES ('" + 
                 anio + "', " + id_carrera + ", '" + estado + "');";

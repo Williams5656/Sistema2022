@@ -167,7 +167,7 @@ public class Con_poa_evidencia {
     public void cargarComboCarrera() {
         for (int i = 0; i < listaCarreras.size(); i++) {
             for (int j = 0; j < listaPoa.size(); j++) {
-                if (Integer.parseInt(listaCarreras.get(i).getCodigo_carrera()) == listaPoa.get(j).getId_carrera()) {
+                if (listaCarreras.get(i).getCodigo_carrera().equals( listaPoa.get(j).getId_carrera())) {
                     vista.getCbx_carrera().addItem(listaCarreras.get(i).getNombre_carrera());
                 }
             }
@@ -289,7 +289,7 @@ public class Con_poa_evidencia {
                             for (int k = 0; k < listaPoa.size(); k++) {
                                 if (lista3.get(l).getId_poa() == listaPoa.get(k).getId_POA()) {
                                     for (int i = 0; i < listaCarreras.size(); i++) {
-                                        if (Integer.parseInt(listaCarreras.get(i).getCodigo_carrera()) == listaPoa.get(k).getId_carrera()) {
+                                        if (listaCarreras.get(i).getCodigo_carrera().equals( listaPoa.get(k).getId_carrera())) {
                                             vista.getTabla_Evidencia().setValueAt(listaCarreras.get(i).getNombre_carrera(), j, 1);
                                         }
                                     }
@@ -474,7 +474,7 @@ public class Con_poa_evidencia {
             for (int k = 0; k < listaPoa.size(); k++) {
                 if (lista.get(j).getId_poa() == listaPoa.get(k).getId_POA()) {
                     for (int i = 0; i < listaCarreras.size(); i++) {
-                        if (Integer.parseInt(listaCarreras.get(i).getCodigo_carrera()) == listaPoa.get(k).getId_carrera()) {
+                        if (listaCarreras.get(i).getCodigo_carrera().equals( listaPoa.get(k).getId_carrera())) {
                             vista.getTabla_Evidencia().setValueAt(listaCarreras.get(i).getNombre_carrera(), j, 1);
                         }
                     }

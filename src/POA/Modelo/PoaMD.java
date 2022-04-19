@@ -10,14 +10,14 @@ package POA.Modelo;
  */
 public class PoaMD {
     private int id_POA;
-    private int id_carrera;
+    private String id_carrera;
     private String anio;
     private String estado;
 
     public PoaMD() {
     }
 
-    public PoaMD(int id_POA, int id_carrera, String anio, String estado) {
+    public PoaMD(int id_POA, String id_carrera, String anio, String estado) {
         this.id_POA = id_POA;
         this.id_carrera = id_carrera;
         this.anio = anio;
@@ -34,11 +34,11 @@ public class PoaMD {
         this.id_POA = id_POA;
     }
 
-    public int getId_carrera() {
+    public String getId_carrera() {
         return id_carrera;
     }
 
-    public void setId_carrera(int id_carrera) {
+    public void setId_carrera(String id_carrera) {
         this.id_carrera = id_carrera;
     }
 

@@ -89,7 +89,7 @@ public class Con_Poa1 {
             fila[0] = user.getId_POA();
 
             for (POA.Modelo.CarreraMD carr : listaCarreras) {
-                if (user.getId_carrera() == Integer.parseInt(carr.getCodigo_carrera())) {
+                if (user.getId_carrera() .equals(carr.getCodigo_carrera())) {
                     fila[1] = carr.getNombre_carrera();
                     carrera = carr.getNombre_carrera();
                 }
@@ -107,17 +107,17 @@ public class Con_Poa1 {
     }
 
     public void guardar() {
-        int id_carrera = 0;
+        String id_carrera="";
         listaCarreras = baseDatosCarrera.mostrardatos();
         for (POA.Modelo.CarreraMD carr : listaCarreras) {
             if (((String) vista.getCbxCarrera().getSelectedItem()).equals(carr.getNombre_carrera())) {
-                id_carrera = Integer.parseInt(carr.getCodigo_carrera());
+                id_carrera = carr.getCodigo_carrera();
             }
         }
         boolean f = false;
         String anio = String.valueOf(vista.getyChooser().getValue());
         for (int i = 0; i < listaPOA.size(); i++) {
-            if (listaPOA.get(i).getId_carrera() == id_carrera && listaPOA.get(i).getAnio().equalsIgnoreCase(anio)) {
+            if (listaPOA.get(i).getId_carrera().equals(id_carrera) && listaPOA.get(i).getAnio().equalsIgnoreCase(anio)) {
                 f = true;
             }
         }
@@ -169,17 +169,17 @@ public class Con_Poa1 {
         int seleccionado = vista.getTablaPoa().getSelectedRow();
         id_poa = listaPOA.get(seleccionado).getId_POA();
         String carrera = (String) vista.getCbxCarrera().getSelectedItem();
-        int id_carrera = 0;
+        String id_carrera="" ;
         listaCarreras = baseDatosCarrera.mostrardatos();
         for (POA.Modelo.CarreraMD carr : listaCarreras) {
             if (((String) vista.getCbxCarrera().getSelectedItem()).equals(carr.getNombre_carrera())) {
-                id_carrera = Integer.parseInt(carr.getCodigo_carrera());
+                id_carrera = carr.getCodigo_carrera();
             }
         }
         String anio = String.valueOf(vista.getyChooser().getValue());
         boolean f = false;
         for (int i = 0; i < listaPOA.size(); i++) {
-            if (listaPOA.get(i).getId_carrera() == id_carrera && listaPOA.get(i).getAnio().equalsIgnoreCase(anio)) {
+            if (listaPOA.get(i).getId_carrera().equals( id_carrera) && listaPOA.get(i).getAnio().equalsIgnoreCase(anio)) {
                 f = true;
             }
         }

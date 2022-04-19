@@ -290,7 +290,7 @@ public class Con_documentacion {
     public void regresar() {
         vista.setVisible(false);
         vis_asignacionmateriadocentes doc = new vis_asignacionmateriadocentes();
-        Con_Asignacion_Docente per = new Con_Asignacion_Docente(doc);
+        Con_Asignacion_Docente per = new Con_Asignacion_Docente(doc,"DESARROLLO DE SOFTWARE");
 
         ESCRITORIO.add(doc);
         Dimension desktopSize = ESCRITORIO.getSize();

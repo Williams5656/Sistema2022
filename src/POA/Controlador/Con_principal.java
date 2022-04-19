@@ -178,8 +178,7 @@ public class Con_principal {
         Dimension desktopSize = vista.getESCRITORIO().getSize();
         Dimension FrameSize = user.getSize();
         user.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-        Con_Asignacion_Docente rol=new Con_Asignacion_Docente(user);
-
+        Con_Asignacion_Docente rol=new Con_Asignacion_Docente(user,vista.getLbCarrera().getText());
     }
 
     private void materias() {

@@ -5,21 +5,20 @@
 	<property name="ireport.y" value="0"/>
 	<parameter name="index" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select ac.identificacion, p.nombres || ' ' ||  p.apellidos AS nombres, m.materia, m.ciclo, ac.paralelo
-from carrera c
-join materia m
-on m.nombre = c.codigo
-join asignacion_docentes ac 
-on m.codigo = ac.asignatura
-join persona p 
-on p.cedula = ac.identificacion
-where upper (c.nombre) like upper ('%%')]]>
+		<![CDATA[select asig.id_asignacion, per.nombres || ' ' ||  per.apellidos as nombres, mat.materia, asig.ciclo, asig.paralelo,asig.jornada
+from asignacion_docentes asig
+	join materia mat
+		on mat.codigo = asig.asignatura
+	join persona per
+		on per.cedula = asig.identificacion
+WHERE $P!{index}]]>
 	</queryString>
-	<field name="identificacion" class="java.lang.String"/>
+	<field name="id_asignacion" class="java.lang.Integer"/>
 	<field name="nombres" class="java.lang.String"/>
 	<field name="materia" class="java.lang.String"/>
 	<field name="ciclo" class="java.lang.String"/>
 	<field name="paralelo" class="java.lang.String"/>
+	<field name="jornada" class="java.lang.String"/>
 	<filterExpression><![CDATA[$F{nombres} like $P{index}]]></filterExpression>
 	<background>
 		<band splitType="Stretch"/>
@@ -43,65 +42,82 @@ where upper (c.nombre) like upper ('%%')]]>
 		</band>
 	</title>
 	<columnHeader>
-		<band height="23" splitType="Stretch">
+		<band height="30" splitType="Stretch">
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="0" width="96" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="35df122e-ed6a-4cff-bf23-ece3be0420a0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[IDENTIFICACION]]></text>
+				<text><![CDATA[Codigo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="108" y="0" width="160" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="aa3652b0-f21c-4a94-bbf6-2e23da2b3b83"/>
+				<reportElement mode="Opaque" x="96" y="0" width="160" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="aa3652b0-f21c-4a94-bbf6-2e23da2b3b83"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[DOCENTE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="282" y="0" width="126" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="e35c1fe2-4bc5-4bea-a955-a38c361c5f5e"/>
+				<reportElement mode="Opaque" x="256" y="0" width="126" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="e35c1fe2-4bc5-4bea-a955-a38c361c5f5e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[MATERIA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="423" y="0" width="52" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="528b04a7-fbbd-40e9-ac1b-3afd1ec06767"/>
+				<reportElement mode="Opaque" x="382" y="0" width="52" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="528b04a7-fbbd-40e9-ac1b-3afd1ec06767"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[CICLO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="494" y="0" width="61" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="d78bd1c1-6cf2-47b6-bcf0-5c9cac9f0358"/>
+				<reportElement mode="Opaque" x="434" y="0" width="61" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="d78bd1c1-6cf2-47b6-bcf0-5c9cac9f0358"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[PARALELO]]></text>
 			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="494" y="0" width="61" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="429fc69b-1f40-4323-8ede-e7638bc57283"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[JORNADA]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="27" splitType="Stretch">
+		<band height="30" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="4" width="96" height="20" uuid="70c85c99-b16e-4fe6-9130-55d60b387c3b"/>
-				<textFieldExpression><![CDATA[$F{identificacion}]]></textFieldExpression>
+				<reportElement x="0" y="4" width="96" height="20" uuid="11141aed-c2b6-4ee9-bb8e-c84a2823c204"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{id_asignacion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="108" y="4" width="160" height="20" uuid="f561d22e-cadd-47df-818b-c878d893622d"/>
+				<reportElement x="96" y="4" width="160" height="20" uuid="f51ff344-8e7e-45ff-b89a-e87decd6675f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="282" y="4" width="126" height="20" uuid="ebc3cc72-03f7-4567-9e17-d7bb858fa48a"/>
+				<reportElement x="256" y="4" width="126" height="20" uuid="1cc9ac71-8a5c-4741-87a4-923a71b2bf36"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{materia}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="423" y="4" width="52" height="20" uuid="28871b56-5eef-4eaf-b382-0179e5e754f0"/>
+				<reportElement x="382" y="4" width="52" height="20" uuid="d722f398-8e09-436b-a514-3b341f3cecc6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{ciclo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="494" y="4" width="61" height="20" uuid="9143d8e0-7ea1-4125-be86-322360680046"/>
+				<reportElement x="434" y="4" width="61" height="20" uuid="386225f0-e696-41ff-a2c0-4d4ab27935f8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{paralelo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="495" y="4" width="60" height="20" uuid="29a10c69-e538-451a-997c-89e16e7f2562"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{jornada}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

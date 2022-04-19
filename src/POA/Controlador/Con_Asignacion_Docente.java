@@ -52,9 +52,11 @@ public class Con_Asignacion_Docente {
     private List<AsignacionMateriaDocentesMD> lista = new ArrayList<>();
     private PeriodoacademicoBD baseDatosPeriodo = new PeriodoacademicoBD();
     private boolean tablaSeleccionada = false;
+    private String carrera;
 
-    public Con_Asignacion_Docente(vis_asignacionmateriadocentes vista) {
+    public Con_Asignacion_Docente(vis_asignacionmateriadocentes vista,String carrera) {
         this.vista = vista;
+        this.carrera=carrera;
         vista.setVisible(true);
         cargarComboMateria();
         cargarComboPeriodo();
@@ -178,13 +180,17 @@ public class Con_Asignacion_Docente {
             JOptionPane.showMessageDialog(null, " seleccione uno de los campos");
 
         }else if (resp.equals("Reporte por Docente")){
-            parametro = (String) JOptionPane.showInputDialog(null, "Seleccione un docente", "Docentes",       
-                JOptionPane.DEFAULT_OPTION, null, nombres, nombres[0]);
-            
+            parametro = "where per.cedula= (select cedula from persona where nombres || ' ' ||  apellidos= '"+(String) JOptionPane.showInputDialog(null, "Seleccione un docente", "Docentes",       
+                JOptionPane.DEFAULT_OPTION, null, nombres, nombres[0])+" ');"; 
         }
+        else if (resp.equals("Reporte por Carreras")){
+            parametro = "where mat.nombre= '"+carrera+"';"; 
+        }
+        else parametro="asig.id_asignacion=asig.id_asignacion;;";
+        
         try {
             Map p = new HashMap();
-            p.put("index","%"+ parametro + "%");
+            p.put("index",parametro);
             JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Asignacion_Docentes.jasper"));
             JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, p, con.getCon());
             JasperViewer jv = new JasperViewer(jp, false);

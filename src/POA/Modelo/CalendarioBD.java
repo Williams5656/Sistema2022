@@ -5,12 +5,24 @@
  */
 package POA.Modelo;
 
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,30 +35,36 @@ public class CalendarioBD extends CalendarioMD {
     public CalendarioBD() {
     }
 
-    public CalendarioBD(int id_Actividad, String id_Carrera, int id_Periodo, int id_TipoActividad, String Nombre_Actividad, String Descripcion, String Fecha_Inicio, String Fecha_Limite) {
-        super(id_Actividad, id_Carrera, id_Periodo, id_TipoActividad, Nombre_Actividad, Descripcion, Fecha_Inicio, Fecha_Limite);
+    public CalendarioBD(int id_Actividad, String id_Carrera, int id_Periodo, int id_TipoActividad, String Nombre_Actividad, String Descripcion, String Fecha_Inicio, String Fecha_Limite, byte[] archivo) {
+        super(id_Actividad, id_Carrera, id_Periodo, id_TipoActividad, Nombre_Actividad, Descripcion, Fecha_Inicio, Fecha_Limite, archivo);
     }
 
-    public List<CalendarioMD> mostrardatos() {
-        List<CalendarioMD> listaA = new ArrayList<CalendarioMD>();
+    public List<NomCalendarioMD> mostrardatos() {
+        List<NomCalendarioMD> Listacale = new ArrayList<>();
         try {
-            String sql = "select * from calendario";
+            String sql = "select ca.id_actividad, c.nombre as Carrera,p.nombre as periodo, t.nombre_tipo_actividad as tipo_Actividad,ca.nombre_actividad,ca.descripcion,ca.fecha_inicio,ca.fecha_limite,ca.archivo "
+                    + "from calendario ca "
+                    + "join periodo_academico p on p.id_periodo=ca.id_periodo "
+                    + "join carrera c on c.codigo=ca.id_carrera "
+                    + "join tipo_actividad t on t.id_tipoactividad=ca.id_tipoactividad "
+                    + "order by 1 ";
             ResultSet rs = conectar.query(sql);
             byte[] is;
             while (rs.next()) {
-                CalendarioMD m = new CalendarioMD();
-                m.setId_Actividad(rs.getInt("id_actividad"));
-                m.setId_Carrera(rs.getString("id_carrera"));
-                m.setId_Periodo(rs.getInt("id_periodo"));
-                m.setid_TipoActividad(rs.getInt("id_tipoactividad"));
-                m.setNombre_Actividad(rs.getString("nombre_actividad"));
+                NomCalendarioMD m = new NomCalendarioMD();
+                m.setId_actividad(rs.getInt("id_actividad"));
+                m.setId_carrera(rs.getString("Carrera"));
+                m.setId_periodo(rs.getString("periodo"));
+                m.setId_tipoactividad(rs.getString("tipo_Actividad"));
+                m.setNombre_actividad(rs.getString("nombre_actividad"));
                 m.setDescripcion(rs.getString("descripcion"));
-                m.setFecha_Inicio(rs.getString("fecha_inicio"));
-                m.setFecha_Limite(rs.getString("fecha_limite"));
-                listaA.add(m);
+                m.setFecha_ini(rs.getString("fecha_inicio"));
+                m.setFecha_lim(rs.getString("fecha_limite"));
+                m.setArchivo(rs.getBytes("archivo"));
+                Listacale.add(m);
             }
             rs.close();
-            return listaA;
+            return Listacale;
         } catch (Exception e) {
             Logger.getLogger(UsuarioBD.class.getName()).log(Level.SEVERE, null, e);
             return null;
@@ -57,7 +75,7 @@ public class CalendarioBD extends CalendarioMD {
     public List<CalendarioMD> obtenerDatos(int id_actividad) {
         List<CalendarioMD> listaA = new ArrayList<CalendarioMD>();
         try {
-            String sql = "select * from calendario" + " where \"id_actividad\"='" + id_actividad + "'";
+            String sql = "select * from calendario where \"id_actividad\"='" + id_actividad + "'";
             ResultSet rs = conectar.query(sql);
             byte[] is;
             while (rs.next()) {
@@ -70,6 +88,7 @@ public class CalendarioBD extends CalendarioMD {
                 m.setDescripcion(rs.getString("descripcion"));
                 m.setFecha_Inicio(rs.getString("fecha_inicio"));
                 m.setFecha_Limite(rs.getString("fecha_limite"));
+                m.setArchivo(rs.getBytes("archivo"));
                 listaA.add(m);
             }
             rs.close();
@@ -125,28 +144,95 @@ public class CalendarioBD extends CalendarioMD {
 
     }
 
-    public boolean modificar(int id_actividad) {
+    public boolean modificar(File ruta) {
         //Transformo image a base64 encode para postgresl
+        byte[] pdf1 = null;
+        if (ruta != null) {
 
-        String nsql = "update calendario set id_carrera='" + getId_Carrera() + "',id_periodo='" + getId_Periodo() + "',id_tipoactividad='" + getid_TipoActividad() + "',nombre_actividad='" + getNombre_Actividad()
-                + "',descripcion='" + getDescripcion() + "',fecha_inicio='" + getFecha_Inicio() + "',fecha_limite='" + getFecha_Limite() + "'"
-                + " where id_actividad='" + id_actividad + "'";
+            try {
+                byte[] pdf = new byte[(int) ruta.length()];
+                InputStream input = new FileInputStream(ruta);
+                input.read(pdf);
+                pdf1 = pdf;
+                setArchivo(pdf);
+            } catch (IOException ex) {
+                pdf1 = null;
+            }
+        }
 
-        if (conectar.noQuery(nsql) == null) {
-            return true;
-        } else {
-            System.out.println("error al editar");
+        try {
+
+            String sql = "UPDATE calendario SET id_carrera= ?, id_periodo=?, id_tipoactividad=?, nombre_actividad=?, descripcion=?, archivo=? "
+                    + " WHERE id_actividad = " + getId_Actividad();
+
+            PreparedStatement ps = null;
+            System.out.println("fecha" + getFecha_Inicio());
+            ps = conectar.getCon().prepareStatement(sql);
+            Date fecha = new Date();
+            ps.setString(1, getId_Carrera());
+            ps.setInt(2, getId_Periodo());
+            ps.setInt(3, getId_TipoActividad());
+            ps.setString(4, getNombre_Actividad());
+            ps.setString(5, getDescripcion());
+            //ps.setString(6, getFecha_Inicio());
+            //ps.setString(7, getFecha_Limite());
+            ps.setBytes(6, pdf1);
+            boolean ejecutar = false;
+            ps.execute();
+            if (ps.executeUpdate() == 1) {
+                ejecutar = true;
+                System.out.println("aaaaa");
+            }
+            return ejecutar;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "", 0);
+            System.out.println(ex.getMessage());
+            return false;
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "", 0);
             return false;
         }
 
     }
 
-    public int validar_Nombre_act() {
+    public void ejecutar_archivoPDF(int id) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        byte[] b = null;
+        try {
+            ps = conectar.getCon().prepareStatement("SELECT archivo FROM calendario WHERE id_actividad = ?;");
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                b = rs.getBytes(1);
+            }
+            InputStream bos = new ByteArrayInputStream(b);
+
+            int tamanoInput = bos.available();
+            byte[] datosPDF = new byte[tamanoInput];
+            bos.read(datosPDF, 0, tamanoInput);
+
+            OutputStream out = new FileOutputStream("new.pdf");
+            out.write(datosPDF);
+            out.close();
+            bos.close();
+            ps.close();
+            rs.close();
+            conectar.cierraConexion();
+
+        } catch (IOException | NumberFormatException | SQLException ex) {
+            System.out.println("Error al abrir archivo PDF " + ex.getMessage());
+        }
+
+    }
+
+    public int validar_Nombre_act(String nombre) {
 
         int fila = 0;
         try {
             System.out.println(getNombre_Actividad() + " nombre_actividad");
-            String sql = "Select * from calendario where nombre_actividad = '" + getNombre_Actividad() + "'";
+            String sql = "Select * from calendario where nombre_actividad = '" + nombre + "'";
+            System.out.println("");
             ResultSet rs = conectar.query(sql);
             while (rs.next()) {
                 fila++;

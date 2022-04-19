@@ -38,14 +38,6 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         this.btn_prueba = btn_prueba;
     }
 
-    public JButton getValidar_n() {
-        return Validar_n;
-    }
-
-    public void setValidar_n(JButton Validar_n) {
-        this.Validar_n = Validar_n;
-    }
-
 
     public JButton getBtn_responsables() {
         return btn_responsables;
@@ -352,7 +344,6 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         jLabel15 = new javax.swing.JLabel();
         Fecha_inicio = new com.toedter.calendar.JDateChooser();
         Fecha_limite = new com.toedter.calendar.JDateChooser();
-        Validar_n = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -541,9 +532,6 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
 
         Fecha_limite.setDateFormatString("yyyy-MM-dd hh:mm:ss");
         jPanel1.add(Fecha_limite, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, 190, 20));
-
-        Validar_n.setText("V");
-        jPanel1.add(Validar_n, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 117, 430, 700));
 
@@ -758,7 +746,6 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
     private javax.swing.JLabel Jl_evidencia;
     private javax.swing.JDialog T_Actividad_D;
     private javax.swing.JTable Tabla_calendario;
-    private javax.swing.JButton Validar_n;
     private javax.swing.JButton btn_aceptar;
     private javax.swing.JButton btn_añadir;
     private javax.swing.JButton btn_cancelar;

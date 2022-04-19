@@ -76,6 +76,16 @@ public class Con_permisos {
         fila5[0] = 6;
         fila5[1] = "Boton Carrera";
         modelo.addRow(fila5);
+        
+        Object[] fila6 = new Object[2];
+        fila5[0] = 7;
+        fila5[1] = "Boton Periodo_Academico";
+        modelo.addRow(fila6);
+        
+        Object[] fila7 = new Object[2];
+        fila5[0] = 8;
+        fila5[1] = "Boton Docentes";
+        modelo.addRow(fila7);
 
         vista.getTablapermisos().setModel(modelo);
         check(2, vista.getTablapermisos());

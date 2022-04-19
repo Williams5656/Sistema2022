@@ -28,16 +28,7 @@ public class Responsables_ActividadBD extends Responsables_ActividadMD  {
             return false;
         }
     }
-    public boolean editarresponsable(int id_actividad){
-        
-        String nsql = "update responsables_act set cedula='" + getCedula() + "'" + " where id_actividad='" + id_actividad + "'";
-        if (conectar.noQuery(nsql) == null) {
-            return true;
-        } else {
-            System.out.println("error al editar");
-            return false;
-        }
-    }
+    
     public List<Responsables_ActividadMD> obtenerdatos(String buscar) {
   
         try {
@@ -99,7 +90,7 @@ public class Responsables_ActividadBD extends Responsables_ActividadMD  {
     public List<Responsables_ActividadMD> datos_responsables() {
   
         try {
-            String sql1 ="select * from nombres_responsables";
+            String sql1 ="select * from nombres_responsables order by 2";
             List<Responsables_ActividadMD> lista = new ArrayList<Responsables_ActividadMD>();
             ResultSet rs = conectar.query(sql1);
             while (rs.next()) {

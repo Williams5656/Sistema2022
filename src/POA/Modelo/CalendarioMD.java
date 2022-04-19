@@ -18,11 +18,12 @@ public class CalendarioMD {
     private String Descripcion;
     private String Fecha_Inicio;
     private String Fecha_Limite;
-
+    byte[] archivo;
+    
     public CalendarioMD() {
     }
 
-    public CalendarioMD(int id_Actividad, String id_Carrera, int id_Periodo, int id_TipoActividad, String Nombre_Actividad, String Descripcion, String Fecha_Inicio, String Fecha_Limite) {
+    public CalendarioMD(int id_Actividad, String id_Carrera, int id_Periodo, int id_TipoActividad, String Nombre_Actividad, String Descripcion, String Fecha_Inicio, String Fecha_Limite, byte[] archivo) {
         this.id_Actividad = id_Actividad;
         this.id_Carrera = id_Carrera;
         this.id_Periodo = id_Periodo;
@@ -31,12 +32,25 @@ public class CalendarioMD {
         this.Descripcion = Descripcion;
         this.Fecha_Inicio = Fecha_Inicio;
         this.Fecha_Limite = Fecha_Limite;
+        this.archivo = archivo;
     }
 
-   
+    public int getId_TipoActividad() {
+        return id_TipoActividad;
+    }
 
-   
+    public void setId_TipoActividad(int id_TipoActividad) {
+        this.id_TipoActividad = id_TipoActividad;
+    }
 
+    public byte[] getArchivo() {
+        return archivo;
+    }
+
+    public void setArchivo(byte[] archivo) {
+        this.archivo = archivo;
+    }
+    
     public String getId_Carrera() {
         return id_Carrera;
     }

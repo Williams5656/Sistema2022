@@ -122,8 +122,6 @@ public class Vis_Perfil extends javax.swing.JInternalFrame {
         btn_imprimir = new javax.swing.JButton();
         btn_nuevo = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        txt_buscar = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -179,7 +177,7 @@ public class Vis_Perfil extends javax.swing.JInternalFrame {
         ));
         jScrollPane3.setViewportView(tablaPerfil);
 
-        panel.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 611, 134));
+        panel.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 520, 140));
 
         btn_modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/modificar.png"))); // NOI18N
         btn_modificar.setToolTipText("Modificar");
@@ -198,7 +196,7 @@ public class Vis_Perfil extends javax.swing.JInternalFrame {
         btn_imprimir.setBorderPainted(false);
         btn_imprimir.setContentAreaFilled(false);
         btn_imprimir.setVerifyInputWhenFocusTarget(false);
-        panel.add(btn_imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, -1, -1));
+        panel.add(btn_imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, -1));
 
         btn_nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/nuevo.png"))); // NOI18N
         btn_nuevo.setToolTipText("Nuevo");
@@ -209,24 +207,15 @@ public class Vis_Perfil extends javax.swing.JInternalFrame {
 
         jLabel4.setText("jLabel4");
         panel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, -1, -1));
-        panel.add(txt_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 170, -1));
-
-        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/buscar (2).png"))); // NOI18N
-        btnBuscar.setToolTipText("Buscar");
-        btnBuscar.setBorderPainted(false);
-        btnBuscar.setContentAreaFilled(false);
-        panel.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 20, 40, 30));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/fondo azul (1).jpg"))); // NOI18N
-        panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 380));
+        panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 380));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,7 +227,6 @@ public class Vis_Perfil extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btn_eliminar;
     private javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_imprimir;
@@ -256,6 +244,5 @@ public class Vis_Perfil extends javax.swing.JInternalFrame {
     private javax.swing.JTable tablaPerfil;
     private javax.swing.JTextArea txtDescripcion;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txt_buscar;
     // End of variables declaration//GEN-END:variables
 }

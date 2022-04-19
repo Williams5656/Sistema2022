@@ -283,42 +283,42 @@ public class Vis_Documentacion extends javax.swing.JInternalFrame  {
 
         jLabel1.setFont(new java.awt.Font("Sitka Small", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("CEDULA:");
+        jLabel1.setText("Cedula:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Sitka Small", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("PERIODO:");
+        jLabel2.setText("Periodo:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Sitka Small", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("ASIGNATURA:");
+        jLabel3.setText("Asignatura:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Sitka Small", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("PARALELO:");
+        jLabel4.setText("Paralelo:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Sitka Small", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("JORNADA:");
+        jLabel5.setText("Jornada:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Sitka Small", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("CICLO:");
+        jLabel6.setText("Ciclo:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Sitka Small", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("GEST. ACADEMICO:");
+        jLabel7.setText("Responsable:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Sitka Small", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("DOCENTE:");
+        jLabel8.setText("Docente:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, -1, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/ISTA.jpg"))); // NOI18N
@@ -330,7 +330,7 @@ public class Vis_Documentacion extends javax.swing.JInternalFrame  {
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, -1, -1));
 
         txt_paralelo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        getContentPane().add(txt_paralelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 70, -1));
+        getContentPane().add(txt_paralelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 90, -1));
 
         txt_periodo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         getContentPane().add(txt_periodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 240, -1));
@@ -341,13 +341,13 @@ public class Vis_Documentacion extends javax.swing.JInternalFrame  {
                 txt_cicloActionPerformed(evt);
             }
         });
-        getContentPane().add(txt_ciclo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 70, -1));
+        getContentPane().add(txt_ciclo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 80, -1));
 
         txt_gestor.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        getContentPane().add(txt_gestor, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, 260, -1));
+        getContentPane().add(txt_gestor, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, 310, -1));
 
         txt_jornada.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        getContentPane().add(txt_jornada, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 210, 140, -1));
+        getContentPane().add(txt_jornada, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, 190, -1));
 
         txt_nombre.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         getContentPane().add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, 340, -1));

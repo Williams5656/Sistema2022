@@ -121,6 +121,7 @@ public class Vis_AreaCarrera extends javax.swing.JInternalFrame {
         btn_eliminar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         comboPerfil = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -129,15 +130,19 @@ public class Vis_AreaCarrera extends javax.swing.JInternalFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Perfil:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Responsable:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
-        jPanel1.add(comboCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 330, -1));
+        jPanel1.add(comboCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 330, -1));
 
-        jPanel1.add(comboResponsable, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 330, -1));
+        jPanel1.add(comboResponsable, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 330, -1));
 
         tablaAreaCarrera.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -157,49 +162,54 @@ public class Vis_AreaCarrera extends javax.swing.JInternalFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 160, 660, 162));
 
         btn_nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/nuevo.png"))); // NOI18N
-        btn_nuevo.setText("Nuevo");
+        btn_nuevo.setToolTipText("Nuevo");
         btn_nuevo.setContentAreaFilled(false);
         btn_nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_nuevoActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_nuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, -1));
+        jPanel1.add(btn_nuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, -1));
 
         btn_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/Save-icon (4).png"))); // NOI18N
-        btn_guardar.setText("Guardar");
+        btn_guardar.setToolTipText("Guardar");
         btn_guardar.setContentAreaFilled(false);
-        jPanel1.add(btn_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 130, -1));
+        jPanel1.add(btn_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 60, -1));
 
         btn_modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/modificar.png"))); // NOI18N
-        btn_modificar.setText("Modificar");
+        btn_modificar.setToolTipText("Modificar");
         btn_modificar.setContentAreaFilled(false);
         btn_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_modificarActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 140, -1));
+        jPanel1.add(btn_modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 60, -1));
 
         btn_imprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/impresion.png"))); // NOI18N
-        btn_imprimir.setText("Imprimir");
+        btn_imprimir.setToolTipText("Imprimir");
         btn_imprimir.setContentAreaFilled(false);
         btn_imprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_imprimirActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 140, -1));
+        jPanel1.add(btn_imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 0, 60, -1));
 
         btn_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/WhatsApp Image 2022-02-15 at 00.32.29.jpeg"))); // NOI18N
-        btn_eliminar.setText("Eliminar");
+        btn_eliminar.setToolTipText("Eliminar");
         btn_eliminar.setContentAreaFilled(false);
-        jPanel1.add(btn_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 130, -1));
+        jPanel1.add(btn_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 50, -1));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Carrera:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
-        jPanel1.add(comboPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 330, -1));
+        jPanel1.add(comboPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 330, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/fondo azul (2).jpg"))); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 340));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -211,7 +221,7 @@ public class Vis_AreaCarrera extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, Short.MAX_VALUE)
         );
 
         pack();
@@ -246,6 +256,7 @@ public class Vis_AreaCarrera extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaAreaCarrera;

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="50802a3a-e4f9-40e6-8b27-3368892d6c22">
 	<property name="ireport.zoom" value="0.9090909090909095"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="136"/>
+	<property name="ireport.y" value="494"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -629,7 +629,7 @@ Where po.anio=$P{anio} and pro.num_proyecto_carrera=$P{Numproyecto}]]>
 			</textField>
 			<textField>
 				<reportElement x="131" y="119" width="424" height="46" uuid="807730a7-6720-4187-9e35-d2d415fe6f2c"/>
-				<textElement>
+				<textElement textAlignment="Justified">
 					<font size="12" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{objetivoestrategico}]]></textFieldExpression>
@@ -664,7 +664,7 @@ Where po.anio=$P{anio} and pro.num_proyecto_carrera=$P{Numproyecto}]]>
 			</staticText>
 			<textField>
 				<reportElement x="131" y="178" width="424" height="51" uuid="1376eabd-b768-498b-b509-e85f48aa07df"/>
-				<textElement>
+				<textElement textAlignment="Justified">
 					<font size="12" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{objetivotactico}]]></textFieldExpression>
@@ -674,7 +674,7 @@ Where po.anio=$P{anio} and pro.num_proyecto_carrera=$P{Numproyecto}]]>
 			</rectangle>
 			<textField isBlankWhenNull="false">
 				<reportElement x="139" y="10" width="416" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="88083266-1c90-4289-b3df-74a151400701"/>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{carrera}]]></textFieldExpression>
@@ -687,7 +687,7 @@ Where po.anio=$P{anio} and pro.num_proyecto_carrera=$P{Numproyecto}]]>
 			</rectangle>
 			<textField>
 				<reportElement x="131" y="248" width="424" height="46" uuid="a0eb9cab-0263-43d2-a06f-53545381d2a5"/>
-				<textElement>
+				<textElement textAlignment="Justified">
 					<font size="12" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{estrategia}]]></textFieldExpression>

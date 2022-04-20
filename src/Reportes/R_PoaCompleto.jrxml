@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="50802a3a-e4f9-40e6-8b27-3368892d6c22">
-	<property name="ireport.zoom" value="0.620921323059155"/>
+	<property name="ireport.zoom" value="0.9090909090909095"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="51"/>
+	<property name="ireport.y" value="136"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -424,7 +424,6 @@
 		</box>
 	</style>
 	<subDataset name="New Dataset 1" uuid="46aad5e0-bf95-4fac-9e8d-3ddb4ed0ec14">
-		<parameter name="parameter1" class="java.lang.String"/>
 		<parameter name="anioo" class="java.lang.String">
 			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 		</parameter>
@@ -483,9 +482,6 @@ Where po.anio=$P{anioo} and pro.num_proyecto_carrera=$P{numpro}]]>
      act."responsable" AS Responsable,
      act."plazo" AS Plazo,
      act."recurso_financiero" AS RecursoFinanciero,
-     ind."indicador" AS Indicador,
-     ind."linea_base" AS LineaBase,
-     ind."meta" AS Meta,
      ob."id_objetivo_operativo",
      act."id_actividades"
 FROM
@@ -493,7 +489,6 @@ FROM
      INNER JOIN "proyecto" pro ON po."id_poa" = pro."id_poa"
      INNER JOIN "objetivo_operativo" ob ON pro."id_proyecto" = ob."id_proyecto"
      INNER JOIN "actividades" act ON ob."id_objetivo_operativo" = act."id_objetivo_operativo"
-     INNER JOIN "indicador" ind ON act."id_actividades" = ind."id_actividades"
 WHERE
      po.anio = $P{anio}
      and pro.num_proyecto_carrera = $P{nump}]]>
@@ -510,9 +505,6 @@ WHERE
 		<field name="responsable" class="java.lang.String"/>
 		<field name="plazo" class="java.sql.Date"/>
 		<field name="recursofinanciero" class="java.lang.String"/>
-		<field name="indicador" class="java.lang.String"/>
-		<field name="lineabase" class="java.lang.Integer"/>
-		<field name="meta" class="java.lang.Integer"/>
 		<field name="id_objetivo_operativo" class="java.lang.Integer"/>
 		<field name="id_actividades" class="java.lang.Integer"/>
 	</subDataset>
@@ -526,14 +518,13 @@ WHERE
 		<queryString>
 			<![CDATA[Select po.anio Año,ca.nombre Carrera,pro.num_proyecto_carrera Numproyecto,pro.objetivo_estrategico ObjetivoEstrategico,
 pro.objetivo_tactico ObjetivoTactico,pro.estrategia Estrategia,ob.num_objetivo_proyecto NumObjetivoOperativo,
-ob.objetivo ObjetivoOperativo,act.actividad Actividad,act.responsable Responsable,act.plazo Plazo,act.recurso_financiero RecursoFinanciero,
-ind.indicador Indicador,ind.linea_base LineaBase, ind.meta Meta,ob.id_objetivo_operativo,act.id_actividades
+ob.objetivo ObjetivoOperativo,
+ob.id_objetivo_operativo
 from poa as po
 Inner JOIN carrera ca on po.id_carrera = ca.codigo
 Inner JOIN proyecto pro on po.id_poa = pro.id_poa
 Inner JOIN objetivo_operativo ob on pro.id_proyecto = ob.id_proyecto
-Inner JOIN actividades act on ob.id_objetivo_operativo = act.id_objetivo_operativo
-Inner JOIN indicador ind on act.id_actividades = ind.id_actividades
+
 Where po.anio=$P{anio} and pro.num_proyecto_carrera=$P{nump}]]>
 		</queryString>
 		<field name="año" class="java.lang.String"/>
@@ -544,15 +535,7 @@ Where po.anio=$P{anio} and pro.num_proyecto_carrera=$P{nump}]]>
 		<field name="estrategia" class="java.lang.String"/>
 		<field name="numobjetivooperativo" class="java.lang.Integer"/>
 		<field name="objetivooperativo" class="java.lang.String"/>
-		<field name="actividad" class="java.lang.String"/>
-		<field name="responsable" class="java.lang.String"/>
-		<field name="plazo" class="java.sql.Date"/>
-		<field name="recursofinanciero" class="java.lang.String"/>
-		<field name="indicador" class="java.lang.String"/>
-		<field name="lineabase" class="java.lang.Integer"/>
-		<field name="meta" class="java.lang.Integer"/>
 		<field name="id_objetivo_operativo" class="java.lang.Integer"/>
-		<field name="id_actividades" class="java.lang.Integer"/>
 	</subDataset>
 	<parameter name="anio" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -560,17 +543,16 @@ Where po.anio=$P{anio} and pro.num_proyecto_carrera=$P{nump}]]>
 	<parameter name="Numproyecto" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\HP\\Documents\\NetBeansProjects\\Sistema2022\\src\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[Select po.anio Año,ca.nombre Carrera,pro.num_proyecto_carrera Numproyecto,pro.objetivo_estrategico ObjetivoEstrategico,
-pro.objetivo_tactico ObjetivoTactico,pro.estrategia Estrategia,ob.num_objetivo_proyecto NumObjetivoOperativo,
-ob.objetivo ObjetivoOperativo,act.actividad Actividad,act.responsable Responsable,act.plazo Plazo,act.recurso_financiero RecursoFinanciero,
-ind.indicador Indicador,ind.linea_base LineaBase, ind.meta Meta,ob.id_objetivo_operativo,act.id_actividades
+pro.objetivo_tactico ObjetivoTactico,pro.estrategia Estrategia
 from poa as po
 Inner JOIN carrera ca on po.id_carrera = ca.codigo
 Inner JOIN proyecto pro on po.id_poa = pro.id_poa
-Inner JOIN objetivo_operativo ob on pro.id_proyecto = ob.id_proyecto
-Inner JOIN actividades act on ob.id_objetivo_operativo = act.id_objetivo_operativo
-Inner JOIN indicador ind on act.id_actividades = ind.id_actividades
+
 Where po.anio=$P{anio} and pro.num_proyecto_carrera=$P{Numproyecto}]]>
 	</queryString>
 	<field name="año" class="java.lang.String"/>
@@ -579,31 +561,20 @@ Where po.anio=$P{anio} and pro.num_proyecto_carrera=$P{Numproyecto}]]>
 	<field name="objetivoestrategico" class="java.lang.String"/>
 	<field name="objetivotactico" class="java.lang.String"/>
 	<field name="estrategia" class="java.lang.String"/>
-	<field name="numobjetivooperativo" class="java.lang.Integer"/>
-	<field name="objetivooperativo" class="java.lang.String"/>
-	<field name="actividad" class="java.lang.String"/>
-	<field name="responsable" class="java.lang.String"/>
-	<field name="plazo" class="java.sql.Date"/>
-	<field name="recursofinanciero" class="java.lang.String"/>
-	<field name="indicador" class="java.lang.String"/>
-	<field name="lineabase" class="java.lang.Integer"/>
-	<field name="meta" class="java.lang.Integer"/>
-	<field name="id_objetivo_operativo" class="java.lang.Integer"/>
-	<field name="id_actividades" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="138" splitType="Stretch">
+		<band height="127" splitType="Stretch">
 			<image>
-				<reportElement x="0" y="0" width="555" height="135" uuid="39839ee9-da0d-49ac-a95b-5998b3a486e5"/>
+				<reportElement x="0" y="-2" width="555" height="125" uuid="39839ee9-da0d-49ac-a95b-5998b3a486e5"/>
 				<imageExpression><![CDATA["C:\\Users\\HP\\Documents\\NetBeansProjects\\Sistema2022\\src\\POA\\Vista\\img\\ISTA.jpg"]]></imageExpression>
 			</image>
 			<rectangle>
-				<reportElement x="0" y="72" width="555" height="61" backcolor="#000099" uuid="b5997bb1-9499-4b75-a2c2-040df77531d8"/>
+				<reportElement x="0" y="62" width="555" height="61" backcolor="#000099" uuid="b5997bb1-9499-4b75-a2c2-040df77531d8"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="139" y="72" width="284" height="57" forecolor="#FFFFFF" uuid="29821c72-c062-4d17-906c-c918ba4f4534"/>
+				<reportElement x="139" y="62" width="284" height="57" forecolor="#FFFFFF" uuid="29821c72-c062-4d17-906c-c918ba4f4534"/>
 				<textElement textAlignment="Center">
 					<font size="20" isBold="true" isItalic="true" isUnderline="false"/>
 				</textElement>
@@ -612,103 +583,126 @@ Where po.anio=$P{anio} and pro.num_proyecto_carrera=$P{Numproyecto}]]>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="6" splitType="Stretch"/>
+		<band height="4" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="555" splitType="Stretch">
-			<textField>
-				<reportElement x="134" y="210" width="276" height="20" uuid="eb6550e9-1935-4c2e-963f-b7941b4b7fcf"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{estrategia}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="69" y="81" width="56" height="20" uuid="f690d941-7b4e-4c9f-a7a9-feb5540ca4dd"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{numproyecto}]]></textFieldExpression>
-			</textField>
+		<band height="5" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="311">
+			<rectangle>
+				<reportElement mode="Opaque" x="131" y="178" width="424" height="51" forecolor="#FFFFFF" backcolor="#CCCCFF" uuid="9e235c8c-0cbf-42a2-b5b2-28f8448b65da"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="131" y="119" width="424" height="46" forecolor="#FFFFFF" backcolor="#CCCCFF" uuid="cf734ebc-7bc3-414c-b8c9-4c5414dbc684"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="69" y="37" width="70" height="20" forecolor="#FFFFFF" backcolor="#CCCCFF" uuid="b15c4f93-9360-4d14-a272-d6add94d5296"/>
+			</rectangle>
 			<staticText>
-				<reportElement x="10" y="210" width="100" height="20" uuid="fdcba3ae-51c0-4b8f-87fb-97d5b943f55a"/>
+				<reportElement x="0" y="133" width="129" height="20" uuid="e7ceade1-6e1f-427c-9dd6-785eee1d287d"/>
 				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Estrategia:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="10" y="171" width="115" height="20" uuid="a33475c8-f4c4-485b-88a3-e77788bfbb62"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Objetivo Tactico:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="125" y="10" width="198" height="20" uuid="b7c0e77e-d98f-4a39-b73b-df554524efc9"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{carrera}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="69" y="52" width="56" height="20" uuid="df91f6b9-43db-444f-8a40-569f7f0f21db"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{año}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="10" y="52" width="59" height="20" uuid="9136593a-3b46-4f26-a8d9-d523db7fc0c8"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Año:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="10" y="81" width="59" height="20" uuid="5846ce2f-d60b-4ec3-817f-7d124b7071bd"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Proyecto:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="134" y="171" width="276" height="20" uuid="c721484c-0ea3-457b-8382-034fd06cff3a"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{objetivotactico}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="10" y="10" width="100" height="20" uuid="41bc3172-c74a-4a45-8671-4118ecd36098"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Carrera Tradicional:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="134" y="136" width="276" height="20" uuid="752a6a0b-7f5b-4084-8309-71ae91fc7653"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{objetivoestrategico}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="10" y="136" width="115" height="20" uuid="77d0dda1-7a99-4c81-b006-034d7abed1b8"/>
-				<textElement>
-					<font isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Objetivo Estrategico:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="275" width="100" height="20" uuid="9f856150-77c9-4d7d-a165-9eaeb787b710"/>
+				<reportElement x="2" y="81" width="59" height="20" uuid="28794b22-8072-4b0c-bc7c-984abdb7b23d"/>
 				<textElement>
-					<font size="9" isBold="true"/>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Proyecto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="259" width="115" height="20" uuid="893f93ca-e7ec-46be-9cf7-d6f59d9f0ad4"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estrategia:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="61" y="81" width="56" height="20" uuid="236cbc43-2047-450f-b241-0d5f8cb4ad47"/>
+				<textElement>
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numproyecto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="131" y="119" width="424" height="46" uuid="807730a7-6720-4187-9e35-d2d415fe6f2c"/>
+				<textElement>
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{objetivoestrategico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="69" y="37" width="70" height="20" uuid="fe29fc9a-a6ad-4bfd-b368-351c8ba7a9dd"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{año}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="197" width="115" height="20" uuid="44a1fbb7-0de2-4efd-be4d-eb449c754b97"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Objetivo Tactico:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="10" width="129" height="20" uuid="14293274-bfd2-43fc-97f4-13f1188135a5"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Carrera Tradicional:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="37" width="59" height="20" uuid="b0453e17-4887-4be7-b394-8cf966187fad"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Año:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="131" y="178" width="424" height="51" uuid="1376eabd-b768-498b-b509-e85f48aa07df"/>
+				<textElement>
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{objetivotactico}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement mode="Opaque" x="139" y="10" width="416" height="20" forecolor="#FFFFFF" backcolor="#CCCCFF" uuid="7ec7c5a6-0123-4bb1-ae67-b496080d5086"/>
+			</rectangle>
+			<textField isBlankWhenNull="false">
+				<reportElement x="139" y="10" width="416" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="88083266-1c90-4289-b3df-74a151400701"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{carrera}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="64" width="555" height="1" uuid="eea0e857-1072-472c-8d72-d76b0bf15338"/>
+			</line>
+			<rectangle>
+				<reportElement mode="Opaque" x="131" y="248" width="424" height="46" forecolor="#FFFFFF" backcolor="#CCCCFF" uuid="f58901f7-8b3e-4ef9-aec5-1684cf9c5678"/>
+			</rectangle>
+			<textField>
+				<reportElement x="131" y="248" width="424" height="46" uuid="a0eb9cab-0263-43d2-a06f-53545381d2a5"/>
+				<textElement>
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estrategia}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="110">
+			<staticText>
+				<reportElement x="2" y="41" width="91" height="35" uuid="9f856150-77c9-4d7d-a165-9eaeb787b710"/>
+				<textElement>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Objetivo Operativo:]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement key="table 20" style="table 20" x="125" y="248" width="156" height="86" uuid="86ddeff2-e786-4759-a05d-2c8ac74e3841"/>
+				<reportElement key="table 20" style="table 13" x="131" y="0" width="424" height="104" uuid="86ddeff2-e786-4759-a05d-2c8ac74e3841"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="New Dataset 3" uuid="628b940e-cffb-432c-a874-3deb114a1ee2">
 						<datasetParameter name="anio">
@@ -719,19 +713,28 @@ Where po.anio=$P{anio} and pro.num_proyecto_carrera=$P{Numproyecto}]]>
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="90" uuid="46537386-e198-49eb-9d96-f44534cdcbe8">
-						<jr:detailCell style="table 20_TD" height="20" rowSpan="1">
+					<jr:column width="417" uuid="46537386-e198-49eb-9d96-f44534cdcbe8">
+						<jr:detailCell style="table 20_TD" height="30" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="e7cde589-3b84-419e-9874-3a1049112cf2"/>
-								<textElement textAlignment="Center"/>
+								<reportElement x="0" y="0" width="417" height="30" backcolor="#FFFFFF" uuid="e7cde589-3b84-419e-9874-3a1049112cf2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
 								<textFieldExpression><![CDATA[$F{objetivooperativo}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
 				</jr:table>
 			</componentElement>
+		</band>
+		<band height="150">
+			<staticText>
+				<reportElement x="2" y="56" width="91" height="20" uuid="ed1d4541-7d84-4ca5-83a1-c5fdaeb2506b"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Actividades:]]></text>
+			</staticText>
 			<componentElement>
-				<reportElement key="table 19" style="table 19" x="0" y="344" width="403" height="111" uuid="6e0730ab-dbf3-40ad-a5f4-cfbd68ff52fd"/>
+				<reportElement key="table 19" style="table 19" x="93" y="14" width="462" height="95" uuid="6e0730ab-dbf3-40ad-a5f4-cfbd68ff52fd"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="New Dataset 2" uuid="44cd908c-ddff-4a61-ace7-5d13b241d06a">
 						<datasetParameter name="anio">
@@ -743,7 +746,7 @@ Where po.anio=$P{anio} and pro.num_proyecto_carrera=$P{Numproyecto}]]>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
 					<jr:column width="90" uuid="5aab3481-9cf2-4bf9-a9fe-fd92af2a50fa">
-						<jr:columnHeader style="table 19_CH" height="30" rowSpan="1">
+						<jr:columnHeader style="table 19_CH" height="32" rowSpan="1">
 							<staticText>
 								<reportElement x="0" y="0" width="90" height="30" uuid="42a483bd-869f-4dea-b1f2-e698fa1ee69a"/>
 								<textElement textAlignment="Center"/>
@@ -759,7 +762,7 @@ Where po.anio=$P{anio} and pro.num_proyecto_carrera=$P{Numproyecto}]]>
 						</jr:detailCell>
 					</jr:column>
 					<jr:column width="90" uuid="2465f1bd-092c-490c-a110-6dd711a6f2a3">
-						<jr:columnHeader style="table 19_CH" height="30" rowSpan="1">
+						<jr:columnHeader style="table 19_CH" height="32" rowSpan="1">
 							<staticText>
 								<reportElement x="0" y="0" width="90" height="30" uuid="c9acf41f-4db9-4d44-88b9-48b15b41c537"/>
 								<textElement textAlignment="Center"/>
@@ -775,7 +778,7 @@ Where po.anio=$P{anio} and pro.num_proyecto_carrera=$P{Numproyecto}]]>
 						</jr:detailCell>
 					</jr:column>
 					<jr:column width="90" uuid="e74d6324-280a-4b28-9004-3d888a94f6c2">
-						<jr:columnHeader style="table 19_CH" height="30" rowSpan="1">
+						<jr:columnHeader style="table 19_CH" height="32" rowSpan="1">
 							<staticText>
 								<reportElement x="0" y="0" width="90" height="30" uuid="5eb5fc5d-54c3-4617-9c2e-d875bc723871"/>
 								<textElement textAlignment="Center"/>
@@ -791,7 +794,7 @@ Where po.anio=$P{anio} and pro.num_proyecto_carrera=$P{Numproyecto}]]>
 						</jr:detailCell>
 					</jr:column>
 					<jr:column width="90" uuid="16ab6d4d-2843-44e1-b462-92a8827cb1d0">
-						<jr:columnHeader style="table 19_CH" height="30" rowSpan="1">
+						<jr:columnHeader style="table 19_CH" height="32" rowSpan="1">
 							<staticText>
 								<reportElement x="0" y="0" width="90" height="30" uuid="d3721ce4-a59e-49ca-a4ae-9f821407ff6d"/>
 								<textElement textAlignment="Center"/>
@@ -807,7 +810,7 @@ Where po.anio=$P{anio} and pro.num_proyecto_carrera=$P{Numproyecto}]]>
 						</jr:detailCell>
 					</jr:column>
 					<jr:column width="98" uuid="b8e73a71-da17-4c00-92f7-0047dcfc4c4a">
-						<jr:columnHeader style="table 19_CH" height="30" rowSpan="1">
+						<jr:columnHeader style="table 19_CH" height="32" rowSpan="1">
 							<staticText>
 								<reportElement x="0" y="0" width="98" height="30" uuid="470b28e6-87c0-46d7-bee1-cb0f2eed19c1"/>
 								<textElement textAlignment="Center"/>
@@ -824,10 +827,15 @@ Where po.anio=$P{anio} and pro.num_proyecto_carrera=$P{Numproyecto}]]>
 					</jr:column>
 				</jr:table>
 			</componentElement>
+			<line>
+				<reportElement x="0" y="5" width="555" height="1" uuid="271fcf60-cafe-4394-84d3-fbe27cbabfd4"/>
+			</line>
+		</band>
+		<band height="88">
 			<componentElement>
-				<reportElement key="table 11" style="table 11" x="0" y="455" width="403" height="92" uuid="7461abba-0c89-480e-a3fc-2e0fafbad0c9"/>
+				<reportElement key="table 11" style="table 11" x="93" y="0" width="462" height="83" uuid="74de84b7-41d5-4ffb-b1c3-ec00d7700a8c"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="New Dataset 1" uuid="a86f8ae3-8f51-45ad-aa59-04ebfdb2f9e5">
+					<datasetRun subDataset="New Dataset 1" uuid="724564d0-f0ca-4f32-9bb7-8a04e275c349">
 						<datasetParameter name="anioo">
 							<datasetParameterExpression><![CDATA[$F{año}]]></datasetParameterExpression>
 						</datasetParameter>
@@ -836,65 +844,65 @@ Where po.anio=$P{anio} and pro.num_proyecto_carrera=$P{Numproyecto}]]>
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="90" uuid="38aba23f-eed9-43fc-89cc-5468e3f28d9c">
+					<jr:column width="90" uuid="d7bee207-39e3-4a39-a3e3-4c0ee51add7f">
 						<jr:columnHeader style="table 11_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="61396dfc-7eb3-4cb5-a564-d9e85032e237"/>
+								<reportElement x="0" y="0" width="90" height="30" uuid="4e2b016f-d129-4b72-b9fc-f0aac1876b02"/>
 								<textElement textAlignment="Center"/>
 								<text><![CDATA[Actividad]]></text>
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="table 11_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="3ec8057d-e5a3-4162-ab59-ed6ab6857d6f"/>
+								<reportElement x="0" y="0" width="90" height="20" uuid="54a9567c-09e2-4f8c-aa60-7370d4523d1a"/>
 								<textElement textAlignment="Center"/>
 								<textFieldExpression><![CDATA[$F{actividad}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="744bf21c-e836-413c-a2b7-a5feb09a0e5b">
+					<jr:column width="90" uuid="1a81f874-4da3-4a5d-83f5-6690c64cbddf">
 						<jr:columnHeader style="table 11_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="6b679be4-9d07-403f-9622-8f1eec25a56b"/>
+								<reportElement x="0" y="0" width="90" height="30" uuid="35e31fff-83f1-44ea-93ff-611c935cb3ce"/>
 								<textElement textAlignment="Center"/>
 								<text><![CDATA[Indicador]]></text>
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="table 11_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="91d0d2d7-83e2-4ceb-8eed-3c7374a2bf1e"/>
+								<reportElement x="0" y="0" width="90" height="20" uuid="f7824311-af38-4d69-932b-12e06a50bc76"/>
 								<textElement textAlignment="Center"/>
 								<textFieldExpression><![CDATA[$F{indicador}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="6d808561-3a4e-4840-a5aa-c6330650aa9d">
+					<jr:column width="90" uuid="9e00002d-1bee-48f1-8882-ce925804073a">
 						<jr:columnHeader style="table 11_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="d569f7e3-7195-4f83-8feb-7f64df88ec15"/>
+								<reportElement x="0" y="0" width="90" height="30" uuid="57846a05-a325-4613-abcf-b03af644f9aa"/>
 								<textElement textAlignment="Center"/>
 								<text><![CDATA[Linea Base%]]></text>
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="table 11_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="291e736f-70b6-4718-bcea-6eda1a3257f8"/>
+								<reportElement x="0" y="0" width="90" height="20" uuid="c0a42a61-fe92-435a-bdb0-ba65fc58e5af"/>
 								<textElement textAlignment="Center"/>
 								<textFieldExpression><![CDATA[$F{lineabase}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="6835c77c-2835-41a7-89a0-a8a72330747c">
+					<jr:column width="90" uuid="1aaba8e7-207a-4913-986b-b91c01275e99">
 						<jr:columnHeader style="table 11_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="6f607e45-a6c8-4b3f-aabf-569208a409d4"/>
+								<reportElement x="0" y="0" width="90" height="30" uuid="4e5bcfc9-bc83-4861-b37c-9e8c64cdde95"/>
 								<textElement textAlignment="Center"/>
 								<text><![CDATA[Meta]]></text>
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="table 11_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="36135fe5-7ef1-4cab-9068-170741c2b2b5"/>
+								<reportElement x="0" y="0" width="90" height="20" uuid="eba0deaa-63da-48d7-bcdb-1ae8b1ee8cc3"/>
 								<textElement textAlignment="Center"/>
 								<textFieldExpression><![CDATA[$F{meta}]]></textFieldExpression>
 							</textField>
@@ -902,21 +910,25 @@ Where po.anio=$P{anio} and pro.num_proyecto_carrera=$P{Numproyecto}]]>
 					</jr:column>
 				</jr:table>
 			</componentElement>
+			<staticText>
+				<reportElement x="2" y="29" width="91" height="20" uuid="a6bcb10c-1a4c-4245-916f-ede12a39392b"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Indicadores:]]></text>
+			</staticText>
 		</band>
-	</columnHeader>
-	<detail>
-		<band splitType="Stretch"/>
 	</detail>
 	<columnFooter>
-		<band height="7" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
 		<band height="68" splitType="Stretch">
 			<rectangle>
-				<reportElement x="-1" y="-1" width="555" height="66" backcolor="#000099" uuid="426327ad-84d2-4ac5-8e6d-5f1947964d28"/>
+				<reportElement x="0" y="0" width="555" height="66" backcolor="#000099" uuid="2e409aff-8ef2-46cf-a76a-cc1578e512fb"/>
 			</rectangle>
 			<textField>
-				<reportElement x="454" y="-1" width="100" height="20" forecolor="#FFFFFF" uuid="187b90d0-9ed9-4f63-b8f2-b53a302e8755"/>
+				<reportElement x="455" y="0" width="100" height="20" forecolor="#FFFFFF" uuid="52572213-8b63-4974-84ce-ea180885e38a"/>
 				<textElement>
 					<font size="14" isItalic="true"/>
 				</textElement>
@@ -925,6 +937,6 @@ Where po.anio=$P{anio} and pro.num_proyecto_carrera=$P{Numproyecto}]]>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="6" splitType="Stretch"/>
+		<band height="18" splitType="Stretch"/>
 	</summary>
 </jasperReport>

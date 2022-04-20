@@ -11,6 +11,7 @@ import static POA.Controlador.Con_poa_evidencia.listaPoa;
 import POA.Modelo.Validadores.*;
 import static POA.Controlador.Con_principal.vista;
 import POA.Modelo.CarreraBD;
+import POA.Modelo.Conect;
 import POA.Modelo.EvidenciaMD;
 import POA.Modelo.PoaBD;
 import POA.Modelo.ProyectoBD;
@@ -18,9 +19,20 @@ import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -58,6 +70,7 @@ public class Con_Poa1 {
         vista.getBtnAniadirProyectos().addActionListener(e -> abrirVentanaProyectos());
         vista.getBtnNuevo().addActionListener(e -> limpiarCampos());
         vista.getBtnModificar().addActionListener(e -> modificar());
+        vista.getBtnimprimir().addActionListener(e -> imprimirpoa());
 
         vista.getTablaPoa().addMouseListener(new MouseAdapter() {
             @Override
@@ -69,6 +82,30 @@ public class Con_Poa1 {
         validar();
         lista();
 
+    }
+    
+    public void imprimirpoa(){
+        Conect con = new Conect();
+        try {
+
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/R_PoaCompleto.jasper"));
+                Map<String, Object> params = new HashMap<String, Object>();
+ String aguja = JOptionPane.showInputDialog("Ingrese el año del poa");
+ String aguja2 = JOptionPane.showInputDialog("Ingrese el numero de proyecto");
+                int numproaguja = Integer.parseInt(aguja2);
+////                String aguja = vista.getTxtBuscar().getText();
+                System.out.println("anio;;;;"+ aguja);
+                System.out.println("Numproyecto;;;;"+ numproaguja);
+                params.put("anio",aguja);
+                params.put("Numproyecto",numproaguja);
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException e) {
+                System.out.println("no se pudo encontrar registros" + e.getMessage());
+                Logger.getLogger(Con_Poa1.class.getName()).log(Level.SEVERE, null, e);
+            }
     }
 
     public void validar() {

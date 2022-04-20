@@ -47,7 +47,8 @@ import javax.swing.JTextField;
  * @author A
  */
 public class Con_Materia {
- public static Vis_Materias vista;
+
+    public static Vis_Materias vista;
     private MateriaBD materia = new MateriaBD();
     private List<MateriaMD> lista = new ArrayList<>();
     CarreraBD bdcarrera = new CarreraBD();
@@ -59,7 +60,6 @@ public class Con_Materia {
     private DefaultTableModel modelo = new DefaultTableModel();
     PerfilBD basePerfil = new PerfilBD();
     int select = 0;
-    boolean tablaSeleccionada=false;
 
     public Con_Materia(Vis_Materias vista) {
         this.vista = vista;
@@ -82,12 +82,7 @@ public class Con_Materia {
         });
         listam();
     }
-    
-    public void accion_combobox() {
-        tablaSeleccionada=true;
-        listam();
-    }
-    
+
     public void cArea() {
         String carreraCombo = (String) vista.getComboCarrera_mat().getSelectedItem();
         String codigoCarrera = "";
@@ -97,7 +92,7 @@ public class Con_Materia {
         listaa = bdarea.mostrardatos();
         for (PerfilMD perfil : listap) {
             for (AreaCarreraMD area : listaa) {
-                if (perfil.getCodigo()== area.getIdPerfil() && codigoCarrera.equalsIgnoreCase(area.getIdCarrera())) {         
+                if (perfil.getCodigo() == area.getIdPerfil() && codigoCarrera.equalsIgnoreCase(area.getIdCarrera())) {
                     vista.getComboareacarrera().addItem(perfil.getNombre());
                 }
             }
@@ -105,30 +100,20 @@ public class Con_Materia {
     }
 
     public void guardar() {
-//        materia.setCod_materia(vista.getTxtcodmateria().getText());
         String mate = (String) vista.getTxtnombremateria().getText();
-//        List<MateriaMD> lista_mat = materia.obtenerdatos(mate);
         String codigo = (String) vista.getTxtcodmateria().getText();
-//        List<MateriaMD> lista_cod = materia.obtenerdatos(codigo);
 
-//        for (int i = 0; i < lista_cod.size(); i++) {
-//            if (lista_cod.get(i).getCod_materia().equals(vista.getTxtcodmateria().getText())) {
-//                JOptionPane.showMessageDialog(null, "Codigo ya existe \n Verifique");
-//                vista.getTxtcodmateria().setText("");
-//                c = false;
-//                break;
-//            }
-//      }
         String view = "";
         String view2 = "";
         view = materia.verificarMateria(mate);
         view2 = materia.verificarCodMateria(codigo);
+
         if (view != "") {
-            JOptionPane.showMessageDialog(null, "Materia ya existe!","\n Verifique",0);
+            JOptionPane.showMessageDialog(null, "Materia ya existe!", "\n Verifique", 0);
             vista.getTxtnombremateria().setText("");
         }
         if (view2 != "") {
-            JOptionPane.showMessageDialog(null, "Còdigo ya existe!","\n Verifique",0);
+            JOptionPane.showMessageDialog(null, "Còdigo ya existe!", "\n Verifique", 0);
             vista.getTxtcodmateria().setText("");
         }
         if (view == "" && view2 == "") {
@@ -158,7 +143,7 @@ public class Con_Materia {
             }
         }
     }
-            
+
     public void seleccionar() {
 
         String ncarrera = "";
@@ -186,7 +171,7 @@ public class Con_Materia {
         vista.getTxtcreditos().setText(ncreditos);
         vista.getComboplan().setSelectedItem(nplan);
         vista.getComboareacarrera().setSelectedItem(narea);
-        
+
     }
 
     public void listam() {
@@ -199,32 +184,30 @@ public class Con_Materia {
         }
         for (int i = 0; i < lista.size(); i++) {
             modelo.addRow(new Object[columnas]);
-            
+
             for (int j = 0; j < listac.size(); j++) {
-                if(lista.get(i).getNombre_carrera().equalsIgnoreCase(listac.get(j).getCodigo_carrera())){
+                if (lista.get(i).getNombre_carrera().equalsIgnoreCase(listac.get(j).getCodigo_carrera())) {
                     vista.getTablamateria().setValueAt(listac.get(j).getNombre_carrera(), i, 0);
                 }
             }
-            
-            
             vista.getTablamateria().setValueAt(lista.get(i).getEje_formacion(), i, 1);
             vista.getTablamateria().setValueAt(lista.get(i).getCod_materia(), i, 2);
             vista.getTablamateria().setValueAt(lista.get(i).getNombre_materia(), i, 3);
             vista.getTablamateria().setValueAt(lista.get(i).getCiclo(), i, 4);
             vista.getTablamateria().setValueAt(lista.get(i).getCreditos(), i, 5);
             vista.getTablamateria().setValueAt(lista.get(i).getPlan(), i, 6);
-            
-            for (int j = 0; j< listaa.size(); j++) {
-                if(lista.get(i).getArea().equalsIgnoreCase(listaa.get(j).getIdArea()+"")){
-                    for (int k = 0; k<listap.size(); k++) {
-                        if(listap.get(k).getCodigo()==(listaa.get(j).getIdPerfil())){
+
+            for (int j = 0; j < listaa.size(); j++) {
+                if (lista.get(i).getArea().equalsIgnoreCase(listaa.get(j).getIdArea() + "")) {
+                    for (int k = 0; k < listap.size(); k++) {
+                        if (listap.get(k).getCodigo() == (listaa.get(j).getIdPerfil())) {
                             vista.getTablamateria().setValueAt(listap.get(k).getNombre(), i, 7);
                         }
                     }
-                     
+
                 }
             }
-           
+
         }
     }
 
@@ -247,7 +230,7 @@ public class Con_Materia {
     }
 
     public void activarbotones() {
-        
+
         vista.getBtnguardar().setEnabled(true);
 //        vista.getBtnnuevo().setEnabled(true);
         vista.getBtnimprimir().setEnabled(true);
@@ -267,14 +250,14 @@ public class Con_Materia {
     public void nuevo() {
 
         activarbotones();
-        vista.getComboCarrera_mat().setSelectedItem("");
-        vista.getComboejeformacion().setSelectedItem("");
+        vista.getComboCarrera_mat().setSelectedIndex(0);
+        vista.getComboejeformacion().setSelectedIndex(0);
         vista.getTxtcodmateria().setText("");
         vista.getTxtnombremateria().setText("");
-        vista.getCombociclo().setSelectedItem("");
+        vista.getCombociclo().setSelectedIndex(0);
         vista.getTxtcreditos().setText("");
-        vista.getComboplan().setSelectedItem("");
-        vista.getComboareacarrera().setSelectedItem("");
+        vista.getComboplan().setSelectedIndex(0);
+        vista.getComboareacarrera().setSelectedIndex(0);
     }
 
     public void campocarrera() {
@@ -286,7 +269,7 @@ public class Con_Materia {
     }
 
     private void eliminar() {
-        int resp1 = JOptionPane.showConfirmDialog(null, "CONFIRME SI DESEA ELIMINAR");
+        int resp1 = JOptionPane.showConfirmDialog(null, "DESEA ELIMINAR");
         if (resp1 == 0) {
             if (materia.Eliminar(vista.getTxtcodmateria().getText())) {
                 JOptionPane.showMessageDialog(null, "DATOS ELIMINADOS");
@@ -298,21 +281,21 @@ public class Con_Materia {
         }
     }
 
-    public void imprimir() {
-        Conect con = new Conect();
-        try {
-            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/RepMaterias.jasper"));
-            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
-            JasperViewer jv = new JasperViewer(jp, false);
-            JOptionPane.showMessageDialog(null, "Imprimiendo Materias");
-            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-            jv.setVisible(true);
-        } catch (JRException e) {
-            System.out.println("no se pudo encontrar registros" + e.getMessage());
-            Logger.getLogger(Con_Materia.class.getName()).log(Level.SEVERE, null, e);
-        }
-
-    }
+//    public void imprimir() {
+//        Conect con = new Conect();
+//        try {
+//            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/RepMaterias.jasper"));
+//            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+//            JasperViewer jv = new JasperViewer(jp, false);
+//            JOptionPane.showMessageDialog(null, "Imprimiendo Materias");
+//            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+//            jv.setVisible(true);
+//        } catch (JRException e) {
+//            System.out.println("no se pudo encontrar registros" + e.getMessage());
+//            Logger.getLogger(Con_Materia.class.getName()).log(Level.SEVERE, null, e);
+//        }
+//
+//    }
 
     public void cancelar() {
         int select = JOptionPane.showConfirmDialog(null, "DESEA CANCELAR!", "", JOptionPane.YES_NO_OPTION);
@@ -333,7 +316,6 @@ public class Con_Materia {
 ////        }
 ////        return true;
 //    }
-
 //    boolean validarmateria() {
 //        String codigo = (String) vista.getTxtnombremateria().getText();
 //        List<MateriaMD> lista_cod = materia.obtenerdatos(codigo);
@@ -345,7 +327,6 @@ public class Con_Materia {
 //        }
 //        return true;
 //    }
-
     private void only_num(JTextField t) {
         t.addKeyListener(new KeyAdapter() {
             @Override
@@ -360,7 +341,7 @@ public class Con_Materia {
 
     public void validaciones() {
 
-        Letras.numero_letras(vista.getTxtnombremateria(),15);
+        Letras.numero_letras(vista.getTxtnombremateria(), 15);
         Letras.dosespacios(vista.getTxtnombremateria());
         only_num(vista.getTxtcreditos());
 //        Numeros.solo_numeros(vista.getTxtcreditos());
@@ -382,67 +363,42 @@ public class Con_Materia {
         Conect con = new Conect();
         String[] reportes = {
             "Seleccione Una Opcion",
-            "Reporte por Carrera",
+            "Reporte por Materia",
             "Reporte Completo"
         };
         //Ctrl_MYICON icon = new Ctrl_MYICON(40, 50);
-        String resp = (String) JOptionPane.showInputDialog(null, "Seleccione un reporte", "Reporte De Materias",
+        String resp = (String) JOptionPane.showInputDialog(null, "Seleccione un reporte", "Reporte por Materia",
                 JOptionPane.DEFAULT_OPTION, null, reportes, reportes[0]);
         if (resp.equals("Seleccione Una Opcion")) {
             JOptionPane.showMessageDialog(null, " seleccione uno de los campos");
-
         }
-        if (resp.equals("Reporte por Carrera")) {
-             if (tablaSeleccionada==true) {
-            String carreraCombo = (String) vista.getComboCarrera_mat().getSelectedItem();
-            String codigoCarrera = "";
-            codigoCarrera = basePerfil.mostrarIdCarrera(carreraCombo);
+        if (resp.equals("Reporte por Materia")) {
+        try {
+            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/RepMateriasII.jasper"));
+            Map<String,Object> params = new HashMap<String,Object>();
+            String aguja = JOptionPane.showInputDialog("Ingrese la materia");
+            System.out.println("nombrem;;;;" + aguja);
+            params.put("nombrem", aguja);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
+            JasperViewer jv= new JasperViewer(jp,false);
+            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            jv.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(Con_Materia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        if (resp.equals("Reporte Completo")) {
             try {
-                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/RepMateriasII.jasper"));
-                Map<String, Object> params = new HashMap<String, Object>();
-                String aguja = codigoCarrera;
-                params.put("carrera", aguja);
-                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/RepMaterias.jasper"));
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
                 JasperViewer jv = new JasperViewer(jp, false);
                 jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                 jv.setVisible(true);
             } catch (JRException e) {
                 System.out.println("no se pudo encontrar registros" + e.getMessage());
-                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(Con_Materia.class.getName()).log(Level.SEVERE, null, e);
             }
-            }else{
-                JOptionPane.showMessageDialog(null, "Seleccione tabla");
-            }
-
-//            try {
-//                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/RepMateriasII.jasper"));
-//                Map<String, Object> params = new HashMap<String, Object>();
-//                String aguja = JOptionPane.showInputDialog("Ingrese la materia");
-//                System.out.println("materia;;;;" + aguja);
-//                params.put("materia", aguja);
-//                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
-//                JasperViewer jv = new JasperViewer(jp, false);
-//                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-//                jv.setVisible(true);
-//            } catch (JRException e) {
-//                System.out.println("no se pudo encontrar registros" + e.getMessage());
-//                Logger.getLogger(Con_Materia.class.getName()).log(Level.SEVERE, null, e);
-//            }
-
-        }
-        if (resp.equals("Reporte Completo")) {
-        try {
-            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/RepMaterias.jasper"));
-            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
-            JasperViewer jv = new JasperViewer(jp, false);
-//            JOptionPane.showMessageDialog(null, "Imprimiendo Materias");
-            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-            jv.setVisible(true);
-        } catch (JRException e) {
-            System.out.println("no se pudo encontrar registros" + e.getMessage());
-            Logger.getLogger(Con_Materia.class.getName()).log(Level.SEVERE, null, e);
-        }
         }
     }
-    
+
 }

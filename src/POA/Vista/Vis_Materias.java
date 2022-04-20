@@ -155,6 +155,7 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         comboCarrera_mat = new javax.swing.JComboBox<>();
         comboejeformacion = new javax.swing.JComboBox<>();
         comboareacarrera = new javax.swing.JComboBox<>();
+        btncancelar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         combociclo = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
@@ -166,10 +167,11 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         tablamateria = new javax.swing.JTable();
         jSeparator7 = new javax.swing.JSeparator();
         btnguardar = new javax.swing.JButton();
-        btncancelar = new javax.swing.JButton();
         btneliminar = new javax.swing.JButton();
         btnimprimir = new javax.swing.JButton();
         btnnuevo = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -202,6 +204,9 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         getContentPane().add(comboejeformacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 150, -1));
 
         getContentPane().add(comboareacarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 110, -1));
+
+        btncancelar.setText("Cancelar");
+        getContentPane().add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, 80, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Ciclo*");
@@ -240,26 +245,30 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tablamateria);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, 740, 230));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, 740, 230));
 
         jSeparator7.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator7.setOrientation(javax.swing.SwingConstants.VERTICAL);
         getContentPane().add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 10, 300));
 
         btnguardar.setText("Guardar");
-        getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 80, 30));
-
-        btncancelar.setText("Cancelar");
-        getContentPane().add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, -1, 30));
+        getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 80, 30));
 
         btneliminar.setText("Delete");
-        getContentPane().add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 263, 70, 30));
+        getContentPane().add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 80, 30));
 
+        btnimprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/impresion.png"))); // NOI18N
         btnimprimir.setText("Reporte");
-        getContentPane().add(btnimprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 3, 80, 30));
+        getContentPane().add(btnimprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 110, 40));
 
         btnnuevo.setText("Nuevo");
-        getContentPane().add(btnnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 263, 70, 30));
+        getContentPane().add(btnnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 80, 30));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/My project.png"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 300));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/My project.png"))); // NOI18N
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 0, 220, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -277,12 +286,14 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> comboejeformacion;
     private javax.swing.JComboBox<String> comboplan;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator7;

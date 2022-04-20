@@ -40,7 +40,7 @@ public class anio_evidecia implements ItemListener {
                 Cbx_anio.addItem("Seleccionar");
                 int id_carrera = id_carrera(Cbx_carrera);
                 for (int i = 0; i < Con_poa_evidencia.listaPoa.size(); i++) {
-                    if (Con_poa_evidencia.listaPoa.get(i).getId_carrera().equals( id_carrera)) {
+                    if (Integer.parseInt(Con_poa_evidencia.listaPoa.get(i).getId_carrera())==id_carrera) {
                         Cbx_anio.addItem(Con_poa_evidencia.listaPoa.get(i).getAnio());
                     }
                 }

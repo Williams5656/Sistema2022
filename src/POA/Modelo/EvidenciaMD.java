@@ -14,12 +14,12 @@ public class EvidenciaMD {
     private int id_poa;
     private int id_proyecto;
     private int id_objetivo;
-    private String archivo; // momentaneo
+    private byte[] archivo; // momentaneo
 
     public EvidenciaMD() {
     }
 
-    public EvidenciaMD(int id_evidencia, int id_actividades, int id_poa, int id_proyecto, int id_objetivo, String archivo) {
+    public EvidenciaMD(int id_evidencia, int id_actividades, int id_poa, int id_proyecto, int id_objetivo, byte[] archivo) {
         this.id_evidencia = id_evidencia;
         this.id_actividades = id_actividades;
         this.id_poa = id_poa;
@@ -68,11 +68,11 @@ public class EvidenciaMD {
         this.id_objetivo = id_objetivo;
     }
 
-    public String getArchivo() {
+    public byte[] getArchivo() {
         return archivo;
     }
 
-    public void setArchivo(String archivo) {
+    public void setArchivo(byte[] archivo) {
         this.archivo = archivo;
     }
 

@@ -25,6 +25,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import POA.Modelo.Validadores.anio_evidecia;
+import com.itextpdf.text.pdf.PdfName;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -34,7 +35,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import javax.swing.JTable;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import javax.swing.table.TableColumn;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -77,6 +80,11 @@ public class Con_poa_evidencia {
     public Con_poa_evidencia(vis_poa_evidencia vista) {
         this.vista = vista;
         vista.setVisible(true);
+        listaCarreras = baseDatosCarrera.mostrardatos();
+        listaPoa = baseDatosPoa.mostrarDatos();
+        listaProyecto = baseDatosProyecto.mostrarDatos();
+        listaActividades = baseDatosActividades.mostrarDatos();
+        listaObjetivos = baseDatosObjetivos.mostrarDatos();
         vista.getBtnGuardar().addActionListener(e -> guardar());
         vista.getBtnNuevo().addActionListener(e -> nuevo());
         vista.getBtnImprimir().addActionListener(e -> imprimir());
@@ -84,17 +92,14 @@ public class Con_poa_evidencia {
         vista.getBtnModificar().addActionListener(e -> modificar());
         vista.getBtnBuscar().addActionListener(e -> buscar());
         vista.getBtnImprimir().setEnabled(false);
+        vista.getBtnAñadir().addActionListener(e -> subir_datos());
         vista.getCbx_proyecto().setEnabled(false);
         vista.getCbx_carrera().setEnabled(false);
+        vista.getBtnAñadir().setEnabled(false);
         vista.getCbx_anio().setEnabled(false);
         vista.getCbx_obje_opera().setEnabled(false);
         vista.getCbx_actividad().setEnabled(false);
         vista.getTxtArchivo().setEnabled(false);
-        listaCarreras = baseDatosCarrera.mostrardatos();
-        listaPoa = baseDatosPoa.mostrarDatos();
-        listaProyecto = baseDatosProyecto.mostrarDatos();
-        listaActividades = baseDatosActividades.mostrarDatos();
-        listaObjetivos = baseDatosObjetivos.mostrarDatos();
         cargarComboCarrera();
         cargarComboAnio();
         vista.getTabla_Evidencia().addMouseListener(new MouseAdapter() {
@@ -167,7 +172,7 @@ public class Con_poa_evidencia {
     public void cargarComboCarrera() {
         for (int i = 0; i < listaCarreras.size(); i++) {
             for (int j = 0; j < listaPoa.size(); j++) {
-                if (listaCarreras.get(i).getCodigo_carrera().equals( listaPoa.get(j).getId_carrera())) {
+                if (listaCarreras.get(i).getCodigo_carrera().equals(listaPoa.get(j).getId_carrera())) {
                     vista.getCbx_carrera().addItem(listaCarreras.get(i).getNombre_carrera());
                 }
             }
@@ -183,6 +188,7 @@ public class Con_poa_evidencia {
     }
 
     public void seleccionar() {
+        vista.getBtnAñadir().setEnabled(true);
         vista.getBtnImprimir().setEnabled(true);
         vista.getBtnGuardar().setEnabled(false);
         vista.getBtnEliminar().setEnabled(true);
@@ -231,7 +237,6 @@ public class Con_poa_evidencia {
                     cargarComboAnio();
                 }
             }
-            vista.getTxtArchivo().setText(lista.get(j).getArchivo());
         }
 
     }
@@ -289,7 +294,7 @@ public class Con_poa_evidencia {
                             for (int k = 0; k < listaPoa.size(); k++) {
                                 if (lista3.get(l).getId_poa() == listaPoa.get(k).getId_POA()) {
                                     for (int i = 0; i < listaCarreras.size(); i++) {
-                                        if (listaCarreras.get(i).getCodigo_carrera().equals( listaPoa.get(k).getId_carrera())) {
+                                        if (listaCarreras.get(i).getCodigo_carrera().equals(listaPoa.get(k).getId_carrera())) {
                                             vista.getTabla_Evidencia().setValueAt(listaCarreras.get(i).getNombre_carrera(), j, 1);
                                         }
                                     }
@@ -329,14 +334,14 @@ public class Con_poa_evidencia {
                 cod_evid = cod_evid + 1;
             }
         }
-        baseDatosEvidencias.guardar(cod_evid, actividad_id, id_poa, proyecto_id, objetivo_id, vista.getTxtArchivo().getText());
+        baseDatosEvidencias.guardar(cod_evid, actividad_id, id_poa, proyecto_id, objetivo_id, null);
         lista();
         nuevo();
 
     }
 
     public void nuevo() {
-        vista.getTxtArchivo().setEnabled(true);
+        vista.getBtnAñadir().setEnabled(false);
         vista.getBtnGuardar().setEnabled(true);
         vista.getBtnEliminar().setEnabled(false);
         vista.getBtnModificar().setEnabled(false);
@@ -373,7 +378,6 @@ public class Con_poa_evidencia {
             baseDatosEvidencias.setId_poa(poa);
             baseDatosEvidencias.setId_proyecto(proyecto_id);
             baseDatosEvidencias.setId_objetivo(id_obj);
-            baseDatosEvidencias.setArchivo(vista.getTxtArchivo().getText());
             int resp = JOptionPane.showConfirmDialog(null, "Confirme si esta seguro de modificar");
             if (resp == 0) {
                 if (baseDatosEvidencias.modificar(String.valueOf(id_evidencia))) {
@@ -447,6 +451,16 @@ public class Con_poa_evidencia {
         return id_objetivo;
     }
 
+    public void subir_datos() {
+        if (vista.getTabla_Evidencia().getSelectedRow() > -1) {
+            if (baseDatosEvidencias.insertar_doc(Integer.parseInt(vista.getTabla_Evidencia().getValueAt(vista.getTabla_Evidencia().getSelectedRow(), 0).toString()), vista)) {
+                System.out.println("Archivos subido");
+            } else {
+                System.out.println("Error al subir el archivo");
+            }
+        }
+    }
+
     public void eliminar() {
         int resp = JOptionPane.showConfirmDialog(null, "Confirme si esta seguro de eliminar");
         if (resp == 0) {
@@ -460,6 +474,18 @@ public class Con_poa_evidencia {
         }
     }
 
+    public class noeditablemodelo extends DefaultTableModel {
+
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    }
+ public void addCheckBox(int column, JTable table)
+    {
+        TableColumn tc = table.getColumnModel().getColumn(column);
+        tc.setCellEditor(table.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
+    }
     public void lista() {
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTabla_Evidencia().getModel();
@@ -474,7 +500,7 @@ public class Con_poa_evidencia {
             for (int k = 0; k < listaPoa.size(); k++) {
                 if (lista.get(j).getId_poa() == listaPoa.get(k).getId_POA()) {
                     for (int i = 0; i < listaCarreras.size(); i++) {
-                        if (listaCarreras.get(i).getCodigo_carrera().equals( listaPoa.get(k).getId_carrera())) {
+                        if (listaCarreras.get(i).getCodigo_carrera().equals(listaPoa.get(k).getId_carrera())) {
                             vista.getTabla_Evidencia().setValueAt(listaCarreras.get(i).getNombre_carrera(), j, 1);
                         }
                     }
@@ -496,7 +522,8 @@ public class Con_poa_evidencia {
                     vista.getTabla_Evidencia().setValueAt(listaActividades.get(i).getActividad(), j, 5);
                 }
             }
-            vista.getTabla_Evidencia().setValueAt(lista.get(j).getArchivo(), j, 6);
+            
         }
-    }
+        addCheckBox(6, vista.getTabla_Evidencia());
+   }
 }

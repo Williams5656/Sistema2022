@@ -130,7 +130,6 @@ public class vis_poa_evidencia extends Fondos.fondo_internalframe {
         this.tabla_Evidencia = tabla_Evidencia;
     }
 
-
     public JTextField getTxtArchivo() {
         return txtArchivo;
     }
@@ -138,6 +137,7 @@ public class vis_poa_evidencia extends Fondos.fondo_internalframe {
     public void setTxtArchivo(JTextField txtArchivo) {
         this.txtArchivo = txtArchivo;
     }
+
 
     public JTextField getTxtBuscar() {
         return txtBuscar;
@@ -255,7 +255,7 @@ public class vis_poa_evidencia extends Fondos.fondo_internalframe {
         ));
         jScrollPane1.setViewportView(tabla_Evidencia);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 780, 310));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 780, 310));
         getContentPane().add(txtArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 430, 220, -1));
 
         jLabel9.setText("OBJETIVO");

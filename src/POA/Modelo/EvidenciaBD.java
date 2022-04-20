@@ -6,7 +6,11 @@ package POA.Modelo;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,6 +18,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
+import javax.swing.JInternalFrame;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -27,9 +34,11 @@ public class EvidenciaBD extends EvidenciaMD {
 
     }
 
-    public EvidenciaBD(int id_evidencia, int id_actividades, int id_poa, int id_proyecto, int id_objetivo, String archivo) {
+    public EvidenciaBD(int id_evidencia, int id_actividades, int id_poa, int id_proyecto, int id_objetivo, byte[] archivo) {
         super(id_evidencia, id_actividades, id_poa, id_proyecto, id_objetivo, archivo);
     }
+
+    
 
     public ArrayList<EvidenciaMD> mostrarDatos() {
 
@@ -45,7 +54,7 @@ public class EvidenciaBD extends EvidenciaMD {
                 m.setId_poa(rs.getInt("id_poa"));
                 m.setId_proyecto(rs.getInt("id_proyecto"));
                 m.setId_objetivo(rs.getInt("id_objetivo"));
-                m.setArchivo(rs.getString("archivo"));
+                m.setArchivo(rs.getBytes("archivo"));
 
                 lista.add(m);
             }
@@ -55,6 +64,49 @@ public class EvidenciaBD extends EvidenciaMD {
             Logger.getLogger(ActividadesMD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lista;
+    }
+    
+    public boolean insertar_doc(int cod, JInternalFrame vista) {
+
+        String ruta_archivo = "";
+        JFileChooser j = new JFileChooser();
+        FileNameExtensionFilter fi = new FileNameExtensionFilter("pdf", "pdf");
+        j.setFileFilter(fi);
+        int se = j.showOpenDialog(vista);
+        if (se == 0) {
+            ruta_archivo = j.getSelectedFile().getAbsolutePath();
+        }
+        String nombre = cod + "";
+        File ruta = new File(ruta_archivo);
+        System.out.println("ruta"+ruta);
+        if (nombre.trim().length() != 0 && ruta_archivo.trim().length() != 0) {
+            try {
+                byte[] pdf = new byte[(int) ruta.length()];
+                InputStream input = new FileInputStream(ruta);
+                input.read(pdf);
+                setArchivo(pdf);
+            } catch (IOException ex) {
+                System.out.println("Error al agregar archivo pdf, lin 54 " + ex.getMessage());
+                return false;
+            }
+        }
+        String sql = "UPDATE evidencia SET archivo= ? WHERE id_evidencia = ?;";
+        PreparedStatement ps = null;
+        try {
+            ps = conectar.getCon().prepareStatement(sql);
+            ps.setBytes(1, getArchivo());
+            ps.setInt(2, cod);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("error linea 65 " + ex.getMessage());
+            return false;
+        } finally {
+            try {
+                ps.close();
+            } catch (Exception ex) {
+            }
+        }
+        return true;
     }
 
     public List<EvidenciaMD> obtenerdatos(int identificador) {
@@ -70,7 +122,7 @@ public class EvidenciaBD extends EvidenciaMD {
                 a.setId_poa(rs.getInt("id_poa"));
                 a.setId_proyecto(rs.getInt("id_proyecto"));
                 a.setId_objetivo(rs.getInt("id_objetivo"));
-                a.setArchivo(rs.getString("archivo"));
+                a.setArchivo(rs.getBytes("archivo"));
                 lista.add(a);
             }
             rs.close();//cerramos conexion base.

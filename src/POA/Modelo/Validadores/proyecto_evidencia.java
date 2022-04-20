@@ -64,7 +64,6 @@ public class proyecto_evidencia implements ItemListener {
                         }
                     }
                     Con_poa_evidencia.id_poa = poa;
-                    System.out.println("Poa: "+Con_poa_evidencia.id_poa);
                 }
 
             } else {

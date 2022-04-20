@@ -218,6 +218,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         lbl_id = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnregresar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -358,6 +359,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
 
         btnregresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icons8_Double_Left_20px.png"))); // NOI18N
         getContentPane().add(btnregresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 10, 60, 40));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 630));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -384,6 +386,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> comborecursos;
     private com.toedter.calendar.JDateChooser fecha_plazo;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

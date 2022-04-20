@@ -198,7 +198,7 @@ public class Vis_Poa1 extends javax.swing.JInternalFrame {
 
         btnEliminar.setText("Eliminar");
 
-        btnimprimir.setText("Imprimir");
+        btnimprimir.setText("Generar Reporte");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -219,12 +219,12 @@ public class Vis_Poa1 extends javax.swing.JInternalFrame {
                         .addComponent(btnModificar)
                         .addGap(65, 65, 65)
                         .addComponent(btnEliminar)
-                        .addGap(48, 48, 48)
-                        .addComponent(btnimprimir)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnimprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
                         .addComponent(btnAniadirProyectos, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 52, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

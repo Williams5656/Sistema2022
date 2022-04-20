@@ -3,8 +3,89 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#00008B">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#E6E6FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#0000FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFBFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="f2b1b656-6ba7-416f-878e-65ff82e9381b"/>
 	<parameter name="ciclo" class="java.lang.String">
-		<defaultValueExpression><![CDATA[$F{CICLO}]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[select p.apellidos||' '||p.nombres as "DOCENTE", case 
@@ -29,7 +110,7 @@ where  case
 		'V'||ad.ciclo||paralelo
 	when jornada='NOCTURNA' then
 		'N'||ad.ciclo||paralelo
-end='$P{ciclo}';]]>
+end=$P{ciclo}]]>
 	</queryString>
 	<field name="DOCENTE" class="java.lang.String"/>
 	<field name="CICLO" class="java.lang.String"/>
@@ -43,16 +124,154 @@ end='$P{ciclo}';]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="11" width="555" height="20" uuid="5ece5ccf-a979-4d76-96d1-cee61485cdc7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Instituto Superior Tecnológico del Azuay]]></text>
+			</staticText>
+		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="51" y="0" width="418" height="20" forecolor="#000000" uuid="4eab424e-af7a-4407-949f-965f4319837e"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="293" y="30" width="32" height="20" uuid="d4d74a4a-9aa5-44d1-bd55-9f725fb39689"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ciclo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="325" y="30" width="100" height="20" uuid="a95a9cdc-c5e8-436b-8d3d-c693f2013897"/>
+				<textFieldExpression><![CDATA[$F{CICLO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="30" width="40" height="20" uuid="71ab4ee7-a93d-4e76-8df8-e9ebf04704a0"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Materia:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="50" y="30" width="178" height="20" uuid="7956bd27-0076-43b7-9f5b-a5de31235869"/>
+				<textFieldExpression><![CDATA[$F{materia}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="51" height="20" uuid="d06144e6-6317-4c36-b251-9b92719047b6"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Carrera:]]></text>
+			</staticText>
+		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="95" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="50" height="20" uuid="9f97f14c-84b6-4e78-9fce-a6fcb373f0ab"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Docente:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="69" y="10" width="460" height="20" uuid="5bede998-5f8a-4f33-888a-ba489c9c5ce3"/>
+				<textFieldExpression><![CDATA[$F{DOCENTE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="69" y="40" width="460" height="20" uuid="6687bb0e-3007-413f-a96a-d09b11186157"/>
+				<textFieldExpression><![CDATA[$F{RESPONSABLE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="40" width="69" height="20" uuid="94943d0d-54aa-4216-a931-d70538547f69"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Responsable:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="89" y="74" width="68" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="2c621fd3-89c4-4dd6-bf1b-0b2b291abcc4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Plan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="157" y="74" width="87" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="7ad7baf7-668b-438b-a6f1-c185cf1f3785"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="244" y="74" width="49" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="86b5e1a3-c445-4cc1-9a43-51389a40ce77"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Horas Guia]]></text>
+			</staticText>
+			<line>
+				<reportElement x="89" y="73" width="204" height="1" uuid="3d085c91-aed5-4623-90ca-086a62c278c1"/>
+			</line>
+			<line>
+				<reportElement x="89" y="93" width="204" height="1" uuid="4e887ae6-0b10-4d4c-aedf-da91f03f98ed"/>
+			</line>
+			<line>
+				<reportElement x="293" y="73" width="1" height="20" uuid="9c6d8ab2-de4c-464a-a7ce-b0b295c3ee2d"/>
+			</line>
+			<line>
+				<reportElement x="244" y="74" width="1" height="19" uuid="4cb5f4f3-95b6-45dd-9fb0-a6657f159989"/>
+			</line>
+			<line>
+				<reportElement x="157" y="74" width="1" height="19" uuid="aa189467-2d4b-4371-b79c-575b1774c4e8"/>
+			</line>
+			<line>
+				<reportElement x="89" y="74" width="1" height="19" uuid="7d41e37c-2440-467e-88e1-861647c3641a"/>
+			</line>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="170" y="0" width="47" height="14" uuid="0fe323ee-4f7b-4233-a236-3629bacb2e44"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{PLAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="244" y="0" width="49" height="14" uuid="a2566565-3987-49e5-a5ce-c7a852665e25"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{GUIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="89" y="0" width="68" height="14" uuid="0643dc69-c508-4446-a525-b008e0a00e77"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="89" y="13" width="204" height="1" uuid="00b50bf6-ce9f-47d6-a68f-4c3edce7cb4d"/>
+			</line>
+			<line>
+				<reportElement x="90" y="-1" width="1" height="14" uuid="3693f972-59ec-4380-b8d0-f29a39085848"/>
+			</line>
+			<line>
+				<reportElement x="244" y="0" width="1" height="14" uuid="b545bf86-4f7c-4afd-8d09-68242adf4953"/>
+			</line>
+			<line>
+				<reportElement x="292" y="0" width="1" height="15" uuid="b5606243-937c-4aaa-8ff9-c97a2139b0a3"/>
+			</line>
+			<line>
+				<reportElement x="157" y="1" width="1" height="14" uuid="48ce2955-ff6a-4e8b-9c1d-32a9469f6c91"/>
+			</line>
+		</band>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>

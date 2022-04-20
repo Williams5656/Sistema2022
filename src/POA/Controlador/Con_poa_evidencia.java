@@ -455,6 +455,7 @@ public class Con_poa_evidencia {
         if (vista.getTabla_Evidencia().getSelectedRow() > -1) {
             if (baseDatosEvidencias.insertar_doc(Integer.parseInt(vista.getTabla_Evidencia().getValueAt(vista.getTabla_Evidencia().getSelectedRow(), 0).toString()), vista)) {
                 JOptionPane.showMessageDialog(null, "Archivo Subido Correctamente");
+                lista();
             } else {
                 JOptionPane.showMessageDialog(null, "Error al subir el archivo");
             }

@@ -33,6 +33,7 @@ import javax.swing.table.DefaultTableModel;
 import POA.Modelo.Validadores.Numeros;
 import POA.Modelo.Validadores.Letras;
 import POA.Modelo.Validadores.id_carrera;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
@@ -63,6 +64,7 @@ public class Con_documentacion {
     private List<MateriaMD> listaMateria = new ArrayList<>();
     private PersonaBD baseDatosPersona = new PersonaBD();
     private List<AreaCarreraMD> listaArea = new ArrayList<>();
+    private List<String> listaciclos = new ArrayList<>();
     private AreaCarreraBD baseArea = new AreaCarreraBD();
     int asignacion;
     boolean horas = false;
@@ -91,11 +93,23 @@ public class Con_documentacion {
         vista.getBtn_regresar().addActionListener(e -> regresar());
         vista.getBtnguardar().addActionListener(e -> guardar());
         vista.getBtneditar().addActionListener(e -> modificar());
-        vista.getBtnimprimir().addActionListener(e-> imprimir());
+        vista.getBtnimprimir().addActionListener(e -> imprimir());
     }
-    public void imprimir(){
+
+    public void imprimir() {
         Conect con = new Conect();
-        String docente = vista.getTxt_nombre().getText();
+        String[] reportes = {
+            "Seleccione Una Opcion",
+            "Reporte Con Docente",
+            "Reporte Por Ciclo"
+        };
+        //Ctrl_MYICON icon = new Ctrl_MYICON(40, 50);
+        String resp = (String) JOptionPane.showInputDialog(null, "Seleccione un reporte", "Reporte De Personas",
+                JOptionPane.DEFAULT_OPTION, null, reportes, reportes[0]);
+
+        if (resp.equalsIgnoreCase("Reporte Con Docente")) {
+            String docente = vista.getTxt_nombre().getText();
+
             try {
                 // JOptionPane.showMessageDialog(null, "Imprimiendo Persona");
                 JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/RPlanes.jasper"));
@@ -113,6 +127,30 @@ public class Con_documentacion {
                 System.out.println("no se pudo encontrar registros" + e.getMessage());
                 Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
             }
+        } else if (resp.equalsIgnoreCase("Reporte Por Ciclo")) {
+            listaciclos = bddocumentacion.mostrarCiclo();
+            String[] reportes1 = new String[listaciclos.size()];
+
+            for (int i = 0; i < listaciclos.size(); i++) {
+                reportes1[i] = listaciclos.get(i);
+            }
+            String aguja = (String) JOptionPane.showInputDialog(null, "SELECCIONE UNA OPCION", "SELECCION", JOptionPane.QUESTION_MESSAGE, null, reportes1, null);
+
+            try {
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/vvvvv.jasper"));
+                Map<String, Object> params = new HashMap<String, Object>();
+                System.out.println("ciclo;;;;" + aguja);
+                params.put("ciclo", aguja);
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException e) {
+                System.out.println("no se pudo encontrar registros" + e.getMessage());
+                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+            }
+
+        }
     }
 
     public void activarBotones() {
@@ -290,7 +328,7 @@ public class Con_documentacion {
     public void regresar() {
         vista.setVisible(false);
         vis_asignacionmateriadocentes doc = new vis_asignacionmateriadocentes();
-        Con_Asignacion_Docente per = new Con_Asignacion_Docente(doc,"DESARROLLO DE SOFTWARE");
+        Con_Asignacion_Docente per = new Con_Asignacion_Docente(doc, "DESARROLLO DE SOFTWARE");
 
         ESCRITORIO.add(doc);
         Dimension desktopSize = ESCRITORIO.getSize();

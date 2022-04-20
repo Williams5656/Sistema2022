@@ -138,4 +138,24 @@ public class DocumentacionBD extends DocumentacionMD{
         }
         return fecha1;
     }
+     
+     public  List<String> mostrarCiclo() {
+        try{
+        List<String> ciclos = new ArrayList<String>();
+        String sql= "select distinct case when jornada='MATUTINA' then'M'||ciclo||paralelo when jornada='VESPERTINA' then 'V'||ciclo||paralelo when jornada='NOCTURNA' then'N'||ciclo||paralelo end as \"CICLO\" from asignacion_docentes";
+        ResultSet rs = conectar.query(sql);
+        
+            while (rs.next()) {
+               ciclos.add(rs.getString("CICLO"));
+            }
+            rs.close();
+            return ciclos;
+        } catch (SQLException e) {
+            Logger.getLogger(PerfilBD.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+       
+      
+    }
+     
 }

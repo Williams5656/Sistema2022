@@ -54,9 +54,9 @@ public class Con_Asignacion_Docente {
     private boolean tablaSeleccionada = false;
     private String carrera;
 
-    public Con_Asignacion_Docente(vis_asignacionmateriadocentes vista,String carrera) {
+    public Con_Asignacion_Docente(vis_asignacionmateriadocentes vista, String carrera) {
         this.vista = vista;
-        this.carrera=carrera;
+        this.carrera = carrera;
         vista.setVisible(true);
         cargarComboMateria();
         cargarComboPeriodo();
@@ -96,7 +96,7 @@ public class Con_Asignacion_Docente {
     }
 
     public void plan() {
-         if (tablaSeleccionada == true) {
+        if (tablaSeleccionada == true) {
             vista.setVisible(false);
             Vis_Documentacion doc = new Vis_Documentacion();
             Con_documentacion per = new Con_documentacion(doc, id_asignacion);
@@ -106,7 +106,7 @@ public class Con_Asignacion_Docente {
             per.eventoHoraguiaNo();
             per.datos();
             per.lista();
-         } else {
+        } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un docente de la tabla");
         }
 //        int seleccionado = 0;
@@ -152,20 +152,20 @@ public class Con_Asignacion_Docente {
     public void imprimir() {
         Conect con = new Conect();
         String parametro = "";
-        String nombre="";         
-        List <String> listanombres = new ArrayList<>();
+        String nombre = "";
+        List<String> listanombres = new ArrayList<>();
         lista = bdasignacion.mostrardatos();
-        for (AsignacionMateriaDocentesMD asignacionMD : lista) {            
-            listaPersona = bdpersona.obtenerdatos(asignacionMD.getIdentificacion()); 
-            for (PersonaMD persona: listaPersona) {
-                nombre = persona.getNombres()+" " + persona.getApellidos();
-                listanombres.add(nombre);                
+        for (AsignacionMateriaDocentesMD asignacionMD : lista) {
+            listaPersona = bdpersona.obtenerdatos(asignacionMD.getIdentificacion());
+            for (PersonaMD persona : listaPersona) {
+                nombre = persona.getNombres() + " " + persona.getApellidos();
+                listanombres.add(nombre);
             }
         }
-        String [] nombres = new String  [listanombres.size()];
+        String[] nombres = new String[listanombres.size()];
         for (int i = 0; i < listanombres.size(); i++) {
             nombres[i] = listanombres.get(i);
-            
+
         }
         String[] reportes = {
             "Seleccione Una Opcion",
@@ -174,34 +174,34 @@ public class Con_Asignacion_Docente {
             "Reporte Completo"
         };
         //Ctrl_MYICON icon = new Ctrl_MYICON(40, 50);
-        String resp = (String) JOptionPane.showInputDialog(null, "Seleccione un reporte", "Reporte De Asignacion de Docentes",       
+        String resp = (String) JOptionPane.showInputDialog(null, "Seleccione un reporte", "Reporte De Asignacion de Docentes",
                 JOptionPane.DEFAULT_OPTION, null, reportes, reportes[0]);
         if (resp.equals("Seleccione Una Opcion")) {
             JOptionPane.showMessageDialog(null, " seleccione uno de los campos");
 
-        }else if (resp.equals("Reporte por Docente")){
-            parametro = " per.cedula= (select cedula from persona where nombres || ' ' ||  apellidos= '"+(String) JOptionPane.showInputDialog(null, "Seleccione un docente", "Docentes",       
-                JOptionPane.DEFAULT_OPTION, null, nombres, nombres[0])+" ');"; 
+        } else if (resp.equals("Reporte por Docente")) {
+            parametro = " per.cedula= (select cedula from persona where nombres || ' ' ||  apellidos= '" + (String) JOptionPane.showInputDialog(null, "Seleccione un docente", "Docentes",
+                    JOptionPane.DEFAULT_OPTION, null, nombres, nombres[0]) + "');";
+
+        } else if (resp.equals("Reporte por Carreras")) {
+            parametro = " mat.nombre= '" + carrera + "';";
+        } else {
+            parametro = "asig.id_asignacion=asig.id_asignacion;;";
         }
-        else if (resp.equals("Reporte por Carreras")){
-            parametro = " mat.nombre= '"+carrera+"';"; 
-        }
-        else parametro="asig.id_asignacion=asig.id_asignacion;;";
-        
+
         try {
             Map p = new HashMap();
-            p.put("index",parametro);
-            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Asignacion_Docentes.jasper"));
+            p.put("index", parametro);
+            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/ReporteAsignacionDocente.jasper"));
             JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, p, con.getCon());
             JasperViewer jv = new JasperViewer(jp, false);
-            
+
             jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             jv.setVisible(true);
         } catch (JRException e) {
             System.out.println("no se pudo encontrar registros" + e.getMessage());
             Logger.getLogger(Con_Asignacion_Docente.class.getName()).log(Level.SEVERE, null, e);
         }
-
     }
 
     public void inhabilitar_botones() {
@@ -246,7 +246,7 @@ public class Con_Asignacion_Docente {
             for (int i = 0; i < lista.size(); i++) {
                 for (int j = 0; j < listadoc.size(); j++) {
 
-                    if (vista.getTxtdocente().getText().equalsIgnoreCase(listadoc.get(j).getCedula())&& listadoc.get(i).getEstado().equalsIgnoreCase("ACTIVO")) {
+                    if (vista.getTxtdocente().getText().equalsIgnoreCase(listadoc.get(j).getCedula()) && listadoc.get(i).getEstado().equalsIgnoreCase("ACTIVO")) {
                         if (listadoc.get(j).getCedula().equals(lista.get(i).getCedula())) {
                             String nombre = lista.get(i).getNombres() + " " + lista.get(i).getApellidos();
                             //vista.getTxtnombredocente().setText(nombre);
@@ -298,7 +298,7 @@ public class Con_Asignacion_Docente {
         listaMateria = baseDatosMateria.mostrardatos();
         String nombre = "";
         for (AsignacionMateriaDocentesMD user : lista) {
-            fila[0]= user.getId_asignacio();
+            fila[0] = user.getId_asignacio();
             fila[1] = user.getIdentificacion();
             listaPersona = bdpersona.obtenerdatos(user.getIdentificacion());
             for (PersonaMD userp : listaPersona) {
@@ -429,7 +429,6 @@ public class Con_Asignacion_Docente {
         String identificacion = (String) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 1);
         String id_asig = (String) modelo.getValueAt(vista.getTablaasignaciondocentemateria().getSelectedRow(), 3);
 
-        
         List<PersonaMD> listaper = bdpersona.obtenerdatos(identificacion);
         List<docenteMD> lista = bddocente.obtenerdatos(identificacion);
         List<AsignacionMateriaDocentesMD> listaasig = bdasignacion.obtenerdatos(id);

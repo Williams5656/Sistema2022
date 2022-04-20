@@ -7,20 +7,38 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[Select DISTINCT cal.id_actividad "ID Actividad", carr.nombre "Carrera", per.nombre "Periodo", tact.nombre_tipo_actividad "Tipo Actividad",cal.nombre_actividad "Nombre", cal.descripcion "Descripcion", cal.fecha_inicio "Inicio", cal.fecha_limite "Limite" 
-from calendario cal, periodo_academico per, tipo_actividad tact, carrera carr
-where carr.codigo=cal.id_carrera and per.id_periodo=cal.id_periodo and tact.id_tipoactividad=cal.id_tipoactividad
-and tact.nombre_tipo_actividad = $P{Actividad}
-order by cal.id_actividad;]]>
+		<![CDATA[select p.apellidos||' '||p.nombres as "DOCENTE", case 
+ 	when jornada='MATUTINA' then
+		'M'||ad.ciclo||paralelo
+	when jornada='VESPERTINA' then
+		'V'||ad.ciclo||paralelo
+	when jornada='NOCTURNA' then
+		'N'||ad.ciclo||paralelo
+end as "CICLO" , materia,p2.nombres||' '||p2.apellidos as "RESPONSABLE",fecha AS "PLAN",hora_guias AS "GUIA", c.nombre,d.numero,pa.nombre
+from persona p join asignacion_docentes ad on p.cedula=ad.identificacion
+join documentacion d on d.id_asignacion=ad.id_asignacion||''
+join materia m on ad.asignatura=m.codigo
+join area_carrera a on m.area=a.id_area||''
+join persona p2 on a.responsable=p2.cedula
+join carrera c on c.codigo=m.nombre
+join periodo_academico pa on pa.id_periodo||''=ad.periodo 
+where  case 
+ 	when jornada='MATUTINA' then
+		'M'||ad.ciclo||paralelo
+	when jornada='VESPERTINA' then
+		'V'||ad.ciclo||paralelo
+	when jornada='NOCTURNA' then
+		'N'||ad.ciclo||paralelo
+end=$P{Actividad}]]>
 	</queryString>
-	<field name="ID Actividad" class="java.lang.Integer"/>
-	<field name="Carrera" class="java.lang.String"/>
-	<field name="Periodo" class="java.lang.String"/>
-	<field name="Tipo Actividad" class="java.lang.String"/>
-	<field name="Nombre" class="java.lang.String"/>
-	<field name="Descripcion" class="java.lang.String"/>
-	<field name="Inicio" class="java.sql.Timestamp"/>
-	<field name="Limite" class="java.sql.Timestamp"/>
+	<field name="DOCENTE" class="java.lang.String"/>
+	<field name="CICLO" class="java.lang.String"/>
+	<field name="materia" class="java.lang.String"/>
+	<field name="RESPONSABLE" class="java.lang.String"/>
+	<field name="PLAN" class="java.sql.Date"/>
+	<field name="GUIA" class="java.lang.Integer"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="numero" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>

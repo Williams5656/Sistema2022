@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="727a0308-2678-48a3-b27f-284d9521829c">
-	<property name="ireport.zoom" value="1.6105100000000039"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="2.143588810000011"/>
+	<property name="ireport.x" value="22"/>
+	<property name="ireport.y" value="26"/>
 	<parameter name="Carrera" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -86,36 +86,36 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="25" splitType="Stretch">
+		<band height="23" splitType="Stretch">
 			<rectangle>
-				<reportElement x="159" y="2" width="73" height="20" backcolor="#3333FF" uuid="d1275964-68cf-413f-aefc-768ac90ce64d"/>
+				<reportElement x="148" y="2" width="94" height="20" backcolor="#3333FF" uuid="d1275964-68cf-413f-aefc-768ac90ce64d"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="159" y="2" width="73" height="20" backcolor="#3333FF" uuid="deb5e29d-a9dd-4761-be35-0ce1b1bc2108"/>
+				<reportElement x="148" y="2" width="94" height="20" backcolor="#3333FF" uuid="deb5e29d-a9dd-4761-be35-0ce1b1bc2108"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Periodo]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="254" y="2" width="126" height="20" backcolor="#3333FF" uuid="f59f095c-1947-4148-aff0-2e9dc07e4653"/>
+				<reportElement x="243" y="2" width="147" height="20" backcolor="#3333FF" uuid="f59f095c-1947-4148-aff0-2e9dc07e4653"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="254" y="2" width="126" height="20" backcolor="#3333FF" uuid="eea53212-d9ea-4768-968d-dc6c4a4157d2"/>
+				<reportElement x="243" y="2" width="147" height="20" backcolor="#3333FF" uuid="eea53212-d9ea-4768-968d-dc6c4a4157d2"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Materia]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="402" y="2" width="65" height="20" backcolor="#3333FF" uuid="a9bfc985-b0d9-4179-9c80-897211206c41"/>
+				<reportElement x="391" y="2" width="76" height="20" backcolor="#3333FF" uuid="a9bfc985-b0d9-4179-9c80-897211206c41"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="402" y="2" width="65" height="20" backcolor="#3333FF" uuid="064fe501-2c3d-44f3-9e59-16610e09eecc"/>
+				<reportElement x="391" y="2" width="76" height="20" backcolor="#3333FF" uuid="064fe501-2c3d-44f3-9e59-16610e09eecc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Documento]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="103" y="2" width="34" height="20" backcolor="#3333FF" uuid="2a34ec8b-34e7-41a4-96a4-bc09e01da9df"/>
+				<reportElement x="103" y="2" width="44" height="20" backcolor="#3333FF" uuid="2a34ec8b-34e7-41a4-96a4-bc09e01da9df"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="103" y="2" width="34" height="20" backcolor="#3333FF" uuid="72db1805-7e89-413d-a129-9673ebc8307c"/>
+				<reportElement x="103" y="2" width="44" height="20" backcolor="#3333FF" uuid="72db1805-7e89-413d-a129-9673ebc8307c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Codigo]]></text>
 			</staticText>
@@ -134,7 +134,7 @@
 				<textFieldExpression><![CDATA[$F{materia}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="402" y="0" width="65" height="20" backcolor="#FFFFCC" uuid="eafe454f-a4b3-4c53-97ab-81579f387476"/>
+				<reportElement mode="Opaque" x="391" y="0" width="76" height="19" backcolor="#FFFFCC" uuid="eafe454f-a4b3-4c53-97ab-81579f387476"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
 			</textField>
@@ -151,9 +151,16 @@
 				<reportElement x="103" y="19" width="364" height="1" forecolor="#999999" uuid="c36ae527-840e-4aeb-a8ff-cdebb0757b8b"/>
 			</line>
 			<textField>
-				<reportElement x="103" y="1" width="34" height="18" uuid="eceb38d4-4c27-4af5-8f0a-c0cb53c03767"/>
+				<reportElement x="103" y="1" width="44" height="18" uuid="eceb38d4-4c27-4af5-8f0a-c0cb53c03767"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{id_codigos}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="466" y="1" width="1" height="19" forecolor="#999999" uuid="99308d34-49b0-414c-9337-33e3f6fcc68d"/>
+			</line>
+			<line>
+				<reportElement x="103" y="1" width="1" height="19" forecolor="#999999" uuid="03d9518e-7762-4316-89c2-41d0a5517fbf"/>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>

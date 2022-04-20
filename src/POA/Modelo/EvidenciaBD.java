@@ -38,8 +38,6 @@ public class EvidenciaBD extends EvidenciaMD {
         super(id_evidencia, id_actividades, id_poa, id_proyecto, id_objetivo, archivo);
     }
 
-    
-
     public ArrayList<EvidenciaMD> mostrarDatos() {
 
         ArrayList<EvidenciaMD> lista = new ArrayList<>();
@@ -65,7 +63,43 @@ public class EvidenciaBD extends EvidenciaMD {
         }
         return lista;
     }
-    
+
+    public Object[][] datos_unidos(String carrera) {
+        try {
+            String sql = "select ev.id_evidencia,car.nombre ,pro.num_proyecto_carrera , poa.anio ,act.actividad , obj.objetivo , ev.archivo \n"
+                    + "from actividades act, evidencia ev, carrera car, poa, proyecto pro, objetivo_operativo obj \n"
+                    + "where act.id_actividades = ev.id_actividades \n"
+                    + "and car.codigo = CAST( poa.id_carrera AS VARCHAR(10))\n"
+                    + "and poa.id_poa = ev.id_poa \n"
+                    + "and pro.id_proyecto = ev.id_proyecto \n"
+                    + "and obj.id_objetivo_operativo = ev.id_objetivo";
+            ResultSet rs = conectar.query(sql);
+            int n_fil = 0;
+            while (rs.next()) {
+                n_fil++;
+            }
+            rs.close();
+            ResultSet rs2 = conectar.query(sql);
+            Object[][] m = new Object[n_fil][4];
+            int f = 0;
+            while (rs2.next()) {
+                m[f][0] = rs2.getInt(1);
+                m[f][1] = rs2.getString(2);
+                m[f][2] = rs2.getString(3);
+                m[f][3] = rs2.getString(4);
+                m[f][4] = rs2.getString(5);
+                m[f][5] = rs2.getString(5);
+                m[f][6] = rs2.getBytes(7);
+                f++;
+            }
+            rs2.close();
+            return m;
+        } catch (SQLException e) {
+            Logger.getLogger(doc_modulo_MD.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+
     public boolean insertar_doc(int cod, JInternalFrame vista) {
 
         String ruta_archivo = "";
@@ -78,7 +112,7 @@ public class EvidenciaBD extends EvidenciaMD {
         }
         String nombre = cod + "";
         File ruta = new File(ruta_archivo);
-        System.out.println("ruta"+ruta);
+        System.out.println("ruta" + ruta);
         if (nombre.trim().length() != 0 && ruta_archivo.trim().length() != 0) {
             try {
                 byte[] pdf = new byte[(int) ruta.length()];
@@ -136,7 +170,7 @@ public class EvidenciaBD extends EvidenciaMD {
     public void guardar(int id_evidencia, int id_actividades, int id_poa, int id_proyecto, int id_objetivo, String archivo) {
 
         String sql = "insert into evidencia (id_evidencia, id_actividades, id_poa, id_proyecto, id_objetivo,archivo) VALUES (" + id_evidencia + ", "
-                + id_actividades + ", " + id_poa + ", " + id_proyecto + ", " + id_objetivo + ", '" + archivo + "');";
+                + id_actividades + ", " + id_poa + ", " + id_proyecto + ", " + id_objetivo + ", " + archivo + ");";
         conectar.noQuery(sql);
 
     }

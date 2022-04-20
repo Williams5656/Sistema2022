@@ -454,9 +454,9 @@ public class Con_poa_evidencia {
     public void subir_datos() {
         if (vista.getTabla_Evidencia().getSelectedRow() > -1) {
             if (baseDatosEvidencias.insertar_doc(Integer.parseInt(vista.getTabla_Evidencia().getValueAt(vista.getTabla_Evidencia().getSelectedRow(), 0).toString()), vista)) {
-                System.out.println("Archivos subido");
+                JOptionPane.showMessageDialog(null, "Archivo Subido Correctamente");
             } else {
-                System.out.println("Error al subir el archivo");
+                JOptionPane.showMessageDialog(null, "Error al subir el archivo");
             }
         }
     }
@@ -480,13 +480,15 @@ public class Con_poa_evidencia {
             return false;
         }
     }
- public void addCheckBox(int column, JTable table)
-    {
+
+    public void addCheckBox(int column, JTable table) {
         TableColumn tc = table.getColumnModel().getColumn(column);
         tc.setCellEditor(table.getDefaultEditor(Boolean.class));
         tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
     }
+
     public void lista() {
+
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) vista.getTabla_Evidencia().getModel();
         List<EvidenciaMD> lista = baseDatosEvidencias.mostrarDatos();
@@ -522,8 +524,9 @@ public class Con_poa_evidencia {
                     vista.getTabla_Evidencia().setValueAt(listaActividades.get(i).getActividad(), j, 5);
                 }
             }
-            
+            addCheckBox(6, vista.getTabla_Evidencia());
+            vista.getTabla_Evidencia().setValueAt((lista.get(j).getArchivo()!= null), j, 6);
         }
-        addCheckBox(6, vista.getTabla_Evidencia());
-   }
+
+    }
 }

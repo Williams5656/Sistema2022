@@ -227,21 +227,26 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
         jLabel12 = new javax.swing.JLabel();
         btn_imprimir = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         Lb_anio = new javax.swing.JLabel();
         Lb_poa = new javax.swing.JLabel();
         Lb_carrera = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         jToolBar1.setRollover(true);
 
         setClosable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("OBJETIVO ESTRATÉGICO:");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 140, -1, -1));
         getContentPane().add(txt_obestra, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 140, 270, 20));
 
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("OBJETIVO TÁCTICO:");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 190, -1, -1));
         getContentPane().add(txt_obtac, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 180, 270, -1));
@@ -265,6 +270,7 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
         jLabel13.setText("CARRERA:");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 80, -1));
 
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("ESTRATEGIA");
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 240, -1, -1));
         getContentPane().add(txt_estrategia, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 230, 270, 30));
@@ -273,15 +279,19 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("PROYECTOS:");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, -1, -1));
 
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Eliminar");
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, -1, -1));
 
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Modificar");
         jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, -1, -1));
 
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Nuevo");
         jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, -1, -1));
 
@@ -365,14 +375,19 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
         btn_guardar.setContentAreaFilled(false);
         jPanel2.add(btn_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 50, 40));
 
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Guardar");
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, -1, -1));
 
         btn_imprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/impresion.png"))); // NOI18N
         jPanel2.add(btn_imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, 40, 40));
 
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Imprimir");
         jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, -1, -1));
+
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/fondo azul (2).jpg"))); // NOI18N
+        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 510));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 40, 560, 520));
 
@@ -392,6 +407,13 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
 
         Lb_carrera.setText("jLabel1");
         getContentPane().add(Lb_carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 280, -1));
+
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/logo Instituto.png"))); // NOI18N
+        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel5.setText("Proyectos");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -434,7 +456,10 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;

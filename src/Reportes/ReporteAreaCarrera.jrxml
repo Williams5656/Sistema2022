@@ -21,14 +21,17 @@ order by 1]]>
 	</background>
 	<title>
 		<band height="79" splitType="Stretch">
-			<image>
-				<reportElement x="0" y="1" width="555" height="78" uuid="c415612f-4b58-4f6a-929a-350afc0bb7b2"/>
-				<imageExpression><![CDATA["C:\\Users\\Usuario\\Documents\\NetBeansProjects\\Sistema2022\\src\\POA\\Vista\\img\\ISTA.jpg"]]></imageExpression>
-			</image>
 			<textField pattern="dd/MM/yyyy">
 				<reportElement x="454" y="1" width="100" height="20" uuid="85ee028d-6a98-4337-a488-59751a216942"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="1" y="32" width="555" height="20" uuid="f7beb51b-dafc-4883-a0be-eb317d3bf4e5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Instituto Superior Tecnológico del Azuay]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>

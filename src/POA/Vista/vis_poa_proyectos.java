@@ -426,9 +426,10 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
         Lb_poa.setText("jLabel1");
         getContentPane().add(Lb_poa, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 120, 20));
 
+        Lb_carrera.setBackground(new java.awt.Color(255, 255, 255));
         Lb_carrera.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Lb_carrera.setForeground(new java.awt.Color(255, 255, 255));
         Lb_carrera.setText("jLabel1");
+        Lb_carrera.setOpaque(true);
         getContentPane().add(Lb_carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 50, 210, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N

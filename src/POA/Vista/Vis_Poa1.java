@@ -206,7 +206,7 @@ public class Vis_Poa1 extends javax.swing.JInternalFrame {
 
         btnAniadirProyectos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/generarreporte.png"))); // NOI18N
         btnAniadirProyectos.setText("Añadir Proyectos");
-        jPanel1.add(btnAniadirProyectos, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 150, -1));
+        jPanel1.add(btnAniadirProyectos, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, 180, -1));
 
         tablaPoa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

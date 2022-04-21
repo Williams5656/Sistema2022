@@ -193,7 +193,7 @@ public class vis_poa_evidencia extends Fondos.fondo_internalframe {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
-        setPreferredSize(new java.awt.Dimension(1285, 537));
+        setPreferredSize(new java.awt.Dimension(1285, 578));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N

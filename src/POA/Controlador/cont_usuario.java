@@ -15,6 +15,7 @@ import POA.Modelo.UsuarioMD;
 import POA.Modelo.Validadores.*;
 import POA.Vista.Vis_Usuario;
 import java.awt.Image;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -148,6 +149,7 @@ public class cont_usuario {
         vista.getBtnguardar().setEnabled(true);
         vista.getBtnmodificar().setEnabled(false);
         vista.getTxtcedula().setEditable(true);
+        vista.getTxtbuscar().setText("");
         vista.getTxtcedula().setText("");
         vista.getTxtUsuario().setText("");
         vista.getTxtcontra().setText("");
@@ -156,6 +158,7 @@ public class cont_usuario {
         vista.getComboestado().setSelectedIndex(0);
         vista.getComborol().setSelectedIndex(0);
         cedexistente();
+        lista();
         
         
     }
@@ -166,7 +169,7 @@ public class cont_usuario {
         } else {
             DefaultTableModel modelo;
             modelo = (DefaultTableModel) vista.getTableUsuario().getModel();
-            List<UsuarioMD> lista1 = bdusuario.mostrardatos();
+            List<UsuarioMD> lista1 = bdusuario.mostrarDatosCodigo(vista.getTxtbuscar().getText());
             int columnas = modelo.getColumnCount();
             for (int j = vista.getTableUsuario().getRowCount() - 1; j >= 0; j--) {
                 modelo.removeRow(j);
@@ -182,7 +185,7 @@ public class cont_usuario {
                 }
             }
         }
-        nuevo();
+        
     }
     
     public void guardar(){

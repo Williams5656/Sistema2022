@@ -187,7 +187,7 @@ public String[] persona_carrera(String cedula){
     public List<UsuarioMD> mostrarDatosCodigo(String identificador) {
         try {
             List<UsuarioMD> lista = new ArrayList<UsuarioMD>();
-            String sql = "select * from producto where \"codigo\"='" + identificador + "'";
+            String sql = "select * from usuario where \"cedula\"='" + identificador + "'";
             ResultSet rs = conectar.query(sql);
             while (rs.next()) {
                 UsuarioMD p = new UsuarioMD();

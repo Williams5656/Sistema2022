@@ -25,6 +25,14 @@ public class Vis_Usuario extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    public JTextField getTxtbuscar() {
+        return txtbuscar;
+    }
+
+    public void setTxtbuscar(JTextField txtbuscar) {
+        this.txtbuscar = txtbuscar;
+    }
+    
     public JButton getBtnbuscar() {
         return btnbuscar;
     }
@@ -170,7 +178,7 @@ public class Vis_Usuario extends javax.swing.JInternalFrame {
         tableUsuario = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         btnbuscar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txtbuscar = new javax.swing.JTextField();
         btnimprimir = new javax.swing.JButton();
         jSeparator9 = new javax.swing.JSeparator();
         txtcedula = new javax.swing.JTextField();
@@ -238,9 +246,9 @@ public class Vis_Usuario extends javax.swing.JInternalFrame {
         btnbuscar.setText("Buscar");
         jPanel1.add(btnbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, 40));
 
-        jTextField1.setBorder(null);
-        jTextField1.setOpaque(false);
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 160, 40));
+        txtbuscar.setBorder(null);
+        txtbuscar.setOpaque(false);
+        jPanel1.add(txtbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 160, 40));
 
         btnimprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/impresion.png"))); // NOI18N
         btnimprimir.setText("Imprimir");
@@ -400,11 +408,11 @@ public class Vis_Usuario extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblmensaje;
     private javax.swing.JLabel lblnombre;
     private javax.swing.JTable tableUsuario;
     private javax.swing.JTextField txtUsuario;
+    private javax.swing.JTextField txtbuscar;
     private javax.swing.JTextField txtcedula;
     private javax.swing.JPasswordField txtcontra;
     // End of variables declaration//GEN-END:variables

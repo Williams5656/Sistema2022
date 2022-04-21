@@ -41,6 +41,7 @@ public class cont_usuario {
         vista.getBtnmodificar().addActionListener(e->modificar());
         vista.getBtneliminar().addActionListener(e->cambiarestado());
         vista.getBtncedula().addActionListener(e->buscarced());
+        vista.getBtnbuscar().addActionListener(e->buscar());
         
         vista.getTableUsuario().addMouseListener(new MouseAdapter(){
             @Override
@@ -157,6 +158,31 @@ public class cont_usuario {
         cedexistente();
         
         
+    }
+    
+    public void buscar() {
+        if (vista.getTxtbuscar().getText().equals("")) {
+            lista();
+        } else {
+            DefaultTableModel modelo;
+            modelo = (DefaultTableModel) vista.getTableUsuario().getModel();
+            List<UsuarioMD> lista1 = bdusuario.mostrardatos();
+            int columnas = modelo.getColumnCount();
+            for (int j = vista.getTableUsuario().getRowCount() - 1; j >= 0; j--) {
+                modelo.removeRow(j);
+                for (int i = 0; i < lista1.size(); i++) {
+                    if (lista1.get(i).getCedula().equals(vista.getTxtbuscar().getText())) {
+                        modelo.addRow(new Object[columnas]);
+                        vista.getTableUsuario().setValueAt(lista1.get(i).getCedula(), i, 0);
+                        vista.getTableUsuario().setValueAt(lista1.get(i).getNombreUsuario(), i, 1);
+                        vista.getTableUsuario().setValueAt(lista1.get(i).getContrasenia(), i, 2);
+                        vista.getTableUsuario().setValueAt(lista1.get(i).getRol(), i, 3);
+                        vista.getTableUsuario().setValueAt(lista1.get(i).getEstado(), i, 4);
+                    }
+                }
+            }
+        }
+        nuevo();
     }
     
     public void guardar(){

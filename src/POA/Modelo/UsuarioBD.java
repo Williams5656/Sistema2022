@@ -184,5 +184,29 @@ public String[] persona_carrera(String cedula){
         return 0;
     }
     
+    public List<UsuarioMD> mostrarDatosCodigo(String identificador) {
+        try {
+            List<UsuarioMD> lista = new ArrayList<UsuarioMD>();
+            String sql = "select * from producto where \"codigo\"='" + identificador + "'";
+            ResultSet rs = conectar.query(sql);
+            while (rs.next()) {
+                UsuarioMD p = new UsuarioMD();
+                p.setCedula(rs.getString("cedula"));
+                p.setNombreUsuario(rs.getString("usuario"));
+                p.setContrasenia(rs.getString("contrasenia"));
+                p.setRol(rs.getInt("rol"));
+                p.setEstado(rs.getString("estado"));
+
+                lista.add(p);
+
+            }
+            rs.close();//cerramos conexion base.
+            return lista;
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioBD.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
   
 }

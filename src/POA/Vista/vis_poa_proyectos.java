@@ -267,7 +267,7 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
 
         jLabel14.setText("ESTRATEGIA");
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 240, -1, -1));
-        getContentPane().add(txt_estrategia, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 230, 270, 60));
+        getContentPane().add(txt_estrategia, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 230, 270, 30));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

@@ -243,7 +243,7 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
         jToolBar1.setRollover(true);
 
         setClosable(true);
-        setPreferredSize(new java.awt.Dimension(1145, 643));
+        setPreferredSize(new java.awt.Dimension(1148, 651));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Tabla_lista_proyectos.setModel(new javax.swing.table.DefaultTableModel(
@@ -259,12 +259,12 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
         ));
         jScrollPane2.setViewportView(Tabla_lista_proyectos);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 500, 370));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 500, 450));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("CARRERA:");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, 90, -1));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1160, 10));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, 90, -1));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1160, 30));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -408,27 +408,28 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/fondo azul (2).jpg"))); // NOI18N
         jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 520));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 560, 520));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, 560, 520));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel19.setText("LISTA PROYECTOS DEL POA:");
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel20.setText("AÑO:");
-        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 60, 50, -1));
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 50, 50, -1));
 
         Lb_anio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Lb_anio.setText("jLabel1");
-        getContentPane().add(Lb_anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 60, 200, -1));
+        getContentPane().add(Lb_anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 50, 200, -1));
 
         Lb_poa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Lb_poa.setText("jLabel1");
-        getContentPane().add(Lb_poa, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, 120, 20));
+        getContentPane().add(Lb_poa, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 120, 20));
 
         Lb_carrera.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Lb_carrera.setForeground(new java.awt.Color(255, 255, 255));
         Lb_carrera.setText("jLabel1");
-        getContentPane().add(Lb_carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, 210, -1));
+        getContentPane().add(Lb_carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 50, 210, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel5.setText("Proyectos");
@@ -436,7 +437,7 @@ public class vis_poa_proyectos extends javax.swing.JInternalFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("Lista Proyectos");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, -1, -1));
 
         btnSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/siguiente.png"))); // NOI18N
         btnSiguiente.setBorderPainted(false);

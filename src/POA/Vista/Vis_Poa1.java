@@ -161,7 +161,7 @@ public class Vis_Poa1 extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
 
         setClosable(true);
-        setPreferredSize(new java.awt.Dimension(837, 547));
+        setPreferredSize(new java.awt.Dimension(736, 611));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -221,7 +221,7 @@ public class Vis_Poa1 extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tablaPoa);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 680, 220));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 680, 220));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("LISTA POA:");
@@ -276,7 +276,7 @@ public class Vis_Poa1 extends javax.swing.JInternalFrame {
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel16.setText("Lista Poa");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, -1, -1));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, -1, -1));
 
         jLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 480, 70));
@@ -295,7 +295,7 @@ public class Vis_Poa1 extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="50802a3a-e4f9-40e6-8b27-3368892d6c22">
 	<property name="ireport.zoom" value="0.9090909090909095"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="462"/>
+	<property name="ireport.y" value="282"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -565,16 +565,12 @@ Where po.anio=$P{anio} and pro.num_proyecto_carrera=$P{Numproyecto}]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="127" splitType="Stretch">
-			<image>
-				<reportElement x="0" y="-2" width="555" height="125" uuid="39839ee9-da0d-49ac-a95b-5998b3a486e5"/>
-				<imageExpression><![CDATA["C:\\Users\\HP\\Documents\\NetBeansProjects\\Sistema2022\\src\\POA\\Vista\\img\\ISTA.jpg"]]></imageExpression>
-			</image>
+		<band height="64" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="62" width="555" height="61" backcolor="#000099" uuid="b5997bb1-9499-4b75-a2c2-040df77531d8"/>
+				<reportElement x="0" y="0" width="555" height="61" backcolor="#000099" uuid="b5997bb1-9499-4b75-a2c2-040df77531d8"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="139" y="62" width="284" height="57" forecolor="#FFFFFF" uuid="29821c72-c062-4d17-906c-c918ba4f4534"/>
+				<reportElement x="139" y="0" width="284" height="57" forecolor="#FFFFFF" uuid="29821c72-c062-4d17-906c-c918ba4f4534"/>
 				<textElement textAlignment="Center">
 					<font size="20" isBold="true" isItalic="true" isUnderline="false"/>
 				</textElement>

@@ -219,6 +219,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         btnregresar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -265,6 +266,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         getContentPane().add(txtrecursos_financieros, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 440, 70, -1));
         getContentPane().add(fecha_plazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 400, 230, -1));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -359,7 +361,12 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
 
         btnregresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icons8_Double_Left_20px.png"))); // NOI18N
         getContentPane().add(btnregresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 10, 60, 40));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 630));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/fondo azul (2).jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 560, 500));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/logo Instituto.png"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, -30, 270, 200));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -396,6 +403,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

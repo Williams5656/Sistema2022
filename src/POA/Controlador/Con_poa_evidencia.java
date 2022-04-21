@@ -109,6 +109,7 @@ public class Con_poa_evidencia {
             }
         });
         lista();
+        abrir();
     }
 
     public void imprimir() {

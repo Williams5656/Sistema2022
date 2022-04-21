@@ -201,6 +201,8 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         btnmodificar = new javax.swing.JButton();
+        btnimprimir = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
         combo_objetivo_operativo = new javax.swing.JComboBox<>();
         combo_responsable = new javax.swing.JComboBox<>();
         comborecursos = new javax.swing.JComboBox<>();
@@ -210,7 +212,6 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         jLabel18 = new javax.swing.JLabel();
         btnindicador = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
-        btnimprimir = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         lblproyecto = new javax.swing.JLabel();
@@ -218,9 +219,11 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         lbl_id = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnregresar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
+        setPreferredSize(new java.awt.Dimension(1019, 659));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tablaactividades.setModel(new javax.swing.table.DefaultTableModel(
@@ -236,35 +239,35 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tablaactividades);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 530, 430));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 530, 350));
 
         txtbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtbuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(txtbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 170, 25));
+        getContentPane().add(txtbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 390, 20));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/buscar (2).png"))); // NOI18N
         jButton1.setContentAreaFilled(false);
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 50, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 50, 40));
 
         jLabel4.setText("Objetivo Operativo:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 230, 140, 20));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 180, 140, 20));
 
         jLabel5.setText("Actividad:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 280, 110, 20));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 240, 80, 20));
 
         jLabel6.setText("Responsable:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 360, 110, 20));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 310, 80, 20));
 
         jLabel7.setText("Plazo:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 400, 110, 20));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 360, 60, 20));
 
         jLabel8.setText("Recursos Financieros:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 440, 140, 20));
-        getContentPane().add(txtrecursos_financieros, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 440, 70, -1));
-        getContentPane().add(fecha_plazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 400, 230, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 410, 110, 20));
+        getContentPane().add(txtrecursos_financieros, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 410, 70, -1));
+        getContentPane().add(fecha_plazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 360, 250, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -273,12 +276,12 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
         btneliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/WhatsApp Image 2022-02-15 at 00.32.29.jpeg"))); // NOI18N
         btneliminar.setBorderPainted(false);
         btneliminar.setContentAreaFilled(false);
-        jPanel1.add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 10, 80, 50));
+        jPanel1.add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 40, 30));
 
         btnguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/guardar.png"))); // NOI18N
         btnguardar.setBorderPainted(false);
         btnguardar.setContentAreaFilled(false);
-        jPanel1.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 10, 72, 50));
+        jPanel1.add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 50, 30));
 
         btnnuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/nuevo.png"))); // NOI18N
         btnnuevo.setBorderPainted(false);
@@ -288,85 +291,104 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
                 btnnuevoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, 50));
+        jPanel1.add(btnnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 40, 30));
 
-        jLabel11.setText("MODIFICAR");
+        jLabel11.setText("Modificar");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 50, -1, -1));
 
-        jLabel12.setText("ELIMINAR");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, -1, -1));
+        jLabel12.setText("Eliminar");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(276, 50, 40, -1));
 
-        jLabel13.setText("GUARDAR");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 50, -1, -1));
+        jLabel13.setText("Guardar");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 50, 40, -1));
 
-        jLabel14.setText("NUEVO");
+        jLabel14.setText("Nuevo");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 50, -1, -1));
 
         btnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/modificar.png"))); // NOI18N
         btnmodificar.setBorderPainted(false);
         btnmodificar.setContentAreaFilled(false);
-        jPanel1.add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 10, 90, 50));
+        jPanel1.add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 40, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 480, 360, 80));
+        btnimprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/impresion.png"))); // NOI18N
+        btnimprimir.setBorderPainted(false);
+        btnimprimir.setContentAreaFilled(false);
+        btnimprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnimprimirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnimprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 40, 30));
 
-        getContentPane().add(combo_objetivo_operativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 230, 230, -1));
+        jLabel10.setText("Imprimir");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 40, -1));
 
-        getContentPane().add(combo_responsable, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 360, 230, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 470, 410, 80));
+
+        getContentPane().add(combo_objetivo_operativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 180, 250, -1));
+
+        getContentPane().add(combo_responsable, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 310, 250, -1));
 
         comborecursos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Ista", "Autogestion" }));
-        getContentPane().add(comborecursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 440, 130, -1));
+        getContentPane().add(comborecursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 410, 130, -1));
 
         txtactividad.setColumns(20);
         txtactividad.setRows(5);
         jScrollPane3.setViewportView(txtactividad);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 270, 230, 80));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 210, 250, 80));
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setText("PROYECTO:");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 110, 40));
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 110, 40));
 
         jLabel18.setText("$");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 440, 10, 20));
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 410, 10, 20));
 
-        btnindicador.setText("AÑADIR INDICADOR");
-        getContentPane().add(btnindicador, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 570, 170, 40));
+        btnindicador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/generarreporte.png"))); // NOI18N
+        btnindicador.setText("Añadir Indicador");
+        btnindicador.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnindicador.setContentAreaFilled(false);
+        getContentPane().add(btnindicador, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 560, 150, 40));
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 1000, 10));
-
-        btnimprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/impresion.png"))); // NOI18N
-        btnimprimir.setText("Imprimir");
-        getContentPane().add(btnimprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 570, 120, 40));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel17.setText("ACTIVIDADES");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 260, 40));
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 260, 40));
 
-        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel19.setText("POA:");
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 50, 40));
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 50, 40));
 
-        lblproyecto.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblproyecto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblproyecto.setText("jLabel1");
-        getContentPane().add(lblproyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 100, 40));
+        getContentPane().add(lblproyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 80, 100, 40));
 
-        lblaniopoa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblaniopoa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblaniopoa.setText("jLabel1");
-        getContentPane().add(lblaniopoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 70, 40));
+        getContentPane().add(lblaniopoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 70, 40));
 
         lbl_id.setText("---");
-        getContentPane().add(lbl_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 190, 30, -1));
+        getContentPane().add(lbl_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 140, 30, -1));
 
         jLabel2.setText("ID:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 190, 20, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, 20, -1));
 
-        btnregresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icons8_Double_Left_20px.png"))); // NOI18N
+        btnregresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/regresar.png"))); // NOI18N
+        btnregresar.setBorderPainted(false);
+        btnregresar.setContentAreaFilled(false);
         getContentPane().add(btnregresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 10, 60, 40));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Lista Actividades");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/fondo azul (2).jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 560, 500));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/logo Instituto.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, -30, 270, 200));
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/instituto.jpg"))); // NOI18N
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(-320, -90, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -378,6 +400,10 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnnuevoActionPerformed
+
+    private void btnimprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnimprimirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnimprimirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -394,6 +420,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
     private com.toedter.calendar.JDateChooser fecha_plazo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -409,6 +436,7 @@ public class vis_poa_actividad extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;

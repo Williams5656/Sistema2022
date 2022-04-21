@@ -150,9 +150,10 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel11 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setClosable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -162,12 +163,12 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, 35));
 
         jLabel9.setText("Actividad:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, 90, 20));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 50, 20));
 
         getContentPane().add(comboactividad, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 140, 210, -1));
 
         jLabel17.setText("Indicador:");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, 110, 20));
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, 60, 20));
 
         txtindicador.setColumns(20);
         txtindicador.setRows(5);
@@ -182,7 +183,7 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
         getContentPane().add(lineabase, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 290, 70, -1));
 
         jLabel2.setText("Meta:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 330, 110, 20));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 330, 50, 20));
 
         meta.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 10));
         getContentPane().add(meta, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 330, 70, -1));
@@ -200,13 +201,13 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
         ));
         jScrollPane4.setViewportView(tablaindicador);
 
-        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 400, 340));
+        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 400, 280));
 
         jLabel7.setText("ID:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 20, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 110, 20, -1));
 
         lblid_indicador.setText("--");
-        getContentPane().add(lblid_indicador, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 110, 20, -1));
+        getContentPane().add(lblid_indicador, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, 20, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -251,14 +252,20 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 360, 360, 80));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/fondo azul (2).jpg"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 440, 370));
-
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 860, 10));
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/logo Instituto.png"))); // NOI18N
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, -80, 270, 210));
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Lista Indicador");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, -1, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/fondo azul (2).jpg"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 440, 370));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/instituto.jpg"))); // NOI18N
+        jLabel12.setText("jLabel12");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(-246, -170, 2430, 1280));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -277,6 +284,7 @@ private ActividadesBD baseDatosactividades = new ActividadesBD();
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7044e84e-1d7d-4854-9671-b68f41158621">
-	<property name="ireport.zoom" value="5.0"/>
-	<property name="ireport.x" value="2188"/>
-	<property name="ireport.y" value="960"/>
+	<property name="ireport.zoom" value="1.0881456789507433"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<queryString>
 		<![CDATA[select ev.id_evidencia"Evidencia",car.nombre "Carrera",pro.num_proyecto_carrera "Num_Proyecto", poa.anio"Anio" ,act.actividad "Actividad", obj.num_objetivo_proyecto"Num_objetivo", ev.archivo "Archivo"
 from actividades act, evidencia ev, carrera car, poa, proyecto pro, objetivo_operativo obj
@@ -38,10 +38,6 @@ and obj.id_objetivo_operativo = ev.id_objetivo;]]>
 				</textElement>
 				<text><![CDATA[Lista de Evidencias]]></text>
 			</staticText>
-			<image>
-				<reportElement x="-22" y="0" width="600" height="88" uuid="0794a39b-813f-4e09-95e1-f434661d5e51"/>
-				<imageExpression><![CDATA["D:\\Users\\Documents\\NetBeansProjects\\Sistema 22\\build\\classes\\POA\\Vista\\img\\ISTA.jpg"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<pageHeader>

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f782b3b5-c770-4c49-8625-609e95285898">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="185"/>
+	<property name="ireport.y" value="136"/>
 	<parameter name="actividad" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -26,29 +26,25 @@ and obj.id_objetivo_operativo = ev.id_objetivo and ev.id_actividades =  CAST( $P
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="134" splitType="Stretch">
+		<band height="45" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="114" width="555" height="20" uuid="343f2109-eb41-4906-b47f-90647134bfb6"/>
+				<reportElement x="0" y="20" width="555" height="20" uuid="343f2109-eb41-4906-b47f-90647134bfb6"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Lista de Evidencias]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="94" width="555" height="20" uuid="e94e6fb0-8bfe-4a17-88fe-1102e77ccf72"/>
+				<reportElement x="0" y="0" width="555" height="20" uuid="e94e6fb0-8bfe-4a17-88fe-1102e77ccf72"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Instituto Superior Tecnológico del Azuay]]></text>
 			</staticText>
-			<image>
-				<reportElement x="-24" y="6" width="600" height="88" uuid="dd40b6be-95bb-447d-a2a1-098322482c8e"/>
-				<imageExpression><![CDATA["D:\\Users\\Documents\\NetBeansProjects\\Sistema 22\\build\\classes\\POA\\Vista\\img\\ISTA.jpg"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="26" splitType="Stretch"/>
+		<band height="11" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
 		<band height="418" splitType="Stretch">
@@ -143,17 +139,12 @@ and obj.id_objetivo_operativo = ev.id_objetivo and ev.id_actividades =  CAST( $P
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="125" splitType="Stretch">
-			<image>
-				<reportElement x="375" y="0" width="201" height="115" uuid="701401a1-460c-4429-bac3-ac72cfd980e4"/>
-				<imageExpression><![CDATA["D:\\Users\\Documents\\NetBeansProjects\\Sistema2022\\build\\classes\\POA\\Vista\\img\\logo Instituto.png"]]></imageExpression>
-			</image>
-		</band>
+		<band height="8" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
 		<band height="7" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="115" splitType="Stretch"/>
+		<band height="8" splitType="Stretch"/>
 	</summary>
 </jasperReport>

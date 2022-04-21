@@ -85,10 +85,6 @@ Inner JOIN objetivo_operativo as ob on act.id_objetivo_operativo = ob.id_objetiv
 				</textElement>
 				<text><![CDATA[REPORTE COMPLETO DE ACTIVIDADES SISTEMA 2022]]></text>
 			</staticText>
-			<image>
-				<reportElement x="462" y="0" width="93" height="79" uuid="bff4d9e3-3a02-456f-aea5-300b488b2238"/>
-				<imageExpression><![CDATA["C:\\Users\\HP\\Documents\\NetBeansProjects\\Sistema2022\\src\\POA\\Vista\\img\\logo2222.png"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<pageHeader>

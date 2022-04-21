@@ -358,6 +358,23 @@ public class Con_poa_evidencia {
         vista.getTxtArchivo().setText("");
     }
 
+    public void abrir() {
+        vista.getTabla_Evidencia().addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    if (vista.getTabla_Evidencia().getSelectedRow() > -1) {
+                        try {
+                            baseDatosEvidencias.abrir(Integer.parseInt(vista.getTabla_Evidencia().getValueAt(vista.getTabla_Evidencia().getSelectedRow(), 0).toString()));
+
+                        } catch (Exception ex) {
+                            System.out.println("Seleccione un archivo con documento");
+                        }
+                    }
+                }
+            }
+        });
+    }
+
     public void modificar() {
         String carrera = (String) vista.getCbx_carrera().getSelectedItem();
         String anio = (String) vista.getCbx_anio().getSelectedItem();
@@ -526,7 +543,7 @@ public class Con_poa_evidencia {
                 }
             }
             addCheckBox(6, vista.getTabla_Evidencia());
-            vista.getTabla_Evidencia().setValueAt((lista.get(j).getArchivo()!= null), j, 6);
+            vista.getTabla_Evidencia().setValueAt((lista.get(j).getArchivo() != null), j, 6);
         }
 
     }

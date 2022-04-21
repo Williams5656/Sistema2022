@@ -4,12 +4,16 @@
  */
 package POA.Modelo;
 
+import java.awt.Desktop;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -62,6 +66,42 @@ public class EvidenciaBD extends EvidenciaMD {
             Logger.getLogger(ActividadesMD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lista;
+    }
+
+    public void abrir(int id) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        byte[] b = null;
+
+        try {
+            ps = conectar.getCon().prepareStatement("SELECT archivo FROM evidencia WHERE id_evidencia = ?;");
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                b = rs.getBytes(1);
+            }
+            InputStream bos = new ByteArrayInputStream(b);
+
+            int tamanoInput = bos.available();
+            byte[] datosPDF = new byte[tamanoInput];
+            bos.read(datosPDF, 0, tamanoInput);
+
+            OutputStream out = new FileOutputStream("new.pdf");
+            out.write(datosPDF);
+
+            out.close();
+            bos.close();
+            ps.close();
+            rs.close();
+            try {
+                Desktop.getDesktop().open(new File("new.pdf"));
+            } catch (Exception ex) {
+            }
+
+        } catch (IOException | NumberFormatException | SQLException ex) {
+            System.out.println("Error al abrir archivo PDF " + ex.getMessage());
+        }
     }
 
     public Object[][] datos_unidos(String carrera) {

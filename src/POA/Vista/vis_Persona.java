@@ -123,10 +123,7 @@ public class vis_Persona extends Fondos.fondo_internalframe {
         tablePersonas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tablePersonas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Cedula", "Nombre", "Apellidos", "Fecha Nacimiento", "Direccion", "Correo", "Celular", "Estado"

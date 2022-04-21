@@ -68,7 +68,7 @@ public class Con_persona {
         vista.getBtnGuardar().setEnabled(false);
         vista.getBtnModificar().setEnabled(false);
         vista.getBtnCamEstado().setEnabled(false);
-        vista.getBtnImprimir().setEnabled(false);
+        vista.getBtnImprimir().setEnabled(true);
         vista.getTxtCedula().setEnabled(false);
         vista.getTxtNombre().setEnabled(false);
         vista.getTxtApellido().setEnabled(false);
@@ -79,69 +79,38 @@ public class Con_persona {
         lista();
 
     }
-    public void imprimir(){
-          Conect con = new Conect();
-            try {
-               
-                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Personas.jasper"));
-                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
-                JasperViewer jv = new JasperViewer(jp, false);
-                JOptionPane.showMessageDialog(null, "Imprimiendo Personas");
-                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                jv.setVisible(true);
-            } catch (JRException e) {
-                System.out.println("no se pudo encontrar registros" + e.getMessage());
-                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
-            }
-    }
+    
+   
     public void imprimirpersona(){
-       Conect con = new Conect();
-        String[] reportes = {
-            "Seleccione Una Opcion",
-            "Reporte Con Cedula",
-            "Reporte Completo"
-        };
-        //Ctrl_MYICON icon = new Ctrl_MYICON(40, 50);
-        String resp = (String) JOptionPane.showInputDialog(null, "Seleccione un reporte", "Reporte De Personas",
-                JOptionPane.DEFAULT_OPTION, null, reportes, reportes[0]);
-        if (resp.equals("Seleccione Una Opcion")) {
-            JOptionPane.showMessageDialog(null, " seleccione uno de los campos");
-
+        String ced="'";
+        if(vista.getTablePersonas().getSelectedRow() > -1){
+            ced=ced+(String) vista.getTablePersonas().getValueAt(vista.getTablePersonas().getSelectedRow(), 0)+"'";
         }
-        if (resp.equals("Reporte Con Cedula")) {
- 
-            try {
-               // JOptionPane.showMessageDialog(null, "Imprimiendo Persona");
-                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Personas.jasper"));
-                Map<String, Object> params = new HashMap<String, Object>();
- String aguja = JOptionPane.showInputDialog("Ingrese una Cedula de persona");
-////                String aguja = vista.getTxtBuscar().getText();
-                System.out.println("cedula;;;;"+ aguja);
-                params.put("cedula",aguja);
-                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
-                JasperViewer jv = new JasperViewer(jp, false);
-                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                jv.setVisible(true);
-            } catch (JRException e) {
+        else{
+            for (int i = 0; i < vista.getTablePersonas().getRowCount(); i++) {
+                if (i==vista.getTablePersonas().getRowCount()-1){
+                    ced=ced+(String) vista.getTablePersonas().getValueAt(i, 0)+"'";
+                }
+                else{
+                    ced=ced+(String) vista.getTablePersonas().getValueAt(i, 0)+"','";
+                }
+            }
+        }
+        System.out.println("Cedulas a subir : "+ced);        
+        try {  
+        Conect con = new Conect();
+        JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/Personas.jasper"));
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("cedulas",ced);
+        JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
+        JasperViewer jv = new JasperViewer(jp, false);
+        jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        jv.setVisible(true);
+        } 
+        catch (JRException e) {
                 System.out.println("no se pudo encontrar registros" + e.getMessage());
                 Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
-            }
-
-        }
-        if (resp.equals("Reporte Completo")) {
-
-            try {
-                JOptionPane.showMessageDialog(null, "imprimiendo Docentes");
-                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/ReporteDocente.jasper"));
-
-                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
-                JasperViewer jv = new JasperViewer(jp, false);
-                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                jv.setVisible(true);
-            } catch (JRException e) {
-                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
-            }
-        }
+        } 
     }
     
     public void seleccionar() throws ParseException {
@@ -329,8 +298,9 @@ public class Con_persona {
         List<PersonaMD> lista9 = per.mostrardatos();
         int columnas = modelo.getColumnCount();
         for (int j = vista.getTablePersonas().getRowCount() - 1; j >= 0; j--) {
-            modelo.removeRow(j);
-            for (int i = 0; i < lista9.size(); i++) {
+            modelo.removeRow(j); 
+        }
+        for (int i = 0; i < lista9.size(); i++) {
                 modelo.addRow(new Object[columnas]);
                 vista.getTablePersonas().setValueAt(lista9.get(i).getCedula(), i, 0);
                 vista.getTablePersonas().setValueAt(lista9.get(i).getNombres(), i, 1);
@@ -340,10 +310,7 @@ public class Con_persona {
                 vista.getTablePersonas().setValueAt(lista9.get(i).getCorreo(), i, 5);
                 vista.getTablePersonas().setValueAt(lista9.get(i).getTelefono(), i, 6);
                 vista.getTablePersonas().setValueAt(lista9.get(i).getEstado(), i, 7);
-            }
-
         }
-
     }
 
     private void obtieneImagen() {

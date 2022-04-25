@@ -10,6 +10,7 @@ import POA.Modelo.doc_modulo_BD;
 import POA.Modelo.doc_planes_claseBD;
 import POA.Modelo.doc_silabo_BD;
 import POA.Vista.*;
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
@@ -34,7 +35,7 @@ public class con_periodoAcademico {
     PeriodoacademicoBD periodo = new PeriodoacademicoBD();
     private String carrera;
 
-    public con_periodoAcademico(vis_PeriodoAcademico vista,String carrera) {
+    public con_periodoAcademico(vis_PeriodoAcademico vista, String carrera) {
         this.carrera=carrera;
         this.vista = vista;
         vista.setVisible(true);
@@ -56,6 +57,16 @@ public class con_periodoAcademico {
         vista.getJlb_car().setText("Carrera: "+carrera);
     }
 
+    public void llamarBarra(){
+        Vis_Principal visPrinc = new Vis_Principal();
+        vis_BarraProgreso barra = new vis_BarraProgreso();
+        visPrinc.getESCRITORIO().add(barra);
+        Dimension desktopSize2 = visPrinc.getESCRITORIO().getSize();
+        Dimension FrameSize2 = barra.getSize();
+        barra.setLocation((desktopSize2.width - FrameSize2.width) / 2, (desktopSize2.height - FrameSize2.height) / 2);
+        
+    }
+    
     public void ingresar() {
         if (check() == true) {
             periodo.setNombre(mes_anio(vista.getDateFechaInicio().getDate().getMonth(),
@@ -69,6 +80,7 @@ public class con_periodoAcademico {
             periodo.setEstado(combo_esta());
 
             if (periodo.insertar() == true) {
+                llamarBarra();
                 System.out.println("periodo_creado");
             } else {
                 System.out.println("error val crear periodo");

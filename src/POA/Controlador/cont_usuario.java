@@ -8,6 +8,7 @@ package POA.Controlador;
 import POA.Modelo.PersonaBD;
 import POA.Modelo.PersonaMD;
 import POA.Controlador.Con_rol;
+import POA.Modelo.Conect;
 import POA.Modelo.RolBD;
 import POA.Modelo.RolMD;
 import POA.Modelo.UsuarioBD;
@@ -18,11 +19,23 @@ import java.awt.Image;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -43,7 +56,8 @@ public class cont_usuario {
         vista.getBtneliminar().addActionListener(e->cambiarestado());
         vista.getBtncedula().addActionListener(e->buscarced());
         vista.getBtnbuscar().addActionListener(e->buscar());
-        
+        vista.getBtnimprimir().addActionListener(e-> imprimirusuario());
+        vista.getBtn_r_aceptar().addActionListener(e-> Imp_Rol());
         vista.getTableUsuario().addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -324,10 +338,86 @@ public class cont_usuario {
             vista.getTableUsuario().setValueAt(lista.get(i).getEstado(), i, 4);            
             
         }
-        
-        
-        
+ 
     }
+    
+    public void imprimirusuario() {
+
+        Conect con = new Conect();
+        String[] reportes = {
+            "Seleccione Una Opcion",
+            "Reporte por Rol",
+            "Reporte Completo"
+        };
+        //Ctrl_MYICON icon = new Ctrl_MYICON(40, 50);
+        String resp = (String) JOptionPane.showInputDialog(null, "Seleccione un reporte", "Reporte",
+                JOptionPane.DEFAULT_OPTION, null, reportes, reportes[0]);
+        if (resp.equals("Seleccione Una Opcion")) {
+            JOptionPane.showMessageDialog(null, " seleccione uno de los campos");
+
+        }
+        if (resp.equals("Reporte por Rol")) {
+            try {
+                cargarImprimir(1);
+            } catch (SQLException ex) {
+                Logger.getLogger(Con_rol.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        if (resp.equals("Reporte Completo")) {
+
+            try {
+                JOptionPane.showMessageDialog(null, "Imprimiendo Actividades");
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/R_Usuario.jasper"));
+
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException e) {
+                Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+    }
+
+    public void Imp_Rol() {
+        Conect con = new Conect();
+        String aguja = "";
+        try {
+            // JOptionPane.showMessageDialog(null, "Imprimiendo Persona");
+            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/R_Usuario1.jasper"));
+            Map<String, Object> params = new HashMap<String, Object>();
+
+            aguja = (String) vista.getCombo_rol_repor().getSelectedItem();
+            System.out.println("Rol;;;;" + aguja);
+            params.put("Rol", aguja);
+            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
+            JasperViewer jv = new JasperViewer(jp, false);
+            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            jv.setVisible(true);
+        } catch (JRException e) {
+            System.out.println("no se pudo encontrar registros" + e.getMessage());
+            Logger.getLogger(Con_persona.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+    }
+    
+     private void cargarImprimir(int origen) throws SQLException {
+        vista.getImprimir_D().setSize(560, 275);//dimensiones
+        vista.getImprimir_D().setLocationRelativeTo(vista);//posicion
+        vista.getCombo_rol_repor().removeAllItems();
+        roles_Imp();
+        vista.getImprimir_D().setTitle("Reporte Tipo Actividad");
+        vista.getImprimir_D().setVisible(true);
+
+    }
+     public void roles_Imp(){
+        
+        List<RolMD> listar = bdrol.mostrardatos();
+        for (int i = 0; i < listar.size(); i++) {
+            vista.getCombo_rol_repor().addItem(listar.get(i).getNombre_rol());
+        }
+     }
     
 }
 

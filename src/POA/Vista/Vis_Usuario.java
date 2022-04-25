@@ -7,6 +7,7 @@ package POA.Vista;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTable;
@@ -152,6 +153,38 @@ public class Vis_Usuario extends javax.swing.JInternalFrame {
     public void setLblmensaje(JLabel lblmensaje) {
         this.lblmensaje = lblmensaje;
     }
+
+    public JButton getBtn_r_aceptar() {
+        return btn_r_aceptar;
+    }
+
+    public void setBtn_r_aceptar(JButton btn_r_aceptar) {
+        this.btn_r_aceptar = btn_r_aceptar;
+    }
+
+    public JButton getBtn_r_cancelar() {
+        return btn_r_cancelar;
+    }
+
+    public void setBtn_r_cancelar(JButton btn_r_cancelar) {
+        this.btn_r_cancelar = btn_r_cancelar;
+    }
+
+    public JComboBox getCombo_rol_repor() {
+        return combo_rol_repor;
+    }
+
+    public void setCombo_rol_repor(JComboBox combo_rol_repor) {
+        this.combo_rol_repor = combo_rol_repor;
+    }
+
+    public JDialog getImprimir_D() {
+        return Imprimir_D;
+    }
+
+    public void setImprimir_D(JDialog Imprimir_D) {
+        this.Imprimir_D = Imprimir_D;
+    }
     
     
     
@@ -168,6 +201,13 @@ public class Vis_Usuario extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Imprimir_D = new javax.swing.JDialog();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        btn_r_aceptar = new javax.swing.JButton();
+        btn_r_cancelar = new javax.swing.JButton();
+        combo_rol_repor = new javax.swing.JComboBox();
+        jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -202,6 +242,29 @@ public class Vis_Usuario extends javax.swing.JInternalFrame {
         btncedula = new javax.swing.JButton();
         lblmensaje = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+
+        Imprimir_D.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel10.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("SELECCIONE EL ROL PARA EL REPORTE");
+        Imprimir_D.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, -1, -1));
+
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Rol:");
+        Imprimir_D.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, -1, -1));
+
+        btn_r_aceptar.setText("ACEPTAR");
+        Imprimir_D.getContentPane().add(btn_r_aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, -1, -1));
+
+        btn_r_cancelar.setText("CANCELAR");
+        Imprimir_D.getContentPane().add(btn_r_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, -1, -1));
+
+        Imprimir_D.getContentPane().add(combo_rol_repor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 179, -1));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/fondo azul (1).jpg"))); // NOI18N
+        jLabel9.setText("jLabel9");
+        Imprimir_D.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 240));
 
         setClosable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -381,6 +444,9 @@ public class Vis_Usuario extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog Imprimir_D;
+    private javax.swing.JButton btn_r_aceptar;
+    private javax.swing.JButton btn_r_cancelar;
     private javax.swing.JButton btnbuscar;
     private javax.swing.JButton btncedula;
     private javax.swing.JButton btneliminar;
@@ -388,9 +454,12 @@ public class Vis_Usuario extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnimprimir;
     private javax.swing.JButton btnmodificar;
     private javax.swing.JButton btnnuevo;
+    private javax.swing.JComboBox combo_rol_repor;
     private javax.swing.JComboBox<String> comboestado;
     private javax.swing.JComboBox<String> comborol;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -398,6 +467,7 @@ public class Vis_Usuario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

@@ -384,7 +384,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         Imprimir_D.getContentPane().add(btn_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, -1, -1));
 
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/fondo azul (1).jpg"))); // NOI18N
-        Imprimir_D.getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 559, 250));
+        Imprimir_D.getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 250));
 
         T_Actividad_D.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

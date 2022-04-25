@@ -367,7 +367,7 @@ public class cont_usuario {
         if (resp.equals("Reporte Completo")) {
 
             try {
-                JOptionPane.showMessageDialog(null, "Imprimiendo Actividades");
+                JOptionPane.showMessageDialog(null, "Imprimiendo Usuarios");
                 JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/R_Usuario.jasper"));
 
                 JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, null, con.getCon());
@@ -407,7 +407,7 @@ public class cont_usuario {
         vista.getImprimir_D().setLocationRelativeTo(vista);//posicion
         vista.getCombo_rol_repor().removeAllItems();
         roles_Imp();
-        vista.getImprimir_D().setTitle("Reporte Tipo Actividad");
+        vista.getImprimir_D().setTitle("Reporte Segun Roles");
         vista.getImprimir_D().setVisible(true);
 
     }

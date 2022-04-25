@@ -58,13 +58,12 @@ public class con_periodoAcademico {
     }
 
     public void llamarBarra(){
-        Vis_Principal visPrinc = new Vis_Principal();
         vis_BarraProgreso barra = new vis_BarraProgreso();
-        visPrinc.getESCRITORIO().add(barra);
-        Dimension desktopSize2 = visPrinc.getESCRITORIO().getSize();
+        Con_principal.vista.getESCRITORIO().add(barra);
+        Dimension desktopSize2 = Con_principal.vista.getESCRITORIO().getSize();
         Dimension FrameSize2 = barra.getSize();
         barra.setLocation((desktopSize2.width - FrameSize2.width) / 2, (desktopSize2.height - FrameSize2.height) / 2);
-        
+        Con_BarraProgreso prog = new Con_BarraProgreso(barra);
     }
     
     public void ingresar() {

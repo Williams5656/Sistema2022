@@ -171,7 +171,6 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         btnimprimir = new javax.swing.JButton();
         btnnuevo = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -180,18 +179,22 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Carrera*");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 20));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Eje de formaciòn*");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 80, -1, 20));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Còdigo de Materia*");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, 20));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText(" Materia*");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, 20));
         getContentPane().add(txtcodmateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 150, -1));
@@ -205,10 +208,12 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
 
         getContentPane().add(comboareacarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 110, -1));
 
+        btncancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/icons8_Double_Left_20px.png"))); // NOI18N
         btncancelar.setText("Cancelar");
-        getContentPane().add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, 80, 30));
+        getContentPane().add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 250, 110, 40));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Ciclo*");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, -1, 20));
 
@@ -217,15 +222,18 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         getContentPane().add(combociclo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 160, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Crèditos*");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, -1, 20));
         getContentPane().add(txtcreditos, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 150, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Plan de Clase*");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, -1, 20));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Àrea de carrera*");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, -1, 20));
 
@@ -251,24 +259,24 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
         jSeparator7.setOrientation(javax.swing.SwingConstants.VERTICAL);
         getContentPane().add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 10, 300));
 
+        btnguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/Save-icon (4).png"))); // NOI18N
         btnguardar.setText("Guardar");
-        getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 80, 30));
+        getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 120, 40));
 
-        btneliminar.setText("Delete");
-        getContentPane().add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 80, 30));
+        btneliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/delete.jpg"))); // NOI18N
+        btneliminar.setText("Eliminar");
+        getContentPane().add(btneliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 110, 40));
 
         btnimprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/impresion.png"))); // NOI18N
         btnimprimir.setText("Reporte");
-        getContentPane().add(btnimprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 110, 40));
+        getContentPane().add(btnimprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 120, 40));
 
+        btnnuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/nuevo.png"))); // NOI18N
         btnnuevo.setText("Nuevo");
-        getContentPane().add(btnnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 80, 30));
+        getContentPane().add(btnnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 110, 40));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/My project.png"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 300));
-
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/My project.png"))); // NOI18N
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 0, 220, 300));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/fondo azul (2).jpg"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -286,7 +294,6 @@ public class Vis_Materias extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> comboejeformacion;
     private javax.swing.JComboBox<String> comboplan;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

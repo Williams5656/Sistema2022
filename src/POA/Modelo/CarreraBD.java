@@ -38,13 +38,12 @@ public class CarreraBD extends CarreraMD {
 
     public CarreraBD() {
     }
-
+        
       public List<CarreraMD> mostrardatos() {
         try {
             List<CarreraMD> lista = new ArrayList<CarreraMD>();
             String sql = "select * from carrera";
             ResultSet rs = conectar.query(sql);
-//            byte[] is;
             while (rs.next()) {
                 CarreraMD m = new CarreraMD();
                 m.setNombre_carrera(rs.getString("nombre"));
@@ -52,10 +51,7 @@ public class CarreraBD extends CarreraMD {
                 m.setFecha_inicio(rs.getString("fecha_inicio"));
                 m.setModalidad(rs.getString("modalidad"));
                 m.setCoordinador(rs.getString("coordinador"));
-//                m.setHorario(rs.getString("horario"));
-
                 lista.add(m);
-
             }
             rs.close();
             return lista;
@@ -71,7 +67,6 @@ public class CarreraBD extends CarreraMD {
             List<CarreraMD> lista = new ArrayList<CarreraMD>();
             String sql = "select * from carrera" + " where \"codigo\"='" + codigo_carrera + "'";
             ResultSet rs = conectar.query(sql);
-//            byte[] is;
             while (rs.next()) {
                 CarreraMD m = new CarreraMD();
                 m.setNombre_carrera(rs.getString("nombre"));
@@ -79,10 +74,7 @@ public class CarreraBD extends CarreraMD {
                 m.setFecha_inicio(rs.getString("fecha_inicio"));
                 m.setModalidad(rs.getString("modalidad"));
                 m.setCoordinador(rs.getString("coordinador"));
-//                m.setHorario(rs.getString("horario"));
-
                 lista.add(m);
-
             }
             rs.close();
             return lista;
@@ -129,23 +121,19 @@ public class CarreraBD extends CarreraMD {
             return false;
         }
     }
-//
-//    public boolean hasNext() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
 
-//    public String verificarCodCarrera(String nombre) {
-//        String nCodigo = "";
-//        String sql = "select codigo as nombre from carrera where codigo= '" + nombre + "'";
-//        ResultSet rs = conectar.query(sql);
-//        try {
-//            while (rs.next()) {
-//                nCodigo = rs.getString("nombre");;
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(CarreraBD.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return nCodigo;
-//    } 
-
+    public String verificarCodCarrera(String nombre) {
+        String nCodigo = "";
+        String sql = "select codigo as nombre from carrera where codigo= '" + nombre + "'";
+        ResultSet rs = conectar.query(sql);
+        try {
+            while (rs.next()) {
+                nCodigo = rs.getString("nombre");;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CarreraBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nCodigo;
+    } 
+        
 }

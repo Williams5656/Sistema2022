@@ -66,51 +66,110 @@ WHERE materia."materia"=$P{nombrem}]]>
 		<band height="26" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="26" splitType="Stretch">
+		<band height="23" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="191" y="0" width="139" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="05d70f88-753f-4f91-a045-203e20fa8903"/>
+				<reportElement mode="Opaque" x="465" y="0" width="43" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="70d8b8f1-3856-477c-88c7-f9799e8d267f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Materia]]></text>
+				<text><![CDATA[Area]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="330" y="0" width="102" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="d0acadc1-724d-43a7-9879-60fedc5552e8"/>
+				<reportElement mode="Opaque" x="425" y="0" width="40" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="499e6595-99e4-4bc9-875e-249e418fb59d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Carrera]]></text>
+				<text><![CDATA[Plan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="129" y="0" width="62" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="46c8871d-26e6-4c9b-86f5-14e76954849c"/>
+				<reportElement mode="Opaque" x="32" y="0" width="46" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="8cec73a6-0ce9-496a-bae5-4d066a34e391"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="377" y="0" width="48" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="19d2bece-e931-4c6b-831e-e7e1bb339d91"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Creditos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="180" y="0" width="42" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="86bae38d-d283-4ddd-87e7-8f4c93f5e995"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="339" y="0" width="38" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="182bc5c3-c8be-40c4-a375-c1ec32901f9d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ciclo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="78" y="0" width="102" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="fbde4f62-3d09-4586-bc62-8900e14133d0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Eje]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="222" y="0" width="117" height="20" forecolor="#FFFFFF" backcolor="#006699" uuid="64493548-357e-4773-99c0-0b293af46d02"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Materia]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="24" splitType="Stretch">
 			<textField>
-				<reportElement x="191" y="0" width="139" height="20" uuid="12e68e83-d5f2-410a-84b4-d9afbda1132a"/>
+				<reportElement x="180" y="0" width="42" height="20" uuid="f39e45c0-bd37-49bb-b108-49f31b267260"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{materia}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="330" y="0" width="102" height="20" uuid="20250fa6-3bd8-433f-82d3-10c47bb05cce"/>
+				<reportElement x="377" y="0" width="48" height="20" uuid="6fb2b41b-38f8-4f8c-8afd-1f5e20d0c0b0"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{creditos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="465" y="0" width="42" height="20" uuid="4fe119f1-d6ae-41f1-b525-53a8a20928d8"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{area}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="32" y="0" width="46" height="20" uuid="7e0e18e5-2b00-4af7-98e0-f2d507a2b969"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="129" y="0" width="62" height="20" uuid="8a1aa137-058e-4586-ba92-1e06a7eb6b28"/>
+				<reportElement x="222" y="0" width="117" height="20" uuid="45c7b363-3305-4bf5-9aaf-19e08d7065cb"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{materia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="339" y="0" width="38" height="20" uuid="2f57e195-559d-43d7-991d-149c4b9496e2"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ciclo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="78" y="0" width="102" height="20" uuid="05665cb7-0757-4a4e-bb87-d783679e5953"/>
+				<textFieldExpression><![CDATA[$F{eje}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="425" y="0" width="40" height="20" uuid="539e61e6-3356-42f5-ab76-1053b7d2081d"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{plan}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="36" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch">

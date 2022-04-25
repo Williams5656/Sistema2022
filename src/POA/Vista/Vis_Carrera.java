@@ -26,9 +26,6 @@ public class Vis_Carrera extends javax.swing.JInternalFrame {
         initComponents();
     }
 
- 
-    
-
     public JButton getBtnEliminar() {
         return btnEliminar;
     }
@@ -101,14 +98,6 @@ public class Vis_Carrera extends javax.swing.JInternalFrame {
         this.txtFecha_inicio = txtFecha_inicio;
     }
 
-//    public JTextField getTxtNombre_carrera() {
-//        return txtNombre_carrera;
-//    }
-//
-//    public void setTxtNombre_carrera(JTextField txtNombre_carrera) {
-//        this.txtNombre_carrera = txtNombre_carrera;
-//    }
-
     public JTextField getTxtCoordinador() {
         return txtCoordinador;
     }
@@ -117,20 +106,12 @@ public class Vis_Carrera extends javax.swing.JInternalFrame {
         this.txtCoordinador = txtCoordinador;
     }
 
-    public JButton getBtnBuscarc() {
-        return btnBuscarc;
+    public JTextField getTxtnombrecarrera() {
+        return txtnombrecarrera;
     }
 
-    public void setBtnBuscarc(JButton btnBuscarc) {
-        this.btnBuscarc = btnBuscarc;
-    }
-
-    public JComboBox<String> getComboCarrera() {
-        return comboCarrera;
-    }
-
-    public void setComboCarrera(JComboBox<String> comboCarrera) {
-        this.comboCarrera = comboCarrera;
+    public void setTxtnombrecarrera(JTextField txtnombrecarrera) {
+        this.txtnombrecarrera = txtnombrecarrera;
     }
 
     public JLabel getLblNombre() {
@@ -159,11 +140,11 @@ public class Vis_Carrera extends javax.swing.JInternalFrame {
         cmbModalidad = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         txtCoordinador = new javax.swing.JTextField();
-        btnBuscarc = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaCarrera = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         txtCodigo_carrera = new javax.swing.JTextField();
+        txtnombrecarrera = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -172,13 +153,12 @@ public class Vis_Carrera extends javax.swing.JInternalFrame {
         btnEliminar = new javax.swing.JButton();
         btnImprimir = new javax.swing.JButton();
         lblNombre = new javax.swing.JLabel();
-        comboCarrera = new javax.swing.JComboBox<>();
         fondo = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         fondogrande = new javax.swing.JLabel();
 
         setClosable(true);
+        setIconifiable(true);
+        setTitle("Ingreso de Carreras");
         setPreferredSize(new java.awt.Dimension(1039, 580));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -186,21 +166,21 @@ public class Vis_Carrera extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nombre Carrera:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Fecha de inicio:");
         jLabel2.setToolTipText("");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, -1, -1));
 
         txtFecha_inicio.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        jPanel1.add(txtFecha_inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 130, 140, 20));
+        jPanel1.add(txtFecha_inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 100, 140, 20));
 
         jlabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jlabel6.setForeground(new java.awt.Color(255, 255, 255));
         jlabel6.setText("Modalidad:");
-        jPanel1.add(jlabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, -1, -1));
+        jPanel1.add(jlabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, -1, -1));
 
         cmbModalidad.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
         cmbModalidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Presencial", "Dual", "Virtual" }));
@@ -209,20 +189,15 @@ public class Vis_Carrera extends javax.swing.JInternalFrame {
                 cmbModalidadActionPerformed(evt);
             }
         });
-        jPanel1.add(cmbModalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 190, 100, 20));
+        jPanel1.add(cmbModalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 160, 110, 20));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Coordinador:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 110, 20));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 110, 20));
 
         txtCoordinador.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        jPanel1.add(txtCoordinador, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, 190, 20));
-
-        btnBuscarc.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        btnBuscarc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/buscar (2).png"))); // NOI18N
-        btnBuscarc.setText("Buscar");
-        jPanel1.add(btnBuscarc, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 250, 120, 40));
+        jPanel1.add(txtCoordinador, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 190, 20));
 
         tablaCarrera.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -234,15 +209,16 @@ public class Vis_Carrera extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tablaCarrera);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 780, 180));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 780, 240));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Código Carrera:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
 
         txtCodigo_carrera.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        jPanel1.add(txtCodigo_carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 130, 20));
+        jPanel1.add(txtCodigo_carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 130, 20));
+        jPanel1.add(txtnombrecarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 450, -1));
 
         btnGuardar.setFont(new java.awt.Font("Roboto Black", 0, 11)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/guardar.png"))); // NOI18N
@@ -257,7 +233,7 @@ public class Vis_Carrera extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 0, 51));
         jLabel8.setText("*Ingrese cèdula");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, 90, 20));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, 90, 20));
 
         btnNuevo.setFont(new java.awt.Font("Roboto Black", 0, 11)); // NOI18N
         btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/nuevo.png"))); // NOI18N
@@ -275,23 +251,11 @@ public class Vis_Carrera extends javax.swing.JInternalFrame {
 
         lblNombre.setForeground(new java.awt.Color(255, 255, 255));
         lblNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 320, 20));
-
-        comboCarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Entrenamiento Deportivo", "Tecnología en Análisis de Sistemas", "Tecnología en Desarrollo Infantil Integral ", "Tecnología en Seguridad Penitenciaria ", "Tecnología Superior en Asesoría Financiera ", "Tecnología Superior en Desarrollo de Software ", "Tecnología Superior en Electricidad", "Tecnología Superior en Mecánica Industrial", "Tecnología Superior en Procesamiento Industrial de la Madera", "Técnico Superior en Seguridad Ciudadana y Orden Público ", "Tecnología Superior en Control de Incendios y Operaciones de Rescate", "Tecnología en Gestión del Patrimonio Histórico Cultural", "Tecnología Superior en Ciberseguridad", "Producción y Realización Audiovisual", "Tecnología Superior en Big Data", " " }));
-        jPanel1.add(comboCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, 440, 20));
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 320, 20));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/fondo azul (1).jpg"))); // NOI18N
         fondo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(6, 56, 107)));
-        jPanel1.add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 700, 270));
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel5.setText("Lista Carrera");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, -1, -1));
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(6, 56, 107));
-        jLabel7.setText("Carrera");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, 140, 40));
+        jPanel1.add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 620, 270));
 
         fondogrande.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/instituto.jpg"))); // NOI18N
         fondogrande.setPreferredSize(new java.awt.Dimension(1950, 1180));
@@ -317,23 +281,19 @@ public class Vis_Carrera extends javax.swing.JInternalFrame {
 
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscarc;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JComboBox<String> cmbModalidad;
-    private javax.swing.JComboBox<String> comboCarrera;
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel fondogrande;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -343,6 +303,7 @@ public class Vis_Carrera extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtCodigo_carrera;
     private javax.swing.JTextField txtCoordinador;
     private javax.swing.JTextField txtFecha_inicio;
+    private javax.swing.JTextField txtnombrecarrera;
     // End of variables declaration//GEN-END:variables
 
 }

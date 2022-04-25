@@ -296,7 +296,6 @@ public class Con_Materia {
 //        }
 //
 //    }
-
     public void cancelar() {
         int select = JOptionPane.showConfirmDialog(null, "DESEA CANCELAR!", "", JOptionPane.YES_NO_OPTION);
         if (select == 0) {
@@ -305,28 +304,6 @@ public class Con_Materia {
         }
     }
 
-//    boolean validarcod() {
-////        String codigo = (String) vista.getTxtcodmateria().getText();
-////        List<MateriaMD> lista_cod = materia.obtenerdatos(codigo);
-////        for (int i = 0; i < lista_cod.size(); i++) {
-////            if (codigo == (lista_cod.get(i).getCod_materia())) {
-////                JOptionPane.showMessageDialog(null, "Còdigo ya existe!", "Verifique", 0);
-////                return false;
-////            }
-////        }
-////        return true;
-//    }
-//    boolean validarmateria() {
-//        String codigo = (String) vista.getTxtnombremateria().getText();
-//        List<MateriaMD> lista_cod = materia.obtenerdatos(codigo);
-//        for (int i = 0; i < lista_cod.size(); i++) {
-//            if (codigo == (lista_cod.get(i).getNombre_materia())) {
-//                JOptionPane.showMessageDialog(null, "Materia ya existe!", "Verifique", 0);
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
     private void only_num(JTextField t) {
         t.addKeyListener(new KeyAdapter() {
             @Override
@@ -373,19 +350,19 @@ public class Con_Materia {
             JOptionPane.showMessageDialog(null, " seleccione uno de los campos");
         }
         if (resp.equals("Reporte por Materia")) {
-        try {
-            JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/RepMateriasII.jasper"));
-            Map<String,Object> params = new HashMap<String,Object>();
-            String aguja = JOptionPane.showInputDialog("Ingrese la materia");
-            System.out.println("nombrem;;;;" + aguja);
-            params.put("nombrem", aguja);
-            JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
-            JasperViewer jv= new JasperViewer(jp,false);
-            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-            jv.setVisible(true);
-        } catch (JRException ex) {
-            Logger.getLogger(Con_Materia.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            try {
+                JasperReport jas = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/RepMateriasII.jasper"));
+                Map<String, Object> params = new HashMap<String, Object>();
+                String aguja = JOptionPane.showInputDialog("Ingrese la materia");
+                System.out.println("nombrem;;;;" + aguja);
+                params.put("nombrem", aguja);
+                JasperPrint jp = (JasperPrint) JasperFillManager.fillReport(jas, params, con.getCon());
+                JasperViewer jv = new JasperViewer(jp, false);
+                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                jv.setVisible(true);
+            } catch (JRException ex) {
+                Logger.getLogger(Con_Materia.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (resp.equals("Reporte Completo")) {
             try {

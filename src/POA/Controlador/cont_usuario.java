@@ -58,6 +58,7 @@ public class cont_usuario {
         vista.getBtnbuscar().addActionListener(e->buscar());
         vista.getBtnimprimir().addActionListener(e-> imprimirusuario());
         vista.getBtn_r_aceptar().addActionListener(e-> Imp_Rol());
+        vista.getBtn_r_cancelar().addActionListener(e-> vista.getImprimir_D().dispose());
         vista.getTableUsuario().addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e) {

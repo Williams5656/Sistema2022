@@ -88,7 +88,7 @@ public class Con_calendario {
         vista.getBtn_modificar().addActionListener(e -> Modificar());
         vista.getBtn_prueba().addActionListener(e -> imprimirpersona());
         vista.getBtn_cancelar().addActionListener(e -> vista.getT_Actividad_D().dispose());
-        vista.getD_Btn_Cancelar().addActionListener(e -> vista.getT_Actividad_D().dispose());
+        vista.getD_Btn_Cancelar().addActionListener(e -> vista.getImprimir_D().dispose());
         vista.getBtn_eliminar().addActionListener(e -> eliminar());
         vista.getBtn_evidencia().addActionListener(e -> SeleccionarPdf());
         at = new TextAutoCompleter(vista.getTxt_responsables());

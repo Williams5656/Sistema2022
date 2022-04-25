@@ -219,11 +219,11 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
     }
 
     public JButton getBtn_cancelar() {
-        return btn_cancelar;
+        return btn_cancelar_r;
     }
 
     public void setBtn_cancelar(JButton btn_cancelar) {
-        this.btn_cancelar = btn_cancelar;
+        this.btn_cancelar_r = btn_cancelar;
     }
 
     public JComboBox getCombo_tipo_actividad_repor() {
@@ -305,7 +305,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         btn_aceptar = new javax.swing.JButton();
         combo_tipo_actividad_repor = new javax.swing.JComboBox();
-        btn_cancelar = new javax.swing.JButton();
+        btn_cancelar_r = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
         T_Actividad_D = new javax.swing.JDialog();
         jPanel4 = new javax.swing.JPanel();
@@ -380,8 +380,8 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
 
         Imprimir_D.getContentPane().add(combo_tipo_actividad_repor, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 122, 179, -1));
 
-        btn_cancelar.setText("CANCELAR");
-        Imprimir_D.getContentPane().add(btn_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, -1, -1));
+        btn_cancelar_r.setText("CANCELAR");
+        Imprimir_D.getContentPane().add(btn_cancelar_r, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, -1, -1));
 
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/POA/Vista/img/fondo azul (1).jpg"))); // NOI18N
         Imprimir_D.getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 250));
@@ -754,7 +754,7 @@ public class Vis_Calendar extends javax.swing.JInternalFrame {
     private javax.swing.JTable Tabla_calendario;
     private javax.swing.JButton btn_aceptar;
     private javax.swing.JButton btn_añadir;
-    private javax.swing.JButton btn_cancelar;
+    private javax.swing.JButton btn_cancelar_r;
     private javax.swing.JButton btn_eliminar;
     private javax.swing.JButton btn_evidencia;
     private javax.swing.JButton btn_guardar;
